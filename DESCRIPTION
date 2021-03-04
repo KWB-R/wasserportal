@@ -21,9 +21,26 @@ Description: R Package with Functions for Scraping Data of
 License: MIT + file LICENSE
 URL: https://github.com/KWB-R/wasserportal
 BugReports: https://github.com/KWB-R/wasserportal/issues
+Imports: 
+    dplyr,
+    httr,
+    kwb.datetime,
+    kwb.utils,
+    magrittr,
+    rlang,
+    rvest,
+    stringr,
+    tidyr,
+    xml2
 Suggests: 
-    covr
+    covr,
+    knitr,
+    rmarkdown
+Remotes: 
+    github::kwb-r/kwb.datetime,
+    github::kwb-r/kwb.utils
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
+VignetteBuilder: knitr
