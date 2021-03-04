@@ -7,12 +7,12 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-
 is_ghactions <- identical(Sys.getenv("CI"), "true")
 ```
 
@@ -30,10 +30,7 @@ overview_options$groundwater$level
 
 stations_gwl <- wasserportal::get_wasserportal_stations_table(
   type = overview_options$groundwater$level
-))
-
-DT::datatable(stations_gwl_master, filter = "top")
-
+  )
 
 
 
@@ -41,8 +38,10 @@ DT::datatable(stations_gwl, filter = "top")
 
 
 stations_gwl_master <- wasserportal::get_wasserportal_masters_data(
-  station_ids = stations_gwl$Messstellennummer[1:50]
+  station_ids = stations_gwl$Messstellennummer
 )
+
+DT::datatable(stations_gwl_master, filter = "top")
 
 jsonlite::write_json(stations_gwl_master, 
                      path = "stations_gwl_master.json",
