@@ -1,0 +1,24 @@
+Package: wasserportal
+Title: R Package with Functions for Scraping Data of
+    Wasserportal Berlin
+Version: 0.0.0.9000
+Authors@R: 
+    c(person(given = "Hauke",
+             family = "Sonnenberg",
+             role = c("aut", "cre"),
+             email = "hauke.sonnenberg@kompetenz-wasser.de",
+             comment = c(ORCID = "0000-0001-9134-2871")),
+      person(given = "Kompetenzzentrum Wasser Berlin gGmbH (KWB)",
+             role = "cph"))
+Description: R Package with Functions for Scraping Data of
+    Wasserportal Berlin (https://wasserportal.berlin.de), which contains
+    real-time data of surface water and groundwater monitoring stations.
+License: MIT + file LICENSE
+URL: https://github.com/KWB-R/wasserportal
+BugReports: https://github.com/KWB-R/wasserportal/issues
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Suggests: 
+    covr
