@@ -2,7 +2,7 @@
 
 #' read_wasserportal_raw_gw
 #'
-#' @param station
+#' @param station station id
 #' @param stype "gwl" or "gwq"
 #' @param type "single" or "single_all" (if stype = "gwq")
 #' @param from_date (default: "")

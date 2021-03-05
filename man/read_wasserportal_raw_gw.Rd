@@ -14,6 +14,8 @@ read_wasserportal_raw_gw(
 )
 }
 \arguments{
+\item{station}{station id}
+
 \item{stype}{"gwl" or "gwq"}
 
 \item{type}{"single" or "single_all" (if stype = "gwq")}
