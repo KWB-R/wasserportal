@@ -56,7 +56,7 @@ read_wasserportal_raw_gw <- function(
   body <- list(sreihe = sreihe,
                smode = "c",
                sdatum = sdatum,
-               senddatum = "",
+               senddatum = format(Sys.Date(), format = "%d.%m.%Y"),
                sthema = "gw")
 
 
