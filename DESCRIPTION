@@ -37,7 +37,9 @@ Suggests:
     covr,
     DT,
     jsonlite,
+    ggplot2,
     knitr,
+    plotly,
     rmarkdown
 Remotes: 
     github::kwb-r/kwb.datetime,

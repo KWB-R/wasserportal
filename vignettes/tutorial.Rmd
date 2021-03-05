@@ -54,9 +54,18 @@ jsonlite::write_json(stations_gwl_master,
 for total period available.
 
 ```{r test_gwl_download}
-gw_level <- read_wasserportal_raw_gw(station = stations_gwl$Messstellennummer[1], stype = "gwl")
-
+gw_level <- wasserportal::read_wasserportal_raw_gw(station = stations_gwl$Messstellennummer[1], 
+                                                   stype = "gwl")
+gw_level$Datum <- as.Date(gw_level$Datum, format = "%d.%m.%Y")
+names(gw_level) <- kwb.utils::substSpecialChars(names(gw_level))
 head(gw_level)
+
+g <- ggplot2::ggplot(gw_level, ggplot2::aes_string(x = "Datum", y = "GW_Stand_m_ue_NHN")) +
+ggplot2::geom_line() +
+ggplot2::geom_point() +
+ggplot2::theme_bw() 
+
+plotly::ggplotly(g)
 ```
 ```{r input_ghactions, echo=FALSE, results='asis', eval=is_ghactions}
 cat("## Export
