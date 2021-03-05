@@ -38,7 +38,7 @@ DT::datatable(stations_gwl, filter = "top")
 
 
 stations_gwl_master <- wasserportal::get_wasserportal_masters_data(
-  station_ids = stations_gwl$Messstellennummer
+  station_ids = stations_gwl$Messstellennummer[1:90]
 )
 
 DT::datatable(stations_gwl_master, filter = "top")
@@ -49,6 +49,15 @@ jsonlite::write_json(stations_gwl_master,
 
 ```
 
+### GW level download 
+
+for total period available.
+
+```{r test_gwl_download}
+gw_level <- read_wasserportal_raw_gw(station = stations_gwl$Messstellennummer[1], stype = "gwl")
+
+head(gw_level)
+```
 ```{r input_ghactions, echo=FALSE, results='asis', eval=is_ghactions}
 cat("## Export
 
