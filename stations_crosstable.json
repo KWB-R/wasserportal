@@ -1,0 +1,4364 @@
+[
+  {
+    "Messstellennummer": "5865900",
+    "Messstellenname": "Allee der Kosmonauten",
+    "ws": "x"
+  },
+  {
+    "Messstellennummer": "5827103",
+    "Messstellenname": "Allendestraße",
+    "ws": "x",
+    "df": "x"
+  },
+  {
+    "Messstellennummer": "5865300",
+    "Messstellenname": "Am Bahndamm",
+    "ws": "x",
+    "df": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5819900",
+    "Messstellenname": "Am Freibad",
+    "ws": "x"
+  },
+  {
+    "Messstellennummer": "5864801",
+    "Messstellenname": "Am Kienberg",
+    "ws": "x",
+    "df": "x"
+  },
+  {
+    "Messstellennummer": "5861101",
+    "Messstellenname": "Am Reitweg",
+    "ws": "x"
+  },
+  {
+    "Messstellennummer": "5800107",
+    "Messstellenname": "Am Wolfsschluchtkanal",
+    "ws": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5800317",
+    "Messstellenname": "Biesdorfer Baggersee",
+    "ws": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5867401",
+    "Messstellenname": "Bürgerpark",
+    "ws": "x",
+    "df": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5800301",
+    "Messstellenname": "Dianasee",
+    "ws": "x"
+  },
+  {
+    "Messstellennummer": "5800302",
+    "Messstellenname": "Dreipfuhl",
+    "ws": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5863000",
+    "Messstellenname": "Eisenacher Straße",
+    "ws": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5867900",
+    "Messstellenname": "Eisenbahnbrücke",
+    "ws": "x",
+    "df": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5827101",
+    "Messstellenname": "Fähre Rahnsdorf",
+    "ws": "x",
+    "df": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5800320",
+    "Messstellenname": "Fennpfuhl",
+    "ws": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5800313",
+    "Messstellenname": "Fennsee",
+    "ws": "x"
+  },
+  {
+    "Messstellennummer": "5867101",
+    "Messstellenname": "Flaischlenstraße",
+    "ws": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5800303",
+    "Messstellenname": "Flughafensee",
+    "ws": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5826702",
+    "Messstellenname": "Gosener Landstraße",
+    "ws": "x"
+  },
+  {
+    "Messstellennummer": "5800305",
+    "Messstellenname": "Groß Glienicker See",
+    "ws": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5800304",
+    "Messstellenname": "Grunewaldsee",
+    "ws": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5800306",
+    "Messstellenname": "Halensee",
+    "ws": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5861000",
+    "Messstellenname": "Hegemeisterweg",
+    "ws": "x"
+  },
+  {
+    "Messstellennummer": "5867300",
+    "Messstellenname": "Heinersdorf",
+    "ws": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5865000",
+    "Messstellenname": "Honsfelder Brücke",
+    "ws": "x"
+  },
+  {
+    "Messstellennummer": "5865200",
+    "Messstellenname": "Hoppendorfer Straße",
+    "ws": "x"
+  },
+  {
+    "Messstellennummer": "5867100",
+    "Messstellenname": "Krontaler Straße",
+    "ws": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5869700",
+    "Messstellenname": "Krummendammbrücke",
+    "ws": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5867500",
+    "Messstellenname": "Kühnemannstraße",
+    "ws": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5870100",
+    "Messstellenname": "Lichterfelde",
+    "ws": "x",
+    "df": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5800309",
+    "Messstellenname": "Lietzensee",
+    "ws": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5819901",
+    "Messstellenname": "Lübars",
+    "ws": "x"
+  },
+  {
+    "Messstellennummer": "5800318",
+    "Messstellenname": "Malchower See",
+    "ws": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5826701",
+    "Messstellenname": "Neue Fahlenbergbrücke",
+    "ws": "x",
+    "df": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5800315",
+    "Messstellenname": "Obersee",
+    "ws": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5800316",
+    "Messstellenname": "Orankesee",
+    "ws": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5867700",
+    "Messstellenname": "Pasewalker Brücke",
+    "ws": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5803500",
+    "Messstellenname": "Pfaueninsel",
+    "ws": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5800312",
+    "Messstellenname": "Plötzensee",
+    "ws": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5867000",
+    "Messstellenname": "Röntgental",
+    "ws": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5800106",
+    "Messstellenname": "Schäfersee",
+    "ws": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5866700",
+    "Messstellenname": "Schleuse Neukölln OP",
+    "ws": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5866800",
+    "Messstellenname": "Schleuse Neukölln UP",
+    "ws": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5862811",
+    "Messstellenname": "Schmöckwitz US",
+    "ws": "x",
+    "df": "x"
+  },
+  {
+    "Messstellennummer": "5827700",
+    "Messstellenname": "Sophienwerder",
+    "ws": "x",
+    "df": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5820000",
+    "Messstellenname": "St.-Joseph-Steg",
+    "ws": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5803200",
+    "Messstellenname": "Tiefwerder",
+    "ws": "x",
+    "df": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5867301",
+    "Messstellenname": "Venturigerinne",
+    "ws": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5867201",
+    "Messstellenname": "Verteiler OP",
+    "ws": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5867202",
+    "Messstellenname": "Verteiler UP",
+    "ws": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5800310",
+    "Messstellenname": "Waldsee Zehlendorf",
+    "ws": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5800314",
+    "Messstellenname": "Weißer See",
+    "ws": "x"
+  },
+  {
+    "Messstellennummer": "5861200",
+    "Messstellenname": "Wiesengrund",
+    "ws": "x",
+    "df": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5867001",
+    "Messstellenname": "Wiltbergstraße",
+    "ws": "x"
+  },
+  {
+    "Messstellennummer": "5864800",
+    "Messstellenname": "Wuhletal",
+    "ws": "x",
+    "df": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5866301",
+    "Messstellenname": "Zoo",
+    "ws": "x",
+    "df": "x"
+  },
+  {
+    "Messstellennummer": "5825500",
+    "Messstellenname": "Beeskow, Spreeschleuse UP",
+    "ws": "x"
+  },
+  {
+    "Messstellennummer": "5828000",
+    "Messstellenname": "Bräsinchen  Hauptflusspegel",
+    "ws": "x"
+  },
+  {
+    "Messstellennummer": "5821000",
+    "Messstellenname": "Cottbus, Sandower Brücke",
+    "ws": "x"
+  },
+  {
+    "Messstellennummer": "5827000",
+    "Messstellenname": "Hohenbinde",
+    "ws": "x"
+  },
+  {
+    "Messstellennummer": "5804300",
+    "Messstellenname": "Ketzin",
+    "ws": "x"
+  },
+  {
+    "Messstellennummer": "5824700",
+    "Messstellenname": "Leibsch, Spreewehr Nr.207a UP",
+    "ws": "x"
+  },
+  {
+    "Messstellennummer": "5823800",
+    "Messstellenname": "Lübben, Zusammenfluss",
+    "ws": "x"
+  },
+  {
+    "Messstellennummer": "580412",
+    "Messstellenname": "Potsdam",
+    "ws": "x"
+  },
+  {
+    "Messstellennummer": "5862201",
+    "Messstellenname": "Prierow 2",
+    "ws": "x"
+  },
+  {
+    "Messstellennummer": "5802600",
+    "Messstellenname": "Sachsenhausen",
+    "ws": "x"
+  },
+  {
+    "Messstellennummer": "5819801",
+    "Messstellenname": "Schildow",
+    "ws": "x"
+  },
+  {
+    "Messstellennummer": "5820900",
+    "Messstellenname": "Spremberg",
+    "ws": "x"
+  },
+  {
+    "Messstellennummer": "5820901",
+    "Messstellenname": "Talsperre Spremberg",
+    "ws": "x"
+  },
+  {
+    "Messstellennummer": "581591",
+    "Messstellenname": "Borgsdorf",
+    "df": "x"
+  },
+  {
+    "Messstellennummer": "580430",
+    "Messstellenname": "Ketzin",
+    "df": "x"
+  },
+  {
+    "Messstellennummer": "601",
+    "Messstellenname": "MPS Berlin-Spandauer-Schifffahrtskanal",
+    "wt": "x",
+    "lf": "x",
+    "ph": "x",
+    "og": "x",
+    "os": "x"
+  },
+  {
+    "Messstellennummer": "151",
+    "Messstellenname": "MPS Caprivibrücke",
+    "wt": "x",
+    "lf": "x",
+    "ph": "x",
+    "og": "x",
+    "os": "x"
+  },
+  {
+    "Messstellennummer": "153",
+    "Messstellenname": "MPS Charlottenburg",
+    "wt": "x",
+    "lf": "x",
+    "ph": "x",
+    "og": "x",
+    "os": "x"
+  },
+  {
+    "Messstellennummer": "509",
+    "Messstellenname": "MPS Landwehrkanal",
+    "wt": "x",
+    "lf": "x",
+    "ph": "x",
+    "og": "x",
+    "os": "x"
+  },
+  {
+    "Messstellennummer": "504",
+    "Messstellenname": "MPS Neuköllner Schifffahrtskanal",
+    "wt": "x",
+    "lf": "x",
+    "ph": "x",
+    "og": "x",
+    "os": "x"
+  },
+  {
+    "Messstellennummer": "414",
+    "Messstellenname": "MPS Teltowkanal",
+    "wt": "x",
+    "lf": "x",
+    "ph": "x",
+    "og": "x",
+    "os": "x"
+  },
+  {
+    "Messstellennummer": "141",
+    "Messstellenname": "MS Mühlendammschleuse",
+    "wt": "x",
+    "lf": "x",
+    "ph": "x",
+    "og": "x",
+    "os": "x"
+  },
+  {
+    "Messstellennummer": "111",
+    "Messstellenname": "MS Rahnsdorf",
+    "wt": "x",
+    "lf": "x",
+    "ph": "x",
+    "og": "x",
+    "os": "x"
+  },
+  {
+    "Messstellennummer": "211",
+    "Messstellenname": "MS Schmöckwitz",
+    "wt": "x",
+    "lf": "x",
+    "ph": "x",
+    "og": "x",
+    "os": "x"
+  },
+  {
+    "Messstellennummer": "161",
+    "Messstellenname": "MS Sophienwerder",
+    "wt": "x",
+    "lf": "x",
+    "ph": "x",
+    "og": "x",
+    "os": "x"
+  },
+  {
+    "Messstellennummer": "421",
+    "Messstellenname": "MS Teltow-Werft",
+    "wt": "x",
+    "lf": "x",
+    "ph": "x",
+    "og": "x",
+    "os": "x"
+  },
+  {
+    "Messstellennummer": "SP_0150",
+    "Messstellenname": "Beeskow",
+    "wt": "x",
+    "lf": "x",
+    "ph": "x",
+    "og": "x",
+    "os": "x"
+  },
+  {
+    "Messstellennummer": "TK_0025",
+    "Messstellenname": "Kleinmachnow",
+    "wt": "x",
+    "lf": "x",
+    "ph": "x",
+    "og": "x",
+    "os": "x"
+  },
+  {
+    "Messstellennummer": "SP_0130",
+    "Messstellenname": "Leibsch",
+    "wt": "x",
+    "lf": "x",
+    "ph": "x",
+    "og": "x",
+    "os": "x"
+  },
+  {
+    "Messstellennummer": "SP_0050",
+    "Messstellenname": "Neuhausen",
+    "wt": "x",
+    "lf": "x",
+    "ph": "x",
+    "og": "x",
+    "os": "x"
+  },
+  {
+    "Messstellennummer": "HV_0110",
+    "Messstellenname": "Potsdam",
+    "wt": "x",
+    "lf": "x",
+    "ph": "x",
+    "og": "x",
+    "os": "x"
+  },
+  {
+    "Messstellennummer": "1",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "2",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "3",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "9",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "21",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "24",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "25",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "26",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "30",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "31",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "32",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "34",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "35",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "39",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "40",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "44",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "45",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "47",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "50",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "51",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "52",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "53",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "55",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "58",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "60",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "62",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "64",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "66",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "68",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "70",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "71",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "73",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "74",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "75",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "76",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "79",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "80",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "82",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "86",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "87",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "88",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "89",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "90",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "91",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "92",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "93",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "94",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "95",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "96",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "97",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "100",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "101",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "102",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "103",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "105",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "106",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "107",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "108",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "109",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "110",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "114",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "115",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "120",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "124",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "125",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "128",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "129",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "130",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "132",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "134",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "136",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "137",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "138",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "139",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "144",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "145",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "146",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "147",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "149",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "150",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "152",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "153",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "154",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "155",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "161",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "162",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "164",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "165",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "169",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "173",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "176",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "178",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "181",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "182",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "185",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "200",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "201",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "202",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "204",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "205",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "206",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "208",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "209",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "211",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "214",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "221",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "230",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "231",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "232",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "237",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "241",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "243",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "247",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "248",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "249",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "251",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "252",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "253",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "258",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "259",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "262",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "268",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "276",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "282",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "293",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "294",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "305",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "312",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "319",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "325",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "326",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "328",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "330",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "340",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "343",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "344",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "345",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "358",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "363",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "366",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "370",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "377",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "380",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "384",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "399",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "401",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "404",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "405",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "407",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "425",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "426",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "429",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "430",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "432",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "439",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "440",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "446",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "492",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "496",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "499",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "500",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "501",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "510",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "511",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "513",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "516",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "518",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "520",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "522",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "552",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "553",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "554",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "558",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "561",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "562",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "563",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "564",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "569",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "576",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "577",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "580",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "581",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "583",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "584",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "585",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "587",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "591",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "594",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "595",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "596",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "597",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "603",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "604",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "605",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "606",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "607",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "608",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "609",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "610",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "621",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "622",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "628",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "642",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "645",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "648",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "652",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "654",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "658",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "662",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "667",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "668",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "669",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "671",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "672",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "674",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "676",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "677",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "678",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "683",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "684",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "685",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "693",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "694",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "697",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "698",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "700",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "702",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "703",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "710",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "711",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "712",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "720",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "721",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "725",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "726",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "728",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "729",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "731",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "738",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "741",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "742",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "744",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "746",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "747",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "749",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "750",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "751",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "752",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "753",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "754",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "755",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "756",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "757",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "760",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "762",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "765",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "767",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "768",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "769",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "770",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "772",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "773",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "774",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "775",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "776",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "777",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "785",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "791",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "793",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "795",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "796",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "797",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "798",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "799",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "800",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "801",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "802",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "803",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "806",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "807",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "808",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "809",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "810",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "811",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "812",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "813",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "816",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "817",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "819",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "830",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "833",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "1305",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "1306",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "1311",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "1318",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "1320",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "1325",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "1349",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "1359",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "2606",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "2607",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "3024",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "3025",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "3033",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "3063",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "3097",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "3133",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "3137",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "3144",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "3154",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "3155",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "3156",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "3211",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "3212",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "3213",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "3215",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "3315",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "3316",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "3354",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "3355",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "3356",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "3357",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "3358",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4003",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4005",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4006",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4008",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4013",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4015",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4059",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4061",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "4098",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4102",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4105",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "4304",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "4458",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4460",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4461",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4519",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4521",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "4588",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4611",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "4612",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "4631",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4632",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4640",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "4641",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4643",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4653",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4727",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "4788",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4799",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4800",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4805",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4846",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "4851",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4874",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4875",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "4882",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4885",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4890",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4895",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4897",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4923",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4928",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4930",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5001",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5002",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5004",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5005",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5006",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5008",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5009",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5011",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5013",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5017",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5019",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5020",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5022",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5025",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5026",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5027",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5029",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5031",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5033",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5036",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5039",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5040",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5042",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5043",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5044",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5045",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5049",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5052",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5057",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5058",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5060",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5066",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5068",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5071",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5072",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5073",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5074",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5075",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5076",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5077",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5078",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5086",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5090",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5091",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5092",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5097",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5118",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5138",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5139",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5140",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5141",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5142",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5144",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5146",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5147",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5148",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5149",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5150",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5152",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5154",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5155",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5156",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5161",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5162",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5167",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5168",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5169",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5176",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5202",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5207",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5217",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5231",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5233",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5253",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5255",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5270",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5277",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5289",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5297",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5304",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5306",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5308",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5311",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5316",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5320",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5333",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5337",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5342",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5351",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5355",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5366",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5372",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5382",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5388",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5389",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5390",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5393",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5404",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5405",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5412",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5420",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5422",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5424",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5427",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5428",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5430",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5431",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5471",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5472",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5473",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5475",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5476",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5573",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5581",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5600",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6004",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6007",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6010",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6011",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6012",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6013",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6014",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6016",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6017",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6020",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6021",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6022",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6023",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6024",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6025",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6026",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6027",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6029",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6034",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6035",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6038",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6040",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6043",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6044",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6047",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6056",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6057",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6059",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6060",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6063",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6064",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6066",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6067",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6069",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6075",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6076",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6080",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6082",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6084",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6089",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6092",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6093",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6095",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6097",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6102",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6108",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6110",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6111",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6112",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6113",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6114",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6115",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6119",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6121",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6124",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6125",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6127",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6501",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6504",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6510",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6511",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6515",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6516",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6520",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6522",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6534",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6548",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6560",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6567",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6568",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6743",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6961",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6962",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6963",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6964",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6965",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6967",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "6968",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7003",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7014",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7015",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7016",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7018",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7021",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7027",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7028",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7029",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7030",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7039",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7040",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7041",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7042",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7043",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7044",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7045",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7048",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7049",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7050",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7054",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7055",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7056",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7057",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7058",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7066",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7067",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7076",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7078",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7079",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7081",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7082",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7083",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7084",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7085",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7092",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7098",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7099",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7104",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7106",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7107",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7109",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7110",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7111",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7112",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7114",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7117",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7118",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7119",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7125",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7126",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7127",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7128",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7132",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7136",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7137",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7144",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7145",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7146",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7147",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7161",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7168",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7171",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7172",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7173",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7178",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7180",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7182",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7192",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7193",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7194",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7195",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7196",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7206",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7207",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7208",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7210",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7214",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7215",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7216",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7218",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7219",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7228",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7229",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7231",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7233",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7237",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7240",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7241",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7248",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7249",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7250",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7251",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7253",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7254",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7255",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7259",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7261",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7264",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7269",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7275",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7276",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7277",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7278",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7281",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7286",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7290",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7291",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7292",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7293",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7295",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7299",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7301",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7323",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7324",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7340",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7347",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7502",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7518",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7578",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7713",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7722",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7723",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7728",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7742",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7745",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7746",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7750",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7751",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7752",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7845",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7882",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7883",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7884",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7885",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7886",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7892",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8018",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8044",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8045",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8047",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8048",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8050",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8053",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8054",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8056",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8058",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8059",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8063",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8118",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8197",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8199",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8213",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8214",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8215",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8221",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8224",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8225",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8226",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8349",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8350",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8351",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8355",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8367",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8378",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8408",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8411",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8412",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8414",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8415",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8437",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8438",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8440",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8441",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8443",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8445",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8448",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8450",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8456",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8458",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8459",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8464",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8468",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8469",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "8472",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "8473",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8476",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8484",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8485",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8693",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8947",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8949",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "8950",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "8957",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "8964",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "8974",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8977",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8979",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "8997",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "9058",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "9083",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "9092",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "9348",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "9401",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "9408",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "9416",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "9424",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "9445",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "9451",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "9458",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "9485",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "9491",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "9492",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "9503",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "9612",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "9614",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "9859",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "9874",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "9931",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "9932",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "9987",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "10034",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "10035",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "10038",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "10414",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "10417",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "10420",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "10421",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "10709",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15001",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "15012",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15049",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "15062",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15063",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15065",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "15101",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "15104",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15105",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15106",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15147",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "15150",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "15152",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "15153",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "15156",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "15160",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "15161",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15162",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "15163",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15165",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15166",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15167",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15168",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15169",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15170",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15171",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15172",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15173",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15174",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "15175",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15176",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15177",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15178",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15179",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15180",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15181",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15183",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15184",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15185",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15189",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15190",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15192",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15193",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15195",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15196",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15197",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15198",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15199",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15201",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "17299",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "17300",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "17301",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "17302",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "17303",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "17304",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "17305",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "17306",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "21101",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "23101",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "23201",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "23208",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "23701",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "23703",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "23705",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "23707",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "23719",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "23748",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "23749",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "23750",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "23751",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "23752",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "23753",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "30201",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "90203",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "90267",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "93143",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "95242",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "95391",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "97766",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "98345",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "98954",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "99003",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "99085",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "99619",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "99620",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "99721",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "99729",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "99868",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "4233",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5003",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5010",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5032",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5095",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "5130",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6028",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6058",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6081",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6518",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6533",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6535",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7019",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7033",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7034",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7035",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7062",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7063",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7064",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7072",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7086",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7108",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7121",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7123",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7124",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7165",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7176",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7209",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7257",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7258",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7268",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7285",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7298",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "10790",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "15000",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "15109",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "17309",
+    "gwq": "x"
+  }
+]
