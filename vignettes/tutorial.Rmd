@@ -40,6 +40,13 @@ stations_gwl <- wasserportal::get_wasserportal_stations_table(
 
 DT::datatable(stations_gwl, filter = "top")
 
+### Plot GW level classification (provided by SenWeb)
+g1 <- ggplot2::ggplot(stations_gwl, ggplot2::aes_string(x = "Klassifikation")) +
+ggplot2::geom_bar() + 
+ggplot2::labs(title = "GW level classification (SenWeb)") +
+ggplot2::theme_bw() 
+
+plotly::ggplotly(g1)
 
 stations_gwl_master <- wasserportal::get_wasserportal_masters_data(
   station_ids = stations_gwl$Messstellennummer
