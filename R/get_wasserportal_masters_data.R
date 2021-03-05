@@ -47,6 +47,6 @@ get_wasserportal_masters_data <- function(
 
   }
 
-  data.table::rbindlist(master_list)
+  data.table::rbindlist(master_list, fill = TRUE)
 
 }
