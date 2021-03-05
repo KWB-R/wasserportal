@@ -53,7 +53,7 @@ jsonlite::write_json(stations_gwl_master,
 
 ``` 
 
-```{r input_ghactions, echo=FALSE, results='asis', eval=is_ghactions}
+```{r input_ghactions1, echo=FALSE, results='asis', eval=is_ghactions}
 cat("The master data of GW level stations is also available in JSON format here:
 [https://kwb-r.github.io/wasserportal/stations_gwl_master.json](../stations_gwl_master.json)
 ")
@@ -102,7 +102,7 @@ jsonlite::write_json(stations_gwq_master,
 
 ``` 
 
-```{r input_ghactions, echo=FALSE, results='asis', eval=is_ghactions}
+```{r input_ghactions2, echo=FALSE, results='asis', eval=is_ghactions}
 cat("The master data of GW quality stations is also available in JSON format here:
 [https://kwb-r.github.io/wasserportal/stations_gwq_master.json](../stations_gwq_master.json)
 ")
