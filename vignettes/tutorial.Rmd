@@ -110,4 +110,4 @@ cat("The master data of GW quality stations is also available in JSON format her
 
 #### Download and Plotting 
 
-for total period available.
+Not implemented yet !!!
