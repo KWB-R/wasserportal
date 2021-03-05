@@ -16,29 +16,33 @@ knitr::opts_chunk$set(
 is_ghactions <- identical(Sys.getenv("CI"), "true")
 ```
 
-```{r setup}
+## Stations
+
+### Overview Options 
+
+```{r stations_overview}
 # install.packages("remotes")
 # remotes::install_github("kwb-r/wasserportal", upgrade = "never", force = TRUE)
 
-library(wasserportal)
-
 overview_options <- wasserportal::get_overview_options()
-
 str(overview_options)
+```
 
-overview_options$groundwater$level
 
+### GW level
+
+Master data of GW level stations can be requested as shown below:
+
+```{r stations_gwl}
 stations_gwl <- wasserportal::get_wasserportal_stations_table(
   type = overview_options$groundwater$level
   )
-
-
 
 DT::datatable(stations_gwl, filter = "top")
 
 
 stations_gwl_master <- wasserportal::get_wasserportal_masters_data(
-  station_ids = stations_gwl$Messstellennummer[1:90]
+  station_ids = stations_gwl$Messstellennummer
 )
 
 DT::datatable(stations_gwl_master, filter = "top")
@@ -47,9 +51,15 @@ jsonlite::write_json(stations_gwl_master,
                      path = "stations_gwl_master.json",
                      pretty = TRUE)
 
+``` 
+
+```{r input_ghactions, echo=FALSE, results='asis', eval=is_ghactions}
+cat("The master data of GW level stations is also available in JSON format here:
+[https://kwb-r.github.io/wasserportal/stations_gwl_master.json](../stations_gwl_master.json)
+")
 ```
 
-### GW level download 
+#### Download and Plotting 
 
 for total period available.
 
@@ -67,10 +77,37 @@ ggplot2::theme_bw()
 
 plotly::ggplotly(g)
 ```
+
+### GW quality
+
+Master data of GW quality stations can be requested as shown below:
+
+```{r stations_gwq}
+stations_gwq <- wasserportal::get_wasserportal_stations_table(
+  type = overview_options$groundwater$quality
+  )
+
+DT::datatable(stations_gwq, filter = "top")
+
+
+stations_gwq_master <- wasserportal::get_wasserportal_masters_data(
+  station_ids = stations_gwq$Messstellennummer
+)
+
+DT::datatable(stations_gwq_master, filter = "top")
+
+jsonlite::write_json(stations_gwq_master, 
+                     path = "stations_gwq_master.json",
+                     pretty = TRUE)
+
+``` 
+
 ```{r input_ghactions, echo=FALSE, results='asis', eval=is_ghactions}
-cat("## Export
-
-
-[stations_gwl_master.json](../stations_gwl_master.json)
+cat("The master data of GW quality stations is also available in JSON format here:
+[https://kwb-r.github.io/wasserportal/stations_gwq_master.json](../stations_gwq_master.json)
 ")
 ```
+
+#### Download and Plotting 
+
+for total period available.
