@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • wasserportal</title>
+<title>Helper function to read CSV — read • wasserportal</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Helper function to read CSV — read" />
+<meta property="og:description" content="Helper function to read CSV" />
 
 
 
@@ -58,7 +59,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -120,108 +121,37 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Helper function to read CSV</h1>
+    <small class="dont-index">Source: <a href='https://github.com/KWB-R/wasserportal/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
+    <div class="hidden name"><code>read.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Helper function to read CSV</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>read</span><span class='op'>(</span><span class='va'>text</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="get_overview_options.html">get_overview_options()</a></code> </p>
-        </td>
-        <td><p>Wasserportal Berlin: get overview options for stations</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_wasserportal_master_data.html">get_wasserportal_master_data()</a></code> </p>
-        </td>
-        <td><p>Wasserportal Berlin: get master data for a single station</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_wasserportal_masters_data.html">get_wasserportal_masters_data()</a></code> </p>
-        </td>
-        <td><p>Wasserportal Berlin: get master data for a multiple stations</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_wasserportal_stations.html">get_wasserportal_stations()</a></code> </p>
-        </td>
-        <td><p>Get Names and IDs of the Stations of wasserportal.berlin.de</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_wasserportal_stations_table.html">get_wasserportal_stations_table()</a></code> </p>
-        </td>
-        <td><p>Wasserportal Berlin: get stations overview table</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_wasserportal_variables.html">get_wasserportal_variables()</a></code> </p>
-        </td>
-        <td><p>Get Names and IDs of the Variables of wasserportal.berlin.de</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read.html">read()</a></code> </p>
-        </td>
-        <td><p>Helper function to read CSV</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="readPackageFile.html">readPackageFile()</a></code> </p>
-        </td>
-        <td><p>Read CSV File from Package's "extdata" Folder</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_wasserportal.html">read_wasserportal()</a></code> </p>
-        </td>
-        <td><p>Download and Read Data from wasserportal.berlin.de</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_wasserportal_raw.html">read_wasserportal_raw()</a></code> </p>
-        </td>
-        <td><p>Read Wasserportal Raw</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_wasserportal_raw_gw.html">read_wasserportal_raw_gw()</a></code> </p>
-        </td>
-        <td><p>read_wasserportal_raw_gw</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="wasserportal_base_url.html">wasserportal_base_url()</a></code> </p>
-        </td>
-        <td><p>Helper function: Base Url of Berlin Wassersportal</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>text</th>
+      <td><p>text</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>... additional arguments passed to <code><a href='https://rdrr.io/r/utils/read.table.html'>read.table</a></code></p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>data frame with values</p>
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
