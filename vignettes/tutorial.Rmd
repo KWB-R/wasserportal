@@ -25,7 +25,7 @@ is_ghactions <- identical(Sys.getenv("CI"), "true")
 ```{r stations_overview}
 # install.packages("remotes")
 # remotes::install_github("kwb-r/wasserportal", upgrade = "never", force = TRUE)
-
+library(wasserportal)
 overview_options <- wasserportal::get_overview_options()
 str(overview_options)
 
