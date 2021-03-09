@@ -31,7 +31,8 @@
   {
     "Messstellennummer": "5861101",
     "Messstellenname": "Am Reitweg",
-    "ws": "x"
+    "ws": "x",
+    "wt": "x"
   },
   {
     "Messstellennummer": "5800107",
@@ -143,12 +144,14 @@
   {
     "Messstellennummer": "5865000",
     "Messstellenname": "Honsfelder Brücke",
-    "ws": "x"
+    "ws": "x",
+    "wt": "x"
   },
   {
     "Messstellennummer": "5865200",
     "Messstellenname": "Hoppendorfer Straße",
-    "ws": "x"
+    "ws": "x",
+    "wt": "x"
   },
   {
     "Messstellennummer": "5867100",
@@ -184,7 +187,8 @@
   {
     "Messstellennummer": "5819901",
     "Messstellenname": "Lübars",
-    "ws": "x"
+    "ws": "x",
+    "wt": "x"
   },
   {
     "Messstellennummer": "5800318",
