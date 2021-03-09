@@ -88,14 +88,52 @@ cat("The master data of GW level stations is also available in JSON format here:
 GW level trend classification (provided by SenWeb) is visualized below.
 
 ```{r stations_gwl_trend}
-g1 <- ggplot2::ggplot(stations$overview_list$groundwater.level, 
-                      ggplot2::aes_string(x = "Klassifikation")) +
-ggplot2::geom_bar() + 
-ggplot2::labs(title = "GW level classification (SenWeb)") +
-ggplot2::theme_bw() 
+
+gwl <- stations$overview_list$groundwater.level
+
+levels_ordered <- c("extrem niedrig",
+                    "sehr niedrig",
+                    "niedrig", 
+                    "normal",
+                    "hoch",
+                    "sehr hoch",
+                    "extrem hoch",
+                    "keine")
+
+text_low_levels <- c("extrem niedrig", "sehr niedrig", "niedrig")
+text_high_levels <- c("hoch", "sehr hoch", "extrem hoch")
+
+gwl$Klassifikation <- forcats::fct_relevel(gwl$Klassifikation, levels_ordered)
+
+gwl_classified_only <- gwl %>% dplyr::filter(Klassifikation != "keine")
+
+percental_share_low_levels <- 100*sum(gwl_classified_only$Klassifikation %in% text_low_levels)/nrow(gwl_classified_only) 
+
+percental_share_high_levels <- 100*sum(gwl_classified_only$Klassifikation %in% text_high_levels)/nrow(gwl_classified_only) 
+
+title_text <- sprintf("GW level classification (n = %d out of %d have 'classification' data)", nrow(gwl_classified_only), nrow(gwl))
+
+g1 <- gwl_classified_only %>% 
+  dplyr::count(Klassifikation, Grundwasserspannung) %>% 
+  dplyr::mutate(percental_share = 100 * n / nrow(gwl)) %>% 
+  ggplot2::ggplot(ggplot2::aes_string(x = "Klassifikation",
+                                      y = "percental_share",
+                                      fill = "Grundwasserspannung")) +
+  ggplot2::geom_bar(stat = "identity") + 
+  ggplot2::labs(title = title_text,
+                x = "Classification",
+                y = "Percental share (%)") +
+  ggplot2::theme_bw()
 
 plotly::ggplotly(g1)
+
 ```
+
+`r round(percental_share_low_levels,2)` percent of all considered `r nrow(gwl_classified_only)` 
+GW level monitoring stations containing `classification` data (out of `r nrow(gwl)`
+provided by SenWeb) indicate `below normal` (`r paste(text_low_levels, collapse=", ")`)
+GW levels. However, only `r round(percental_share_low_levels,2)` percent are 
+indicate `above normal` (`r paste(text_high_levels, collapse=", ")`) GW levels.
 
 
 #### Download and Plotting 
