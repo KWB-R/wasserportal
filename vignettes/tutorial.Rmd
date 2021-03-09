@@ -33,13 +33,16 @@ system.time(stations <- wasserportal::get_stations())
 
 str(stations)
 
-DT::datatable(stations$crosstable, filter = "top", caption = "Data availabilty 
-              per monitoring station")
-
 jsonlite::write_json(stations$crosstable, 
                      path = "stations_crosstable.json",
                      pretty = TRUE)
 ```
+
+```{r stations_crosstable}
+DT::datatable(stations$crosstable, filter = "top", caption = "Data availabilty 
+              per monitoring station")
+```
+
 ```{r input_ghactions0, echo=FALSE, results='asis', eval=is_ghactions}
 cat("The crosstable data for checking data availabilty of the monitoring stations 
 is also available in JSON format here:
@@ -49,21 +52,19 @@ is also available in JSON format here:
 
 ### GW level
 
-Master data of GW level stations can be requested as shown below:
+#### Master data 
 
-```{r stations_gwl}
+Overview data of GW level stations can be requested as shown below:
+
+```{r stations_gwl_table_overview}
 
 DT::datatable(stations$overview_list$groundwater.level, filter = "top")
 
-### Plot GW level classification (provided by SenWeb)
-g1 <- ggplot2::ggplot(stations$overview_list$groundwater.level, 
-                      ggplot2::aes_string(x = "Klassifikation")) +
-ggplot2::geom_bar() + 
-ggplot2::labs(title = "GW level classification (SenWeb)") +
-ggplot2::theme_bw() 
+```
 
-plotly::ggplotly(g1)
+Master data of GW level stations can be requested as shown below:
 
+```{r stations_gwl_table_master}
 stations_gwl_master <- wasserportal::get_wasserportal_masters_data(
   station_ids = stations$overview_list$groundwater.level$Messstellennummer
 )
@@ -81,6 +82,21 @@ cat("The master data of GW level stations is also available in JSON format here:
 [https://kwb-r.github.io/wasserportal/stations_gwl_master.json](../stations_gwl_master.json)
 ")
 ```
+
+#### Trend Classification 
+
+GW level trend classification (provided by SenWeb) is visualized below.
+
+```{r stations_gwl_trend}
+g1 <- ggplot2::ggplot(stations$overview_list$groundwater.level, 
+                      ggplot2::aes_string(x = "Klassifikation")) +
+ggplot2::geom_bar() + 
+ggplot2::labs(title = "GW level classification (SenWeb)") +
+ggplot2::theme_bw() 
+
+plotly::ggplotly(g1)
+```
+
 
 #### Download and Plotting 
 
@@ -120,21 +136,23 @@ plotly::ggplotly(g) %>%
 
 ### GW quality
 
-Master data of GW quality stations can be requested as shown below:
+Overview data of GW level stations can be requested as shown below:
 
-```{r stations_gwq}
+
+```{r stations_gwq_table_overview}
 stations_gwq <- wasserportal::get_wasserportal_stations_table(
   type = overview_options$groundwater$quality
   )
 
 DT::datatable(stations_gwq, filter = "top")
+```
 
+Master data of GW quality stations can be requested as shown below:
 
+```{r stations_gwq_table_master}
 stations_gwq_master <- wasserportal::get_wasserportal_masters_data(
   station_ids = stations_gwq$Messstellennummer
 )
-
-DT::datatable(stations_gwq_master, filter = "top")
 
 jsonlite::write_json(stations_gwq_master, 
                      path = "stations_gwq_master.json",
