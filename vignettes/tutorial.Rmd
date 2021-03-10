@@ -202,7 +202,7 @@ gwl_classified_only_with_coords <- gwl_classified_only %>%
 cat("GW level trend plot is also available on a full html page here:
 [https://kwb-r.github.io/wasserportal/map_gwl-trend.html](../map_gwl-trend.html)
 ")
-
+```
 #### Download and Plotting 
 
 for total period available.
