@@ -1,0 +1,82 @@
+---
+title: "Groundwater"
+author: "Michael Rustler"
+date: "`r Sys.time()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Groundwater}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+## Do Your Own Analysis! 
+
+Download JSON files scraped and prepared each day at 5 a.m. UTC for re-use in R. 
+The following data are available:
+
+- **Data availability**
+
+   * [stations_crosstable.json](https://kwb-r.github.io/wasserportal/stations_crosstable.json): 
+   available parameters per station (see `wasserportal::get_overview_options()` 
+   for available options). Note: includes also surface monitoring stations!
+   
+
+```{r stations_crosstable}
+library(wasserportal)
+
+stations_crosstable <- jsonlite::fromJSON("https://kwb-r.github.io/wasserportal/stations_crosstable.json")
+
+str(stations_crosstable)
+       
+```
+
+- **Master Data**
+
+   * [stations_gwl_master.json](https://kwb-r.github.io/wasserportal/stations_gwl_master.json): 
+     for GW level stations
+
+   * [stations_gwq_master.json](https://kwb-r.github.io/wasserportal/stations_gwq_master.json): 
+     for GW quality stations
+     
+- **Measurements**
+
+   * [stations_gwl_data.json](https://kwb-r.github.io/wasserportal/stations_gwl_master.json): 
+     GW level measurements for stations
+
+   * [stations_gwq_master.json](https://kwb-r.github.io/wasserportal/stations_gwq_master.json): 
+     GW quality measurements for all available parameters and stations
+
+Please find an example below for merging all this information into a single 
+data frame:
+
+```{r }
+library(wasserportal)
+
+### GW levels
+gwl_master <- jsonlite::fromJSON("https://kwb-r.github.io/wasserportal/stations_gwl_master.json")
+gwl_data <- jsonlite::fromJSON("https://kwb-r.github.io/wasserportal/stations_gwl_data.json") %>%  
+  dplyr::mutate(Messstellennummer = as.character(Messstellennummer)) %>% 
+  dplyr::left_join(gwl_master, by = c("Messstellennummer" = "Nummer"))
+
+str(gwl_data)
+
+### GW quality (all available parameters!)
+gwq_master <- jsonlite::fromJSON("https://kwb-r.github.io/wasserportal/stations_gwq_master.json")
+gwq_data <- jsonlite::fromJSON("https://kwb-r.github.io/wasserportal/stations_gwq_data.json") %>%  
+  dplyr::mutate(Messstellennummer = as.character(Messstellennummer)) %>% 
+  dplyr::left_join(gwq_master, by = c("Messstellennummer" = "Nummer"))
+
+str(gwq_data)
+
+### Merge GW level and quality into one data frame
+gw_data <- dplyr::bind_rows(gwl_data, gwq_data)
+
+str(gw_data)
+
+```
