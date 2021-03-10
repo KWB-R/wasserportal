@@ -37,6 +37,7 @@ Suggests:
     covr,
     DT,
     forcats,
+    htmlwidgets,
     jsonlite,
     leaflet,
     ggplot2,

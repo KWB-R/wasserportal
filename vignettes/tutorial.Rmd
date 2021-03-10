@@ -87,11 +87,12 @@ cat("The master data of GW level stations is also available in JSON format here:
 
 GW level trend classification (provided by SenWeb) is visualized below.
 
+##### Trend Classification Histogramm
 
 ```{r stations_gwl_trend}
 
-gwl <- stations$overview_list$groundwater.level
-
+gwl <- stations$overview_list$groundwater.level %>% 
+  dplyr::mutate(Datum = as.Date(Datum, format = "%d.%m.%Y"))
 
 levels_ordered <- c("extrem niedrig",
                     "sehr niedrig",
@@ -137,6 +138,8 @@ provided by SenWeb) indicate `below normal` (`r paste(text_low_levels, collapse=
 GW levels. However, only `r round(percental_share_low_levels,2)` percent are 
 indicate `above normal` (`r paste(text_high_levels, collapse=", ")`) GW levels.
 
+##### Trend Classification Map
+
 ```{r stations_gwl_trend_spatially}
 level_colors <- data.frame(Klassifikation = levels_ordered, 
                            classi_color = c("darkred", 
@@ -175,7 +178,7 @@ gwl_classified_only_with_coords <- gwl_classified_only %>%
 
 
 
-  gwl_classified_only_with_coords %>% 
+  gwlmap <- gwl_classified_only_with_coords %>% 
   leaflet::leaflet() %>%
   leaflet::addTiles() %>% 
   leaflet::addProviderTiles(leaflet::providers$CartoDB.Positron) %>% 
@@ -184,8 +187,21 @@ gwl_classified_only_with_coords <- gwl_classified_only %>%
   leaflet::addLegend(position = "topright",
                      colors = level_colors$classi_color,
                      labels = level_colors$Klassifikation,
-                     title = "Classification")
+                     title = sprintf("Classification (latest data: %s)",
+                                     max(gwl_classified_only_with_coords$Datum))
+                     )
+  
+  htmlwidgets::saveWidget(gwlmap, 
+                          "./map_gwl-trend.html", 
+                          title = "GW level trend")
+  
+  gwlmap
 ```
+
+```{r input_ghactions_map, echo=FALSE, results='asis', eval=is_ghactions}
+cat("GW level trend plot is also available on a full html page here:
+[https://kwb-r.github.io/wasserportal/map_gwl-trend.html](../map_gwl-trend.html)
+")
 
 #### Download and Plotting 
 
