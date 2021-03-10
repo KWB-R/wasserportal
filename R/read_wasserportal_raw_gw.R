@@ -11,7 +11,9 @@
 #'
 #' @return data.frame with values (currently only if stype == "gwl")
 #' @export
-#' @importFrom stringr str_detect
+#' @importFrom stringr str_detect str_remove str_extract
+#' @importFrom tidyr pivot_longer
+#' @importFrom dplyr select filter mutate
 #' @examples
 #' read_wasserportal_raw_gw(station = 149, stype = "gwl")
 #' read_wasserportal_raw_gw(station = 149, stype = "gwq")
@@ -112,6 +114,19 @@ read_wasserportal_raw_gw <- function(
       dplyr::select("Messstellennummer", "Datum", "Parameter", "Einheit", "Messwert")
   }
 
+  if (stype == "gwl") {
+    data <- data %>%
+      tidyr::pivot_longer(cols = names(data)[names(data) != "Datum"],
+                          names_to = c("parameter_unit"),
+                          values_to = "Messwert") %>%
+      dplyr::mutate(Messstellennummer = station,
+                    Parameter = stringr::str_remove(parameter_unit, "\\s+\\(.*\\)"),
+                    Einheit = stringr::str_extract(parameter_unit, "\\(.*\\)") %>%
+                      stringr::str_remove(pattern = "\\(") %>%
+                      stringr::str_remove(pattern = "\\)")) %>%
+      dplyr::filter(!is.na(Messwert)) %>%
+      dplyr::select("Messstellennummer", "Datum", "Parameter", "Einheit", "Messwert")
+  }
 
   data <- data %>%
     dplyr::mutate(Datum = as.Date(Datum, format = "%d.%m.%Y"))
