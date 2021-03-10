@@ -144,12 +144,12 @@ indicate `above normal` (`r paste(text_high_levels, collapse=", ")`) GW levels.
 level_colors <- data.frame(Klassifikation = levels_ordered, 
                            classi_color = c("darkred", 
                                             "red", 
-                                            "lightred", 
+                                            "orange", 
                                             "green",
                                             "lightblue", 
                                             "blue", 
                                             "darkblue",
-                                            "white"))
+                                            "grey"))
 
 gwl_classified_only_with_coords <- gwl_classified_only %>% 
   dplyr::mutate(Messstellennummer = as.character(Messstellennummer),
