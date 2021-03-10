@@ -86,7 +86,9 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Groundwater</h1>
+                        <h4 class="author">Michael Rustler</h4>
             
+            <h4 class="date">2021-03-10 15:03:25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KWB-R/wasserportal/blob/master/vignettes/groundwater.Rmd"><code>vignettes/groundwater.Rmd</code></a></small>
       <div class="hidden name"><code>groundwater.Rmd</code></div>
@@ -98,29 +100,52 @@
 <div id="do-your-own-analysis" class="section level2">
 <h2 class="hasAnchor">
 <a href="#do-your-own-analysis" class="anchor"></a>Do Your Own Analysis!</h2>
-<p>Download JSON files scraped and prepared each day at 5 am UTc for re-use in R. The following data are available:</p>
+<p>Download JSON files scraped and prepared each day at 5 a.m. UTC for re-use in R. The following data are available:</p>
 <ul>
 <li>
-<strong>Master Data</strong>
+<p><strong>Data availability</strong></p>
 <ul>
 <li>
-<a href="https://kwb-r.github.io/wasserportal/stations_gwl_master.json">stations_gwl_master.json</a>: for GW level stations</li>
+<a href="https://kwb-r.github.io/wasserportal/stations_crosstable.json">stations_crosstable.json</a>: available parameters per station (see <code><a href="../reference/get_overview_options.html">wasserportal::get_overview_options()</a></code> for available options). Note: includes also surface monitoring stations!</li>
+</ul>
+</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/KWB-R/wasserportal">wasserportal</a></span><span class="op">)</span>
+
+<span class="va">stations_crosstable</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html">fromJSON</a></span><span class="op">(</span><span class="st">"https://kwb-r.github.io/wasserportal/stations_crosstable.json"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">stations_crosstable</span><span class="op">)</span>
+<span class="co">#&gt; 'data.frame':    1001 obs. of  11 variables:</span>
+<span class="co">#&gt;  $ Messstellennummer: chr  "5865900" "5827103" "5865300" "5819900" ...</span>
+<span class="co">#&gt;  $ Messstellenname  : chr  "Allee der Kosmonauten" "Allendestraße" "Am Bahndamm" "Am Freibad" ...</span>
+<span class="co">#&gt;  $ ws               : chr  "x" "x" "x" "x" ...</span>
+<span class="co">#&gt;  $ df               : chr  NA "x" "x" NA ...</span>
+<span class="co">#&gt;  $ wt               : chr  NA NA "x" NA ...</span>
+<span class="co">#&gt;  $ lf               : chr  NA NA NA NA ...</span>
+<span class="co">#&gt;  $ ph               : chr  NA NA NA NA ...</span>
+<span class="co">#&gt;  $ og               : chr  NA NA NA NA ...</span>
+<span class="co">#&gt;  $ os               : chr  NA NA NA NA ...</span>
+<span class="co">#&gt;  $ gws              : chr  NA NA NA NA ...</span>
+<span class="co">#&gt;  $ gwq              : chr  NA NA NA NA ...</span></code></pre></div>
+<ul>
 <li>
-<a href="https://kwb-r.github.io/wasserportal/stations_gwq_master.json">stations_gwq_master.json</a>: for GW quality stations</li>
+<p><strong>Master Data</strong></p>
+<ul>
+<li><p><a href="https://kwb-r.github.io/wasserportal/stations_gwl_master.json">stations_gwl_master.json</a>: for GW level stations</p></li>
+<li><p><a href="https://kwb-r.github.io/wasserportal/stations_gwq_master.json">stations_gwq_master.json</a>: for GW quality stations</p></li>
 </ul>
 </li>
 <li>
-<strong>Measurements</strong>
+<p><strong>Measurements</strong></p>
 <ul>
-<li>
-<a href="https://kwb-r.github.io/wasserportal/stations_gwl_master.json">stations_gwl_data.json</a>: GW level measurements for stations</li>
-<li>
-<a href="https://kwb-r.github.io/wasserportal/stations_gwq_master.json">stations_gwq_master.json</a>: GW quality measurements for all available parameters and stations</li>
+<li><p><a href="https://kwb-r.github.io/wasserportal/stations_gwl_master.json">stations_gwl_data.json</a>: GW level measurements for stations</p></li>
+<li><p><a href="https://kwb-r.github.io/wasserportal/stations_gwq_master.json">stations_gwq_master.json</a>: GW quality measurements for all available parameters and stations</p></li>
 </ul>
 </li>
 </ul>
 <p>Please find an example below for merging all this information into a single data frame:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/KWB-R/wasserportal">wasserportal</a></span><span class="op">)</span>
 
 <span class="co">### GW levels</span>
@@ -156,26 +181,23 @@
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Messstellennummer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">Messstellennummer</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">gwq_master</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Messstellennummer"</span> <span class="op">=</span> <span class="st">"Nummer"</span><span class="op">)</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">gwl_data</span><span class="op">)</span>
-<span class="co">#&gt; 'data.frame':    47875 obs. of  18 variables:</span>
-<span class="co">#&gt;  $ Messstellennummer             : chr  "1" "1" "1" "1" ...</span>
-<span class="co">#&gt;  $ Datum                         : chr  "1953-11-01" "1953-11-15" "1953-12-01" "1953-12-15" ...</span>
-<span class="co">#&gt;  $ Parameter                     : chr  "GW-Stand" "GW-Stand" "GW-Stand" "GW-Stand" ...</span>
-<span class="co">#&gt;  $ Einheit                       : chr  "m ü. NHN" "m ü. NHN" "m ü. NHN" "m ü. NHN" ...</span>
-<span class="co">#&gt;  $ Messwert                      : num  34.8 34.8 34.7 34.7 34.7 ...</span>
-<span class="co">#&gt;  $ Bezirk                        : chr  "Reinickendorf" "Reinickendorf" "Reinickendorf" "Reinickendorf" ...</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">gwq_data</span><span class="op">)</span>
+<span class="co">#&gt; 'data.frame':    645982 obs. of  15 variables:</span>
+<span class="co">#&gt;  $ Messstellennummer             : chr  "149" "149" "149" "149" ...</span>
+<span class="co">#&gt;  $ Datum                         : chr  "2005-05-11" "2005-05-11" "2005-05-11" "2005-05-11" ...</span>
+<span class="co">#&gt;  $ Parameter                     : chr  "Temperatur (Luft)" "pH-Wert (Feld)" "Temperatur (Wasser)" "Leitfähigkeit 25°C vor Ort" ...</span>
+<span class="co">#&gt;  $ Einheit                       : chr  "grd Celsius" "ohne Einheit" "grd C" "µS/cm" ...</span>
+<span class="co">#&gt;  $ Messwert                      : num  6 7.4 13.4 1005.3 3.21 ...</span>
+<span class="co">#&gt;  $ Bezirk                        : chr  "Mitte" "Mitte" "Mitte" "Mitte" ...</span>
 <span class="co">#&gt;  $ Betreiber                     : chr  "Senat" "Senat" "Senat" "Senat" ...</span>
-<span class="co">#&gt;  $ Auspraegung                   : chr  "GW-Stand" "GW-Stand" "GW-Stand" "GW-Stand" ...</span>
+<span class="co">#&gt;  $ Auspraegung                   : chr  "GW-Stand + GW-Güte" "GW-Stand + GW-Güte" "GW-Stand + GW-Güte" "GW-Stand + GW-Güte" ...</span>
 <span class="co">#&gt;  $ Grundwasserleiter             : chr  "Hauptgrundwasserleiter (GWL 1.3 + 2)" "Hauptgrundwasserleiter (GWL 1.3 + 2)" "Hauptgrundwasserleiter (GWL 1.3 + 2)" "Hauptgrundwasserleiter (GWL 1.3 + 2)" ...</span>
-<span class="co">#&gt;  $ Gelaendeoberkante_GOK_m_ue_NHN: chr  "49.20" "49.20" "49.20" "49.20" ...</span>
-<span class="co">#&gt;  $ Rohroberkante_m_ue_NHN        : chr  "49.49" "49.49" "49.49" "49.49" ...</span>
-<span class="co">#&gt;  $ Filteroberkante_m_u_GOK       : chr  "37.34" "37.34" "37.34" "37.34" ...</span>
-<span class="co">#&gt;  $ Filterunterkante_m_u_GOK      : chr  "39.34" "39.34" "39.34" "39.34" ...</span>
-<span class="co">#&gt;  $ Rechtswert_UTM_33_N           : chr  "384415.50" "384415.50" "384415.50" "384415.50" ...</span>
-<span class="co">#&gt;  $ Hochwert_UTM_33_N             : chr  "5831712.30" "5831712.30" "5831712.30" "5831712.30" ...</span>
-<span class="co">#&gt;  $ Name                          : chr  NA NA NA NA ...</span>
-<span class="co">#&gt;  $ Gewaesser                     : chr  NA NA NA NA ...</span>
-<span class="co">#&gt;  $ Flusskilometer                : chr  NA NA NA NA ...</span>
+<span class="co">#&gt;  $ Gelaendeoberkante_GOK_m_ue_NHN: chr  "34.09" "34.09" "34.09" "34.09" ...</span>
+<span class="co">#&gt;  $ Rohroberkante_m_ue_NHN        : chr  "34.00" "34.00" "34.00" "34.00" ...</span>
+<span class="co">#&gt;  $ Filteroberkante_m_u_GOK       : chr  "16.20" "16.20" "16.20" "16.20" ...</span>
+<span class="co">#&gt;  $ Filterunterkante_m_u_GOK      : chr  "18.20" "18.20" "18.20" "18.20" ...</span>
+<span class="co">#&gt;  $ Rechtswert_UTM_33_N           : chr  "387672.33" "387672.33" "387672.33" "387672.33" ...</span>
+<span class="co">#&gt;  $ Hochwert_UTM_33_N             : chr  "5818836.14" "5818836.14" "5818836.14" "5818836.14" ...</span>
 
 <span class="co">### Merge GW level and quality into one data frame</span>
 <span class="va">gw_data</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">gwl_data</span>, <span class="va">gwq_data</span><span class="op">)</span>
