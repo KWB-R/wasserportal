@@ -70,7 +70,7 @@ gwq_data <- jsonlite::fromJSON("https://kwb-r.github.io/wasserportal/stations_gw
   dplyr::mutate(Messstellennummer = as.character(Messstellennummer)) %>% 
   dplyr::left_join(gwq_master, by = c("Messstellennummer" = "Nummer"))
 
-str(gwl_data)
+str(gwq_data)
 
 ### Merge GW level and quality into one data frame
 gw_data <- dplyr::bind_rows(gwl_data, gwq_data)
