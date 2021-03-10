@@ -1,5 +1,7 @@
 ---
 title: "Groundwater"
+author: "Michael Rustler"
+date: "`r Sys.time()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Groundwater}

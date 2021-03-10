@@ -1,5 +1,7 @@
 ---
 title: "Tutorial"
+author: "Michael Rustler"
+date: "`r Sys.time()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Tutorial}
