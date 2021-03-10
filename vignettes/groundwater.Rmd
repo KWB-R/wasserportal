@@ -18,15 +18,35 @@ knitr::opts_chunk$set(
 Download JSON files scraped and prepared each day at 5 am UTc for re-use in R. 
 The following data are available:
 
+- **Data availability**
+
+   * [stations_crosstable.json](https://kwb-r.github.io/wasserportal/stations_crosstable.json): 
+   available parameters per station (see `wasserportal::get_overview_options()` 
+   for available options). Note: includes also surface monitoring stations!
+   
+
+```{r stations_crosstable}
+library(wasserportal)
+
+stations_crosstable <- jsonlite::fromJSON("https://kwb-r.github.io/wasserportal/stations_crosstable.json")
+
+str(stations_crosstable)
+       
+```
+
 - **Master Data**
+
    * [stations_gwl_master.json](https://kwb-r.github.io/wasserportal/stations_gwl_master.json): 
      for GW level stations
+
    * [stations_gwq_master.json](https://kwb-r.github.io/wasserportal/stations_gwq_master.json): 
      for GW quality stations
      
 - **Measurements**
+
    * [stations_gwl_data.json](https://kwb-r.github.io/wasserportal/stations_gwl_master.json): 
      GW level measurements for stations
+
    * [stations_gwq_master.json](https://kwb-r.github.io/wasserportal/stations_gwq_master.json): 
      GW quality measurements for all available parameters and stations
 
