@@ -144,12 +144,12 @@ indicate `above normal` (`r paste(text_high_levels, collapse=", ")`) GW levels.
 level_colors <- data.frame(Klassifikation = levels_ordered, 
                            classi_color = c("darkred", 
                                             "red", 
-                                            "lightred", 
+                                            "orange", 
                                             "green",
                                             "lightblue", 
                                             "blue", 
                                             "darkblue",
-                                            "white"))
+                                            "grey"))
 
 gwl_classified_only_with_coords <- gwl_classified_only %>% 
   dplyr::mutate(Messstellennummer = as.character(Messstellennummer),
@@ -203,6 +203,7 @@ cat("GW level trend plot is also available on a full html page here:
 [https://kwb-r.github.io/wasserportal/map_gwl-trend.html](../map_gwl-trend.html)
 ")
 ```
+
 #### Download and Plotting 
 
 for total period available.
@@ -214,8 +215,7 @@ ncols <- 2:ncol(station_gwl)
 gw_level <- wasserportal::read_wasserportal_raw_gw(
   station = station_gwl$Messstellennummer, 
   stype = "gwl")
-gw_level$Datum <- as.Date(gw_level$Datum, format = "%d.%m.%Y")
-names(gw_level) <- kwb.utils::substSpecialChars(names(gw_level))
+names(gw_level) <-  kwb.utils::substSpecialChars(names(gw_level))
 head(gw_level)
 
 g <- ggplot2::ggplot(gw_level, ggplot2::aes_string(x = "Datum", y = "GW_Stand_m_ue_NHN")) +
@@ -271,6 +271,78 @@ cat("The master data of GW quality stations is also available in JSON format her
 ")
 ```
 
-#### Download and Plotting 
+#### Download and Plotting One Station
 
-Not implemented yet !!!
+```{r test_gwq_download_single}
+station_gwq <- stations$overview_list$groundwater.quality[1,]
+ncols <- 2:ncol(station_gwq)
+
+gw_quality <- wasserportal::read_wasserportal_raw_gw(
+  station = station_gwq$Messstellennummer, 
+  stype = "gwq")
+head(gw_quality)
+
+unique(gw_quality$Parameter)
+
+g <- gw_quality %>%  
+dplyr::filter(Parameter == "Sulfat") %>% 
+ggplot2::ggplot(ggplot2::aes_string(x = "Datum", y = "Messwert", col = "Parameter")) +
+ggplot2::geom_line() +
+ggplot2::geom_point() +
+ggplot2::theme_bw()
+
+
+title_subtitle <- paste0(paste0(names(station_gwq)[1], ": ", 
+                             station_gwq[1], 
+                             collapse =", "),
+       "<br>",
+       "<sup>",
+       paste0(names(station_gwq)[ncols], ": ",
+              station_gwq[ncols], 
+              collapse =", "),
+       "</sup>")
+
+
+plotly::ggplotly(g) %>%
+  plotly::layout(title = list(text = title_subtitle))
+```
+
+#### Download and Plotting Multiple Stations
+
+```{r test_gwq_download_multiple}
+station_gwq <- stations$overview_list$groundwater.quality[1,]
+ncols <- 2:ncol(station_gwq)
+
+# Plot 10 GW quality 
+selected_stations <- stations$overview_list$groundwater.quality$Messstellennummer[1:10]
+
+gw_quality_multi <- data.table::rbindlist(
+  lapply(selected_stations, 
+                     function(id) {
+                       wasserportal::read_wasserportal_raw_gw(
+                         station = id, stype = "gwq")
+                     }))
+
+
+jsonlite::write_json(gw_quality_multi,
+                     path = "stations_gwq_data.json",
+                     pretty = TRUE)
+
+g <- gw_quality_multi %>%  
+dplyr::mutate(Messstellennummer = as.character(Messstellennummer)) %>% 
+dplyr::filter(Parameter == "Sulfat") %>% 
+ggplot2::ggplot(ggplot2::aes_string(x = "Datum", 
+                                    y = "Messwert", 
+                                    col = "Messstellennummer")) +
+ggplot2::labs(title = "GW quality (Sulfat)") +
+ggplot2::geom_line() +
+ggplot2::geom_point() +
+ggplot2::theme_bw()
+
+plotly::ggplotly(g)
+```
+
+```{r input_ghactions_gwq_download, echo=FALSE, results='asis', eval=is_ghactions}
+cat("The data of all GW quality stations is also available in JSON format here:
+[https://kwb-r.github.io/wasserportal/stations_gwq_data.json](../stations_gwq_data.json)
+")

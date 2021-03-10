@@ -14,6 +14,7 @@
 #' @importFrom stringr str_detect
 #' @examples
 #' read_wasserportal_raw_gw(station = 149, stype = "gwl")
+#' read_wasserportal_raw_gw(station = 149, stype = "gwq")
 read_wasserportal_raw_gw <- function(
   station = 149,
   stype = "gwl",
@@ -78,8 +79,8 @@ read_wasserportal_raw_gw <- function(
   textlines <- textlines[start_line:length(textlines)]
 
   # Split the header row into fields
-  header_fields <- as.character(read(textlines[1]))
-
+  header_fields <- as.character(read(textlines[1])) %>%
+    stringr::str_remove("/Parameter:$")
 
   # Return empty list with metadata if no data rows are available
   if (length(textlines) == 1L) {
@@ -90,13 +91,30 @@ read_wasserportal_raw_gw <- function(
   data <- read(text, header = FALSE, skip = start_line)
 
   # Get the numbers of the data columns
-  if (type != "monthly") {
+  if (type != "monthly" & stype == "gwl") {
     stopifnot(ncol(data) == 2L)
   }
 
   # Name the data columns as given in the first columns of the header row
   names(data) <- header_fields[seq_len(ncol(data))]
 
+  if (stype == "gwq") {
+    data <- data %>%
+      tidyr::pivot_longer(cols = names(data)[names(data) != "Datum"],
+                          names_to = c("parameter_unit"),
+                          values_to = "Messwert") %>%
+      dplyr::mutate(Messstellennummer = station,
+                    Parameter = stringr::str_remove(parameter_unit, "\\s+\\[.*\\]"),
+                    Einheit = stringr::str_extract(parameter_unit, "\\[.*\\]") %>%
+                      stringr::str_remove(pattern = "\\[") %>%
+                      stringr::str_remove(pattern = "\\]")) %>%
+      dplyr::filter(!is.na(Messwert)) %>%
+      dplyr::select("Messstellennummer", "Datum", "Parameter", "Einheit", "Messwert")
+  }
+
+
+  data <- data %>%
+    dplyr::mutate(Datum = as.Date(Datum, format = "%d.%m.%Y"))
 
   # Return the data frame with the additional fields of the header row as
   # meta information in attribute "metadata"
