@@ -30,20 +30,8 @@ read_wasserportal_raw <- function(
   stopifnot(variable %in% variable_ids)
 
   sreihe <- kwb.utils::selectElements(elements = type, list(
-    single = "w", daily = "m", monthly = "j"
+    single = "w", single_all = "wa", daily = "m", monthly = "j"
   ))
-
-  # Helper function to read CSV
-  read <- function(text, ...) {
-
-    result <- try(silent = TRUE, utils::read.table(
-      text = text, sep = ";", dec = ",", stringsAsFactors = FALSE, ...
-    ))
-
-    if (! inherits(result, "try-error")) {
-      result
-    }
-  }
 
   progress <- get_wasserportal_text(station, variable, station_ids, variable_ids)
   url <- get_wasserportal_url(station, variable)

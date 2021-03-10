@@ -22,6 +22,7 @@ License: MIT + file LICENSE
 URL: https://github.com/KWB-R/wasserportal
 BugReports: https://github.com/KWB-R/wasserportal/issues
 Imports: 
+    data.table,
     dplyr,
     httr,
     kwb.datetime,
@@ -34,10 +35,20 @@ Imports:
     xml2
 Suggests: 
     covr,
+    DT,
+    forcats,
+    htmlwidgets,
+    jsonlite,
+    leaflet,
+    ggplot2,
     knitr,
-    rmarkdown
+    kwb.pkgbuild,
+    plotly,
+    rmarkdown,
+    sf
 Remotes: 
     github::kwb-r/kwb.datetime,
+    github::kwb-r/kwb.pkgbuild,
     github::kwb-r/kwb.utils
 Encoding: UTF-8
 LazyData: true

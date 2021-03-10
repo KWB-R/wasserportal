@@ -7,40 +7,270 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+is_ghactions <- identical(Sys.getenv("CI"), "true")
 ```
 
-```{r setup}
+## Stations
+
+### General overview
+
+
+
+```{r stations_overview}
 # install.packages("remotes")
 # remotes::install_github("kwb-r/wasserportal", upgrade = "never", force = TRUE)
-
 library(wasserportal)
+overview_options <- wasserportal::get_overview_options()
+str(overview_options)
 
-# get_new_flow_data ------------------------------------------------------------
-get_new_flow_data <- function(date = Sys.Date() - 1L)
-{
-  data <- wasserportal::read_wasserportal(
-    station = "149", # Tiefwerder 
-    variables = "quality", # Durchfluss 
-    from_date = date - 1L # Otherwise we start with 01:00 (in summer)
-  )
-  
-  # Filter for date
-  times <- data$LocalDateTime
-  belongs_to_date <- (as.Date(times, tz = attr(times, "tzone")) == date)
-  
-  # Replace values indicating errors
-  flows <- data$Durchfluss
-  flows[flows == -777] <- NA
-  
-  data.frame(
-    date = date, 
-    value = mean(flows[belongs_to_date], na.rm = TRUE)
-  )
-}
+system.time(stations <- wasserportal::get_stations())
+
+str(stations)
+
+jsonlite::write_json(stations$crosstable, 
+                     path = "stations_crosstable.json",
+                     pretty = TRUE)
+```
+
+```{r stations_crosstable}
+DT::datatable(stations$crosstable, filter = "top", caption = "Data availabilty 
+              per monitoring station")
+```
+
+```{r input_ghactions0, echo=FALSE, results='asis', eval=is_ghactions}
+cat("The crosstable data for checking data availabilty of the monitoring stations 
+is also available in JSON format here:
+[https://kwb-r.github.io/wasserportal/stations_crosstable.json](../stations_crosstable.json)
+")
+```
+
+### GW level
+
+#### Master data 
+
+Overview data of GW level stations can be requested as shown below:
+
+```{r stations_gwl_table_overview}
+
+DT::datatable(stations$overview_list$groundwater.level, filter = "top")
 
 ```
+
+Master data of GW level stations can be requested as shown below:
+
+```{r stations_gwl_table_master}
+stations_gwl_master <- wasserportal::get_wasserportal_masters_data(
+  station_ids = stations$overview_list$groundwater.level$Messstellennummer
+)
+
+jsonlite::write_json(stations_gwl_master, 
+                     path = "stations_gwl_master.json",
+                     pretty = TRUE)
+
+DT::datatable(stations_gwl_master, filter = "top")
+
+``` 
+
+```{r input_ghactions1, echo=FALSE, results='asis', eval=is_ghactions}
+cat("The master data of GW level stations is also available in JSON format here:
+[https://kwb-r.github.io/wasserportal/stations_gwl_master.json](../stations_gwl_master.json)
+")
+```
+
+#### Trend Classification 
+
+GW level trend classification (provided by SenWeb) is visualized below.
+
+##### Trend Classification Histogramm
+
+```{r stations_gwl_trend}
+
+gwl <- stations$overview_list$groundwater.level %>% 
+  dplyr::mutate(Datum = as.Date(Datum, format = "%d.%m.%Y"))
+
+levels_ordered <- c("extrem niedrig",
+                    "sehr niedrig",
+                    "niedrig", 
+                    "normal",
+                    "hoch",
+                    "sehr hoch",
+                    "extrem hoch",
+                    "keine")
+
+text_low_levels <- c("extrem niedrig", "sehr niedrig", "niedrig")
+text_high_levels <- c("hoch", "sehr hoch", "extrem hoch")
+
+gwl$Klassifikation <- forcats::fct_relevel(gwl$Klassifikation, levels_ordered)
+
+gwl_classified_only <- gwl %>% dplyr::filter(Klassifikation != "keine")
+
+percental_share_low_levels <- 100*sum(gwl_classified_only$Klassifikation %in% text_low_levels)/nrow(gwl_classified_only) 
+
+percental_share_high_levels <- 100*sum(gwl_classified_only$Klassifikation %in% text_high_levels)/nrow(gwl_classified_only) 
+
+title_text <- sprintf("GW level classification (n = %d out of %d have 'classification' data)", nrow(gwl_classified_only), nrow(gwl))
+
+g1 <- gwl_classified_only %>% 
+  dplyr::count(Klassifikation, Grundwasserspannung) %>% 
+  dplyr::mutate(percental_share = 100 * n / nrow(gwl)) %>% 
+  ggplot2::ggplot(ggplot2::aes_string(x = "Klassifikation",
+                                      y = "percental_share",
+                                      fill = "Grundwasserspannung")) +
+  ggplot2::geom_bar(stat = "identity") + 
+  ggplot2::labs(title = title_text,
+                x = "Classification",
+                y = "Percental share (%)") +
+  ggplot2::theme_bw()
+
+plotly::ggplotly(g1)
+
+```
+
+`r round(percental_share_low_levels,2)` percent of all considered `r nrow(gwl_classified_only)` 
+GW level monitoring stations containing `classification` data (out of `r nrow(gwl)`
+provided by SenWeb) indicate `below normal` (`r paste(text_low_levels, collapse=", ")`)
+GW levels. However, only `r round(percental_share_low_levels,2)` percent are 
+indicate `above normal` (`r paste(text_high_levels, collapse=", ")`) GW levels.
+
+##### Trend Classification Map
+
+```{r stations_gwl_trend_spatially}
+level_colors <- data.frame(Klassifikation = levels_ordered, 
+                           classi_color = c("darkred", 
+                                            "red", 
+                                            "lightred", 
+                                            "green",
+                                            "lightblue", 
+                                            "blue", 
+                                            "darkblue",
+                                            "white"))
+
+gwl_classified_only_with_coords <- gwl_classified_only %>% 
+  dplyr::mutate(Messstellennummer = as.character(Messstellennummer),
+                label_text = paste("Messstellennummer:", 
+                                    Messstellennummer, 
+                                    "; ",
+                                    "Grundwasserspannung:", 
+                                    Grundwasserspannung, 
+                                    ";",
+                                    "Klassifikation:", 
+                                    Klassifikation,
+                                   ";",
+                                   "Datum:",
+                                   Datum
+                                   )) %>% 
+  dplyr::left_join(stations_gwl_master %>%
+                     dplyr::select("Nummer", 
+                                   "Rechtswert_UTM_33_N",
+                                   "Hochwert_UTM_33_N") %>% 
+                     dplyr::rename(Messstellennummer = "Nummer"),
+                   by = "Messstellennummer") %>% 
+  dplyr::left_join(level_colors, by = "Klassifikation") %>% 
+  sf::st_as_sf(coords = c("Rechtswert_UTM_33_N", "Hochwert_UTM_33_N"),
+               crs = 25833) %>% 
+  sf::st_transform(crs = 4326)
+
+
+
+  gwlmap <- gwl_classified_only_with_coords %>% 
+  leaflet::leaflet() %>%
+  leaflet::addTiles() %>% 
+  leaflet::addProviderTiles(leaflet::providers$CartoDB.Positron) %>% 
+  leaflet::addCircles(color = ~classi_color,
+                      label = ~label_text) %>% 
+  leaflet::addLegend(position = "topright",
+                     colors = level_colors$classi_color,
+                     labels = level_colors$Klassifikation,
+                     title = sprintf("Classification (latest data: %s)",
+                                     max(gwl_classified_only_with_coords$Datum))
+                     )
+  
+  htmlwidgets::saveWidget(gwlmap, 
+                          "./map_gwl-trend.html", 
+                          title = "GW level trend")
+  
+  gwlmap
+```
+
+```{r input_ghactions_map, echo=FALSE, results='asis', eval=is_ghactions}
+cat("GW level trend plot is also available on a full html page here:
+[https://kwb-r.github.io/wasserportal/map_gwl-trend.html](../map_gwl-trend.html)
+")
+```
+#### Download and Plotting 
+
+for total period available.
+
+```{r test_gwl_download}
+station_gwl <- stations$overview_list$groundwater.level[1,]
+ncols <- 2:ncol(station_gwl)
+
+gw_level <- wasserportal::read_wasserportal_raw_gw(
+  station = station_gwl$Messstellennummer, 
+  stype = "gwl")
+gw_level$Datum <- as.Date(gw_level$Datum, format = "%d.%m.%Y")
+names(gw_level) <- kwb.utils::substSpecialChars(names(gw_level))
+head(gw_level)
+
+g <- ggplot2::ggplot(gw_level, ggplot2::aes_string(x = "Datum", y = "GW_Stand_m_ue_NHN")) +
+ggplot2::geom_line() +
+ggplot2::geom_point() +
+ggplot2::theme_bw()
+
+
+title_subtitle <- paste0(paste0(names(station_gwl)[1], ": ", 
+                             station_gwl[1], 
+                             collapse =", "),
+       "<br>",
+       "<sup>",
+       paste0(names(station_gwl)[ncols], ": ",
+              station_gwl[ncols], 
+              collapse =", "),
+       "</sup>")
+
+
+plotly::ggplotly(g) %>%
+  plotly::layout(title = list(text = title_subtitle))
+```
+
+### GW quality
+
+Overview data of GW level stations can be requested as shown below:
+
+
+```{r stations_gwq_table_overview}
+stations_gwq <- wasserportal::get_wasserportal_stations_table(
+  type = overview_options$groundwater$quality
+  )
+
+DT::datatable(stations_gwq, filter = "top")
+```
+
+Master data of GW quality stations can be requested as shown below:
+
+```{r stations_gwq_table_master}
+stations_gwq_master <- wasserportal::get_wasserportal_masters_data(
+  station_ids = stations_gwq$Messstellennummer
+)
+
+jsonlite::write_json(stations_gwq_master, 
+                     path = "stations_gwq_master.json",
+                     pretty = TRUE)
+
+``` 
+
+```{r input_ghactions2, echo=FALSE, results='asis', eval=is_ghactions}
+cat("The master data of GW quality stations is also available in JSON format here:
+[https://kwb-r.github.io/wasserportal/stations_gwq_master.json](../stations_gwq_master.json)
+")
+```
+
+#### Download and Plotting 
+
+Not implemented yet !!!

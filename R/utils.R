@@ -15,6 +15,27 @@ assert_date <- function(x)
   x
 }
 
+
+#' Helper function to read CSV
+#'
+#' @param text text
+#' @param ...  \dots additional arguments passed to \code{\link[utils]{read.table}}
+#'
+#' @return data frame with values
+#' @export
+#' @importFrom utils read.table
+#'
+read <- function(text, ...) {
+
+  result <- try(silent = TRUE, utils::read.table(
+    text = text, sep = ";", dec = ",", stringsAsFactors = FALSE, ...
+  ))
+
+  if (! inherits(result, "try-error")) {
+    result
+  }
+}
+
 # readPackageFile --------------------------------------------------------------
 
 #' Read CSV File from Package's "extdata" Folder
