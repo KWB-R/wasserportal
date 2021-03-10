@@ -38,11 +38,13 @@ Suggests:
     DT,
     forcats,
     jsonlite,
+    leaflet,
     ggplot2,
     knitr,
     kwb.pkgbuild,
     plotly,
-    rmarkdown
+    rmarkdown,
+    sf
 Remotes: 
     github::kwb-r/kwb.datetime,
     github::kwb-r/kwb.pkgbuild,

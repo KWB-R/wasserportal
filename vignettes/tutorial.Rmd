@@ -69,11 +69,11 @@ stations_gwl_master <- wasserportal::get_wasserportal_masters_data(
   station_ids = stations$overview_list$groundwater.level$Messstellennummer
 )
 
-DT::datatable(stations_gwl_master, filter = "top")
-
 jsonlite::write_json(stations_gwl_master, 
                      path = "stations_gwl_master.json",
                      pretty = TRUE)
+
+DT::datatable(stations_gwl_master, filter = "top")
 
 ``` 
 
@@ -87,9 +87,11 @@ cat("The master data of GW level stations is also available in JSON format here:
 
 GW level trend classification (provided by SenWeb) is visualized below.
 
+
 ```{r stations_gwl_trend}
 
 gwl <- stations$overview_list$groundwater.level
+
 
 levels_ordered <- c("extrem niedrig",
                     "sehr niedrig",
@@ -135,6 +137,55 @@ provided by SenWeb) indicate `below normal` (`r paste(text_low_levels, collapse=
 GW levels. However, only `r round(percental_share_low_levels,2)` percent are 
 indicate `above normal` (`r paste(text_high_levels, collapse=", ")`) GW levels.
 
+```{r stations_gwl_trend_spatially}
+level_colors <- data.frame(Klassifikation = levels_ordered, 
+                           classi_color = c("darkred", 
+                                            "red", 
+                                            "lightred", 
+                                            "green",
+                                            "lightblue", 
+                                            "blue", 
+                                            "darkblue",
+                                            "white"))
+
+gwl_classified_only_with_coords <- gwl_classified_only %>% 
+  dplyr::mutate(Messstellennummer = as.character(Messstellennummer),
+                label_text = paste("Messstellennummer:", 
+                                    Messstellennummer, 
+                                    "; ",
+                                    "Grundwasserspannung:", 
+                                    Grundwasserspannung, 
+                                    ";",
+                                    "Klassifikation:", 
+                                    Klassifikation,
+                                   ";",
+                                   "Datum:",
+                                   Datum
+                                   )) %>% 
+  dplyr::left_join(stations_gwl_master %>%
+                     dplyr::select("Nummer", 
+                                   "Rechtswert_UTM_33_N",
+                                   "Hochwert_UTM_33_N") %>% 
+                     dplyr::rename(Messstellennummer = "Nummer"),
+                   by = "Messstellennummer") %>% 
+  dplyr::left_join(level_colors, by = "Klassifikation") %>% 
+  sf::st_as_sf(coords = c("Rechtswert_UTM_33_N", "Hochwert_UTM_33_N"),
+               crs = 25833) %>% 
+  sf::st_transform(crs = 4326)
+
+
+
+  gwl_classified_only_with_coords %>% 
+  leaflet::leaflet() %>%
+  leaflet::addTiles() %>% 
+  leaflet::addProviderTiles(leaflet::providers$CartoDB.Positron) %>% 
+  leaflet::addCircles(color = ~classi_color,
+                      label = ~label_text) %>% 
+  leaflet::addLegend(position = "topright",
+                     colors = level_colors$classi_color,
+                     labels = level_colors$Klassifikation,
+                     title = "Classification")
+```
 
 #### Download and Plotting 
 
