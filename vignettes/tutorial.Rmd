@@ -271,9 +271,9 @@ cat("The master data of GW quality stations is also available in JSON format her
 ")
 ```
 
-#### Download and Plotting 
+#### Download and Plotting One Station
 
-```{r test_gwq_download}
+```{r test_gwq_download_single}
 station_gwq <- stations$overview_list$groundwater.quality[1,]
 ncols <- 2:ncol(station_gwq)
 
@@ -306,3 +306,43 @@ title_subtitle <- paste0(paste0(names(station_gwq)[1], ": ",
 plotly::ggplotly(g) %>%
   plotly::layout(title = list(text = title_subtitle))
 ```
+
+#### Download and Plotting Multiple Stations
+
+```{r test_gwq_download_multiple}
+station_gwq <- stations$overview_list$groundwater.quality[1,]
+ncols <- 2:ncol(station_gwq)
+
+# Plot 10 GW quality 
+selected_stations <- stations$overview_list$groundwater.quality$Messstellennummer[1:10]
+
+gw_quality_multi <- data.table::rbindlist(
+  lapply(selected_stations, 
+                     function(id) {
+                       wasserportal::read_wasserportal_raw_gw(
+                         station = id, stype = "gwq")
+                     }))
+
+
+jsonlite::write_json(gw_quality_multi,
+                     path = "stations_gwq_data.json",
+                     pretty = TRUE)
+
+g <- gw_quality_multi %>%  
+dplyr::mutate(Messstellennummer = as.character(Messstellennummer)) %>% 
+dplyr::filter(Parameter == "Sulfat") %>% 
+ggplot2::ggplot(ggplot2::aes_string(x = "Datum", 
+                                    y = "Messwert", 
+                                    col = "Messstellennummer")) +
+ggplot2::labs(title = "GW quality (Sulfat)") +
+ggplot2::geom_line() +
+ggplot2::geom_point() +
+ggplot2::theme_bw()
+
+plotly::ggplotly(g)
+```
+
+```{r input_ghactions2, echo=FALSE, results='asis', eval=is_ghactions}
+cat("The data of all GW quality stations is also available in JSON format here:
+[https://kwb-r.github.io/wasserportal/stations_gwq_data.json](../stations_gwq_data.json)
+")
