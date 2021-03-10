@@ -26,9 +26,9 @@ The following data are available:
      
 - **Measurements**
    * [stations_gwl_data.json](https://kwb-r.github.io/wasserportal/stations_gwl_master.json): 
-     GW level measurements
+     GW level measurements for stations
    * [stations_gwq_master.json](https://kwb-r.github.io/wasserportal/stations_gwq_master.json): 
-     for GW quality stations
+     GW quality measurements for all available parameters and stations
 
 Please find an example below for merging all this information into a single 
 data frame:
