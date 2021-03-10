@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 ```
 ## Do Your Own Analysis! 
 
-Download JSON files scraped and prepared each day at 5 am UTc for re-use in R. 
+Download JSON files scraped and prepared each day at 5 a.m. UTC for re-use in R. 
 The following data are available:
 
 - **Data availability**
