@@ -96,17 +96,9 @@ GW level trend classification (provided by SenWeb) is visualized below.
 gwl <- stations$overview_list$groundwater.level %>% 
   dplyr::mutate(Datum = as.Date(Datum, format = "%d.%m.%Y"))
 
-levels_ordered <- c("extrem niedrig",
-                    "sehr niedrig",
-                    "niedrig", 
-                    "normal",
-                    "hoch",
-                    "sehr hoch",
-                    "extrem hoch",
-                    "keine")
-
 text_low_levels <- c("extrem niedrig", "sehr niedrig", "niedrig")
 text_high_levels <- c("hoch", "sehr hoch", "extrem hoch")
+levels_ordered <- c(text_low_levels, "normal", text_high_levels, "keine")
 
 gwl$Klassifikation <- forcats::fct_relevel(gwl$Klassifikation, levels_ordered)
 
