@@ -202,24 +202,24 @@ together with the additional information on the UTC offset (column
   variables <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>variables</span><span class='op'>[</span><span class='st'>"Sauerstoffgehalt"</span><span class='op'>]</span>, <span class='va'>variables</span><span class='op'>[</span><span class='st'>"Leitfaehigkeit"</span><span class='op'>]</span><span class='op'>)</span>,
   from_date <span class='op'>=</span> <span class='va'>from_date</span>, include_raw_time <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; Reading 'Sauerstoffgehalt' for station 153 (MPS_Charlottenburg) ... ok. (2.20s) 
-#&gt; Reading 'Leitfaehigkeit' for station 153 (MPS_Charlottenburg) ... ok. (0.91s) </div><div class='input'>
+</div><div class='output co'>#&gt; Reading 'Sauerstoffgehalt' for station 153 (MPS_Charlottenburg) ... ok. (2.77s) 
+#&gt; Reading 'Leitfaehigkeit' for station 153 (MPS_Charlottenburg) ... ok. (1.93s) </div><div class='input'>
 <span class='co'># Look at the first few records</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>water_quality</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;          timestamp_raw   timestamp_corr       LocalDateTime UTCOffset
-#&gt; 23522 23.03.2020 03:00 23.03.2020 03:00 2020-03-23 03:00:00         1
-#&gt; 23523 23.03.2020 03:15 23.03.2020 03:15 2020-03-23 03:15:00         1
-#&gt; 23524 23.03.2020 03:30 23.03.2020 03:30 2020-03-23 03:30:00         1
-#&gt; 23525 23.03.2020 03:45 23.03.2020 03:45 2020-03-23 03:45:00         1
-#&gt; 23526 23.03.2020 04:00 23.03.2020 04:00 2020-03-23 04:00:00         1
-#&gt; 23527 23.03.2020 04:15 23.03.2020 04:15 2020-03-23 04:15:00         1
+#&gt; 24578 24.03.2020 03:00 24.03.2020 03:00 2020-03-24 03:00:00         1
+#&gt; 24579 24.03.2020 03:15 24.03.2020 03:15 2020-03-24 03:15:00         1
+#&gt; 24580 24.03.2020 03:30 24.03.2020 03:30 2020-03-24 03:30:00         1
+#&gt; 24581 24.03.2020 03:45 24.03.2020 03:45 2020-03-24 03:45:00         1
+#&gt; 24582 24.03.2020 04:00 24.03.2020 04:00 2020-03-24 04:00:00         1
+#&gt; 24583 24.03.2020 04:15 24.03.2020 04:15 2020-03-24 04:15:00         1
 #&gt;       Sauerstoffgehalt Leitfaehigkeit
-#&gt; 23522             -777           -777
-#&gt; 23523             -777           -777
-#&gt; 23524             -777           -777
-#&gt; 23525             -777           -777
-#&gt; 23526             -777           -777
-#&gt; 23527             -777           -777</div><div class='input'>
+#&gt; 24578             -777           -777
+#&gt; 24579             -777           -777
+#&gt; 24580             -777           -777
+#&gt; 24581             -777           -777
+#&gt; 24582             -777           -777
+#&gt; 24583             -777           -777</div><div class='input'>
 <span class='co'># Check the metadata</span>
 <span class='co'>#kwb.utils::getAttribute(water_quality, "metadata")</span>
 
@@ -229,19 +229,19 @@ together with the additional information on the UTC offset (column
 <span class='co'># Look at the first few records again</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>water_quality</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;          timestamp_raw   timestamp_corr       LocalDateTime UTCOffset
-#&gt; 23522 23.03.2020 03:00 23.03.2020 03:00 2020-03-23 03:00:00         1
-#&gt; 23523 23.03.2020 03:15 23.03.2020 03:15 2020-03-23 03:15:00         1
-#&gt; 23524 23.03.2020 03:30 23.03.2020 03:30 2020-03-23 03:30:00         1
-#&gt; 23525 23.03.2020 03:45 23.03.2020 03:45 2020-03-23 03:45:00         1
-#&gt; 23526 23.03.2020 04:00 23.03.2020 04:00 2020-03-23 04:00:00         1
-#&gt; 23527 23.03.2020 04:15 23.03.2020 04:15 2020-03-23 04:15:00         1
+#&gt; 24578 24.03.2020 03:00 24.03.2020 03:00 2020-03-24 03:00:00         1
+#&gt; 24579 24.03.2020 03:15 24.03.2020 03:15 2020-03-24 03:15:00         1
+#&gt; 24580 24.03.2020 03:30 24.03.2020 03:30 2020-03-24 03:30:00         1
+#&gt; 24581 24.03.2020 03:45 24.03.2020 03:45 2020-03-24 03:45:00         1
+#&gt; 24582 24.03.2020 04:00 24.03.2020 04:00 2020-03-24 04:00:00         1
+#&gt; 24583 24.03.2020 04:15 24.03.2020 04:15 2020-03-24 04:15:00         1
 #&gt;       Sauerstoffgehalt Leitfaehigkeit
-#&gt; 23522               NA             NA
-#&gt; 23523               NA             NA
-#&gt; 23524               NA             NA
-#&gt; 23525               NA             NA
-#&gt; 23526               NA             NA
-#&gt; 23527               NA             NA</div><div class='input'>
+#&gt; 24578               NA             NA
+#&gt; 24579               NA             NA
+#&gt; 24580               NA             NA
+#&gt; 24581               NA             NA
+#&gt; 24582               NA             NA
+#&gt; 24583               NA             NA</div><div class='input'>
 <span class='co'>### How was the original timestamp interpreted?</span>
 
 <span class='co'># Determine the days at which summer time starts and ends, respectively</span>
@@ -257,71 +257,71 @@ together with the additional information on the UTC offset (column
 <span class='co'># Look at the data for these timestamps</span>
 <span class='va'>water_quality</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>grepl</a></span><span class='op'>(</span><span class='va'>pattern</span>, <span class='va'>water_quality</span><span class='op'>$</span><span class='va'>timestamp_raw</span><span class='op'>)</span>, <span class='op'>]</span>
 </div><div class='output co'>#&gt;          timestamp_raw   timestamp_corr       LocalDateTime UTCOffset
-#&gt; 30330 29.03.2020 01:00 29.03.2020 01:00 2020-03-29 01:00:00         1
-#&gt; 30331 29.03.2020 01:15 29.03.2020 01:15 2020-03-29 01:15:00         1
-#&gt; 30332 29.03.2020 01:30 29.03.2020 01:30 2020-03-29 01:30:00         1
-#&gt; 30333 29.03.2020 01:45 29.03.2020 01:45 2020-03-29 01:45:00         1
-#&gt; 30334 29.03.2020 02:00 29.03.2020 02:00 2020-03-29 03:00:00         2
-#&gt; 30335 29.03.2020 02:15 29.03.2020 02:15 2020-03-29 03:15:00         2
-#&gt; 30336 29.03.2020 02:30 29.03.2020 02:30 2020-03-29 03:30:00         2
-#&gt; 30337 29.03.2020 02:45 29.03.2020 02:45 2020-03-29 03:45:00         2
-#&gt; 30338 29.03.2020 03:00 29.03.2020 03:00 2020-03-29 04:00:00         2
-#&gt; 30339 29.03.2020 03:15 29.03.2020 03:15 2020-03-29 04:15:00         2
-#&gt; 30340 29.03.2020 03:30 29.03.2020 03:30 2020-03-29 04:30:00         2
-#&gt; 30341 29.03.2020 03:45 29.03.2020 03:45 2020-03-29 04:45:00         2
-#&gt; 30342 29.03.2020 04:00 29.03.2020 04:00 2020-03-29 05:00:00         2
-#&gt; 30343 29.03.2020 04:15 29.03.2020 04:15 2020-03-29 05:15:00         2
-#&gt; 30344 29.03.2020 04:30 29.03.2020 04:30 2020-03-29 05:30:00         2
-#&gt; 30345 29.03.2020 04:45 29.03.2020 04:45 2020-03-29 05:45:00         2
-#&gt; 26490 25.10.2020 01:00 25.10.2020 01:00 2020-10-25 02:00:00         2
-#&gt; 26491 25.10.2020 01:15 25.10.2020 01:15 2020-10-25 02:15:00         2
-#&gt; 26492 25.10.2020 01:30 25.10.2020 01:30 2020-10-25 02:30:00         2
-#&gt; 26493 25.10.2020 01:45 25.10.2020 01:45 2020-10-25 02:45:00         2
-#&gt; 26494 25.10.2020 02:00 25.10.2020 02:00 2020-10-25 02:00:00         1
-#&gt; 26495 25.10.2020 02:15 25.10.2020 02:15 2020-10-25 02:15:00         1
-#&gt; 26496 25.10.2020 02:30 25.10.2020 02:30 2020-10-25 02:30:00         1
-#&gt; 26497 25.10.2020 02:45 25.10.2020 02:45 2020-10-25 02:45:00         1
-#&gt; 26498 25.10.2020 03:00 25.10.2020 03:00 2020-10-25 03:00:00         1
-#&gt; 26499 25.10.2020 03:15 25.10.2020 03:15 2020-10-25 03:15:00         1
-#&gt; 26500 25.10.2020 03:30 25.10.2020 03:30 2020-10-25 03:30:00         1
-#&gt; 26501 25.10.2020 03:45 25.10.2020 03:45 2020-10-25 03:45:00         1
-#&gt; 26502 25.10.2020 04:00 25.10.2020 04:00 2020-10-25 04:00:00         1
-#&gt; 26503 25.10.2020 04:15 25.10.2020 04:15 2020-10-25 04:15:00         1
-#&gt; 26504 25.10.2020 04:30 25.10.2020 04:30 2020-10-25 04:30:00         1
-#&gt; 26505 25.10.2020 04:45 25.10.2020 04:45 2020-10-25 04:45:00         1
+#&gt; 30234 29.03.2020 01:00 29.03.2020 01:00 2020-03-29 01:00:00         1
+#&gt; 30235 29.03.2020 01:15 29.03.2020 01:15 2020-03-29 01:15:00         1
+#&gt; 30236 29.03.2020 01:30 29.03.2020 01:30 2020-03-29 01:30:00         1
+#&gt; 30237 29.03.2020 01:45 29.03.2020 01:45 2020-03-29 01:45:00         1
+#&gt; 30238 29.03.2020 02:00 29.03.2020 02:00 2020-03-29 03:00:00         2
+#&gt; 30239 29.03.2020 02:15 29.03.2020 02:15 2020-03-29 03:15:00         2
+#&gt; 30240 29.03.2020 02:30 29.03.2020 02:30 2020-03-29 03:30:00         2
+#&gt; 30241 29.03.2020 02:45 29.03.2020 02:45 2020-03-29 03:45:00         2
+#&gt; 30242 29.03.2020 03:00 29.03.2020 03:00 2020-03-29 04:00:00         2
+#&gt; 30243 29.03.2020 03:15 29.03.2020 03:15 2020-03-29 04:15:00         2
+#&gt; 30244 29.03.2020 03:30 29.03.2020 03:30 2020-03-29 04:30:00         2
+#&gt; 30245 29.03.2020 03:45 29.03.2020 03:45 2020-03-29 04:45:00         2
+#&gt; 30246 29.03.2020 04:00 29.03.2020 04:00 2020-03-29 05:00:00         2
+#&gt; 30247 29.03.2020 04:15 29.03.2020 04:15 2020-03-29 05:15:00         2
+#&gt; 30248 29.03.2020 04:30 29.03.2020 04:30 2020-03-29 05:30:00         2
+#&gt; 30249 29.03.2020 04:45 29.03.2020 04:45 2020-03-29 05:45:00         2
+#&gt; 26394 25.10.2020 01:00 25.10.2020 01:00 2020-10-25 02:00:00         2
+#&gt; 26395 25.10.2020 01:15 25.10.2020 01:15 2020-10-25 02:15:00         2
+#&gt; 26396 25.10.2020 01:30 25.10.2020 01:30 2020-10-25 02:30:00         2
+#&gt; 26397 25.10.2020 01:45 25.10.2020 01:45 2020-10-25 02:45:00         2
+#&gt; 26398 25.10.2020 02:00 25.10.2020 02:00 2020-10-25 02:00:00         1
+#&gt; 26399 25.10.2020 02:15 25.10.2020 02:15 2020-10-25 02:15:00         1
+#&gt; 26400 25.10.2020 02:30 25.10.2020 02:30 2020-10-25 02:30:00         1
+#&gt; 26401 25.10.2020 02:45 25.10.2020 02:45 2020-10-25 02:45:00         1
+#&gt; 26402 25.10.2020 03:00 25.10.2020 03:00 2020-10-25 03:00:00         1
+#&gt; 26403 25.10.2020 03:15 25.10.2020 03:15 2020-10-25 03:15:00         1
+#&gt; 26404 25.10.2020 03:30 25.10.2020 03:30 2020-10-25 03:30:00         1
+#&gt; 26405 25.10.2020 03:45 25.10.2020 03:45 2020-10-25 03:45:00         1
+#&gt; 26406 25.10.2020 04:00 25.10.2020 04:00 2020-10-25 04:00:00         1
+#&gt; 26407 25.10.2020 04:15 25.10.2020 04:15 2020-10-25 04:15:00         1
+#&gt; 26408 25.10.2020 04:30 25.10.2020 04:30 2020-10-25 04:30:00         1
+#&gt; 26409 25.10.2020 04:45 25.10.2020 04:45 2020-10-25 04:45:00         1
 #&gt;       Sauerstoffgehalt Leitfaehigkeit
-#&gt; 30330               NA             NA
-#&gt; 30331               NA             NA
-#&gt; 30332               NA             NA
-#&gt; 30333               NA             NA
-#&gt; 30334               NA             NA
-#&gt; 30335               NA             NA
-#&gt; 30336               NA             NA
-#&gt; 30337               NA             NA
-#&gt; 30338               NA             NA
-#&gt; 30339               NA             NA
-#&gt; 30340               NA             NA
-#&gt; 30341               NA             NA
-#&gt; 30342               NA             NA
-#&gt; 30343               NA             NA
-#&gt; 30344               NA             NA
-#&gt; 30345               NA             NA
-#&gt; 26490               NA             NA
-#&gt; 26491               NA             NA
-#&gt; 26492               NA             NA
-#&gt; 26493               NA             NA
-#&gt; 26494               NA             NA
-#&gt; 26495               NA             NA
-#&gt; 26496               NA             NA
-#&gt; 26497               NA             NA
-#&gt; 26498               NA             NA
-#&gt; 26499               NA             NA
-#&gt; 26500               NA             NA
-#&gt; 26501               NA             NA
-#&gt; 26502               NA             NA
-#&gt; 26503               NA             NA
-#&gt; 26504               NA             NA
-#&gt; 26505               NA             NA</div><div class='input'>
+#&gt; 30234               NA             NA
+#&gt; 30235               NA             NA
+#&gt; 30236               NA             NA
+#&gt; 30237               NA             NA
+#&gt; 30238               NA             NA
+#&gt; 30239               NA             NA
+#&gt; 30240               NA             NA
+#&gt; 30241               NA             NA
+#&gt; 30242               NA             NA
+#&gt; 30243               NA             NA
+#&gt; 30244               NA             NA
+#&gt; 30245               NA             NA
+#&gt; 30246               NA             NA
+#&gt; 30247               NA             NA
+#&gt; 30248               NA             NA
+#&gt; 30249               NA             NA
+#&gt; 26394               NA             NA
+#&gt; 26395               NA             NA
+#&gt; 26396               NA             NA
+#&gt; 26397               NA             NA
+#&gt; 26398               NA             NA
+#&gt; 26399               NA             NA
+#&gt; 26400               NA             NA
+#&gt; 26401               NA             NA
+#&gt; 26402               NA             NA
+#&gt; 26403               NA             NA
+#&gt; 26404               NA             NA
+#&gt; 26405               NA             NA
+#&gt; 26406               NA             NA
+#&gt; 26407               NA             NA
+#&gt; 26408               NA             NA
+#&gt; 26409               NA             NA</div><div class='input'>
 <span class='co'># The original timestamps (timestamps_raw) were not all plausible, e.g.</span>
 <span class='co'># for March 2019. This seems to have been fixed by the "wasserportal"!</span>
 <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>water_quality</span><span class='op'>$</span><span class='va'>timestamp_raw</span> <span class='op'>!=</span> <span class='va'>water_quality</span><span class='op'>$</span><span class='va'>timestamp_corr</span><span class='op'>)</span>
