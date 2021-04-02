@@ -88,7 +88,7 @@
       <h1 data-toc-skip>Groundwater</h1>
                         <h4 class="author">Michael Rustler</h4>
             
-            <h4 class="date">2021-04-01 05:10:25</h4>
+            <h4 class="date">2021-04-02 05:20:26</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KWB-R/wasserportal/blob/master/vignettes/groundwater.Rmd"><code>vignettes/groundwater.Rmd</code></a></small>
       <div class="hidden name"><code>groundwater.Rmd</code></div>
@@ -182,28 +182,28 @@
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">gwq_master</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Messstellennummer"</span> <span class="op">=</span> <span class="st">"Nummer"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">gwq_data</span><span class="op">)</span>
-<span class="co">#&gt; 'data.frame':    646009 obs. of  15 variables:</span>
-<span class="co">#&gt;  $ Messstellennummer             : chr  "149" "149" "149" "149" ...</span>
-<span class="co">#&gt;  $ Datum                         : chr  "2005-05-11" "2005-05-11" "2005-05-11" "2005-05-11" ...</span>
+<span class="co">#&gt; 'data.frame':    662274 obs. of  15 variables:</span>
+<span class="co">#&gt;  $ Messstellennummer             : chr  "3" "3" "3" "3" ...</span>
+<span class="co">#&gt;  $ Datum                         : chr  "2020-07-01" "2020-07-01" "2020-07-01" "2020-07-01" ...</span>
 <span class="co">#&gt;  $ Parameter                     : chr  "Temperatur (Luft)" "pH-Wert (Feld)" "Temperatur (Wasser)" "Leitfähigkeit 25°C vor Ort" ...</span>
 <span class="co">#&gt;  $ Einheit                       : chr  "grd Celsius" "ohne Einheit" "grd C" "µS/cm" ...</span>
-<span class="co">#&gt;  $ Messwert                      : num  6 7.4 13.4 1005.3 3.21 ...</span>
-<span class="co">#&gt;  $ Bezirk                        : chr  "Mitte" "Mitte" "Mitte" "Mitte" ...</span>
+<span class="co">#&gt;  $ Messwert                      : num  19 7.1 12.2 939 4.91 ...</span>
+<span class="co">#&gt;  $ Bezirk                        : chr  "Reinickendorf" "Reinickendorf" "Reinickendorf" "Reinickendorf" ...</span>
 <span class="co">#&gt;  $ Betreiber                     : chr  "Senat" "Senat" "Senat" "Senat" ...</span>
 <span class="co">#&gt;  $ Auspraegung                   : chr  "GW-Stand + GW-Güte" "GW-Stand + GW-Güte" "GW-Stand + GW-Güte" "GW-Stand + GW-Güte" ...</span>
 <span class="co">#&gt;  $ Grundwasserleiter             : chr  "Hauptgrundwasserleiter (GWL 1.3 + 2)" "Hauptgrundwasserleiter (GWL 1.3 + 2)" "Hauptgrundwasserleiter (GWL 1.3 + 2)" "Hauptgrundwasserleiter (GWL 1.3 + 2)" ...</span>
-<span class="co">#&gt;  $ Gelaendeoberkante_GOK_m_ue_NHN: chr  "34.09" "34.09" "34.09" "34.09" ...</span>
-<span class="co">#&gt;  $ Rohroberkante_m_ue_NHN        : chr  "34.00" "34.00" "34.00" "34.00" ...</span>
-<span class="co">#&gt;  $ Filteroberkante_m_u_GOK       : chr  "16.20" "16.20" "16.20" "16.20" ...</span>
-<span class="co">#&gt;  $ Filterunterkante_m_u_GOK      : chr  "18.20" "18.20" "18.20" "18.20" ...</span>
-<span class="co">#&gt;  $ Rechtswert_UTM_33_N           : chr  "387672.33" "387672.33" "387672.33" "387672.33" ...</span>
-<span class="co">#&gt;  $ Hochwert_UTM_33_N             : chr  "5818836.14" "5818836.14" "5818836.14" "5818836.14" ...</span>
+<span class="co">#&gt;  $ Gelaendeoberkante_GOK_m_ue_NHN: chr  "37.89" "37.89" "37.89" "37.89" ...</span>
+<span class="co">#&gt;  $ Rohroberkante_m_ue_NHN        : chr  "38.42" "38.42" "38.42" "38.42" ...</span>
+<span class="co">#&gt;  $ Filteroberkante_m_u_GOK       : chr  "12.27" "12.27" "12.27" "12.27" ...</span>
+<span class="co">#&gt;  $ Filterunterkante_m_u_GOK      : chr  "13.27" "13.27" "13.27" "13.27" ...</span>
+<span class="co">#&gt;  $ Rechtswert_UTM_33_N           : chr  "385789.30" "385789.30" "385789.30" "385789.30" ...</span>
+<span class="co">#&gt;  $ Hochwert_UTM_33_N             : chr  "5830677.30" "5830677.30" "5830677.30" "5830677.30" ...</span>
 
 <span class="co">### Merge GW level and quality into one data frame</span>
 <span class="va">gw_data</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">gwl_data</span>, <span class="va">gwq_data</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">gw_data</span><span class="op">)</span>
-<span class="co">#&gt; 'data.frame':    693995 obs. of  18 variables:</span>
+<span class="co">#&gt; 'data.frame':    710260 obs. of  18 variables:</span>
 <span class="co">#&gt;  $ Messstellennummer             : chr  "1" "1" "1" "1" ...</span>
 <span class="co">#&gt;  $ Datum                         : chr  "1953-11-01" "1953-11-15" "1953-12-01" "1953-12-15" ...</span>
 <span class="co">#&gt;  $ Parameter                     : chr  "GW-Stand" "GW-Stand" "GW-Stand" "GW-Stand" ...</span>
