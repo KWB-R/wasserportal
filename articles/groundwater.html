@@ -88,7 +88,7 @@
       <h1 data-toc-skip>Groundwater</h1>
                         <h4 class="author">Michael Rustler</h4>
             
-            <h4 class="date">2021-04-02 05:20:26</h4>
+            <h4 class="date">2021-04-03 05:12:36</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KWB-R/wasserportal/blob/master/vignettes/groundwater.Rmd"><code>vignettes/groundwater.Rmd</code></a></small>
       <div class="hidden name"><code>groundwater.Rmd</code></div>
@@ -182,12 +182,12 @@
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">gwq_master</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Messstellennummer"</span> <span class="op">=</span> <span class="st">"Nummer"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">gwq_data</span><span class="op">)</span>
-<span class="co">#&gt; 'data.frame':    662274 obs. of  15 variables:</span>
+<span class="co">#&gt; 'data.frame':    662362 obs. of  15 variables:</span>
 <span class="co">#&gt;  $ Messstellennummer             : chr  "3" "3" "3" "3" ...</span>
 <span class="co">#&gt;  $ Datum                         : chr  "2020-07-01" "2020-07-01" "2020-07-01" "2020-07-01" ...</span>
 <span class="co">#&gt;  $ Parameter                     : chr  "Temperatur (Luft)" "pH-Wert (Feld)" "Temperatur (Wasser)" "Leitfähigkeit 25°C vor Ort" ...</span>
 <span class="co">#&gt;  $ Einheit                       : chr  "grd Celsius" "ohne Einheit" "grd C" "µS/cm" ...</span>
-<span class="co">#&gt;  $ Messwert                      : num  19 7.1 12.2 939 4.91 ...</span>
+<span class="co">#&gt;  $ Messwert                      : num  19 7.1 12.2 939 4.91 5 6 0.25 453 0 ...</span>
 <span class="co">#&gt;  $ Bezirk                        : chr  "Reinickendorf" "Reinickendorf" "Reinickendorf" "Reinickendorf" ...</span>
 <span class="co">#&gt;  $ Betreiber                     : chr  "Senat" "Senat" "Senat" "Senat" ...</span>
 <span class="co">#&gt;  $ Auspraegung                   : chr  "GW-Stand + GW-Güte" "GW-Stand + GW-Güte" "GW-Stand + GW-Güte" "GW-Stand + GW-Güte" ...</span>
@@ -203,7 +203,7 @@
 <span class="va">gw_data</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">gwl_data</span>, <span class="va">gwq_data</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">gw_data</span><span class="op">)</span>
-<span class="co">#&gt; 'data.frame':    710260 obs. of  18 variables:</span>
+<span class="co">#&gt; 'data.frame':    710348 obs. of  18 variables:</span>
 <span class="co">#&gt;  $ Messstellennummer             : chr  "1" "1" "1" "1" ...</span>
 <span class="co">#&gt;  $ Datum                         : chr  "1953-11-01" "1953-11-15" "1953-12-01" "1953-12-15" ...</span>
 <span class="co">#&gt;  $ Parameter                     : chr  "GW-Stand" "GW-Stand" "GW-Stand" "GW-Stand" ...</span>
