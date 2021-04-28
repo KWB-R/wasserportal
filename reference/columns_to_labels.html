@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Wasserportal Berlin: get stations overview table — get_wasserportal_stations_table • wasserportal</title>
+<title>Create Text Labels from Data Frame Columns — columns_to_labels • wasserportal</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Wasserportal Berlin: get stations overview table — get_wasserportal_stations_table" />
-<meta property="og:description" content="Wasserportal Berlin: get stations overview table" />
+<meta property="og:title" content="Create Text Labels from Data Frame Columns — columns_to_labels" />
+<meta property="og:description" content="Create Text Labels from Data Frame Columns" />
 
 
 
@@ -126,65 +126,44 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Wasserportal Berlin: get stations overview table</h1>
-    <small class="dont-index">Source: <a href='https://github.com/KWB-R/wasserportal/blob/master/R/get_wasserportal_stations_table.R'><code>R/get_wasserportal_stations_table.R</code></a></small>
-    <div class="hidden name"><code>get_wasserportal_stations_table.Rd</code></div>
+    <h1>Create Text Labels from Data Frame Columns</h1>
+    <small class="dont-index">Source: <a href='https://github.com/KWB-R/wasserportal/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
+    <div class="hidden name"><code>columns_to_labels.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Wasserportal Berlin: get stations overview table</p>
+    <p>Create Text Labels from Data Frame Columns</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_wasserportal_stations_table</span><span class='op'>(</span>
-  type <span class='op'>=</span> <span class='fu'><a href='get_overview_options.html'>get_overview_options</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>$</span><span class='va'>groundwater</span><span class='op'>$</span><span class='va'>level</span>,
-  url_wasserportal <span class='op'>=</span> <span class='fu'><a href='wasserportal_base_url.html'>wasserportal_base_url</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>columns_to_labels</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>columns</span>, fmt <span class='op'>=</span> <span class='st'>"%s: %s"</span>, sep <span class='op'>=</span> <span class='st'>", "</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>type</th>
-      <td><p>type of stations table to retrieve. Valid options defined in
-<code><a href='get_overview_options.html'>get_overview_options</a></code>, default: get_overview_options()$groundwater$level</p></td>
+      <th>data</th>
+      <td><p>data frame</p></td>
     </tr>
     <tr>
-      <th>url_wasserportal</th>
-      <td><p>base url to Wasserportal berlin (default:
-<code><a href='wasserportal_base_url.html'>wasserportal_base_url</a></code></p></td>
+      <th>columns</th>
+      <td><p>names of columns from which to create labels</p></td>
+    </tr>
+    <tr>
+      <th>fmt</th>
+      <td><p>format string passed to <code><a href='https://rdrr.io/r/base/sprintf.html'>sprintf</a></code></p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>data frame with master data of selected monitoring stations</p>
+    <p>vector of character with as many elements as there are rows in data</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>types</span> <span class='op'>&lt;-</span> <span class='fu'>wasserportal</span><span class='fu'>::</span><span class='fu'><a href='get_overview_options.html'>get_overview_options</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>types</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; List of 2
-#&gt;  $ surface_water:List of 7
-#&gt;   ..$ water_level         : chr "ws"
-#&gt;   ..$ flow                : chr "df"
-#&gt;   ..$ level               : chr "wt"
-#&gt;   ..$ conductivity        : chr "lf"
-#&gt;   ..$ ph                  : chr "ph"
-#&gt;   ..$ oxygen_concentration: chr "og"
-#&gt;   ..$ oxygen_saturation   : chr "os"
-#&gt;  $ groundwater  :List of 2
-#&gt;   ..$ level  : chr "gws"
-#&gt;   ..$ quality: chr "gwq"</div><div class='input'><span class='va'>sw_l</span> <span class='op'>&lt;-</span> <span class='fu'>wasserportal</span><span class='fu'>::</span><span class='fu'>get_wasserportal_stations_table</span><span class='op'>(</span>type <span class='op'>=</span> <span class='va'>types</span><span class='op'>$</span><span class='va'>surface_water</span><span class='op'>$</span><span class='va'>water_level</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>sw_l</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; tibble[,9] [72 × 9] (S3: tbl_df/tbl/data.frame)
-#&gt;  $ Messstellennummer: int [1:72] 5865900 5827103 5865300 5819900 5864801 5861101 5800107 5800317 5867003 5867401 ...
-#&gt;  $ Messstellenname  : chr [1:72] "Allee der Kosmonauten" "Allendestraße" "Am Bahndamm" "Am Freibad" ...
-#&gt;  $ Gewaesser        : chr [1:72] "M.-H.-Grenzgr." "Müggelspree" "Wuhle" "Tegeler Fließ" ...
-#&gt;  $ Betreiber        : chr [1:72] "SenUVK" "SenUVK" "SenUVK" "SenUVK" ...
-#&gt;  $ Datum            : chr [1:72] "28.04.2021 07:45" "28.04.2021 07:30" "27.04.2021 23:00" "28.04.2021 07:45" ...
-#&gt;  $ Wasserstand      : int [1:72] 0 49 93 90 4 34 65 74 50 42 ...
-#&gt;  $ Einheit          : chr [1:72] "cm" "cm" "cm" "cm" ...
-#&gt;  $ Ganglinien       : logi [1:72] NA NA NA NA NA NA ...
-#&gt;  $ Klassifikation   : chr [1:72] "niedrig" "niedrig" "niedrig" "normal" ...</div></pre>
+    <pre class="examples"><div class='input'><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>number <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>, name <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"adam"</span>, <span class='st'>"eva"</span><span class='op'>)</span>, value <span class='op'>=</span> <span class='fl'>3</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>)</span>
+<span class='va'>columns</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"name"</span>, <span class='st'>"value"</span><span class='op'>)</span>
+<span class='fu'>columns_to_labels</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>columns</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "name: adam, value: 3" "name: eva, value: 4" </div><div class='input'><span class='fu'>columns_to_labels</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>columns</span>, fmt <span class='op'>=</span> <span class='st'>"&lt;p&gt;%s: %s&lt;/p&gt;"</span>, sep <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "&lt;p&gt;name: adam&lt;/p&gt;&lt;p&gt;value: 3&lt;/p&gt;" "&lt;p&gt;name: eva&lt;/p&gt;&lt;p&gt;value: 4&lt;/p&gt;" </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
