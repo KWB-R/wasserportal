@@ -5,8 +5,10 @@ date: "`r Sys.time()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Tutorial}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
 ---
 
 
@@ -96,17 +98,9 @@ GW level trend classification (provided by SenWeb) is visualized below.
 gwl <- stations$overview_list$groundwater.level %>% 
   dplyr::mutate(Datum = as.Date(Datum, format = "%d.%m.%Y"))
 
-levels_ordered <- c("extrem niedrig",
-                    "sehr niedrig",
-                    "niedrig", 
-                    "normal",
-                    "hoch",
-                    "sehr hoch",
-                    "extrem hoch",
-                    "keine")
-
 text_low_levels <- c("extrem niedrig", "sehr niedrig", "niedrig")
 text_high_levels <- c("hoch", "sehr hoch", "extrem hoch")
+levels_ordered <- c(text_low_levels, "normal", text_high_levels, "keine")
 
 gwl$Klassifikation <- forcats::fct_relevel(gwl$Klassifikation, levels_ordered)
 
@@ -143,61 +137,69 @@ indicate `above normal` (`r paste(text_high_levels, collapse=", ")`) GW levels.
 ##### Trend Classification Map
 
 ```{r stations_gwl_trend_spatially}
-level_colors <- data.frame(Klassifikation = levels_ordered, 
-                           classi_color = c("darkred", 
-                                            "red", 
-                                            "orange", 
-                                            "green",
-                                            "lightblue", 
-                                            "blue", 
-                                            "darkblue",
-                                            "grey"))
+level_colors <- data.frame(Klassifikation = levels_ordered, classi_color = c(
+  "darkred", "red", "orange", "green", "lightblue", "blue", "darkblue", "grey"
+))
 
 gwl_classified_only_with_coords <- gwl_classified_only %>% 
-  dplyr::mutate(Messstellennummer = as.character(Messstellennummer),
-                label_text = paste("Messstellennummer:", 
-                                    Messstellennummer, 
-                                    "; ",
-                                    "Grundwasserspannung:", 
-                                    Grundwasserspannung, 
-                                    ";",
-                                    "Klassifikation:", 
-                                    Klassifikation,
-                                   ";",
-                                   "Datum:",
-                                   Datum
-                                   )) %>% 
-  dplyr::left_join(stations_gwl_master %>%
-                     dplyr::select("Nummer", 
-                                   "Rechtswert_UTM_33_N",
-                                   "Hochwert_UTM_33_N") %>% 
-                     dplyr::rename(Messstellennummer = "Nummer"),
-                   by = "Messstellennummer") %>% 
-  dplyr::left_join(level_colors, by = "Klassifikation") %>% 
-  sf::st_as_sf(coords = c("Rechtswert_UTM_33_N", "Hochwert_UTM_33_N"),
-               crs = 25833) %>% 
+  dplyr::mutate(
+    Messstellennummer = as.character(Messstellennummer),
+  ) %>% 
+  dplyr::left_join(
+    stations_gwl_master %>%
+      dplyr::select("Nummer", "Rechtswert_UTM_33_N", "Hochwert_UTM_33_N") %>% 
+      dplyr::rename(Messstellennummer = "Nummer"),
+    by = "Messstellennummer"
+  ) %>% 
+  dplyr::left_join(
+    level_colors, 
+    by = "Klassifikation"
+  ) %>% 
+  sf::st_as_sf(
+    coords = c("Rechtswert_UTM_33_N", "Hochwert_UTM_33_N"),
+    crs = 25833
+  ) %>% 
   sf::st_transform(crs = 4326)
 
+# Create a vector of labels for each row in gwl_classified_only_with_coords
+labs <- wasserportal::columns_to_labels(
+  data = gwl_classified_only_with_coords, 
+  columns = c(
+    "Messstellennummer", 
+    "Grundwasserspannung", 
+    "Klassifikation", 
+    "Datum"
+  ),
+  fmt = "<p>%s: %s</p>",
+  sep = ""
+)
 
-
-  gwlmap <- gwl_classified_only_with_coords %>% 
+# Print Map
+gwlmap <- gwl_classified_only_with_coords %>% 
   leaflet::leaflet() %>%
   leaflet::addTiles() %>% 
-  leaflet::addProviderTiles(leaflet::providers$CartoDB.Positron) %>% 
-  leaflet::addCircles(color = ~classi_color,
-                      label = ~label_text) %>% 
-  leaflet::addLegend(position = "topright",
-                     colors = level_colors$classi_color,
-                     labels = level_colors$Klassifikation,
-                     title = sprintf("Classification (latest data: %s)",
-                                     max(gwl_classified_only_with_coords$Datum))
-                     )
-  
-  htmlwidgets::saveWidget(gwlmap, 
-                          "./map_gwl-trend.html", 
-                          title = "GW level trend")
-  
-  gwlmap
+  leaflet::addProviderTiles(leaflet::providers$CartoDB.Positron) %>%
+  leaflet::addCircles(
+    color = ~classi_color,
+    label = lapply(labs, htmltools::HTML)
+  ) %>% 
+  leaflet::addLegend(
+    position = "topright",
+    colors = level_colors$classi_color,
+    labels = level_colors$Klassifikation,
+    title = sprintf(
+      "Classification (latest data: %s)",
+      max(gwl_classified_only_with_coords$Datum)
+    )
+  )
+
+htmlwidgets::saveWidget(
+  gwlmap, 
+  "./map_gwl-trend.html", 
+  title = "GW level trend"
+)
+
+gwlmap
 ```
 
 ```{r input_ghactions_map, echo=FALSE, results='asis', eval=is_ghactions}
