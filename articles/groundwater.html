@@ -88,7 +88,7 @@
       <h1 data-toc-skip>Groundwater</h1>
                         <h4 class="author">Michael Rustler</h4>
             
-            <h4 class="date">2021-05-18 05:34:54</h4>
+            <h4 class="date">2021-05-19 05:25:23</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KWB-R/wasserportal/blob/master/vignettes/groundwater.Rmd"><code>vignettes/groundwater.Rmd</code></a></small>
       <div class="hidden name"><code>groundwater.Rmd</code></div>
@@ -182,7 +182,7 @@
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">gwq_master</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Messstellennummer"</span> <span class="op">=</span> <span class="st">"Nummer"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">gwq_data</span><span class="op">)</span>
-<span class="co">#&gt; 'data.frame':    680221 obs. of  15 variables:</span>
+<span class="co">#&gt; 'data.frame':    680421 obs. of  15 variables:</span>
 <span class="co">#&gt;  $ Messstellennummer             : chr  "3" "3" "3" "3" ...</span>
 <span class="co">#&gt;  $ Datum                         : chr  "2020-07-01" "2020-07-01" "2020-07-01" "2020-07-01" ...</span>
 <span class="co">#&gt;  $ Parameter                     : chr  "Temperatur (Luft)" "pH-Wert (Feld)" "Temperatur (Wasser)" "Leitfähigkeit 25°C vor Ort" ...</span>
@@ -203,7 +203,7 @@
 <span class="va">gw_data</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">gwl_data</span>, <span class="va">gwq_data</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">gw_data</span><span class="op">)</span>
-<span class="co">#&gt; 'data.frame':    728462 obs. of  18 variables:</span>
+<span class="co">#&gt; 'data.frame':    728662 obs. of  18 variables:</span>
 <span class="co">#&gt;  $ Messstellennummer             : chr  "1" "1" "1" "1" ...</span>
 <span class="co">#&gt;  $ Datum                         : chr  "1953-11-01" "1953-11-15" "1953-12-01" "1953-12-15" ...</span>
 <span class="co">#&gt;  $ Parameter                     : chr  "GW-Stand" "GW-Stand" "GW-Stand" "GW-Stand" ...</span>
