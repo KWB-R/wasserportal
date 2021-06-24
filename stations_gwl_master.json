@@ -10976,6 +10976,19 @@
     "Hochwert_UTM_33_N": "5836551.23"
   },
   {
+    "Nummer": "23704",
+    "Bezirk": "Pankow",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand + GW-Güte",
+    "Grundwasserleiter": "Hauptgrundwasserleiter (GWL 1.3 + 2)",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "60.93",
+    "Rohroberkante_m_ue_NHN": "61.71",
+    "Filteroberkante_m_u_GOK": "42.00",
+    "Filterunterkante_m_u_GOK": "43.95",
+    "Rechtswert_UTM_33_N": "397564.91",
+    "Hochwert_UTM_33_N": "5836553.23"
+  },
+  {
     "Nummer": "23705",
     "Bezirk": "Pankow",
     "Betreiber": "Senat",
