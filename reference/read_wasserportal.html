@@ -202,24 +202,24 @@ together with the additional information on the UTC offset (column
   variables <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>variables</span><span class='op'>[</span><span class='st'>"Sauerstoffgehalt"</span><span class='op'>]</span>, <span class='va'>variables</span><span class='op'>[</span><span class='st'>"Leitfaehigkeit"</span><span class='op'>]</span><span class='op'>)</span>,
   from_date <span class='op'>=</span> <span class='va'>from_date</span>, include_raw_time <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; Reading 'Sauerstoffgehalt' for station 153 (MPS_Charlottenburg) ... ok. (1.25s) 
-#&gt; Reading 'Leitfaehigkeit' for station 153 (MPS_Charlottenburg) ... ok. (0.84s) </div><div class='input'>
+</div><div class='output co'>#&gt; Reading 'Sauerstoffgehalt' for station 153 (MPS_Charlottenburg) ... ok. (1.24s) 
+#&gt; Reading 'Leitfaehigkeit' for station 153 (MPS_Charlottenburg) ... ok. (0.78s) </div><div class='input'>
 <span class='co'># Look at the first few records</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>water_quality</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;          timestamp_raw   timestamp_corr       LocalDateTime UTCOffset
-#&gt; 19490 26.06.2020 02:00 26.06.2020 02:00 2020-06-26 03:00:00         2
-#&gt; 19491 26.06.2020 02:15 26.06.2020 02:15 2020-06-26 03:15:00         2
-#&gt; 19492 26.06.2020 02:30 26.06.2020 02:30 2020-06-26 03:30:00         2
-#&gt; 19493 26.06.2020 02:45 26.06.2020 02:45 2020-06-26 03:45:00         2
-#&gt; 19494 26.06.2020 03:00 26.06.2020 03:00 2020-06-26 04:00:00         2
-#&gt; 19495 26.06.2020 03:15 26.06.2020 03:15 2020-06-26 04:15:00         2
+#&gt; 20258 27.06.2020 02:00 27.06.2020 02:00 2020-06-27 03:00:00         2
+#&gt; 20259 27.06.2020 02:15 27.06.2020 02:15 2020-06-27 03:15:00         2
+#&gt; 20260 27.06.2020 02:30 27.06.2020 02:30 2020-06-27 03:30:00         2
+#&gt; 20261 27.06.2020 02:45 27.06.2020 02:45 2020-06-27 03:45:00         2
+#&gt; 20262 27.06.2020 03:00 27.06.2020 03:00 2020-06-27 04:00:00         2
+#&gt; 20263 27.06.2020 03:15 27.06.2020 03:15 2020-06-27 04:15:00         2
 #&gt;       Sauerstoffgehalt Leitfaehigkeit
-#&gt; 19490             2.59            832
-#&gt; 19491             2.18            833
-#&gt; 19492             1.94            832
-#&gt; 19493             1.83            833
-#&gt; 19494             1.65            833
-#&gt; 19495             1.49            833</div><div class='input'>
+#&gt; 20258             0.97            834
+#&gt; 20259             0.22            834
+#&gt; 20260             1.29            834
+#&gt; 20261             1.57            834
+#&gt; 20262             1.95            834
+#&gt; 20263             1.64            834</div><div class='input'>
 <span class='co'># Check the metadata</span>
 <span class='co'>#kwb.utils::getAttribute(water_quality, "metadata")</span>
 
@@ -229,19 +229,19 @@ together with the additional information on the UTC offset (column
 <span class='co'># Look at the first few records again</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>water_quality</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;          timestamp_raw   timestamp_corr       LocalDateTime UTCOffset
-#&gt; 19490 26.06.2020 02:00 26.06.2020 02:00 2020-06-26 03:00:00         2
-#&gt; 19491 26.06.2020 02:15 26.06.2020 02:15 2020-06-26 03:15:00         2
-#&gt; 19492 26.06.2020 02:30 26.06.2020 02:30 2020-06-26 03:30:00         2
-#&gt; 19493 26.06.2020 02:45 26.06.2020 02:45 2020-06-26 03:45:00         2
-#&gt; 19494 26.06.2020 03:00 26.06.2020 03:00 2020-06-26 04:00:00         2
-#&gt; 19495 26.06.2020 03:15 26.06.2020 03:15 2020-06-26 04:15:00         2
+#&gt; 20258 27.06.2020 02:00 27.06.2020 02:00 2020-06-27 03:00:00         2
+#&gt; 20259 27.06.2020 02:15 27.06.2020 02:15 2020-06-27 03:15:00         2
+#&gt; 20260 27.06.2020 02:30 27.06.2020 02:30 2020-06-27 03:30:00         2
+#&gt; 20261 27.06.2020 02:45 27.06.2020 02:45 2020-06-27 03:45:00         2
+#&gt; 20262 27.06.2020 03:00 27.06.2020 03:00 2020-06-27 04:00:00         2
+#&gt; 20263 27.06.2020 03:15 27.06.2020 03:15 2020-06-27 04:15:00         2
 #&gt;       Sauerstoffgehalt Leitfaehigkeit
-#&gt; 19490             2.59            832
-#&gt; 19491             2.18            833
-#&gt; 19492             1.94            832
-#&gt; 19493             1.83            833
-#&gt; 19494             1.65            833
-#&gt; 19495             1.49            833</div><div class='input'>
+#&gt; 20258             0.97            834
+#&gt; 20259             0.22            834
+#&gt; 20260             1.29            834
+#&gt; 20261             1.57            834
+#&gt; 20262             1.95            834
+#&gt; 20263             1.64            834</div><div class='input'>
 <span class='co'>### How was the original timestamp interpreted?</span>
 
 <span class='co'># Determine the days at which summer time starts and ends, respectively</span>
