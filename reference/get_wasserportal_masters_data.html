@@ -158,11 +158,11 @@
     <pre class="examples"><div class='input'><span class='va'>station_ids</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>
 <span class='fu'>parallel</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/r/parallel/detectCores.html'>detectCores</a></span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] 3</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='fu'>get_wasserportal_masters_data</span><span class='op'>(</span><span class='va'>station_ids</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Importing 4 station metadata from Wasserportal Berlin ... ok. (2.15s) </div><div class='output co'>#&gt;    user  system elapsed 
-#&gt;   0.015   0.007   2.419 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='fu'>get_wasserportal_masters_data</span><span class='op'>(</span><span class='va'>station_ids</span>,
+</div><div class='output co'>#&gt; Importing 4 station metadata from Wasserportal Berlin ... ok. (2.82s) </div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   0.017   0.008   3.084 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/system.time.html'>system.time</a></span><span class='op'>(</span><span class='fu'>get_wasserportal_masters_data</span><span class='op'>(</span><span class='va'>station_ids</span>,
                                           run_parallel <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;    user  system elapsed 
-#&gt;   0.136   0.007   2.901 </div><div class='input'>
+#&gt;   0.144   0.008   4.138 </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
