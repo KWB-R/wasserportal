@@ -80,3 +80,38 @@ gw_data <- dplyr::bind_rows(gwl_data, gwq_data)
 str(gw_data)
 
 ```
+
+## Data Availability 
+
+### GW Quality
+
+```{r stations_gwq_data_by_parameter_table}
+gwq_data_by_parameter <- gwq_data %>%
+  dplyr::select(.data$Messstellennummer,
+                .data$Parameter,
+                .data$Datum,
+                .data$Messwert) %>%
+  dplyr::group_by(.data$Parameter) %>%
+  dplyr::summarise(date_min = min(.data$Datum),
+                   date_max = max(.data$Datum),
+                   n = dplyr::n()) %>%
+  dplyr::arrange(dplyr::desc(.data$n))
+
+DT::datatable(gwq_data_by_parameter, filter = "top")
+```
+
+```{r stations_gwq_data_by_parameter_table}
+gwq_data_by_parameter_and_station <-  gwq_data %>%
+  dplyr::select(.data$Messstellennummer,
+                .data$Parameter,
+                .data$Datum,
+                .data$Messwert) %>%
+  dplyr::group_by(.data$Parameter,
+                  .data$Messstellennummer) %>%
+  dplyr::summarise(date_min = min(.data$Datum),
+                   date_max = max(.data$Datum),
+                   n = dplyr::n()) %>%
+  dplyr::arrange(dplyr::desc(.data$n))
+
+DT::datatable(gwq_data_by_parameter_and_station, filter = "top")
+```
