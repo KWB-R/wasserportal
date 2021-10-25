@@ -3,6 +3,7 @@
 [![codecov](https://codecov.io/github/KWB-R/wasserportal/branch/main/graphs/badge.svg)](https://codecov.io/github/KWB-R/wasserportal)
 [![Project Status](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/wasserportal)]()
+[![R-Universe_Status_Badge](https://kwb-r.r-universe.dev/badges/wasserportal)](https://kwb-r.r-universe.dev/)
 
 # wasserportal
 
