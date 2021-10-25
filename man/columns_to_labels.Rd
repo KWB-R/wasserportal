@@ -12,6 +12,8 @@ columns_to_labels(data, columns, fmt = "\%s: \%s", sep = ", ")
 \item{columns}{names of columns from which to create labels}
 
 \item{fmt}{format string passed to \code{\link{sprintf}}}
+
+\item{sep}{separator (default: ", ")}
 }
 \value{
 vector of character with as many elements as there are rows in data
