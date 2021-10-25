@@ -8,7 +8,7 @@ get_overview_options()
 }
 \value{
 list with shortcuts to station overview tables
-(wasserportal.berlin.de/messwerte.php?anzeige=tabelle&thema=<shortcut>)
+(\verb{wasserportal.berlin.de/messwerte.php?anzeige=tabelle&thema=<shortcut>})
 }
 \description{
 Wasserportal Berlin: get overview options for stations
