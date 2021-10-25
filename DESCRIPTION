@@ -45,6 +45,7 @@ Suggests:
     ggplot2,
     knitr,
     kwb.pkgbuild,
+    openxlsx,
     plotly,
     rmarkdown,
     sf

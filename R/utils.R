@@ -42,6 +42,7 @@ read <- function(text, ...) {
 #' @param data data frame
 #' @param columns names of columns from which to create labels
 #' @param fmt format string passed to \code{\link{sprintf}}
+#' @param sep separator (default: ", ")
 #' @return vector of character with as many elements as there are rows in data
 #' @export
 #' @examples

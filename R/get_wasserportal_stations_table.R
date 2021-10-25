@@ -1,7 +1,7 @@
 #' Wasserportal Berlin: get overview options for stations
 #'
 #' @return list with shortcuts to station overview tables
-#' (wasserportal.berlin.de/messwerte.php?anzeige=tabelle&thema=<shortcut>)
+#' (`wasserportal.berlin.de/messwerte.php?anzeige=tabelle&thema=<shortcut>`)
 #' @export
 #'
 #' @examples
