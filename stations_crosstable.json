@@ -147,12 +147,6 @@
     "ws": "x"
   },
   {
-    "Messstellennummer": "5867300",
-    "Messstellenname": "Heinersdorf",
-    "ws": "x",
-    "wt": "x"
-  },
-  {
     "Messstellennummer": "5865000",
     "Messstellenname": "Honsfelder Brücke",
     "ws": "x",
@@ -985,6 +979,10 @@
     "gws": "x"
   },
   {
+    "Messstellennummer": "207",
+    "gws": "x"
+  },
+  {
     "Messstellennummer": "208",
     "gws": "x"
   },
@@ -1263,10 +1261,6 @@
     "gws": "x"
   },
   {
-    "Messstellennummer": "553",
-    "gws": "x"
-  },
-  {
     "Messstellennummer": "554",
     "gws": "x"
   },
@@ -1423,10 +1417,6 @@
   },
   {
     "Messstellennummer": "667",
-    "gws": "x"
-  },
-  {
-    "Messstellennummer": "668",
     "gws": "x"
   },
   {
@@ -1919,6 +1909,10 @@
     "gws": "x"
   },
   {
+    "Messstellennummer": "4102",
+    "gws": "x"
+  },
+  {
     "Messstellennummer": "4105",
     "gws": "x",
     "gwq": "x"
@@ -2045,10 +2039,6 @@
   },
   {
     "Messstellennummer": "4897",
-    "gws": "x"
-  },
-  {
-    "Messstellennummer": "4923",
     "gws": "x"
   },
   {
@@ -2267,10 +2257,6 @@
     "Messstellennummer": "5097",
     "gws": "x",
     "gwq": "x"
-  },
-  {
-    "Messstellennummer": "5118",
-    "gws": "x"
   },
   {
     "Messstellennummer": "5138",
@@ -2526,6 +2512,10 @@
   },
   {
     "Messstellennummer": "5472",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "5473",
     "gws": "x"
   },
   {
@@ -2941,6 +2931,10 @@
     "gwq": "x"
   },
   {
+    "Messstellennummer": "7040",
+    "gws": "x"
+  },
+  {
     "Messstellennummer": "7041",
     "gws": "x"
   },
@@ -2948,10 +2942,6 @@
     "Messstellennummer": "7042",
     "gws": "x",
     "gwq": "x"
-  },
-  {
-    "Messstellennummer": "7043",
-    "gws": "x"
   },
   {
     "Messstellennummer": "7044",
@@ -3039,11 +3029,6 @@
   {
     "Messstellennummer": "7085",
     "gws": "x"
-  },
-  {
-    "Messstellennummer": "7092",
-    "gws": "x",
-    "gwq": "x"
   },
   {
     "Messstellennummer": "7098",
@@ -3333,10 +3318,6 @@
     "gws": "x"
   },
   {
-    "Messstellennummer": "7276",
-    "gws": "x"
-  },
-  {
     "Messstellennummer": "7277",
     "gws": "x"
   },
@@ -3392,6 +3373,14 @@
   },
   {
     "Messstellennummer": "7324",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7340",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "7347",
     "gws": "x"
   },
   {
@@ -4112,6 +4101,10 @@
     "gwq": "x"
   },
   {
+    "Messstellennummer": "23702",
+    "gws": "x"
+  },
+  {
     "Messstellennummer": "23703",
     "gws": "x",
     "gwq": "x"
@@ -4127,6 +4120,10 @@
   },
   {
     "Messstellennummer": "23707",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "23719",
     "gws": "x"
   },
   {
@@ -4176,6 +4173,10 @@
   },
   {
     "Messstellennummer": "95391",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "95580",
     "gws": "x"
   },
   {
