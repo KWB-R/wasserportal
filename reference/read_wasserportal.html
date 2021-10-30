@@ -202,24 +202,24 @@ together with the additional information on the UTC offset (column
   variables <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>variables</span><span class='op'>[</span><span class='st'>"Sauerstoffgehalt"</span><span class='op'>]</span>, <span class='va'>variables</span><span class='op'>[</span><span class='st'>"Leitfaehigkeit"</span><span class='op'>]</span><span class='op'>)</span>,
   from_date <span class='op'>=</span> <span class='va'>from_date</span>, include_raw_time <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; Reading 'Sauerstoffgehalt' for station 153 (MPS_Charlottenburg) ... ok. (1.72s) 
-#&gt; Reading 'Leitfaehigkeit' for station 153 (MPS_Charlottenburg) ... ok. (1.05s) </div><div class='input'>
+</div><div class='output co'>#&gt; Reading 'Sauerstoffgehalt' for station 153 (MPS_Charlottenburg) ... ok. (1.79s) 
+#&gt; Reading 'Leitfaehigkeit' for station 153 (MPS_Charlottenburg) ... ok. (0.94s) </div><div class='input'>
 <span class='co'># Look at the first few records</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>water_quality</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;          timestamp_raw   timestamp_corr       LocalDateTime UTCOffset
-#&gt; 10658 28.10.2020 02:00 28.10.2020 02:00 2020-10-28 02:00:00         1
-#&gt; 10659 28.10.2020 02:15 28.10.2020 02:15 2020-10-28 02:15:00         1
-#&gt; 10660 28.10.2020 02:30 28.10.2020 02:30 2020-10-28 02:30:00         1
-#&gt; 10661 28.10.2020 02:45 28.10.2020 02:45 2020-10-28 02:45:00         1
-#&gt; 10662 28.10.2020 03:00 28.10.2020 03:00 2020-10-28 03:00:00         1
-#&gt; 10663 28.10.2020 03:15 28.10.2020 03:15 2020-10-28 03:15:00         1
+#&gt; 10946 29.10.2020 02:00 29.10.2020 02:00 2020-10-29 02:00:00         1
+#&gt; 10947 29.10.2020 02:15 29.10.2020 02:15 2020-10-29 02:15:00         1
+#&gt; 10948 29.10.2020 02:30 29.10.2020 02:30 2020-10-29 02:30:00         1
+#&gt; 10949 29.10.2020 02:45 29.10.2020 02:45 2020-10-29 02:45:00         1
+#&gt; 10950 29.10.2020 03:00 29.10.2020 03:00 2020-10-29 03:00:00         1
+#&gt; 10951 29.10.2020 03:15 29.10.2020 03:15 2020-10-29 03:15:00         1
 #&gt;       Sauerstoffgehalt Leitfaehigkeit
-#&gt; 10658             -777           -777
-#&gt; 10659             -777           -777
-#&gt; 10660             -777           -777
-#&gt; 10661             -777           -777
-#&gt; 10662             -777           -777
-#&gt; 10663             -777           -777</div><div class='input'>
+#&gt; 10946             -777           -777
+#&gt; 10947             -777           -777
+#&gt; 10948             -777           -777
+#&gt; 10949             -777           -777
+#&gt; 10950             -777           -777
+#&gt; 10951             -777           -777</div><div class='input'>
 <span class='co'># Check the metadata</span>
 <span class='co'>#kwb.utils::getAttribute(water_quality, "metadata")</span>
 
@@ -229,19 +229,19 @@ together with the additional information on the UTC offset (column
 <span class='co'># Look at the first few records again</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>water_quality</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;          timestamp_raw   timestamp_corr       LocalDateTime UTCOffset
-#&gt; 10658 28.10.2020 02:00 28.10.2020 02:00 2020-10-28 02:00:00         1
-#&gt; 10659 28.10.2020 02:15 28.10.2020 02:15 2020-10-28 02:15:00         1
-#&gt; 10660 28.10.2020 02:30 28.10.2020 02:30 2020-10-28 02:30:00         1
-#&gt; 10661 28.10.2020 02:45 28.10.2020 02:45 2020-10-28 02:45:00         1
-#&gt; 10662 28.10.2020 03:00 28.10.2020 03:00 2020-10-28 03:00:00         1
-#&gt; 10663 28.10.2020 03:15 28.10.2020 03:15 2020-10-28 03:15:00         1
+#&gt; 10946 29.10.2020 02:00 29.10.2020 02:00 2020-10-29 02:00:00         1
+#&gt; 10947 29.10.2020 02:15 29.10.2020 02:15 2020-10-29 02:15:00         1
+#&gt; 10948 29.10.2020 02:30 29.10.2020 02:30 2020-10-29 02:30:00         1
+#&gt; 10949 29.10.2020 02:45 29.10.2020 02:45 2020-10-29 02:45:00         1
+#&gt; 10950 29.10.2020 03:00 29.10.2020 03:00 2020-10-29 03:00:00         1
+#&gt; 10951 29.10.2020 03:15 29.10.2020 03:15 2020-10-29 03:15:00         1
 #&gt;       Sauerstoffgehalt Leitfaehigkeit
-#&gt; 10658               NA             NA
-#&gt; 10659               NA             NA
-#&gt; 10660               NA             NA
-#&gt; 10661               NA             NA
-#&gt; 10662               NA             NA
-#&gt; 10663               NA             NA</div><div class='input'>
+#&gt; 10946               NA             NA
+#&gt; 10947               NA             NA
+#&gt; 10948               NA             NA
+#&gt; 10949               NA             NA
+#&gt; 10950               NA             NA
+#&gt; 10951               NA             NA</div><div class='input'>
 <span class='co'>### How was the original timestamp interpreted?</span>
 
 <span class='co'># Determine the days at which summer time starts and ends, respectively</span>
