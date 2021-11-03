@@ -203,23 +203,23 @@ together with the additional information on the UTC offset (column
   from_date <span class='op'>=</span> <span class='va'>from_date</span>, include_raw_time <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span>
 </div><div class='output co'>#&gt; Reading 'Sauerstoffgehalt' for station 153 (MPS_Charlottenburg) ... ok. (1.79s) 
-#&gt; Reading 'Leitfaehigkeit' for station 153 (MPS_Charlottenburg) ... ok. (0.94s) </div><div class='input'>
+#&gt; Reading 'Leitfaehigkeit' for station 153 (MPS_Charlottenburg) ... ok. (1.00s) </div><div class='input'>
 <span class='co'># Look at the first few records</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>water_quality</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;        timestamp_raw   timestamp_corr       LocalDateTime UTCOffset
-#&gt; 289 01.11.2020 03:00 01.11.2020 03:00 2020-11-01 03:00:00         1
-#&gt; 290 01.11.2020 03:15 01.11.2020 03:15 2020-11-01 03:15:00         1
-#&gt; 291 01.11.2020 03:30 01.11.2020 03:30 2020-11-01 03:30:00         1
-#&gt; 292 01.11.2020 03:45 01.11.2020 03:45 2020-11-01 03:45:00         1
-#&gt; 293 01.11.2020 04:00 01.11.2020 04:00 2020-11-01 04:00:00         1
-#&gt; 294 01.11.2020 04:15 01.11.2020 04:15 2020-11-01 04:15:00         1
+#&gt; 578 02.11.2020 03:00 02.11.2020 03:00 2020-11-02 03:00:00         1
+#&gt; 579 02.11.2020 03:15 02.11.2020 03:15 2020-11-02 03:15:00         1
+#&gt; 580 02.11.2020 03:30 02.11.2020 03:30 2020-11-02 03:30:00         1
+#&gt; 581 02.11.2020 03:45 02.11.2020 03:45 2020-11-02 03:45:00         1
+#&gt; 582 02.11.2020 04:00 02.11.2020 04:00 2020-11-02 04:00:00         1
+#&gt; 583 02.11.2020 04:15 02.11.2020 04:15 2020-11-02 04:15:00         1
 #&gt;     Sauerstoffgehalt Leitfaehigkeit
-#&gt; 289             -777           -777
-#&gt; 290             -777           -777
-#&gt; 291             -777           -777
-#&gt; 292             -777           -777
-#&gt; 293             -777           -777
-#&gt; 294             -777           -777</div><div class='input'>
+#&gt; 578             -777           -777
+#&gt; 579             -777           -777
+#&gt; 580             -777           -777
+#&gt; 581             -777           -777
+#&gt; 582             -777           -777
+#&gt; 583             -777           -777</div><div class='input'>
 <span class='co'># Check the metadata</span>
 <span class='co'>#kwb.utils::getAttribute(water_quality, "metadata")</span>
 
@@ -229,19 +229,19 @@ together with the additional information on the UTC offset (column
 <span class='co'># Look at the first few records again</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>water_quality</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;        timestamp_raw   timestamp_corr       LocalDateTime UTCOffset
-#&gt; 289 01.11.2020 03:00 01.11.2020 03:00 2020-11-01 03:00:00         1
-#&gt; 290 01.11.2020 03:15 01.11.2020 03:15 2020-11-01 03:15:00         1
-#&gt; 291 01.11.2020 03:30 01.11.2020 03:30 2020-11-01 03:30:00         1
-#&gt; 292 01.11.2020 03:45 01.11.2020 03:45 2020-11-01 03:45:00         1
-#&gt; 293 01.11.2020 04:00 01.11.2020 04:00 2020-11-01 04:00:00         1
-#&gt; 294 01.11.2020 04:15 01.11.2020 04:15 2020-11-01 04:15:00         1
+#&gt; 578 02.11.2020 03:00 02.11.2020 03:00 2020-11-02 03:00:00         1
+#&gt; 579 02.11.2020 03:15 02.11.2020 03:15 2020-11-02 03:15:00         1
+#&gt; 580 02.11.2020 03:30 02.11.2020 03:30 2020-11-02 03:30:00         1
+#&gt; 581 02.11.2020 03:45 02.11.2020 03:45 2020-11-02 03:45:00         1
+#&gt; 582 02.11.2020 04:00 02.11.2020 04:00 2020-11-02 04:00:00         1
+#&gt; 583 02.11.2020 04:15 02.11.2020 04:15 2020-11-02 04:15:00         1
 #&gt;     Sauerstoffgehalt Leitfaehigkeit
-#&gt; 289               NA             NA
-#&gt; 290               NA             NA
-#&gt; 291               NA             NA
-#&gt; 292               NA             NA
-#&gt; 293               NA             NA
-#&gt; 294               NA             NA</div><div class='input'>
+#&gt; 578               NA             NA
+#&gt; 579               NA             NA
+#&gt; 580               NA             NA
+#&gt; 581               NA             NA
+#&gt; 582               NA             NA
+#&gt; 583               NA             NA</div><div class='input'>
 <span class='co'>### How was the original timestamp interpreted?</span>
 
 <span class='co'># Determine the days at which summer time starts and ends, respectively</span>
