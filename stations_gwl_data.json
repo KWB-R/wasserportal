@@ -1,13 +1,6 @@
 [
   {
     "Messstellennummer": 1,
-    "Datum": "2019-11-10",
-    "Parameter": "GW-Stand",
-    "Einheit": "m ü. NHN",
-    "Messwert": 33.81
-  },
-  {
-    "Messstellennummer": 1,
     "Datum": "2019-11-11",
     "Parameter": "GW-Stand",
     "Einheit": "m ü. NHN",
@@ -4884,13 +4877,6 @@
     "Parameter": "GW-Stand",
     "Einheit": "m ü. NHN",
     "Messwert": 33.66
-  },
-  {
-    "Messstellennummer": 2,
-    "Datum": "2019-11-10",
-    "Parameter": "GW-Stand",
-    "Einheit": "m ü. NHN",
-    "Messwert": 35.22
   },
   {
     "Messstellennummer": 2,
@@ -9584,13 +9570,6 @@
   },
   {
     "Messstellennummer": 3,
-    "Datum": "2019-11-10",
-    "Parameter": "GW-Stand",
-    "Einheit": "m ü. NHN",
-    "Messwert": 33.5
-  },
-  {
-    "Messstellennummer": 3,
     "Datum": "2019-11-11",
     "Parameter": "GW-Stand",
     "Einheit": "m ü. NHN",
@@ -14369,13 +14348,6 @@
     "Parameter": "GW-Stand",
     "Einheit": "m ü. NHN",
     "Messwert": 33.67
-  },
-  {
-    "Messstellennummer": 4,
-    "Datum": "2019-11-10",
-    "Parameter": "GW-Stand",
-    "Einheit": "m ü. NHN",
-    "Messwert": 32.42
   },
   {
     "Messstellennummer": 4,
@@ -19255,13 +19227,6 @@
     "Parameter": "GW-Stand",
     "Einheit": "m ü. NHN",
     "Messwert": 32.47
-  },
-  {
-    "Messstellennummer": 9,
-    "Datum": "2019-11-10",
-    "Parameter": "GW-Stand",
-    "Einheit": "m ü. NHN",
-    "Messwert": 36.93
   },
   {
     "Messstellennummer": 9,
