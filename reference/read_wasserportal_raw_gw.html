@@ -179,20 +179,20 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>read_wasserportal_raw_gw</span><span class='op'>(</span>station <span class='op'>=</span> <span class='fl'>149</span>, stype <span class='op'>=</span> <span class='st'>"gwl"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: one argument not used by format '%s/station.php?anzeige=%sd&amp;sstation=%s'</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 683 × 5</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: one argument not used by format '%s/station.php?anzeige=%sd&amp;sstation=%s'</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 682 × 5</span>
 #&gt;    Messstellennummer Datum      Parameter Einheit  Messwert
 #&gt;  <span style='color: #BCBCBC;'>*</span>             <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span>               149 2019-11-13 GW-Stand  m ü. NHN     31.0
-#&gt; <span style='color: #BCBCBC;'> 2</span>               149 2019-11-14 GW-Stand  m ü. NHN     31.0
-#&gt; <span style='color: #BCBCBC;'> 3</span>               149 2019-11-15 GW-Stand  m ü. NHN     31  
-#&gt; <span style='color: #BCBCBC;'> 4</span>               149 2019-11-16 GW-Stand  m ü. NHN     31.0
-#&gt; <span style='color: #BCBCBC;'> 5</span>               149 2019-11-17 GW-Stand  m ü. NHN     31.0
-#&gt; <span style='color: #BCBCBC;'> 6</span>               149 2019-11-18 GW-Stand  m ü. NHN     31.0
-#&gt; <span style='color: #BCBCBC;'> 7</span>               149 2019-11-19 GW-Stand  m ü. NHN     31.0
-#&gt; <span style='color: #BCBCBC;'> 8</span>               149 2019-11-20 GW-Stand  m ü. NHN     31.0
-#&gt; <span style='color: #BCBCBC;'> 9</span>               149 2019-11-21 GW-Stand  m ü. NHN     31.0
-#&gt; <span style='color: #BCBCBC;'>10</span>               149 2019-11-22 GW-Stand  m ü. NHN     31  
-#&gt; <span style='color: #949494;'># … with 673 more rows</span></div><div class='input'><span class='fu'>read_wasserportal_raw_gw</span><span class='op'>(</span>station <span class='op'>=</span> <span class='fl'>149</span>, stype <span class='op'>=</span> <span class='st'>"gwq"</span><span class='op'>)</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span>               149 2019-11-14 GW-Stand  m ü. NHN     31.0
+#&gt; <span style='color: #BCBCBC;'> 2</span>               149 2019-11-15 GW-Stand  m ü. NHN     31  
+#&gt; <span style='color: #BCBCBC;'> 3</span>               149 2019-11-16 GW-Stand  m ü. NHN     31.0
+#&gt; <span style='color: #BCBCBC;'> 4</span>               149 2019-11-17 GW-Stand  m ü. NHN     31.0
+#&gt; <span style='color: #BCBCBC;'> 5</span>               149 2019-11-18 GW-Stand  m ü. NHN     31.0
+#&gt; <span style='color: #BCBCBC;'> 6</span>               149 2019-11-19 GW-Stand  m ü. NHN     31.0
+#&gt; <span style='color: #BCBCBC;'> 7</span>               149 2019-11-20 GW-Stand  m ü. NHN     31.0
+#&gt; <span style='color: #BCBCBC;'> 8</span>               149 2019-11-21 GW-Stand  m ü. NHN     31.0
+#&gt; <span style='color: #BCBCBC;'> 9</span>               149 2019-11-22 GW-Stand  m ü. NHN     31  
+#&gt; <span style='color: #BCBCBC;'>10</span>               149 2019-11-23 GW-Stand  m ü. NHN     31.0
+#&gt; <span style='color: #949494;'># … with 672 more rows</span></div><div class='input'><span class='fu'>read_wasserportal_raw_gw</span><span class='op'>(</span>station <span class='op'>=</span> <span class='fl'>149</span>, stype <span class='op'>=</span> <span class='st'>"gwq"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: one argument not used by format '%s/station.php?anzeige=%sd&amp;sstation=%s'</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 544 × 5</span>
 #&gt;    Messstellennummer Datum      Parameter                  Einheit      Messwert
 #&gt;  <span style='color: #BCBCBC;'>*</span>             <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
