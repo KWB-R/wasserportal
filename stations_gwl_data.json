@@ -1,20 +1,6 @@
 [
   {
     "Messstellennummer": 1,
-    "Datum": "2019-11-18",
-    "Parameter": "GW-Stand",
-    "Einheit": "m ü. NHN",
-    "Messwert": 33.82
-  },
-  {
-    "Messstellennummer": 1,
-    "Datum": "2019-11-19",
-    "Parameter": "GW-Stand",
-    "Einheit": "m ü. NHN",
-    "Messwert": 33.81
-  },
-  {
-    "Messstellennummer": 1,
     "Datum": "2019-11-20",
     "Parameter": "GW-Stand",
     "Einheit": "m ü. NHN",
@@ -4827,21 +4813,196 @@
     "Datum": "2021-10-07",
     "Parameter": "GW-Stand",
     "Einheit": "m ü. NHN",
-    "Messwert": 33.66
+    "Messwert": 33.67
   },
   {
-    "Messstellennummer": 2,
-    "Datum": "2019-11-18",
+    "Messstellennummer": 1,
+    "Datum": "2021-10-08",
     "Parameter": "GW-Stand",
     "Einheit": "m ü. NHN",
-    "Messwert": 35.23
+    "Messwert": 33.67
   },
   {
-    "Messstellennummer": 2,
-    "Datum": "2019-11-19",
+    "Messstellennummer": 1,
+    "Datum": "2021-10-09",
     "Parameter": "GW-Stand",
     "Einheit": "m ü. NHN",
-    "Messwert": 35.24
+    "Messwert": 33.68
+  },
+  {
+    "Messstellennummer": 1,
+    "Datum": "2021-10-10",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.68
+  },
+  {
+    "Messstellennummer": 1,
+    "Datum": "2021-10-11",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.69
+  },
+  {
+    "Messstellennummer": 1,
+    "Datum": "2021-10-12",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.7
+  },
+  {
+    "Messstellennummer": 1,
+    "Datum": "2021-10-13",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.68
+  },
+  {
+    "Messstellennummer": 1,
+    "Datum": "2021-10-14",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.69
+  },
+  {
+    "Messstellennummer": 1,
+    "Datum": "2021-10-15",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.7
+  },
+  {
+    "Messstellennummer": 1,
+    "Datum": "2021-10-16",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.68
+  },
+  {
+    "Messstellennummer": 1,
+    "Datum": "2021-10-17",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.69
+  },
+  {
+    "Messstellennummer": 1,
+    "Datum": "2021-10-18",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.69
+  },
+  {
+    "Messstellennummer": 1,
+    "Datum": "2021-10-19",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.7
+  },
+  {
+    "Messstellennummer": 1,
+    "Datum": "2021-10-20",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.71
+  },
+  {
+    "Messstellennummer": 1,
+    "Datum": "2021-10-21",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.72
+  },
+  {
+    "Messstellennummer": 1,
+    "Datum": "2021-10-22",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.69
+  },
+  {
+    "Messstellennummer": 1,
+    "Datum": "2021-10-23",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.69
+  },
+  {
+    "Messstellennummer": 1,
+    "Datum": "2021-10-24",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.69
+  },
+  {
+    "Messstellennummer": 1,
+    "Datum": "2021-10-25",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.7
+  },
+  {
+    "Messstellennummer": 1,
+    "Datum": "2021-10-26",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.7
+  },
+  {
+    "Messstellennummer": 1,
+    "Datum": "2021-10-27",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.7
+  },
+  {
+    "Messstellennummer": 1,
+    "Datum": "2021-10-28",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.7
+  },
+  {
+    "Messstellennummer": 1,
+    "Datum": "2021-10-29",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.7
+  },
+  {
+    "Messstellennummer": 1,
+    "Datum": "2021-10-30",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.71
+  },
+  {
+    "Messstellennummer": 1,
+    "Datum": "2021-10-31",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.7
+  },
+  {
+    "Messstellennummer": 1,
+    "Datum": "2021-11-01",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.71
+  },
+  {
+    "Messstellennummer": 1,
+    "Datum": "2021-11-02",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.71
+  },
+  {
+    "Messstellennummer": 1,
+    "Datum": "2021-11-03",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.7
   },
   {
     "Messstellennummer": 2,
@@ -9471,18 +9632,193 @@
     "Messwert": 35.26
   },
   {
-    "Messstellennummer": 3,
-    "Datum": "2019-11-18",
+    "Messstellennummer": 2,
+    "Datum": "2021-10-08",
     "Parameter": "GW-Stand",
     "Einheit": "m ü. NHN",
-    "Messwert": 33.52
+    "Messwert": 35.25
   },
   {
-    "Messstellennummer": 3,
-    "Datum": "2019-11-19",
+    "Messstellennummer": 2,
+    "Datum": "2021-10-09",
     "Parameter": "GW-Stand",
     "Einheit": "m ü. NHN",
-    "Messwert": 33.51
+    "Messwert": 35.25
+  },
+  {
+    "Messstellennummer": 2,
+    "Datum": "2021-10-10",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 35.25
+  },
+  {
+    "Messstellennummer": 2,
+    "Datum": "2021-10-11",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 35.25
+  },
+  {
+    "Messstellennummer": 2,
+    "Datum": "2021-10-12",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 35.25
+  },
+  {
+    "Messstellennummer": 2,
+    "Datum": "2021-10-13",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 35.25
+  },
+  {
+    "Messstellennummer": 2,
+    "Datum": "2021-10-14",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 35.25
+  },
+  {
+    "Messstellennummer": 2,
+    "Datum": "2021-10-15",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 35.25
+  },
+  {
+    "Messstellennummer": 2,
+    "Datum": "2021-10-16",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 35.25
+  },
+  {
+    "Messstellennummer": 2,
+    "Datum": "2021-10-17",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 35.25
+  },
+  {
+    "Messstellennummer": 2,
+    "Datum": "2021-10-18",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 35.25
+  },
+  {
+    "Messstellennummer": 2,
+    "Datum": "2021-10-19",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 35.25
+  },
+  {
+    "Messstellennummer": 2,
+    "Datum": "2021-10-20",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 35.25
+  },
+  {
+    "Messstellennummer": 2,
+    "Datum": "2021-10-21",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 35.25
+  },
+  {
+    "Messstellennummer": 2,
+    "Datum": "2021-10-22",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 35.25
+  },
+  {
+    "Messstellennummer": 2,
+    "Datum": "2021-10-23",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 35.25
+  },
+  {
+    "Messstellennummer": 2,
+    "Datum": "2021-10-24",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 35.25
+  },
+  {
+    "Messstellennummer": 2,
+    "Datum": "2021-10-25",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 35.25
+  },
+  {
+    "Messstellennummer": 2,
+    "Datum": "2021-10-26",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 35.25
+  },
+  {
+    "Messstellennummer": 2,
+    "Datum": "2021-10-27",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 35.25
+  },
+  {
+    "Messstellennummer": 2,
+    "Datum": "2021-10-28",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 35.25
+  },
+  {
+    "Messstellennummer": 2,
+    "Datum": "2021-10-29",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 35.25
+  },
+  {
+    "Messstellennummer": 2,
+    "Datum": "2021-10-30",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 35.25
+  },
+  {
+    "Messstellennummer": 2,
+    "Datum": "2021-10-31",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 35.24
+  },
+  {
+    "Messstellennummer": 2,
+    "Datum": "2021-11-01",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 35.24
+  },
+  {
+    "Messstellennummer": 2,
+    "Datum": "2021-11-02",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 35.24
+  },
+  {
+    "Messstellennummer": 2,
+    "Datum": "2021-11-03",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 35.24
   },
   {
     "Messstellennummer": 3,
@@ -14200,21 +14536,196 @@
     "Datum": "2021-10-07",
     "Parameter": "GW-Stand",
     "Einheit": "m ü. NHN",
+    "Messwert": 33.68
+  },
+  {
+    "Messstellennummer": 3,
+    "Datum": "2021-10-08",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
     "Messwert": 33.67
   },
   {
-    "Messstellennummer": 4,
-    "Datum": "2019-11-18",
+    "Messstellennummer": 3,
+    "Datum": "2021-10-09",
     "Parameter": "GW-Stand",
     "Einheit": "m ü. NHN",
-    "Messwert": 32.45
+    "Messwert": 33.67
   },
   {
-    "Messstellennummer": 4,
-    "Datum": "2019-11-19",
+    "Messstellennummer": 3,
+    "Datum": "2021-10-10",
     "Parameter": "GW-Stand",
     "Einheit": "m ü. NHN",
-    "Messwert": 32.45
+    "Messwert": 33.68
+  },
+  {
+    "Messstellennummer": 3,
+    "Datum": "2021-10-11",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.68
+  },
+  {
+    "Messstellennummer": 3,
+    "Datum": "2021-10-12",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.69
+  },
+  {
+    "Messstellennummer": 3,
+    "Datum": "2021-10-13",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.67
+  },
+  {
+    "Messstellennummer": 3,
+    "Datum": "2021-10-14",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.68
+  },
+  {
+    "Messstellennummer": 3,
+    "Datum": "2021-10-15",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.69
+  },
+  {
+    "Messstellennummer": 3,
+    "Datum": "2021-10-16",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.67
+  },
+  {
+    "Messstellennummer": 3,
+    "Datum": "2021-10-17",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.68
+  },
+  {
+    "Messstellennummer": 3,
+    "Datum": "2021-10-18",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.67
+  },
+  {
+    "Messstellennummer": 3,
+    "Datum": "2021-10-19",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.68
+  },
+  {
+    "Messstellennummer": 3,
+    "Datum": "2021-10-20",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.68
+  },
+  {
+    "Messstellennummer": 3,
+    "Datum": "2021-10-21",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.7
+  },
+  {
+    "Messstellennummer": 3,
+    "Datum": "2021-10-22",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.68
+  },
+  {
+    "Messstellennummer": 3,
+    "Datum": "2021-10-23",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.67
+  },
+  {
+    "Messstellennummer": 3,
+    "Datum": "2021-10-24",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.67
+  },
+  {
+    "Messstellennummer": 3,
+    "Datum": "2021-10-25",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.68
+  },
+  {
+    "Messstellennummer": 3,
+    "Datum": "2021-10-26",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.68
+  },
+  {
+    "Messstellennummer": 3,
+    "Datum": "2021-10-27",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.68
+  },
+  {
+    "Messstellennummer": 3,
+    "Datum": "2021-10-28",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.68
+  },
+  {
+    "Messstellennummer": 3,
+    "Datum": "2021-10-29",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.68
+  },
+  {
+    "Messstellennummer": 3,
+    "Datum": "2021-10-30",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.68
+  },
+  {
+    "Messstellennummer": 3,
+    "Datum": "2021-10-31",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.68
+  },
+  {
+    "Messstellennummer": 3,
+    "Datum": "2021-11-01",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.69
+  },
+  {
+    "Messstellennummer": 3,
+    "Datum": "2021-11-02",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.68
+  },
+  {
+    "Messstellennummer": 3,
+    "Datum": "2021-11-03",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 33.68
   },
   {
     "Messstellennummer": 4,
@@ -18851,18 +19362,193 @@
     "Messwert": 32.47
   },
   {
-    "Messstellennummer": 9,
-    "Datum": "2019-11-18",
+    "Messstellennummer": 4,
+    "Datum": "2021-10-08",
     "Parameter": "GW-Stand",
     "Einheit": "m ü. NHN",
-    "Messwert": 36.96
+    "Messwert": 32.44
   },
   {
-    "Messstellennummer": 9,
-    "Datum": "2019-11-19",
+    "Messstellennummer": 4,
+    "Datum": "2021-10-09",
     "Parameter": "GW-Stand",
     "Einheit": "m ü. NHN",
-    "Messwert": 36.96
+    "Messwert": 32.44
+  },
+  {
+    "Messstellennummer": 4,
+    "Datum": "2021-10-10",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 32.45
+  },
+  {
+    "Messstellennummer": 4,
+    "Datum": "2021-10-11",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 32.45
+  },
+  {
+    "Messstellennummer": 4,
+    "Datum": "2021-10-12",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 32.45
+  },
+  {
+    "Messstellennummer": 4,
+    "Datum": "2021-10-13",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 32.45
+  },
+  {
+    "Messstellennummer": 4,
+    "Datum": "2021-10-14",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 32.45
+  },
+  {
+    "Messstellennummer": 4,
+    "Datum": "2021-10-15",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 32.45
+  },
+  {
+    "Messstellennummer": 4,
+    "Datum": "2021-10-16",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 32.45
+  },
+  {
+    "Messstellennummer": 4,
+    "Datum": "2021-10-17",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 32.45
+  },
+  {
+    "Messstellennummer": 4,
+    "Datum": "2021-10-18",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 32.45
+  },
+  {
+    "Messstellennummer": 4,
+    "Datum": "2021-10-19",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 32.45
+  },
+  {
+    "Messstellennummer": 4,
+    "Datum": "2021-10-20",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 32.45
+  },
+  {
+    "Messstellennummer": 4,
+    "Datum": "2021-10-21",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 32.45
+  },
+  {
+    "Messstellennummer": 4,
+    "Datum": "2021-10-22",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 32.45
+  },
+  {
+    "Messstellennummer": 4,
+    "Datum": "2021-10-23",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 32.45
+  },
+  {
+    "Messstellennummer": 4,
+    "Datum": "2021-10-24",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 32.45
+  },
+  {
+    "Messstellennummer": 4,
+    "Datum": "2021-10-25",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 32.45
+  },
+  {
+    "Messstellennummer": 4,
+    "Datum": "2021-10-26",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 32.46
+  },
+  {
+    "Messstellennummer": 4,
+    "Datum": "2021-10-27",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 32.46
+  },
+  {
+    "Messstellennummer": 4,
+    "Datum": "2021-10-28",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 32.46
+  },
+  {
+    "Messstellennummer": 4,
+    "Datum": "2021-10-29",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 32.46
+  },
+  {
+    "Messstellennummer": 4,
+    "Datum": "2021-10-30",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 32.46
+  },
+  {
+    "Messstellennummer": 4,
+    "Datum": "2021-10-31",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 32.46
+  },
+  {
+    "Messstellennummer": 4,
+    "Datum": "2021-11-01",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 32.46
+  },
+  {
+    "Messstellennummer": 4,
+    "Datum": "2021-11-02",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 32.46
+  },
+  {
+    "Messstellennummer": 4,
+    "Datum": "2021-11-03",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 32.49
   },
   {
     "Messstellennummer": 9,
@@ -23658,5 +24344,201 @@
     "Parameter": "GW-Stand",
     "Einheit": "m ü. NHN",
     "Messwert": 36.68
+  },
+  {
+    "Messstellennummer": 9,
+    "Datum": "2021-10-05",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 36.66
+  },
+  {
+    "Messstellennummer": 9,
+    "Datum": "2021-10-06",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 36.67
+  },
+  {
+    "Messstellennummer": 9,
+    "Datum": "2021-10-07",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 36.66
+  },
+  {
+    "Messstellennummer": 9,
+    "Datum": "2021-10-08",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 36.65
+  },
+  {
+    "Messstellennummer": 9,
+    "Datum": "2021-10-09",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 36.66
+  },
+  {
+    "Messstellennummer": 9,
+    "Datum": "2021-10-10",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 36.68
+  },
+  {
+    "Messstellennummer": 9,
+    "Datum": "2021-10-11",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 36.69
+  },
+  {
+    "Messstellennummer": 9,
+    "Datum": "2021-10-12",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 36.7
+  },
+  {
+    "Messstellennummer": 9,
+    "Datum": "2021-10-13",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 36.69
+  },
+  {
+    "Messstellennummer": 9,
+    "Datum": "2021-10-14",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 36.68
+  },
+  {
+    "Messstellennummer": 9,
+    "Datum": "2021-10-15",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 36.69
+  },
+  {
+    "Messstellennummer": 9,
+    "Datum": "2021-10-16",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 36.68
+  },
+  {
+    "Messstellennummer": 9,
+    "Datum": "2021-10-17",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 36.7
+  },
+  {
+    "Messstellennummer": 9,
+    "Datum": "2021-10-18",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 36.69
+  },
+  {
+    "Messstellennummer": 9,
+    "Datum": "2021-10-19",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 36.69
+  },
+  {
+    "Messstellennummer": 9,
+    "Datum": "2021-10-20",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 36.7
+  },
+  {
+    "Messstellennummer": 9,
+    "Datum": "2021-10-21",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 36.72
+  },
+  {
+    "Messstellennummer": 9,
+    "Datum": "2021-10-22",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 36.69
+  },
+  {
+    "Messstellennummer": 9,
+    "Datum": "2021-10-23",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 36.68
+  },
+  {
+    "Messstellennummer": 9,
+    "Datum": "2021-10-24",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 36.69
+  },
+  {
+    "Messstellennummer": 9,
+    "Datum": "2021-10-25",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 36.69
+  },
+  {
+    "Messstellennummer": 9,
+    "Datum": "2021-10-26",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 36.69
+  },
+  {
+    "Messstellennummer": 9,
+    "Datum": "2021-10-27",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 36.68
+  },
+  {
+    "Messstellennummer": 9,
+    "Datum": "2021-10-28",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 36.78
+  },
+  {
+    "Messstellennummer": 9,
+    "Datum": "2021-10-29",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 36.84
+  },
+  {
+    "Messstellennummer": 9,
+    "Datum": "2021-10-30",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 36.88
+  },
+  {
+    "Messstellennummer": 9,
+    "Datum": "2021-10-31",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 36.91
+  },
+  {
+    "Messstellennummer": 9,
+    "Datum": "2021-11-01",
+    "Parameter": "GW-Stand",
+    "Einheit": "m ü. NHN",
+    "Messwert": 36.95
   }
 ]
