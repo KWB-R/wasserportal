@@ -52,7 +52,7 @@ read_wasserportal_raw_gw <- function(
   # Format the start date
   #
   if (from_date != "") sdatum <- format(from_date, format = "%d.%m.%Y")
-  if (sreihe == "wa") sdatum <- format(as.Date("1900-01-01"), format = "%d.%m.%Y")
+  if (sreihe == "wa") sdatum <- "01.01.1900"
 
   # Compose the body of the request
   body <- list(sreihe = sreihe,
