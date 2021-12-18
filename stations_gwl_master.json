@@ -1320,19 +1320,6 @@
     "Hochwert_UTM_33_N": "5810384.60"
   },
   {
-    "Nummer": "207",
-    "Bezirk": "Neukölln",
-    "Betreiber": "Senat",
-    "Auspraegung": "GW-Stand",
-    "Grundwasserleiter": "Hauptgrundwasserleiter (GWL 1.3 + 2)",
-    "Gelaendeoberkante_GOK_m_ue_NHN": "35.60",
-    "Rohroberkante_m_ue_NHN": "36.31",
-    "Filteroberkante_m_u_GOK": "18.75",
-    "Filterunterkante_m_u_GOK": "19.75",
-    "Rechtswert_UTM_33_N": "396382.60",
-    "Hochwert_UTM_33_N": "5811053.90"
-  },
-  {
     "Nummer": "208",
     "Bezirk": "Neukölln",
     "Betreiber": "Senat",
@@ -3480,12 +3467,12 @@
     "Betreiber": "Senat",
     "Auspraegung": "GW-Stand",
     "Grundwasserleiter": "Hauptgrundwasserleiter (GWL 1.3 + 2)",
-    "Gelaendeoberkante_GOK_m_ue_NHN": "35.66",
-    "Rohroberkante_m_ue_NHN": "36.28",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "35.62",
+    "Rohroberkante_m_ue_NHN": "36.12",
     "Filteroberkante_m_u_GOK": "9.74",
     "Filterunterkante_m_u_GOK": "10.74",
-    "Rechtswert_UTM_33_N": "394756.10",
-    "Hochwert_UTM_33_N": "5815225.71"
+    "Rechtswert_UTM_33_N": "394755.50",
+    "Hochwert_UTM_33_N": "5815224.50"
   },
   {
     "Nummer": "795",
@@ -3584,12 +3571,12 @@
     "Betreiber": "Senat",
     "Auspraegung": "GW-Stand",
     "Grundwasserleiter": "Hauptgrundwasserleiter (GWL 1.3 + 2)",
-    "Gelaendeoberkante_GOK_m_ue_NHN": "36.11",
-    "Rohroberkante_m_ue_NHN": "36.56",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "36.15",
+    "Rohroberkante_m_ue_NHN": "36.53",
     "Filteroberkante_m_u_GOK": "14.74",
     "Filterunterkante_m_u_GOK": "16.74",
-    "Rechtswert_UTM_33_N": "393957.96",
-    "Hochwert_UTM_33_N": "5816476.77"
+    "Rechtswert_UTM_33_N": "393956.00",
+    "Hochwert_UTM_33_N": "5816477.40"
   },
   {
     "Nummer": "803",
@@ -3987,12 +3974,12 @@
     "Betreiber": "Senat",
     "Auspraegung": "GW-Stand",
     "Grundwasserleiter": "Tertiäre GW-Leiter (GWL 4)",
-    "Gelaendeoberkante_GOK_m_ue_NHN": "34.16",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "34.13",
     "Rohroberkante_m_ue_NHN": "34.87",
     "Filteroberkante_m_u_GOK": "96.00",
     "Filterunterkante_m_u_GOK": "98.00",
     "Rechtswert_UTM_33_N": "388144.90",
-    "Hochwert_UTM_33_N": "5821065.40"
+    "Hochwert_UTM_33_N": "5821065.10"
   },
   {
     "Nummer": "3137",
@@ -4312,12 +4299,12 @@
     "Betreiber": "Senat",
     "Auspraegung": "GW-Stand",
     "Grundwasserleiter": "Hauptgrundwasserleiter (GWL 1.3 + 2)",
-    "Gelaendeoberkante_GOK_m_ue_NHN": "31.21",
-    "Rohroberkante_m_ue_NHN": "31.79",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "31.30",
+    "Rohroberkante_m_ue_NHN": "32.10",
     "Filteroberkante_m_u_GOK": "15.00",
     "Filterunterkante_m_u_GOK": "22.00",
-    "Rechtswert_UTM_33_N": "378860.39",
-    "Hochwert_UTM_33_N": "5821072.64"
+    "Rechtswert_UTM_33_N": "378851.50",
+    "Hochwert_UTM_33_N": "5821060.10"
   },
   {
     "Nummer": "4102",
@@ -6925,12 +6912,12 @@
     "Betreiber": "Senat",
     "Auspraegung": "GW-Stand",
     "Grundwasserleiter": "Hauptgrundwasserleiter (GWL 1.3 + 2)",
-    "Gelaendeoberkante_GOK_m_ue_NHN": "49.00",
-    "Rohroberkante_m_ue_NHN": "49.33",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "49.19",
+    "Rohroberkante_m_ue_NHN": "49.51",
     "Filteroberkante_m_u_GOK": "25.00",
     "Filterunterkante_m_u_GOK": "33.00",
-    "Rechtswert_UTM_33_N": "384639.81",
-    "Hochwert_UTM_33_N": "5834868.74"
+    "Rechtswert_UTM_33_N": "384638.40",
+    "Hochwert_UTM_33_N": "5834868.00"
   },
   {
     "Nummer": "6125",
@@ -6938,12 +6925,12 @@
     "Betreiber": "Senat",
     "Auspraegung": "GW-Stand",
     "Grundwasserleiter": "Tertiäre GW-Leiter (GWL 4)",
-    "Gelaendeoberkante_GOK_m_ue_NHN": "49.12",
-    "Rohroberkante_m_ue_NHN": "49.50",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "49.07",
+    "Rohroberkante_m_ue_NHN": "49.39",
     "Filteroberkante_m_u_GOK": "45.00",
     "Filterunterkante_m_u_GOK": "95.00",
-    "Rechtswert_UTM_33_N": "384647.89",
-    "Hochwert_UTM_33_N": "5834872.59"
+    "Rechtswert_UTM_33_N": "384646.40",
+    "Hochwert_UTM_33_N": "5834872.90"
   },
   {
     "Nummer": "6127",
@@ -7549,12 +7536,12 @@
     "Betreiber": "Senat",
     "Auspraegung": "GW-Stand",
     "Grundwasserleiter": "Hauptgrundwasserleiter (GWL 1.3 + 2)",
-    "Gelaendeoberkante_GOK_m_ue_NHN": "36.87",
-    "Rohroberkante_m_ue_NHN": "37.24",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "36.83",
+    "Rohroberkante_m_ue_NHN": "37.22",
     "Filteroberkante_m_u_GOK": "22.45",
     "Filterunterkante_m_u_GOK": "32.45",
-    "Rechtswert_UTM_33_N": "394254.05",
-    "Hochwert_UTM_33_N": "5814484.32"
+    "Rechtswert_UTM_33_N": "394254.50",
+    "Hochwert_UTM_33_N": "5814484.90"
   },
   {
     "Nummer": "7067",
@@ -7562,12 +7549,12 @@
     "Betreiber": "Senat",
     "Auspraegung": "GW-Stand",
     "Grundwasserleiter": "Elsterzeitl. GW-Leiter (GWL 3)",
-    "Gelaendeoberkante_GOK_m_ue_NHN": "36.83",
-    "Rohroberkante_m_ue_NHN": "37.22",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "36.88",
+    "Rohroberkante_m_ue_NHN": "37.24",
     "Filteroberkante_m_u_GOK": "62.16",
     "Filterunterkante_m_u_GOK": "70.16",
-    "Rechtswert_UTM_33_N": "394251.26",
-    "Hochwert_UTM_33_N": "5814495.37"
+    "Rechtswert_UTM_33_N": "394252.50",
+    "Hochwert_UTM_33_N": "5814496.30"
   },
   {
     "Nummer": "7076",
@@ -8667,8 +8654,8 @@
     "Betreiber": "Senat",
     "Auspraegung": "GW-Stand",
     "Grundwasserleiter": "Tertiäre GW-Leiter (GWL 4)",
-    "Gelaendeoberkante_GOK_m_ue_NHN": "44.12",
-    "Rohroberkante_m_ue_NHN": "45.05",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "44.13",
+    "Rohroberkante_m_ue_NHN": "45.03",
     "Filteroberkante_m_u_GOK": "152.00",
     "Filterunterkante_m_u_GOK": "158.00",
     "Rechtswert_UTM_33_N": "382906.50",
@@ -11267,12 +11254,12 @@
     "Betreiber": "Senat",
     "Auspraegung": "GW-Stand",
     "Grundwasserleiter": "Hauptgrundwasserleiter (GWL 1.3 + 2)",
-    "Gelaendeoberkante_GOK_m_ue_NHN": "46.05",
-    "Rohroberkante_m_ue_NHN": "46.91",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "46.07",
+    "Rohroberkante_m_ue_NHN": "46.83",
     "Filteroberkante_m_u_GOK": "24.90",
     "Filterunterkante_m_u_GOK": "26.90",
-    "Rechtswert_UTM_33_N": "393945.62",
-    "Hochwert_UTM_33_N": "5822503.47"
+    "Rechtswert_UTM_33_N": "393945.70",
+    "Hochwert_UTM_33_N": "5822504.30"
   },
   {
     "Nummer": "99619",
