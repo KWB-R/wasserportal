@@ -125,25 +125,25 @@ together with the additional information on the UTC offset (column
 <span class="r-in">  variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">variables</span><span class="op">[</span><span class="st">"Sauerstoffgehalt"</span><span class="op">]</span>, <span class="va">variables</span><span class="op">[</span><span class="st">"Leitfaehigkeit"</span><span class="op">]</span><span class="op">)</span>,</span>
 <span class="r-in">  from_date <span class="op">=</span> <span class="va">from_date</span>, include_raw_time <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span class="r-in"><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Reading 'Sauerstoffgehalt' for station 153 (MPS_Charlottenburg) ... ok. (1.82s) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Reading 'Leitfaehigkeit' for station 153 (MPS_Charlottenburg) ... ok. (1.01s) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Reading 'Sauerstoffgehalt' for station 153 (MPS_Charlottenburg) ... ok. (1.72s) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Reading 'Leitfaehigkeit' for station 153 (MPS_Charlottenburg) ... ok. (0.47s) </span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Look at the first few records</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">water_quality</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         timestamp_raw   timestamp_corr       LocalDateTime UTCOffset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3362 17.12.2020 03:00 17.12.2020 03:00 2020-12-17 03:00:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3363 17.12.2020 03:15 17.12.2020 03:15 2020-12-17 03:15:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3364 17.12.2020 03:30 17.12.2020 03:30 2020-12-17 03:30:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3365 17.12.2020 03:45 17.12.2020 03:45 2020-12-17 03:45:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3366 17.12.2020 04:00 17.12.2020 04:00 2020-12-17 04:00:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3367 17.12.2020 04:15 17.12.2020 04:15 2020-12-17 04:15:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3554 18.12.2020 03:00 18.12.2020 03:00 2020-12-18 03:00:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3555 18.12.2020 03:15 18.12.2020 03:15 2020-12-18 03:15:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3556 18.12.2020 03:30 18.12.2020 03:30 2020-12-18 03:30:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3557 18.12.2020 03:45 18.12.2020 03:45 2020-12-18 03:45:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3558 18.12.2020 04:00 18.12.2020 04:00 2020-12-18 04:00:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3559 18.12.2020 04:15 18.12.2020 04:15 2020-12-18 04:15:00         1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sauerstoffgehalt Leitfaehigkeit</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3362             -777           -777</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3363             -777           -777</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3364             -777           -777</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3365             -777           -777</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3366             -777           -777</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3367             -777           -777</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3554             -777           -777</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3555             -777           -777</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3556             -777           -777</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3557             -777           -777</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3558             -777           -777</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3559             -777           -777</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Check the metadata</span></span>
 <span class="r-in"><span class="co">#kwb.utils::getAttribute(water_quality, "metadata")</span></span>
@@ -154,19 +154,19 @@ together with the additional information on the UTC offset (column
 <span class="r-in"><span class="co"># Look at the first few records again</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">water_quality</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         timestamp_raw   timestamp_corr       LocalDateTime UTCOffset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3362 17.12.2020 03:00 17.12.2020 03:00 2020-12-17 03:00:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3363 17.12.2020 03:15 17.12.2020 03:15 2020-12-17 03:15:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3364 17.12.2020 03:30 17.12.2020 03:30 2020-12-17 03:30:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3365 17.12.2020 03:45 17.12.2020 03:45 2020-12-17 03:45:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3366 17.12.2020 04:00 17.12.2020 04:00 2020-12-17 04:00:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3367 17.12.2020 04:15 17.12.2020 04:15 2020-12-17 04:15:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3554 18.12.2020 03:00 18.12.2020 03:00 2020-12-18 03:00:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3555 18.12.2020 03:15 18.12.2020 03:15 2020-12-18 03:15:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3556 18.12.2020 03:30 18.12.2020 03:30 2020-12-18 03:30:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3557 18.12.2020 03:45 18.12.2020 03:45 2020-12-18 03:45:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3558 18.12.2020 04:00 18.12.2020 04:00 2020-12-18 04:00:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3559 18.12.2020 04:15 18.12.2020 04:15 2020-12-18 04:15:00         1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Sauerstoffgehalt Leitfaehigkeit</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3362               NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3363               NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3364               NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3365               NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3366               NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3367               NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3554               NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3555               NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3556               NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3557               NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3558               NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3559               NA             NA</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co">### How was the original timestamp interpreted?</span></span>
 <span class="r-in"></span>
