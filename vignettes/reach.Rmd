@@ -43,6 +43,13 @@ cas_reach <- wasserportal::readPackageFile(file = "cas_reach.csv") %>%
 cas_wasserportal <- wasserportal::readPackageFile(file = "cas_wasserportal.csv") %>%  
   dplyr::inner_join(cas_reach, by = "cas_number") 
 
+### Remove duplicated Wasserportal substances (same CAS number but different, names!)
+cas_wasserportal_clean <- wasserportal::readPackageFile(file = "cas_wasserportal.csv") %>%  
+  dplyr::count(cas_number) %>%
+  dplyr::select(-n) %>% 
+  dplyr::filter(!is.na(cas_number)) %>% 
+  dplyr::inner_join(cas_reach, by = "cas_number") 
+
 
 ### For details see:
 ### https://kwb-r.github.io/wasserportal/articles/groundwater.html
@@ -54,9 +61,9 @@ cas_wasserportal <- wasserportal::readPackageFile(file = "cas_wasserportal.csv")
 gwq_master <- jsonlite::fromJSON("https://kwb-r.github.io/wasserportal/stations_gwq_master.json")
 gwq_data <- jsonlite::fromJSON("https://kwb-r.github.io/wasserportal/stations_gwq_data.json") %>%
   #dplyr::filter(Parameter %in% cas_wasserportal$Parameter) %>% 
-  dplyr::inner_join(cas_wasserportal, by = "Parameter") %>% 
+  dplyr::inner_join(cas_wasserportal, by = "Parameter") %>%
   dplyr::mutate(Messstellennummer = as.character(Messstellennummer),
-## CensorCode: either "lt" (less than) for concentration below detection limit 
+## CensorCode: either "below" (less than) for concentration below detection limit 
 ## (value is detection limit) or "nc" (not censored) for concentration above 
 ## detection limit
                 CensorCode = dplyr::case_when(Messwert <= 0 ~ "lt",
@@ -73,33 +80,36 @@ gwq_data <- jsonlite::fromJSON("https://kwb-r.github.io/wasserportal/stations_gw
  readr::write_csv(gwq_subs, "gwq_subs.csv")
 
 gwq_subs <- gwq_data %>%  
-  dplyr::group_by(.data$Parameter,
-                  .data$CensorCode) %>%
-  dplyr::summarise(n = dplyr::n()) %>%
-  dplyr::ungroup() %>% 
-  tidyr::complete(Parameter, tidyr::nesting(CensorCode), 
-                  fill = list(n = 0)) %>% 
-  dplyr::group_by(.data$Parameter) %>% 
+  dplyr::count(.data$cas_number, .data$CensorCode) %>% 
   tidyr::pivot_wider(names_from = CensorCode, values_from = n) %>% 
-  dplyr::mutate(n_total = lt + nc, 
+  dplyr::mutate(lt = ifelse(is.na(lt), 0, lt), 
+                nc = ifelse(is.na(nc), 0, nc),
+                n_total = lt + nc, 
                 percent_nc = 100*nc/n_total) %>% 
   dplyr::rename(n_lt = lt, 
                 n_nc = nc) %>% 
-  dplyr::ungroup() %>% 
-  dplyr::left_join(cas_wasserportal[, c("category", "category_name", "Parameter", "name", "cas_number")]) %>%
-  dplyr::rename(name_wasserportal = Parameter, 
-                name_uba = name) %>% 
-  dplyr::select(category, category_name, name_wasserportal, name_uba, cas_number,n_lt, n_nc, n_total, percent_nc)
+  dplyr::left_join(cas_reach[, c("category", "category_name", "name", "cas_number")]) %>%
+  dplyr::rename(name_uba = name) %>% 
+  dplyr::select(category, category_name, name_uba, cas_number,n_lt, n_nc, n_total, percent_nc)
 
  DT::datatable(gwq_subs, filter = "top", rownames = FALSE)
 
+gwq_data_export <- gwq_data %>% 
+   dplyr::rename(name_uba = name) %>% 
+   dplyr::select(category, category_name,
+                     cas_number,
+                     name_uba,
+                     Messstellennummer,
+                     Datum,
+                     CensorCode, 
+                     Messwert,
+                     Einheit)
+  
  
 gwq_subs_stations <- gwq_data %>%  
-  dplyr::group_by(.data$Parameter,
+  dplyr::count(.data$cas_number,
                   .data$Messstellennummer,
                   .data$CensorCode) %>%
-  dplyr::summarise(n = dplyr::n()) %>%
-  dplyr::ungroup() %>% 
   tidyr::pivot_wider(names_from = CensorCode, values_from = n) %>% 
   dplyr::mutate(lt = ifelse(is.na(lt), 0, lt),
                 nc = ifelse(is.na(nc), 0, nc),
@@ -107,53 +117,34 @@ gwq_subs_stations <- gwq_data %>%
                 percent_nc = 100*nc/n_total) %>% 
   dplyr::rename(n_lt = lt, 
                 n_nc = nc) %>% 
-  dplyr::ungroup() %>% 
-  dplyr::left_join(cas_wasserportal[, c("category", "category_name", "Parameter", "name", "cas_number")]) %>%
-  dplyr::rename(name_wasserportal = Parameter, 
-                name_uba = name) %>% 
-  dplyr::select(category, category_name, name_wasserportal, name_uba, cas_number, Messstellennummer, n_lt, n_nc, n_total, percent_nc) %>% 
+  dplyr::left_join(cas_reach[, c("category", "category_name",   "name", "cas_number")]) %>%
+  dplyr::rename(name_uba = name) %>% 
+  dplyr::select(category, category_name, name_uba, cas_number, Messstellennummer, n_lt, n_nc, n_total, percent_nc) %>% 
   dplyr::left_join(gwq_master, by = c(Messstellennummer = "Nummer"))
 
  readr::write_csv( gwq_subs_stations, "gwq_subs_stations.csv")
 
-
- to_wide <- function(df) {
+ 
+ gwq_subs_by_category_and_station <- gwq_subs_stations  %>% 
+  dplyr::group_by(.data$category,
+                  .data$category_name,
+                  .data$Messstellennummer) %>% 
+  dplyr::summarise(n_lt = sum(n_lt), 
+                   n_nc = sum(n_nc), 
+                   n_total = sum(n_total)) %>% 
+   dplyr::mutate(percent_nc = 100*n_nc/n_total)
    
-   df %>% 
-   dplyr::select(-share_percent) %>% 
-     tidyr::pivot_wider(names_from = "CensorCode", values_from = "n") %>% 
-   dplyr::mutate()
- }
- 
- gwq_subs_wide <- to_wide(gwq_subs_stations)
- gwq_subs_stations_wide <- to_wide(gwq_subs_stations)
- 
-## GW Quality Data Availability by Parameter/Station
-gwq_data_by_parameter <- gwq_data %>%
-  dplyr::select(.data$Messstellennummer,
-                .data$Parameter,
-                .data$Datum,
-                .data$Messwert) %>%
-  dplyr::group_by(.data$Parameter) %>%
-  dplyr::summarise(date_min = min(.data$Datum),
-                   date_max = max(.data$Datum),
-                   n = dplyr::n()) %>%
-  dplyr::arrange(dplyr::desc(.data$n))
-
-#View(gwq_data_by_parameter)
-
-
-gwq_data_by_parameter_and_station <-  gwq_data %>%
-  dplyr::select(.data$Messstellennummer,
-                .data$Parameter,
-                .data$Datum,
-                .data$Messwert) %>%
-  dplyr::group_by(.data$Parameter,
-                  .data$Messstellennummer) %>%
-  dplyr::summarise(date_min = min(.data$Datum),
-                   date_max = max(.data$Datum),
-                   n = dplyr::n()) %>%
-  dplyr::arrange(dplyr::desc(.data$n))
+gwq_subs_stations_n <- gwq_subs_stations %>% 
+  dplyr::group_by(category, 
+                  category_name, 
+                  name_uba, 
+                  cas_number) %>% 
+  dplyr::summarise(n_stations = dplyr::n(),
+                   n_lt = sum(n_lt), 
+                   n_nc = sum(n_nc), 
+                   n_total = sum(n_total)) %>% 
+  dplyr::mutate(percent_nc = 100*n_nc/n_total)
+                  
 
 
 #View(gwq_data_by_parameter_and_station)
@@ -161,11 +152,17 @@ gwq_data_by_parameter_and_station <-  gwq_data %>%
 
 ### Export data to EXCEL
 gwq_data_list <- list(categories = categories, 
-                      cas_reach = cas_reach,
-                      cas_wasserportal = cas_wasserportal, 
-                      samples = gwq_data, 
-                      samples_by_para = gwq_subs,
-                      samples_by_para_and_station = gwq_subs_stations)
+                      cas_reach = cas_reach %>% 
+                        dplyr::rename(name_uba = name),
+                      cas_wasserportal = cas_wasserportal %>% 
+                        dplyr::rename(name_uba = name,
+                                      name_wasserportal = Parameter), 
+                      samples = gwq_data_export, 
+                      samples_by_para = gwq_subs %>% 
+                        dplyr::arrange(dplyr::desc(percent_nc)),
+                      samples_by_para_and_station = gwq_subs_stations %>%
+                        dplyr::arrange(dplyr::desc(percent_nc)), 
+                       samples_by_category_and_station = gwq_subs_by_category_and_station %>% dplyr::arrange(dplyr::desc(percent_nc)))
                       
 
 openxlsx::write.xlsx(x = gwq_data_list,
@@ -178,16 +175,17 @@ openxlsx::write.xlsx(x = gwq_data_list,
 ### Total
 
 ```{r}
-cas_reach <- wasserportal::readPackageFile(file = "cas_reach.csv") 
-
-cas_wasserportal <- wasserportal::readPackageFile(file = "cas_wasserportal.csv") %>%  
-  dplyr::inner_join(cas_reach, by = "cas_number") 
+# cas_reach <- wasserportal::readPackageFile(file = "cas_reach.csv") 
+# 
+# cas_wasserportal <- wasserportal::readPackageFile(file = "cas_wasserportal.csv") %>%  
+#   dplyr::count(cas_number) %>%
+#   dplyr::inner_join(cas_reach, by = "cas_number") 
 
 g <- cas_reach %>%
   dplyr::mutate(source = sprintf("UBA (n = %d)", nrow(cas_reach))) %>% 
-  dplyr::bind_rows(cas_wasserportal %>% 
+  dplyr::bind_rows(cas_wasserportal_clean %>% 
                    dplyr::mutate(source = sprintf("Wasserportal (n = %d)", 
-                                                  nrow(cas_wasserportal)))) %>% 
+                                                  nrow(cas_wasserportal_clean)))) %>% 
   ggplot2::ggplot(mapping = ggplot2::aes(x = forcats::as_factor(.data$category), 
                                          fill = .data$source,
                                          col = .data$source)) + 
@@ -195,9 +193,17 @@ g <- cas_reach %>%
   ggplot2::geom_text(stat="count", ggplot2::aes(label=..count..), vjust=-0.5, position="stack") +
   ggplot2::scale_x_discrete() +
   ggplot2::theme_bw() +
+  ggplot2::theme(legend.position="top") +
   ggplot2::labs(y = "Number of Substances", x = "Category")
 
   g
+
+  ggplot2::ggsave(filename = "wasserportal_number-of-reach-substances.jpeg", 
+                  plot = g,
+                  width = 14, 
+                  height = 11,
+                  units = "cm")
+
   #plotly::ggplotly(g)
 
   
@@ -305,7 +311,35 @@ gwq_subs_plot %>%
 
 ```{r}
 
+gwq_subs_plot <- gwq_subs_stations_n %>% 
+  dplyr::mutate(label = sprintf("Cat %d: %s (%s)", 
+                                .data$category,
+                                .data$name_uba, 
+                                .data$cas_number),
+                category = forcats::as_factor(.data$category))
 
+gwq_subs_plot$label <- as.factor(gwq_subs_plot$label)
+g1 <- gwq_subs_plot %>% 
+  ggplot2::ggplot(ggplot2::aes(x = .data$percent_nc, 
+                               y = forcats::fct_reorder(.data$label, .data$percent_nc, .desc = TRUE),
+                               label = sprintf("%2.2f %% (n_samples = %d, n_stations = %d)", .data$percent_nc,.data$n_total, .data$n_stations),
+                               fill = .data$category)) +                             ggplot2::scale_fill_brewer(palette="RdYlGn") +      
+  ggplot2::scale_y_discrete(limits = rev) +
+  ggplot2::geom_bar(stat = "identity") +
+  ggplot2::geom_text(size = 1.8, hjust = -0.01) +
+  ggplot2::xlim(c(0,40)) +
+  ggplot2::theme_bw() +
+  ggplot2::theme(legend.position = "top") +
+  ggplot2::labs(subtitle = sprintf("%d / %d substances (>= 1 value above detection limit)",
+                                sum(gwq_subs_plot$n_nc > 0),
+                                   nrow(gwq_subs_plot)),                         
+                y = "", 
+                x = "Percent of Samples above Detection Limit (%)")
+                
+ggplot2::ggsave(filename = "wasserportal_reach-substances_above-detection-limit.jpeg", 
+                  plot = g1,
+                  width = 17, 
+                  height = 17,
+                  units = "cm")
   
 ```
-
