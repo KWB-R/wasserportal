@@ -122,9 +122,7 @@ gwq_subs_stations <- gwq_data %>%
   dplyr::select(category, category_name, name_uba, cas_number, Messstellennummer, n_lt, n_nc, n_total, percent_nc) %>% 
   dplyr::left_join(gwq_master, by = c(Messstellennummer = "Nummer"))
 
- readr::write_csv( gwq_subs_stations, "gwq_subs_stations.csv")
 
- 
  gwq_subs_by_category_and_station <- gwq_subs_stations  %>% 
   dplyr::group_by(.data$category,
                   .data$category_name,
@@ -133,22 +131,45 @@ gwq_subs_stations <- gwq_data %>%
                    n_nc = sum(n_nc), 
                    n_total = sum(n_total)) %>% 
    dplyr::mutate(percent_nc = 100*n_nc/n_total)
-   
-gwq_subs_stations_n <- gwq_subs_stations %>% 
+
+gwq_subs_stations_n_abovedetection <- gwq_subs_stations  %>% 
+  dplyr::filter(n_nc > 0) %>% 
+  dplyr::group_by(.data$cas_number) %>% 
+  dplyr::summarise(n_stations_abovedetection = dplyr::n()) 
+  
+    
+gwq_subs_stations_n_all <- gwq_subs_stations %>% 
   dplyr::group_by(category, 
                   category_name, 
                   name_uba, 
                   cas_number) %>% 
-  dplyr::summarise(n_stations = dplyr::n(),
+  dplyr::summarise(n_stations_sampled = dplyr::n(),
                    n_lt = sum(n_lt), 
                    n_nc = sum(n_nc), 
                    n_total = sum(n_total)) %>% 
-  dplyr::mutate(percent_nc = 100*n_nc/n_total)
+  dplyr::left_join(gwq_subs_stations_n_abovedetection) %>% 
+  dplyr::mutate(n_stations_abovedetection = ifelse(is.na(n_stations_abovedetection),
+                                                   0,
+                                                   n_stations_abovedetection),
+                n_nc = ifelse(is.na(n_nc), 0, n_nc), 
+                n_lt = ifelse(is.na(n_lt), 0, n_lt),
+                percent_nc = 100*n_nc/n_total,
+                percent_stations_abovedetection = 100*n_stations_abovedetection/n_stations_sampled) %>% 
+  dplyr::select(category, 
+                category_name, 
+                name_uba, 
+                cas_number,
+                n_stations_abovedetection,
+                n_stations_sampled,
+                percent_stations_abovedetection,
+                n_lt, 
+                n_nc,
+                n_total,
+                percent_nc)
+                
+                
+
                   
-
-
-#View(gwq_data_by_parameter_and_station)
-
 
 ### Export data to EXCEL
 gwq_data_list <- list(categories = categories, 
@@ -161,9 +182,13 @@ gwq_data_list <- list(categories = categories,
                       samples_by_para = gwq_subs %>% 
                         dplyr::arrange(dplyr::desc(percent_nc)),
                       samples_by_para_and_station = gwq_subs_stations %>%
-                        dplyr::arrange(dplyr::desc(percent_nc)), 
+                        dplyr::arrange(dplyr::desc(percent_nc)),
+                      samples_by_para_and_station_n = gwq_subs_stations_n_all %>% 
+                        dplyr::arrange(dplyr::desc(percent_stations_abovedetection),
+                                       dplyr::desc(percent_nc)),
                        samples_by_category_and_station = gwq_subs_by_category_and_station %>% dplyr::arrange(dplyr::desc(percent_nc)))
                       
+
 
 openxlsx::write.xlsx(x = gwq_data_list,
                      file = "wasserportal_gwq_reach_data.xlsx",
