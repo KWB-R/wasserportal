@@ -322,6 +322,54 @@ ggplot2::ggsave(filename = "wasserportal_reach-substances_above-detection-limit.
 
 ```{r}
 
+n_cat <- samples_by_category_and_station %>% 
+  dplyr::group_by(Messstellennummer) %>%  
+  dplyr::summarise(n_samples_abovedetection = sum(n_nc),
+                   n_samples_total = sum(n_total),
+                   n_samples_percent_abovedetection = 100*sum(n_nc)/sum(n_total)) %>% 
+  dplyr::arrange(dplyr::desc(.data$n_samples_abovedetection))
+
+g1 <- samples_by_category_and_station %>% 
+  dplyr::left_join(n_cat) %>% 
+  dplyr::filter(n_nc > 0)  %>% 
+  dplyr::mutate(Messstellennummer = as.factor(Messstellennummer),
+                category = as.factor(category)) %>%   ggplot2::ggplot(ggplot2::aes(x = .data$n_nc, 
+                             y = forcats::fct_reorder(.data$Messstellennummer, .data$n_samples_abovedetection, .desc = TRUE),
+                               label = .data$n_nc,
+                               fill = .data$category)) +   
+  ggplot2::scale_fill_brewer(palette="RdYlGn") +      
+  ggplot2::scale_y_discrete(limits = rev) +
+  ggplot2::geom_col() +
+  ggplot2::geom_text(size = 1.8, 
+                     position = ggplot2::position_stack(vjust = 0.5 )) +
+  ggplot2::geom_text(mapping = ggplot2::aes(
+    x = .data$n_samples_abovedetection,
+    y = forcats::fct_reorder(.data$Messstellennummer, .data$n_samples_abovedetection, .desc = TRUE),
+    label = sprintf("%3.1f %% (n_samples = %d)", .data$n_samples_percent_abovedetection, .data$n_samples_total)),
+                     inherit.aes = FALSE,
+                     size = 1.8, 
+                     position = ggplot2::position_nudge(x = 20),
+    fontface = "bold") +
+  ggplot2::xlim(c(0,215)) +
+  ggplot2::theme_bw() +
+  ggplot2::theme(legend.position = "top") +
+  ggplot2::labs(subtitle = "",                        
+                fill = "Category",
+                y = "Monitoring Station", 
+                x = "Number of Samples Above Detection Limit")
+
+g1
+
+ggplot2::ggsave(filename = "wasserportal_reach-categories_above-detection-limit.jpeg", 
+                  plot = g1,
+                  width = 17, 
+                  height = 40,
+                  units = "cm")
+  
+```
+
+```{r}
+
 gwq_subs_plot <- samples_by_para_and_station_n %>% 
   dplyr::mutate(n_stations_belowdetection = .data$n_stations_sampled - .data$n_stations_abovedetection, 
                 n_stations_notsampled = .data$n_stations_total - .data$n_stations_sampled) %>% 
