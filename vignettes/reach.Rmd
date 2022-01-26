@@ -94,7 +94,7 @@ gwq_subs <- gwq_data %>%
 
  DT::datatable(gwq_subs, filter = "top", rownames = FALSE)
 
-gwq_data_export <- gwq_data %>% 
+samples <- gwq_data %>% 
    dplyr::rename(name_uba = name) %>% 
    dplyr::select(category, category_name,
                      cas_number,
@@ -106,7 +106,7 @@ gwq_data_export <- gwq_data %>%
                      Einheit)
   
  
-gwq_subs_stations <- gwq_data %>%  
+samples_by_para_and_station <- gwq_data %>%  
   dplyr::count(.data$cas_number,
                   .data$Messstellennummer,
                   .data$CensorCode) %>%
@@ -120,30 +120,32 @@ gwq_subs_stations <- gwq_data %>%
   dplyr::left_join(cas_reach[, c("category", "category_name",   "name", "cas_number")]) %>%
   dplyr::rename(name_uba = name) %>% 
   dplyr::select(category, category_name, name_uba, cas_number, Messstellennummer, n_lt, n_nc, n_total, percent_nc) %>% 
-  dplyr::left_join(gwq_master, by = c(Messstellennummer = "Nummer"))
+  dplyr::left_join(gwq_master, by = c(Messstellennummer = "Nummer")) %>%
+  dplyr::arrange(dplyr::desc(percent_nc))
 
 
- gwq_subs_by_category_and_station <- gwq_subs_stations  %>% 
+samples_by_category_and_station <- samples_by_para_and_station  %>% 
   dplyr::group_by(.data$category,
                   .data$category_name,
                   .data$Messstellennummer) %>% 
   dplyr::summarise(n_lt = sum(n_lt), 
                    n_nc = sum(n_nc), 
                    n_total = sum(n_total)) %>% 
-   dplyr::mutate(percent_nc = 100*n_nc/n_total)
+  dplyr::mutate(percent_nc = 100*n_nc/n_total) %>%
+  dplyr::arrange(dplyr::desc(percent_nc))
 
-gwq_subs_stations_n_abovedetection <- gwq_subs_stations  %>% 
+gwq_subs_stations_n_abovedetection <- samples_by_para_and_station  %>% 
   dplyr::filter(n_nc > 0) %>% 
   dplyr::group_by(.data$cas_number) %>% 
   dplyr::summarise(n_stations_abovedetection = dplyr::n()) 
-  
-    
-gwq_subs_stations_n_all <- gwq_subs_stations %>% 
+
+samples_by_para_and_station_n <- samples_by_para_and_station %>% 
   dplyr::group_by(category, 
                   category_name, 
                   name_uba, 
                   cas_number) %>% 
   dplyr::summarise(n_stations_sampled = dplyr::n(),
+                   n_stations_total = length(unique(gwq_master$Nummer)),
                    n_lt = sum(n_lt), 
                    n_nc = sum(n_nc), 
                    n_total = sum(n_total)) %>% 
@@ -151,21 +153,26 @@ gwq_subs_stations_n_all <- gwq_subs_stations %>%
   dplyr::mutate(n_stations_abovedetection = ifelse(is.na(n_stations_abovedetection),
                                                    0,
                                                    n_stations_abovedetection),
-                n_nc = ifelse(is.na(n_nc), 0, n_nc), 
-                n_lt = ifelse(is.na(n_lt), 0, n_lt),
-                percent_nc = 100*n_nc/n_total,
-                percent_stations_abovedetection = 100*n_stations_abovedetection/n_stations_sampled) %>% 
+                n_abovedetection = ifelse(is.na(n_nc), 0, n_nc), 
+                n_belowdetection = ifelse(is.na(n_lt), 0, n_lt),
+                percent_samples_abovedetection = 100*n_nc/n_total,
+                percent_stations_abovedetection = 100*n_stations_abovedetection/n_stations_total,
+                percent_stations_sampled = 100*n_stations_sampled/n_stations_total) %>% 
   dplyr::select(category, 
                 category_name, 
                 name_uba, 
                 cas_number,
                 n_stations_abovedetection,
                 n_stations_sampled,
+                n_stations_total,
                 percent_stations_abovedetection,
-                n_lt, 
-                n_nc,
+                percent_stations_sampled,
+                n_belowdetection, 
+                n_abovedetection,
                 n_total,
-                percent_nc)
+                percent_samples_abovedetection) %>% 
+  dplyr::arrange(dplyr::desc(percent_stations_abovedetection),
+                 dplyr::desc(percent_samples_abovedetection))
                 
                 
 
@@ -178,15 +185,12 @@ gwq_data_list <- list(categories = categories,
                       cas_wasserportal = cas_wasserportal %>% 
                         dplyr::rename(name_uba = name,
                                       name_wasserportal = Parameter), 
-                      samples = gwq_data_export, 
+                      samples = samples, 
                       samples_by_para = gwq_subs %>% 
                         dplyr::arrange(dplyr::desc(percent_nc)),
-                      samples_by_para_and_station = gwq_subs_stations %>%
-                        dplyr::arrange(dplyr::desc(percent_nc)),
-                      samples_by_para_and_station_n = gwq_subs_stations_n_all %>% 
-                        dplyr::arrange(dplyr::desc(percent_stations_abovedetection),
-                                       dplyr::desc(percent_nc)),
-                       samples_by_category_and_station = gwq_subs_by_category_and_station %>% dplyr::arrange(dplyr::desc(percent_nc)))
+                      samples_by_para_and_station = samples_by_para_and_station,
+                      samples_by_para_and_station_n = samples_by_para_and_station_n,
+                       samples_by_category_and_station = samples_by_category_and_station)
                       
 
 
@@ -200,12 +204,6 @@ openxlsx::write.xlsx(x = gwq_data_list,
 ### Total
 
 ```{r}
-# cas_reach <- wasserportal::readPackageFile(file = "cas_reach.csv") 
-# 
-# cas_wasserportal <- wasserportal::readPackageFile(file = "cas_wasserportal.csv") %>%  
-#   dplyr::count(cas_number) %>%
-#   dplyr::inner_join(cas_reach, by = "cas_number") 
-
 g <- cas_reach %>%
   dplyr::mutate(source = sprintf("UBA (n = %d)", nrow(cas_reach))) %>% 
   dplyr::bind_rows(cas_wasserportal_clean %>% 
@@ -237,27 +235,19 @@ g <- cas_reach %>%
 
 ```{r}
 
-by_stations <- gwq_data_by_parameter_and_station %>%  
-  dplyr::summarise(n_stations = dplyr::n()) %>% 
-  dplyr::select(.data$Parameter, .data$n_stations)
+by_stations <- samples_by_para_and_station_n %>% 
+  dplyr::select(.data$name_uba, .data$n_stations_sampled)
 
-wasserportal_substances <- gwq_data_by_parameter %>% 
-  dplyr::left_join(by_stations, by = "Parameter") %>% 
-  dplyr::right_join(cas_wasserportal, by = "Parameter") %>% 
+wasserportal_substances <- samples_by_para_and_station_n %>% 
   dplyr::arrange(.data$category, 
-                 dplyr::desc(.data$n), 
-                 dplyr::desc(.data$n_stations), 
-                 .data$name) %>% 
-  dplyr::rename(name_uba = name, 
-                name_wasserportal = Parameter) %>% 
+                 dplyr::desc(.data$n_total), 
+                 dplyr::desc(.data$n_stations_sampled), 
+                 .data$name_uba) %>% 
   dplyr::select(.data$category, 
                 .data$name_uba,
-                .data$name_wasserportal,
                 .data$cas_number, 
-                .data$n,
-                .data$n_stations,
-                .data$date_min, 
-                .data$date_max)
+                .data$n_total,
+                .data$n_stations_sampled)
 
  DT::datatable(wasserportal_substances, filter = "top", rownames = FALSE)
 
@@ -270,15 +260,15 @@ wasserportal_substances_plot <- wasserportal_substances %>%
   dplyr::mutate(label = sprintf("%s (%s, stations: %d)", 
                                 .data$name_uba, 
                                 .data$cas_number, 
-                                .data$n_stations),
+                                .data$n_stations_sampled),
                 category = forcats::as_factor(.data$category))
 
 wasserportal_substances_plot$label <- factor(wasserportal_substances_plot$label, 
                                              levels = wasserportal_substances_plot$label)
 wasserportal_substances_plot %>% 
-  ggplot2::ggplot(ggplot2::aes(x = .data$n, 
+  ggplot2::ggplot(ggplot2::aes(x = .data$n_total, 
                                y = .data$label, 
-                               label = .data$n,
+                               label = .data$n_total,
                                fill = .data$category)) +
   ggplot2::scale_y_discrete(limits = rev) +
   ggplot2::geom_bar(stat = "identity") +
@@ -293,50 +283,9 @@ wasserportal_substances_plot %>%
 ```
 
 
-
 ```{r}
 
-gwq_subs_plot <- gwq_subs %>%
-  dplyr::select(-n_total, -percent_nc) %>% 
-  tidyr::pivot_longer(cols = c(n_lt, n_nc),
-                      values_to = "n", 
-                      names_to = "CensorCode") %>% 
-  dplyr::mutate(CensorCode = stringr::str_remove(string = CensorCode,
-                                                 pattern = "^n_")) %>% 
-  dplyr::filter(n != 0) %>% 
-  dplyr::arrange(.data$category, .data$name_uba) %>% 
-  dplyr::mutate(label = sprintf("Cat %d: %s (%s)", 
-                                .data$category,
-                                .data$name_uba, 
-                                .data$cas_number),
-                category = forcats::as_factor(.data$category))
-
-gwq_subs_plot$label <- as.factor(gwq_subs_plot$label)
-gwq_subs_plot %>% 
-  ggplot2::ggplot(ggplot2::aes(x = .data$n, 
-                               y = .data$label, 
-                               label = .data$n,
-                               fill = .data$category)) +
-  ggplot2::scale_y_discrete(limits = rev) +
-  ggplot2::geom_bar(stat = "identity") +
-  ggplot2::geom_text(size = 2, nudge_x = -1) +
-  ggplot2::theme_bw() +
-  ggplot2::labs(subtitle = sprintf("%d / %d substances (>= 1 value above detection limit)",
-                                nrow(gwq_subs_plot[gwq_subs_plot$CensorCode == "nc" & gwq_subs_plot$n >= 1,]),
-                                   nrow(wasserportal_substances_plot)),
-                                
-                y = "", 
-                x = "Number of Samples",
-                caption = "nc: not censored, lt: below detection limit")
-  
-```
-```
-
-
-
-```{r}
-
-gwq_subs_plot <- gwq_subs_stations_n %>% 
+gwq_subs_plot <- samples_by_para_and_station_n %>% 
   dplyr::mutate(label = sprintf("Cat %d: %s (%s)", 
                                 .data$category,
                                 .data$name_uba, 
@@ -345,9 +294,9 @@ gwq_subs_plot <- gwq_subs_stations_n %>%
 
 gwq_subs_plot$label <- as.factor(gwq_subs_plot$label)
 g1 <- gwq_subs_plot %>% 
-  ggplot2::ggplot(ggplot2::aes(x = .data$percent_nc, 
-                               y = forcats::fct_reorder(.data$label, .data$percent_nc, .desc = TRUE),
-                               label = sprintf("%2.2f %% (n_samples = %d, n_stations = %d)", .data$percent_nc,.data$n_total, .data$n_stations),
+  ggplot2::ggplot(ggplot2::aes(x = .data$percent_samples_abovedetection, 
+                               y = forcats::fct_reorder(.data$label, .data$percent_samples_abovedetection, .desc = TRUE),
+                               label = sprintf("%2.2f %% (n_samples = %d, n_stations = %d)", .data$percent_samples_abovedetection,.data$n_total, .data$n_stations_sampled),
                                fill = .data$category)) +                             ggplot2::scale_fill_brewer(palette="RdYlGn") +      
   ggplot2::scale_y_discrete(limits = rev) +
   ggplot2::geom_bar(stat = "identity") +
@@ -356,12 +305,73 @@ g1 <- gwq_subs_plot %>%
   ggplot2::theme_bw() +
   ggplot2::theme(legend.position = "top") +
   ggplot2::labs(subtitle = sprintf("%d / %d substances (>= 1 value above detection limit)",
-                                sum(gwq_subs_plot$n_nc > 0),
+                                sum(gwq_subs_plot$n_abovedetection > 0),
                                    nrow(gwq_subs_plot)),                         
                 y = "", 
                 x = "Percent of Samples above Detection Limit (%)")
-                
+
+g1
+
 ggplot2::ggsave(filename = "wasserportal_reach-substances_above-detection-limit.jpeg", 
+                  plot = g1,
+                  width = 17, 
+                  height = 17,
+                  units = "cm")
+  
+```
+
+```{r}
+
+gwq_subs_plot <- samples_by_para_and_station_n %>% 
+  dplyr::mutate(n_stations_belowdetection = .data$n_stations_sampled - .data$n_stations_abovedetection, 
+                n_stations_notsampled = .data$n_stations_total - .data$n_stations_sampled) %>% 
+  dplyr::select("category",
+                "category_name",
+                "name_uba",
+                "cas_number",
+                "n_stations_abovedetection", 
+                "n_stations_belowdetection",
+                "n_stations_notsampled") %>% 
+  tidyr::pivot_longer(cols = tidyselect::starts_with("n_stations"),
+                      names_to = "station_type",
+                      values_to = "station_value") %>% 
+  dplyr::filter(.data$station_value > 0) %>% 
+  dplyr::mutate(station_type = stringr::str_remove(.data$station_type, 
+                                                   "n_stations_")) %>%
+  dplyr::mutate(station_type = kwb.utils::multiSubstitute(.data$station_type,
+                                                          list("abovedetection" = "above detection",
+                                                               "belowdetection" = "below detection", 
+                                                               "notsampled" = "not sampled"))) %>% 
+  dplyr::mutate(label = sprintf("Cat %d: %s (%s)", 
+                                .data$category,
+                                .data$name_uba, 
+                                .data$cas_number),
+                category = forcats::as_factor(.data$category))
+
+gwq_subs_plot$label <- as.factor(gwq_subs_plot$label)
+g1 <- gwq_subs_plot %>% 
+  ggplot2::ggplot(ggplot2::aes(x = .data$station_value, 
+                               y = .data$label,
+                               label = .data$station_value,
+                               fill = forcats::fct_rev(.data$station_type))) +
+  ggplot2::scale_fill_manual(values = c("lightgrey", "darkgreen", "red")) + 
+  ggplot2::scale_y_discrete(limits = rev) +
+  ggplot2::geom_col(alpha = 0.75) +
+  ggplot2::geom_text(size = 1.8, 
+                     position = ggplot2::position_stack(vjust = 0.5 )) +
+  ggplot2::theme_bw() +
+  ggplot2::theme(legend.position = "top") +
+  ggplot2::labs(title = "Groundwater Quality by Station", 
+                fill = "", 
+                caption = "above detection: number of stations with at least 1 sample above detection limit\nbelow detection: number of station with all samples below detection limit\nnot sampled: number of stations not sampled",
+                subtitle = sprintf("for %d GW quality stations",
+                                   length(unique(gwq_master$Nummer))),
+                y = "", 
+                x = "Number of Monitoring Stations")
+
+g1
+
+ggplot2::ggsave(filename = "wasserportal_reach-substances_by-monitoring-station.jpeg", 
                   plot = g1,
                   width = 17, 
                   height = 17,
