@@ -43,6 +43,7 @@ Suggests:
     jsonlite,
     leaflet,
     ggplot2,
+    gridExtra,
     knitr,
     kwb.pkgbuild,
     openxlsx,

@@ -426,3 +426,53 @@ ggplot2::ggsave(filename = "wasserportal_reach-substances_by-monitoring-station.
                   units = "cm")
   
 ```
+
+```{r}
+
+stations_abovedetection <- samples_by_para_and_station %>% 
+  dplyr::filter(.data$n_nc > 0) %>% 
+  dplyr::select(cas_number, Messstellennummer, n_nc, n_lt) %>% 
+  dplyr::arrange(.data$n_nc)
+
+g1_data <- gwq_data %>% 
+  dplyr::right_join(y = stations_abovedetection, 
+                    by = c("cas_number", "Messstellennummer")) %>% 
+  dplyr::mutate(Datum = as.Date(Datum), 
+                CensorCode = kwb.utils::multiSubstitute(.data$CensorCode,
+                                                          list("nc" = "above detection", 
+                                                               "lt" = "below detection")), 
+                label = sprintf("%s (%s): %s (n_above = %d, n_below = %d)", 
+                                .data$name, 
+                                .data$cas_number,
+                                .data$Messstellennummer,
+                                .data$n_nc,
+                                .data$n_lt)) 
+
+labels <- unique(g1_data$label)
+
+plot_timeseries <- function(sel_label) {
+  g1_data %>% 
+  dplyr::filter(.data$label == sel_label) %>% 
+  dplyr::arrange(.data$n_nc, .data$label, .data$Datum) %>% 
+  ggplot2::ggplot(mapping = ggplot2::aes(x = .data$Datum, 
+                                         y = .data$Messwert,
+                                         col = .data$CensorCode
+                                         )) +
+  ggplot2::scale_color_manual(values = c("red", "darkgreen")) +
+  ggplot2::geom_point() +
+  ggplot2::theme_bw() +
+  ggplot2::labs(title = sel_label)
+}
+
+g_plots <- lapply(labels, function(sel_label) {plot_timeseries(sel_label)})
+
+pdff <- "wasserportal_reach-substances_timeseries.pdf"
+mp <- gridExtra::marrangeGrob(g_plots, nrow=1, ncol=1)
+ggplot2::ggsave(pdff,
+                plot = mp, 
+                width = 30,
+                height = 20, 
+                units = "cm")
+
+
+```
