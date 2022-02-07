@@ -125,18 +125,18 @@ together with the additional information on the UTC offset (column
 <span class="r-in">  variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">variables</span><span class="op">[</span><span class="st">"Sauerstoffgehalt"</span><span class="op">]</span>, <span class="va">variables</span><span class="op">[</span><span class="st">"Leitfaehigkeit"</span><span class="op">]</span><span class="op">)</span>,</span>
 <span class="r-in">  from_date <span class="op">=</span> <span class="va">from_date</span>, include_raw_time <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span class="r-in"><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Reading 'Sauerstoffgehalt' for station 153 (MPS_Charlottenburg) ... ok. (1.20s) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Reading 'Leitfaehigkeit' for station 153 (MPS_Charlottenburg) ... ok. (0.65s) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Reading 'Sauerstoffgehalt' for station 153 (MPS_Charlottenburg) ... ok. (1.28s) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Reading 'Leitfaehigkeit' for station 153 (MPS_Charlottenburg) ... ok. (0.61s) </span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Look at the first few records</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">water_quality</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        timestamp_raw   timestamp_corr       LocalDateTime UTCOffset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 98  05.02.2021 03:00 05.02.2021 03:00 2021-02-05 03:00:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 99  05.02.2021 03:15 05.02.2021 03:15 2021-02-05 03:15:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 100 05.02.2021 03:30 05.02.2021 03:30 2021-02-05 03:30:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 101 05.02.2021 03:45 05.02.2021 03:45 2021-02-05 03:45:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 102 05.02.2021 04:00 05.02.2021 04:00 2021-02-05 04:00:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 103 05.02.2021 04:15 05.02.2021 04:15 2021-02-05 04:15:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 98  06.02.2021 03:00 06.02.2021 03:00 2021-02-06 03:00:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 99  06.02.2021 03:15 06.02.2021 03:15 2021-02-06 03:15:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 100 06.02.2021 03:30 06.02.2021 03:30 2021-02-06 03:30:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 101 06.02.2021 03:45 06.02.2021 03:45 2021-02-06 03:45:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 102 06.02.2021 04:00 06.02.2021 04:00 2021-02-06 04:00:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 103 06.02.2021 04:15 06.02.2021 04:15 2021-02-06 04:15:00         1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Sauerstoffgehalt Leitfaehigkeit</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 98              -777           -777</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 99              -777           -777</span>
@@ -154,12 +154,12 @@ together with the additional information on the UTC offset (column
 <span class="r-in"><span class="co"># Look at the first few records again</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">water_quality</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        timestamp_raw   timestamp_corr       LocalDateTime UTCOffset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 98  05.02.2021 03:00 05.02.2021 03:00 2021-02-05 03:00:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 99  05.02.2021 03:15 05.02.2021 03:15 2021-02-05 03:15:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 100 05.02.2021 03:30 05.02.2021 03:30 2021-02-05 03:30:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 101 05.02.2021 03:45 05.02.2021 03:45 2021-02-05 03:45:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 102 05.02.2021 04:00 05.02.2021 04:00 2021-02-05 04:00:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 103 05.02.2021 04:15 05.02.2021 04:15 2021-02-05 04:15:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 98  06.02.2021 03:00 06.02.2021 03:00 2021-02-06 03:00:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 99  06.02.2021 03:15 06.02.2021 03:15 2021-02-06 03:15:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 100 06.02.2021 03:30 06.02.2021 03:30 2021-02-06 03:30:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 101 06.02.2021 03:45 06.02.2021 03:45 2021-02-06 03:45:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 102 06.02.2021 04:00 06.02.2021 04:00 2021-02-06 04:00:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 103 06.02.2021 04:15 06.02.2021 04:15 2021-02-06 04:15:00         1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Sauerstoffgehalt Leitfaehigkeit</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 98                NA             NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 99                NA             NA</span>
