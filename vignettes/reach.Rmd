@@ -139,6 +139,23 @@ gwq_subs_stations_n_abovedetection <- samples_by_para_and_station  %>%
   dplyr::group_by(.data$cas_number) %>% 
   dplyr::summarise(n_stations_abovedetection = dplyr::n()) 
 
+gwq_subs_stations_n_paras_abovedetection <- samples_by_para_and_station  %>% 
+  dplyr::filter(n_nc > 0) %>% 
+  dplyr::group_by(.data$category, 
+                  .data$category_name, 
+                  .data$Messstellennummer) %>% 
+  dplyr::summarise(n_paras_abovedetection = dplyr::n()) %>% 
+  dplyr::left_join(gwq_master, by = c("Messstellennummer" = "Nummer"))
+
+gwq_subs_stations_n_paras_abovedetection_wide <- gwq_subs_stations_n_paras_abovedetection %>% 
+  dplyr::ungroup() %>% 
+  dplyr::select(Messstellennummer, category, n_paras_abovedetection) %>% 
+  tidyr::pivot_wider(names_from = "category", 
+                     names_prefix = "cat_", 
+                     values_from = "n_paras_abovedetection") %>% 
+  dplyr::left_join(gwq_master, by = c("Messstellennummer" = "Nummer"))
+
+
 samples_by_para_and_station_n <- samples_by_para_and_station %>% 
   dplyr::group_by(category, 
                   category_name, 
@@ -190,12 +207,13 @@ gwq_data_list <- list(categories = categories,
                         dplyr::arrange(dplyr::desc(percent_nc)),
                       samples_by_para_and_station = samples_by_para_and_station,
                       samples_by_para_and_station_n = samples_by_para_and_station_n,
-                       samples_by_category_and_station = samples_by_category_and_station)
+                      samples_by_stations_para_above = gwq_subs_stations_n_paras_abovedetection_wide,
+                      samples_by_category_and_station = samples_by_category_and_station)
                       
 
 
 openxlsx::write.xlsx(x = gwq_data_list,
-                     file = "wasserportal_gwq_reach_data.xlsx",
+                     file = "wasserportal_gwq_reach_data_v2.1.0.xlsx",
                      overwrite = TRUE)
 ```
 
@@ -361,6 +379,44 @@ g1 <- samples_by_category_and_station %>%
 g1
 
 ggplot2::ggsave(filename = "wasserportal_reach-categories_above-detection-limit.jpeg", 
+                  plot = g1,
+                  width = 17, 
+                  height = 40,
+                  units = "cm")
+  
+```
+
+```{r}
+
+n_cat <- gwq_subs_stations_n_paras_abovedetection %>% 
+  dplyr::group_by(Messstellennummer) %>%  
+  dplyr::summarise(n_paras_abovedetection_total = sum(n_paras_abovedetection)) %>% 
+  dplyr::arrange(dplyr::desc(.data$n_paras_abovedetection_total))
+
+g1 <- gwq_subs_stations_n_paras_abovedetection %>% 
+  dplyr::left_join(n_cat) %>% 
+  dplyr::mutate(Messstellennummer = as.factor(Messstellennummer),
+                category = as.factor(category)) %>%   ggplot2::ggplot(ggplot2::aes(x = .data$n_paras_abovedetection, 
+                             y = forcats::fct_reorder(.data$Messstellennummer, .data$n_paras_abovedetection_total, .desc = TRUE),
+                             label = .data$n_paras_abovedetection,
+                             fill = .data$category)) +   
+  ggplot2::scale_fill_brewer(palette="RdYlGn") +      
+  ggplot2::scale_y_discrete(limits = rev) +
+  ggplot2::geom_col() +
+  ggplot2::geom_text(size = 1.8, 
+                     position = ggplot2::position_stack(vjust = 0.5 )) +
+
+  #ggplot2::xlim(c(0,215)) +
+  ggplot2::theme_bw() +
+  ggplot2::theme(legend.position = "top") +
+  ggplot2::labs(subtitle = "",                        
+                fill = "Category",
+                y = "Monitoring Station", 
+                x = "Number of Parameters Above Detection Limit")
+
+g1
+
+ggplot2::ggsave(filename = "wasserportal_reach-categories_paras-by-station_above-detection-limit.jpeg", 
                   plot = g1,
                   width = 17, 
                   height = 40,
