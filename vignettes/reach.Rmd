@@ -531,3 +531,36 @@ ggplot2::ggsave(pdff,
 
 
 ```
+
+```{r}
+
+n_samples <- samples %>% 
+  dplyr::count(.data$name_uba)
+
+samples %>%
+  dplyr::left_join(n_samples) %>% 
+  dplyr::filter(CensorCode == "nc") %>% 
+  dplyr::mutate(label = sprintf("%s (n=%d)", 
+                                .data$name_uba, 
+                                .data$n),
+                Messwert = dplyr::if_else(.data$Messwert == "\u00B5g/l",
+                                          true = .data$Messwert / 1000,
+                                          false = .data$Messwert),
+                Einheit = dplyr::if_else(.data$Einheit == "\u00B5g/l",
+                                          true = "mg/l",
+                                          false = .data$Einheit),
+                category = as.factor(category)) %>% 
+  ggplot2::ggplot(mapping = ggplot2::aes_string(y = "label", 
+                                                x = "Messwert",
+                                                fill = "category" )) +
+  ggplot2::scale_fill_brewer(palette="RdYlGn") +  
+  ggplot2::scale_x_log10() +
+  ggplot2::geom_boxplot() +
+  ggplot2::labs(subtitle = "",                        
+                fill = "Category",
+                y = "Substance", 
+                x = "Concentration (mg/l)") +
+  ggplot2::theme_bw() +
+  ggplot2::theme(legend.position = "top")
+
+```
