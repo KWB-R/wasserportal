@@ -45,6 +45,7 @@ read <- function(text, ...) {
 #' @param sep separator (default: ", ")
 #' @return vector of character with as many elements as there are rows in data
 #' @export
+#' @importFrom kwb.utils selectColumns
 #' @examples
 #' data <- data.frame(number = 1:2, name = c("adam", "eva"), value = 3:4)
 #' columns <- c("name", "value")
@@ -67,7 +68,7 @@ columns_to_labels <- function(data, columns, fmt = "%s: %s", sep = ", ")
 #' @return data frame representing the content of \code{\link{file}}
 #'
 #' @export
-#'
+#' @importFrom kwb.utils readPackageFile
 readPackageFile <- function(file, ...)
 {
   kwb.utils::readPackageFile(file, package = "wasserportal", ...)
