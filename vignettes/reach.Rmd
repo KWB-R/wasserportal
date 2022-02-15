@@ -537,13 +537,13 @@ ggplot2::ggsave(pdff,
 n_samples <- samples %>% 
   dplyr::count(.data$name_uba)
 
-samples %>%
+g1 <- samples %>%
   dplyr::left_join(n_samples) %>% 
   dplyr::filter(CensorCode == "nc") %>% 
   dplyr::mutate(label = sprintf("%s (n=%d)", 
                                 .data$name_uba, 
                                 .data$n),
-                Messwert = dplyr::if_else(.data$Messwert == "\u00B5g/l",
+                Messwert = dplyr::if_else(.data$Einheit == "\u00B5g/l",
                                           true = .data$Messwert / 1000,
                                           false = .data$Messwert),
                 Einheit = dplyr::if_else(.data$Einheit == "\u00B5g/l",
@@ -562,5 +562,14 @@ samples %>%
                 x = "Concentration (mg/l)") +
   ggplot2::theme_bw() +
   ggplot2::theme(legend.position = "top")
+
+g1
+
+pdff <- "wasserportal_reach-substances_boxplot.pdf"
+ggplot2::ggsave(pdff,
+                plot = g1, 
+                width = 20,
+                height = 15, 
+                units = "cm")
 
 ```
