@@ -77,8 +77,6 @@ gwq_data <- jsonlite::fromJSON("https://kwb-r.github.io/wasserportal/stations_gw
                                             TRUE ~ Messwert)) %>%
   dplyr::left_join(gwq_master, by = c("Messstellennummer" = "Nummer"))
 
- readr::write_csv(gwq_subs, "gwq_subs.csv")
-
 gwq_subs <- gwq_data %>%  
   dplyr::count(.data$cas_number, .data$CensorCode) %>% 
   tidyr::pivot_wider(names_from = CensorCode, values_from = n) %>% 
@@ -92,6 +90,7 @@ gwq_subs <- gwq_data %>%
   dplyr::rename(name_uba = name) %>% 
   dplyr::select(category, category_name, name_uba, cas_number,n_lt, n_nc, n_total, percent_nc)
 
+ readr::write_csv(gwq_subs, "gwq_subs.csv")
  DT::datatable(gwq_subs, filter = "top", rownames = FALSE)
 
 samples <- gwq_data %>% 
