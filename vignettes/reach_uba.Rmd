@@ -1,10 +1,10 @@
 ---
-title: "Reach"
+title: "Reach (UBA)"
 author: "Michael Rustler"
 date: "`r Sys.time()`"
 output: rmarkdown::html_vignette
 vignette: >
- %\VignetteIndexEntry{Reach}
+ %\VignetteIndexEntry{Reach (UBA)}
  %\VignetteEngine{knitr::rmarkdown}
  %\VignetteEncoding{UTF-8}
 ---
@@ -534,32 +534,93 @@ ggplot2::ggsave(pdff,
 
 ```{r}
 
-n_samples <- samples %>% 
-  dplyr::count(.data$name_uba)
+n_samples_all <- samples %>% 
+  dplyr::count(.data$name_uba) %>% 
+  dplyr::rename(n_all = "n")
+
+
+n_samples_above <- samples %>% 
+  dplyr::filter(CensorCode == "nc") %>% 
+  dplyr::count(.data$name_uba) %>% 
+  dplyr::rename(n_above = "n")
+
+n_samples <- dplyr::left_join(n_samples_all, n_samples_above) %>% 
+  dplyr::mutate(label = as.factor(sprintf("%s (n_above = %d, n_samples = %d)", 
+                                .data$name_uba,
+                                .data$n_above,
+                                .data$n_all))
+  )
+
+substances_above <- samples %>% 
+dplyr::filter(CensorCode == "nc") %>% 
+dplyr::pull(.data$name_uba) %>% 
+unique()
+
+detection_limits <- samples %>%
+  dplyr::filter(CensorCode == "lt",
+                name_uba %in% substances_above) %>% 
+  dplyr::mutate(Messwert = dplyr::if_else(.data$Einheit == "mg/l",
+                                          true = .data$Messwert * 1000,
+                                          false = .data$Messwert),
+                Einheit = dplyr::if_else(.data$Einheit == "mg/l",
+                                          true = "\u00B5g/l",
+                                          false = .data$Einheit),
+                year = as.integer(format(as.Date(.data$Datum), format = "%Y"))) %>% 
+  dplyr::count(.data$name_uba, .data$year, .data$Messwert) %>% 
+  dplyr::left_join(n_samples) 
+
+
+plot_detection_limits <- function(sel_sub) {  
+g1 <- detection_limits %>% 
+  dplyr::filter(name_uba == sel_sub) %>% 
+  ggplot2::ggplot(mapping = ggplot2::aes(x = .data$year,
+                                         y = .data$n,
+                                         col = forcats::fct_rev(as.factor(.data$Messwert)))) +
+  ggplot2::scale_color_brewer(palette="RdYlGn") +
+  ggplot2::geom_point() + 
+  ggplot2::labs(title = sprintf("%s", sel_sub),
+                x = "Year", 
+                y = "Number of Samples below Detection Limit",
+                col = "Detection Limit (\u00B5g/l)") +
+  ggplot2::theme_bw() +
+  ggplot2::theme(legend.position = "top")
+g1
+}
+
+g_plots <- lapply(substances_above, function(sel_sub) {plot_detection_limits(sel_sub)})
+
+pdff <- "wasserportal_reach-substances_detection-limits.pdf"
+mp <- gridExtra::marrangeGrob(g_plots, nrow=1, ncol=1)
+ggplot2::ggsave(pdff,
+                plot = mp, 
+                width = 20,
+                height = 15, 
+                units = "cm")
+
 
 g1 <- samples %>%
   dplyr::left_join(n_samples) %>% 
   dplyr::filter(CensorCode == "nc") %>% 
-  dplyr::mutate(label = sprintf("%s (n=%d)", 
-                                .data$name_uba, 
-                                .data$n),
-                Messwert = dplyr::if_else(.data$Einheit == "\u00B5g/l",
-                                          true = .data$Messwert / 1000,
+  dplyr::mutate(Messwert = dplyr::if_else(.data$Einheit == "mg/l",
+                                          true = .data$Messwert * 1000,
                                           false = .data$Messwert),
-                Einheit = dplyr::if_else(.data$Einheit == "\u00B5g/l",
-                                          true = "mg/l",
+                Einheit = dplyr::if_else(.data$Einheit == "mg/l",
+                                          true = "\u00B5g/l",
                                           false = .data$Einheit),
                 category = as.factor(category)) %>% 
-  ggplot2::ggplot(mapping = ggplot2::aes_string(y = "label", 
-                                                x = "Messwert",
-                                                fill = "category" )) +
+  ggplot2::ggplot(mapping = ggplot2::aes(y = forcats::fct_reorder(.data$label, 
+                                                                  .data$n_above, 
+                                                                  .desc = TRUE),
+                                         x = .data$Messwert,
+                                         fill = .data$category)) +
   ggplot2::scale_fill_brewer(palette="RdYlGn") +  
+  ggplot2::scale_y_discrete(limits = rev) +
   ggplot2::scale_x_log10() +
   ggplot2::geom_boxplot() +
   ggplot2::labs(subtitle = "",                        
                 fill = "Category",
                 y = "Substance", 
-                x = "Concentration (mg/l)") +
+                x = "Concentration (\u00B5g / l)") +
   ggplot2::theme_bw() +
   ggplot2::theme(legend.position = "top")
 
@@ -568,7 +629,7 @@ g1
 pdff <- "wasserportal_reach-substances_boxplot.pdf"
 ggplot2::ggsave(pdff,
                 plot = g1, 
-                width = 20,
+                width = 25,
                 height = 15, 
                 units = "cm")
 
