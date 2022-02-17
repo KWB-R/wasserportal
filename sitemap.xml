@@ -1,93 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://kwb-r.github.io/wasserportal/404.html</loc>
+    <loc>/404.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/wasserportal/LICENSE-text.html</loc>
+    <loc>/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/wasserportal/LICENSE.html</loc>
+    <loc>/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/wasserportal/articles/documention.html</loc>
+    <loc>/articles/documention.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/wasserportal/articles/groundwater.html</loc>
+    <loc>/articles/groundwater.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/wasserportal/articles/index.html</loc>
+    <loc>/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/wasserportal/articles/map_gwl-trend.html</loc>
+    <loc>/articles/map_gwl-trend.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/wasserportal/articles/reach.html</loc>
+    <loc>/articles/reach.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/wasserportal/articles/reach_uba.html</loc>
+    <loc>/articles/reach_uba.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/wasserportal/articles/tutorial.html</loc>
+    <loc>/articles/tutorial.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/wasserportal/authors.html</loc>
+    <loc>/authors.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/wasserportal/index.html</loc>
+    <loc>/index.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/wasserportal/map_gwl-trend.html</loc>
+    <loc>/map_gwl-trend.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/wasserportal/news/index.html</loc>
+    <loc>/news/index.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/wasserportal/reference/columns_to_labels.html</loc>
+    <loc>/reference/columns_to_labels.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/wasserportal/reference/get_overview_options.html</loc>
+    <loc>/reference/get_overview_options.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/wasserportal/reference/get_stations.html</loc>
+    <loc>/reference/get_stations.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/wasserportal/reference/get_wasserportal_master_data.html</loc>
+    <loc>/reference/get_wasserportal_master_data.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/wasserportal/reference/get_wasserportal_masters_data.html</loc>
+    <loc>/reference/get_wasserportal_masters_data.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/wasserportal/reference/get_wasserportal_stations.html</loc>
+    <loc>/reference/get_wasserportal_stations.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/wasserportal/reference/get_wasserportal_stations_table.html</loc>
+    <loc>/reference/get_wasserportal_stations_table.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/wasserportal/reference/get_wasserportal_variables.html</loc>
+    <loc>/reference/get_wasserportal_variables.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/wasserportal/reference/index.html</loc>
+    <loc>/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/wasserportal/reference/pipe.html</loc>
+    <loc>/reference/pipe.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/wasserportal/reference/read.html</loc>
+    <loc>/reference/read.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/wasserportal/reference/readPackageFile.html</loc>
+    <loc>/reference/readPackageFile.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/wasserportal/reference/read_wasserportal.html</loc>
+    <loc>/reference/read_wasserportal.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/wasserportal/reference/read_wasserportal_raw.html</loc>
+    <loc>/reference/read_wasserportal_raw.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/wasserportal/reference/read_wasserportal_raw_gw.html</loc>
+    <loc>/reference/read_wasserportal_raw_gw.html</loc>
   </url>
   <url>
-    <loc>https://kwb-r.github.io/wasserportal/reference/wasserportal_base_url.html</loc>
+    <loc>/reference/wasserportal_base_url.html</loc>
   </url>
 </urlset>
