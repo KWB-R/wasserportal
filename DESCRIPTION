@@ -41,6 +41,7 @@ Suggests:
     forcats,
     fs,
     htmlwidgets,
+    janitor,
     jsonlite,
     leaflet,
     ggplot2,
@@ -51,8 +52,10 @@ Suggests:
     plotly,
     readr,
     rmarkdown,
+    rvest,
     sf,
     tidyselect,
+    xml2,
     zen4R
 Remotes: 
     github::kwb-r/kwb.datetime,

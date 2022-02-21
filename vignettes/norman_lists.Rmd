@@ -115,8 +115,12 @@ norman_s0_in_wasserportal <- norman_s0 %>%
 
 DT::datatable(norman_s0_in_wasserportal, filter = "top", rownames = FALSE)
  
+norman_lists_table <- xml2::read_html("https://www.norman-network.com/nds/SLE/") %>%
+rvest::html_element(css = ".table") %>%
+rvest::html_table() %>%
+janitor::clean_names()
 
-
+DT::datatable(norman_lists_table)
 
 ```
 
@@ -137,8 +141,9 @@ library(wasserportal)
 ### GW quality (all available parameters!)
 gwq_master <- jsonlite::fromJSON("https://kwb-r.github.io/wasserportal/stations_gwq_master.json")
 gwq_data <- jsonlite::fromJSON("https://kwb-r.github.io/wasserportal/stations_gwq_data.json") %>%
-  #dplyr::filter(Parameter %in% cas_wasserportal$Parameter) %>%
+  dplyr::filter(Parameter %in% cas_wasserportal$Parameter) %>%
   dplyr::inner_join(cas_wasserportal, by = "Parameter") %>%
+  dplyr::inner_join(norman_s0_in_wasserportal, by = "cas_number") %>% 
   dplyr::mutate(Messstellennummer = as.character(Messstellennummer),
 ## CensorCode: either "below" (less than) for concentration below detection limit
 ## (value is detection limit) or "nc" (not censored) for concentration above
@@ -163,23 +168,21 @@ gwq_subs <- gwq_data %>%
                 percent_nc = 100*nc/n_total) %>%
   dplyr::rename(n_lt = lt,
                 n_nc = nc) %>%
-  dplyr::left_join(cas_reach[, c("category", "category_name", "name", "cas_number")]) %>%
-  dplyr::rename(name_uba = name) %>%
-  dplyr::select(category, category_name, name_uba, cas_number,n_lt, n_nc, n_total, percent_nc)
+  dplyr::left_join(norman_s0_in_wasserportal) %>%
+  dplyr::rename(name_norman = .data$Name_Dashboard)
 
  readr::write_csv(gwq_subs, "gwq_subs.csv")
  DT::datatable(gwq_subs, filter = "top", rownames = FALSE)
 
 samples <- gwq_data %>%
-   dplyr::rename(name_uba = name) %>%
-   dplyr::select(category, category_name,
-                     cas_number,
-                     name_uba,
-                     Messstellennummer,
-                     Datum,
-                     CensorCode,
-                     Messwert,
-                     Einheit)
+   dplyr::rename(name_norman = .data$Name_Dashboard) %>%
+   dplyr::select(name_norman,
+                 cas_number,
+                 Messstellennummer,
+                 Datum,
+                 CensorCode,
+                 Messwert,
+                 Einheit)
 
 
 samples_by_para_and_station <- gwq_data %>%
@@ -193,22 +196,21 @@ samples_by_para_and_station <- gwq_data %>%
                 percent_nc = 100*nc/n_total) %>%
   dplyr::rename(n_lt = lt,
                 n_nc = nc) %>%
-  dplyr::left_join(cas_reach[, c("category", "category_name",   "name", "cas_number")]) %>%
-  dplyr::rename(name_uba = name) %>%
-  dplyr::select(category, category_name, name_uba, cas_number, Messstellennummer, n_lt, n_nc, n_total, percent_nc) %>%
+  dplyr::left_join(norman_s0_in_wasserportal) %>%
+  dplyr::rename(name_norman = .data$Name_Dashboard) %>%
   dplyr::left_join(gwq_master, by = c(Messstellennummer = "Nummer")) %>%
   dplyr::arrange(dplyr::desc(percent_nc))
 
 
-samples_by_category_and_station <- samples_by_para_and_station  %>%
-  dplyr::group_by(.data$category,
-                  .data$category_name,
-                  .data$Messstellennummer) %>%
-  dplyr::summarise(n_lt = sum(n_lt),
-                   n_nc = sum(n_nc),
-                   n_total = sum(n_total)) %>%
-  dplyr::mutate(percent_nc = 100*n_nc/n_total) %>%
-  dplyr::arrange(dplyr::desc(percent_nc))
+# samples_by_category_and_station <- samples_by_para_and_station  %>%
+#   dplyr::group_by(.data$category,
+#                   .data$category_name,
+#                   .data$Messstellennummer) %>%
+#   dplyr::summarise(n_lt = sum(n_lt),
+#                    n_nc = sum(n_nc),
+#                    n_total = sum(n_total)) %>%
+#   dplyr::mutate(percent_nc = 100*n_nc/n_total) %>%
+#   dplyr::arrange(dplyr::desc(percent_nc))
 
 gwq_subs_stations_n_abovedetection <- samples_by_para_and_station  %>%
   dplyr::filter(n_nc > 0) %>%
@@ -217,25 +219,23 @@ gwq_subs_stations_n_abovedetection <- samples_by_para_and_station  %>%
 
 gwq_subs_stations_n_paras_abovedetection <- samples_by_para_and_station  %>%
   dplyr::filter(n_nc > 0) %>%
-  dplyr::group_by(.data$category,
-                  .data$category_name,
+  dplyr::group_by(#.data$category,
+                  #.data$category_name,
                   .data$Messstellennummer) %>%
   dplyr::summarise(n_paras_abovedetection = dplyr::n()) %>%
   dplyr::left_join(gwq_master, by = c("Messstellennummer" = "Nummer"))
 
-gwq_subs_stations_n_paras_abovedetection_wide <- gwq_subs_stations_n_paras_abovedetection %>%
-  dplyr::ungroup() %>%
-  dplyr::select(Messstellennummer, category, n_paras_abovedetection) %>%
-  tidyr::pivot_wider(names_from = "category",
-                     names_prefix = "cat_",
-                     values_from = "n_paras_abovedetection") %>%
-  dplyr::left_join(gwq_master, by = c("Messstellennummer" = "Nummer"))
+# gwq_subs_stations_n_paras_abovedetection_wide <- gwq_subs_stations_n_paras_abovedetection %>%
+#   dplyr::ungroup() %>%
+#   dplyr::select(Messstellennummer, category, n_paras_abovedetection) %>%
+#   tidyr::pivot_wider(names_from = "category",
+#                      names_prefix = "cat_",
+#                      values_from = "n_paras_abovedetection") %>%
+#   dplyr::left_join(gwq_master, by = c("Messstellennummer" = "Nummer"))
 
 
 samples_by_para_and_station_n <- samples_by_para_and_station %>%
-  dplyr::group_by(category,
-                  category_name,
-                  name_uba,
+  dplyr::group_by(name_norman,
                   cas_number) %>%
   dplyr::summarise(n_stations_sampled = dplyr::n(),
                    n_stations_total = length(unique(gwq_master$Nummer)),
@@ -251,9 +251,7 @@ samples_by_para_and_station_n <- samples_by_para_and_station %>%
                 percent_samples_abovedetection = 100*n_nc/n_total,
                 percent_stations_abovedetection = 100*n_stations_abovedetection/n_stations_total,
                 percent_stations_sampled = 100*n_stations_sampled/n_stations_total) %>%
-  dplyr::select(category,
-                category_name,
-                name_uba,
+  dplyr::select(name_norman,
                 cas_number,
                 n_stations_abovedetection,
                 n_stations_sampled,
@@ -272,19 +270,18 @@ samples_by_para_and_station_n <- samples_by_para_and_station %>%
 
 
 ### Export data to EXCEL
-gwq_data_list <- list(categories = categories,
-                      cas_reach = cas_reach %>%
-                        dplyr::rename(name_uba = name),
-                      cas_wasserportal = cas_wasserportal %>%
-                        dplyr::rename(name_uba = name,
-                                      name_wasserportal = Parameter),
+gwq_data_list <- list(norman_lists_table = norman_lists_table, 
+                      cas_wasserportal = cas_wasserportal,
+                      cas_reach = cas_reach, 
+                      ubapmt_missing_on_zenodo = missing_on_zenodo,
+                      norman_s0_in_wasserportal = norman_s0_in_wasserportal,
                       samples = samples,
                       samples_by_para = gwq_subs %>%
                         dplyr::arrange(dplyr::desc(percent_nc)),
                       samples_by_para_and_station = samples_by_para_and_station,
-                      samples_by_para_and_station_n = samples_by_para_and_station_n,
-                      samples_by_stations_para_above = gwq_subs_stations_n_paras_abovedetection_wide,
-                      samples_by_category_and_station = samples_by_category_and_station)
+                      samples_by_para_and_station_n = samples_by_para_and_station_n)
+                      #samples_by_stations_para_above = gwq_subs_stations_n_paras_abovedetection_wide)
+                      #samples_by_category_and_station = samples_by_category_and_station)
 
 
 
