@@ -40,7 +40,8 @@ categories <- wasserportal::readPackageFile(file = "categories.csv")
 cas_reach <- wasserportal::readPackageFile(file = "cas_reach.csv") %>% 
   dplyr::left_join(categories)
 
-cas_wasserportal <- wasserportal::readPackageFile(file = "cas_wasserportal.csv") %>%  
+cas_wasserportal <- wasserportal::readPackageFile(file = "cas_wasserportal.csv",
+                                                  encoding = "UTF-8") %>%  
   dplyr::inner_join(cas_reach, by = "cas_number") 
 
 ### Remove duplicated Wasserportal substances (same CAS number but different, names!)

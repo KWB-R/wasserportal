@@ -32,6 +32,7 @@ install.packages('wasserportal')
 ## Get Norman Lists
 
 ```{r}
+library(wasserportal)
 
 download_zenodo <- function(doi, tdir, files = list(), ...) {
   fs::dir_create(tdir)
@@ -67,7 +68,8 @@ download_zenodo(doi = norman_s36_ubapmt_paths$doi,
 
 norman_s36_ubapmt <- readr::read_csv(norman_s36_ubapmt_paths$fpath)
 
-cas_wasserportal <- wasserportal::readPackageFile(file = "cas_wasserportal.csv")
+cas_wasserportal <- wasserportal::readPackageFile(file = "cas_wasserportal.csv",
+                                                  encoding = "UTF-8")
 cas_reach <- wasserportal::readPackageFile(file = "cas_reach.csv")
 
 ubapmt_publication <- cas_reach %>% 
@@ -120,192 +122,176 @@ DT::datatable(norman_s0_in_wasserportal, filter = "top", rownames = FALSE)
 
                   
 
-<!-- ## Get GW Quality from Wasserportal -->
+## Get GW Quality from Wasserportal
 
-<!-- ```{r} -->
-<!-- # Load R package -->
-<!-- library(wasserportal) -->
+```{r}
+# Load R package
+library(wasserportal)
 
-<!-- categories <- wasserportal::readPackageFile(file = "categories.csv")  -->
+### For details see:
+### https://kwb-r.github.io/wasserportal/articles/groundwater.html
+### JSON files (see below) are build every day automatically at 5a.m. with
+### continious integration, for build status, see here:
+### https://github.com/KWB-R/wasserportal/actions/workflows/pkgdown.yaml
 
-<!-- cas_reach <- wasserportal::readPackageFile(file = "cas_reach.csv") %>%  -->
-<!--   dplyr::left_join(categories) -->
+### GW quality (all available parameters!)
+gwq_master <- jsonlite::fromJSON("https://kwb-r.github.io/wasserportal/stations_gwq_master.json")
+gwq_data <- jsonlite::fromJSON("https://kwb-r.github.io/wasserportal/stations_gwq_data.json") %>%
+  #dplyr::filter(Parameter %in% cas_wasserportal$Parameter) %>%
+  dplyr::inner_join(cas_wasserportal, by = "Parameter") %>%
+  dplyr::mutate(Messstellennummer = as.character(Messstellennummer),
+## CensorCode: either "below" (less than) for concentration below detection limit
+## (value is detection limit) or "nc" (not censored) for concentration above
+## detection limit
+                CensorCode = dplyr::case_when(Messwert <= 0 ~ "lt",
+                                              TRUE ~ "nc"),
+                Messwert = dplyr::case_when(Messwert < 0 ~ abs(Messwert),
+### Only two decimal numbers are exported by Wasserportal, but some sustances
+### have lower detection limit, e.g. 0.002 which results in -0.00 export, thus
+### the dummy detection limit 0.00999 was introduced (until fixed by Senate:
+### Christoph will sent a email to Matthias Schröder)
+                                            Messwert == 0 ~ 0.009999,
+                                            TRUE ~ Messwert)) %>%
+  dplyr::left_join(gwq_master, by = c("Messstellennummer" = "Nummer"))
 
-<!-- cas_wasserportal <- wasserportal::readPackageFile(file = "cas_wasserportal.csv") %>%   -->
-<!--   dplyr::inner_join(cas_reach, by = "cas_number")  -->
+gwq_subs <- gwq_data %>%
+  dplyr::count(.data$cas_number, .data$CensorCode) %>%
+  tidyr::pivot_wider(names_from = CensorCode, values_from = n) %>%
+  dplyr::mutate(lt = ifelse(is.na(lt), 0, lt),
+                nc = ifelse(is.na(nc), 0, nc),
+                n_total = lt + nc,
+                percent_nc = 100*nc/n_total) %>%
+  dplyr::rename(n_lt = lt,
+                n_nc = nc) %>%
+  dplyr::left_join(cas_reach[, c("category", "category_name", "name", "cas_number")]) %>%
+  dplyr::rename(name_uba = name) %>%
+  dplyr::select(category, category_name, name_uba, cas_number,n_lt, n_nc, n_total, percent_nc)
 
-<!-- ### Remove duplicated Wasserportal substances (same CAS number but different, names!) -->
-<!-- cas_wasserportal_clean <- wasserportal::readPackageFile(file = "cas_wasserportal.csv") %>%   -->
-<!--   dplyr::count(cas_number) %>% -->
-<!--   dplyr::select(-n) %>%  -->
-<!--   dplyr::filter(!is.na(cas_number)) %>%  -->
-<!--   dplyr::inner_join(cas_reach, by = "cas_number")  -->
+ readr::write_csv(gwq_subs, "gwq_subs.csv")
+ DT::datatable(gwq_subs, filter = "top", rownames = FALSE)
 
-
-<!-- ### For details see: -->
-<!-- ### https://kwb-r.github.io/wasserportal/articles/groundwater.html -->
-<!-- ### JSON files (see below) are build every day automatically at 5a.m. with -->
-<!-- ### continious integration, for build status, see here: -->
-<!-- ### https://github.com/KWB-R/wasserportal/actions/workflows/pkgdown.yaml -->
-
-<!-- ### GW quality (all available parameters!) -->
-<!-- gwq_master <- jsonlite::fromJSON("https://kwb-r.github.io/wasserportal/stations_gwq_master.json") -->
-<!-- gwq_data <- jsonlite::fromJSON("https://kwb-r.github.io/wasserportal/stations_gwq_data.json") %>% -->
-<!--   #dplyr::filter(Parameter %in% cas_wasserportal$Parameter) %>%  -->
-<!--   dplyr::inner_join(cas_wasserportal, by = "Parameter") %>% -->
-<!--   dplyr::mutate(Messstellennummer = as.character(Messstellennummer), -->
-<!-- ## CensorCode: either "below" (less than) for concentration below detection limit  -->
-<!-- ## (value is detection limit) or "nc" (not censored) for concentration above  -->
-<!-- ## detection limit -->
-<!--                 CensorCode = dplyr::case_when(Messwert <= 0 ~ "lt", -->
-<!--                                               TRUE ~ "nc"), -->
-<!--                 Messwert = dplyr::case_when(Messwert < 0 ~ abs(Messwert), -->
-<!-- ### Only two decimal numbers are exported by Wasserportal, but some sustances  -->
-<!-- ### have lower detection limit, e.g. 0.002 which results in -0.00 export, thus  -->
-<!-- ### the dummy detection limit 0.00999 was introduced (until fixed by Senate:  -->
-<!-- ### Christoph will sent a email to Matthias Schröder) -->
-<!--                                             Messwert == 0 ~ 0.009999,  -->
-<!--                                             TRUE ~ Messwert)) %>% -->
-<!--   dplyr::left_join(gwq_master, by = c("Messstellennummer" = "Nummer")) -->
-
-<!-- gwq_subs <- gwq_data %>%   -->
-<!--   dplyr::count(.data$cas_number, .data$CensorCode) %>%  -->
-<!--   tidyr::pivot_wider(names_from = CensorCode, values_from = n) %>%  -->
-<!--   dplyr::mutate(lt = ifelse(is.na(lt), 0, lt),  -->
-<!--                 nc = ifelse(is.na(nc), 0, nc), -->
-<!--                 n_total = lt + nc,  -->
-<!--                 percent_nc = 100*nc/n_total) %>%  -->
-<!--   dplyr::rename(n_lt = lt,  -->
-<!--                 n_nc = nc) %>%  -->
-<!--   dplyr::left_join(cas_reach[, c("category", "category_name", "name", "cas_number")]) %>% -->
-<!--   dplyr::rename(name_uba = name) %>%  -->
-<!--   dplyr::select(category, category_name, name_uba, cas_number,n_lt, n_nc, n_total, percent_nc) -->
-
-<!--  readr::write_csv(gwq_subs, "gwq_subs.csv") -->
-<!--  DT::datatable(gwq_subs, filter = "top", rownames = FALSE) -->
-
-<!-- samples <- gwq_data %>%  -->
-<!--    dplyr::rename(name_uba = name) %>%  -->
-<!--    dplyr::select(category, category_name, -->
-<!--                      cas_number, -->
-<!--                      name_uba, -->
-<!--                      Messstellennummer, -->
-<!--                      Datum, -->
-<!--                      CensorCode,  -->
-<!--                      Messwert, -->
-<!--                      Einheit) -->
+samples <- gwq_data %>%
+   dplyr::rename(name_uba = name) %>%
+   dplyr::select(category, category_name,
+                     cas_number,
+                     name_uba,
+                     Messstellennummer,
+                     Datum,
+                     CensorCode,
+                     Messwert,
+                     Einheit)
 
 
-<!-- samples_by_para_and_station <- gwq_data %>%   -->
-<!--   dplyr::count(.data$cas_number, -->
-<!--                   .data$Messstellennummer, -->
-<!--                   .data$CensorCode) %>% -->
-<!--   tidyr::pivot_wider(names_from = CensorCode, values_from = n) %>%  -->
-<!--   dplyr::mutate(lt = ifelse(is.na(lt), 0, lt), -->
-<!--                 nc = ifelse(is.na(nc), 0, nc), -->
-<!--                 n_total = lt + nc,  -->
-<!--                 percent_nc = 100*nc/n_total) %>%  -->
-<!--   dplyr::rename(n_lt = lt,  -->
-<!--                 n_nc = nc) %>%  -->
-<!--   dplyr::left_join(cas_reach[, c("category", "category_name",   "name", "cas_number")]) %>% -->
-<!--   dplyr::rename(name_uba = name) %>%  -->
-<!--   dplyr::select(category, category_name, name_uba, cas_number, Messstellennummer, n_lt, n_nc, n_total, percent_nc) %>%  -->
-<!--   dplyr::left_join(gwq_master, by = c(Messstellennummer = "Nummer")) %>% -->
-<!--   dplyr::arrange(dplyr::desc(percent_nc)) -->
+samples_by_para_and_station <- gwq_data %>%
+  dplyr::count(.data$cas_number,
+                  .data$Messstellennummer,
+                  .data$CensorCode) %>%
+  tidyr::pivot_wider(names_from = CensorCode, values_from = n) %>%
+  dplyr::mutate(lt = ifelse(is.na(lt), 0, lt),
+                nc = ifelse(is.na(nc), 0, nc),
+                n_total = lt + nc,
+                percent_nc = 100*nc/n_total) %>%
+  dplyr::rename(n_lt = lt,
+                n_nc = nc) %>%
+  dplyr::left_join(cas_reach[, c("category", "category_name",   "name", "cas_number")]) %>%
+  dplyr::rename(name_uba = name) %>%
+  dplyr::select(category, category_name, name_uba, cas_number, Messstellennummer, n_lt, n_nc, n_total, percent_nc) %>%
+  dplyr::left_join(gwq_master, by = c(Messstellennummer = "Nummer")) %>%
+  dplyr::arrange(dplyr::desc(percent_nc))
 
 
-<!-- samples_by_category_and_station <- samples_by_para_and_station  %>%  -->
-<!--   dplyr::group_by(.data$category, -->
-<!--                   .data$category_name, -->
-<!--                   .data$Messstellennummer) %>%  -->
-<!--   dplyr::summarise(n_lt = sum(n_lt),  -->
-<!--                    n_nc = sum(n_nc),  -->
-<!--                    n_total = sum(n_total)) %>%  -->
-<!--   dplyr::mutate(percent_nc = 100*n_nc/n_total) %>% -->
-<!--   dplyr::arrange(dplyr::desc(percent_nc)) -->
+samples_by_category_and_station <- samples_by_para_and_station  %>%
+  dplyr::group_by(.data$category,
+                  .data$category_name,
+                  .data$Messstellennummer) %>%
+  dplyr::summarise(n_lt = sum(n_lt),
+                   n_nc = sum(n_nc),
+                   n_total = sum(n_total)) %>%
+  dplyr::mutate(percent_nc = 100*n_nc/n_total) %>%
+  dplyr::arrange(dplyr::desc(percent_nc))
 
-<!-- gwq_subs_stations_n_abovedetection <- samples_by_para_and_station  %>%  -->
-<!--   dplyr::filter(n_nc > 0) %>%  -->
-<!--   dplyr::group_by(.data$cas_number) %>%  -->
-<!--   dplyr::summarise(n_stations_abovedetection = dplyr::n())  -->
+gwq_subs_stations_n_abovedetection <- samples_by_para_and_station  %>%
+  dplyr::filter(n_nc > 0) %>%
+  dplyr::group_by(.data$cas_number) %>%
+  dplyr::summarise(n_stations_abovedetection = dplyr::n())
 
-<!-- gwq_subs_stations_n_paras_abovedetection <- samples_by_para_and_station  %>%  -->
-<!--   dplyr::filter(n_nc > 0) %>%  -->
-<!--   dplyr::group_by(.data$category,  -->
-<!--                   .data$category_name,  -->
-<!--                   .data$Messstellennummer) %>%  -->
-<!--   dplyr::summarise(n_paras_abovedetection = dplyr::n()) %>%  -->
-<!--   dplyr::left_join(gwq_master, by = c("Messstellennummer" = "Nummer")) -->
+gwq_subs_stations_n_paras_abovedetection <- samples_by_para_and_station  %>%
+  dplyr::filter(n_nc > 0) %>%
+  dplyr::group_by(.data$category,
+                  .data$category_name,
+                  .data$Messstellennummer) %>%
+  dplyr::summarise(n_paras_abovedetection = dplyr::n()) %>%
+  dplyr::left_join(gwq_master, by = c("Messstellennummer" = "Nummer"))
 
-<!-- gwq_subs_stations_n_paras_abovedetection_wide <- gwq_subs_stations_n_paras_abovedetection %>%  -->
-<!--   dplyr::ungroup() %>%  -->
-<!--   dplyr::select(Messstellennummer, category, n_paras_abovedetection) %>%  -->
-<!--   tidyr::pivot_wider(names_from = "category",  -->
-<!--                      names_prefix = "cat_",  -->
-<!--                      values_from = "n_paras_abovedetection") %>%  -->
-<!--   dplyr::left_join(gwq_master, by = c("Messstellennummer" = "Nummer")) -->
+gwq_subs_stations_n_paras_abovedetection_wide <- gwq_subs_stations_n_paras_abovedetection %>%
+  dplyr::ungroup() %>%
+  dplyr::select(Messstellennummer, category, n_paras_abovedetection) %>%
+  tidyr::pivot_wider(names_from = "category",
+                     names_prefix = "cat_",
+                     values_from = "n_paras_abovedetection") %>%
+  dplyr::left_join(gwq_master, by = c("Messstellennummer" = "Nummer"))
 
 
-<!-- samples_by_para_and_station_n <- samples_by_para_and_station %>%  -->
-<!--   dplyr::group_by(category,  -->
-<!--                   category_name,  -->
-<!--                   name_uba,  -->
-<!--                   cas_number) %>%  -->
-<!--   dplyr::summarise(n_stations_sampled = dplyr::n(), -->
-<!--                    n_stations_total = length(unique(gwq_master$Nummer)), -->
-<!--                    n_lt = sum(n_lt),  -->
-<!--                    n_nc = sum(n_nc),  -->
-<!--                    n_total = sum(n_total)) %>%  -->
-<!--   dplyr::left_join(gwq_subs_stations_n_abovedetection) %>%  -->
-<!--   dplyr::mutate(n_stations_abovedetection = ifelse(is.na(n_stations_abovedetection), -->
-<!--                                                    0, -->
-<!--                                                    n_stations_abovedetection), -->
-<!--                 n_abovedetection = ifelse(is.na(n_nc), 0, n_nc),  -->
-<!--                 n_belowdetection = ifelse(is.na(n_lt), 0, n_lt), -->
-<!--                 percent_samples_abovedetection = 100*n_nc/n_total, -->
-<!--                 percent_stations_abovedetection = 100*n_stations_abovedetection/n_stations_total, -->
-<!--                 percent_stations_sampled = 100*n_stations_sampled/n_stations_total) %>%  -->
-<!--   dplyr::select(category,  -->
-<!--                 category_name,  -->
-<!--                 name_uba,  -->
-<!--                 cas_number, -->
-<!--                 n_stations_abovedetection, -->
-<!--                 n_stations_sampled, -->
-<!--                 n_stations_total, -->
-<!--                 percent_stations_abovedetection, -->
-<!--                 percent_stations_sampled, -->
-<!--                 n_belowdetection,  -->
-<!--                 n_abovedetection, -->
-<!--                 n_total, -->
-<!--                 percent_samples_abovedetection) %>%  -->
-<!--   dplyr::arrange(dplyr::desc(percent_stations_abovedetection), -->
-<!--                  dplyr::desc(percent_samples_abovedetection)) -->
+samples_by_para_and_station_n <- samples_by_para_and_station %>%
+  dplyr::group_by(category,
+                  category_name,
+                  name_uba,
+                  cas_number) %>%
+  dplyr::summarise(n_stations_sampled = dplyr::n(),
+                   n_stations_total = length(unique(gwq_master$Nummer)),
+                   n_lt = sum(n_lt),
+                   n_nc = sum(n_nc),
+                   n_total = sum(n_total)) %>%
+  dplyr::left_join(gwq_subs_stations_n_abovedetection) %>%
+  dplyr::mutate(n_stations_abovedetection = ifelse(is.na(n_stations_abovedetection),
+                                                   0,
+                                                   n_stations_abovedetection),
+                n_abovedetection = ifelse(is.na(n_nc), 0, n_nc),
+                n_belowdetection = ifelse(is.na(n_lt), 0, n_lt),
+                percent_samples_abovedetection = 100*n_nc/n_total,
+                percent_stations_abovedetection = 100*n_stations_abovedetection/n_stations_total,
+                percent_stations_sampled = 100*n_stations_sampled/n_stations_total) %>%
+  dplyr::select(category,
+                category_name,
+                name_uba,
+                cas_number,
+                n_stations_abovedetection,
+                n_stations_sampled,
+                n_stations_total,
+                percent_stations_abovedetection,
+                percent_stations_sampled,
+                n_belowdetection,
+                n_abovedetection,
+                n_total,
+                percent_samples_abovedetection) %>%
+  dplyr::arrange(dplyr::desc(percent_stations_abovedetection),
+                 dplyr::desc(percent_samples_abovedetection))
 
 
 
 
 
-<!-- ### Export data to EXCEL -->
-<!-- gwq_data_list <- list(categories = categories,  -->
-<!--                       cas_reach = cas_reach %>%  -->
-<!--                         dplyr::rename(name_uba = name), -->
-<!--                       cas_wasserportal = cas_wasserportal %>%  -->
-<!--                         dplyr::rename(name_uba = name, -->
-<!--                                       name_wasserportal = Parameter),  -->
-<!--                       samples = samples,  -->
-<!--                       samples_by_para = gwq_subs %>%  -->
-<!--                         dplyr::arrange(dplyr::desc(percent_nc)), -->
-<!--                       samples_by_para_and_station = samples_by_para_and_station, -->
-<!--                       samples_by_para_and_station_n = samples_by_para_and_station_n, -->
-<!--                       samples_by_stations_para_above = gwq_subs_stations_n_paras_abovedetection_wide, -->
-<!--                       samples_by_category_and_station = samples_by_category_and_station) -->
+### Export data to EXCEL
+gwq_data_list <- list(categories = categories,
+                      cas_reach = cas_reach %>%
+                        dplyr::rename(name_uba = name),
+                      cas_wasserportal = cas_wasserportal %>%
+                        dplyr::rename(name_uba = name,
+                                      name_wasserportal = Parameter),
+                      samples = samples,
+                      samples_by_para = gwq_subs %>%
+                        dplyr::arrange(dplyr::desc(percent_nc)),
+                      samples_by_para_and_station = samples_by_para_and_station,
+                      samples_by_para_and_station_n = samples_by_para_and_station_n,
+                      samples_by_stations_para_above = gwq_subs_stations_n_paras_abovedetection_wide,
+                      samples_by_category_and_station = samples_by_category_and_station)
 
 
 
-<!-- openxlsx::write.xlsx(x = gwq_data_list, -->
-<!--                      file = "wasserportal_gwq_reach_data_v2.1.0.xlsx", -->
-<!--                      overwrite = TRUE) -->
-<!-- ``` -->
+openxlsx::write.xlsx(x = gwq_data_list,
+                     file = "wasserportal_gwq_norman-list_s0_v1.0.0.xlsx",
+                     overwrite = TRUE)
+```
 
 <!-- ## Reach Substances in Wasserportal -->
 
