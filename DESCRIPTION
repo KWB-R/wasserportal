@@ -39,6 +39,7 @@ Suggests:
     covr,
     DT,
     forcats,
+    fs,
     htmlwidgets,
     jsonlite,
     leaflet,
@@ -50,7 +51,9 @@ Suggests:
     plotly,
     readr,
     rmarkdown,
-    sf
+    sf,
+    tidyselect,
+    zen4R
 Remotes: 
     github::kwb-r/kwb.datetime,
     github::kwb-r/kwb.pkgbuild,
