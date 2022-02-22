@@ -3,6 +3,11 @@ pkgdown: 2.0.2
 pkgdown_sha: ~
 articles:
   groundwater: groundwater.html
+  norman_lists: norman_lists.html
+  reach_uba: reach_uba.html
   tutorial: tutorial.html
-last_built: 2022-02-22T05:04Z
+last_built: 2022-02-22T11:05Z
+urls:
+  reference: https://kwb-r.github.io/wasserportal/reference
+  article: https://kwb-r.github.io/wasserportal/articles
 
