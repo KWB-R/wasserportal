@@ -34,9 +34,26 @@ install.packages('wasserportal')
 ```{r}
 library(wasserportal)
 
-download_zenodo <- function(doi, tdir, files = list(), ...) {
-  fs::dir_create(tdir)
-  zen4R::download_zenodo(doi, path = tdir, files, ...)
+download_zenodo = function(doi, 
+                           path = tdir, 
+                           files = list(), 
+                           logger = NULL, 
+                           quiet = FALSE, 
+                           token = Sys.getenv("ZENODO_PAT"),
+                           ...){
+  fs::dir_create(path)
+  zenodo <- suppressWarnings(zen4R::ZenodoManager$new(token = token, 
+                                                      logger = logger))
+  rec <- zenodo$getRecordByDOI(doi)
+  if(is.null(rec)){
+    #try to get it as concept DOI
+    rec <- zenodo$getRecordByConceptDOI(doi)
+    if(is.null(rec)){
+      stop("The DOI specified doesn't match any existing Zenodo DOI or concept DOI")
+    }
+  }
+  #download
+  rec$downloadFiles(path = path, files = files, quiet = quiet, ...)
 }
 
 ### Download S90 | ZEROPMBOX1 | ZeroPM Box 1 Substances
