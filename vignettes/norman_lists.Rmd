@@ -34,14 +34,14 @@ install.packages('wasserportal')
 ```{r}
 library(wasserportal)
 
-download_zenodo = function(doi, 
-                           path = tdir, 
+download_zenodo <- function(doi, 
+                           tdir, 
                            files = list(), 
                            logger = NULL, 
                            quiet = FALSE, 
                            token = Sys.getenv("ZENODO_PAT"),
                            ...){
-  fs::dir_create(path)
+  fs::dir_create(tdir)
   zenodo <- suppressWarnings(zen4R::ZenodoManager$new(token = token, 
                                                       logger = logger))
   rec <- zenodo$getRecordByDOI(doi)
@@ -53,7 +53,7 @@ download_zenodo = function(doi,
     }
   }
   #download
-  rec$downloadFiles(path = path, files = files, quiet = quiet, ...)
+  rec$downloadFiles(path = tdir, files = files, quiet = quiet, ...)
 }
 
 ### Download S90 | ZEROPMBOX1 | ZeroPM Box 1 Substances
