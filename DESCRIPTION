@@ -54,9 +54,7 @@ Suggests:
     rmarkdown,
     rvest,
     sf,
-    tidyselect,
-    xml2,
-    zen4R
+    tidyselect
 Remotes: 
     github::kwb-r/kwb.datetime,
     github::kwb-r/kwb.pkgbuild,
