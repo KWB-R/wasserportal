@@ -47,8 +47,8 @@ t_path
 ### Version: NORMAN-SLE-S0.0.4.1 (2021-01-18)
 ### DOI: 10.5281/zenodo.5873975
 
-norman_s0_path  <- download_file("https://zenodo.org/record/5873975/files/susdat_2022-01-18-104316.csv")
-norman_s0 <- readr::read_csv(norman_s0_path)
+#norman_s0_path  <- download_file("https://zenodo.org/record/5873975/files/susdat_2022-01-18-104316.csv")
+#norman_s0 <- readr::read_csv(norman_s0_path)
 
 ### Download S36 | UBAPMT | Potential Persistent, Mobile and Toxic (PMT) substances
 ### Version: NORMAN-SLE-S36.0.2.1 (2020-12-15)
