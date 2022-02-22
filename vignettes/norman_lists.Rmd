@@ -99,7 +99,7 @@ DT::datatable(missing_on_zenodo, filter = "top", rownames = FALSE)
 #                 .data$cas_number %in% unique(cas_wasserportal$cas_number))
 
 
-DT::datatable(norman_s0_in_wasserportal, filter = "top", rownames = FALSE)
+#DT::datatable(norman_s0_in_wasserportal, filter = "top", rownames = FALSE)
 
 norman_lists_table <- xml2::read_html("https://www.norman-network.com/nds/SLE/") %>%
 rvest::html_element(css = ".table") %>%
