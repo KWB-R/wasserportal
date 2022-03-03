@@ -26,7 +26,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -125,25 +125,14 @@ together with the additional information on the UTC offset (column
 <span class="r-in">  variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">variables</span><span class="op">[</span><span class="st">"Sauerstoffgehalt"</span><span class="op">]</span>, <span class="va">variables</span><span class="op">[</span><span class="st">"Leitfaehigkeit"</span><span class="op">]</span><span class="op">)</span>,</span>
 <span class="r-in">  from_date <span class="op">=</span> <span class="va">from_date</span>, include_raw_time <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span class="r-in"><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Reading 'Sauerstoffgehalt' for station 153 (MPS_Charlottenburg) ... ok. (0.82s) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Reading 'Leitfaehigkeit' for station 153 (MPS_Charlottenburg) ... ok. (0.57s) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Reading 'Sauerstoffgehalt' for station 153 (MPS_Charlottenburg) ... ok. (0.55s) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Reading 'Leitfaehigkeit' for station 153 (MPS_Charlottenburg) ... ok. (0.20s) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Removing 2 elements that are empty or failed ... ok. (0.00s) </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> No remaining data frames. Returning NULL.</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Look at the first few records</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">water_quality</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        timestamp_raw   timestamp_corr       LocalDateTime UTCOffset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 98  28.02.2021 03:00 28.02.2021 03:00 2021-02-28 03:00:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 99  28.02.2021 03:15 28.02.2021 03:15 2021-02-28 03:15:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 100 28.02.2021 03:30 28.02.2021 03:30 2021-02-28 03:30:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 101 28.02.2021 03:45 28.02.2021 03:45 2021-02-28 03:45:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 102 28.02.2021 04:00 28.02.2021 04:00 2021-02-28 04:00:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 103 28.02.2021 04:15 28.02.2021 04:15 2021-02-28 04:15:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Sauerstoffgehalt Leitfaehigkeit</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 98              -777           -777</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 99              -777           -777</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 100             -777           -777</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 101             -777           -777</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 102             -777           -777</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 103             -777           -777</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Check the metadata</span></span>
 <span class="r-in"><span class="co">#kwb.utils::getAttribute(water_quality, "metadata")</span></span>
@@ -153,20 +142,7 @@ together with the additional information on the UTC offset (column
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Look at the first few records again</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">water_quality</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        timestamp_raw   timestamp_corr       LocalDateTime UTCOffset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 98  28.02.2021 03:00 28.02.2021 03:00 2021-02-28 03:00:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 99  28.02.2021 03:15 28.02.2021 03:15 2021-02-28 03:15:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 100 28.02.2021 03:30 28.02.2021 03:30 2021-02-28 03:30:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 101 28.02.2021 03:45 28.02.2021 03:45 2021-02-28 03:45:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 102 28.02.2021 04:00 28.02.2021 04:00 2021-02-28 04:00:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 103 28.02.2021 04:15 28.02.2021 04:15 2021-02-28 04:15:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Sauerstoffgehalt Leitfaehigkeit</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 98                NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 99                NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 100               NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 101               NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 102               NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 103               NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> logical(0)</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co">### How was the original timestamp interpreted?</span></span>
 <span class="r-in"></span>
@@ -182,14 +158,12 @@ together with the additional information on the UTC offset (column
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Look at the data for these timestamps</span></span>
 <span class="r-in"><span class="va">water_quality</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="va">pattern</span>, <span class="va">water_quality</span><span class="op">$</span><span class="va">timestamp_raw</span><span class="op">)</span>, <span class="op">]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] timestamp_raw    timestamp_corr   LocalDateTime    UTCOffset       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5] Sauerstoffgehalt Leitfaehigkeit  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;0 rows&gt; (or 0-length row.names)</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in water_quality$timestamp_raw:</span> $ operator is invalid for atomic vectors</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># The original timestamps (timestamps_raw) were not all plausible, e.g.</span></span>
 <span class="r-in"><span class="co"># for March 2019. This seems to have been fixed by the "wasserportal"!</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">water_quality</span><span class="op">$</span><span class="va">timestamp_raw</span> <span class="op">!=</span> <span class="va">water_quality</span><span class="op">$</span><span class="va">timestamp_corr</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in water_quality$timestamp_raw:</span> $ operator is invalid for atomic vectors</span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>
