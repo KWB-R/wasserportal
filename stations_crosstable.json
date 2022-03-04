@@ -360,7 +360,7 @@
   },
   {
     "Messstellennummer": "5828000",
-    "Messstellenname": "Bräsinchen  Hauptflusspegel",
+    "Messstellenname": "Bräsinchen, Hauptabflusspegel",
     "ws": "x"
   },
   {
@@ -415,7 +415,7 @@
   },
   {
     "Messstellennummer": "5820901",
-    "Messstellenname": "Talsperre Spremberg",
+    "Messstellenname": "Talsperre Spremberg, Beckenpegel",
     "ws": "x"
   },
   {
@@ -881,10 +881,6 @@
     "Messstellennummer": "145",
     "gws": "x",
     "gwq": "x"
-  },
-  {
-    "Messstellennummer": "146",
-    "gws": "x"
   },
   {
     "Messstellennummer": "147",
