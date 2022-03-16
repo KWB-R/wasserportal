@@ -988,6 +988,19 @@
     "Hochwert_UTM_33_N": "5832148.10"
   },
   {
+    "Nummer": "146",
+    "Bezirk": "Reinickendorf",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand",
+    "Grundwasserleiter": "Hauptgrundwasserleiter (GWL 1.3 + 2)",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "49.80",
+    "Rohroberkante_m_ue_NHN": "50.35",
+    "Filteroberkante_m_u_GOK": "34.03",
+    "Filterunterkante_m_u_GOK": "36.03",
+    "Rechtswert_UTM_33_N": "382544.20",
+    "Hochwert_UTM_33_N": "5833523.90"
+  },
+  {
     "Nummer": "147",
     "Bezirk": "Charlottenburg-Wilmersdorf",
     "Betreiber": "Senat",
