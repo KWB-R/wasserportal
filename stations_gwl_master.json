@@ -10833,19 +10833,6 @@
     "Hochwert_UTM_33_N": "5827336.00"
   },
   {
-    "Nummer": "17900",
-    "Bezirk": "Charlottenburg-Wilmersdorf",
-    "Betreiber": "Senat",
-    "Auspraegung": "GW-Stand",
-    "Grundwasserleiter": "Panketalgrundwasserleiter (GWL 1.2)",
-    "Gelaendeoberkante_GOK_m_ue_NHN": "31.75",
-    "Rohroberkante_m_ue_NHN": "33.06",
-    "Filteroberkante_m_u_GOK": "-0.31",
-    "Filterunterkante_m_u_GOK": "0.69",
-    "Rechtswert_UTM_33_N": "382134.00",
-    "Hochwert_UTM_33_N": "5815609.00"
-  },
-  {
     "Nummer": "21101",
     "Bezirk": "Mitte",
     "Betreiber": "Senat",
