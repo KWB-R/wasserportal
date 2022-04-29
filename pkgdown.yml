@@ -1,8 +1,8 @@
 pandoc: 2.7.3
-pkgdown: 2.0.2
+pkgdown: 2.0.3
 pkgdown_sha: ~
 articles:
   groundwater: groundwater.html
   tutorial: tutorial.html
-last_built: 2022-04-27T05:13Z
+last_built: 2022-04-29T05:07Z
 
