@@ -54,7 +54,6 @@ Suggests:
     plotly,
     readr,
     rmarkdown,
-    rvest,
     sf,
     tidyselect
 Remotes: 
