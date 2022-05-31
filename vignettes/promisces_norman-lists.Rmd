@@ -4,7 +4,7 @@ author: "Michael Rustler"
 date: "`r Sys.time()`"
 output: rmarkdown::html_vignette
 vignette: >
- %\VignetteIndexEntry{Norman Lists}
+ %\VignetteIndexEntry{PROMISCES: Norman Lists}
  %\VignetteEngine{knitr::rmarkdown}
  %\VignetteEncoding{UTF-8}
 ---
@@ -14,6 +14,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+is_ghactions <- identical(Sys.getenv("CI"), "true")
 ```
 
 ## Install R Package
@@ -31,7 +32,7 @@ install.packages('wasserportal')
 
 ## Get Norman Lists
 
-```{r}
+```{r eval = is_ghactions}
 library(wasserportal)
 
 download_file <- function(url, 
@@ -114,9 +115,8 @@ DT::datatable(norman_lists_table)
 
 ## Get GW Quality from Wasserportal
 
-```{r eval = FALSE}
+```{r eval = is_ghactions}
 # Load R package
-library(wasserportal)
 
 ### For details see:
 ### https://kwb-r.github.io/wasserportal/articles/groundwater.html
@@ -284,7 +284,7 @@ Filter criteria:
   - log Kow (column `logKow_EPISuite` <= `4.5`)
   - toxicity value (column `LC50_48_hr_ug/` not `NA`)
 
-```{r}
+```{r eval = is_ghactions}
 
 
 gwq_subs_plot <- samples_by_para_and_station_n %>% 

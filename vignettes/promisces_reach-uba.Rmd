@@ -14,6 +14,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+is_ghactions <- identical(Sys.getenv("CI"), "true")
 ```
 
 ## Install R Package
@@ -31,7 +32,7 @@ install.packages('wasserportal')
 
 ## Get GW Quality from Wasserportal
 
-```{r}
+```{r eval = is_ghactions}
 # Load R package
 library(wasserportal)
 
@@ -221,7 +222,7 @@ openxlsx::write.xlsx(x = gwq_data_list,
 
 ### Total
 
-```{r}
+```{r eval = is_ghactions}
 g <- cas_reach %>%
   dplyr::mutate(source = sprintf("UBA (n = %d)", nrow(cas_reach))) %>% 
   dplyr::bind_rows(cas_wasserportal_clean %>% 
@@ -251,7 +252,7 @@ g <- cas_reach %>%
 ```
 ### By Station
 
-```{r}
+```{r eval = is_ghactions}
 
 by_stations <- samples_by_para_and_station_n %>% 
   dplyr::select(.data$name_uba, .data$n_stations_sampled)
@@ -271,7 +272,7 @@ wasserportal_substances <- samples_by_para_and_station_n %>%
 
 ```
 
-```{r}
+```{r eval = is_ghactions}
 
 
 wasserportal_substances_plot <- wasserportal_substances %>%
@@ -301,7 +302,7 @@ wasserportal_substances_plot %>%
 ```
 
 
-```{r}
+```{r eval = is_ghactions}
 
 gwq_subs_plot <- samples_by_para_and_station_n %>% 
   dplyr::arrange(.data$`LC50_48_hr_ug/L`) +
@@ -340,7 +341,7 @@ ggplot2::ggsave(filename = "wasserportal_reach-substances_above-detection-limit.
   
 ```
 
-```{r}
+```{r eval = is_ghactions}
 
 n_cat <- samples_by_category_and_station %>% 
   dplyr::group_by(Messstellennummer) %>%  
@@ -388,7 +389,7 @@ ggplot2::ggsave(filename = "wasserportal_reach-categories_above-detection-limit.
   
 ```
 
-```{r}
+```{r eval = is_ghactions}
 
 n_cat <- gwq_subs_stations_n_paras_abovedetection %>% 
   dplyr::group_by(Messstellennummer) %>%  
@@ -426,7 +427,7 @@ ggplot2::ggsave(filename = "wasserportal_reach-categories_paras-by-station_above
   
 ```
 
-```{r}
+```{r eval = is_ghactions}
 
 gwq_subs_plot <- samples_by_para_and_station_n %>% 
   dplyr::mutate(n_stations_belowdetection = .data$n_stations_sampled - .data$n_stations_abovedetection, 
@@ -485,7 +486,7 @@ ggplot2::ggsave(filename = "wasserportal_reach-substances_by-monitoring-station.
   
 ```
 
-```{r}
+```{r eval = is_ghactions}
 
 stations_abovedetection <- samples_by_para_and_station %>% 
   dplyr::filter(.data$n_nc > 0) %>% 
@@ -535,7 +536,7 @@ ggplot2::ggsave(pdff,
 
 ```
 
-```{r}
+```{r eval = is_ghactions}
 
 n_samples_all <- samples %>% 
   dplyr::count(.data$name_uba) %>% 
