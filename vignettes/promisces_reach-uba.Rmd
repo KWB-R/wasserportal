@@ -272,7 +272,7 @@ wasserportal_substances <- samples_by_para_and_station_n %>%
 
 ```
 
-```{r eval = is_ghactions}
+```{r eval = is_ghactions, fig.height = 14, fig.width = 7}
 
 
 wasserportal_substances_plot <- wasserportal_substances %>%
@@ -305,11 +305,10 @@ wasserportal_substances_plot %>%
 ```{r eval = is_ghactions}
 
 gwq_subs_plot <- samples_by_para_and_station_n %>% 
-  dplyr::arrange(.data$`LC50_48_hr_ug/L`) +
-  dplyr::mutate(label = sprintf("LC50_48_hr_ug/L: %.1f, logKow_EPISuite: %.1f : %s (%s)", 
-                                .data$`LC50_48_hr_ug/L`,
-                                .data$logKow_EPISuite,
-                                .data$name_norman, 
+  dplyr::arrange(.data$category) %>% 
+  dplyr::mutate(label = sprintf("cat %d: %s (%s)", 
+                                .data$category,
+                                .data$name_uba, 
                                 .data$cas_number))
 
 gwq_subs_plot$label <- as.factor(gwq_subs_plot$label)
@@ -317,7 +316,7 @@ g1 <- gwq_subs_plot %>%
   ggplot2::ggplot(ggplot2::aes(x = .data$percent_samples_abovedetection, 
                                y = forcats::fct_reorder(.data$label, .data$percent_samples_abovedetection, .desc = TRUE),
                                label = sprintf("%2.2f %% (n_samples = %d, n_stations = %d)", .data$percent_samples_abovedetection,.data$n_total, .data$n_stations_sampled),
-                               fill = .data$logKow_EPISuite)) +                             
+                               fill = .data$category)) +                             
   ggplot2::scale_fill_brewer(palette="RdYlGn") +      
   ggplot2::scale_y_discrete(limits = rev) +
   ggplot2::geom_bar(stat = "identity") +
@@ -341,7 +340,7 @@ ggplot2::ggsave(filename = "wasserportal_reach-substances_above-detection-limit.
   
 ```
 
-```{r eval = is_ghactions}
+```{r eval = is_ghactions, fig.height = 14, fig.width = 7}
 
 n_cat <- samples_by_category_and_station %>% 
   dplyr::group_by(Messstellennummer) %>%  
@@ -389,7 +388,7 @@ ggplot2::ggsave(filename = "wasserportal_reach-categories_above-detection-limit.
   
 ```
 
-```{r eval = is_ghactions}
+```{r eval = is_ghactions, fig.height = 14, fig.width = 7}
 
 n_cat <- gwq_subs_stations_n_paras_abovedetection %>% 
   dplyr::group_by(Messstellennummer) %>%  
@@ -427,7 +426,7 @@ ggplot2::ggsave(filename = "wasserportal_reach-categories_paras-by-station_above
   
 ```
 
-```{r eval = is_ghactions}
+```{r eval = is_ghactions, fig.height = 14, fig.width = 7}
 
 gwq_subs_plot <- samples_by_para_and_station_n %>% 
   dplyr::mutate(n_stations_belowdetection = .data$n_stations_sampled - .data$n_stations_abovedetection, 
@@ -486,7 +485,7 @@ ggplot2::ggsave(filename = "wasserportal_reach-substances_by-monitoring-station.
   
 ```
 
-```{r eval = is_ghactions}
+```{r eval = is_ghactions, fig.height = 14, fig.width = 7}
 
 stations_abovedetection <- samples_by_para_and_station %>% 
   dplyr::filter(.data$n_nc > 0) %>% 
@@ -536,7 +535,7 @@ ggplot2::ggsave(pdff,
 
 ```
 
-```{r eval = is_ghactions}
+```{r eval = is_ghactions, fig.height = 14, fig.width = 7}
 
 n_samples_all <- samples %>% 
   dplyr::count(.data$name_uba) %>% 
