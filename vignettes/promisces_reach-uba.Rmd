@@ -316,8 +316,8 @@ g1 <- gwq_subs_plot %>%
   ggplot2::ggplot(ggplot2::aes(x = .data$percent_samples_abovedetection, 
                                y = forcats::fct_reorder(.data$label, .data$percent_samples_abovedetection, .desc = TRUE),
                                label = sprintf("%2.2f %% (n_samples = %d, n_stations = %d)", .data$percent_samples_abovedetection,.data$n_total, .data$n_stations_sampled),
-                               fill = .data$category)) +                             
-  ggplot2::scale_fill_brewer(palette="RdYlGn") +      
+                               fill = as.factor(.data$category))) +                             
+  ggplot2::scale_fill_brewer(palette="RdYlGn", name = "Category") +      
   ggplot2::scale_y_discrete(limits = rev) +
   ggplot2::geom_bar(stat = "identity") +
   ggplot2::geom_text(size = 1.8, hjust = -0.01) +
