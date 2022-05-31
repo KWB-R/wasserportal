@@ -284,11 +284,12 @@ Filter criteria:
   - log Kow (column `logKow_EPISuite` <= `4.5`)
   - toxicity value (column `LC50_48_hr_ug/` not `NA`)
 
-```{r eval = is_ghactions}
+```{r eval = is_ghactions, fig.height = 14, fig.width = 7}
 
 
 gwq_subs_plot <- samples_by_para_and_station_n %>% 
   dplyr::filter(.data$percent_samples_abovedetection > 0) %>% 
+  dplyr::left_join(norman_s0_in_wasserportal) %>%
   dplyr::arrange(.data$`LC50_48_hr_ug/L`) %>% 
   dplyr::mutate(label = sprintf("%s (%s, LC50_48_hr_ug/L: %.1f, logKow_EPISuite: %.1f : ", 
                                 .data$name_norman, 
