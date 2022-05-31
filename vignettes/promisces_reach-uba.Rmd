@@ -1,10 +1,10 @@
 ---
-title: "Reach (UBA)"
+title: "PROMISCES: Reach (UBA)"
 author: "Michael Rustler"
 date: "`r Sys.time()`"
 output: rmarkdown::html_vignette
 vignette: >
- %\VignetteIndexEntry{Reach (UBA)}
+ %\VignetteIndexEntry{PROMISCES: Reach (UBA)}
  %\VignetteEngine{knitr::rmarkdown}
  %\VignetteEncoding{UTF-8}
 ---
