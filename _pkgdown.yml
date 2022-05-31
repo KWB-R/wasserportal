@@ -9,6 +9,10 @@ authors:
     href: https://www.kompetenz-wasser.de/en/forschung/projekte/dwc
     html: <img src='https://kompetenz-wasser.de/media/pages/forschung/projekte/dwc/6263c55e76-1639132760/dwc-rvb-grey.jpg'
       alt='Project DWC' width='72' />
+  PROMISCES:
+    href: https://www.kompetenz-wasser.de/en/forschung/projekte/promisces
+    html: <img src='https://promisces.eu/skin/promisces/assets/img/logo.png'
+      alt='Project PROMISCES' width='72' />
   Kompetenzzentrum Wasser Berlin gGmbH (KWB):
     href: https://www.kompetenz-wasser.de
     html: <img src='https://publications.kompetenz-wasser.de/img/KWB-Logo.svg'
@@ -26,4 +30,3 @@ template:
 
 development:
   mode: auto
-

@@ -1,7 +1,7 @@
 Package: wasserportal
 Title: R Package with Functions for Scraping Data of
     Wasserportal Berlin
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     c(person(given = "Hauke",
              family = "Sonnenberg",
@@ -14,6 +14,8 @@ Authors@R:
              email = "michael.rustler@kompetenz-wasser.de",
              comment = c(ORCID = "0000-0003-0647-7726")),
       person(given = "DWC",
+             role = "fnd"),
+      person(given = "PROMISCES",
              role = "fnd"),
       person(given = "Kompetenzzentrum Wasser Berlin gGmbH (KWB)",
              role = "cph"))
