@@ -304,18 +304,20 @@ wasserportal_substances_plot %>%
 ```{r}
 
 gwq_subs_plot <- samples_by_para_and_station_n %>% 
-  dplyr::mutate(label = sprintf("Cat %d: %s (%s)", 
-                                .data$category,
-                                .data$name_uba, 
-                                .data$cas_number),
-                category = forcats::as_factor(.data$category))
+  dplyr::arrange(.data$`LC50_48_hr_ug/L`) +
+  dplyr::mutate(label = sprintf("LC50_48_hr_ug/L: %.1f, logKow_EPISuite: %.1f : %s (%s)", 
+                                .data$`LC50_48_hr_ug/L`,
+                                .data$logKow_EPISuite,
+                                .data$name_norman, 
+                                .data$cas_number))
 
 gwq_subs_plot$label <- as.factor(gwq_subs_plot$label)
 g1 <- gwq_subs_plot %>% 
   ggplot2::ggplot(ggplot2::aes(x = .data$percent_samples_abovedetection, 
                                y = forcats::fct_reorder(.data$label, .data$percent_samples_abovedetection, .desc = TRUE),
                                label = sprintf("%2.2f %% (n_samples = %d, n_stations = %d)", .data$percent_samples_abovedetection,.data$n_total, .data$n_stations_sampled),
-                               fill = .data$category)) +                             ggplot2::scale_fill_brewer(palette="RdYlGn") +      
+                               fill = .data$logKow_EPISuite)) +                             
+  ggplot2::scale_fill_brewer(palette="RdYlGn") +      
   ggplot2::scale_y_discrete(limits = rev) +
   ggplot2::geom_bar(stat = "identity") +
   ggplot2::geom_text(size = 1.8, hjust = -0.01) +
