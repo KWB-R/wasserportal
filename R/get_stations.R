@@ -10,6 +10,7 @@
 #' @importFrom dplyr select mutate left_join
 #' @importFrom tidyr pivot_wider
 #' @importFrom data.table rbindlist
+#' @importFrom rlang .data
 
 get_stations <- function(run_parallel = TRUE) {
 
@@ -50,7 +51,7 @@ overview_df <- data.table::rbindlist(overview_list, fill = TRUE, idcol = "key")
 metadata <- tidyr::separate(
   data.frame(key = names(overview_options),
              station_type = as.vector(overview_options)),
-  key,
+  .data$key,
   into = c("water_body", "variable"),
   sep = "\\.",
   remove = FALSE)

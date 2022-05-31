@@ -105,11 +105,11 @@ read_wasserportal_raw_gw <- function(
                           names_to = c("parameter_unit"),
                           values_to = "Messwert") %>%
       dplyr::mutate(Messstellennummer = station,
-                    Parameter = stringr::str_remove(parameter_unit, "\\s+\\[.*\\]"),
-                    Einheit = stringr::str_extract(parameter_unit, "\\[.*\\]") %>%
+                    Parameter = stringr::str_remove(.data$parameter_unit, "\\s+\\[.*\\]"),
+                    Einheit = stringr::str_extract(.data$parameter_unit, "\\[.*\\]") %>%
                       stringr::str_remove(pattern = "\\[") %>%
                       stringr::str_remove(pattern = "\\]")) %>%
-      dplyr::filter(!is.na(Messwert)) %>%
+      dplyr::filter(!is.na(.data$Messwert)) %>%
       dplyr::select("Messstellennummer", "Datum", "Parameter", "Einheit", "Messwert")
   }
 
@@ -119,16 +119,16 @@ read_wasserportal_raw_gw <- function(
                           names_to = c("parameter_unit"),
                           values_to = "Messwert") %>%
       dplyr::mutate(Messstellennummer = station,
-                    Parameter = stringr::str_remove(parameter_unit, "\\s+\\(.*\\)"),
-                    Einheit = stringr::str_extract(parameter_unit, "\\(.*\\)") %>%
+                    Parameter = stringr::str_remove(.data$parameter_unit, "\\s+\\(.*\\)"),
+                    Einheit = stringr::str_extract(.data$parameter_unit, "\\(.*\\)") %>%
                       stringr::str_remove(pattern = "\\(") %>%
                       stringr::str_remove(pattern = "\\)")) %>%
-      dplyr::filter(!is.na(Messwert)) %>%
+      dplyr::filter(!is.na(.data$Messwert)) %>%
       dplyr::select("Messstellennummer", "Datum", "Parameter", "Einheit", "Messwert")
   }
 
   data <- data %>%
-    dplyr::mutate(Datum = as.Date(Datum, format = "%d.%m.%Y"))
+    dplyr::mutate(Datum = as.Date(.data$Datum, format = "%d.%m.%Y"))
 
   # Return the data frame with the additional fields of the header row as
   # meta information in attribute "metadata"
