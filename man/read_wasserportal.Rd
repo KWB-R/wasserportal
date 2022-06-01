@@ -51,7 +51,7 @@ stations <- wasserportal::get_wasserportal_stations()
 variables <- wasserportal::get_wasserportal_variables()
 
 # Set the start date
-from_date <- "2020-03-01"
+from_date <- "2021-03-01"
 
 # Read the timeseries (multiple variables for one station)
 water_quality <- wasserportal::read_wasserportal(

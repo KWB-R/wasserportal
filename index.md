@@ -11,20 +11,29 @@ real-time data of surface water and groundwater monitoring stations.
 
 ## Installation
 
-For details on how to install KWB-R packages checkout our [installation tutorial](https://kwb-r.github.io/kwb.pkgbuild/articles/install.html).
+For installing the latest release of this R package run the following code below:
 
 ```r
-### Optionally: specify GitHub Personal Access Token (GITHUB_PAT)
-### See here why this might be important for you:
-### https://kwb-r.github.io/kwb.pkgbuild/articles/install.html#set-your-github_pat
+# Enable repository from kwb-r
+options(repos = c(
+  kwbr = 'https://kwb-r.r-universe.dev',
+  CRAN = 'https://cloud.r-project.org'))
+  
+# Download and install wasserportal in R
+install.packages('wasserportal')
 
-# Sys.setenv(GITHUB_PAT = "mysecret_access_token")
-
-# Install package "remotes" from CRAN
-if (! require("remotes")) {
-  install.packages("remotes", repos = "https://cloud.r-project.org")
-}
-
-# Install KWB package 'wasserportal' from GitHub
-remotes::install_github("KWB-R/wasserportal")
+# Browse the wasserportal manual pages
+help(package = 'wasserportal')
 ```
+## Usage 
+
+Checkout the [Tutorial](articles/tutorial.html) article on how to use this R package
+for scraping data from the [Wasserportal Berlin](https://wasserportal.berlin.de), 
+which is performed automatically every day at 5 am UTC using [GitHub actions](https://github.com/KWB-R/wasserportal/actions/workflows/pkgdown.yaml).
+
+How this data can be used directly from within R is shown in the [Groundwater](articles/groundwater.html) article.
+
+
+
+
+
