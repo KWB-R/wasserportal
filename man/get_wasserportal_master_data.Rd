@@ -23,8 +23,9 @@ Wasserportal Berlin: get master data for a single station
 }
 \examples{
 ## GW Station
+\dontrun{
 get_wasserportal_master_data(station_id = 149)
-
+}
 ## SW Station
 get_wasserportal_master_data(station_id = 5865900)
 }

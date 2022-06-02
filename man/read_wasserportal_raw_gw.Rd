@@ -33,6 +33,8 @@ data.frame with values (currently only if stype == "gwl")
 read_wasserportal_raw_gw
 }
 \examples{
+\dontrun{
 read_wasserportal_raw_gw(station = 149, stype = "gwl")
 read_wasserportal_raw_gw(station = 149, stype = "gwq")
+}
 }

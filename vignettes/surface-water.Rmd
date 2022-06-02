@@ -1,4 +1,22 @@
-if (FALSE) {
+---
+title: "Surface Water"
+author: "Michael Rustler"
+date: "`r Sys.time()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Surface Water}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r }
 library(wasserportal)
 
 stations <- wasserportal::get_stations()
@@ -7,12 +25,13 @@ stations_crosstable <-  stations$crosstable
 stations_crosstable_bb <- stations_crosstable %>%
   dplyr::filter(stringr::str_detect(.data$Messstellennummer,
                                     pattern = "^[A-Z]{2}_"))
+stations_crosstable_bb
 
 stations_crosstable_berlin <- stations_crosstable %>%
   dplyr::filter(stringr::str_detect(.data$Messstellennummer,
                                     pattern = "^[A-Z]{2}_",
                                     negate = TRUE))
-
+stations_crosstable_berlin
 
 
 station_crosstable_berlin <- stations_crosstable_berlin[1,]
@@ -24,14 +43,16 @@ sw_station_berlin_daily <- wasserportal::read_wasserportal_raw(
   type = "daily",
   from_date = from_date,
   include_raw_time = TRUE,
-  stations_crosstable = stations_crosstable
+  stations_crosstable = stations_crosstable_berlin
 )
 
 str(sw_station_berlin_daily)
 
 
 
-sw_stations_berlin_daily <- stats::setNames(lapply(stations_crosstable_berlin$Messstellennummer,
+stations_berlin <- stations_crosstable_berlin$Messstellennummer[1:5]
+
+sw_stations_berlin_daily <- stats::setNames(lapply(stations_berlin,
                    function(station) {
                      msg <- sprintf("Fetching data for station '%s'", station)
                      kwb.utils::catAndRun(msg, expr = {
@@ -42,10 +63,8 @@ sw_stations_berlin_daily <- stats::setNames(lapply(stations_crosstable_berlin$Me
   include_raw_time = TRUE,
   stations_crosstable = stations_crosstable
 )})}
-), nm = stations_crosstable$Messstellennummer)
+), nm = stations_berlin)
 
 str(sw_stations_daily)
 
-
-}
-
+```
