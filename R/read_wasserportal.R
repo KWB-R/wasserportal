@@ -13,9 +13,9 @@
 #' \code{UTCOffset}, 1 in winter, 2 in summer).
 #'
 #' @param station station number, as returned by
-#'   \code{\link{get_wasserportal_stations}}
+#'   \code{\link{get_stations}}
 #' @param variables vector of variable identifiers, as returned by
-#'   \code{\link{get_wasserportal_variables}}
+#'   \code{\link{get_station_variables}}
 #' @param from_date \code{Date} object (or string in format "yyyy-mm-dd" that
 #'   can be converted to a \code{Date} object representing the first day for
 #'   which to request data. Default: \code{as.character(Sys.Date() - 90L)}
@@ -23,6 +23,8 @@
 #' @param include_raw_time if \code{TRUE} the original time column and the
 #'   column with the corrected winter time are included in the output. The
 #'   default is \code{FALSE}.
+#' @param stations_crosstable sublist `crosstable` as retrieved from \link{\code{get_stations}}
+#' i.e. `get_stations()$crosstable`
 #' @return data frame read from the CSV file that the download provides.
 #'   IMPORTANT: It is not yet clear how to interpret the timestamp, see example
 #' @importFrom httr POST content
@@ -30,17 +32,19 @@
 #' @export
 #' @examples
 #' # Get a list of available water quality stations and variables
-#' stations <- wasserportal::get_wasserportal_stations()
-#' variables <- wasserportal::get_wasserportal_variables()
+#' stations <- wasserportal::get_stations()
+#' stations_crosstable <- stations$crosstable
+#' station_crosstable <- stations_crosstable[1,]
 #'
 #' # Set the start date
 #' from_date <- "2021-03-01"
 #'
 #' # Read the timeseries (multiple variables for one station)
 #' water_quality <- wasserportal::read_wasserportal(
-#'   station = stations$MPS_Charlottenburg,
-#'   variables = c(variables["Sauerstoffgehalt"], variables["Leitfaehigkeit"]),
-#'   from_date = from_date, include_raw_time = TRUE
+#'   station = station_crosstable$Messstellennummer,
+#'   from_date = from_date,
+#'   include_raw_time = TRUE,
+#'   stations_crosstable = stations_crosstable
 #' )
 #'
 #' # Look at the first few records
@@ -75,17 +79,20 @@
 #' sum(water_quality$timestamp_raw != water_quality$timestamp_corr)
 #'
 read_wasserportal <- function(
-  station, variables = get_wasserportal_variables(station),
+  station,
+  variables = NULL,
   from_date = as.character(Sys.Date() - 90L), type = "single",
-  include_raw_time = FALSE
+  include_raw_time = FALSE,
+  stations_crosstable
 )
 {
   #kwb.utils::assignPackageObjects("wasserportal")
   #station=get_wasserportal_stations(type = "flow")$Tiefwerder
   #variables = get_wasserportal_variables(station);from_date = "2019-01-01";include_raw_time = FALSE
-
-  variable_ids <- get_wasserportal_variables()
-  station_ids <- get_wasserportal_stations(type = NULL)
+  station_crosstable <- stations_crosstable[stations_crosstable$Messstellennummer == station,]
+  variable_ids <- get_station_variables(station_crosstable)
+  if(is.null(variables)) variables <- variable_ids
+  station_ids <- stations_crosstable[["Messstellennummer"]]
 
   stopifnot(all(station %in% station_ids))
   stopifnot(all(variables %in% variable_ids))
@@ -101,7 +108,9 @@ read_wasserportal <- function(
     from_date = from_date,
     type = type,
     include_raw_time = include_raw_time,
-    handle = handle
+    handle = handle,
+    stations_crosstable = stations_crosstable
+
   )
 
   # Remove elements of class "response" that are returned in case of an error

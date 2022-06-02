@@ -6,18 +6,19 @@
 \usage{
 read_wasserportal(
   station,
-  variables = get_wasserportal_variables(station),
+  variables = NULL,
   from_date = as.character(Sys.Date() - 90L),
   type = "single",
-  include_raw_time = FALSE
+  include_raw_time = FALSE,
+  stations_crosstable
 )
 }
 \arguments{
 \item{station}{station number, as returned by
-\code{\link{get_wasserportal_stations}}}
+\code{\link{get_stations}}}
 
 \item{variables}{vector of variable identifiers, as returned by
-\code{\link{get_wasserportal_variables}}}
+\code{\link{get_station_variables}}}
 
 \item{from_date}{\code{Date} object (or string in format "yyyy-mm-dd" that
 can be converted to a \code{Date} object representing the first day for
@@ -28,6 +29,9 @@ which to request data. Default: \code{as.character(Sys.Date() - 90L)}}
 \item{include_raw_time}{if \code{TRUE} the original time column and the
 column with the corrected winter time are included in the output. The
 default is \code{FALSE}.}
+
+\item{stations_crosstable}{sublist \code{crosstable} as retrieved from \link{\code{get_stations}}
+i.e. \code{get_stations()$crosstable}}
 }
 \value{
 data frame read from the CSV file that the download provides.
@@ -47,17 +51,19 @@ together with the additional information on the UTC offset (column
 }
 \examples{
 # Get a list of available water quality stations and variables
-stations <- wasserportal::get_wasserportal_stations()
-variables <- wasserportal::get_wasserportal_variables()
+stations <- wasserportal::get_stations()
+stations_crosstable <- stations$crosstable
+station_crosstable <- stations_crosstable[1,]
 
 # Set the start date
 from_date <- "2021-03-01"
 
 # Read the timeseries (multiple variables for one station)
 water_quality <- wasserportal::read_wasserportal(
-  station = stations$MPS_Charlottenburg,
-  variables = c(variables["Sauerstoffgehalt"], variables["Leitfaehigkeit"]),
-  from_date = from_date, include_raw_time = TRUE
+  station = station_crosstable$Messstellennummer,
+  from_date = from_date,
+  include_raw_time = TRUE,
+  stations_crosstable = stations_crosstable
 )
 
 # Look at the first few records

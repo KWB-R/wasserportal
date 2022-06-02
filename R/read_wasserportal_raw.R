@@ -1,3 +1,18 @@
+#' Helper function: get available station variables
+#'
+#' @param station_df station_df
+#'
+#' @return returns names of available variables for station
+#' @export
+#'
+#' @importFrom dplyr select_if
+#'
+get_station_variables <- function(station_df) {
+    station_df <- station_df %>%
+    dplyr::select_if(function(x){!all(is.na(x))})
+  names(station_df)[!names(station_df) %in% c("Messstellennummer", "Messstellenname")]
+}
+
 # read_wasserportal_raw --------------------------------------------------------
 
 #' Read Wasserportal Raw
@@ -8,29 +23,40 @@
 #' @param type one of "single", "daily", "monthly" (default: "single")
 #' @param include_raw_time TRUE or FALSE (default: FALSE)
 #' @param handle handle (default: NULL)
-#'
+#' @param stations_crosstable sublist `crosstable` as retrieved from \link{\code{get_stations}}
+#' i.e. `get_stations()$crosstable`
 #' @return ????
 #' @export
 #' @import kwb.utils
 #' @importFrom kwb.datetime textToEuropeBerlinPosix
 read_wasserportal_raw <- function(
   variable, station, from_date, type = "single", include_raw_time = FALSE,
-  handle = NULL
+  handle = NULL,
+  stations_crosstable
 )
 {
   #variable <- variables[1]
   from_date <- assert_date(from_date)
 
+
   stopifnot(length(station) == 1)
-  station_ids <- get_wasserportal_stations(type = NULL)
+  station_ids <- stations_crosstable$Messstellennummer
   stopifnot(station %in% station_ids)
 
   stopifnot(length(variable) == 1)
-  variable_ids <- get_wasserportal_variables(station)
+
+  station_df <- stations_crosstable[stations_crosstable$Messstellennummer == station, ] %>%
+    dplyr::select_if(function(x){!all(is.na(x))})
+
+  variable_ids <- get_station_variables(station_df)
   stopifnot(variable %in% variable_ids)
 
   sreihe <- kwb.utils::selectElements(elements = type, list(
     single = "w", single_all = "wa", daily = "m", monthly = "j"
+  ))
+
+  variable <- kwb.utils::selectElements(elements = variable, list(
+    ws = "w", df = "d", wt = "t", lf = "l", ph = "p", og = "g", os = "s"
   ))
 
   progress <- get_wasserportal_text(station, variable, station_ids, variable_ids)
@@ -71,7 +97,7 @@ read_wasserportal_raw <- function(
   data <- read(text, header = FALSE, skip = 1)
 
   # Get the numbers of the data columns
-  if (type != "monthly") {
+  if (!type %in% c("daily", "monthly")) {
     stopifnot(ncol(data) == 2L)
   }
 
