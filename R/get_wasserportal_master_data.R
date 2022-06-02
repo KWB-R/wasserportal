@@ -19,7 +19,7 @@ wasserportal_base_url <- function() {
 #' @export
 #' @examples
 #' ## GW Station
-#' get_wasserportal_master_data(station_id = 149)
+#' # get_wasserportal_master_data(station_id = 149)
 #'
 #' ## SW Station
 #' get_wasserportal_master_data(station_id = 5865900)
