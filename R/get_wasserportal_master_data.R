@@ -18,11 +18,12 @@ wasserportal_base_url <- function() {
 #' @importFrom rlang .data
 #' @export
 #' @examples
-#' ## GW Station
+#'## GW Station
+#'\dontrun{
 #' get_wasserportal_master_data(station_id = 149)
-#'
-#' ## SW Station
-#' get_wasserportal_master_data(station_id = 5865900)
+#'}
+#'## SW Station
+#'get_wasserportal_master_data(station_id = 5865900)
 
 get_wasserportal_master_data <- function (
   station_id,
