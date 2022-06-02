@@ -23,7 +23,7 @@ get_station_variables <- function(station_df) {
 #' @param type one of "single", "daily", "monthly" (default: "single")
 #' @param include_raw_time TRUE or FALSE (default: FALSE)
 #' @param handle handle (default: NULL)
-#' @param stations_crosstable sublist `crosstable` as retrieved from \link{\code{get_stations}}
+#' @param stations_crosstable sublist `crosstable` as retrieved from \code{\link{get_stations}}
 #' i.e. `get_stations()$crosstable`
 #' @return ????
 #' @export

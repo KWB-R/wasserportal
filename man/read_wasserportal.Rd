@@ -30,7 +30,7 @@ which to request data. Default: \code{as.character(Sys.Date() - 90L)}}
 column with the corrected winter time are included in the output. The
 default is \code{FALSE}.}
 
-\item{stations_crosstable}{sublist \code{crosstable} as retrieved from \link{\code{get_stations}}
+\item{stations_crosstable}{sublist \code{crosstable} as retrieved from \code{\link{get_stations}}
 i.e. \code{get_stations()$crosstable}}
 }
 \value{

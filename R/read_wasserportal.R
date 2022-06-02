@@ -23,7 +23,7 @@
 #' @param include_raw_time if \code{TRUE} the original time column and the
 #'   column with the corrected winter time are included in the output. The
 #'   default is \code{FALSE}.
-#' @param stations_crosstable sublist `crosstable` as retrieved from \link{\code{get_stations}}
+#' @param stations_crosstable sublist `crosstable` as retrieved from \code{\link{get_stations}}
 #' i.e. `get_stations()$crosstable`
 #' @return data frame read from the CSV file that the download provides.
 #'   IMPORTANT: It is not yet clear how to interpret the timestamp, see example

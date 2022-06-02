@@ -27,7 +27,7 @@ read_wasserportal_raw(
 
 \item{handle}{handle (default: NULL)}
 
-\item{stations_crosstable}{sublist \code{crosstable} as retrieved from \link{\code{get_stations}}
+\item{stations_crosstable}{sublist \code{crosstable} as retrieved from \code{\link{get_stations}}
 i.e. \code{get_stations()$crosstable}}
 }
 \value{
