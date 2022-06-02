@@ -24,7 +24,6 @@ wasserportal_base_url <- function() {
 #'}
 #'## SW Station
 #'get_wasserportal_master_data(station_id = 5865900)
-
 get_wasserportal_master_data <- function (
   station_id,
   url_wasserportal = wasserportal_base_url()
