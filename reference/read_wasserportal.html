@@ -119,25 +119,25 @@ together with the additional information on the UTC offset (column
 <span class="r-in">  variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">variables</span><span class="op">[</span><span class="st">"Sauerstoffgehalt"</span><span class="op">]</span>, <span class="va">variables</span><span class="op">[</span><span class="st">"Leitfaehigkeit"</span><span class="op">]</span><span class="op">)</span>,</span>
 <span class="r-in">  from_date <span class="op">=</span> <span class="va">from_date</span>, include_raw_time <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span class="r-in"><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Reading 'Sauerstoffgehalt' for station 153 (MPS_Charlottenburg) ... ok. (1.23s) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Reading 'Leitfaehigkeit' for station 153 (MPS_Charlottenburg) ... ok. (0.69s) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Reading 'Sauerstoffgehalt' for station 153 (MPS_Charlottenburg) ... ok. (1.86s) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Reading 'Leitfaehigkeit' for station 153 (MPS_Charlottenburg) ... ok. (0.70s) </span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Look at the first few records</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">water_quality</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          timestamp_raw   timestamp_corr       LocalDateTime UTCOffset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25154 30.05.2021 02:00 30.05.2021 02:00 2021-05-30 03:00:00         2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25155 30.05.2021 02:15 30.05.2021 02:15 2021-05-30 03:15:00         2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25156 30.05.2021 02:30 30.05.2021 02:30 2021-05-30 03:30:00         2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25157 30.05.2021 02:45 30.05.2021 02:45 2021-05-30 03:45:00         2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25158 30.05.2021 03:00 30.05.2021 03:00 2021-05-30 04:00:00         2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25159 30.05.2021 03:15 30.05.2021 03:15 2021-05-30 04:15:00         2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Sauerstoffgehalt Leitfaehigkeit</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25154             6.80            833</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25155             6.73            834</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25156             6.66            833</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25157             6.63            834</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25158             6.66            833</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25159             6.57            834</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         timestamp_raw   timestamp_corr       LocalDateTime UTCOffset</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1058 02.06.2021 02:00 02.06.2021 02:00 2021-06-02 03:00:00         2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1059 02.06.2021 02:15 02.06.2021 02:15 2021-06-02 03:15:00         2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1060 02.06.2021 02:30 02.06.2021 02:30 2021-06-02 03:30:00         2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1061 02.06.2021 02:45 02.06.2021 02:45 2021-06-02 03:45:00         2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1062 02.06.2021 03:00 02.06.2021 03:00 2021-06-02 04:00:00         2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1063 02.06.2021 03:15 02.06.2021 03:15 2021-06-02 04:15:00         2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      Sauerstoffgehalt Leitfaehigkeit</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1058             6.27            844</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1059             6.23            843</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1060             6.23            844</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1061             6.19            843</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1062             6.18            843</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1063             6.14            843</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Check the metadata</span></span>
 <span class="r-in"><span class="co">#kwb.utils::getAttribute(water_quality, "metadata")</span></span>
@@ -147,20 +147,20 @@ together with the additional information on the UTC offset (column
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Look at the first few records again</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">water_quality</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          timestamp_raw   timestamp_corr       LocalDateTime UTCOffset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25154 30.05.2021 02:00 30.05.2021 02:00 2021-05-30 03:00:00         2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25155 30.05.2021 02:15 30.05.2021 02:15 2021-05-30 03:15:00         2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25156 30.05.2021 02:30 30.05.2021 02:30 2021-05-30 03:30:00         2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25157 30.05.2021 02:45 30.05.2021 02:45 2021-05-30 03:45:00         2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25158 30.05.2021 03:00 30.05.2021 03:00 2021-05-30 04:00:00         2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25159 30.05.2021 03:15 30.05.2021 03:15 2021-05-30 04:15:00         2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Sauerstoffgehalt Leitfaehigkeit</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25154             6.80            833</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25155             6.73            834</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25156             6.66            833</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25157             6.63            834</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25158             6.66            833</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25159             6.57            834</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         timestamp_raw   timestamp_corr       LocalDateTime UTCOffset</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1058 02.06.2021 02:00 02.06.2021 02:00 2021-06-02 03:00:00         2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1059 02.06.2021 02:15 02.06.2021 02:15 2021-06-02 03:15:00         2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1060 02.06.2021 02:30 02.06.2021 02:30 2021-06-02 03:30:00         2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1061 02.06.2021 02:45 02.06.2021 02:45 2021-06-02 03:45:00         2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1062 02.06.2021 03:00 02.06.2021 03:00 2021-06-02 04:00:00         2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1063 02.06.2021 03:15 02.06.2021 03:15 2021-06-02 04:15:00         2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      Sauerstoffgehalt Leitfaehigkeit</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1058             6.27            844</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1059             6.23            843</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1060             6.23            844</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1061             6.19            843</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1062             6.18            843</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1063             6.14            843</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co">### How was the original timestamp interpreted?</span></span>
 <span class="r-in"></span>
@@ -177,39 +177,39 @@ together with the additional information on the UTC offset (column
 <span class="r-in"><span class="co"># Look at the data for these timestamps</span></span>
 <span class="r-in"><span class="va">water_quality</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="va">pattern</span>, <span class="va">water_quality</span><span class="op">$</span><span class="va">timestamp_raw</span><span class="op">)</span>, <span class="op">]</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          timestamp_raw   timestamp_corr       LocalDateTime UTCOffset</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26302 31.10.2021 01:00 31.10.2021 01:00 2021-10-31 02:00:00         2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26303 31.10.2021 01:15 31.10.2021 01:15 2021-10-31 02:15:00         2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26304 31.10.2021 01:30 31.10.2021 01:30 2021-10-31 02:30:00         2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26305 31.10.2021 01:45 31.10.2021 01:45 2021-10-31 02:45:00         2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26306 31.10.2021 02:00 31.10.2021 02:00 2021-10-31 02:00:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26307 31.10.2021 02:15 31.10.2021 02:15 2021-10-31 02:15:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26308 31.10.2021 02:30 31.10.2021 02:30 2021-10-31 02:30:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26309 31.10.2021 02:45 31.10.2021 02:45 2021-10-31 02:45:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26310 31.10.2021 03:00 31.10.2021 03:00 2021-10-31 03:00:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26311 31.10.2021 03:15 31.10.2021 03:15 2021-10-31 03:15:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26312 31.10.2021 03:30 31.10.2021 03:30 2021-10-31 03:30:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26313 31.10.2021 03:45 31.10.2021 03:45 2021-10-31 03:45:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26314 31.10.2021 04:00 31.10.2021 04:00 2021-10-31 04:00:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26315 31.10.2021 04:15 31.10.2021 04:15 2021-10-31 04:15:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26316 31.10.2021 04:30 31.10.2021 04:30 2021-10-31 04:30:00         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26317 31.10.2021 04:45 31.10.2021 04:45 2021-10-31 04:45:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26014 31.10.2021 01:00 31.10.2021 01:00 2021-10-31 02:00:00         2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26015 31.10.2021 01:15 31.10.2021 01:15 2021-10-31 02:15:00         2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26016 31.10.2021 01:30 31.10.2021 01:30 2021-10-31 02:30:00         2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26017 31.10.2021 01:45 31.10.2021 01:45 2021-10-31 02:45:00         2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26018 31.10.2021 02:00 31.10.2021 02:00 2021-10-31 02:00:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26019 31.10.2021 02:15 31.10.2021 02:15 2021-10-31 02:15:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26020 31.10.2021 02:30 31.10.2021 02:30 2021-10-31 02:30:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26021 31.10.2021 02:45 31.10.2021 02:45 2021-10-31 02:45:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26022 31.10.2021 03:00 31.10.2021 03:00 2021-10-31 03:00:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26023 31.10.2021 03:15 31.10.2021 03:15 2021-10-31 03:15:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26024 31.10.2021 03:30 31.10.2021 03:30 2021-10-31 03:30:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26025 31.10.2021 03:45 31.10.2021 03:45 2021-10-31 03:45:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26026 31.10.2021 04:00 31.10.2021 04:00 2021-10-31 04:00:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26027 31.10.2021 04:15 31.10.2021 04:15 2021-10-31 04:15:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26028 31.10.2021 04:30 31.10.2021 04:30 2021-10-31 04:30:00         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26029 31.10.2021 04:45 31.10.2021 04:45 2021-10-31 04:45:00         1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Sauerstoffgehalt Leitfaehigkeit</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26302               NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26303               NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26304               NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26305               NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26306               NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26307               NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26308               NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26309               NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26310               NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26311               NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26312               NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26313               NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26314               NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26315               NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26316               NA             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26317               NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26014               NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26015               NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26016               NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26017               NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26018               NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26019               NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26020               NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26021               NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26022               NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26023               NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26024               NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26025               NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26026               NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26027               NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26028               NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26029               NA             NA</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># The original timestamps (timestamps_raw) were not all plausible, e.g.</span></span>
 <span class="r-in"><span class="co"># for March 2019. This seems to have been fixed by the "wasserportal"!</span></span>
