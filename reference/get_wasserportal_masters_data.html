@@ -81,13 +81,13 @@
 <span class="r-in"><span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html" class="external-link">detectCores</a></span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="fu">get_wasserportal_masters_data</span><span class="op">(</span><span class="va">station_ids</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Importing 4 station metadata from Wasserportal Berlin ... ok. (3.34s) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Importing 4 station metadata from Wasserportal Berlin ... ok. (3.18s) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.017   0.010   3.654 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.017   0.008   3.456 </span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="fu">get_wasserportal_masters_data</span><span class="op">(</span><span class="va">station_ids</span>,</span>
 <span class="r-in">                                          run_parallel <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.170   0.012   3.740 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.159   0.011   4.663 </span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>
