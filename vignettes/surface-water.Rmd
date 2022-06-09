@@ -65,6 +65,6 @@ sw_stations_berlin_daily <- stats::setNames(lapply(stations_berlin,
 )})}
 ), nm = stations_berlin)
 
-str(sw_stations_daily)
+str(sw_stations_berlin_daily)
 
 ```
