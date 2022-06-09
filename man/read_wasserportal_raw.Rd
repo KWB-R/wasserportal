@@ -10,7 +10,8 @@ read_wasserportal_raw(
   from_date,
   type = "single",
   include_raw_time = FALSE,
-  handle = NULL
+  handle = NULL,
+  stations_crosstable
 )
 }
 \arguments{
@@ -25,6 +26,9 @@ read_wasserportal_raw(
 \item{include_raw_time}{TRUE or FALSE (default: FALSE)}
 
 \item{handle}{handle (default: NULL)}
+
+\item{stations_crosstable}{sublist \code{crosstable} as retrieved from \code{\link{get_stations}}
+i.e. \code{get_stations()$crosstable}}
 }
 \value{
 ????

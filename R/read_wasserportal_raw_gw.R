@@ -15,8 +15,10 @@
 #' @importFrom tidyr pivot_longer
 #' @importFrom dplyr select filter mutate
 #' @examples
+#' \dontrun{
 #' read_wasserportal_raw_gw(station = 149, stype = "gwl")
 #' read_wasserportal_raw_gw(station = 149, stype = "gwq")
+#' }
 read_wasserportal_raw_gw <- function(
   station = 149,
   stype = "gwl",
