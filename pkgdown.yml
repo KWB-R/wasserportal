@@ -3,7 +3,7 @@ pkgdown: 2.0.3
 pkgdown_sha: ~
 articles:
   surface-water: surface-water.html
-last_built: 2022-06-09T07:36Z
+last_built: 2022-06-09T07:46Z
 urls:
   reference: https://kwb-r.github.io/wasserportal/reference
   article: https://kwb-r.github.io/wasserportal/articles

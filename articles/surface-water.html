@@ -73,7 +73,7 @@
       <img src="" class="logo" alt=""><h1>Surface Water</h1>
                         <h4 data-toc-skip class="author">Michael Rustler</h4>
             
-            <h4 data-toc-skip class="date">2022-06-09 07:37:15</h4>
+            <h4 data-toc-skip class="date">2022-06-09 07:47:36</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KWB-R/wasserportal/blob/HEAD/vignettes/surface-water.Rmd" class="external-link"><code>vignettes/surface-water.Rmd</code></a></small>
       <div class="d-none name"><code>surface-water.Rmd</code></div>
@@ -85,7 +85,7 @@
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/KWB-R/wasserportal" class="external-link">wasserportal</a></span><span class="op">)</span>
 
 <span class="va">stations</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/get_stations.html">get_stations</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; Importing 9 station overviews from Wasserportal Berlin ... ok. (10.01s)</span>
+<span class="co">#&gt; Importing 9 station overviews from Wasserportal Berlin ... ok. (9.65s)</span>
 <span class="va">stations_crosstable</span> <span class="op">&lt;-</span>  <span class="va">stations</span><span class="op">$</span><span class="va">crosstable</span>
 
 <span class="va">stations_crosstable_bb</span> <span class="op">&lt;-</span> <span class="va">stations_crosstable</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
@@ -148,7 +148,7 @@
   include_raw_time <span class="op">=</span> <span class="cn">TRUE</span>,
   stations_crosstable <span class="op">=</span> <span class="va">stations_crosstable_berlin</span>
 <span class="op">)</span>
-<span class="co">#&gt;  ... ok. (1.33s)</span>
+<span class="co">#&gt;  ... ok. (1.09s)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">sw_station_berlin_daily</span><span class="op">)</span>
 <span class="co">#&gt; 'data.frame':    8257 obs. of  2 variables:</span>
@@ -172,30 +172,30 @@
   stations_crosstable <span class="op">=</span> <span class="va">stations_crosstable</span>
 <span class="op">)</span><span class="op">}</span><span class="op">)</span><span class="op">}</span>
 <span class="op">)</span>, nm <span class="op">=</span> <span class="va">stations_berlin</span><span class="op">)</span>
-<span class="co">#&gt; Fetching data for station '5865900' ...  ... ok. (0.80s)</span>
+<span class="co">#&gt; Fetching data for station '5865900' ...  ... ok. (0.83s)</span>
 <span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span>
 <span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span>
-<span class="co">#&gt; ok. (1.14s) </span>
-<span class="co">#&gt; Fetching data for station '5827103' ...  ... ok. (0.82s) </span>
-<span class="co">#&gt;  ... ok. (0.87s)</span>
+<span class="co">#&gt; ok. (0.89s) </span>
+<span class="co">#&gt; Fetching data for station '5827103' ...  ... ok. (0.44s) </span>
+<span class="co">#&gt;  ... ok. (0.81s)</span>
 <span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span>
 <span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span>
-<span class="co">#&gt; ok. (1.80s) </span>
+<span class="co">#&gt; ok. (1.34s) </span>
 <span class="co">#&gt; Fetching data for station '5865300' ...  ... ok. (0.82s) </span>
-<span class="co">#&gt;  ... ok. (0.83s) </span>
-<span class="co">#&gt;  ... ok. (0.85s)</span>
+<span class="co">#&gt;  ... ok. (0.82s) </span>
+<span class="co">#&gt;  ... ok. (0.94s)</span>
 <span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span>
 <span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span>
-<span class="co">#&gt; ok. (2.70s) </span>
-<span class="co">#&gt; Fetching data for station '5819900' ...  ... ok. (1.08s)</span>
+<span class="co">#&gt; ok. (2.73s) </span>
+<span class="co">#&gt; Fetching data for station '5819900' ...  ... ok. (0.78s)</span>
 <span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span>
 <span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span>
-<span class="co">#&gt; ok. (1.23s) </span>
-<span class="co">#&gt; Fetching data for station '5864801' ...  ... ok. (0.64s) </span>
-<span class="co">#&gt;  ... ok. (0.67s)</span>
+<span class="co">#&gt; ok. (0.87s) </span>
+<span class="co">#&gt; Fetching data for station '5864801' ...  ... ok. (0.75s) </span>
+<span class="co">#&gt;  ... ok. (0.69s)</span>
 <span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span>
 <span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span>
-<span class="co">#&gt; ok. (1.43s)</span>
+<span class="co">#&gt; ok. (1.51s)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">sw_stations_berlin_daily</span><span class="op">)</span>
 <span class="co">#&gt; List of 5</span>
