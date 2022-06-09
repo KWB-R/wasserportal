@@ -37,6 +37,9 @@
     <loc>https://kwb-r.github.io/wasserportal/articles/reach_uba.html</loc>
   </url>
   <url>
+    <loc>https://kwb-r.github.io/wasserportal/articles/surface-water.html</loc>
+  </url>
+  <url>
     <loc>https://kwb-r.github.io/wasserportal/articles/tutorial.html</loc>
   </url>
   <url>
@@ -56,6 +59,9 @@
   </url>
   <url>
     <loc>https://kwb-r.github.io/wasserportal/reference/get_overview_options.html</loc>
+  </url>
+  <url>
+    <loc>https://kwb-r.github.io/wasserportal/reference/get_station_variables.html</loc>
   </url>
   <url>
     <loc>https://kwb-r.github.io/wasserportal/reference/get_stations.html</loc>

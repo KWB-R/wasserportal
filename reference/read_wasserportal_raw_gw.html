@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">wasserportal</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,10 +24,7 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/groundwater.html">Groundwater</a>
-    <a class="dropdown-item" href="../articles/promisces_norman-lists.html">PROMISCES: Norman Lists</a>
-    <a class="dropdown-item" href="../articles/promisces_reach-uba.html">PROMISCES: Reach (UBA)</a>
-    <a class="dropdown-item" href="../articles/tutorial.html">Tutorial</a>
+    <a class="dropdown-item" href="../articles/surface-water.html">Surface Water</a>
   </div>
 </li>
 <li class="nav-item">
@@ -92,36 +89,10 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">read_wasserportal_raw_gw</span><span class="op">(</span>station <span class="op">=</span> <span class="fl">149</span>, stype <span class="op">=</span> <span class="st">"gwl"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 7,873 × 5</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Messstellennummer Datum      Parameter Einheit  Messwert</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #BCBCBC;">*</span>             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>               149 1970-03-16 GW-Stand  m ü. NHN     28.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>               149 1970-04-07 GW-Stand  m ü. NHN     28.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>               149 1970-04-20 GW-Stand  m ü. NHN     28.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>               149 1970-05-05 GW-Stand  m ü. NHN     28.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>               149 1970-05-15 GW-Stand  m ü. NHN     28.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>               149 1970-06-01 GW-Stand  m ü. NHN     28.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>               149 1970-06-16 GW-Stand  m ü. NHN     28.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>               149 1970-07-01 GW-Stand  m ü. NHN     28.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>               149 1970-07-22 GW-Stand  m ü. NHN     28.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>               149 1970-08-03 GW-Stand  m ü. NHN     28.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 7,863 more rows</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
+<span class="r-in"><span class="fu">read_wasserportal_raw_gw</span><span class="op">(</span>station <span class="op">=</span> <span class="fl">149</span>, stype <span class="op">=</span> <span class="st">"gwl"</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu">read_wasserportal_raw_gw</span><span class="op">(</span>station <span class="op">=</span> <span class="fl">149</span>, stype <span class="op">=</span> <span class="st">"gwq"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4,953 × 5</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Messstellennummer Datum      Parameter                  Einheit      Messwert</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #BCBCBC;">*</span>             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>               149 2005-05-11 Temperatur (Luft)          grd Celsius      6   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>               149 2005-05-11 pH-Wert (Feld)             ohne Einheit     7.4 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>               149 2005-05-11 Temperatur (Wasser)        grd C           13.4 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>               149 2005-05-11 Leitfähigkeit 25°C vor Ort µS/cm         <span style="text-decoration: underline;">1</span>005.  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>               149 2005-05-11 Wasserst.(ROK) vor         m                3.21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>               149 2005-05-11 Chlorid                    mg/l            54   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>               149 2005-05-11 Fluorid                    mg/l             0.3 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>               149 2005-05-11 Hydrogenkarbonat           mg/l           159.  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>               149 2005-05-11 Nitrit (N)                 mg/l N          -<span style="color: #BB0000;">0.01</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>               149 2005-05-11 Nitrat (N)                 mg/l N           0.04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 4,943 more rows</span></span>
+<span class="r-in"><span class="op">}</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
