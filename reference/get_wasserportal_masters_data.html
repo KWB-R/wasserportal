@@ -24,7 +24,11 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/groundwater.html">Groundwater</a>
+    <a class="dropdown-item" href="../articles/promisces_norman-lists.html">PROMISCES: Norman Lists</a>
+    <a class="dropdown-item" href="../articles/promisces_reach-uba.html">PROMISCES: Reach (UBA)</a>
     <a class="dropdown-item" href="../articles/surface-water.html">Surface Water</a>
+    <a class="dropdown-item" href="../articles/tutorial.html">Tutorial</a>
   </div>
 </li>
 <li class="nav-item">
@@ -78,13 +82,13 @@
 <span class="r-in"><span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html" class="external-link">detectCores</a></span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="fu">get_wasserportal_masters_data</span><span class="op">(</span><span class="va">station_ids</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Importing 4 station metadata from Wasserportal Berlin ... ok. (4.91s) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Importing 4 station metadata from Wasserportal Berlin ... ok. (2.75s) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.016   0.009   5.468 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.017   0.009   3.093 </span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="fu">get_wasserportal_masters_data</span><span class="op">(</span><span class="va">station_ids</span>,</span>
 <span class="r-in">                                          run_parallel <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.161   0.010   4.618 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.159   0.010   2.690 </span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>
