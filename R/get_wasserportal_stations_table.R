@@ -11,7 +11,7 @@ get_overview_options <- function ()  {
 
   list(surface_water = list(water_level = "ws",
                             flow = "df",
-                            level = "wt",
+                            temperature = "wt",
                             conductivity = "lf",
                             ph = "ph",
                             oxygen_concentration = "og",

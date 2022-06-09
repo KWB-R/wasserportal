@@ -1,3 +1,8 @@
+# [wasserportal 0.1.1](https://github.com/KWB-R/wasserportal/releases/tag/v0.1.1) <small>2022-06-09</small>
+
+* Fix bug in `get_wasserportal_stations_table()` now correctly naming parameter 
+`temperature` (formerly incorrectly `level`)
+
 # [wasserportal 0.1.0](https://github.com/KWB-R/wasserportal/releases/tag/v0.1.0) <small>2022-06-01</small>
 
 R package for scraping `groundwater` data (`groundwater level` and `quality`) from [Wasserportal Berlin](https://wasserportal.berlin.de). Please note that the 
