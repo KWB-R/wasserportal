@@ -4,7 +4,7 @@
 [![Project Status](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/wasserportal)]()
 [![R-Universe_Status_Badge](https://kwb-r.r-universe.dev/badges/wasserportal)](https://kwb-r.r-universe.dev/)
-[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.6602574.svg)](https://doi.org/10.5281/zenodo.6602574)
+[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.6602573.svg)](https://doi.org/10.5281/zenodo.6602573)
 
 # wasserportal
 
