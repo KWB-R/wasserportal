@@ -68,12 +68,17 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>station_ids</dt>
 <dd><p>station_ids</p></dd>
+
+
 <dt>run_parallel</dt>
 <dd><p>default: TRUE</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>data frame with metadata for selected station ids</p>
+    
+
+<p>data frame with metadata for selected station ids</p>
     </div>
 
     <div class="section level2">
@@ -82,13 +87,13 @@
 <span class="r-in"><span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html" class="external-link">detectCores</a></span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="fu">get_wasserportal_masters_data</span><span class="op">(</span><span class="va">station_ids</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Importing 4 station metadata from Wasserportal Berlin ... ok. (2.94s) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Importing 4 station metadata from Wasserportal Berlin ... ok. (3.27s) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.016   0.009   3.214 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.016   0.009   3.634 </span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="fu">get_wasserportal_masters_data</span><span class="op">(</span><span class="va">station_ids</span>,</span>
 <span class="r-in">                                          run_parallel <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.158   0.008   3.815 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.166   0.013   4.291 </span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>
@@ -101,7 +106,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
     </footer></div>
