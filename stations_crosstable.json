@@ -11,6 +11,12 @@
     "df": "x"
   },
   {
+    "Messstellennummer": "5870400",
+    "Messstellenname": "Alsenbrücke",
+    "ws": "x",
+    "df": "x"
+  },
+  {
     "Messstellennummer": "5865300",
     "Messstellenname": "Am Bahndamm",
     "ws": "x",
@@ -88,12 +94,6 @@
     "Messstellenname": "Fähre Rahnsdorf",
     "ws": "x",
     "df": "x",
-    "wt": "x"
-  },
-  {
-    "Messstellennummer": "5800320",
-    "Messstellenname": "Fennpfuhl",
-    "ws": "x",
     "wt": "x"
   },
   {
@@ -224,6 +224,12 @@
     "Messstellenname": "Neue Fahlenbergbrücke",
     "ws": "x",
     "df": "x",
+    "wt": "x"
+  },
+  {
+    "Messstellennummer": "5800315",
+    "Messstellenname": "Obersee",
+    "ws": "x",
     "wt": "x"
   },
   {
