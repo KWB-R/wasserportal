@@ -1,5 +1,5 @@
 pandoc: 2.7.3
-pkgdown: 2.0.4
+pkgdown: 2.0.5
 pkgdown_sha: ~
 articles:
   groundwater: groundwater.html
@@ -7,7 +7,7 @@ articles:
   promisces_reach-uba: promisces_reach-uba.html
   surface-water: surface-water.html
   tutorial: tutorial.html
-last_built: 2022-06-25T05:04Z
+last_built: 2022-06-26T05:06Z
 urls:
   reference: https://kwb-r.github.io/wasserportal/reference
   article: https://kwb-r.github.io/wasserportal/articles
