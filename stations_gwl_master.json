@@ -10833,6 +10833,19 @@
     "Hochwert_UTM_33_N": "5815609.00"
   },
   {
+    "Nummer": "17901",
+    "Bezirk": "Charlottenburg-Wilmersdorf",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand",
+    "Grundwasserleiter": "Moor-Messstelle",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "30.27",
+    "Rohroberkante_m_ue_NHN": "31.21",
+    "Filteroberkante_m_u_GOK": "0.06",
+    "Filterunterkante_m_u_GOK": "2.06",
+    "Rechtswert_UTM_33_N": "379902.00",
+    "Hochwert_UTM_33_N": "5817286.00"
+  },
+  {
     "Nummer": "21101",
     "Bezirk": "Mitte",
     "Betreiber": "Senat",
