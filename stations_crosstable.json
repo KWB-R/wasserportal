@@ -414,11 +414,6 @@
     "ws": "x"
   },
   {
-    "Messstellennummer": "580412",
-    "Messstellenname": "Potsdam",
-    "ws": "x"
-  },
-  {
     "Messstellennummer": "5862201",
     "Messstellenname": "Prierow 2",
     "ws": "x"
@@ -4095,11 +4090,47 @@
     "gwq": "x"
   },
   {
+    "Messstellennummer": "17308",
+    "gws": "x"
+  },
+  {
     "Messstellennummer": "17900",
     "gws": "x"
   },
   {
     "Messstellennummer": "17901",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "17903",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "17905",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "17907",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "17908",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "17909",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "17910",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "17911",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "17912",
     "gws": "x"
   },
   {
