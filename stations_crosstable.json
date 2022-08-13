@@ -5,6 +5,12 @@
     "ws": "x"
   },
   {
+    "Messstellennummer": "5827103",
+    "Messstellenname": "Allendestraße",
+    "ws": "x",
+    "df": "x"
+  },
+  {
     "Messstellennummer": "5870400",
     "Messstellenname": "Alsenbrücke",
     "ws": "x",
@@ -304,6 +310,12 @@
     "Messstellenname": "St.-Joseph-Steg",
     "ws": "x",
     "wt": "x"
+  },
+  {
+    "Messstellennummer": "5815911",
+    "Messstellenname": "Tegelort",
+    "ws": "x",
+    "df": "x"
   },
   {
     "Messstellennummer": "5803200",
