@@ -16,55 +16,51 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r }
+## Daily Surface Water Data
+
+By running the code below the file [surface-water_data_daily.json](https://kwb-r.github.io/wasserportal/surface-water_data_daily.json)
+is created.
+
+
+
+```{r surface_data_daily_export}
 library(wasserportal)
 
 stations <- wasserportal::get_stations()
-stations_crosstable <-  stations$crosstable
+variables <- wasserportal::get_surfacewater_variables()
 
-stations_crosstable_bb <- stations_crosstable %>%
-  dplyr::filter(stringr::str_detect(.data$Messstellennummer,
-                                    pattern = "^[A-Z]{2}_"))
-stations_crosstable_bb
-
-stations_crosstable_berlin <- stations_crosstable %>%
-  dplyr::filter(stringr::str_detect(.data$Messstellennummer,
-                                    pattern = "^[A-Z]{2}_",
-                                    negate = TRUE))
-stations_crosstable_berlin
+sw_data_daily <- wasserportal::get_daily_surfacewater_data(stations,
+                                                           variables)
 
 
-station_crosstable_berlin <- stations_crosstable_berlin[1,]
-stations_crosstable_berlin
-from_date <- "1900-01-01"
-sw_station_berlin_daily <- wasserportal::read_wasserportal_raw(
-  station = station_crosstable_berlin$Messstellennummer,
-  variable = get_station_variables(stations_crosstable_berlin)[1],
-  type = "daily",
-  from_date = from_date,
-  include_raw_time = TRUE,
-  stations_crosstable = stations_crosstable_berlin
+# Data availability per parameter
+sw_data_daily %>%
+  dplyr::count(Parameter, Einheit)
+
+jsonlite::write_json(sw_data, file = "surface-water_data_daily.json")
+
+```
+
+
+## Daily Surface Water Levels
+
+
+```{r surface_waterlevel}
+
+swl_master <- wasserportal::get_wasserportal_masters_data(
+  station_ids = stations$overview_list$surface_water.water_level %>%
+    dplyr::filter(.data$Betreiber == "Land Berlin") %>%
+    dplyr::pull(.data$Messstellennummer)
 )
 
-str(sw_station_berlin_daily)
-
-
-
-stations_berlin <- stations_crosstable_berlin$Messstellennummer[1:5]
-
-sw_stations_berlin_daily <- stats::setNames(lapply(stations_berlin,
-                   function(station) {
-                     msg <- sprintf("Fetching data for station '%s'", station)
-                     kwb.utils::catAndRun(msg, expr = {
-                     wasserportal::read_wasserportal(
-  station = station,
-  type = "daily",
-  from_date = from_date,
-  include_raw_time = TRUE,
-  stations_crosstable = stations_crosstable
-)})}
-), nm = stations_berlin)
-
-str(sw_stations_berlin_daily)
+swl_data <- sw_data_daily %>%
+  dplyr::filter(.data$Parameter == "Wasserstand") %>%
+  dplyr::select(where(~!all(is.na(.x)))) %>%
+  dplyr::left_join(swl_master[, c("Nummer", "Pegelnullpunkt_m")],
+                   by = c("Messstellennummer" = "Nummer")) %>%
+  dplyr::mutate(Tagesmittelwert_Pegelstand_mNN = as.numeric(.data$Pegelnullpunkt_m) + .data$Tagesmittelwert/100) %>%
+  ### remove -777 for messstellennummer 5867000 (few values in 2000) resulted by step above
+  dplyr::filter(.data$Tagesmittelwert_Pegelstand_mNN != -777) %>%
+  dplyr::select(- .data$Pegelnullpunkt_m)
 
 ```

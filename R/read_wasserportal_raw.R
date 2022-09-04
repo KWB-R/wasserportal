@@ -56,7 +56,7 @@ read_wasserportal_raw <- function(
   ))
 
   variable <- kwb.utils::selectElements(elements = variable, list(
-    ws = "w", df = "d", wt = "t", lf = "l", ph = "p", og = "g", os = "s"
+    ws = "w", df = "d", wt = "t", lf = "l", ph = "p", og = "o", os = "s"
   ))
 
   progress <- get_wasserportal_text(station, variable, station_ids, variable_ids)
