@@ -7,9 +7,9 @@
 get_daily_surfacewater_data(stations, variables = get_surfacewater_variables())
 }
 \arguments{
-\item{stations}{stations as retrieved by by \link\code{{get_stations}}}
+\item{stations}{stations as retrieved by by \code{\link{get_stations}}}
 
-\item{variables}{variables as retrieved by by \link\code{{get_surfacewater_variables}}}
+\item{variables}{variables as retrieved by by \code{\link{get_surfacewater_variables}}}
 }
 \value{
 data frame with all available data from Wasserportal

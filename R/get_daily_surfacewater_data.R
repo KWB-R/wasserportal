@@ -47,8 +47,8 @@ get_surfacewater_variables <- function() {
 
 #' Get Daily Surfacewater Data: wrapper to scrape daily surface water data
 #'
-#' @param stations stations as retrieved by by \link\code{{get_stations}}
-#' @param variables variables as retrieved by by \link\code{{get_surfacewater_variables}}
+#' @param stations stations as retrieved by by \code{\link{get_stations}}
+#' @param variables variables as retrieved by by \code{\link{get_surfacewater_variables}}
 #'
 #' @return data frame with all available data from Wasserportal
 #' @export
