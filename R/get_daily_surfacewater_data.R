@@ -97,7 +97,7 @@ get_daily_surfacewater_data <- function(stations,
 
                          })
 
-    dplyr::bind_rows(sw_data_list)
-
   })
+
+  dplyr::bind_rows(sw_data_list)
 }
