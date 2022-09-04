@@ -37,7 +37,7 @@ sw_data_daily <- wasserportal::get_daily_surfacewater_data(stations,
 sw_data_daily %>%
   dplyr::count(Parameter, Einheit)
 
-jsonlite::write_json(sw_data_daily, file = "surface-water_data_daily.json")
+jsonlite::write_json(sw_data_daily, path = "surface-water_data_daily.json")
 
 ```
 
