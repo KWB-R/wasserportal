@@ -53,7 +53,7 @@ unlist(tmp)
 files <- sw_data_to_json(sw_data_daily_list)
 
 # Data availability per parameter
-sw_data_daily %>%
+sw_data_daily_list %>%
   dplyr::bind_rows() %>% 
   dplyr::count(Parameter, Einheit)
 
@@ -84,7 +84,7 @@ swl_master <- wasserportal::get_wasserportal_masters_data(
     dplyr::pull(.data$Messstellennummer)
 )
 
-swl_data <- sw_data_daily$surface_water.water_level %>% 
+swl_data <- sw_data_daily_list$surface_water.water_level %>% 
   dplyr::select(where(~!all(is.na(.x)))) %>%
   dplyr::left_join(swl_master[, c("Nummer", "Pegelnullpunkt_m")],
                    by = c("Messstellennummer" = "Nummer")) %>%
