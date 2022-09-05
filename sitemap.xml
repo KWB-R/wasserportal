@@ -58,6 +58,9 @@
     <loc>https://kwb-r.github.io/wasserportal/reference/columns_to_labels.html</loc>
   </url>
   <url>
+    <loc>https://kwb-r.github.io/wasserportal/reference/get_daily_surfacewater_data.html</loc>
+  </url>
+  <url>
     <loc>https://kwb-r.github.io/wasserportal/reference/get_overview_options.html</loc>
   </url>
   <url>
@@ -65,6 +68,9 @@
   </url>
   <url>
     <loc>https://kwb-r.github.io/wasserportal/reference/get_stations.html</loc>
+  </url>
+  <url>
+    <loc>https://kwb-r.github.io/wasserportal/reference/get_surfacewater_variables.html</loc>
   </url>
   <url>
     <loc>https://kwb-r.github.io/wasserportal/reference/get_wasserportal_master_data.html</loc>
