@@ -49,8 +49,8 @@ get_surfacewater_variables <- function() {
 #'
 #' @param stations stations as retrieved by by \code{\link{get_stations}}
 #' @param variables variables as retrieved by by \code{\link{get_surfacewater_variables}}
-#'
-#' @return data frame with all available data from Wasserportal
+#' @param list2df convert result list to data frame (default: FALSE)
+#' @return list or data frame with all available data from Wasserportal
 #' @export
 #'
 #' @examples
@@ -64,10 +64,10 @@ get_surfacewater_variables <- function() {
 #' @importFrom dplyr bind_rows filter pull
 #' @importFrom stats setNames
 get_daily_surfacewater_data <- function(stations,
-                                        variables = get_surfacewater_variables()) {
+                                        variables = get_surfacewater_variables(),
+                                        list2df = FALSE) {
 
-
-  sw_data_list <- lapply(seq_len(length(variables)), function(i) {
+  sw_data_list <- stats::setNames(lapply(seq_len(length(variables)), function(i) {
 
     fname <- names(variables[i])
     fvalue <- as.vector(variables[i])
@@ -97,7 +97,11 @@ get_daily_surfacewater_data <- function(stations,
 
                          })
 
-  })
+  }), nm = names(variables))
 
-  dplyr::bind_rows(sw_data_list)
+  if(list2df) {
+    dplyr::bind_rows(sw_data_list)
+  } else {
+    sw_data_list
+  }
 }

@@ -4,15 +4,21 @@
 \alias{get_daily_surfacewater_data}
 \title{Get Daily Surfacewater Data: wrapper to scrape daily surface water data}
 \usage{
-get_daily_surfacewater_data(stations, variables = get_surfacewater_variables())
+get_daily_surfacewater_data(
+  stations,
+  variables = get_surfacewater_variables(),
+  list2df = FALSE
+)
 }
 \arguments{
 \item{stations}{stations as retrieved by by \code{\link{get_stations}}}
 
 \item{variables}{variables as retrieved by by \code{\link{get_surfacewater_variables}}}
+
+\item{list2df}{convert result list to data frame (default: FALSE)}
 }
 \value{
-data frame with all available data from Wasserportal
+list or data frame with all available data from Wasserportal
 }
 \description{
 Get Daily Surfacewater Data: wrapper to scrape daily surface water data
