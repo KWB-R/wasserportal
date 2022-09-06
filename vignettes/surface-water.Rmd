@@ -32,16 +32,15 @@ variables <- wasserportal::get_surfacewater_variables()
 sw_data_daily_list <- wasserportal::get_daily_surfacewater_data(stations,
                                                           variables)
 
-sw_data_to_json <- function(sw_data_daily_list) {
+sw_data_to_csv <- function(sw_data_daily_list) {
 tmp <- lapply(seq_len(length(sw_data_daily_list)), function(i) {
-  filename <- sprintf("daily_%s.json", names(sw_data_daily_list[i]))
+  filename <- sprintf("daily_%s.csv", names(sw_data_daily_list[i]))
   msg <- sprintf("Writting '%s'", filename)
                                                                           
   kwb.utils::catAndRun(messageText = msg,
                        expr = {
-  jsonlite::write_json(sw_data_daily_list[[i]], 
-                       path = filename
-  )
+  readr::write_csv(sw_data_daily_list[[i]],
+                   file = filename)
                        })
   filename
 })
@@ -50,7 +49,7 @@ unlist(tmp)
 
 }
 
-files <- sw_data_to_json(sw_data_daily_list)
+files <- sw_data_to_csv(sw_data_daily_list)
 
 # Data availability per parameter
 sw_data_daily_list %>%
@@ -58,9 +57,9 @@ sw_data_daily_list %>%
   dplyr::count(Parameter, Einheit)
 
 ```
-The following `.json` files are available for download: 
+The following `.csv` files are available for download: 
 
-```{r daily_surface_water_data_json, echo = FALSE, results ='asis'}
+```{r daily_surface_water_data_csv, echo = FALSE, results ='asis'}
 
 
 cat(paste0(sprintf("- [%s](https://kwb-r.github.io/wasserportal/%s)", 
@@ -69,7 +68,7 @@ cat(paste0(sprintf("- [%s](https://kwb-r.github.io/wasserportal/%s)",
        collapse = "\n\n"))
 
 ```
-- [%s](https://kwb-r.github.io/wasserportal/%s)
+
 
 
 
