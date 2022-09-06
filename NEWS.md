@@ -1,3 +1,11 @@
+# [wasserportal 0.2.0](https://github.com/KWB-R/wasserportal/releases/tag/v0.2.0) <small>2022-09-06</small>
+
+* Add functions (`get_daily_surfacewater_data()`) and adapt article 
+[Surface Water](../articles/surface-water.html) for scraping all available daily 
+surface water data and exporting to one `.csv` file for each parameter (containing
+all monitoring stations)
+
+
 # [wasserportal 0.1.1](https://github.com/KWB-R/wasserportal/releases/tag/v0.1.1) <small>2022-06-09</small>
 
 * Fix bug in `get_wasserportal_stations_table()` now correctly naming parameter 
