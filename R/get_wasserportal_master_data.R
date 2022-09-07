@@ -45,8 +45,7 @@ get_wasserportal_master_data <- function (
     rvest::html_table()
 
    if(nrow(master_table) == 0) {
-    msg <- sprintf("No master table for station '%s' available at '%s'",
-                   station_id,
+    msg <- sprintf("No master table available at '%s'",
                    master_url)
      stop(msg)
    } else {

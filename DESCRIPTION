@@ -46,7 +46,6 @@ Suggests:
     covr,
     DT,
     forcats,
-    fs,
     htmlwidgets,
     janitor,
     jsonlite,
@@ -57,7 +56,6 @@ Suggests:
     kwb.pkgbuild,
     openxlsx,
     plotly,
-    readr,
     rmarkdown,
     sf,
     tidyselect
