@@ -28,8 +28,10 @@ License: MIT + file LICENSE
 URL: https://github.com/KWB-R/wasserportal
 BugReports: https://github.com/KWB-R/wasserportal/issues
 Imports: 
+    archive,
     data.table,
     dplyr,
+    fs,
     httr,
     kwb.datetime,
     kwb.utils,

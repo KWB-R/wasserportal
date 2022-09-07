@@ -26,7 +26,8 @@ stations <- wasserportal::get_stations()
 gw_data_list <- wasserportal::get_groundwater_data(stations)
 
 
-files <- wasserportal::list_data_to_csv(gw_data_list)
+files <- wasserportal::list_data_to_csv_or_zip(gw_data_list, 
+                                               to_zip = TRUE)
 files
 
 # Data availability per parameter

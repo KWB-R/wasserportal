@@ -33,8 +33,9 @@ sw_data_daily_list <- wasserportal::get_daily_surfacewater_data(stations,
                                                           variables)
 
 
-files <- wasserportal::list_data_to_csv(sw_data_daily_list, 
-                                        file_prefix = "daily_")
+files <- wasserportal::list_data_to_csv_or_zip(sw_data_daily_list,
+                                               file_prefix = "daily_", 
+                                               to_zip = TRUE)
 files
 
 # Data availability per parameter
