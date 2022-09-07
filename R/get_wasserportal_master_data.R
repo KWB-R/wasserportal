@@ -1,38 +1,42 @@
-#' Helper function: Base Url of Berlin Wassersportal
-#'
-#' @return string with base url of Berlin Wasserportal
-#' @export
-
-wasserportal_base_url <- function() {
-  "https://wasserportal.berlin.de"
-}
-
 #' Wasserportal Berlin: get master data for a single station
 #'
-#' @param station_id station_id
-#' @param url_wasserportal base url to Wasserportal berlin (default:
-#' wasserportal_base_url())
-#' @return data frame with metadata for
+#' @param master_url url with master data for single station as retrieved by
+#' \code{\link{get_wasserportal_stations_table}}
+#' @return data frame with metadata for selected station
 #' @importFrom tidyr pivot_wider
 #' @importFrom dplyr mutate rename
 #' @importFrom rlang .data
 #' @export
 #' @examples
+#'
+#' stations <- wasserportal::get_stations()
+#'
 #'## GW Station
-#'\dontrun{
-#' get_wasserportal_master_data(station_id = 149)
-#'}
+#' master_url <- stations$overview_list$groundwater.level$stammdaten_link[1]
+#' get_wasserportal_master_data(master_url)
+#'
 #'## SW Station
-#'get_wasserportal_master_data(station_id = 5865900)
+#' master_url <- stations$overview_list$surface_water.water_level$stammdaten_link[1]
+#' get_wasserportal_master_data(master_url)
+#'
 get_wasserportal_master_data <- function (
-  station_id,
-  url_wasserportal = wasserportal_base_url()
+  master_url
 ) {
 
+  if(stringr::str_detect(master_url,
+                         pattern = sprintf("^%s",
+                                           wasserportal_base_url()),
+                         negate = TRUE)) {
+    msg <- sprintf(
+      paste0("The master_url '%s' you provided refers to an external ",
+             "data provider. Currently only master data within '%s' can be",
+             "requested by using the R package 'wasserportal'"),
+      master_url,
+      wasserportal_base_url())
 
-  master_url <- sprintf("%s/station.php?anzeige=i&sstation=%s",
-                          url_wasserportal,
-                          as.character(station_id))
+    stop(msg)
+  }
+
 
   html_overview <- xml2::read_html(master_url)
 

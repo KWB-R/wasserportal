@@ -76,9 +76,9 @@ get_daily_surfacewater_data <- function(stations,
                          expr = {
 
                            sw_master <- get_wasserportal_masters_data(
-                             station_ids = stations$overview_list[[fname]] %>%
+                             master_urls = stations$overview_list[[fname]] %>%
                                dplyr::filter(.data$Betreiber == "Land Berlin") %>%
-                               dplyr::pull(.data$Messstellennummer)
+                               dplyr::pull(.data$stammdaten_link)
                            )
 
 

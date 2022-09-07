@@ -32,9 +32,11 @@ get_overview_options <- function ()  {
 #' @return data frame with master data of selected monitoring stations
 #' @export
 #' @importFrom kwb.utils substSpecialChars
-#' @importFrom rvest html_node html_table
+#' @importFrom rvest html_node html_table html_nodes html_attr
 #' @importFrom stringr str_remove_all
 #' @importFrom xml2 read_html
+#' @importFrom dplyr bind_cols
+#' @importFrom tibble tibble
 #' @examples
 #' types <- wasserportal::get_overview_options()
 #' str(types)
@@ -45,9 +47,6 @@ get_wasserportal_stations_table <- function (
   type = get_overview_options()$groundwater$level,
   url_wasserportal = wasserportal_base_url()
 ) {
-
-
-
 
 
   if (! is.null(type)) {
@@ -65,11 +64,34 @@ overview_table <-  html_overview %>%
   rvest::html_node(xpath = '//*[@id="pegeltab"]') %>%
   rvest::html_table()
 
+stammdaten_link <- html_overview %>%
+  rvest::html_node(xpath = '//*[@id="pegeltab"]') %>%
+  rvest::html_nodes("td") %>%
+  rvest::html_nodes("a") %>%
+  rvest::html_attr("href") %>%
+  stringr::str_extract(pattern = ".*anzeige=i.*|.*pegelonline.*|.*brandenburg.*")
+
+stammdaten_link <- stammdaten_link[!is.na(stammdaten_link)]
+
+is_wasserportal <- stringr::str_detect(stammdaten_link, pattern = "^station.php")
+
+stammdaten_link[is_wasserportal] <- sprintf("%s/%s",
+                                            url_wasserportal,
+                                            stammdaten_link[is_wasserportal])
+
+### hack to remove otherwise duplicated Brandenburg master data in case of
+### type = c(2surface_water.water_level" = "ws"), i.e.
+### "https://pegelportal.brandenburg.de/messstelle.php?fgid=6&pkz=<messstellennummer>&thema=ws_graph"
+stammdaten_link <- stammdaten_link[!duplicated(stammdaten_link)]
+
 names(overview_table) <- stringr::str_remove_all(names(overview_table),
                                                  "-") %>%
   kwb.utils::substSpecialChars()
 
-overview_table
+stopifnot(nrow(overview_table) == length(stammdaten_link))
+dplyr::bind_cols(overview_table,
+                 tibble::tibble(stammdaten_link = stammdaten_link)
+                 )
 
 }
 

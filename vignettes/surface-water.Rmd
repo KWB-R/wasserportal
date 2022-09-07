@@ -32,24 +32,10 @@ variables <- wasserportal::get_surfacewater_variables()
 sw_data_daily_list <- wasserportal::get_daily_surfacewater_data(stations,
                                                           variables)
 
-sw_data_to_csv <- function(sw_data_daily_list) {
-tmp <- lapply(seq_len(length(sw_data_daily_list)), function(i) {
-  filename <- sprintf("daily_%s.csv", names(sw_data_daily_list[i]))
-  msg <- sprintf("Writting '%s'", filename)
-                                                                          
-  kwb.utils::catAndRun(messageText = msg,
-                       expr = {
-  readr::write_csv(sw_data_daily_list[[i]],
-                   file = filename)
-                       })
-  filename
-})
 
-unlist(tmp)
-
-}
-
-files <- sw_data_to_csv(sw_data_daily_list)
+files <- wasserportal::list_data_to_csv(sw_data_daily_list, 
+                                        file_prefix = "daily_")
+files
 
 # Data availability per parameter
 sw_data_daily_list %>%
@@ -78,9 +64,9 @@ cat(paste0(sprintf("- [%s](https://kwb-r.github.io/wasserportal/%s)",
 ```{r surface_waterlevel}
 
 swl_master <- wasserportal::get_wasserportal_masters_data(
-  station_ids = stations$overview_list$surface_water.water_level %>%
+  master_urls = stations$overview_list$surface_water.water_level %>%
     dplyr::filter(.data$Betreiber == "Land Berlin") %>%
-    dplyr::pull(.data$Messstellennummer)
+    dplyr::pull(.data$stammdaten_link)
 )
 
 swl_data <- sw_data_daily_list$surface_water.water_level %>% 
@@ -91,5 +77,7 @@ swl_data <- sw_data_daily_list$surface_water.water_level %>%
   ### remove -777 for messstellennummer 5867000 (few values in 2000) resulted by step above
   dplyr::filter(.data$Tagesmittelwert_Pegelstand_mNN != -777) %>%
   dplyr::select(- .data$Pegelnullpunkt_m)
+
+str(swl_data)
 
 ```

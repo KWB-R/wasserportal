@@ -15,6 +15,39 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
+
+## Get Groundwater Data
+
+```{r groundwater_data_raw_export}
+library(wasserportal)
+
+stations <- wasserportal::get_stations()
+
+gw_data_list <- wasserportal::get_groundwater_data(stations)
+
+
+files <- wasserportal::list_data_to_csv(gw_data_list)
+files
+
+# Data availability per parameter
+gw_data_list %>%
+  dplyr::bind_rows() %>% 
+  dplyr::count(Parameter, Einheit) %>% 
+  dplyr::arrange(dplyr::desc(.data$n))
+
+```
+The following `.csv` files are available for download: 
+
+```{r groundwater_data_csv, echo = FALSE, results ='asis'}
+
+
+cat(paste0(sprintf("- [%s](https://kwb-r.github.io/wasserportal/%s)", 
+        files, 
+        files),
+       collapse = "\n\n"))
+
+```
+
 ## Do Your Own Analysis! 
 
 Download JSON files scraped and prepared each day at 5 a.m. UTC for re-use in R. 

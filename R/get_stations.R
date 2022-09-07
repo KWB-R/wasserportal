@@ -11,6 +11,10 @@
 #' @importFrom tidyr pivot_wider
 #' @importFrom data.table rbindlist
 #' @importFrom rlang .data
+#' @examples
+#' stations <- wasserportal::get_stations()
+#' str(stations)
+#'
 
 get_stations <- function(run_parallel = TRUE) {
 
@@ -39,7 +43,7 @@ if (run_parallel) {
 } else {
 
   overview_list <-  lapply(overview_options, function(station_type) {
-    try(wasserportal::get_wasserportal_stations_table(type = station_type))
+    try(get_wasserportal_stations_table(type = station_type))
   })
 
 }

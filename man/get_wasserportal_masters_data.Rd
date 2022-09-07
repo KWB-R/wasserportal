@@ -4,24 +4,26 @@
 \alias{get_wasserportal_masters_data}
 \title{Wasserportal Berlin: get master data for a multiple stations}
 \usage{
-get_wasserportal_masters_data(station_ids, run_parallel = TRUE)
+get_wasserportal_masters_data(master_urls, run_parallel = TRUE)
 }
 \arguments{
-\item{station_ids}{station_ids}
+\item{master_urls}{urls with master data as retrieved by \code{\link{get_stations}}
+and one of  "overview_list" sublist elements column name "stammdaten_link"}
 
 \item{run_parallel}{default: TRUE}
 }
 \value{
-data frame with metadata for selected station ids
+data frame with metadata for selected master urls
 }
 \description{
 Wasserportal Berlin: get master data for a multiple stations
 }
 \examples{
-station_ids <- 1:4
+stations <- wasserportal::get_stations()
 parallel::detectCores()
-system.time(get_wasserportal_masters_data(station_ids))
-system.time(get_wasserportal_masters_data(station_ids,
+master_urls <- stations$overview_list$surface_water.water_level$stammdaten_link
+system.time(get_wasserportal_masters_data(master_urls))
+system.time(get_wasserportal_masters_data(master_urls,
                                           run_parallel = FALSE))
 
 }
