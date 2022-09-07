@@ -83,18 +83,18 @@ and one of  "overview_list" sublist elements column name "stammdaten_link"</p></
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">stations</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="get_stations.html">get_stations</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Importing 9 station overviews from Wasserportal Berlin ... ok. (11.12s) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Importing 9 station overviews from Wasserportal Berlin ... ok. (6.18s) </span>
 <span class="r-in"><span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html" class="external-link">detectCores</a></span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3</span>
 <span class="r-in"><span class="va">master_urls</span> <span class="op">&lt;-</span> <span class="va">stations</span><span class="op">$</span><span class="va">overview_list</span><span class="op">$</span><span class="va">surface_water.water_level</span><span class="op">$</span><span class="va">stammdaten_link</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="fu">get_wasserportal_masters_data</span><span class="op">(</span><span class="va">master_urls</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Importing 75 station metadata from Wasserportal Berlin ... ok. (50.98s) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Importing 75 station metadata from Wasserportal Berlin ... ok. (25.10s) </span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in data.table::rbindlist(master_list, fill = TRUE):</span> Item 64 of input is not a data.frame, data.table or list</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Timing stopped at: 0.008 0.009 51.47</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Timing stopped at: 0.008 0.012 25.38</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="fu">get_wasserportal_masters_data</span><span class="op">(</span><span class="va">master_urls</span>,</span>
 <span class="r-in">                                          run_parallel <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in wasserportal::get_wasserportal_master_data(master_url):</span> The master_url 'https://pegelportal.brandenburg.de/messstelle.php?fgid=6&amp;pkz=5825500&amp;thema=ws_graph' you provided refers to an external data provider. Currently only master data within 'https://wasserportal.berlin.de' can berequested by using the R package 'wasserportal'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Timing stopped at: 2.6 0.156 72.75</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Timing stopped at: 3.006 0.201 63.22</span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>
