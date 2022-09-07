@@ -23,7 +23,8 @@ library(wasserportal)
 
 stations <- wasserportal::get_stations()
 
-gw_data_list <- wasserportal::get_groundwater_data(stations)
+gw_data_list <- wasserportal::get_groundwater_data(stations,
+                                                   debug = FALSE)
 
 
 files <- wasserportal::list_data_to_csv_or_zip(gw_data_list, 

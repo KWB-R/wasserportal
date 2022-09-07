@@ -16,22 +16,33 @@ list_data_to_csv_or_zip <- function(data_list,
 
 
     filename <- sprintf("%s.csv",
-    paste0(file_prefix, names(data_list[i]), collapse = "_"))
-    msg <- sprintf("Writting '%s'", filename)
+    paste0(file_prefix,
+           stringr::str_replace(names(data_list[i]),
+                                "groundwater\\.",
+                                "groundwater_"),
+           collapse = "_"))
+
+    filename_zip <- stringr::str_replace(filename, ".csv$", ".zip")
+
+    msg <- sprintf("Writting '%s'",
+                   dplyr::if_else(to_zip,
+                                  filename_zip,
+                                  filename))
 
     kwb.utils::catAndRun(messageText = msg,
                          expr = {
-                           readr::write_csv(data_list[[i]],
-                                            file = filename)
 
                            if(to_zip) {
-                             filename_zip <- stringr::str_replace(filename, ".csv$", ".zip")
-                             archive::archive_write(
-                             archive = filename_zip,
-                             file = filename)
-                             fs::file_delete(path = filename)
+                             readr::write_csv(data_list[[i]],
+                                              archive::archive_write(
+                                                archive = filename_zip,
+                                                file = filename))
                              filename <- filename_zip
-                         }})
+                           } else {
+                             readr::write_csv(data_list[[i]],
+                                              file = filename)
+                             }
+                           })
     filename
   })
   unlist(tmp)
