@@ -61,6 +61,12 @@
     <loc>https://kwb-r.github.io/wasserportal/reference/get_daily_surfacewater_data.html</loc>
   </url>
   <url>
+    <loc>https://kwb-r.github.io/wasserportal/reference/get_groundwater_data.html</loc>
+  </url>
+  <url>
+    <loc>https://kwb-r.github.io/wasserportal/reference/get_groundwater_options.html</loc>
+  </url>
+  <url>
     <loc>https://kwb-r.github.io/wasserportal/reference/get_overview_options.html</loc>
   </url>
   <url>
@@ -89,6 +95,9 @@
   </url>
   <url>
     <loc>https://kwb-r.github.io/wasserportal/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://kwb-r.github.io/wasserportal/reference/list_data_to_csv_or_zip.html</loc>
   </url>
   <url>
     <loc>https://kwb-r.github.io/wasserportal/reference/pipe.html</loc>
