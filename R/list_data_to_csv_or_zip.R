@@ -7,8 +7,6 @@
 #' @export
 #' @importFrom readr write_csv
 #' @importFrom stringr str_replace
-#' @importFrom archive archive_write
-#' @importFrom fs file_delete
 list_data_to_csv_or_zip <- function(data_list,
                                     file_prefix = "",
                                     to_zip = FALSE) {
@@ -17,9 +15,9 @@ list_data_to_csv_or_zip <- function(data_list,
 
     filename <- sprintf("%s.csv",
     paste0(file_prefix,
-           stringr::str_replace(names(data_list[i]),
-                                "groundwater\\.",
-                                "groundwater_"),
+           stringr::str_replace(names(data_list[i]), "_", "-") %>%
+             stringr::str_replace("_", "-") %>%
+             stringr::str_replace("\\.", "_"),
            collapse = "_"))
 
     filename_zip <- stringr::str_replace(filename, ".csv$", ".zip")
