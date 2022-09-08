@@ -7,21 +7,24 @@
 #' @examples
 #' get_overview_options()
 #'
-get_overview_options <- function ()  {
-
-  list(surface_water = list(water_level = "ws",
-                            flow = "df",
-                            temperature = "wt",
-                            conductivity = "lf",
-                            ph = "ph",
-                            oxygen_concentration = "og",
-                            oxygen_saturation = "os"),
-       groundwater = list(level = "gws",
-                          quality = "gwq")
-       )
-
+get_overview_options <- function()
+{
+  list(
+    surface_water = list(
+      water_level = "ws",
+      flow = "df",
+      temperature = "wt",
+      conductivity = "lf",
+      ph = "ph",
+      oxygen_concentration = "og",
+      oxygen_saturation = "os"
+    ),
+    groundwater = list(
+      level = "gws",
+      quality = "gwq"
+    )
+  )
 }
-
 
 #' Wasserportal Berlin: get stations overview table
 #'
