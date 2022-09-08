@@ -55,7 +55,7 @@ read_wasserportal_raw <- function(
 
   stopifnot(station %in% station_ids)
 
-  station_df <- stations_crosstable[station_ids == station, drop = FALSE] %>%
+  station_df <- stations_crosstable[station_ids == station, , drop = FALSE] %>%
     dplyr::select_if(function(x){!all(is.na(x))})
 
   variable_ids <- get_station_variables(station_df)
