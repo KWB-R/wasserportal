@@ -9,7 +9,6 @@
 #' @importFrom tidyr pivot_wider
 #' @export
 #' @examples
-#'
 #' stations <- wasserportal::get_stations()
 #'
 #'## GW Station
@@ -28,7 +27,7 @@ get_wasserportal_master_data <- function(master_url)
     kwb.utils::stopFormatted(
       paste0(
         "The master_url '%s' you provided refers to an external ",
-        "data provider. Currently only master data within '%s' can be",
+        "data provider. Currently only master data within '%s' can be ",
         "requested by using the R package 'wasserportal'"
       ),
       master_url,

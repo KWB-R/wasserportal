@@ -49,5 +49,12 @@ get_wasserportal_masters_data <- function(
 
   }
 
-  data.table::rbindlist(master_list, fill = TRUE)
+  failed <- sapply(master_list, kwb.utils::isTryError)
+
+  if (any(failed)) {
+    message("Failed fetching data from the following URLs:")
+    print(master_urls[failed])
+  }
+
+  data.table::rbindlist(master_list[!failed], fill = TRUE)
 }
