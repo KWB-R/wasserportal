@@ -41,14 +41,11 @@ sw_data_list_to_df <- function (sw_data_list)
 #' @export
 #'
 #' @importFrom stringr str_detect
-get_surfacewater_variables <- function() {
-
+get_surfacewater_variables <- function()
+{
   variables <- unlist(get_overview_options())
 
-  is_surface_water <- stringr::str_detect(names(variables), pattern = "^surface")
-
-
-  variables[is_surface_water]
+  variables[startsWith(names(variables), "surface")]
 }
 
 #' Get Daily Surfacewater Data: wrapper to scrape daily surface water data
