@@ -38,7 +38,7 @@ list_data_to_csv_or_zip <- function(
           filename_csv
         }
 
-        readr::write_csv(data_list[[i]], file)
+        readr::write_csv(data_list[[name]], file)
       }
     )
 
