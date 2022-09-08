@@ -55,11 +55,11 @@ get_groundwater_data <- function(
         expr = {
           lapply(
             X = stations$overview_list[[names(gw_option)]]$Messstellennummer,
-            FUN = function(id) {
+            FUN = function(station) {
               kwb.utils::catAndRun(
-                sprintf("Downloading Messstellennummer == '%s'", id),
+                sprintf("Downloading Messstellennummer == '%s'", station),
                 expr = {
-                  read_wasserportal_raw_gw(station = id, stype = gw_option)
+                  read_wasserportal_raw_gw(station, stype = gw_option)
                 },
                 dbg = debug
               )
