@@ -26,7 +26,7 @@ stations <- wasserportal::get_stations()
 is_sw <- stringr::str_detect(names(stations$overview_list), "surface")
 
 files <- wasserportal::list_data_to_csv_or_zip(data_list = stations$overview_list[is_sw], 
-                                               file_prefix = "stations")
+                                               file_prefix = "stations_")
 
 
 ```
