@@ -7,41 +7,43 @@
 #' @export
 #' @importFrom readr write_csv
 #' @importFrom stringr str_replace
-list_data_to_csv_or_zip <- function(data_list,
-                                    file_prefix = "",
-                                    to_zip = FALSE) {
-  tmp <- lapply(seq_len(length(data_list)), function(i) {
+list_data_to_csv_or_zip <- function(
+    data_list,
+    file_prefix = "",
+    to_zip = FALSE
+)
+{
+  tmp <- lapply(names(data_list), function(name) {
 
+    filename_base <- paste0(
+      file_prefix,
+      name %>%
+        stringr::str_replace("_", "-") %>%
+        stringr::str_replace("\\.", "_"),
+      collapse = "_"
+    )
 
-    filename <- sprintf("%s.csv",
-    paste0(file_prefix,
-           stringr::str_replace(names(data_list[i]), "_", "-") %>%
-             stringr::str_replace("_", "-") %>%
-             stringr::str_replace("\\.", "_"),
-           collapse = "_"))
+    filename_csv <- paste0(filename_base, ".csv")
+    filename_zip <- paste0(filename_base, ".zip")
 
-    filename_zip <- stringr::str_replace(filename, ".csv$", ".zip")
+    filename <- ifelse(to_zip, filename_zip, filename_csv)
 
-    msg <- sprintf("Writting '%s'",
-                   dplyr::if_else(to_zip,
-                                  filename_zip,
-                                  filename))
+    kwb.utils::catAndRun(
+      messageText = sprintf("Writting '%s'", filename),
+      expr = {
 
-    kwb.utils::catAndRun(messageText = msg,
-                         expr = {
+        file <- if (to_zip) {
+          archive::archive_write(archive = filename_zip, file = filename_csv)
+        } else {
+          filename_csv
+        }
 
-                           if(to_zip) {
-                             readr::write_csv(data_list[[i]],
-                                              archive::archive_write(
-                                                archive = filename_zip,
-                                                file = filename))
-                             filename <- filename_zip
-                           } else {
-                             readr::write_csv(data_list[[i]],
-                                              file = filename)
-                             }
-                           })
+        readr::write_csv(data_list[[name]], file)
+      }
+    )
+
     filename
   })
+
   unlist(tmp)
 }

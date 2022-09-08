@@ -21,17 +21,18 @@
 #'                                           run_parallel = FALSE))
 #'
 get_wasserportal_masters_data <- function(
-  master_urls,
-  run_parallel = TRUE
+    master_urls,
+    run_parallel = TRUE
 )
 {
-  msg <- sprintf("Importing %d station metadata from Wasserportal Berlin",
-                 length(master_urls))
-
+  msg <- sprintf(
+    "Importing %d station metadata from Wasserportal Berlin",
+    length(master_urls)
+  )
 
   if (run_parallel) {
 
-    ncores <- parallel::detectCores() - 1
+    ncores <- parallel::detectCores() - 1L
 
     cl <- parallel::makeCluster(ncores)
 
@@ -39,7 +40,7 @@ get_wasserportal_masters_data <- function(
       messageText = msg,
       expr = parallel::parLapply(
         cl, master_urls, function(master_url) {
-          try(wasserportal::get_wasserportal_master_data(master_url = master_url))
+          try(wasserportal::get_wasserportal_master_data(master_url))
         })
     )
 
@@ -48,11 +49,17 @@ get_wasserportal_masters_data <- function(
   } else {
 
     master_list <- lapply(master_urls, function(master_url) {
-      wasserportal::get_wasserportal_master_data(master_url)
-      })
+      try(wasserportal::get_wasserportal_master_data(master_url))
+    })
 
   }
 
-  data.table::rbindlist(master_list, fill = TRUE)
+  failed <- sapply(master_list, kwb.utils::isTryError)
 
+  if (any(failed)) {
+    message("Failed fetching data from the following URLs:")
+    print(master_urls[failed])
+  }
+
+  data.table::rbindlist(master_list[!failed], fill = TRUE)
 }

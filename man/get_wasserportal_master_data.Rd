@@ -17,7 +17,6 @@ data frame with metadata for selected station
 Wasserportal Berlin: get master data for a single station
 }
 \examples{
-
 stations <- wasserportal::get_stations()
 
 ## GW Station
