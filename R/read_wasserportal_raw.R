@@ -7,10 +7,12 @@
 #'
 #' @importFrom dplyr select_if
 #'
-get_station_variables <- function(station_df) {
-    station_df <- station_df %>%
-    dplyr::select_if(function(x){!all(is.na(x))})
-  names(station_df)[!names(station_df) %in% c("Messstellennummer", "Messstellenname")]
+get_station_variables <- function(station_df)
+{
+  station_df %>%
+    dplyr::select_if(function(x){!all(is.na(x))}) %>%
+    names() %>%
+    setdiff(c("Messstellennummer", "Messstellenname"))
 }
 
 # read_wasserportal_raw --------------------------------------------------------
