@@ -16,6 +16,33 @@ knitr::opts_chunk$set(
 )
 ```
 
+## Master Data
+
+```{r master_data}
+library(wasserportal)
+
+stations <- wasserportal::get_stations()
+
+is_sw <- stringr::str_detect(names(stations$overview_list), "surface")
+
+files <- wasserportal::list_data_to_csv_or_zip(data_list = stations$overview_list[is_sw], 
+                                               file_prefix = "stations")
+
+
+```
+
+The following surface water master data `.csv` files are available for download: 
+
+```{r master_data_csv, echo = FALSE, results ='asis'}
+
+
+cat(paste0(sprintf("- [%s](https://kwb-r.github.io/wasserportal/%s)", 
+        files, 
+        files),
+       collapse = "\n\n"))
+
+```
+
 ## Daily Surface Water Data
 
 By running the code below all available `daily surface water` data of monitoring 
@@ -24,10 +51,9 @@ file for each parameter and all available monitoring stations.
 
 
 ```{r surface_data_daily_export}
-library(wasserportal)
 
-stations <- wasserportal::get_stations()
 variables <- wasserportal::get_surfacewater_variables()
+variables
 
 sw_data_daily_list <- wasserportal::get_daily_surfacewater_data(stations,
                                                           variables)
@@ -44,9 +70,9 @@ sw_data_daily_list %>%
   dplyr::count(Parameter, Einheit)
 
 ```
-The following `.csv` files are available for download: 
+The following `.zip` files are available for download: 
 
-```{r daily_surface_water_data_csv, echo = FALSE, results ='asis'}
+```{r daily_surface_water_data_zip, echo = FALSE, results ='asis'}
 
 
 cat(paste0(sprintf("- [%s](https://kwb-r.github.io/wasserportal/%s)", 
