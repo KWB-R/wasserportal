@@ -25,7 +25,10 @@ master_url <- stations$overview_list$groundwater.level$stammdaten_link[1]
 get_wasserportal_master_data(master_url)
 
 ## SW Station
-master_url <- stations$overview_list$surface_water.water_level$stammdaten_link[1]
-get_wasserportal_master_data(master_url)
+### Reduce  to monitoring stations maintained by Berlin
+master_urls <- stations$overview_list$surface_water.water_level \%>\%
+dplyr::filter(.data$Betreiber == "Land Berlin") \%>\%
+dplyr::pull(.data$stammdaten_link)
+get_wasserportal_master_data(master_urls[1])
 
 }
