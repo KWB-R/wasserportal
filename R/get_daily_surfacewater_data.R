@@ -10,21 +10,27 @@
 #' @importFrom stringr str_detect str_split_fixed
 #' @importFrom tibble tibble
 #' @importFrom dplyr bind_cols bind_rows
-sw_data_list_to_df <- function (sw_data_list) {
-  stats::setNames(lapply(names(sw_data_list), function(name) {
-    tmp <- sw_data_list[[name]][[1]]
+sw_data_list_to_df <- function (sw_data_list)
+{
+  lapply(sw_data_list, function(x) {
+    tmp <- x[[1L]]
+    meta <- attr(tmp, "metadata")
 
-    start_idx <- min(which(stringr::str_detect(attr(tmp, "metadata"), ":"))) + 3
+    start_index <- min(which(stringr::str_detect(meta, ":"))) + 3L
 
-    parameter_unit <- stringr::str_split_fixed(attr(tmp, "metadata")[start_idx],
-                                               pattern = " in | im ",
-                                               n = 2)
+    parameter_unit <- stringr::str_split_fixed(
+      string = meta[start_index],
+      pattern = " in | im ",
+      n = 2L
+    )
 
-    meta <- tibble::tibble(Parameter = parameter_unit[1],
-                           Einheit = parameter_unit[2])
+    metadata <- tibble::tibble(
+      Parameter = parameter_unit[1L],
+      Einheit = parameter_unit[2L]
+    )
 
-    dplyr::bind_cols(tmp, meta)}),
-    names(sw_data_list)) %>%
+    dplyr::bind_cols(tmp, meta)
+  }) %>%
     dplyr::bind_rows(.id = "Messstellennummer") %>%
     dplyr::mutate(Datum = as.Date(.data$Datum, format = "%d.%m.%Y"))
 }
