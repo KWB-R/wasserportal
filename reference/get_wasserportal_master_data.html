@@ -59,38 +59,47 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">get_wasserportal_master_data</span><span class="op">(</span>
-  <span class="va">station_id</span>,
-  url_wasserportal <span class="op">=</span> <span class="fu"><a href="wasserportal_base_url.html">wasserportal_base_url</a></span><span class="op">(</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">get_wasserportal_master_data</span><span class="op">(</span><span class="va">master_url</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>station_id</dt>
-<dd><p>station_id</p></dd>
-
-
-<dt>url_wasserportal</dt>
-<dd><p>base url to Wasserportal berlin (default:
-wasserportal_base_url())</p></dd>
+    <dl><dt>master_url</dt>
+<dd><p>url with master data for single station as retrieved by
+<code><a href="get_wasserportal_stations_table.html">get_wasserportal_stations_table</a></code></p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>data frame with metadata for</p>
+<p>data frame with metadata for selected station</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">## GW Station</span></span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="fu">get_wasserportal_master_data</span><span class="op">(</span>station_id <span class="op">=</span> <span class="fl">149</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
+<span class="r-in"><span class="va">stations</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="get_stations.html">get_stations</a></span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Importing 9 station overviews from Wasserportal Berlin ... ok. (6.14s) </span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co">## GW Station</span></span>
+<span class="r-in"><span class="va">master_url</span> <span class="op">&lt;-</span> <span class="va">stations</span><span class="op">$</span><span class="va">overview_list</span><span class="op">$</span><span class="va">groundwater.level</span><span class="op">$</span><span class="va">stammdaten_link</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span class="r-in"><span class="fu">get_wasserportal_master_data</span><span class="op">(</span><span class="va">master_url</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 11</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Nummer Bezirk  Betre…¹ Auspr…² Grund…³ Gelae…⁴ Rohro…⁵ Filte…⁶ Filte…⁷ Recht…⁸</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 1      Reinic… Senat   GW-Sta… Hauptg… 49.20   49.49   37.34   39.34   384415…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 1 more variable: Hochwert_UTM_33_N &lt;chr&gt;, and abbreviated variable</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   names ¹​Betreiber, ²​Auspraegung, ³​Grundwasserleiter,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ⁴​Gelaendeoberkante_GOK_m_ue_NHN, ⁵​Rohroberkante_m_ue_NHN,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ⁶​Filteroberkante_m_u_GOK, ⁷​Filterunterkante_m_u_GOK, ⁸​Rechtswert_UTM_33_N</span></span>
+<span class="r-in"></span>
 <span class="r-in"><span class="co">## SW Station</span></span>
-<span class="r-in"><span class="fu">get_wasserportal_master_data</span><span class="op">(</span>station_id <span class="op">=</span> <span class="fl">5865900</span><span class="op">)</span></span>
+<span class="r-in"><span class="co">### Reduce  to monitoring stations maintained by Berlin</span></span>
+<span class="r-in"><span class="va">master_urls</span> <span class="op">&lt;-</span> <span class="va">stations</span><span class="op">$</span><span class="va">overview_list</span><span class="op">$</span><span class="va">surface_water.water_level</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
+<span class="r-in"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">Betreiber</span> <span class="op">==</span> <span class="st">"Land Berlin"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
+<span class="r-in"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">stammdaten_link</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu">get_wasserportal_master_data</span><span class="op">(</span><span class="va">master_urls</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 9</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Nummer  Name           Gewae…¹ Betre…² Auspr…³ Fluss…⁴ Pegel…⁵ Recht…⁶ Hochw…⁷</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
@@ -98,6 +107,7 @@ wasserportal_base_url())</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with abbreviated variable names ¹​Gewaesser, ²​Betreiber, ³​Auspraegung,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ⁴​Flusskilometer, ⁵​Pegelnullpunkt_m, ⁶​Rechtswert_UTM_33_N,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ⁷​Hochwert_UTM_33_N</span></span>
+<span class="r-in"></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
