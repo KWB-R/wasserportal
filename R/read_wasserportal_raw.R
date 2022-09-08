@@ -32,48 +32,68 @@ get_station_variables <- function(station_df)
 #' @import kwb.utils
 #' @importFrom kwb.datetime textToEuropeBerlinPosix
 read_wasserportal_raw <- function(
-  variable, station, from_date, type = "single", include_raw_time = FALSE,
+  variable,
+  station,
+  from_date,
+  type = "single",
+  include_raw_time = FALSE,
   handle = NULL,
   stations_crosstable
 )
 {
   #variable <- variables[1]
+
+  stopifnot(length(station) == 1L)
+  stopifnot(length(variable) == 1L)
+
   from_date <- assert_date(from_date)
 
+  station_ids <- kwb.utils::selectColumns(
+    stations_crosstable,
+    "Messstellennummer"
+  )
 
-  stopifnot(length(station) == 1)
-  station_ids <- stations_crosstable$Messstellennummer
   stopifnot(station %in% station_ids)
 
-  stopifnot(length(variable) == 1)
-
-  station_df <- stations_crosstable[stations_crosstable$Messstellennummer == station, ] %>%
+  station_df <- stations_crosstable[station_ids == station, drop = FALSE] %>%
     dplyr::select_if(function(x){!all(is.na(x))})
 
   variable_ids <- get_station_variables(station_df)
+
   stopifnot(variable %in% variable_ids)
 
   sreihe <- kwb.utils::selectElements(elements = type, list(
-    single = "w", single_all = "wa", daily = "m", monthly = "j"
+    single = "w",
+    single_all = "wa",
+    daily = "m",
+    monthly = "j"
   ))
 
   variable <- kwb.utils::selectElements(elements = variable, list(
-    ws = "w", df = "d", wt = "t", lf = "l", ph = "p", og = "o", os = "s"
+    ws = "w",
+    df = "d",
+    wt = "t",
+    lf = "l",
+    ph = "p",
+    og = "o",
+    os = "s"
   ))
 
-  progress <- get_wasserportal_text(station, variable, station_ids, variable_ids)
-  url <- get_wasserportal_url(station, variable)
-
-  # Format the start date
-  sdatum <- format(from_date, format = "%d.%m.%Y")
-
   # Compose the body of the request
-  body <- list(sreihe = sreihe, smode = "c", sdatum = sdatum)
+  body <- list(
+    sreihe = sreihe,
+    smode = "c",
+    sdatum = format(from_date, format = "%d.%m.%Y") # start date
+  )
 
   # Post the request to the web server
   response <- kwb.utils::catAndRun(
-    progress,
-    httr::POST(url, body = body, handle = handle)
+    get_wasserportal_text(station, variable, station_ids, variable_ids),
+    httr::POST(
+      url = get_wasserportal_url(station, variable),
+      body = body,
+      handle = handle
+    )
   )
 
   if (httr::http_error(response)) {
@@ -85,10 +105,10 @@ read_wasserportal_raw <- function(
   text <- httr::content(response, as = "text", encoding = "Latin1")
 
   # Split the text into separate lines
-  textlines <- strsplit(text, "\n")[[1]]
+  textlines <- strsplit(text, "\n")[[1L]]
 
   # Split the header row into fields
-  header_fields <- as.character(read(textlines[1]))
+  header_fields <- as.character(read(textlines[1L]))
 
   # Return empty list with metadata if no data rows are available
   if (length(textlines) == 1L) {
@@ -96,7 +116,7 @@ read_wasserportal_raw <- function(
   }
 
   # Read the data rows
-  data <- read(text, header = FALSE, skip = 1)
+  data <- read(text, header = FALSE, skip = 1L)
 
   # Get the numbers of the data columns
   if (!type %in% c("daily", "monthly")) {
