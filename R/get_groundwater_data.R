@@ -14,7 +14,7 @@ get_groundwater_options <- function ()
   is_groundwater <- startsWith(names(overview_options), "groundwater")
 
   overview_options[is_groundwater] %>%
-    gsub("gws", "gwl")
+    gsub(pattern = "gws", replacement = "gwl")
 }
 
 #' Get Groundwater Data
