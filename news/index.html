@@ -53,14 +53,10 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.2.0" id="wasserportal-020-2022-09-07">
-<a href="https://github.com/KWB-R/wasserportal/releases/tag/v0.2.0" class="external-link">wasserportal 0.2.0</a> <small>2022-09-07</small>
-<a class="anchor" aria-label="anchor" href="#wasserportal-020-2022-09-07"></a></h2>
-<ul><li><p>Fix <code>master data</code> requests by using the <code>master_url</code> instead of <code>station_id</code>, as the latter was not unique. Now functions <code><a href="../reference/get_wasserportal_master_data.html">get_wasserportal_master_data()</a></code> and it wrapper function <code><a href="../reference/get_wasserportal_masters_data.html">get_wasserportal_masters_data()</a></code> require the <code>master_url</code> instead of <code>station_id</code> as input parameter. The function <code>get_stations</code> now adds the column <code>stammdaten_link</code> as additional column for each sublist element of the sublist <code>overview_list</code>.</p></li>
-<li><p>Fix to scrape <code>groundwater level</code> data from all available monitoring stations (instead of only 5!) and export to <code>.csv</code> file. In addition switch also to <code>.csv</code> export for <code>groundwater quality</code> instead of <code>.json</code> due to reduced storage space (<a href="https://github.com/KWB-R/wasserportal/blob/gh-pages/stations_gwq_data.json" class="external-link">stations_gwq_data.json</a> file is already 98.4 MB large.</p></li>
-<li><p>Add functions (<code><a href="../reference/get_daily_surfacewater_data.html">get_daily_surfacewater_data()</a></code>) and adapt article <a href="../articles/surface-water.html">Surface Water</a> for scraping all available daily surface water data and exporting to one <code>.csv</code> file for each parameter (containing all monitoring stations)</p></li>
-<li><p>Deactivate <em>PROMISCES</em> workflows (see <a href="#wasserportal-010-2022-06-01">wasserportal v0.1.0</a>), due to failing Zenodo download. Will be moved into own R package, most properly <a href="https://github.com/kwb-r/kwb.promisces" class="external-link">kwb.promisces</a>.</p></li>
-</ul></div>
+<h2 class="pkg-version" data-toc-text="0.2.0" id="wasserportal-020-2022-09-06">
+<a href="https://github.com/KWB-R/wasserportal/releases/tag/v0.2.0" class="external-link">wasserportal 0.2.0</a> <small>2022-09-06</small>
+<a class="anchor" aria-label="anchor" href="#wasserportal-020-2022-09-06"></a></h2>
+<ul><li>Add functions (<code><a href="../reference/get_daily_surfacewater_data.html">get_daily_surfacewater_data()</a></code>) and adapt article <a href="../articles/surface-water.html">Surface Water</a> for scraping all available daily surface water data and exporting to one <code>.csv</code> file for each parameter (containing all monitoring stations)</li></ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.1" id="wasserportal-011-2022-06-09">
 <a href="https://github.com/KWB-R/wasserportal/releases/tag/v0.1.1" class="external-link">wasserportal 0.1.1</a> <small>2022-06-09</small>
