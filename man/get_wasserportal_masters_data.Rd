@@ -21,9 +21,13 @@ Wasserportal Berlin: get master data for a multiple stations
 \examples{
 stations <- wasserportal::get_stations()
 parallel::detectCores()
-master_urls <- stations$overview_list$surface_water.water_level$stammdaten_link
-system.time(get_wasserportal_masters_data(master_urls))
-system.time(get_wasserportal_masters_data(master_urls,
+stations <- wasserportal::get_stations()
+### Reduce  to monitoring stations maintained by Berlin
+master_urls <- stations$overview_list$surface_water.water_level \%>\%
+dplyr::filter(.data$Betreiber == "Land Berlin") \%>\%
+dplyr::pull(.data$stammdaten_link)
+system.time(master_parallel <- get_wasserportal_masters_data(master_urls))
+system.time(master_sequential <- get_wasserportal_masters_data(master_urls,
                                           run_parallel = FALSE))
 
 }
