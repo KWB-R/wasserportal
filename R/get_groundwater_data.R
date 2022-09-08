@@ -1,29 +1,21 @@
 
-
 #' Helper function: get groundwater options
 #'
 #' @return return available groundwater data options and prepare for being used
 #' as input for \code{\link{get_groundwater_data}}
 #' @export
-#' @importFrom stringr str_detect
 #' @examples
 #' get_groundwater_options()
 #'
-get_groundwater_options <- function () {
+get_groundwater_options <- function ()
+{
   overview_options <- unlist(get_overview_options())
 
+  is_groundwater <- startsWith(names(overview_options), "groundwater")
 
-  is_groundwater <- stringr::str_detect(names(overview_options),
-                                        pattern = "^groundwater.*")
-
-  overview_options <- overview_options[is_groundwater]
-
-  overview_options <- gsub("gws", "gwl", overview_options)
-
-  overview_options
-
+  overview_options[is_groundwater] %>%
+    gsub("gws", "gwl")
 }
-
 
 #' Get Groundwater Data
 #'
