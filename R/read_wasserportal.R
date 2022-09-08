@@ -12,8 +12,7 @@
 #' together with the additional information on the UTC offset (column
 #' \code{UTCOffset}, 1 in winter, 2 in summer).
 #'
-#' @param station station number, as returned by
-#'   \code{\link{get_stations}}
+#' @param station station number, as returned by \code{\link{get_stations}}
 #' @param variables vector of variable identifiers, as returned by
 #'   \code{\link{get_station_variables}}
 #' @param from_date \code{Date} object (or string in format "yyyy-mm-dd" that
@@ -23,8 +22,8 @@
 #' @param include_raw_time if \code{TRUE} the original time column and the
 #'   column with the corrected winter time are included in the output. The
 #'   default is \code{FALSE}.
-#' @param stations_crosstable sublist `crosstable` as retrieved from \code{\link{get_stations}}
-#' i.e. `get_stations()$crosstable`
+#' @param stations_crosstable sublist `crosstable` as retrieved from
+#'   \code{\link{get_stations}} i.e. `get_stations()$crosstable`
 #' @return data frame read from the CSV file that the download provides.
 #'   IMPORTANT: It is not yet clear how to interpret the timestamp, see example
 #' @importFrom httr POST content
@@ -81,7 +80,8 @@
 read_wasserportal <- function(
   station,
   variables = NULL,
-  from_date = as.character(Sys.Date() - 90L), type = "single",
+  from_date = as.character(Sys.Date() - 90L),
+  type = "single",
   include_raw_time = FALSE,
   stations_crosstable
 )
