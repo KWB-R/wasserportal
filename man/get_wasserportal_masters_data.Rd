@@ -23,7 +23,6 @@ stations <- wasserportal::get_stations()
 parallel::detectCores()
 master_urls <- stations$overview_list$surface_water.water_level$stammdaten_link
 system.time(get_wasserportal_masters_data(master_urls))
-system.time(get_wasserportal_masters_data(master_urls,
-                                          run_parallel = FALSE))
+system.time(get_wasserportal_masters_data(master_urls, run_parallel = FALSE))
 
 }

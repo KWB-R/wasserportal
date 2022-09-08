@@ -14,8 +14,7 @@ read_wasserportal(
 )
 }
 \arguments{
-\item{station}{station number, as returned by
-\code{\link{get_stations}}}
+\item{station}{station number, as returned by \code{\link{get_stations}}}
 
 \item{variables}{vector of variable identifiers, as returned by
 \code{\link{get_station_variables}}}
@@ -30,8 +29,8 @@ which to request data. Default: \code{as.character(Sys.Date() - 90L)}}
 column with the corrected winter time are included in the output. The
 default is \code{FALSE}.}
 
-\item{stations_crosstable}{sublist \code{crosstable} as retrieved from \code{\link{get_stations}}
-i.e. \code{get_stations()$crosstable}}
+\item{stations_crosstable}{sublist \code{crosstable} as retrieved from
+\code{\link{get_stations}} i.e. \code{get_stations()$crosstable}}
 }
 \value{
 data frame read from the CSV file that the download provides.
