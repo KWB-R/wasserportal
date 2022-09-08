@@ -142,9 +142,7 @@ clean_timestamp_columns <- function(data, include_raw_time)
 
   data <- kwb.utils::renameColumns(data, list(Datum = "timestamp_raw"))
 
-  data$timestamp_corr <- repair_wasserportal_timestamps(
-    timestamps = raw_timestamps
-  )
+  data$timestamp_corr <- repair_wasserportal_timestamps(raw_timestamps)
 
   data <- remove_remaining_duplicates(data)
 
@@ -248,12 +246,12 @@ remove_remaining_duplicates <- function(data)
 }
 
 # remove_timestep_outliers -----------------------------------------------------
-remove_timestep_outliers <- function(data, timestamps, timestep = 15 * 60)
+remove_timestep_outliers <- function(data, timestamps, timestep = 15L * 60L)
 {
   stopifnot(inherits(timestamps, "POSIXct"))
   stopifnot(nrow(data) == length(timestamps))
 
-  is_outlier <- as.numeric(timestamps) %% timestep != 0
+  is_outlier <- as.numeric(timestamps) %% timestep != 0L
 
   if (! any(is_outlier)) {
     return(data)
