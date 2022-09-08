@@ -37,30 +37,37 @@ get_groundwater_options <- function ()
 #' gw_data_list <- get_groundwater_data(stations)
 #' str(gw_data_list)
 #' }
-get_groundwater_data <- function(stations,
-                                 groundwater_options = get_groundwater_options(),
-                                 debug = TRUE) {
-  stats::setNames(lapply(seq_len(length(
-    groundwater_options
-  )), function (i) {
-    gw_option <- groundwater_options[i]
-    msg <- sprintf("Importing '%s' data (%d/%d)",
-                   names(gw_option),
-                   i,
-                   length(groundwater_options))
-    kwb.utils::catAndRun(messageText = msg,
-                         expr = {
-                           data.table::rbindlist(lapply(stations$overview_list[[names(gw_option)]]$Messstellennummer,
-                                                        function(id) {
-                                                          kwb.utils::catAndRun(
-                                                            sprintf("Downloading Messstellennummer == '%s'",
-                                                                    id),
-                                                            expr = {
-                                                              read_wasserportal_raw_gw(station = id, stype = gw_option)
-                                                            },
-                                                            dbg = debug
-                                                          )
-                                                        }))
-                         })
-  }), nm = names(groundwater_options))
+get_groundwater_data <- function(
+    stations,
+    groundwater_options = get_groundwater_options(),
+    debug = TRUE
+)
+{
+  result <- lapply(
+    X = seq_along(groundwater_options),
+    FUN = function(i) {
+      gw_option <- groundwater_options[i]
+      kwb.utils::catAndRun(
+        messageText = sprintf(
+          "Importing '%s' data (%d/%d)",
+          names(gw_option), i, length(groundwater_options)
+        ),
+        expr = {
+          lapply(
+            X = stations$overview_list[[names(gw_option)]]$Messstellennummer,
+            FUN = function(id) {
+              kwb.utils::catAndRun(
+                sprintf("Downloading Messstellennummer == '%s'", id),
+                expr = {
+                  read_wasserportal_raw_gw(station = id, stype = gw_option)
+                },
+                dbg = debug
+              )
+            }) %>%
+            data.table::rbindlist()
+        }
+      )
+    })
+
+  stats::setNames(result, names(groundwater_options))
 }
