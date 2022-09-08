@@ -100,6 +100,12 @@
     <loc>https://kwb-r.github.io/wasserportal/reference/list_data_to_csv_or_zip.html</loc>
   </url>
   <url>
+    <loc>https://kwb-r.github.io/wasserportal/reference/list_masters_data_to_csv.html</loc>
+  </url>
+  <url>
+    <loc>https://kwb-r.github.io/wasserportal/reference/list_timeseries_data_to_zip.html</loc>
+  </url>
+  <url>
     <loc>https://kwb-r.github.io/wasserportal/reference/pipe.html</loc>
   </url>
   <url>
@@ -119,5 +125,11 @@
   </url>
   <url>
     <loc>https://kwb-r.github.io/wasserportal/reference/wasserportal_base_url.html</loc>
+  </url>
+  <url>
+    <loc>https://kwb-r.github.io/wasserportal/reference/wp_masters_data_to_list.html</loc>
+  </url>
+  <url>
+    <loc>https://kwb-r.github.io/wasserportal/reference/wp_timeseries_data_to_list.html</loc>
   </url>
 </urlset>
