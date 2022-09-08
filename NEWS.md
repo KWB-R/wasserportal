@@ -1,5 +1,13 @@
-# [wasserportal 0.2.0](https://github.com/KWB-R/wasserportal/releases/tag/v0.2.0) <small>2022-09-07</small>
+# [wasserportal 0.2.0](https://github.com/KWB-R/wasserportal/releases/tag/v0.2.0) <small>2022-09-08</small>
 
+* Add functions for exporting time series data to `zip` files (`wp_masters_data_to_list()`) 
+and master data to `csv` files (`wp_timeseries_data_to_list()`), which will be 
+uploaded to [https://kwb-r.github.io/wasserportal](https://kwb-r.github.io/wasserportal)/`<filename>`
+
+* In addition `import` functions for downloading and importing the datasets above 
+into R as lists were added (`list_timeseries_data_to_zip()`, `list_masters_data_to_csv()`)
+
+* Code cleaning by `@hsonne` started
 
 * Fix `master data` requests by using the `master_url` instead of `station_id`, 
 as the latter was not unique. Now functions `get_wasserportal_master_data()` and 

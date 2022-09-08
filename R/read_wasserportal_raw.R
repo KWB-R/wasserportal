@@ -29,8 +29,9 @@ get_station_variables <- function(station_df)
 #' i.e. `get_stations()$crosstable`
 #' @return ????
 #' @export
-#' @import kwb.utils
+#' @importFrom kwb.utils catAndRun selectColumns selectElements
 #' @importFrom kwb.datetime textToEuropeBerlinPosix
+#' @importFrom httr content POST
 read_wasserportal_raw <- function(
   variable,
   station,
@@ -136,6 +137,7 @@ read_wasserportal_raw <- function(
 }
 
 # clean_timestamp_columns ------------------------------------------------------
+
 clean_timestamp_columns <- function(data, include_raw_time)
 {
   raw_timestamps <- kwb.utils::selectColumns(data, "Datum")

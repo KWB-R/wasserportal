@@ -25,8 +25,7 @@ stations <- wasserportal::get_stations()
 
 is_sw <- stringr::str_detect(names(stations$overview_list), "surface")
 
-files <- wasserportal::list_data_to_csv_or_zip(data_list = stations$overview_list[is_sw], 
-                                               file_prefix = "stations_")
+files <- wasserportal::list_masters_data_to_csv(stations$overview_list[is_sw])
 
 
 ```
@@ -56,12 +55,10 @@ variables <- wasserportal::get_surfacewater_variables()
 variables
 
 sw_data_daily_list <- wasserportal::get_daily_surfacewater_data(stations,
-                                                          variables)
+                                                                variables)
 
 
-files <- wasserportal::list_data_to_csv_or_zip(sw_data_daily_list,
-                                               file_prefix = "daily_", 
-                                               to_zip = TRUE)
+files <- wasserportal::list_timeseries_data_to_zip(sw_data_daily_list)
 files
 
 # Data availability per parameter
