@@ -1,5 +1,4 @@
 
-
 #' read_wasserportal_raw_gw
 #'
 #' @param station station id
@@ -11,7 +10,7 @@
 #'
 #' @return data.frame with values (currently only if stype == "gwl")
 #' @export
-#' @importFrom stringr str_detect str_remove str_extract
+#' @importFrom stringr str_remove str_extract
 #' @importFrom tidyr pivot_longer
 #' @importFrom dplyr select filter mutate
 #' @examples
@@ -20,49 +19,70 @@
 #' read_wasserportal_raw_gw(station = 149, stype = "gwq")
 #' }
 read_wasserportal_raw_gw <- function(
-  station = 149,
-  stype = "gwl",
-  type = "single_all",
-  from_date = "",
-  include_raw_time = FALSE,
-  handle = NULL
+    station = 149,
+    stype = "gwl",
+    type = "single_all",
+    from_date = "",
+    include_raw_time = FALSE,
+    handle = NULL
 )
 {
-
-  if (stype == "gwq") type <- "single_all"
-
-  stype_options <- list("gwl" = "g",
-                        "gwq" = "q")
-
-  if (stype %in% c("gwl", "gwq")) {
-    download_shortcut <- stype_options[names(stype_options) == stype][[1]]
-  } else {
-    download_shortcut <- "s"
+  if (stype == "gwq") {
+    type <- "single_all"
   }
 
+  stype_options <- list(
+    "gwl" = list(
+      download_shortcut = "g",
+      par_remove_pattern = "\\s+\\(.*\\)",
+      unit_extract_pattern = "\\(.*\\)",
+      unit_remove_pattern = "\\(|\\)"
+    ),
+    "gwq" = list(
+      download_shortcut = "q",
+      par_remove_pattern = "\\s+\\[.*\\]",
+      unit_extract_pattern = "\\[.*\\]",
+      unit_remove_pattern = "\\[|\\]"
+    )
+  )
 
-  url <- sprintf("%s/station.php?anzeige=%sd&sstation=%s",
-                          wasserportal_base_url(),
-                          download_shortcut,
-                          station)
+  download_shortcut <- if (stype %in% names(stype_options)) {
+    stype_options[[stype]]$download_shortcut
+  } else {
+    "s"
+  }
 
+  url <- sprintf(
+    "%s/station.php?anzeige=%sd&sstation=%s",
+    wasserportal_base_url(),
+    download_shortcut,
+    station
+  )
 
   sreihe <- kwb.utils::selectElements(elements = type, list(
-    single = "w", single_all = "wa", daily = "m", monthly = "j"
+    single = "w",
+    single_all = "wa",
+    daily = "m",
+    monthly = "j"
   ))
 
   # Format the start date
-  #
-  if (from_date != "") sdatum <- format(from_date, format = "%d.%m.%Y")
-  if (sreihe == "wa") sdatum <- "01.01.1900"
+  if (from_date != "") {
+    sdatum <- format(from_date, format = "%d.%m.%Y")
+  }
+
+  if (sreihe == "wa") {
+    sdatum <- "01.01.1900"
+  }
 
   # Compose the body of the request
-  body <- list(sreihe = sreihe,
-               smode = "c",
-               sdatum = sdatum,
-               senddatum = format(Sys.Date(), format = "%d.%m.%Y"),
-               sthema = "gw")
-
+  body <- list(
+    sreihe = sreihe,
+    smode = "c",
+    sdatum = sdatum,
+    senddatum = format(Sys.Date(), format = "%d.%m.%Y"),
+    sthema = "gw"
+  )
 
   # Post the request to the web server
   response <- httr::POST(url, body = body, handle = handle)
@@ -76,13 +96,13 @@ read_wasserportal_raw_gw <- function(
   text <- httr::content(response, as = "text", encoding = "Latin1")
 
   # Split the text into separate lines
-  textlines <- strsplit(text, "\n")[[1]]
+  textlines <- strsplit(text, "\n")[[1L]]
 
-  start_line <- which(stringr::str_detect(textlines, "^Datum"))
+  start_line <- which(startsWith(textlines, "Datum"))
   textlines <- textlines[start_line:length(textlines)]
 
   # Split the header row into fields
-  header_fields <- as.character(read(textlines[1])) %>%
+  header_fields <- as.character(read(textlines[1L])) %>%
     stringr::str_remove("/Parameter:$")
 
   # Return empty list with metadata if no data rows are available
@@ -94,39 +114,40 @@ read_wasserportal_raw_gw <- function(
   data <- read(text, header = FALSE, skip = start_line)
 
   # Get the numbers of the data columns
-  if (type != "monthly" & stype == "gwl") {
+  if (type != "monthly" && stype == "gwl") {
     stopifnot(ncol(data) == 2L)
   }
 
   # Name the data columns as given in the first columns of the header row
   names(data) <- header_fields[seq_len(ncol(data))]
 
-  if (stype == "gwq") {
-    data <- data %>%
-      tidyr::pivot_longer(cols = names(data)[names(data) != "Datum"],
-                          names_to = c("parameter_unit"),
-                          values_to = "Messwert") %>%
-      dplyr::mutate(Messstellennummer = station,
-                    Parameter = stringr::str_remove(.data$parameter_unit, "\\s+\\[.*\\]"),
-                    Einheit = stringr::str_extract(.data$parameter_unit, "\\[.*\\]") %>%
-                      stringr::str_remove(pattern = "\\[") %>%
-                      stringr::str_remove(pattern = "\\]")) %>%
-      dplyr::filter(!is.na(.data$Messwert)) %>%
-      dplyr::select("Messstellennummer", "Datum", "Parameter", "Einheit", "Messwert")
-  }
+  if (stype %in% names(stype_options)) {
 
-  if (stype == "gwl") {
+    opts <- stype_options[[stype]]
+
     data <- data %>%
-      tidyr::pivot_longer(cols = names(data)[names(data) != "Datum"],
-                          names_to = c("parameter_unit"),
-                          values_to = "Messwert") %>%
-      dplyr::mutate(Messstellennummer = station,
-                    Parameter = stringr::str_remove(.data$parameter_unit, "\\s+\\(.*\\)"),
-                    Einheit = stringr::str_extract(.data$parameter_unit, "\\(.*\\)") %>%
-                      stringr::str_remove(pattern = "\\(") %>%
-                      stringr::str_remove(pattern = "\\)")) %>%
+      tidyr::pivot_longer(
+        cols = setdiff(names(data), "Datum"),
+        names_to = c("parameter_unit"),
+        values_to = "Messwert"
+      ) %>% dplyr::mutate(
+        Messstellennummer = station,
+        Parameter = stringr::str_remove(
+          .data$parameter_unit,
+          pattern = opts$par_remove_pattern
+        ),
+        Einheit = stringr::str_extract(
+          .data$parameter_unit,
+          pattern = opts$unit_extract_pattern
+        ) %>%
+          stringr::str_remove(
+            pattern = opts$unit_remove_pattern
+          )
+      ) %>%
       dplyr::filter(!is.na(.data$Messwert)) %>%
-      dplyr::select("Messstellennummer", "Datum", "Parameter", "Einheit", "Messwert")
+      kwb.utils::selectColumns(c(
+        "Messstellennummer", "Datum", "Parameter", "Einheit", "Messwert"
+      ))
   }
 
   data <- data %>%
@@ -136,4 +157,3 @@ read_wasserportal_raw_gw <- function(
   # meta information in attribute "metadata"
   add_wasserportal_metadata(data, header_fields)
 }
-

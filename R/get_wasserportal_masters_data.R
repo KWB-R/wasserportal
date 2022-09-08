@@ -1,39 +1,46 @@
 #' Wasserportal Berlin: get master data for a multiple stations
 #'
-#' @param station_ids station_ids
+#' @param master_urls urls with master data as retrieved by \code{\link{get_stations}}
+#' and one of  "overview_list" sublist elements column name "stammdaten_link"
 #' @param run_parallel default: TRUE
 #'
-#' @return data frame with metadata for selected station ids
+#' @return data frame with metadata for selected master urls
 #' @export
 #' @importFrom parallel detectCores makeCluster stopCluster
 #' @importFrom data.table rbindlist
 #' @examples
-#' station_ids <- 1:4
+#' stations <- wasserportal::get_stations()
 #' parallel::detectCores()
-#' system.time(get_wasserportal_masters_data(station_ids))
-#' system.time(get_wasserportal_masters_data(station_ids,
+#' stations <- wasserportal::get_stations()
+#' ### Reduce  to monitoring stations maintained by Berlin
+#' master_urls <- stations$overview_list$surface_water.water_level %>%
+#' dplyr::filter(.data$Betreiber == "Land Berlin") %>%
+#' dplyr::pull(.data$stammdaten_link)
+#' system.time(master_parallel <- get_wasserportal_masters_data(master_urls))
+#' system.time(master_sequential <- get_wasserportal_masters_data(master_urls,
 #'                                           run_parallel = FALSE))
 #'
 get_wasserportal_masters_data <- function(
-  station_ids,
-  run_parallel = TRUE
+    master_urls,
+    run_parallel = TRUE
 )
 {
-  msg <- sprintf("Importing %d station metadata from Wasserportal Berlin",
-                 length(station_ids))
-
+  msg <- sprintf(
+    "Importing %d station metadata from Wasserportal Berlin",
+    length(master_urls)
+  )
 
   if (run_parallel) {
 
-    ncores <- parallel::detectCores() - 1
+    ncores <- parallel::detectCores() - 1L
 
     cl <- parallel::makeCluster(ncores)
 
     master_list <- kwb.utils::catAndRun(
       messageText = msg,
       expr = parallel::parLapply(
-        cl, station_ids, function(id) {
-          try(wasserportal::get_wasserportal_master_data(station_id = id))
+        cl, master_urls, function(master_url) {
+          try(wasserportal::get_wasserportal_master_data(master_url))
         })
     )
 
@@ -41,12 +48,18 @@ get_wasserportal_masters_data <- function(
 
   } else {
 
-    master_list <- lapply(station_ids, function(id) {
-      wasserportal::get_wasserportal_master_data(id)
-      })
+    master_list <- lapply(master_urls, function(master_url) {
+      try(wasserportal::get_wasserportal_master_data(master_url))
+    })
 
   }
 
-  data.table::rbindlist(master_list, fill = TRUE)
+  failed <- sapply(master_list, kwb.utils::isTryError)
 
+  if (any(failed)) {
+    message("Failed fetching data from the following URLs:")
+    print(master_urls[failed])
+  }
+
+  data.table::rbindlist(master_list[!failed], fill = TRUE)
 }

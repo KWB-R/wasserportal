@@ -17,3 +17,8 @@ parameters is available per station ("x" if available, NA if not)
 \description{
 Get Stations
 }
+\examples{
+stations <- wasserportal::get_stations()
+str(stations)
+
+}

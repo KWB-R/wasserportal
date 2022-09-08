@@ -4,28 +4,30 @@
 \alias{get_wasserportal_master_data}
 \title{Wasserportal Berlin: get master data for a single station}
 \usage{
-get_wasserportal_master_data(
-  station_id,
-  url_wasserportal = wasserportal_base_url()
-)
+get_wasserportal_master_data(master_url)
 }
 \arguments{
-\item{station_id}{station_id}
-
-\item{url_wasserportal}{base url to Wasserportal berlin (default:
-wasserportal_base_url())}
+\item{master_url}{url with master data for single station as retrieved by
+\code{\link{get_wasserportal_stations_table}}}
 }
 \value{
-data frame with metadata for
+data frame with metadata for selected station
 }
 \description{
 Wasserportal Berlin: get master data for a single station
 }
 \examples{
+stations <- wasserportal::get_stations()
+
 ## GW Station
-\dontrun{
-get_wasserportal_master_data(station_id = 149)
-}
+master_url <- stations$overview_list$groundwater.level$stammdaten_link[1]
+get_wasserportal_master_data(master_url)
+
 ## SW Station
-get_wasserportal_master_data(station_id = 5865900)
+### Reduce  to monitoring stations maintained by Berlin
+master_urls <- stations$overview_list$surface_water.water_level \%>\%
+dplyr::filter(.data$Betreiber == "Land Berlin") \%>\%
+dplyr::pull(.data$stammdaten_link)
+get_wasserportal_master_data(master_urls[1])
+
 }

@@ -28,23 +28,26 @@ License: MIT + file LICENSE
 URL: https://github.com/KWB-R/wasserportal
 BugReports: https://github.com/KWB-R/wasserportal/issues
 Imports: 
+    archive,
     data.table,
     dplyr,
+    fs,
     httr,
     kwb.datetime,
     kwb.utils,
     magrittr,
+    readr,
     rlang,
     rvest,
     stringr,
     tibble,
     tidyr,
+    withr,
     xml2
 Suggests: 
     covr,
     DT,
     forcats,
-    fs,
     htmlwidgets,
     janitor,
     jsonlite,
@@ -55,7 +58,6 @@ Suggests:
     kwb.pkgbuild,
     openxlsx,
     plotly,
-    readr,
     rmarkdown,
     sf,
     tidyselect

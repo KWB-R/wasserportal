@@ -15,9 +15,65 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
+
+## Master Data
+
+```{r master_data}
+library(wasserportal)
+
+stations <- wasserportal::get_stations()
+
+is_gw <- stringr::str_detect(names(stations$overview_list), "groundwater")
+
+files <- wasserportal::list_masters_data_to_csv(stations$overview_list[is_gw])
+
+```
+
+The following groundwater master data `.csv` files are available for download: 
+
+```{r master_data_csv, echo = FALSE, results ='asis'}
+
+
+cat(paste0(sprintf("- [%s](https://kwb-r.github.io/wasserportal/%s)", 
+        files, 
+        files),
+       collapse = "\n\n"))
+
+```
+
+## Get Groundwater Data
+
+```{r groundwater_data_raw_export}
+
+gw_data_list <- wasserportal::get_groundwater_data(stations,
+                                                   debug = FALSE)
+
+
+files <- wasserportal::list_timeseries_data_to_zip(gw_data_list)
+files
+
+# Data availability per parameter
+gw_data_list %>%
+  dplyr::bind_rows() %>% 
+  dplyr::count(Parameter, Einheit) %>% 
+  dplyr::arrange(dplyr::desc(.data$n))
+
+```
+The following groundwater data `.zip` files are available for download: 
+
+```{r groundwater_data_zip, echo = FALSE, results ='asis'}
+
+
+cat(paste0(sprintf("- [%s](https://kwb-r.github.io/wasserportal/%s)", 
+        files, 
+        files),
+       collapse = "\n\n"))
+
+```
+
 ## Do Your Own Analysis! 
 
-Download JSON files scraped and prepared each day at 5 a.m. UTC for re-use in R. 
+Download CSV/JSON/ZIP files scraped and prepared each day at 5 a.m. UTC for re-use in R. 
 The following data are available:
 
 - **Data availability**
@@ -56,6 +112,7 @@ Please find an example below for merging all this information into a single
 data frame:
 
 ```{r }
+
 library(wasserportal)
 
 ### GW levels

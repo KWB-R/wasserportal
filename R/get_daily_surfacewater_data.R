@@ -35,14 +35,11 @@ sw_data_list_to_df <- function (sw_data_list) {
 #' @export
 #'
 #' @importFrom stringr str_detect
-get_surfacewater_variables <- function() {
-
+get_surfacewater_variables <- function()
+{
   variables <- unlist(get_overview_options())
 
-  is_surface_water <- stringr::str_detect(names(variables), pattern = "^surface")
-
-
-  variables[is_surface_water]
+  variables[startsWith(names(variables), "surface")]
 }
 
 #' Get Daily Surfacewater Data: wrapper to scrape daily surface water data
@@ -63,45 +60,49 @@ get_surfacewater_variables <- function() {
 #' @importFrom kwb.utils catAndRun
 #' @importFrom dplyr bind_rows filter pull
 #' @importFrom stats setNames
-get_daily_surfacewater_data <- function(stations,
-                                        variables = get_surfacewater_variables(),
-                                        list2df = FALSE) {
+get_daily_surfacewater_data <- function(
+    stations,
+    variables = get_surfacewater_variables(),
+    list2df = FALSE
+)
+{
+  sw_data_list <- stats::setNames(nm = names(variables), lapply(
+    X = seq_along(variables),
+    FUN = function(i) {
 
-  sw_data_list <- stats::setNames(lapply(seq_len(length(variables)), function(i) {
+      fname <- names(variables[i])
+      fvalue <- as.vector(variables[i])
 
-    fname <- names(variables[i])
-    fvalue <- as.vector(variables[i])
+      kwb.utils::catAndRun(sprintf("Importing '%s'", fname), expr = {
 
-    kwb.utils::catAndRun(sprintf("Importing '%s'", fname),
-                         expr = {
+        master_urls <- stations$overview_list[[fname]] %>%
+          dplyr::filter(.data$Betreiber == "Land Berlin") %>%
+          dplyr::pull(.data$stammdaten_link)
 
-                           sw_master <- get_wasserportal_masters_data(
-                             station_ids = stations$overview_list[[fname]] %>%
-                               dplyr::filter(.data$Betreiber == "Land Berlin") %>%
-                               dplyr::pull(.data$Messstellennummer)
-                           )
+        sw_numbers <- master_urls %>%
+          get_wasserportal_masters_data() %>%
+          kwb.utils::selectElements("Nummer")
 
+        sw_data_list <- lapply(
+          X = sw_numbers,
+          FUN = read_wasserportal,
+          from_date = "1900-01-01",
+          variables = fvalue,
+          type = "daily",
+          stations_crosstable = stations$crosstable
+        )
 
-                           sw_data_list <- stats::setNames(lapply(sw_master$Nummer, function(station) {
-                             read_wasserportal(station = station,
-                                               from_date = "1900-01-01",
-                                               variables = fvalue,
-                                               type = "daily",
-                                               stations_crosstable = stations$crosstable)
-                           }), nm = sw_master$Nummer)
+        sw_data_list %>%
+          stats::setNames(sw_numbers) %>%
+          sw_data_list_to_df() %>%
+          dplyr::filter(.data$Tagesmittelwert != -777)
+      })
+    })
+  )
 
-
-
-                           sw_data_list_to_df(sw_data_list) %>%
-                             dplyr::filter(.data$Tagesmittelwert != -777)
-
-                         })
-
-  }), nm = names(variables))
-
-  if(list2df) {
-    dplyr::bind_rows(sw_data_list)
-  } else {
-    sw_data_list
+  if (!list2df) {
+    return(sw_data_list)
   }
+
+  dplyr::bind_rows(sw_data_list)
 }

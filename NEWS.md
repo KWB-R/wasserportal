@@ -1,9 +1,32 @@
-# [wasserportal 0.2.0](https://github.com/KWB-R/wasserportal/releases/tag/v0.2.0) <small>2022-09-06</small>
+# [wasserportal 0.2.0](https://github.com/KWB-R/wasserportal/releases/tag/v0.2.0) <small>2022-09-08</small>
+
+* Add functions for exporting time series data to `zip` files (`wp_masters_data_to_list()`) 
+and master data to `csv` files (`wp_timeseries_data_to_list()`), which will be 
+uploaded to [https://kwb-r.github.io/wasserportal](https://kwb-r.github.io/wasserportal)/`<filename>`
+
+* In addition `import` functions for downloading and importing the datasets above 
+into R as lists were added (`list_timeseries_data_to_zip()`, `list_masters_data_to_csv()`)
+
+* Code cleaning by `@hsonne` started
+
+* Fix `master data` requests by using the `master_url` instead of `station_id`, 
+as the latter was not unique. Now functions `get_wasserportal_master_data()` and 
+it wrapper function `get_wasserportal_masters_data()` require the `master_url` 
+instead of `station_id` as input parameter. The function `get_stations` now adds 
+the column `stammdaten_link` as additional column for each sublist element of the 
+sublist `overview_list`. 
+
+* Fix to scrape  `groundwater level` data from all available monitoring stations (instead of only 5!) and export to `.csv` file. In addition switch also to `.csv`
+export for `groundwater quality` instead of `.json` due to reduced storage space 
+([stations_gwq_data.json](https://github.com/KWB-R/wasserportal/blob/gh-pages/stations_gwq_data.json) file is already 98.4 MB large.
 
 * Add functions (`get_daily_surfacewater_data()`) and adapt article 
 [Surface Water](../articles/surface-water.html) for scraping all available daily 
 surface water data and exporting to one `.csv` file for each parameter (containing
 all monitoring stations)
+
+* Deactivate *PROMISCES* workflows (see [wasserportal v0.1.0](#wasserportal-010-2022-06-01)), due to failing Zenodo download. Will be 
+moved into own R package, most properly [kwb.promisces](https://github.com/kwb-r/kwb.promisces).
 
 
 # [wasserportal 0.1.1](https://github.com/KWB-R/wasserportal/releases/tag/v0.1.1) <small>2022-06-09</small>
