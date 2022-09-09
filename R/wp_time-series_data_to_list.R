@@ -6,7 +6,7 @@
 #' @export
 #'
 base_url_download <- function() {
-"https://kwb-r.github.io/wasserportal"
+  "https://kwb-r.github.io/wasserportal"
 }
 
 #' Wasserportal Time Series Data: download and Import in R List
@@ -32,9 +32,11 @@ base_url_download <- function() {
 #' overview_list_names <- names(stations$overview_list)
 #' wp_timeseries_data_list <- wp_timeseries_data_to_list(overview_list_names)
 #' }
-wp_timeseries_data_to_list <- function(overview_list_names,
-                            target_dir = tempdir(),
-                            is_zipped = TRUE)
+wp_timeseries_data_to_list <- function(
+    overview_list_names,
+    target_dir = tempdir(),
+    is_zipped = TRUE
+)
 {
   wp_data_to_list(
     overview_list_names,
