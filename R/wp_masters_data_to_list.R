@@ -4,6 +4,7 @@
 #' \code{\link{get_stations}}
 #' @param target_dir target directory for downloading data (default:
 #' tempdir())
+#' @param file_prefix prefix given to file names
 #' @param is_zipped are the data to be downloaded zipped (default:
 #' FALSE)
 #'
