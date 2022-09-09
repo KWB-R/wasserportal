@@ -70,7 +70,7 @@ read_wasserportal_raw <- function(
     monthly = "j"
   ))
 
-  variable <- kwb.utils::selectElements(elements = variable, list(
+  variable_id_mapping <- list(
     ws = "w",
     df = "d",
     wt = "t",
@@ -78,7 +78,10 @@ read_wasserportal_raw <- function(
     ph = "p",
     og = "o",
     os = "s"
-  ))
+  )
+
+  variable <- kwb.utils::selectElements(variable_id_mapping, variable)
+  variable_ids <- unlist(variable_codes)
 
   # Compose the body of the request
   body <- list(
