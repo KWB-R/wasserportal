@@ -177,11 +177,18 @@ add_wasserportal_metadata <- function(x, header_fields)
 # get_wasserportal_text --------------------------------------------------------
 get_wasserportal_text <- function(station, variable, station_ids, variable_ids)
 {
+  default_names <- function(ids, prefix) {
+    kwb.utils::defaultIfNULL(names(ids), paste0(prefix, ids))
+  }
+
+  variable_names <- default_names(variable_ids, "variable_")
+  station_names <- default_names(station_ids, "station_")
+
   sprintf(
     "Reading '%s' for station %s (%s)",
-    names(variable_ids)[match(variable, unlist(variable_ids))],
+    variable_names[match(variable, unlist(variable_ids))],
     station,
-    names(station_ids)[match(station, unlist(station_ids))]
+    station_names[match(station, unlist(station_ids))]
   )
 }
 
