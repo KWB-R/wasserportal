@@ -84,43 +84,54 @@ get_daily_surfacewater_data <- function(
     list2df = FALSE
 )
 {
-  sw_data_list <- stats::setNames(nm = names(variables), lapply(
-    X = seq_along(variables),
-    FUN = function(i) {
+  overviews <- kwb.utils::selectElements(stations, "overview_list")
+  crosstable <- kwb.utils::selectElements(stations, "crosstable")
 
-      fname <- names(variables[i])
-      fvalue <- as.vector(variables[i])
+  data_frames <- lapply(names(variables), function(variable_name) {
 
-      kwb.utils::catAndRun(sprintf("Importing '%s'", fname), expr = {
+    #variable_name <- names(variables)[1L]
 
-        master_urls <- stations$overview_list[[fname]] %>%
-          dplyr::filter(.data$Betreiber == "Land Berlin") %>%
-          dplyr::pull(.data$stammdaten_link)
+    kwb.utils::catAndRun(sprintf("Importing '%s'", variable_name), expr = {
 
-        sw_numbers <- master_urls %>%
-          get_wasserportal_masters_data() %>%
-          kwb.utils::selectElements("Nummer")
+      # data frame with stations at which <variable_name> is measured
+      station_data <- kwb.utils::selectElements(overviews, variable_name)
 
-        sw_data_list <- lapply(
-          X = sw_numbers,
-          FUN = read_wasserportal,
-          from_date = "1900-01-01",
-          variables = fvalue,
-          type = "daily",
-          stations_crosstable = stations$crosstable
-        )
+      masterdata_urls <- station_data %>%
+        dplyr::pull(.data$stammdaten_link)
 
-        sw_data_list %>%
-          stats::setNames(sw_numbers) %>%
-          sw_data_list_to_df() %>%
-          dplyr::filter(.data$Tagesmittelwert != -777)
-      })
+      all_station_numbers <- masterdata_urls %>%
+      get_wasserportal_masters_data() %>%
+        kwb.utils::selectElements("Nummer")
+
+      #length(all_station_numbers)
+      #nrow(station_data)
+      #all_station_numbers == as.character(station_data$Messstellennummer)
+
+      belongs_to_berlin <- station_data$Betreiber == "Land Berlin"
+      station_numbers <- all_station_numbers[belongs_to_berlin]
+
+      #head(station_data$Messstellennummer)
+      #head(station_numbers)
+
+      lapply(
+        X = station_numbers,
+        FUN = read_wasserportal,
+        from_date = "1900-01-01",
+        variables = variables[[variable_name]],
+        type = "daily",
+        stations_crosstable = crosstable
+      ) %>%
+        stats::setNames(sw_numbers) %>%
+        sw_data_list_to_df() %>%
+        dplyr::filter(.data$Tagesmittelwert != -777)
     })
-  )
+  })
+
+  names(data_frames) <- names(variables)
 
   if (!list2df) {
-    return(sw_data_list)
+    return(data_frames)
   }
 
-  dplyr::bind_rows(sw_data_list)
+  dplyr::bind_rows(data_frames)
 }
