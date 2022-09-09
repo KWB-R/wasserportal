@@ -11,7 +11,7 @@ base_url_download <- function() {
 
 #' Wasserportal Time Series Data: download and Import in R List
 #'
-#' @param overview_list names of "overview_list" as retrieved by
+#' @param overview_list_names names of "overview_list" as retrieved by
 #' \code{\link{get_stations}}
 #' @param target_dir target directory for downloading data (default:
 #' tempdir())
