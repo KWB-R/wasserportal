@@ -1,5 +1,5 @@
-# belongs_to_external_data_provider --------------------------------------------
-belongs_to_external_data_provider <- function(url)
+# is_external_link -------------------------------------------------------------
+is_external_link <- function(url)
 {
   !startsWith(url, wasserportal_base_url())
 }
@@ -7,7 +7,7 @@ belongs_to_external_data_provider <- function(url)
 # stop_on_external_data_provider -----------------------------------------------
 stop_on_external_data_provider <- function(url)
 {
-  if (belongs_to_external_data_provider(url)) {
+  if (is_external_link(url)) {
 
     kwb.utils::stopFormatted(
       paste0(
