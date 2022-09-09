@@ -30,7 +30,15 @@ sw_data_list_to_df <- function (sw_data_list)
     data <- x[[1L]]
 
     # Get its metadata
-    metadata <- kwb.utils::getAttribute(data, "metadata")
+    metadata <- if (!is.null(data)) {
+      kwb.utils::getAttribute(data, "metadata")
+    } else {
+      message(sprintf(
+        "Empty data frame when looping through '%s' in %s",
+        "sw_data_list", "sw_data_list_to_df()"
+      ))
+      NULL
+    } # else NULL
 
     # Index in metadata where we expect the parameter name and unit
     index <- min(which(stringr::str_detect(metadata, ":"))) + 3L
@@ -96,32 +104,33 @@ get_daily_surfacewater_data <- function(
       # data frame with stations at which <variable_name> is measured
       station_data <- kwb.utils::selectElements(overviews, variable_name)
 
-      masterdata_urls <- station_data %>%
-        dplyr::pull(.data$stammdaten_link)
+      # Identifiers of non-external monitoring stations to loop through
+      station_ids <- get_non_external_station_ids(station_data)
 
-      all_station_numbers <- masterdata_urls %>%
-      get_wasserportal_masters_data() %>%
-        kwb.utils::selectElements("Nummer")
+      results_per_station <- lapply(
+        X = station_ids,
+        FUN = function(station_id) {
 
-      #length(all_station_numbers)
-      #nrow(station_data)
-      #all_station_numbers == as.character(station_data$Messstellennummer)
+          cat(sprintf(
+            "Station id: %s (%d/%d)\n",
+            station_id,
+            which(station_id == station_ids),
+            length(station_ids)
+          ))
 
-      belongs_to_berlin <- station_data$Betreiber == "Land Berlin"
-      station_numbers <- all_station_numbers[belongs_to_berlin]
+          read_wasserportal(
+            station_id,
+            from_date = "1900-01-01",
+            variables = variables[[variable_name]],
+            type = "daily",
+            stations_crosstable = crosstable
+          )
+        }
+      )
 
-      #head(station_data$Messstellennummer)
-      #head(station_numbers)
+      names(results_per_station) <- station_ids
 
-      lapply(
-        X = station_numbers,
-        FUN = read_wasserportal,
-        from_date = "1900-01-01",
-        variables = variables[[variable_name]],
-        type = "daily",
-        stations_crosstable = crosstable
-      ) %>%
-        stats::setNames(sw_numbers) %>%
+      results_per_station %>%
         sw_data_list_to_df() %>%
         dplyr::filter(.data$Tagesmittelwert != -777)
     })
@@ -134,4 +143,17 @@ get_daily_surfacewater_data <- function(
   }
 
   dplyr::bind_rows(data_frames)
+}
+
+# get_non_external_station_ids -------------------------------------------------
+get_non_external_station_ids <- function(station_data)
+{
+  # Function to safely select columns from station_data
+  pull <- kwb.utils::createAccessor(station_data)
+
+  is_external <- is_external_link(pull("stammdaten_link"))
+  is_berlin <- pull("Betreiber") == "Land Berlin"
+
+  # Identifiers of monitoring stations to loop through
+  as.character(pull("Messstellennummer")[is_berlin & !is_external])
 }
