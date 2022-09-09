@@ -66,11 +66,13 @@ list_data_to_csv_or_zip <- function(
 #' sw_tsdata_list <- wasserportal::get_daily_surfacewater_data(stations)
 #' sw_tsdata_files <- wasserportal::list_timeseries_data_to_zip(sw_tsdata_list)
 #' }
-list_timeseries_data_to_zip <- function(timeseries_data_list) {
-  list_data_to_csv_or_zip(timeseries_data_list,
-                          file_prefix = "",
-                          to_zip = TRUE)
-
+list_timeseries_data_to_zip <- function(timeseries_data_list)
+{
+  list_data_to_csv_or_zip(
+    timeseries_data_list,
+    file_prefix = "",
+    to_zip = TRUE
+  )
 }
 
 #' Helper function: list masters data to csv
@@ -87,9 +89,11 @@ list_timeseries_data_to_zip <- function(timeseries_data_list) {
 #' masters_data_csv_files <- wasserportal:list_masters_data_to_csv(stations$overview_list)
 #' masters_data_csv_files
 #' }
-list_masters_data_to_csv <- function(masters_data_list) {
-  list_data_to_csv_or_zip(masters_data_list,
-                          file_prefix = "stations_",
-                          to_zip = FALSE)
-
+list_masters_data_to_csv <- function(masters_data_list)
+{
+  list_data_to_csv_or_zip(
+    masters_data_list,
+    file_prefix = "stations_",
+    to_zip = FALSE
+  )
 }
