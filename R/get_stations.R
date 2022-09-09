@@ -20,6 +20,12 @@ get_stations <- function(run_parallel = TRUE)
 {
   overview_options <- unlist(get_overview_options())
 
+  # Prepare message text for console output
+  messageText <- sprintf(
+    "Importing %d station overviews from Wasserportal Berlin",
+    length(overview_options)
+  )
+
   # Function to be called within a loop
   FUN <- function(type) {
     try(get_wasserportal_stations_table(type = type))
@@ -30,12 +36,6 @@ get_stations <- function(run_parallel = TRUE)
     cl <- parallel::makeCluster(parallel::detectCores() - 1L)
     on.exit(parallel::stopCluster(cl))
   }
-
-  # Prepare message text for console output
-  messageText <- sprintf(
-    "Importing %d station overviews from Wasserportal Berlin",
-    length(overview_options)
-  )
 
   # Loop through overview_options, either in parallel or sequentially
   overview_list <- kwb.utils::catAndRun(messageText, expr = {
