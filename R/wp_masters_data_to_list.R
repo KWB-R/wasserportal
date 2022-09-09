@@ -59,11 +59,7 @@ wp_data_to_list <- function(
 
   results <- lapply(seq_along(filenames_base), function(i) {
 
-    url <- sprintf(
-      "%s/%s",
-      base_url_download(),
-      filenames[i]
-    )
+    url <- file.path(base_url_download(), filenames[i])
 
     if (is_zipped) {
 
