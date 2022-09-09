@@ -15,6 +15,14 @@ is_external_link <- function(url)
   !startsWith(url, wasserportal_base_url())
 }
 
+# to_base_filename -------------------------------------------------------------
+to_base_filename <- function(x)
+{
+  x %>%
+  stringr::str_replace_all("_", "-") %>%
+    stringr::str_replace("\\.", "_")
+}
+
 # stop_on_external_data_provider -----------------------------------------------
 stop_on_external_data_provider <- function(url)
 {

@@ -9,13 +9,12 @@ wp_data_to_list <- function(
   fs::dir_create(target_dir, recurse = TRUE)
 
   filenames_base <- overview_list_names %>%
-    stringr::str_replace_all("_", "-") %>%
-    stringr::str_replace("\\.", "_")
-
-  filenames_base <- modify_filenames(filenames_base)
+    to_base_filename() %>%
+    modify_filenames()
 
   filenames_csv <- paste0(filenames_base, ".csv")
   filenames_zip <- paste0(filenames_base, ".zip")
+
   filenames <- if (is_zipped) filenames_zip else filenames_csv
 
   results <- lapply(seq_along(filenames_base), function(i) {
