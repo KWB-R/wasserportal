@@ -42,7 +42,7 @@ sw_data_list_to_df <- function (sw_data_list)
     dplyr::bind_cols(data, parameter)
   })
 
-  result %>%
+  data_frames %>%
     dplyr::bind_rows(.id = "Messstellennummer") %>%
     dplyr::mutate(Datum = as.Date(.data$Datum, format = "%d.%m.%Y"))
 }
