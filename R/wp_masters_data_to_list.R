@@ -55,13 +55,14 @@ wp_data_to_list <- function(
 
   filenames_csv <- paste0(filenames_base, ".csv")
   filenames_zip <- paste0(filenames_base, ".zip")
+  filenames <- if (is_zipped) filenames_zip else filenames_csv
 
-  results <- lapply(seq_len(length(filenames_base)), function(i) {
+  results <- lapply(seq_along(filenames_base), function(i) {
 
     url <- sprintf(
       "%s/%s",
       base_url_download(),
-      ifelse(is_zipped, filenames_zip[i], filenames_csv[i])
+      filenames[i]
     )
 
     if (is_zipped) {
