@@ -15,7 +15,7 @@ stop_on_external_data_provider <- function(url)
         "data provider. Currently only master data within '%s' can be ",
         "requested by using the R package 'wasserportal'"
       ),
-      master_url,
+      url,
       wasserportal_base_url()
     )
   }
