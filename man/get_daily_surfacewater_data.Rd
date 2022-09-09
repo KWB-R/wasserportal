@@ -26,7 +26,7 @@ Get Daily Surfacewater Data: wrapper to scrape daily surface water data
 \examples{
 \dontrun{
 stations <- wasserportal::get_stations()
-variables <- get_surfacewater_variables()
+variables <- wasserportal::get_surfacewater_variables()
 variables
 sw_data_daily <- get_daily_surfacewater_data(stations, variables)
 }
