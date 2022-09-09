@@ -34,43 +34,14 @@ base_url_download <- function() {
 #' }
 wp_timeseries_data_to_list <- function(overview_list_names,
                             target_dir = tempdir(),
-                            is_zipped = TRUE) {
-
-  fs::dir_create(target_dir, recurse = TRUE)
-
-
-  filenames_base <- overview_list_names %>%
-    stringr::str_replace_all("_", "-") %>%
-    stringr::str_replace("\\.", "_")
-
-  filenames_base <- stringr::str_replace_all(filenames_base,
-                                             "^surface",
-                                             "daily_surface")
-
-  filenames_csv <- paste0(filenames_base, ".csv")
-  filenames_zip <- paste0(filenames_base, ".zip")
-
-
-  stats::setNames(lapply(seq_len(length(filenames_base)), function(i) {
-
-    url <- sprintf("%s/%s",
-                   base_url_download(),
-                   ifelse(is_zipped,
-                          filenames_zip[i],
-                          filenames_csv[i]))
-
-    if(is_zipped) {
-
-      withr::with_dir(new = target_dir,
-                      code = {
-                        archive::archive_extract(url) %>%
-                          readr::read_csv()
-                      })
-    } else {
-      target_path <- file.path(target_dir, filenames_csv[i])
-      try(utils::download.file(url = url, destfile = target_path))
-      readr::read_csv(file = target_path)
+                            is_zipped = TRUE)
+{
+  wp_data_to_list(
+    overview_list_names,
+    target_dir,
+    is_zipped,
+    modify_filenames = function(x) {
+      stringr::str_replace_all(x, "^surface", "daily_surface")
     }
-  }), nm = filenames_base
   )
 }

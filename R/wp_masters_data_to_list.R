@@ -1,6 +1,6 @@
 #' Wasserportal Master Data: download and Import in R List
 #'
-#' @param overview_list names of "overview_list" as retrieved by
+#' @param overview_list_names names of "overview_list" as retrieved by
 #' \code{\link{get_stations}}
 #' @param target_dir target directory for downloading data (default:
 #' tempdir())
@@ -23,26 +23,37 @@
 #' wp_masters_data_list <- wp_masters_data_to_list(overview_list_names)
 #' }
 wp_masters_data_to_list <- function(overview_list_names,
-                            target_dir = tempdir(),
-                            file_prefix = "stations_",
-                            is_zipped = FALSE) {
+                                    target_dir = tempdir(),
+                                    file_prefix = "stations_",
+                                    is_zipped = FALSE) {
+  wp_data_to_list(
+    overview_list_names,
+    target_dir,
+    is_zipped,
+    modify_filenames = function(x) paste0(file_prefix, x)
+  )
+}
 
+wp_data_to_list <- function(
+    overview_list_names,
+    target_dir,
+    is_zipped,
+    modify_filenames
+)
+{
   fs::dir_create(target_dir, recurse = TRUE)
-
 
   filenames_base <- overview_list_names %>%
     stringr::str_replace_all("_", "-") %>%
     stringr::str_replace("\\.", "_")
 
-  filenames_base <- sprintf("%s%s",
-                            file_prefix,
-                            filenames_base)
+  filenames_base <- modify_filenames(filenames_base)
 
   filenames_csv <- paste0(filenames_base, ".csv")
   filenames_zip <- paste0(filenames_base, ".zip")
 
-
   stats::setNames(lapply(seq_len(length(filenames_base)), function(i) {
+
 
     url <- sprintf("%s/%s",
                    base_url_download(),
