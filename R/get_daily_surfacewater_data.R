@@ -6,25 +6,43 @@
 #' @keywords internal
 #' @noMd
 #' @noRd
-#' @importFrom  stats setNames
+#' @importFrom stats setNames
 #' @importFrom stringr str_detect str_split_fixed
 #' @importFrom tibble tibble
 #' @importFrom dplyr bind_cols bind_rows
-sw_data_list_to_df <- function (sw_data_list) {
-  stats::setNames(lapply(names(sw_data_list), function(name) {
-    tmp <- sw_data_list[[name]][[1]]
+#' @importFrom kwb.utils getAttribute
+sw_data_list_to_df <- function (sw_data_list)
+{
+  # Helper function to split parameter string into parameter and unit
+  parameter_string_to_tibble <- function(x) {
 
-    start_idx <- min(which(stringr::str_detect(attr(tmp, "metadata"), ":"))) + 3
+    parts <- stringr::str_split_fixed(x, pattern = " in | im ", n = 2L)
 
-    parameter_unit <- stringr::str_split_fixed(attr(tmp, "metadata")[start_idx],
-                                               pattern = " in | im ",
-                                               n = 2)
+    tibble::tibble(
+      Parameter = parts[1L],
+      Einheit = parts[2L]
+    )
+  }
 
-    meta <- tibble::tibble(Parameter = parameter_unit[1],
-                           Einheit = parameter_unit[2])
+  data_frames <- lapply(sw_data_list, function(x) {
 
-    dplyr::bind_cols(tmp, meta)}),
-    names(sw_data_list)) %>%
+    # Select the first data frame
+    data <- x[[1L]]
+
+    # Get its metadata
+    metadata <- kwb.utils::getAttribute(data, "metadata")
+
+    # Index in metadata where we expect the parameter name and unit
+    index <- min(which(stringr::str_detect(metadata, ":"))) + 3L
+
+    # tibble with columns <parameter name> and <unit>
+    parameter <- parameter_string_to_tibble(metadata[index])
+
+    # Add parameter columns
+    dplyr::bind_cols(data, parameter)
+  })
+
+  result %>%
     dplyr::bind_rows(.id = "Messstellennummer") %>%
     dplyr::mutate(Datum = as.Date(.data$Datum, format = "%d.%m.%Y"))
 }
