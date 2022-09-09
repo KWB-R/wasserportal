@@ -1,14 +1,3 @@
-#' Helper function: base url for download
-#' @keywords internal
-#' @noMd
-#' @noRd
-#' @return base url for download of csv/zip files prepared by R package
-#' @export
-#'
-base_url_download <- function() {
-  "https://kwb-r.github.io/wasserportal"
-}
-
 #' Wasserportal Time Series Data: download and Import in R List
 #'
 #' @param overview_list_names names of "overview_list" as retrieved by

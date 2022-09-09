@@ -1,3 +1,14 @@
+#' Helper function: base url for download
+#' @keywords internal
+#' @noMd
+#' @noRd
+#' @return base url for download of csv/zip files prepared by R package
+#' @export
+#'
+base_url_download <- function() {
+  "https://kwb-r.github.io/wasserportal"
+}
+
 # is_external_link -------------------------------------------------------------
 is_external_link <- function(url)
 {
