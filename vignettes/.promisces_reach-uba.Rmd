@@ -31,19 +31,25 @@ options(repos = c(
 install.packages('wasserportal')
 ```
 
-## Get GW Quality from Wasserportal
+## Load R Package
 
-```{r eval = is_ghactions}
-# Load R package
+```{r eval = TRUE}
 library(wasserportal)
+```
 
-# Define URLs
+## Define URLs
+
+```{r eval = TRUE}
 urls <- kwb.utils::resolve(list(
   gh_wasserportal = "https://kwb-r.github.io/wasserportal",
   stations_gwq_meta = "<gh_wasserportal>/stations_gwq_master.json",
   stations_gwq_data = "<gh_wasserportal>/stations_gwq_data.json"
 ))
+```
 
+## Get GW Quality from Wasserportal
+
+```{r eval = is_ghactions}
 categories <- wasserportal::readPackageFile(
   file = "categories.csv"
 ) 
