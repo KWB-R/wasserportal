@@ -20,7 +20,7 @@ is_ghactions <- identical(Sys.getenv("CI"), "true")
 
 ## Install R Package
 
-```{r eval=FALSE}
+```{r eval = FALSE}
 # Enable this universe
 options(repos = c(
   kwbr = 'https://kwb-r.r-universe.dev',
@@ -31,9 +31,9 @@ options(repos = c(
 install.packages('wasserportal')
 ```
 
-## Get Norman Lists
+## Load R Package and Define Helper Functions
 
-```{r eval = is_ghactions}
+```{r eval = TRUE}
 library(wasserportal)
 
 download_file <- function(url, tdir = tempdir())
@@ -44,10 +44,18 @@ download_file <- function(url, tdir = tempdir())
   target_path
 }
 
-### Download S0 | SUSDAT | Merged NORMAN Suspect List: SusDat
-### Version: NORMAN-SLE-S0.0.4.1 (2021-01-18)
-### DOI: 10.5281/zenodo.5873975
+yes_if_in_cas_number_of <- function(x, data) {
+  dplyr::if_else(x %in% unique(data$cas_number), "yes", NA_character_)
+}
 
+top_filter_datatable <- function(data) {
+  DT::datatable(data, filter = "top", rownames = FALSE)
+}
+```
+
+## Define URLs
+
+```{r eval = TRUE}
 urls <- kwb.utils::resolve(list(
   record = "https://zenodo.org/record",
   norman_s0 = "<record>/5873975/files/susdat_2022-01-18-104316.csv",
@@ -58,6 +66,14 @@ urls <- kwb.utils::resolve(list(
   stations_gwq_meta = "<gh_wasserportal>/stations_gwq_master.json",
   stations_gwq_data = "<gh_wasserportal>/stations_gwq_data.json"
 ))
+```
+
+## Get Norman Lists
+
+```{r eval = is_ghactions}
+### Download S0 | SUSDAT | Merged NORMAN Suspect List: SusDat
+### Version: NORMAN-SLE-S0.0.4.1 (2021-01-18)
+### DOI: 10.5281/zenodo.5873975
 
 norman_s0_path <- download_file(urls$norman_s0)
 norman_s0 <- readr::read_csv(norman_s0_path)
@@ -94,10 +110,6 @@ ubapmt_zenodo <- norman_s36_ubapmt %>%
   dplyr::filter(.data$CAS_Number %in% wasserportal_cas_numbers) %>%
   dplyr::rename(cas_number = .data$CAS_Number)
 
-yes_if_in_cas_number_of <- function(x, data) {
-  dplyr::if_else(x %in% unique(data$cas_number), "yes", NA_character_)
-}
-
 missing_on_zenodo <- cas_reach %>%
   dplyr::mutate(
     zenodo = yes_if_in_cas_number_of(.data$cas_number, ubapmt_zenodo),
@@ -111,7 +123,7 @@ missing_on_zenodo <- cas_reach %>%
     .before = .data$emission_likelihood
   )
 
-DT::datatable(missing_on_zenodo, filter = "top", rownames = FALSE)
+top_filter_datatable(missing_on_zenodo)
 
 norman_s0_in_wasserportal <- norman_s0 %>%
   dplyr::mutate(
@@ -125,7 +137,7 @@ norman_s0_in_wasserportal <- norman_s0 %>%
     .data$cas_number %in% wasserportal_cas_numbers
   )
 
-#DT::datatable(norman_s0_in_wasserportal, filter = "top", rownames = FALSE)
+#top_filter_datatable(norman_s0_in_wasserportal)
 
 norman_lists_table <- xml2::read_html(urls$norman_lists) %>%
   rvest::html_element(css = ".table") %>%
@@ -196,7 +208,7 @@ gwq_subs <- gwq_data %>%
 
 readr::write_csv(gwq_subs, "gwq_subs.csv")
 
-DT::datatable(gwq_subs, filter = "top", rownames = FALSE)
+top_filter_datatable(gwq_subs)
 
 samples <- gwq_data %>%
   dplyr::rename(name_norman = .data$Name_Dashboard) %>%
