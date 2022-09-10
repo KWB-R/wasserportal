@@ -26,7 +26,7 @@ sw_data_list_to_df <- function (sw_data_list) {
     dplyr::bind_cols(tmp, meta)}),
     names(sw_data_list)) %>%
     dplyr::bind_rows(.id = "Messstellennummer") %>%
-    dplyr::mutate(Datum = as.Date(.data$Datum, format = "%d.%m.%Y"))
+    dplyr::mutate(Datum = as_date_de(.data$Datum))
 }
 
 #' Helper function: get surface water variables

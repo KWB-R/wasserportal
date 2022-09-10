@@ -87,7 +87,7 @@ read_wasserportal_raw <- function(
   body <- list(
     sreihe = sreihe,
     smode = "c",
-    sdatum = format(from_date, format = "%d.%m.%Y") # start date
+    sdatum = date_string_de(from_date) # start date
   )
 
   # Post the request to the web server

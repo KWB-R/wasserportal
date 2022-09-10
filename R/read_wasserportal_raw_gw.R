@@ -68,7 +68,7 @@ read_wasserportal_raw_gw <- function(
 
   # Format the start date
   if (from_date != "") {
-    sdatum <- format(from_date, format = "%d.%m.%Y")
+    sdatum <- date_string_de(from_date)
   }
 
   if (sreihe == "wa") {
@@ -80,7 +80,7 @@ read_wasserportal_raw_gw <- function(
     sreihe = sreihe,
     smode = "c",
     sdatum = sdatum,
-    senddatum = format(Sys.Date(), format = "%d.%m.%Y"),
+    senddatum = date_string_de(Sys.Date()),
     sthema = "gw"
   )
 
@@ -151,7 +151,7 @@ read_wasserportal_raw_gw <- function(
   }
 
   data <- data %>%
-    dplyr::mutate(Datum = as.Date(.data$Datum, format = "%d.%m.%Y"))
+    dplyr::mutate(Datum = as_date_de(.data$Datum))
 
   # Return the data frame with the additional fields of the header row as
   # meta information in attribute "metadata"

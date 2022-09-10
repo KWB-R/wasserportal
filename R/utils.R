@@ -1,11 +1,18 @@
+# as_date_de -------------------------------------------------------------------
+as_date_de <- function(x)
+{
+  as.Date(x, format = "%d.%m.%Y")
+}
+
 # assert_date ------------------------------------------------------------------
+#' @importFrom kwb.utils isTryError
 assert_date <- function(x)
 {
   if (! inherits(x, "Date")) {
 
     x <- try(as.Date(x))
 
-    if (inherits(x, "try-error")) {
+    if (kwb.utils::isTryError(x)) {
       stop(call. = FALSE, sprintf(
         "%s cannot be converted to a Date object!", deparse(substitute(x))
       ))
@@ -15,6 +22,11 @@ assert_date <- function(x)
   x
 }
 
+# date_string_de ---------------------------------------------------------------
+date_string_de <- function(x)
+{
+  format(x, format = "%d.%m.%Y")
+}
 
 #' Helper function to read CSV
 #'
@@ -23,6 +35,7 @@ assert_date <- function(x)
 #'
 #' @return data frame with values
 #' @export
+#' @importFrom kwb.utils isTryError
 #' @importFrom utils read.table
 #'
 read <- function(text, ...) {
@@ -31,9 +44,11 @@ read <- function(text, ...) {
     text = text, sep = ";", dec = ",", stringsAsFactors = FALSE, ...
   ))
 
-  if (! inherits(result, "try-error")) {
-    result
+  if (kwb.utils::isTryError(result)) {
+    return(NULL)
   }
+
+  result
 }
 
 # columns_to_labels ------------------------------------------------------------
