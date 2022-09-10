@@ -18,8 +18,14 @@ knitr::opts_chunk$set(
 )
 
 is_ghactions <- identical(Sys.getenv("CI"), "true")
+```
 
-cat0 <- function(...) cat(paste0(...))
+## Define Helper Functions
+
+```{r define_helpers}
+cat0 <- function(...) {
+  cat(paste0(...))
+}
 
 write_pretty_json <- function(x, path) {
   jsonlite::write_json(x, path = path, pretty = TRUE)
@@ -29,8 +35,7 @@ top_filter_datatable <- function(x, caption = NULL) {
   DT::datatable(x, filter = "top", caption = caption)
 }
 
-create_title_text <- function(x, ncols)
-{
+create_title_text <- function(x, ncols) {
   paste0(
     paste0(names(x)[1L], ": ", x[1L], collapse = ", "),
     "<br>",
@@ -49,6 +54,14 @@ also_available <- function(what, format, filename) {
     "[https://kwb-r.github.io/wasserportal/", filename, "]",
     "(../", filename, ")"
   )
+}
+
+ggplot2_date_value <- function(data, col) {
+  ggplot2::ggplot(data, mapping = ggplot2::aes_string(
+    x = "Datum", 
+    y = "Messwert", 
+    col = col
+  ))
 }
 ```
 
@@ -289,11 +302,7 @@ gw_level <- wasserportal::read_wasserportal_raw_gw(
 head(gw_level)
 
 g <- gw_level %>% 
-  ggplot2::ggplot(ggplot2::aes_string(
-    x = "Datum", 
-    y = "Messwert", 
-    col = "Label"
-  )) +
+  ggplot2_date_value(col = "Label") +
   ggplot2::geom_line() +
   ggplot2::geom_point() +
   ggplot2::theme_bw()
@@ -309,20 +318,14 @@ plotly::ggplotly(g) %>%
 ```{r test_gwl_download_multiple, eval = FALSE}
 debug <- FALSE
 
-gw_level_multi <- data.table::rbindlist(
-  lapply(
-    stations$overview_list$groundwater.level$Messstellennummer, 
-    function(id) {
-      kwb.utils::catAndRun(
-        sprintf("Downloading Messstellennummer == '%s'", id), 
-        expr = {
-          wasserportal::read_wasserportal_raw_gw(station = id, stype = "gwl")
-        }, 
-        dbg = debug
-      )
-    }
+gw_level_multi <- data.table::rbindlist(lapply(
+  stations$overview_list$groundwater.level$Messstellennummer, 
+  function(id) kwb.utils::catAndRun(
+    sprintf("Downloading Messstellennummer == '%s'", id), 
+    wasserportal::read_wasserportal_raw_gw(station = id, stype = "gwl"), 
+    dbg = debug
   )
-)
+))
 
 readr::write_csv(gw_level_multi, file = "groundwater_level.csv")
 
@@ -332,11 +335,7 @@ selected_stations <- stations$overview_list$groundwater.level$Messstellennummer[
 g <- gw_level_multi %>% 
   dplyr::filter(Messstellennummer %in% selected_stations) %>% 
   dplyr::mutate(Messstellennummer = as.character(Messstellennummer)) %>% 
-  ggplot2::ggplot(ggplot2::aes_string(
-    x = "Datum", 
-    y = "Messwert", 
-    col = "Messstellennummer"
-  )) +
+  ggplot2_date_value(col = "Messstellennummer") +
   ggplot2::labs(title = "GW level (m above NN)") +
   ggplot2::geom_line() +
   ggplot2::geom_point() +
@@ -401,11 +400,7 @@ unique(gw_quality$Parameter)
 
 g <- gw_quality %>%  
   dplyr::filter(Parameter == "Sulfat") %>% 
-  ggplot2::ggplot(ggplot2::aes_string(
-    x = "Datum", 
-    y = "Messwert", 
-    col = "Parameter"
-  )) +
+  ggplot2_date_value(col = "Parameter") +
   ggplot2::geom_line() +
   ggplot2::geom_point() +
   ggplot2::theme_bw()
@@ -421,20 +416,14 @@ plotly::ggplotly(g) %>%
 ```{r test_gwq_download_multiple, eval = FALSE}
 debug <- FALSE
 
-gw_quality_multi <- data.table::rbindlist(
-  lapply(
-    stations$overview_list$groundwater.quality$Messstellennummer, 
-    function(id) {
-      kwb.utils::catAndRun(
-        sprintf("Downloading Messstellennummer == '%s'", id), 
-        expr = {
-          wasserportal::read_wasserportal_raw_gw(station = id, stype = "gwq")
-        }, 
-        dbg = debug
-      )
-    }
+gw_quality_multi <- data.table::rbindlist(lapply(
+  stations$overview_list$groundwater.quality$Messstellennummer, 
+  function(id) kwb.utils::catAndRun(
+    sprintf("Downloading Messstellennummer == '%s'", id), 
+    wasserportal::read_wasserportal_raw_gw(station = id, stype = "gwq"), 
+    dbg = debug
   )
-)
+))
 
 readr::write_csv(gw_quality_multi, "groundwater_quality.csv")
 
@@ -445,11 +434,7 @@ g <- gw_quality_multi %>%
   dplyr::filter(Messstellennummer %in% selected_stations) %>% 
   dplyr::mutate(Messstellennummer = as.character(Messstellennummer)) %>% 
   dplyr::filter(Parameter == "Sulfat") %>% 
-  ggplot2::ggplot(ggplot2::aes_string(
-    x = "Datum", 
-    y = "Messwert", 
-    col = "Messstellennummer"
-  )) +
+  ggplot2_date_value(col = "Messstellennummer") +
   ggplot2::labs(title = "GW quality (Sulfat)") +
   ggplot2::geom_line() +
   ggplot2::geom_point() +
