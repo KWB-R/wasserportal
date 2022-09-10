@@ -28,6 +28,6 @@ Get Daily Surfacewater Data: wrapper to scrape daily surface water data
 stations <- wasserportal::get_stations()
 variables <- wasserportal::get_surfacewater_variables()
 variables
-sw_data_daily <- get_daily_surfacewater_data(stations, variables)
+sw_data_daily <- wasserportal::get_daily_surfacewater_data(stations, variables)
 }
 }
