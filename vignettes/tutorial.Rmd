@@ -23,10 +23,6 @@ is_ghactions <- identical(Sys.getenv("CI"), "true")
 ## Define Helper Functions
 
 ```{r define_helpers}
-cat0 <- function(...) {
-  cat(paste0(...))
-}
-
 write_pretty_json <- function(x, path) {
   jsonlite::write_json(x, path = path, pretty = TRUE)
 }
@@ -46,14 +42,14 @@ create_title_text <- function(x, ncols) {
 }
 
 also_available <- function(what, format, filename) {
-  cat0(
+  cat(paste0(
     what, 
     " is also available ", 
     format, 
     " here: ",
     "[https://kwb-r.github.io/wasserportal/", filename, "]",
     "(../", filename, ")"
-  )
+  ))
 }
 
 ggplot2_date_value <- function(data, col) {
