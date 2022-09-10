@@ -16,6 +16,19 @@ knitr::opts_chunk$set(
 )
 ```
 
+## Define Helper Functions
+
+```{r helper_functions}
+cat_file_enumeration <- function(files) {
+  cat(paste0(collapse = "\n\n", sprintf(
+    "- [%s](%s/%s)", 
+    files, 
+    "https://kwb-r.github.io/wasserportal",
+    files
+  )))
+}
+```
+
 ## Master Data
 
 ```{r master_data}
@@ -31,14 +44,7 @@ files <- wasserportal::list_masters_data_to_csv(stations$overview_list[is_sw])
 The following surface water master data `.csv` files are available for download: 
 
 ```{r master_data_csv, echo = FALSE, results ='asis'}
-cat(paste0(
-  sprintf(
-    "- [%s](https://kwb-r.github.io/wasserportal/%s)", 
-    files, 
-    files
-  ),
-  collapse = "\n\n"
-))
+cat_file_enumeration(files)
 ```
 
 ## Daily Surface Water Data
@@ -70,14 +76,7 @@ sw_data_daily_list %>%
 The following `.zip` files are available for download: 
 
 ```{r daily_surface_water_data_zip, echo = FALSE, results ='asis'}
-cat(paste0(
-  sprintf(
-    "- [%s](https://kwb-r.github.io/wasserportal/%s)", 
-    files, 
-    files
-  ),
-  collapse = "\n\n"
-))
+cat_file_enumeration(files)
 ```
 
 ## Daily Surface Water Levels
