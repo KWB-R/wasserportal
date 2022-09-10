@@ -2,20 +2,20 @@
 % Please edit documentation in R/list_data_to_csv_or_zip.R
 \name{list_data_to_csv_or_zip}
 \alias{list_data_to_csv_or_zip}
-\title{Helper function: list data to csv}
+\title{Helper function: list data to csv or zip}
 \usage{
-list_data_to_csv_or_zip(data_list, file_prefix = "", to_zip = FALSE)
+list_data_to_csv_or_zip(data_list, file_prefix, to_zip)
 }
 \arguments{
 \item{data_list}{data in list form}
 
-\item{file_prefix}{file prefix (default: "")}
+\item{file_prefix}{file prefix}
 
-\item{to_zip}{convert to zip file (default: FALSE)}
+\item{to_zip}{whether or not to convert to zip file}
 }
 \value{
 loops through list of data frames and uses list names as filenames
 }
 \description{
-Helper function: list data to csv
+Helper function: list data to csv or zip
 }

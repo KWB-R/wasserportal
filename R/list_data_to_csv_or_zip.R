@@ -1,30 +1,20 @@
-#' Helper function: list data to csv
+#' Helper function: list data to csv or zip
 #'
 #' @param data_list data in list form
-#' @param file_prefix file prefix (default: "")
-#' @param to_zip convert to zip file (default: FALSE)
+#' @param file_prefix file prefix
+#' @param to_zip whether or not to convert to zip file
 #' @return loops through list of data frames and uses list names as filenames
 #' @export
 #' @importFrom archive archive_write
 #' @importFrom readr write_csv
 #' @importFrom stringr str_replace str_replace_all
-list_data_to_csv_or_zip <- function(
-    data_list,
-    file_prefix = "",
-    to_zip = FALSE
-)
+list_data_to_csv_or_zip <- function(data_list, file_prefix, to_zip)
 {
   tmp <- lapply(names(data_list), function(name) {
 
-    filename_base <- paste0(
-      file_prefix,
-      name %>%
-        stringr::str_replace_all("_", "-") %>%
-        stringr::str_replace("\\.", "_"),
-      collapse = "_"
-    )
+    filename_base <- paste0(file_prefix, to_base_filename(name))
 
-    if(startsWith(filename_base, "surface")) {
+    if (startsWith(filename_base, "surface")) {
       filename_base <- paste0("daily_", filename_base)
     }
 
@@ -72,11 +62,13 @@ list_data_to_csv_or_zip <- function(
 #' sw_tsdata_list <- wasserportal::get_daily_surfacewater_data(stations)
 #' sw_tsdata_files <- wasserportal::list_timeseries_data_to_zip(sw_tsdata_list)
 #' }
-list_timeseries_data_to_zip <- function(timeseries_data_list) {
-  list_data_to_csv_or_zip(timeseries_data_list,
-                          file_prefix = "",
-                          to_zip = TRUE)
-
+list_timeseries_data_to_zip <- function(timeseries_data_list)
+{
+  list_data_to_csv_or_zip(
+    timeseries_data_list,
+    file_prefix = "",
+    to_zip = TRUE
+  )
 }
 
 #' Helper function: list masters data to csv
@@ -93,9 +85,11 @@ list_timeseries_data_to_zip <- function(timeseries_data_list) {
 #' masters_data_csv_files <- wasserportal:list_masters_data_to_csv(stations$overview_list)
 #' masters_data_csv_files
 #' }
-list_masters_data_to_csv <- function(masters_data_list) {
-  list_data_to_csv_or_zip(masters_data_list,
-                          file_prefix = "stations_",
-                          to_zip = FALSE)
-
+list_masters_data_to_csv <- function(masters_data_list)
+{
+  list_data_to_csv_or_zip(
+    masters_data_list,
+    file_prefix = "stations_",
+    to_zip = FALSE
+  )
 }
