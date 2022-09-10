@@ -38,7 +38,7 @@ sw_data_list_to_df <- function (sw_data_list)
         "sw_data_list", "sw_data_list_to_df()"
       ))
       NULL
-    } # else NULL
+    }
 
     # Index in metadata where we expect the parameter name and unit
     index <- min(which(stringr::str_detect(metadata, ":"))) + 3L
