@@ -16,11 +16,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Master Data
+## Define URLs and Helper Functions
 
-```{r master_data}
-library(wasserportal)
-
+```{r}
 urls <- kwb.utils::resolve(list(
   gh_wasserportal = "https://kwb-r.github.io/wasserportal",
   stations_gwl_meta = "<gh_wasserportal>/stations_gwl_master.json",
@@ -29,6 +27,23 @@ urls <- kwb.utils::resolve(list(
   stations_gwq_data = "<gh_wasserportal>/stations_gwq_data.json",
   stations_crosstable = "<gh_wasserportal>/stations_crosstable.json"
 ))
+
+top_filter_data_table <- function(data) {
+  DT::datatable(data, filter = "top")
+}
+
+cat_file_enumeration <- function(base_url, files) {
+  cat(paste0(
+    sprintf("- [%s](%s/%s)", files, base_url, files),
+    collapse = "\n\n"
+  ))
+}
+```
+
+## Master Data
+
+```{r master_data}
+library(wasserportal)
 
 stations <- wasserportal::get_stations()
 
@@ -40,10 +55,7 @@ files <- wasserportal::list_masters_data_to_csv(stations$overview_list[is_gw])
 The following groundwater master data `.csv` files are available for download: 
 
 ```{r master_data_csv, echo = FALSE, results ='asis'}
-cat(paste0(
-  sprintf("- [%s](%s/%s)", urls$gh_wasserportal, files, files),
-  collapse = "\n\n"
-))
+cat_file_enumeration(urls$gh_wasserportal, files)
 ```
 
 ## Get Groundwater Data
@@ -65,10 +77,7 @@ gw_data_list %>%
 The following groundwater data `.zip` files are available for download: 
 
 ```{r groundwater_data_zip, echo = FALSE, results ='asis'}
-cat(paste0(
-  sprintf("- [%s](%s/%s)", files, urls$gh_wasserportal, files),
-  collapse = "\n\n"
-))
+cat_file_enumeration(urls$gh_wasserportal, files)
 ```
 
 ## Do Your Own Analysis! 
@@ -112,19 +121,31 @@ data frame:
 ```{r }
 library(wasserportal)
 
+site_number_to_character <- function(data) {
+  data %>%
+    dplyr::mutate(
+      .data$Messstellennummer = as.character(.data$Messstellennummer)
+    )
+}
+
+left_join_by_site <- function(data, master_data) {
+  data %>%
+    dplyr::left_join(master_data, by = c("Messstellennummer" = "Nummer"))
+}
+
 ### GW levels
 gwl_master <- jsonlite::fromJSON(urls$stations_gwl_meta)
 gwl_data <- jsonlite::fromJSON(urls$stations_gwl_data) %>%  
-  dplyr::mutate(Messstellennummer = as.character(Messstellennummer)) %>% 
-  dplyr::left_join(gwl_master, by = c("Messstellennummer" = "Nummer"))
+  site_number_to_character() %>% 
+  left_join_by_site(gwl_master)
 
 str(gwl_data)
 
 ### GW quality (all available parameters!)
 gwq_master <- jsonlite::fromJSON(urls$stations_gwq_meta)
 gwq_data <- jsonlite::fromJSON(urls$stations_gwq_data) %>%  
-  dplyr::mutate(Messstellennummer = as.character(Messstellennummer)) %>% 
-  dplyr::left_join(gwq_master, by = c("Messstellennummer" = "Nummer"))
+  site_number_to_character() %>% 
+  left_join_by_site(gwq_master)
 
 str(gwq_data)
 
@@ -138,45 +159,45 @@ str(gw_data)
 
 ### GW Quality
 
+```{r stations_gwq_data_helpers}
+# Helper functions to be reused in different data summaries
+select_main_columns <- function(data) {
+  data %>%
+    dplyr::select(
+      .data$Messstellennummer,
+      .data$Parameter,
+      .data$Datum,
+      .data$Messwert
+    )
+}
+
+summarise_min_max_n_arrange <- function(data) {
+  data %>%
+    dplyr::summarise(
+      date_min = min(.data$Datum),
+      date_max = max(.data$Datum),
+      n = dplyr::n()
+    ) %>%
+    dplyr::arrange(dplyr::desc(.data$n))
+}
+```
+
 ```{r stations_gwq_data_by_parameter_table}
 gwq_data_by_parameter <- gwq_data %>%
-  dplyr::select(
-    .data$Messstellennummer,
-    .data$Parameter,
-    .data$Datum,
-    .data$Messwert
-  ) %>%
-  dplyr::group_by(.data$Parameter) %>%
-  dplyr::summarise(
-    date_min = min(.data$Datum),
-    date_max = max(.data$Datum),
-    n = dplyr::n()
-  ) %>%
-  dplyr::arrange(dplyr::desc(.data$n))
+    select_main_columns() %>%
+    dplyr::group_by(.data$Parameter) %>%
+    summarise_min_max_n_arrange()
 
-DT::datatable(gwq_data_by_parameter, filter = "top")
+top_filter_data_table(gwq_data_by_parameter)
 ```
 
 ```{r stations_gwq_data_by_parameter_and_station_table}
 gwq_data_by_parameter_and_station <- gwq_data %>%
-  dplyr::select(
-    .data$Messstellennummer,
-    .data$Parameter,
-    .data$Datum,
-    .data$Messwert
-  ) %>%
-  dplyr::group_by(
-    .data$Parameter,
-    .data$Messstellennummer
-  ) %>%
-  dplyr::summarise(
-    date_min = min(.data$Datum),
-    date_max = max(.data$Datum),
-    n = dplyr::n()
-  ) %>%
-  dplyr::arrange(dplyr::desc(.data$n))
+  select_main_columns() %>%
+  dplyr::group_by(.data$Parameter, .data$Messstellennummer) %>%
+  summarise_min_max_n_arrange()
 
-DT::datatable(gwq_data_by_parameter_and_station, filter = "top")
+top_filter_data_table(gwq_data_by_parameter_and_station)
 ```
 
 ## Export
@@ -184,15 +205,13 @@ DT::datatable(gwq_data_by_parameter_and_station, filter = "top")
 ### GW Quality
 
 ```{r export_xlsx_gwq, eval = FALSE}
-gwq_data_list <- list(
+openxlsx::write.xlsx(
+  x = list(
   gwq_by_parameter = gwq_data_by_parameter,
   gwq_by_parameter_and_station = gwq_data_by_parameter_and_station,
   gwq_data = gwq_data,
   gwq_master = gwq_master
-)
-
-openxlsx::write.xlsx(
-  x = gwq_data_list,
+),
   file = "wasserportal_gwq_data.xlsx",
   overwrite = TRUE
 )
