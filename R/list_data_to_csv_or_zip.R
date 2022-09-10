@@ -16,7 +16,7 @@ list_data_to_csv_or_zip <- function(
 {
   tmp <- lapply(names(data_list), function(name) {
 
-    filename_base <- paste0(file_prefix, "_", to_base_filename(name))
+    filename_base <- paste0(file_prefix, to_base_filename(name))
 
     if (startsWith(filename_base, "surface")) {
       filename_base <- paste0("daily_", filename_base)
