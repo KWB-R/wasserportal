@@ -153,7 +153,7 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 439,Charlottenburg-Wilmersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,12.08.2022,31.45,3.62,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=439
 440,Spandau,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,01.09.2022,28.36,4.30,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=440
 446,Charlottenburg-Wilmersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,12.08.2022,31.13,keine Angabe,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=446
-492,Neukölln,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,12.07.2022,32.2,2.49,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=492
+492,Neukölln,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,12.07.2022,32.2,2.49,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=492
 496,Neukölln,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,16.08.2022,33,3.88,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=496
 499,Neukölln,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,24.06.2022,33.29,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=499
 500,Neukölln,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,17.08.2022,33.25,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=500
