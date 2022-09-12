@@ -1,14 +1,14 @@
 Messstellennummer,Messstellenname,Gewaesser,Betreiber,Datum,Parameterwert,Einheit,Ganglinie,Klassifikation,stammdaten_link
-601,MPS Berlin-Spandauer-Schifffahrtskanal,Berlin-Spandauer-Schifffahrtskanal,Land Berlin,10.09.2022 23:00,80.00,%,NA,>75 - 100,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=601
-151,MPS Caprivibrücke,Spree,Land Berlin,10.09.2022 23:00,63.06,%,NA,>50 - 75,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=151
-153,MPS Charlottenburg,Spree,Land Berlin,10.09.2022 23:00,36.36,%,NA,>25  - 50,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=153
-509,MPS Landwehrkanal,Landwehrkanal,Land Berlin,10.09.2022 23:00,3.68,%,NA,<=25,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=509
-504,MPS Neuköllner Schifffahrtskanal,Neuköllner Schifffahrtskanal,Land Berlin,10.09.2022 23:00,3.23,%,NA,<=25,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=504
-414,MPS Teltowkanal,Teltowkanal,Land Berlin,10.09.2022 23:00,18.65,%,NA,<=25,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=414
-141,MS Mühlendammschleuse,Spree,Land Berlin,10.09.2022 23:00,65.06,%,NA,>50 - 75,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=141
-111,MS Rahnsdorf,Müggelspree,Land Berlin,10.09.2022 23:00,80.39,%,NA,>75 - 100,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=111
-211,MS Schmöckwitz,Dahme,Land Berlin,10.09.2022 23:00,117.63,%,NA,>100,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=211
-161,MS Sophienwerder,Spree,Land Berlin,10.09.2022 23:00,74.31,%,NA,>50 - 75,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=161
+601,MPS Berlin-Spandauer-Schifffahrtskanal,Berlin-Spandauer-Schifffahrtskanal,Land Berlin,11.09.2022 23:00,49.67,%,NA,>25  - 50,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=601
+151,MPS Caprivibrücke,Spree,Land Berlin,11.09.2022 23:00,44.15,%,NA,>25  - 50,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=151
+153,MPS Charlottenburg,Spree,Land Berlin,11.09.2022 23:00,17.45,%,NA,<=25,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=153
+509,MPS Landwehrkanal,Landwehrkanal,Land Berlin,11.09.2022 23:00,34.22,%,NA,>25  - 50,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=509
+504,MPS Neuköllner Schifffahrtskanal,Neuköllner Schifffahrtskanal,Land Berlin,11.09.2022 23:00,0.53,%,NA,<=25,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=504
+414,MPS Teltowkanal,Teltowkanal,Land Berlin,11.09.2022 23:00,0.54,%,NA,<=25,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=414
+141,MS Mühlendammschleuse,Spree,Land Berlin,11.09.2022 23:00,63.89,%,NA,>50 - 75,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=141
+111,MS Rahnsdorf,Müggelspree,Land Berlin,11.09.2022 23:00,73.50,%,NA,>50 - 75,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=111
+211,MS Schmöckwitz,Dahme,Land Berlin,11.09.2022 23:00,87.16,%,NA,>75 - 100,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=211
+161,MS Sophienwerder,Spree,Land Berlin,11.09.2022 23:00,72.12,%,NA,>50 - 75,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=161
 421,MS Teltow-Werft,Teltowkanal,Land Berlin,02.09.2022 23:45,89.34,%,NA,nicht aktuell,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=421
 SP_0150,Beeskow,Spree,Land Brandenburg,k. A.,k. A.,k. A.,NA,keine,http://www.lfu.brandenburg.de/cms/detail.php/bb1.c.426656.de
 TK_0025,Kleinmachnow,Teltowkanal,Land Brandenburg,k. A.,k. A.,k. A.,NA,keine,http://www.lfu.brandenburg.de/cms/detail.php/bb1.c.326717.de
