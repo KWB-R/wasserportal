@@ -1,7 +1,8 @@
 #' Wasserportal Berlin: get master data for a multiple stations
 #'
-#' @param master_urls urls with master data as retrieved by \code{\link{get_stations}}
-#' and one of  "overview_list" sublist elements column name "stammdaten_link"
+#' @param master_urls urls with master data as retrieved by
+#'   \code{\link{get_stations}} and one of  "overview_list" sublist elements
+#'   column name "stammdaten_link"
 #' @param run_parallel default: TRUE
 #'
 #' @return data frame with metadata for selected master urls
