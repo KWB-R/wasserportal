@@ -61,9 +61,9 @@ get_wasserportal_stations_table <- function (
     type
   )
 
-  html_overview <- xml2::read_html(overview_url)
+  html <- xml2::read_html(overview_url)
 
-  overview_table <- html_overview %>%
+  overview_table <- html %>%
     rvest::html_node(xpath = '//*[@id="pegeltab"]') %>%
     rvest::html_table()
 
