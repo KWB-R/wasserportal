@@ -63,42 +63,77 @@ get_wasserportal_stations_table <- function (
 
   html_overview <- xml2::read_html(overview_url)
 
-  overview_table <-  html_overview %>%
+  overview_table <- html_overview %>%
     rvest::html_node(xpath = '//*[@id="pegeltab"]') %>%
     rvest::html_table()
 
-  stammdaten_link <- html_overview %>%
-    rvest::html_node(xpath = '//*[@id="pegeltab"]') %>%
-    rvest::html_nodes("td") %>%
-    rvest::html_nodes("a") %>%
-    rvest::html_attr("href") %>%
-    stringr::str_extract(
-      pattern = ".*anzeige=i.*|.*pegelonline.*|.*brandenburg.*"
-    )
+  # Look for hyperlinks in column 1
+  hrefs_1 <- html %>%
+    rvest::html_nodes(xpath = '//table[@id="pegeltab"]/tbody/tr/td[1]') %>%
+    extract_hrefs()
 
-  stammdaten_link <- stammdaten_link[!is.na(stammdaten_link)]
+  # Look for hyperlinks in column 8
+  hrefs_8 <- html %>%
+    rvest::html_nodes(xpath = '//table[@id="pegeltab"]/tbody/tr/td[8]') %>%
+    extract_hrefs()
 
-  is_wasserportal <- startsWith(stammdaten_link, "station.php")
+  # The wasserportal-related hyperlinks in column 8 are slightly different from
+  # those in column 1. Adapt the links in column 8 before "merging" them with
+  # the links in column 1.
+  hrefs_8 <- kwb.utils::multiSubstitute(hrefs_8, list(
+    "anzeige=[^&]+" = "anzeige=i",
+    "stable=gwq" = "stable=gws"
+  ))
 
-  stammdaten_link[is_wasserportal] <- sprintf(
+  # "Merge" hrefs_1 with hrefs_8: Use hrefs_1 if not NA else hrefs_8 and warn
+  # if both are given but different
+  hrefs <- kwb.utils::parallelNonNA(hrefs_1, hrefs_8)
+
+  # Report about differing hrefs in the two columns
+  print_invalid_hrefs(hrefs)
+
+  # Prefix the wasserportal-related hyperlinks with the wasserportal base URL
+  is_wasserportal <- startsWith(hrefs, "station.php")
+
+  hrefs[is_wasserportal] <- sprintf(
     "%s/%s",
     url_wasserportal,
-    stammdaten_link[is_wasserportal]
+    hrefs[is_wasserportal]
   )
-
-  ### hack to remove otherwise duplicated Brandenburg master data in case of
-  ### type = c(2surface_water.water_level" = "ws"), i.e.
-  ### "https://pegelportal.brandenburg.de/messstelle.php?fgid=6&pkz=<messstellennummer>&thema=ws_graph"
-  stammdaten_link <- stammdaten_link[!duplicated(stammdaten_link)]
 
   names(overview_table) <- names(overview_table) %>%
     stringr::str_remove_all("-") %>%
     kwb.utils::substSpecialChars()
 
-  stopifnot(nrow(overview_table) == length(stammdaten_link))
-
   dplyr::bind_cols(
     overview_table,
-    tibble::tibble(stammdaten_link = stammdaten_link)
+    tibble::tibble(stammdaten_link = hrefs)
   )
+}
+
+# extract_hrefs ----------------------------------------------------------------
+extract_hrefs <- function(x)
+{
+  hrefs <- rep(NA_character_, length(x))
+
+  links <- rvest::html_node(x, "a")
+
+  has_link <- !is.na(links)
+
+  hrefs[has_link] <- rvest::html_attr(links[has_link], "href")
+
+  hrefs
+}
+
+# print_invalid_hrefs ----------------------------------------------------------
+print_invalid_hrefs <- function(hrefs)
+{
+  invalid <- attr(hrefs, "invalid")
+
+  if (is.null(invalid)) {
+    return()
+  }
+
+  message("There are different hrefs in column 1 and column 8 of the table.")
+  print(invalid)
 }
