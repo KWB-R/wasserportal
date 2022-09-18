@@ -80,7 +80,7 @@ parameters is available per station ("x" if available, NA if not)</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">stations</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu">get_stations</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Importing 9 station overviews from Wasserportal Berlin ... ok. (10.76s) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Importing 9 station overviews from Wasserportal Berlin ... ok. (8.48s) </span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">stations</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> List of 3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ overview_list:List of 9</span>
@@ -104,7 +104,7 @@ parameters is available per station ("x" if available, NA if not)</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Durchfluss       : num [1:18] 3.29 NA 0.03 0.001 0.497 0.937 0.89 7.93 6.5 1.62 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Einheit          : chr [1:18] "m³/s" "m³/s" "m³/s" "m³/s" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Ganglinie        : logi [1:18] NA NA NA NA NA NA ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Klassifikation   : chr [1:18] "nicht aktuell" "nicht aktuell" "sehr niedrig" "keine" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Klassifikation   : chr [1:18] "nicht aktuell" "nicht aktuell" "nicht aktuell" "keine" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ stammdaten_link  : chr [1:18] "https://wasserportal.berlin.de/station.php?anzeige=i&amp;stable=odf&amp;sstation=5827103" "https://wasserportal.berlin.de/station.php?anzeige=i&amp;stable=odf&amp;sstation=5870400" "https://wasserportal.berlin.de/station.php?anzeige=i&amp;stable=odf&amp;sstation=5865300" "https://wasserportal.berlin.de/station.php?anzeige=i&amp;stable=odf&amp;sstation=5864801" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ surface_water.temperature         : tibble [64 × 10] (S3: tbl_df/tbl/data.frame)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Messstellennummer: chr [1:64] "601" "151" "153" "509" ...</span>
@@ -158,7 +158,7 @@ parameters is available per station ("x" if available, NA if not)</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Parameterwert    : chr [1:16] "74.00" "46.54" "35.35" "83.75" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Einheit          : chr [1:16] "%" "%" "%" "%" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Ganglinie        : logi [1:16] NA NA NA NA NA NA ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Klassifikation   : chr [1:16] "&gt;50 - 75" "&gt;25  - 50" "&gt;25  - 50" "&gt;75 - 100" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Klassifikation   : chr [1:16] "nicht aktuell" "nicht aktuell" "nicht aktuell" "nicht aktuell" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ stammdaten_link  : chr [1:16] "https://wasserportal.berlin.de/station.php?anzeige=i&amp;stable=owq&amp;sstation=601" "https://wasserportal.berlin.de/station.php?anzeige=i&amp;stable=owq&amp;sstation=151" "https://wasserportal.berlin.de/station.php?anzeige=i&amp;stable=owq&amp;sstation=153" "https://wasserportal.berlin.de/station.php?anzeige=i&amp;stable=owq&amp;sstation=509" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ groundwater.level                 : tibble [878 × 11] (S3: tbl_df/tbl/data.frame)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Messstellennummer        : int [1:878] 1 2 3 4 9 24 25 26 30 31 ...</span>
