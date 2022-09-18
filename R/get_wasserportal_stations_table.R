@@ -63,31 +63,50 @@ get_wasserportal_stations_table <- function (
 
   html <- xml2::read_html(overview_url)
 
+  # Convert the HTML table into a data frame
   overview_table <- html %>%
     rvest::html_node(xpath = '//*[@id="pegeltab"]') %>%
     rvest::html_table()
 
-  # Look for hyperlinks in column 1
-  hrefs_1 <- html %>%
-    rvest::html_nodes(xpath = '//table[@id="pegeltab"]/tbody/tr/td[1]') %>%
+  # Get the column captions from the table header
+  captions <- html %>%
+    rvest::html_nodes(xpath = '//table[@id="pegeltab"]/thead/tr/th') %>%
+    rvest::html_text()
+
+  # Identify columns "Messstellennummer" and "Ganglinie"
+  column_id <- grep("Mess.?stellen.?nummer", captions)
+  column_graph <- grep("Ganglinie", captions)
+
+  stopifnot(length(column_id) == 1L)
+  stopifnot(length(column_graph) == 1L)
+
+  # Function to create xpath expression to match the cells in column i
+  xpath_column <- function(i) {
+    sprintf('//table[@id="pegeltab"]/tbody/tr/td[%d]', i)
+  }
+
+  # Look for hyperlinks in column "Messstellennummer"
+  hrefs_id <- html %>%
+    rvest::html_nodes(xpath = xpath_column(column_id)) %>%
     extract_hrefs()
 
-  # Look for hyperlinks in column 8
-  hrefs_8 <- html %>%
-    rvest::html_nodes(xpath = '//table[@id="pegeltab"]/tbody/tr/td[8]') %>%
+  # Look for hyperlinks in column "Ganglinie"
+  hrefs_graph <- html %>%
+    rvest::html_nodes(xpath = xpath_column(column_graph)) %>%
     extract_hrefs()
 
-  # The wasserportal-related hyperlinks in column 8 are slightly different from
-  # those in column 1. Adapt the links in column 8 before "merging" them with
-  # the links in column 1.
-  hrefs_8 <- kwb.utils::multiSubstitute(hrefs_8, list(
+  # The wasserportal-related hyperlinks in column "Ganglinie" are slightly
+  # different from those in column "Messstellennummer". Adapt the links in
+  # column "Ganglinie" before "merging" them with the links in column
+  # "Messstellennummer".
+  hrefs_graph <- kwb.utils::multiSubstitute(hrefs_graph, list(
     "anzeige=[^&]+" = "anzeige=i",
     "stable=gwq" = "stable=gws"
   ))
 
-  # "Merge" hrefs_1 with hrefs_8: Use hrefs_1 if not NA else hrefs_8 and warn
-  # if both are given but different
-  hrefs <- kwb.utils::parallelNonNA(hrefs_1, hrefs_8)
+  # "Merge" hrefs_id with hrefs_graph: Use hrefs_id if not NA else hrefs_graph
+  # and warn if both are given but different
+  hrefs <- kwb.utils::parallelNonNA(hrefs_id, hrefs_graph)
 
   # Report about differing hrefs in the two columns
   print_invalid_hrefs(hrefs)
