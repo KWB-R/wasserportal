@@ -124,7 +124,7 @@ library(wasserportal)
 site_number_to_character <- function(data) {
   data %>%
     dplyr::mutate(
-      .data$Messstellennummer = as.character(.data$Messstellennummer)
+      Messstellennummer = as.character(.data$Messstellennummer)
     )
 }
 
