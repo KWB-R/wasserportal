@@ -16,6 +16,30 @@ knitr::opts_chunk$set(
 )
 ```
 
+## Define URLs and Helper Functions
+
+```{r}
+urls <- kwb.utils::resolve(list(
+  gh_wasserportal = "https://kwb-r.github.io/wasserportal",
+  stations_gwl_meta = "<gh_wasserportal>/stations_gwl_master.json",
+  stations_gwl_data = "<gh_wasserportal>/stations_gwl_data.json",
+  stations_gwq_meta = "<gh_wasserportal>/stations_gwq_master.json",
+  stations_gwq_data = "<gh_wasserportal>/stations_gwq_data.json",
+  stations_crosstable = "<gh_wasserportal>/stations_crosstable.json"
+))
+
+top_filter_data_table <- function(data) {
+  DT::datatable(data, filter = "top")
+}
+
+cat_file_enumeration <- function(base_url, files) {
+  cat(paste0(
+    sprintf("- [%s](%s/%s)", files, base_url, files),
+    collapse = "\n\n"
+  ))
+}
+```
+
 ## Master Data
 
 ```{r master_data}
@@ -26,30 +50,21 @@ stations <- wasserportal::get_stations()
 is_gw <- stringr::str_detect(names(stations$overview_list), "groundwater")
 
 files <- wasserportal::list_masters_data_to_csv(stations$overview_list[is_gw])
-
 ```
 
 The following groundwater master data `.csv` files are available for download: 
 
 ```{r master_data_csv, echo = FALSE, results ='asis'}
-
-
-cat(paste0(sprintf("- [%s](https://kwb-r.github.io/wasserportal/%s)", 
-        files, 
-        files),
-       collapse = "\n\n"))
-
+cat_file_enumeration(urls$gh_wasserportal, files)
 ```
 
 ## Get Groundwater Data
 
 ```{r groundwater_data_raw_export}
-
-gw_data_list <- wasserportal::get_groundwater_data(stations,
-                                                   debug = FALSE)
-
+gw_data_list <- wasserportal::get_groundwater_data(stations, debug = FALSE)
 
 files <- wasserportal::list_timeseries_data_to_zip(gw_data_list)
+
 files
 
 # Data availability per parameter
@@ -57,77 +72,80 @@ gw_data_list %>%
   dplyr::bind_rows() %>% 
   dplyr::count(Parameter, Einheit) %>% 
   dplyr::arrange(dplyr::desc(.data$n))
-
 ```
+
 The following groundwater data `.zip` files are available for download: 
 
 ```{r groundwater_data_zip, echo = FALSE, results ='asis'}
-
-
-cat(paste0(sprintf("- [%s](https://kwb-r.github.io/wasserportal/%s)", 
-        files, 
-        files),
-       collapse = "\n\n"))
-
+cat_file_enumeration(urls$gh_wasserportal, files)
 ```
 
 ## Do Your Own Analysis! 
 
-Download CSV/JSON/ZIP files scraped and prepared each day at 5 a.m. UTC for re-use in R. 
-The following data are available:
+Download CSV/JSON/ZIP files scraped and prepared each day at 5 a.m. UTC for
+re-use in R. The following data are available:
 
 - **Data availability**
 
-   * [stations_crosstable.json](https://kwb-r.github.io/wasserportal/stations_crosstable.json): 
-   available parameters per station (see `wasserportal::get_overview_options()` 
-   for available options). Note: includes also surface monitoring stations!
-   
+* [stations_crosstable.json](`r urls$stations_crosstable`): 
+available parameters per station (see `wasserportal::get_overview_options()` 
+for available options). Note: includes also surface monitoring stations!
 
 ```{r stations_crosstable}
 library(wasserportal)
 
-stations_crosstable <- jsonlite::fromJSON("https://kwb-r.github.io/wasserportal/stations_crosstable.json")
+stations_crosstable <- jsonlite::fromJSON(urls$stations_crosstable)
 
 str(stations_crosstable)
-       
 ```
 
 - **Master Data**
 
-   * [stations_gwl_master.json](https://kwb-r.github.io/wasserportal/stations_gwl_master.json): 
-     for GW level stations
+* [stations_gwl_master.json](`r urls$stations_gwl_meta`): 
+for GW level stations
 
-   * [stations_gwq_master.json](https://kwb-r.github.io/wasserportal/stations_gwq_master.json): 
-     for GW quality stations
-     
+* [stations_gwq_master.json](`r urls$stations_gwq_meta`): 
+for GW quality stations
+
 - **Measurements**
 
-   * [stations_gwl_data.json](https://kwb-r.github.io/wasserportal/stations_gwl_master.json): 
-     GW level measurements for stations
+* [stations_gwl_data.json](`r urls$stations_gwl_data`): 
+GW level measurements for stations
 
-   * [stations_gwq_master.json](https://kwb-r.github.io/wasserportal/stations_gwq_master.json): 
-     GW quality measurements for all available parameters and stations
+* [stations_gwq_data.json](`r urls$stations_gwq_data`): 
+GW quality measurements for all available parameters and stations
 
 Please find an example below for merging all this information into a single 
 data frame:
 
 ```{r }
-
 library(wasserportal)
 
+site_number_to_character <- function(data) {
+  data %>%
+    dplyr::mutate(
+      Messstellennummer = as.character(.data$Messstellennummer)
+    )
+}
+
+left_join_by_site <- function(data, master_data) {
+  data %>%
+    dplyr::left_join(master_data, by = c("Messstellennummer" = "Nummer"))
+}
+
 ### GW levels
-gwl_master <- jsonlite::fromJSON("https://kwb-r.github.io/wasserportal/stations_gwl_master.json")
-gwl_data <- jsonlite::fromJSON("https://kwb-r.github.io/wasserportal/stations_gwl_data.json") %>%  
-  dplyr::mutate(Messstellennummer = as.character(Messstellennummer)) %>% 
-  dplyr::left_join(gwl_master, by = c("Messstellennummer" = "Nummer"))
+gwl_master <- jsonlite::fromJSON(urls$stations_gwl_meta)
+gwl_data <- jsonlite::fromJSON(urls$stations_gwl_data) %>%  
+  site_number_to_character() %>% 
+  left_join_by_site(gwl_master)
 
 str(gwl_data)
 
 ### GW quality (all available parameters!)
-gwq_master <- jsonlite::fromJSON("https://kwb-r.github.io/wasserportal/stations_gwq_master.json")
-gwq_data <- jsonlite::fromJSON("https://kwb-r.github.io/wasserportal/stations_gwq_data.json") %>%  
-  dplyr::mutate(Messstellennummer = as.character(Messstellennummer)) %>% 
-  dplyr::left_join(gwq_master, by = c("Messstellennummer" = "Nummer"))
+gwq_master <- jsonlite::fromJSON(urls$stations_gwq_meta)
+gwq_data <- jsonlite::fromJSON(urls$stations_gwq_data) %>%  
+  site_number_to_character() %>% 
+  left_join_by_site(gwq_master)
 
 str(gwq_data)
 
@@ -135,42 +153,51 @@ str(gwq_data)
 gw_data <- dplyr::bind_rows(gwl_data, gwq_data)
 
 str(gw_data)
-
 ```
 
 ## Data Availability 
 
 ### GW Quality
 
+```{r stations_gwq_data_helpers}
+# Helper functions to be reused in different data summaries
+select_main_columns <- function(data) {
+  data %>%
+    dplyr::select(
+      .data$Messstellennummer,
+      .data$Parameter,
+      .data$Datum,
+      .data$Messwert
+    )
+}
+
+summarise_min_max_n_arrange <- function(data) {
+  data %>%
+    dplyr::summarise(
+      date_min = min(.data$Datum),
+      date_max = max(.data$Datum),
+      n = dplyr::n()
+    ) %>%
+    dplyr::arrange(dplyr::desc(.data$n))
+}
+```
+
 ```{r stations_gwq_data_by_parameter_table}
 gwq_data_by_parameter <- gwq_data %>%
-  dplyr::select(.data$Messstellennummer,
-                .data$Parameter,
-                .data$Datum,
-                .data$Messwert) %>%
-  dplyr::group_by(.data$Parameter) %>%
-  dplyr::summarise(date_min = min(.data$Datum),
-                   date_max = max(.data$Datum),
-                   n = dplyr::n()) %>%
-  dplyr::arrange(dplyr::desc(.data$n))
+    select_main_columns() %>%
+    dplyr::group_by(.data$Parameter) %>%
+    summarise_min_max_n_arrange()
 
-DT::datatable(gwq_data_by_parameter, filter = "top")
+top_filter_data_table(gwq_data_by_parameter)
 ```
 
 ```{r stations_gwq_data_by_parameter_and_station_table}
-gwq_data_by_parameter_and_station <-  gwq_data %>%
-  dplyr::select(.data$Messstellennummer,
-                .data$Parameter,
-                .data$Datum,
-                .data$Messwert) %>%
-  dplyr::group_by(.data$Parameter,
-                  .data$Messstellennummer) %>%
-  dplyr::summarise(date_min = min(.data$Datum),
-                   date_max = max(.data$Datum),
-                   n = dplyr::n()) %>%
-  dplyr::arrange(dplyr::desc(.data$n))
+gwq_data_by_parameter_and_station <- gwq_data %>%
+  select_main_columns() %>%
+  dplyr::group_by(.data$Parameter, .data$Messstellennummer) %>%
+  summarise_min_max_n_arrange()
 
-DT::datatable(gwq_data_by_parameter_and_station, filter = "top")
+top_filter_data_table(gwq_data_by_parameter_and_station)
 ```
 
 ## Export
@@ -178,12 +205,14 @@ DT::datatable(gwq_data_by_parameter_and_station, filter = "top")
 ### GW Quality
 
 ```{r export_xlsx_gwq, eval = FALSE}
-gwq_data_list <- list(gwq_by_parameter = gwq_data_by_parameter,
-                              gwq_by_parameter_and_station = gwq_data_by_parameter_and_station,
-                              gwq_data = gwq_data,
-                              gwq_master = gwq_master)
-
-openxlsx::write.xlsx(x = gwq_data_list,
-                     file = "wasserportal_gwq_data.xlsx",
-                     overwrite = TRUE)
+openxlsx::write.xlsx(
+  x = list(
+  gwq_by_parameter = gwq_data_by_parameter,
+  gwq_by_parameter_and_station = gwq_data_by_parameter_and_station,
+  gwq_data = gwq_data,
+  gwq_master = gwq_master
+),
+  file = "wasserportal_gwq_data.xlsx",
+  overwrite = TRUE
+)
 ```
