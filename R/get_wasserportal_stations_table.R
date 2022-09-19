@@ -75,7 +75,7 @@ get_wasserportal_stations_table <- function (
 
   # Identify columns "Messstellennummer" and "Ganglinie"
   column_id <- grep("Mess.?stellen.?nummer", captions)
-  column_graph <- grep("Ganglinie", captions)
+  column_graph <- grep("Gang.?linie", captions)
 
   stopifnot(length(column_id) == 1L)
   stopifnot(length(column_graph) == 1L)
