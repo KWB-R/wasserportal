@@ -95,39 +95,57 @@ get_wasserportal_stations_table <- function (
     rvest::html_nodes(xpath = xpath_column(column_graph)) %>%
     extract_hrefs()
 
-  # The wasserportal-related hyperlinks in column "Ganglinie" are slightly
-  # different from those in column "Messstellennummer". Adapt the links in
-  # column "Ganglinie" before "merging" them with the links in column
-  # "Messstellennummer".
-  hrefs_graph <- kwb.utils::multiSubstitute(hrefs_graph, list(
-    "anzeige=[^&]+" = "anzeige=i",
-    "stable=gwq" = "stable=gws"
-  ))
-
-  # "Merge" hrefs_id with hrefs_graph: Use hrefs_id if not NA else hrefs_graph
-  # and warn if both are given but different
-  hrefs <- kwb.utils::parallelNonNA(hrefs_id, hrefs_graph)
-
-  # Report about differing hrefs in the two columns
-  print_invalid_hrefs(hrefs)
+  # Do not combine both links
+  #
+  # # The wasserportal-related hyperlinks in column "Ganglinie" are slightly
+  # # different from those in column "Messstellennummer". Adapt the links in
+  # # column "Ganglinie" before "merging" them with the links in column
+  # # "Messstellennummer".
+  # hrefs_graph <- kwb.utils::multiSubstitute(hrefs_graph, list(
+  #   "anzeige=[^&]+" = "anzeige=i",
+  #   "stable=gwq" = "stable=gws"
+  # ))
+  #
+  # # "Merge" hrefs_id with hrefs_graph: Use hrefs_id if not NA else hrefs_graph
+  # # and warn if both are given but different
+  # hrefs <- kwb.utils::parallelNonNA(hrefs_id, hrefs_graph)
+  #
+  # # Report about differing hrefs in the two columns
+  # #print_invalid_hrefs(hrefs)
 
   # Prefix the wasserportal-related hyperlinks with the wasserportal base URL
-  is_wasserportal <- startsWith(hrefs, "station.php")
+  add_baseurl <- function(hrefs) {
+
+  is_not_na <- ! kwb.utils::isNaOrEmpty(hrefs)
+
+  if(sum(is_not_na) > 0) {
+  is_wasserportal <- startsWith(hrefs, "station.php") & is_not_na
 
   hrefs[is_wasserportal] <- sprintf(
     "%s/%s",
     url_wasserportal,
     hrefs[is_wasserportal]
   )
+  } else {
+   hrefs <- NA_character_
+  }
+
+  hrefs
+  }
+
+  overview_table[[column_graph]] <- add_baseurl(hrefs_graph)
 
   names(overview_table) <- names(overview_table) %>%
     stringr::str_remove_all("-") %>%
     kwb.utils::substSpecialChars()
 
+
   dplyr::bind_cols(
     overview_table,
-    tibble::tibble(stammdaten_link = hrefs)
+    tibble::tibble(stammdaten_link = add_baseurl(hrefs_id))
   )
+
+
 }
 
 # extract_hrefs ----------------------------------------------------------------
