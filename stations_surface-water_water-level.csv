@@ -62,15 +62,15 @@ Messstellennummer,Messstellenname,Gewaesser,Betreiber,Datum,Wasserstand,Einheit,
 5867001,Wiltbergstraße,Panke,Land Berlin,16.09.2022 05:00,13,cm,NA,nicht aktuell,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5867001
 5864800,Wuhletal,Wuhle,Land Berlin,16.09.2022 08:30,30,cm,NA,nicht aktuell,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5864800
 5866301,Zoo,Landwehrkanal,Land Berlin,16.09.2022 08:30,402,cm,NA,nicht aktuell,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5866301
-5825500,"Beeskow, Spreeschleuse UP",Spree,Land Brandenburg,19.09.2022 05:45,204,cm,NA,"niedrig, kein Alarm",https://pegelportal.brandenburg.de/messstelle.php?fgid=6&pkz=5825500&thema=ws_graph
-5828000,"Bräsinchen, Hauptabflusspegel",Spree,Land Brandenburg,19.09.2022 06:00,103,cm,NA,keine,https://pegelportal.brandenburg.de/messstelle.php?fgid=6&pkz=5828000&thema=ws_graph
-5821000,"Cottbus, Sandower Brücke",Spree,Land Brandenburg,19.09.2022 06:45,89,cm,NA,"niedrig, kein Alarm",https://pegelportal.brandenburg.de/messstelle.php?fgid=6&pkz=5821000&thema=ws_graph
-5827000,Hohenbinde,Spree/Müggelspree,Land Brandenburg,19.09.2022 02:00,54,cm,NA,keine,https://pegelportal.brandenburg.de/messstelle.php?fgid=6&pkz=5827000&thema=ws_graph
-5804300,Ketzin,UHW (Havel),Land Brandenburg,19.09.2022 06:45,97,cm,NA,"keine, kein Alarm",https://pegelportal.brandenburg.de/messstelle.php?fgid=2&pkz=5804300&thema=ws_graph
-5824700,"Leibsch, Spreewehr UP",Spree,Land Brandenburg,19.09.2022 05:45,328,cm,NA,"niedrig, kein Alarm",https://pegelportal.brandenburg.de/messstelle.php?fgid=6&pkz=5824700&thema=ws_graph
-5823800,"Lübben, Zusammenfluss",Spree/Hauptspree,Land Brandenburg,19.09.2022 06:00,318,cm,NA,"keine, kein Alarm",https://pegelportal.brandenburg.de/messstelle.php?fgid=6&pkz=5823800&thema=ws_graph
-5862201,Prierow 2,Dahme,Land Brandenburg,19.09.2022 05:45,49,cm,NA,"niedrig, kein Alarm",https://pegelportal.brandenburg.de/messstelle.php?fgid=6&pkz=5862201&thema=ws_graph
+5825500,"Beeskow, Spreeschleuse UP",Spree,Land Brandenburg,21.09.2022 06:00,207,cm,NA,"niedrig, kein Alarm",https://pegelportal.brandenburg.de/messstelle.php?fgid=6&pkz=5825500&thema=ws_graph
+5828000,"Bräsinchen, Hauptabflusspegel",Spree,Land Brandenburg,21.09.2022 06:00,103,cm,NA,keine,https://pegelportal.brandenburg.de/messstelle.php?fgid=6&pkz=5828000&thema=ws_graph
+5821000,"Cottbus, Sandower Brücke",Spree,Land Brandenburg,21.09.2022 06:45,89,cm,NA,"niedrig, kein Alarm",https://pegelportal.brandenburg.de/messstelle.php?fgid=6&pkz=5821000&thema=ws_graph
+5827000,Hohenbinde,Spree/Müggelspree,Land Brandenburg,21.09.2022 02:30,63,cm,NA,keine,https://pegelportal.brandenburg.de/messstelle.php?fgid=6&pkz=5827000&thema=ws_graph
+5804300,Ketzin,UHW (Havel),Land Brandenburg,21.09.2022 06:45,99,cm,NA,"keine, kein Alarm",https://pegelportal.brandenburg.de/messstelle.php?fgid=2&pkz=5804300&thema=ws_graph
+5824700,"Leibsch, Spreewehr UP",Spree,Land Brandenburg,21.09.2022 06:15,338,cm,NA,"keine, kein Alarm",https://pegelportal.brandenburg.de/messstelle.php?fgid=6&pkz=5824700&thema=ws_graph
+5823800,"Lübben, Zusammenfluss",Spree/Hauptspree,Land Brandenburg,21.09.2022 06:00,316,cm,NA,"niedrig, kein Alarm",https://pegelportal.brandenburg.de/messstelle.php?fgid=6&pkz=5823800&thema=ws_graph
+5862201,Prierow 2,Dahme,Land Brandenburg,21.09.2022 05:45,57,cm,NA,"niedrig, kein Alarm",https://pegelportal.brandenburg.de/messstelle.php?fgid=6&pkz=5862201&thema=ws_graph
 5802600,Sachsenhausen,Havel,Land Brandenburg,,NA,cm,NA,keine,https://pegelportal.brandenburg.de/messstelle.php?fgid=2&pkz=5802600&thema=ws_graph
 5819801,Schildow,Tegeler Fließ,Land Brandenburg,,NA,cm,NA,keine,https://pegelportal.brandenburg.de/messstelle.php?fgid=6&pkz=5819801&thema=ws_graph
-5820900,Spremberg,Spree,Land Brandenburg,19.09.2022 06:45,183,cm,NA,"niedrig, kein Alarm",https://pegelportal.brandenburg.de/messstelle.php?fgid=6&pkz=5820900&thema=ws_graph
-5820901,"Talsperre Spremberg, Beckenpegel",Talsperre Spremberg,Land Brandenburg,19.09.2022 06:00,9064,cm,NA,keine,https://pegelportal.brandenburg.de/messstelle.php?fgid=6&pkz=5820901&thema=ws_graph
+5820900,Spremberg,Spree,Land Brandenburg,21.09.2022 06:45,186,cm,NA,"niedrig, kein Alarm",https://pegelportal.brandenburg.de/messstelle.php?fgid=6&pkz=5820900&thema=ws_graph
+5820901,"Talsperre Spremberg, Beckenpegel",Talsperre Spremberg,Land Brandenburg,21.09.2022 06:00,9069,cm,NA,keine,https://pegelportal.brandenburg.de/messstelle.php?fgid=6&pkz=5820901&thema=ws_graph
