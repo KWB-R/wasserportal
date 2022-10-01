@@ -6,7 +6,7 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 9,Reinickendorf,GW-Stand,Weitere,gespannt,06.09.2022,36.05,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=9
 24,Reinickendorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,07.09.2022,37.25,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=24
 25,Reinickendorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,07.09.2022,38.96,3.02,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=25
-26,Reinickendorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,40.15,2.55,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=26
+26,Reinickendorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,40.13,2.57,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=26
 30,Reinickendorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,07.09.2022,36.95,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=30
 31,Mitte,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,07.09.2022,31.94,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=31
 32,Mitte,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,07.09.2022,32.81,6.03,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=32
@@ -19,7 +19,7 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 47,Mitte,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,02.09.2022,30.7,3.68,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=47
 50,Mitte,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,21.09.2022,31.07,4.73,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=50
 51,Mitte,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,20.09.2022,31.1,4.10,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=51
-52,Mitte,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,31.47,3.29,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=52
+52,Mitte,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,31.45,3.31,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=52
 53,Charlottenburg-Wilmersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,14.09.2022,30.12,3.38,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=53
 55,Charlottenburg-Wilmersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,08.09.2022,31.27,keine Angabe,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=55
 58,Charlottenburg-Wilmersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,26.08.2022,31.24,14.36,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=58
@@ -50,7 +50,7 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 96,Neukölln,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,15.09.2022,35.48,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=96
 97,Neukölln,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,16.09.2022,35.17,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=97
 100,Charlottenburg-Wilmersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,14.09.2022,30.47,1.29,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=100
-101,Steglitz-Zehlendorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,01.08.2022,34.21,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=101
+101,Steglitz-Zehlendorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,01.08.2022,34.21,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=101
 102,Steglitz-Zehlendorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,31.08.2022,33.66,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=102
 103,Steglitz-Zehlendorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,26.08.2022,33.98,15.68,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=103
 105,Tempelhof-Schöneberg,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,12.09.2022,33.07,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=105
@@ -76,7 +76,7 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 146,Reinickendorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,01.09.2022,31.87,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=146
 147,Charlottenburg-Wilmersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,08.09.2022,30.75,3.17,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=147
 149,Mitte,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,08.09.2022,30.85,3.24,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=149
-150,Reinickendorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,29.09.2022,36.56,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=150
+150,Reinickendorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,30.09.2022,36.54,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=150
 152,Spandau,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,02.09.2022,28.95,3.45,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=152
 153,Neukölln,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,21.07.2022,36.01,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=153
 154,Neukölln,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,16.09.2022,34.36,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=154
@@ -90,7 +90,7 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 176,Reinickendorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,01.09.2022,33.79,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=176
 178,Tempelhof-Schöneberg,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,15.09.2022,33.52,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=178
 181,Reinickendorf,GW-Stand,Panketalgrundwasserleiter (GWL 1.2),ungespannt,07.09.2022,41.35,1.99,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=181
-182,Reinickendorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,30.48,4.86,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=182
+182,Reinickendorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,30.46,4.88,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=182
 185,Reinickendorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,07.09.2022,30.06,5.43,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=185
 200,Reinickendorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,06.09.2022,32.98,3.03,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=200
 201,Reinickendorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,08.08.2022,33.23,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=201
@@ -107,7 +107,7 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 231,Steglitz-Zehlendorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,12.09.2022,33.59,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=231
 232,Steglitz-Zehlendorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,12.09.2022,33.42,10.97,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=232
 237,Mitte,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,02.09.2022,30.77,6.41,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=237
-241,Charlottenburg-Wilmersdorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,30.81,3.13,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=241
+241,Charlottenburg-Wilmersdorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,30.78,3.16,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=241
 243,Charlottenburg-Wilmersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,08.09.2022,31.27,3.38,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=243
 247,Reinickendorf,GW-Stand,Weitere,ungespannt,01.09.2022,37.79,14.47,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=247
 248,Reinickendorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,01.09.2022,35.39,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=248
@@ -129,7 +129,7 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 326,Charlottenburg-Wilmersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,08.09.2022,30.62,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=326
 328,Spandau,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,01.09.2022,29.35,4.27,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=328
 330,Reinickendorf,GW-Stand,Weitere,keine Angabe,02.09.2022,38.96,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=330
-340,Reinickendorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,30.96,2.54,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=340
+340,Reinickendorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,30.95,2.55,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=340
 343,Spandau,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,01.09.2022,29.45,3.98,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=343
 344,Spandau,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,01.09.2022,29.22,4.35,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=344
 345,Spandau,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,14.09.2022,29.69,3.20,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=345
@@ -160,9 +160,9 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 501,Neukölln,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,16.09.2022,33.23,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=501
 510,Spandau,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,01.09.2022,29.04,4.35,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=510
 511,Spandau,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,01.09.2022,30.34,2.90,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=511
-513,Spandau,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,29.56,3.66,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=513
+513,Spandau,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,29.56,3.66,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=513
 516,Spandau,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,01.09.2022,29.3,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=516
-518,Spandau,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,28.57,4.84,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=518
+518,Spandau,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,28.56,4.85,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=518
 520,Spandau,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,02.09.2022,29.15,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=520
 522,Spandau,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,01.09.2022,28.26,4.53,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=522
 552,Mitte,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,09.09.2022,30.68,5.36,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=552
@@ -179,7 +179,7 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 581,Friedrichshain-Kreuzberg,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,20.09.2022,31.69,keine Angabe,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=581
 583,Friedrichshain-Kreuzberg,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,21.09.2022,31.96,keine Angabe,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=583
 584,Friedrichshain-Kreuzberg,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,21.09.2022,31.68,3.49,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=584
-585,Friedrichshain-Kreuzberg,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,31.91,3.16,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=585
+585,Friedrichshain-Kreuzberg,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,31.88,3.19,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=585
 587,Friedrichshain-Kreuzberg,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,13.09.2022,32.14,3.87,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=587
 591,Friedrichshain-Kreuzberg,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,13.09.2022,32.33,2.65,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=591
 594,Friedrichshain-Kreuzberg,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,13.09.2022,32.01,2.29,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=594
@@ -195,7 +195,7 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 609,Charlottenburg-Wilmersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,08.09.2022,30.73,3.77,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=609
 610,Charlottenburg-Wilmersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,08.09.2022,31.1,keine Angabe,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=610
 621,Charlottenburg-Wilmersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,14.09.2022,30.06,3.10,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=621
-622,Charlottenburg-Wilmersdorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,29.99,3.37,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=622
+622,Charlottenburg-Wilmersdorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,29.98,3.38,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=622
 628,Charlottenburg-Wilmersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,14.09.2022,30.7,3.21,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=628
 642,Charlottenburg-Wilmersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.08.2022,29.2,3.59,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=642
 645,Charlottenburg-Wilmersdorf,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.08.2022,29.08,9.23,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=645
@@ -255,7 +255,7 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 769,Steglitz-Zehlendorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,31.08.2022,34.21,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=769
 770,Steglitz-Zehlendorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,27.08.2022,33.94,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=770
 772,Steglitz-Zehlendorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,31.08.2022,35.15,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=772
-773,Steglitz-Zehlendorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,01.08.2022,34.81,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=773
+773,Steglitz-Zehlendorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,01.08.2022,34.81,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=773
 774,Steglitz-Zehlendorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,26.08.2022,33.1,18.02,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=774
 775,Steglitz-Zehlendorf,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,27.08.2022,34.12,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=775
 776,Tempelhof-Schöneberg,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,31.08.2022,35.65,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=776
@@ -264,7 +264,7 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 791,Tempelhof-Schöneberg,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,12.09.2022,32.34,19.02,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=791
 793,Neukölln,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,13.09.2022,32.24,3.38,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=793
 795,Neukölln,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,13.09.2022,32.34,7.01,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=795
-796,Neukölln,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,32.19,1.99,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=796
+796,Neukölln,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,32.18,2.00,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=796
 797,Neukölln,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,16.09.2022,32.77,1.89,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=797
 798,Neukölln,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,15.09.2022,34.19,keine Angabe,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=798
 799,Neukölln,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),keine Angabe,16.09.2022,32.79,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=799
@@ -285,13 +285,13 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 819,Reinickendorf,GW-Stand,Panketalgrundwasserleiter (GWL 1.2),ungespannt,07.09.2022,40.7,3.20,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=819
 830,Reinickendorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,02.09.2022,38.52,3.32,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=830
 833,Charlottenburg-Wilmersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.08.2022,30.47,16.80,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=833
-1305,Charlottenburg-Wilmersdorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,29.51,2.53,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=1305
-1306,Spandau,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,28.92,3.37,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=1306
+1305,Charlottenburg-Wilmersdorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,29.5,2.54,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=1305
+1306,Spandau,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,28.91,3.38,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=1306
 1311,Charlottenburg-Wilmersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,14.09.2022,29.81,2.17,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=1311
-1318,Spandau,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,29.3,2.60,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=1318
-1320,Spandau,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,28.82,4.62,NA,sehr hoch,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=1320
+1318,Spandau,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,29.28,2.62,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=1318
+1320,Spandau,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,28.81,4.63,NA,hoch,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=1320
 1325,Charlottenburg-Wilmersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,14.09.2022,29.66,3.97,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=1325
-1339,Spandau,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,29.18,1.51,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=1339
+1339,Spandau,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,29.18,1.51,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=1339
 1349,Spandau,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,14.09.2022,29.21,1.65,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=1349
 1359,Charlottenburg-Wilmersdorf,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,14.09.2022,29.44,2.50,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=1359
 2606,Marzahn-Hellersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,13.09.2022,37.52,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=2606
@@ -307,13 +307,13 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 3154,Spandau,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,02.09.2022,29.3,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=3154
 3155,Treptow-Köpenick,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,07.07.2022,31.85,3.09,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=3155
 3156,Treptow-Köpenick,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,07.07.2022,31.85,3.09,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=3156
-3211,Neukölln,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,32.65,2.93,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=3211
-3212,Neukölln,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,32.75,3.19,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=3212
+3211,Neukölln,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,32.65,2.93,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=3211
+3212,Neukölln,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,32.74,3.20,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=3212
 3213,Neukölln,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,16.09.2022,33.21,3.56,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=3213
-3215,Neukölln,"GW-Stand, tagesaktuell + GW-Güte",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,32.83,2.83,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=3215
+3215,Neukölln,"GW-Stand, tagesaktuell + GW-Güte",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,32.82,2.84,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=3215
 3315,Spandau,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,02.09.2022,28.68,5.88,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=3315
 3316,Spandau,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,02.09.2022,29.26,11.03,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=3316
-3354,Treptow-Köpenick,"GW-Stand, tagesaktuell + GW-Güte",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,31.78,7.66,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=3354
+3354,Treptow-Köpenick,"GW-Stand, tagesaktuell + GW-Güte",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,31.78,7.66,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=3354
 3355,Mitte,GW-Stand,Tertiäre GW-Leiter (GWL 4),gespannt,02.09.2022,33.28,keine Angabe,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=3355
 3356,Charlottenburg-Wilmersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,08.09.2022,30.24,1.69,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=3356
 3357,Charlottenburg-Wilmersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,08.09.2022,30.03,2.05,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=3357
@@ -325,7 +325,7 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 4013,Spandau,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,02.09.2022,29.17,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=4013
 4015,Spandau,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,02.09.2022,27.9,21.74,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=4015
 4059,Spandau,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,01.09.2022,28.18,5.20,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=4059
-4061,Spandau,"GW-Stand, tagesaktuell + GW-Güte",Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,29.09.2022,27.43,keine Angabe,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=4061
+4061,Spandau,"GW-Stand, tagesaktuell + GW-Güte",Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,30.09.2022,27.47,keine Angabe,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=4061
 4098,Spandau,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,30.08.2022,28.79,keine Angabe,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=4098
 4102,Spandau,GW-Stand,Elsterzeitl. GW-Leiter (GWL 3),gespannt,14.07.2022,28.78,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=4102
 4105,Spandau,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,01.09.2022,30.15,3.72,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=4105
@@ -379,14 +379,14 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 5029,Pankow,GW-Stand,Tertiäre GW-Leiter (GWL 4),gespannt,25.08.2022,36.53,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5029
 5031,Pankow,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,25.08.2022,43.21,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5031
 5033,Pankow,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,25.08.2022,45.87,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5033
-5036,Treptow-Köpenick,"GW-Stand, tagesaktuell + GW-Güte",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,31.76,1.08,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5036
-5039,Treptow-Köpenick,"GW-Stand, tagesaktuell + GW-Güte",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,31.88,1.54,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5039
-5040,Treptow-Köpenick,"GW-Stand, tagesaktuell + GW-Güte",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,31.77,1.89,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5040
-5042,Treptow-Köpenick,"GW-Stand, tagesaktuell + GW-Güte",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,32.14,1.40,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5042
+5036,Treptow-Köpenick,"GW-Stand, tagesaktuell + GW-Güte",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,31.75,1.09,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5036
+5039,Treptow-Köpenick,"GW-Stand, tagesaktuell + GW-Güte",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,31.88,1.54,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5039
+5040,Treptow-Köpenick,"GW-Stand, tagesaktuell + GW-Güte",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,31.77,1.89,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5040
+5042,Treptow-Köpenick,"GW-Stand, tagesaktuell + GW-Güte",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,32.14,1.40,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5042
 5043,Mitte,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,20.09.2022,31.04,3.80,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5043
 5044,Pankow,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,26.08.2022,41.56,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5044
 5045,Mitte,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,20.09.2022,31.12,3.43,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5045
-5049,Treptow-Köpenick,"GW-Stand, tagesaktuell + GW-Güte",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,31.32,3.96,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5049
+5049,Treptow-Köpenick,"GW-Stand, tagesaktuell + GW-Güte",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,31.31,3.97,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5049
 5052,Pankow,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,26.08.2022,41.24,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5052
 5057,Pankow,GW-Stand,Tertiäre GW-Leiter (GWL 4),gespannt,08.08.2022,36.79,keine Angabe,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5057
 5058,Pankow,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,06.09.2022,42.57,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5058
@@ -407,8 +407,8 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 5092,Pankow,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,25.08.2022,44.72,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5092
 5097,Pankow,GW-Stand + GW-Güte,Tertiäre GW-Leiter (GWL 4),gespannt,26.08.2022,35.84,keine Angabe,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5097
 5138,Mitte,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,20.09.2022,31.13,3.75,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5138
-5139,Mitte,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,30.93,2.77,NA,hoch,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5139
-5140,Mitte,"GW-Stand, tagesaktuell + GW-Güte",Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,29.09.2022,31.1,keine Angabe,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5140
+5139,Mitte,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,30.91,2.79,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5139
+5140,Mitte,"GW-Stand, tagesaktuell + GW-Güte",Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,30.09.2022,31.08,keine Angabe,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5140
 5141,Mitte,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,20.09.2022,31.17,5.01,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5141
 5142,Mitte,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,24.08.2022,31.35,5.18,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5142
 5144,Mitte,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,13.02.2022,31.34,5.31,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5144
@@ -419,8 +419,8 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 5152,Friedrichshain-Kreuzberg,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,15.09.2022,32.27,2.81,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5152
 5154,Mitte,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,20.09.2022,30.9,4.22,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5154
 5155,Mitte,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,20.09.2022,30.93,2.10,NA,sehr hoch,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5155
-5156,Mitte,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,30.81,3.68,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5156
-5161,Mitte,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,31.58,4.91,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5161
+5156,Mitte,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,30.81,3.68,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5156
+5161,Mitte,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,31.57,4.92,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5161
 5162,Mitte,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,24.08.2022,31.37,4.85,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5162
 5167,Friedrichshain-Kreuzberg,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,15.09.2022,33.5,4.48,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5167
 5168,Friedrichshain-Kreuzberg,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,15.09.2022,33.86,3.06,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5168
@@ -430,7 +430,7 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 5207,Lichtenberg,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,22.09.2022,32.41,3.31,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5207
 5217,Lichtenberg,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,22.09.2022,33.65,3.92,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5217
 5231,Lichtenberg,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,15.09.2022,34.56,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5231
-5233,Lichtenberg,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,29.09.2022,34.38,keine Angabe,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5233
+5233,Lichtenberg,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,30.09.2022,34.36,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5233
 5253,Pankow,GW-Stand,Panketalgrundwasserleiter (GWL 1.2),ungespannt,26.08.2022,41.75,3.04,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5253
 5255,Pankow,GW-Stand + GW-Güte,Panketalgrundwasserleiter (GWL 1.2),ungespannt,26.08.2022,41.96,3.22,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5255
 5270,Pankow,GW-Stand,Weitere,gespannt,08.08.2022,42.8,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5270
@@ -439,7 +439,7 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 5297,Pankow,GW-Stand + GW-Güte,Panketalgrundwasserleiter (GWL 1.2),ungespannt,22.08.2022,45.8,2.07,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5297
 5304,Pankow,GW-Stand,Panketalgrundwasserleiter (GWL 1.2),ungespannt,26.08.2022,40.23,2.93,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5304
 5306,Pankow,GW-Stand + GW-Güte,Panketalgrundwasserleiter (GWL 1.2),ungespannt,26.08.2022,41.41,2.95,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5306
-5308,Pankow,"GW-Stand, tagesaktuell",Panketalgrundwasserleiter (GWL 1.2),ungespannt,29.09.2022,41.87,3.31,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5308
+5308,Pankow,"GW-Stand, tagesaktuell",Panketalgrundwasserleiter (GWL 1.2),ungespannt,30.09.2022,41.86,3.32,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5308
 5311,Pankow,GW-Stand,Panketalgrundwasserleiter (GWL 1.2),ungespannt,26.08.2022,40.41,2.46,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5311
 5316,Pankow,GW-Stand,Panketalgrundwasserleiter (GWL 1.2),ungespannt,26.08.2022,42.96,3.06,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5316
 5320,Pankow,GW-Stand,Panketalgrundwasserleiter (GWL 1.2),ungespannt,26.08.2022,44.06,3.44,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5320
@@ -447,7 +447,7 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 5337,Pankow,GW-Stand,Panketalgrundwasserleiter (GWL 1.2),ungespannt,26.08.2022,41.53,2.14,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5337
 5342,Pankow,GW-Stand,Panketalgrundwasserleiter (GWL 1.2),ungespannt,06.09.2022,46.78,2.41,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5342
 5351,Pankow,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,25.08.2022,45.24,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5351
-5355,Pankow,"GW-Stand, tagesaktuell + GW-Güte",Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,29.09.2022,48.28,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5355
+5355,Pankow,"GW-Stand, tagesaktuell + GW-Güte",Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,30.09.2022,48.26,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5355
 5366,Pankow,GW-Stand + GW-Güte,Panketalgrundwasserleiter (GWL 1.2),ungespannt,23.09.2022,54.53,2.30,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5366
 5372,Pankow,GW-Stand,Panketalgrundwasserleiter (GWL 1.2),ungespannt,26.08.2022,39.34,4.36,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5372
 5382,Pankow,GW-Stand,Panketalgrundwasserleiter (GWL 1.2),ungespannt,06.09.2022,47.02,1.84,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5382
@@ -460,15 +460,15 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 5412,Pankow,GW-Stand,Panketalgrundwasserleiter (GWL 1.2),ungespannt,09.08.2022,50.26,1.98,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5412
 5420,Pankow,GW-Stand,Panketalgrundwasserleiter (GWL 1.2),ungespannt,26.08.2022,39.38,3.06,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5420
 5422,Treptow-Köpenick,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,16.09.2022,31.14,3.39,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5422
-5424,Treptow-Köpenick,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,31.1,3.45,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5424
+5424,Treptow-Köpenick,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,31.09,3.46,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5424
 5427,Treptow-Köpenick,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.08.2022,32.05,2.64,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5427
 5428,Treptow-Köpenick,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.08.2022,32.19,3.84,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5428
 5430,Treptow-Köpenick,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.08.2022,33.1,1.51,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5430
 5431,Treptow-Köpenick,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.08.2022,33.28,2.93,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5431
 5471,Lichtenberg,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,22.09.2022,34.03,2.81,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5471
-5472,Lichtenberg,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,33.88,1.92,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5472
+5472,Lichtenberg,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,33.86,1.94,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5472
 5475,Lichtenberg,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,15.09.2022,33.51,1.95,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5475
-5476,Friedrichshain-Kreuzberg,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,33.3,2.50,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5476
+5476,Friedrichshain-Kreuzberg,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,33.29,2.51,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5476
 5573,Treptow-Köpenick,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,22.09.2022,31.15,3.57,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5573
 5581,Marzahn-Hellersdorf,GW-Stand,Elsterzeitl. GW-Leiter (GWL 3),gespannt,14.09.2022,36.09,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5581
 5600,Marzahn-Hellersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,05.09.2022,43.67,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=5600
@@ -539,10 +539,10 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 6522,Lichtenberg,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,19.09.2022,46.86,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=6522
 6534,Marzahn-Hellersdorf,GW-Stand + GW-Güte,Weitere,gespannt,05.09.2022,52.42,keine Angabe,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=6534
 6548,Lichtenberg,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,19.09.2022,42.59,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=6548
-6560,Treptow-Köpenick,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,31.56,2.59,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=6560
+6560,Treptow-Köpenick,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,31.55,2.60,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=6560
 6567,Treptow-Köpenick,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,19.09.2022,32.11,2.18,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=6567
 6568,Treptow-Köpenick,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,19.09.2022,31.96,keine Angabe,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=6568
-6743,Treptow-Köpenick,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,32.27,0.68,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=6743
+6743,Treptow-Köpenick,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,32.27,0.68,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=6743
 6961,Pankow,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,19.09.2022,42.1,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=6961
 6962,Pankow,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,21.09.2022,38.6,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=6962
 6963,Friedrichshain-Kreuzberg,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,17.06.2022,32.62,2.60,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=6963
@@ -614,16 +614,16 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 7172,Steglitz-Zehlendorf,GW-Stand + GW-Güte,Elsterzeitl. GW-Leiter (GWL 3),gespannt,31.08.2022,35.03,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7172
 7173,Steglitz-Zehlendorf,GW-Stand + GW-Güte,Tertiäre GW-Leiter (GWL 4),gespannt,31.08.2022,34.89,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7173
 7178,Steglitz-Zehlendorf,GW-Stand,Tertiäre GW-Leiter (GWL 4),gespannt,27.08.2022,33.98,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7178
-7180,Steglitz-Zehlendorf,GW-Stand + GW-Güte,Elsterzeitl. GW-Leiter (GWL 3),gespannt,01.08.2022,33.86,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7180
-7182,Steglitz-Zehlendorf,GW-Stand,Tertiäre GW-Leiter (GWL 4),gespannt,01.08.2022,34.02,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7182
-7192,Steglitz-Zehlendorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,01.08.2022,34.84,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7192
-7193,Steglitz-Zehlendorf,GW-Stand,Elsterzeitl. GW-Leiter (GWL 3),gespannt,01.08.2022,34.65,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7193
-7194,Steglitz-Zehlendorf,GW-Stand,Tertiäre GW-Leiter (GWL 4),gespannt,01.08.2022,34.4,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7194
+7180,Steglitz-Zehlendorf,GW-Stand + GW-Güte,Elsterzeitl. GW-Leiter (GWL 3),gespannt,01.08.2022,33.86,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7180
+7182,Steglitz-Zehlendorf,GW-Stand,Tertiäre GW-Leiter (GWL 4),gespannt,01.08.2022,34.02,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7182
+7192,Steglitz-Zehlendorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,01.08.2022,34.84,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7192
+7193,Steglitz-Zehlendorf,GW-Stand,Elsterzeitl. GW-Leiter (GWL 3),gespannt,01.08.2022,34.65,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7193
+7194,Steglitz-Zehlendorf,GW-Stand,Tertiäre GW-Leiter (GWL 4),gespannt,01.08.2022,34.4,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7194
 7195,Charlottenburg-Wilmersdorf,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,24.05.2022,26.86,30.42,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7195
 7196,Charlottenburg-Wilmersdorf,GW-Stand,Elsterzeitl. GW-Leiter (GWL 3),gespannt,24.05.2022,25.78,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7196
-7206,Steglitz-Zehlendorf,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,01.08.2022,33.73,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7206
-7207,Steglitz-Zehlendorf,GW-Stand + GW-Güte,Elsterzeitl. GW-Leiter (GWL 3),gespannt,01.08.2022,33.9,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7207
-7208,Steglitz-Zehlendorf,GW-Stand,Tertiäre GW-Leiter (GWL 4),gespannt,01.08.2022,33.97,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7208
+7206,Steglitz-Zehlendorf,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,01.08.2022,33.73,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7206
+7207,Steglitz-Zehlendorf,GW-Stand + GW-Güte,Elsterzeitl. GW-Leiter (GWL 3),gespannt,01.08.2022,33.9,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7207
+7208,Steglitz-Zehlendorf,GW-Stand,Tertiäre GW-Leiter (GWL 4),gespannt,01.08.2022,33.97,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7208
 7210,Steglitz-Zehlendorf,GW-Stand + GW-Güte,Elsterzeitl. GW-Leiter (GWL 3),gespannt,12.09.2022,33.42,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7210
 7214,Steglitz-Zehlendorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,27.08.2022,29.49,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7214
 7215,Steglitz-Zehlendorf,GW-Stand + GW-Güte,Elsterzeitl. GW-Leiter (GWL 3),gespannt,27.08.2022,29.49,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7215
@@ -673,7 +673,7 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 7728,Pankow,GW-Stand,Panketalgrundwasserleiter (GWL 1.2),ungespannt,06.07.2022,51.47,2.32,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7728
 7742,Lichtenberg,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,15.09.2022,33.86,2.87,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7742
 7745,Pankow,GW-Stand,Panketalgrundwasserleiter (GWL 1.2),ungespannt,23.09.2022,53.57,2.49,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7745
-7746,Pankow,"GW-Stand, tagesaktuell",Panketalgrundwasserleiter (GWL 1.2),ungespannt,29.09.2022,56.3,2.42,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7746
+7746,Pankow,"GW-Stand, tagesaktuell",Panketalgrundwasserleiter (GWL 1.2),ungespannt,30.09.2022,56.3,2.42,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7746
 7750,Pankow,GW-Stand,Panketalgrundwasserleiter (GWL 1.2),ungespannt,06.09.2022,48.59,4.66,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7750
 7751,Lichtenberg,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,23.08.2022,32.73,3.40,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7751
 7752,Lichtenberg,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,23.08.2022,32.57,3.69,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7752
@@ -695,7 +695,7 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 8056,Lichtenberg,GW-Stand,Elsterzeitl. GW-Leiter (GWL 3),gespannt,22.09.2022,38.33,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=8056
 8058,Marzahn-Hellersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,13.09.2022,34.4,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=8058
 8059,Marzahn-Hellersdorf,GW-Stand,Elsterzeitl. GW-Leiter (GWL 3),gespannt,13.09.2022,34.39,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=8059
-8063,Marzahn-Hellersdorf,"GW-Stand, tagesaktuell",Elsterzeitl. GW-Leiter (GWL 3),gespannt,29.09.2022,33.62,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=8063
+8063,Marzahn-Hellersdorf,"GW-Stand, tagesaktuell",Elsterzeitl. GW-Leiter (GWL 3),gespannt,30.09.2022,33.61,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=8063
 8118,Lichtenberg,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,22.09.2022,34.05,3.60,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=8118
 8197,Pankow,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,23.09.2022,51.95,keine Angabe,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=8197
 8199,Pankow,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,23.09.2022,52.05,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=8199
@@ -703,9 +703,9 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 8214,Pankow,GW-Stand,Elsterzeitl. GW-Leiter (GWL 3),artesisch,22.08.2022,50.94,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=8214
 8215,Pankow,GW-Stand,Tertiäre GW-Leiter (GWL 4),artesisch,22.08.2022,50.95,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=8215
 8221,Pankow,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,23.09.2022,50.96,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=8221
-8224,Pankow,"GW-Stand, tagesaktuell",Panketalgrundwasserleiter (GWL 1.2),ungespannt,29.09.2022,50.24,2.69,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=8224
-8225,Pankow,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,29.09.2022,50.5,keine Angabe,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=8225
-8226,Pankow,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,29.09.2022,50.45,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=8226
+8224,Pankow,"GW-Stand, tagesaktuell",Panketalgrundwasserleiter (GWL 1.2),ungespannt,30.09.2022,50.23,2.70,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=8224
+8225,Pankow,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,30.09.2022,50.49,keine Angabe,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=8225
+8226,Pankow,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,30.09.2022,50.44,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=8226
 8349,Marzahn-Hellersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,05.09.2022,40.55,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=8349
 8350,Marzahn-Hellersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,08.06.2022,40.83,1.28,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=8350
 8351,Marzahn-Hellersdorf,GW-Stand,Elsterzeitl. GW-Leiter (GWL 3),gespannt,08.06.2022,39.92,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=8351
@@ -729,8 +729,8 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 8458,Friedrichshain-Kreuzberg,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,15.09.2022,32.4,2.30,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=8458
 8459,Friedrichshain-Kreuzberg,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,25.08.2022,33.86,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=8459
 8464,Friedrichshain-Kreuzberg,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,21.09.2022,31.94,keine Angabe,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=8464
-8468,Friedrichshain-Kreuzberg,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,32.79,6.13,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=8468
-8469,Friedrichshain-Kreuzberg,"GW-Stand, tagesaktuell + GW-Güte",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,32.57,3.33,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=8469
+8468,Friedrichshain-Kreuzberg,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,32.78,6.14,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=8468
+8469,Friedrichshain-Kreuzberg,"GW-Stand, tagesaktuell + GW-Güte",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,32.56,3.34,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=8469
 8472,Mitte,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,24.08.2022,30.76,2.70,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=8472
 8473,Mitte,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,24.08.2022,30.8,3.73,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=8473
 8476,Friedrichshain-Kreuzberg,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,15.09.2022,32.87,2.86,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=8476
@@ -773,16 +773,16 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 10414,Spandau,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,01.09.2022,27.95,5.77,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=10414
 10417,Spandau,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,01.09.2022,27.51,5.95,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=10417
 10420,Mitte,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,08.09.2022,30.83,1.60,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=10420
-10421,Treptow-Köpenick,"GW-Stand, tagesaktuell + GW-Güte",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,32.99,1.92,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=10421
-10709,Lichtenberg,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,31.68,3.80,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=10709
+10421,Treptow-Köpenick,"GW-Stand, tagesaktuell + GW-Güte",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,32.98,1.93,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=10421
+10709,Lichtenberg,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,31.66,3.82,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=10709
 15001,Pankow,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,06.09.2022,38.37,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15001
 15012,Treptow-Köpenick,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,16.09.2022,32.01,2.27,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15012
 15049,Lichtenberg,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,22.09.2022,32.73,2.27,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15049
 15062,Pankow,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,26.08.2022,41.6,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15062
 15063,Lichtenberg,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,27.07.2022,38.92,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15063
 15065,Treptow-Köpenick,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,29.08.2022,34.13,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15065
-15101,Lichtenberg,"GW-Stand, tagesaktuell + GW-Güte",Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,29.09.2022,31.81,keine Angabe,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15101
-15104,Lichtenberg,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,31.61,0.64,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15104
+15101,Lichtenberg,"GW-Stand, tagesaktuell + GW-Güte",Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,30.09.2022,31.79,keine Angabe,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15101
+15104,Lichtenberg,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,31.6,0.65,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15104
 15105,Lichtenberg,GW-Stand,Weitere,ungespannt,13.09.2022,31.6,0.56,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15105
 15106,Mitte,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,20.09.2022,30.91,2.81,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15106
 15147,Treptow-Köpenick,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.08.2022,31.67,2.74,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15147
@@ -790,32 +790,32 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 15152,Treptow-Köpenick,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,26.07.2022,32.56,1.63,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15152
 15153,Treptow-Köpenick,GW-Stand + GW-Güte,Elsterzeitl. GW-Leiter (GWL 3),gespannt,26.07.2022,32.79,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15153
 15156,Pankow,GW-Stand + GW-Güte,Panketalgrundwasserleiter (GWL 1.2),ungespannt,22.08.2022,48.95,2.36,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15156
-15160,Treptow-Köpenick,"GW-Stand, tagesaktuell + GW-Güte",Elsterzeitl. GW-Leiter (GWL 3),gespannt,29.09.2022,31.98,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15160
-15161,Treptow-Köpenick,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),keine Angabe,29.09.2022,32.28,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15161
-15162,Treptow-Köpenick,"GW-Stand, tagesaktuell + GW-Güte",Elsterzeitl. GW-Leiter (GWL 3),gespannt,29.09.2022,32.2,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15162
-15163,Treptow-Köpenick,"GW-Stand, tagesaktuell + GW-Güte",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,32.24,3.90,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15163
+15160,Treptow-Köpenick,"GW-Stand, tagesaktuell + GW-Güte",Elsterzeitl. GW-Leiter (GWL 3),gespannt,30.09.2022,31.97,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15160
+15161,Treptow-Köpenick,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),keine Angabe,30.09.2022,32.28,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15161
+15162,Treptow-Köpenick,"GW-Stand, tagesaktuell + GW-Güte",Elsterzeitl. GW-Leiter (GWL 3),gespannt,30.09.2022,32.19,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15162
+15163,Treptow-Köpenick,"GW-Stand, tagesaktuell + GW-Güte",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,32.24,3.90,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15163
 15165,Lichtenberg,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,19.09.2022,46.46,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15165
 15166,Marzahn-Hellersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,19.09.2022,41.16,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15166
 15167,Marzahn-Hellersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,19.09.2022,45.87,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15167
 15168,Pankow,GW-Stand,Panketalgrundwasserleiter (GWL 1.2),gespannt,23.09.2022,54.88,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15168
-15169,Pankow,"GW-Stand, tagesaktuell",Panketalgrundwasserleiter (GWL 1.2),ungespannt,29.09.2022,51.24,1.17,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15169
+15169,Pankow,"GW-Stand, tagesaktuell",Panketalgrundwasserleiter (GWL 1.2),ungespannt,30.09.2022,51.26,1.15,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15169
 15170,Pankow,GW-Stand,Panketalgrundwasserleiter (GWL 1.2),ungespannt,23.09.2022,46.81,2.99,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15170
-15171,Pankow,"GW-Stand, tagesaktuell",Weitere,gespannt,29.09.2022,50.48,keine Angabe,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15171
+15171,Pankow,"GW-Stand, tagesaktuell",Weitere,gespannt,30.09.2022,50.47,keine Angabe,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15171
 15172,Pankow,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,26.08.2022,41.18,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15172
 15173,Pankow,GW-Stand,Weitere,gespannt,26.08.2022,40.83,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15173
 15174,Treptow-Köpenick,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,16.09.2022,32.13,2.90,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15174
 15175,Lichtenberg,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,19.09.2022,51.57,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15175
-15176,Spandau,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,29.09.2022,29.61,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15176
-15177,Lichtenberg,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,32.94,2.36,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15177
-15178,Spandau,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,29.58,1.88,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15178
+15176,Spandau,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,30.09.2022,29.6,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15176
+15177,Lichtenberg,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,32.93,2.37,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15177
+15178,Spandau,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,29.58,1.88,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15178
 15179,Charlottenburg-Wilmersdorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.08.2022,25.68,3.91,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15179
-15180,Treptow-Köpenick,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,32.29,0.80,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15180
-15181,Treptow-Köpenick,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,32,2.18,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15181
+15180,Treptow-Köpenick,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,32.29,0.80,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15180
+15181,Treptow-Köpenick,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,32.01,2.17,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15181
 15183,Marzahn-Hellersdorf,GW-Stand,Elsterzeitl. GW-Leiter (GWL 3),keine Angabe,13.09.2022,33.23,keine Angabe,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15183
-15184,Friedrichshain-Kreuzberg,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,33.15,2.98,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15184
-15185,Marzahn-Hellersdorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,33.06,4.02,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15185
-15189,Pankow,"GW-Stand, tagesaktuell",Panketalgrundwasserleiter (GWL 1.2),ungespannt,29.09.2022,41.86,2.83,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15189
-15190,Pankow,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,29.09.2022,41.67,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15190
+15184,Friedrichshain-Kreuzberg,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,33.14,2.99,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15184
+15185,Marzahn-Hellersdorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,33.06,4.02,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15185
+15189,Pankow,"GW-Stand, tagesaktuell",Panketalgrundwasserleiter (GWL 1.2),ungespannt,30.09.2022,41.86,2.83,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15189
+15190,Pankow,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,30.09.2022,41.66,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15190
 15192,Steglitz-Zehlendorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.08.2022,27.12,20.92,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15192
 15193,Charlottenburg-Wilmersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.08.2022,26.86,29.67,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15193
 15195,Charlottenburg-Wilmersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,13.07.2022,28.93,1.66,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15195
@@ -824,10 +824,10 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 15198,Steglitz-Zehlendorf,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,13.07.2022,30.56,4.41,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15198
 15199,Steglitz-Zehlendorf,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,13.07.2022,30.26,3.59,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15199
 15201,Pankow,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,23.06.2022,44.68,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=15201
-17299,Reinickendorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,29.59,2.92,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=17299
-17300,Reinickendorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,29.45,2.55,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=17300
-17301,Reinickendorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,29.13,2.42,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=17301
-17302,Reinickendorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,29.2,2.35,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=17302
+17299,Reinickendorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,29.58,2.93,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=17299
+17300,Reinickendorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,29.44,2.56,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=17300
+17301,Reinickendorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,29.12,2.43,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=17301
+17302,Reinickendorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,29.18,2.37,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=17302
 17303,Treptow-Köpenick,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,22.06.2022,32.81,7.98,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=17303
 17304,Treptow-Köpenick,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,22.06.2022,32.82,7.92,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=17304
 17305,Lichtenberg,GW-Stand,Elsterzeitl. GW-Leiter (GWL 3),gespannt,22.06.2022,50.99,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=17305
@@ -843,7 +843,7 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 17910,Spandau,GW-Stand,Weitere,keine Angabe,12.09.2022,30.22,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=17910
 17911,Spandau,GW-Stand,Weitere,keine Angabe,26.04.2022,31.56,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=17911
 17912,Spandau,GW-Stand,Weitere,keine Angabe,26.04.2022,30.9,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=17912
-21101,Mitte,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,30.72,3.14,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=21101
+21101,Mitte,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,30.71,3.15,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=21101
 23101,Pankow,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,19.09.2022,41.03,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=23101
 23201,Pankow,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,22.08.2022,50.49,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=23201
 23208,Pankow,GW-Stand,Elsterzeitl. GW-Leiter (GWL 3),keine Angabe,22.08.2022,47.8,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=23208
@@ -860,20 +860,20 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 23752,Pankow,GW-Stand,Weitere,gespannt,25.08.2022,46.36,keine Angabe,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=23752
 23753,Pankow,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,25.08.2022,45.76,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=23753
 30201,Marzahn-Hellersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,05.09.2022,40.32,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=30201
-90203,Neukölln,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,32.39,1.95,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=90203
+90203,Neukölln,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,32.38,1.96,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=90203
 90267,Mitte,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,10.08.2022,39.97,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=90267
 93143,Spandau,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,01.09.2022,27.99,4.84,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=93143
-95242,Marzahn-Hellersdorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,34.35,3.12,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=95242
+95242,Marzahn-Hellersdorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,34.34,3.13,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=95242
 95391,Pankow,GW-Stand,Panketalgrundwasserleiter (GWL 1.2),ungespannt,23.09.2022,49.17,3.48,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=95391
 95580,Marzahn-Hellersdorf,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,14.09.2022,36.35,8.67,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=95580
 97175,Steglitz-Zehlendorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,27.08.2022,34.05,6.90,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=97175
 97766,Mitte,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,20.09.2022,30.78,4.56,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=97766
 98345,Marzahn-Hellersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,05.09.2022,44.93,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=98345
 98954,Mitte,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,20.09.2022,30.98,3.05,NA,hoch,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=98954
-99003,Marzahn-Hellersdorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,29.09.2022,34.3,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=99003
+99003,Marzahn-Hellersdorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,30.09.2022,34.3,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=99003
 99085,Pankow,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,21.09.2022,37.37,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=99085
-99619,Marzahn-Hellersdorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,34.31,3.45,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=99619
-99620,Marzahn-Hellersdorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,34.56,3.39,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=99620
-99721,Marzahn-Hellersdorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,33.67,4.39,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=99721
-99729,Marzahn-Hellersdorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,29.09.2022,33.52,3.90,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=99729
+99619,Marzahn-Hellersdorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,34.3,3.46,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=99619
+99620,Marzahn-Hellersdorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,34.55,3.40,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=99620
+99721,Marzahn-Hellersdorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,33.67,4.39,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=99721
+99729,Marzahn-Hellersdorf,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.09.2022,33.52,3.90,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=99729
 99868,Treptow-Köpenick,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,29.08.2022,32.31,keine Angabe,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=99868
