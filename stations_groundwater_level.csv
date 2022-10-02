@@ -649,8 +649,8 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 7264,Steglitz-Zehlendorf,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,27.08.2022,29.12,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7264
 7269,Steglitz-Zehlendorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,27.08.2022,28.81,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7269
 7275,Steglitz-Zehlendorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,26.08.2022,33.55,11.97,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7275
-7277,Steglitz-Zehlendorf,GW-Stand,Tertiäre GW-Leiter (GWL 4),gespannt,02.08.2022,26.55,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7277
-7278,Steglitz-Zehlendorf,GW-Stand,Elsterzeitl. GW-Leiter (GWL 3),gespannt,02.08.2022,26.55,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7278
+7277,Steglitz-Zehlendorf,GW-Stand,Tertiäre GW-Leiter (GWL 4),gespannt,02.08.2022,26.55,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7277
+7278,Steglitz-Zehlendorf,GW-Stand,Elsterzeitl. GW-Leiter (GWL 3),gespannt,02.08.2022,26.55,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7278
 7281,Steglitz-Zehlendorf,GW-Stand,Elsterzeitl. GW-Leiter (GWL 3),gespannt,30.08.2022,25.35,keine Angabe,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7281
 7286,Steglitz-Zehlendorf,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.08.2022,27.42,25.99,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7286
 7290,Steglitz-Zehlendorf,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,26.08.2022,29.99,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=gws&sstation=7290
