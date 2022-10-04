@@ -2,18 +2,18 @@ Messstellennummer,Messstellenname,Gewaesser,Betreiber,Datum,Durchfluss,Einheit,G
 5827103,Allendestraße,Müggelspree,Land Berlin,01.05.2022 23:45,3.29,m³/s,NA,nicht aktuell,https://wasserportal.berlin.de/station.php?anzeige=i&stable=odf&sstation=5827103
 5870400,Alsenbrücke,Griebnitzkanal,Land Berlin,,NA,m³/s,NA,nicht aktuell,https://wasserportal.berlin.de/station.php?anzeige=i&stable=odf&sstation=5870400
 5865300,Am Bahndamm,Wuhle,Land Berlin,30.09.2022 23:30,0.104,m³/s,NA,nicht aktuell,https://wasserportal.berlin.de/station.php?anzeige=i&stable=odf&sstation=5865300
-5864801,Am Kienberg,Hellersdorfer Graben,Land Berlin,03.10.2022 06:30,0.01,m³/s,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=odf&sstation=5864801
-5867401,Bürgerpark,Panke,Land Berlin,03.10.2022 06:30,0.524,m³/s,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=odf&sstation=5867401
+5864801,Am Kienberg,Hellersdorfer Graben,Land Berlin,04.10.2022 06:00,0.001,m³/s,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=odf&sstation=5864801
+5867401,Bürgerpark,Panke,Land Berlin,04.10.2022 02:00,0.529,m³/s,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=odf&sstation=5867401
 5867900,Eisenbahnbrücke,Nordgraben,Land Berlin,30.09.2022 23:30,0.935,m³/s,NA,nicht aktuell,https://wasserportal.berlin.de/station.php?anzeige=i&stable=odf&sstation=5867900
-5827101,Fähre Rahnsdorf,Müggelspree,Land Berlin,03.10.2022 06:30,-1.517,m³/s,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=odf&sstation=5827101
-5870100,Lichterfelde,Teltowkanal,Land Berlin,03.10.2022 06:30,5.83,m³/s,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=odf&sstation=5870100
-5826701,Neue Fahlenbergbrücke,Gosener Kanal,Land Berlin,03.10.2022 06:15,7.3,m³/s,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=odf&sstation=5826701
-5862811,Schmöckwitz US,Zeuthener See,Land Berlin,03.10.2022 06:30,2.68,m³/s,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=odf&sstation=5862811
-5827700,Sophienwerder,Spree,Land Berlin,03.10.2022 06:30,21.9,m³/s,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=odf&sstation=5827700
+5827101,Fähre Rahnsdorf,Müggelspree,Land Berlin,04.10.2022 06:00,2.99,m³/s,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&stable=odf&sstation=5827101
+5870100,Lichterfelde,Teltowkanal,Land Berlin,04.10.2022 06:00,7.05,m³/s,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=odf&sstation=5870100
+5826701,Neue Fahlenbergbrücke,Gosener Kanal,Land Berlin,04.10.2022 05:45,7.6,m³/s,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&stable=odf&sstation=5826701
+5862811,Schmöckwitz US,Zeuthener See,Land Berlin,04.10.2022 06:00,2.49,m³/s,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=odf&sstation=5862811
+5827700,Sophienwerder,Spree,Land Berlin,04.10.2022 05:45,14.2,m³/s,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=odf&sstation=5827700
 5815911,Tegelort,Havel,Land Berlin,,NA,m³/s,NA,nicht aktuell,https://wasserportal.berlin.de/station.php?anzeige=i&stable=odf&sstation=5815911
-5803200,Tiefwerder,Havel,Land Berlin,03.10.2022 06:30,15.7,m³/s,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=odf&sstation=5803200
-5861200,Wiesengrund,Neuenhagener Mühlenfließ,Land Berlin,03.10.2022 06:30,-0.303,m³/s,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=odf&sstation=5861200
-5864800,Wuhletal,Wuhle,Land Berlin,03.10.2022 06:30,0,m³/s,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=odf&sstation=5864800
-5866301,Zoo,Landwehrkanal,Land Berlin,03.10.2022 06:30,1.85,m³/s,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=odf&sstation=5866301
-581591,Borgsdorf,Havel-Oder-Wasserstrasse,Standort Eberswalde,03.10.2022 05:30,2.41,m³/s,NA,keine,http://www.pegelonline.wsv.de/gast/stammdaten?pegelnr=581591
+5803200,Tiefwerder,Havel,Land Berlin,04.10.2022 06:00,17.5,m³/s,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=odf&sstation=5803200
+5861200,Wiesengrund,Neuenhagener Mühlenfließ,Land Berlin,04.10.2022 06:00,0.12,m³/s,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=odf&sstation=5861200
+5864800,Wuhletal,Wuhle,Land Berlin,04.10.2022 06:00,0,m³/s,NA,sehr niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=odf&sstation=5864800
+5866301,Zoo,Landwehrkanal,Land Berlin,04.10.2022 06:00,1.73,m³/s,NA,niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&stable=odf&sstation=5866301
+581591,Borgsdorf,Havel-Oder-Wasserstrasse,Standort Eberswalde,04.10.2022 05:30,1.2,m³/s,NA,keine,http://www.pegelonline.wsv.de/gast/stammdaten?pegelnr=581591
 580430,Ketzin,Untere Havel-Wasserstrasse,Standort Brandenburg,19.09.2022 14:00,15.5,m³/s,NA,nicht aktuell,http://www.pegelonline.wsv.de/gast/stammdaten?pegelnr=580430
