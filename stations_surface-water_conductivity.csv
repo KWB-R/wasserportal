@@ -1,15 +1,15 @@
 Messstellennummer,Messstellenname,Gewaesser,Betreiber,Datum,Leitfaehigkeit,Einheit,Ganglinie,Klassifikation,stammdaten_link
-601,MPS Berlin-Spandauer-Schifffahrtskanal,Berlin-Spandauer-Schifffahrtskanal,Land Berlin,12.10.2022 06:00,1011,µS/cm,NA,>1000 - 1200,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=601
-151,MPS Caprivibrücke,Spree,Land Berlin,12.10.2022 06:00,865,µS/cm,NA,>800 - 1000,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=151
-153,MPS Charlottenburg,Spree,Land Berlin,12.10.2022 06:00,872,µS/cm,NA,>800 - 1000,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=153
-509,MPS Landwehrkanal,Landwehrkanal,Land Berlin,12.10.2022 06:00,855,µS/cm,NA,>800 - 1000,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=509
-504,MPS Neuköllner Schifffahrtskanal,Neuköllner Schifffahrtskanal,Land Berlin,12.10.2022 06:00,947,µS/cm,NA,>800 - 1000,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=504
-414,MPS Teltowkanal,Teltowkanal,Land Berlin,12.10.2022 06:00,943,µS/cm,NA,>800 - 1000,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=414
-141,MS Mühlendammschleuse,Spree,Land Berlin,12.10.2022 06:00,509,µS/cm,NA,>400 - 600,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=141
-111,MS Rahnsdorf,Müggelspree,Land Berlin,12.10.2022 06:00,868,µS/cm,NA,>800 - 1000,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=111
-211,MS Schmöckwitz,Dahme,Land Berlin,12.10.2022 06:00,739,µS/cm,NA,>600 - 800,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=211
-161,MS Sophienwerder,Spree,Land Berlin,12.10.2022 06:00,1166,µS/cm,NA,>1000 - 1200,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=161
-421,MS Teltow-Werft,Teltowkanal,Land Berlin,12.10.2022 06:00,971,µS/cm,NA,>800 - 1000,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=421
+601,MPS Berlin-Spandauer-Schifffahrtskanal,Berlin-Spandauer-Schifffahrtskanal,Land Berlin,13.10.2022 06:00,1005,µS/cm,NA,>1000 - 1200,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=601
+151,MPS Caprivibrücke,Spree,Land Berlin,13.10.2022 06:00,860,µS/cm,NA,>800 - 1000,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=151
+153,MPS Charlottenburg,Spree,Land Berlin,13.10.2022 06:00,859,µS/cm,NA,>800 - 1000,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=153
+509,MPS Landwehrkanal,Landwehrkanal,Land Berlin,13.10.2022 06:00,860,µS/cm,NA,>800 - 1000,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=509
+504,MPS Neuköllner Schifffahrtskanal,Neuköllner Schifffahrtskanal,Land Berlin,13.10.2022 06:00,951,µS/cm,NA,>800 - 1000,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=504
+414,MPS Teltowkanal,Teltowkanal,Land Berlin,13.10.2022 06:00,975,µS/cm,NA,>800 - 1000,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=414
+141,MS Mühlendammschleuse,Spree,Land Berlin,13.10.2022 06:00,840,µS/cm,NA,>800 - 1000,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=141
+111,MS Rahnsdorf,Müggelspree,Land Berlin,13.10.2022 06:00,853,µS/cm,NA,>800 - 1000,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=111
+211,MS Schmöckwitz,Dahme,Land Berlin,13.10.2022 06:00,718,µS/cm,NA,>600 - 800,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=211
+161,MS Sophienwerder,Spree,Land Berlin,13.10.2022 06:00,1191,µS/cm,NA,>1000 - 1200,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=161
+421,MS Teltow-Werft,Teltowkanal,Land Berlin,13.10.2022 06:00,950,µS/cm,NA,>800 - 1000,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=421
 SP_0150,Beeskow,Spree,Land Brandenburg,k. A.,k. A.,k. A.,NA,keine,http://www.lfu.brandenburg.de/cms/detail.php/bb1.c.426656.de
 TK_0025,Kleinmachnow,Teltowkanal,Land Brandenburg,k. A.,k. A.,k. A.,NA,keine,http://www.lfu.brandenburg.de/cms/detail.php/bb1.c.326717.de
 SP_0130,Leibsch,Spree,Land Brandenburg,k. A.,k. A.,k. A.,NA,keine,http://www.lfu.brandenburg.de/cms/detail.php/bb1.c.426654.de
