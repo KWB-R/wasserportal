@@ -1,15 +1,15 @@
 Messstellennummer,Messstellenname,Gewaesser,Betreiber,Datum,Parameterwert,Einheit,Ganglinie,Klassifikation,stammdaten_link
-601,MPS Berlin-Spandauer-Schifffahrtskanal,Berlin-Spandauer-Schifffahrtskanal,Land Berlin,12.10.2022 22:00,68.39,%,NA,>50 - 75,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=601
-151,MPS Caprivibrücke,Spree,Land Berlin,12.10.2022 22:00,47.25,%,NA,>25  - 50,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=151
-153,MPS Charlottenburg,Spree,Land Berlin,12.10.2022 22:00,61.55,%,NA,>50 - 75,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=153
-509,MPS Landwehrkanal,Landwehrkanal,Land Berlin,12.10.2022 22:00,44.84,%,NA,>25  - 50,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=509
-504,MPS Neuköllner Schifffahrtskanal,Neuköllner Schifffahrtskanal,Land Berlin,12.10.2022 22:00,0.56,%,NA,<=25,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=504
-414,MPS Teltowkanal,Teltowkanal,Land Berlin,12.10.2022 22:00,41.48,%,NA,>25  - 50,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=414
-141,MS Mühlendammschleuse,Spree,Land Berlin,12.10.2022 22:00,60.02,%,NA,>50 - 75,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=141
-111,MS Rahnsdorf,Müggelspree,Land Berlin,12.10.2022 22:00,55.75,%,NA,>50 - 75,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=111
-211,MS Schmöckwitz,Dahme,Land Berlin,12.10.2022 22:00,100.70,%,NA,>100,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=211
-161,MS Sophienwerder,Spree,Land Berlin,12.10.2022 22:00,72.32,%,NA,>50 - 75,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=161
-421,MS Teltow-Werft,Teltowkanal,Land Berlin,12.10.2022 22:00,69.14,%,NA,>50 - 75,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=421
+601,MPS Berlin-Spandauer-Schifffahrtskanal,Berlin-Spandauer-Schifffahrtskanal,Land Berlin,13.10.2022 23:00,61.49,%,NA,>50 - 75,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=601
+151,MPS Caprivibrücke,Spree,Land Berlin,13.10.2022 23:00,54.43,%,NA,>50 - 75,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=151
+153,MPS Charlottenburg,Spree,Land Berlin,13.10.2022 23:00,61.37,%,NA,>50 - 75,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=153
+509,MPS Landwehrkanal,Landwehrkanal,Land Berlin,13.10.2022 23:00,44.12,%,NA,>25  - 50,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=509
+504,MPS Neuköllner Schifffahrtskanal,Neuköllner Schifffahrtskanal,Land Berlin,13.10.2022 23:00,4.94,%,NA,<=25,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=504
+414,MPS Teltowkanal,Teltowkanal,Land Berlin,13.10.2022 23:00,36.07,%,NA,>25  - 50,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=414
+141,MS Mühlendammschleuse,Spree,Land Berlin,13.10.2022 23:00,63.92,%,NA,>50 - 75,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=141
+111,MS Rahnsdorf,Müggelspree,Land Berlin,13.10.2022 23:00,61.32,%,NA,>50 - 75,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=111
+211,MS Schmöckwitz,Dahme,Land Berlin,13.10.2022 23:00,89.86,%,NA,>75 - 100,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=211
+161,MS Sophienwerder,Spree,Land Berlin,13.10.2022 23:00,63.94,%,NA,>50 - 75,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=161
+421,MS Teltow-Werft,Teltowkanal,Land Berlin,13.10.2022 23:00,66.40,%,NA,>50 - 75,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=421
 SP_0150,Beeskow,Spree,Land Brandenburg,k. A.,k. A.,k. A.,NA,keine,http://www.lfu.brandenburg.de/cms/detail.php/bb1.c.426656.de
 TK_0025,Kleinmachnow,Teltowkanal,Land Brandenburg,k. A.,k. A.,k. A.,NA,keine,http://www.lfu.brandenburg.de/cms/detail.php/bb1.c.326717.de
 SP_0130,Leibsch,Spree,Land Brandenburg,k. A.,k. A.,k. A.,NA,keine,http://www.lfu.brandenburg.de/cms/detail.php/bb1.c.426654.de

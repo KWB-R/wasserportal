@@ -83,23 +83,23 @@ and one of  "overview_list" sublist elements column name "stammdaten_link"</p></
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">stations</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="get_stations.html">get_stations</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Importing 9 station overviews from Wasserportal Berlin ... ok. (7.41s) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Importing 9 station overviews from Wasserportal Berlin ... ok. (8.57s) </span>
 <span class="r-in"><span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html" class="external-link">detectCores</a></span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3</span>
 <span class="r-in"><span class="va">stations</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="get_stations.html">get_stations</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Importing 9 station overviews from Wasserportal Berlin ... ok. (7.45s) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Importing 9 station overviews from Wasserportal Berlin ... ok. (8.77s) </span>
 <span class="r-in"><span class="co">### Reduce  to monitoring stations maintained by Berlin</span></span>
 <span class="r-in"><span class="va">master_urls</span> <span class="op">&lt;-</span> <span class="va">stations</span><span class="op">$</span><span class="va">overview_list</span><span class="op">$</span><span class="va">surface_water.water_level</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">Betreiber</span> <span class="op">==</span> <span class="st">"Land Berlin"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">stammdaten_link</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">master_parallel</span> <span class="op">&lt;-</span> <span class="fu">get_wasserportal_masters_data</span><span class="op">(</span><span class="va">master_urls</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Importing 63 station metadata from Wasserportal Berlin ... ok. (48.01s) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Importing 63 station metadata from Wasserportal Berlin ... ok. (1.26s) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.007   0.009  48.383 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.016   0.009  75.821 </span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">master_sequential</span> <span class="op">&lt;-</span> <span class="fu">get_wasserportal_masters_data</span><span class="op">(</span><span class="va">master_urls</span>,</span>
 <span class="r-in">                                          run_parallel <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    user  system elapsed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   2.872   0.175  83.254 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   3.514   0.243  81.168 </span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>
