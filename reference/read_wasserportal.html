@@ -123,7 +123,7 @@ together with the additional information on the UTC offset (column
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Get a list of available water quality stations and variables</span></span>
 <span class="r-in"><span class="va">stations</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="get_stations.html">get_stations</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Importing 9 station overviews from Wasserportal Berlin ... ok. (6.69s) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Importing 9 station overviews from Wasserportal Berlin ... ok. (10.16s) </span>
 <span class="r-in"><span class="va">stations_crosstable</span> <span class="op">&lt;-</span> <span class="va">stations</span><span class="op">$</span><span class="va">crosstable</span></span>
 <span class="r-in"><span class="va">station_crosstable</span> <span class="op">&lt;-</span> <span class="va">stations_crosstable</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span></span>
 <span class="r-in"></span>
@@ -137,17 +137,17 @@ together with the additional information on the UTC offset (column
 <span class="r-in">  include_raw_time <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span class="r-in">  stations_crosstable <span class="op">=</span> <span class="va">stations_crosstable</span></span>
 <span class="r-in"><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  ... ok. (1.21s) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ... ok. (1.50s) </span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Look at the first few records</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">water_quality</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         timestamp_raw   timestamp_corr       LocalDateTime UTCOffset Var.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6050 16.10.2021 02:00 16.10.2021 02:00 2021-10-16 03:00:00         2     5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6051 16.10.2021 02:15 16.10.2021 02:15 2021-10-16 03:15:00         2     7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6052 16.10.2021 02:30 16.10.2021 02:30 2021-10-16 03:30:00         2     8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6053 16.10.2021 02:45 16.10.2021 02:45 2021-10-16 03:45:00         2     8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6054 16.10.2021 03:00 16.10.2021 03:00 2021-10-16 04:00:00         2     7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6055 16.10.2021 03:15 16.10.2021 03:15 2021-10-16 04:15:00         2     7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6434 17.10.2021 02:00 17.10.2021 02:00 2021-10-17 03:00:00         2     7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6435 17.10.2021 02:15 17.10.2021 02:15 2021-10-17 03:15:00         2     7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6436 17.10.2021 02:30 17.10.2021 02:30 2021-10-17 03:30:00         2     6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6437 17.10.2021 02:45 17.10.2021 02:45 2021-10-17 03:45:00         2     5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6438 17.10.2021 03:00 17.10.2021 03:00 2021-10-17 04:00:00         2     5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6439 17.10.2021 03:15 17.10.2021 03:15 2021-10-17 04:15:00         2     5</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Check the metadata</span></span>
 <span class="r-in"><span class="co">#kwb.utils::getAttribute(water_quality, "metadata")</span></span>
@@ -158,12 +158,12 @@ together with the additional information on the UTC offset (column
 <span class="r-in"><span class="co"># Look at the first few records again</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">water_quality</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         timestamp_raw   timestamp_corr       LocalDateTime UTCOffset Var.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6050 16.10.2021 02:00 16.10.2021 02:00 2021-10-16 03:00:00         2     5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6051 16.10.2021 02:15 16.10.2021 02:15 2021-10-16 03:15:00         2     7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6052 16.10.2021 02:30 16.10.2021 02:30 2021-10-16 03:30:00         2     8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6053 16.10.2021 02:45 16.10.2021 02:45 2021-10-16 03:45:00         2     8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6054 16.10.2021 03:00 16.10.2021 03:00 2021-10-16 04:00:00         2     7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6055 16.10.2021 03:15 16.10.2021 03:15 2021-10-16 04:15:00         2     7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6434 17.10.2021 02:00 17.10.2021 02:00 2021-10-17 03:00:00         2     7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6435 17.10.2021 02:15 17.10.2021 02:15 2021-10-17 03:15:00         2     7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6436 17.10.2021 02:30 17.10.2021 02:30 2021-10-17 03:30:00         2     6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6437 17.10.2021 02:45 17.10.2021 02:45 2021-10-17 03:45:00         2     5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6438 17.10.2021 03:00 17.10.2021 03:00 2021-10-17 04:00:00         2     5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6439 17.10.2021 03:15 17.10.2021 03:15 2021-10-17 04:15:00         2     5</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co">### How was the original timestamp interpreted?</span></span>
 <span class="r-in"></span>
@@ -180,22 +180,22 @@ together with the additional information on the UTC offset (column
 <span class="r-in"><span class="co"># Look at the data for these timestamps</span></span>
 <span class="r-in"><span class="va">water_quality</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="va">pattern</span>, <span class="va">water_quality</span><span class="op">$</span><span class="va">timestamp_raw</span><span class="op">)</span>, <span class="op">]</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          timestamp_raw   timestamp_corr       LocalDateTime UTCOffset Var.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12958 31.10.2021 01:00 31.10.2021 01:00 2021-10-31 02:00:00         2     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12959 31.10.2021 01:15 31.10.2021 01:15 2021-10-31 02:15:00         2     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12960 31.10.2021 01:30 31.10.2021 01:30 2021-10-31 02:30:00         2     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12961 31.10.2021 01:45 31.10.2021 01:45 2021-10-31 02:45:00         2     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12962 31.10.2021 02:00 31.10.2021 02:00 2021-10-31 02:00:00         1     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12963 31.10.2021 02:15 31.10.2021 02:15 2021-10-31 02:15:00         1     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12964 31.10.2021 02:30 31.10.2021 02:30 2021-10-31 02:30:00         1     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12965 31.10.2021 02:45 31.10.2021 02:45 2021-10-31 02:45:00         1     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12966 31.10.2021 03:00 31.10.2021 03:00 2021-10-31 03:00:00         1     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12967 31.10.2021 03:15 31.10.2021 03:15 2021-10-31 03:15:00         1     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12968 31.10.2021 03:30 31.10.2021 03:30 2021-10-31 03:30:00         1     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12969 31.10.2021 03:45 31.10.2021 03:45 2021-10-31 03:45:00         1     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12970 31.10.2021 04:00 31.10.2021 04:00 2021-10-31 04:00:00         1     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12971 31.10.2021 04:15 31.10.2021 04:15 2021-10-31 04:15:00         1     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12972 31.10.2021 04:30 31.10.2021 04:30 2021-10-31 04:30:00         1     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12973 31.10.2021 04:45 31.10.2021 04:45 2021-10-31 04:45:00         1     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12862 31.10.2021 01:00 31.10.2021 01:00 2021-10-31 02:00:00         2     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12863 31.10.2021 01:15 31.10.2021 01:15 2021-10-31 02:15:00         2     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12864 31.10.2021 01:30 31.10.2021 01:30 2021-10-31 02:30:00         2     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12865 31.10.2021 01:45 31.10.2021 01:45 2021-10-31 02:45:00         2     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12866 31.10.2021 02:00 31.10.2021 02:00 2021-10-31 02:00:00         1     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12867 31.10.2021 02:15 31.10.2021 02:15 2021-10-31 02:15:00         1     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12868 31.10.2021 02:30 31.10.2021 02:30 2021-10-31 02:30:00         1     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12869 31.10.2021 02:45 31.10.2021 02:45 2021-10-31 02:45:00         1     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12870 31.10.2021 03:00 31.10.2021 03:00 2021-10-31 03:00:00         1     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12871 31.10.2021 03:15 31.10.2021 03:15 2021-10-31 03:15:00         1     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12872 31.10.2021 03:30 31.10.2021 03:30 2021-10-31 03:30:00         1     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12873 31.10.2021 03:45 31.10.2021 03:45 2021-10-31 03:45:00         1     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12874 31.10.2021 04:00 31.10.2021 04:00 2021-10-31 04:00:00         1     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12875 31.10.2021 04:15 31.10.2021 04:15 2021-10-31 04:15:00         1     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12876 31.10.2021 04:30 31.10.2021 04:30 2021-10-31 04:30:00         1     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12877 31.10.2021 04:45 31.10.2021 04:45 2021-10-31 04:45:00         1     1</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># The original timestamps (timestamps_raw) were not all plausible, e.g.</span></span>
 <span class="r-in"><span class="co"># for March 2019. This seems to have been fixed by the "wasserportal"!</span></span>
