@@ -1,63 +1,63 @@
 Messstellennummer,Messstellenname,Gewaesser,Betreiber,Datum,Wassertemperatur,Einheit,Ganglinie,Klassifikation,stammdaten_link
-601,MPS Berlin-Spandauer-Schifffahrtskanal,Berlin-Spandauer-Schifffahrtskanal,Land Berlin,17.10.2022 10:00,14.21,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=601
-151,MPS Caprivibrücke,Spree,Land Berlin,17.10.2022 10:00,13.62,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=151
-153,MPS Charlottenburg,Spree,Land Berlin,17.10.2022 10:00,13.52,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=153
-509,MPS Landwehrkanal,Landwehrkanal,Land Berlin,17.10.2022 10:00,13.66,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=509
-504,MPS Neuköllner Schifffahrtskanal,Neuköllner Schifffahrtskanal,Land Berlin,17.10.2022 10:00,12.92,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=504
-414,MPS Teltowkanal,Teltowkanal,Land Berlin,17.10.2022 10:00,14.32,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=414
-141,MS Mühlendammschleuse,Spree,Land Berlin,17.10.2022 10:00,13.94,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=141
-111,MS Rahnsdorf,Müggelspree,Land Berlin,17.10.2022 10:00,12.51,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=111
-211,MS Schmöckwitz,Dahme,Land Berlin,17.10.2022 10:00,13.87,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=211
-161,MS Sophienwerder,Spree,Land Berlin,17.10.2022 10:00,14.75,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=161
-421,MS Teltow-Werft,Teltowkanal,Land Berlin,17.10.2022 10:00,16.53,°C,NA,>15 - 20°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=421
-5865300,Am Bahndamm,Wuhle,Land Berlin,17.10.2022 10:00,11.70,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5865300
-5861101,Am Reitweg,Neuenhagener Mühlenfließ,Land Berlin,18.10.2022 00:45,21.10,°C,NA,>20 - 25°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5861101
-5800107,Am Wolfsschluchtkanal,Krumme Lanke,Land Berlin,17.10.2022 10:00,14.40,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800107
-5800317,Biesdorfer Baggersee,Biesdorfer Baggersee,Land Berlin,17.10.2022 04:30,13.00,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800317
-5867003,Blankenfelde,Blankenfelder Graben,Land Berlin,17.10.2022 05:00,18.20,°C,NA,>15 - 20°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5867003
-5867401,Bürgerpark,Panke,Land Berlin,17.10.2022 10:00,16.50,°C,NA,>15 - 20°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5867401
-5800302,Dreipfuhl,Dreipfuhl,Land Berlin,17.10.2022 05:00,12.10,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800302
-5863000,Eisenacher Straße,Wuhle,Land Berlin,17.10.2022 04:15,10.60,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5863000
-5867900,Eisenbahnbrücke,Nordgraben,Land Berlin,17.10.2022 10:00,16.70,°C,NA,>15 - 20°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5867900
-5827101,Fähre Rahnsdorf,Müggelspree,Land Berlin,17.10.2022 10:00,12.80,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5827101
-5800320,Fennpfuhl,Fennpfuhl,Land Berlin,17.10.2022 05:00,12.40,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800320
-5867101,Flaischlenstraße,Laake,Land Berlin,17.10.2022 10:00,12.50,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5867101
-5800303,Flughafensee,Flughafensee,Land Berlin,17.10.2022 04:15,14.30,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800303
-5800305,Groß Glienicker See,Groß Glienicker See,Land Berlin,17.10.2022 07:00,14.50,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800305
-5800304,Grunewaldsee,Fenngraben,Land Berlin,17.10.2022 04:15,14.10,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800304
-5800306,Halensee,Halensee,Land Berlin,16.10.2022 05:00,13.70,°C,NA,nicht aktuell,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800306
-5867300,Heinersdorf,Panke,Land Berlin,17.10.2022 05:00,16.20,°C,NA,>15 - 20°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5867300
+601,MPS Berlin-Spandauer-Schifffahrtskanal,Berlin-Spandauer-Schifffahrtskanal,Land Berlin,19.10.2022 06:00,14.89,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=601
+151,MPS Caprivibrücke,Spree,Land Berlin,19.10.2022 06:00,14.05,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=151
+153,MPS Charlottenburg,Spree,Land Berlin,19.10.2022 06:00,13.87,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=153
+509,MPS Landwehrkanal,Landwehrkanal,Land Berlin,19.10.2022 06:00,13.77,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=509
+504,MPS Neuköllner Schifffahrtskanal,Neuköllner Schifffahrtskanal,Land Berlin,19.10.2022 06:00,13.51,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=504
+414,MPS Teltowkanal,Teltowkanal,Land Berlin,19.10.2022 06:00,14.62,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=414
+141,MS Mühlendammschleuse,Spree,Land Berlin,19.10.2022 06:00,14.40,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=141
+111,MS Rahnsdorf,Müggelspree,Land Berlin,19.10.2022 06:00,13.04,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=111
+211,MS Schmöckwitz,Dahme,Land Berlin,19.10.2022 06:00,13.94,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=211
+161,MS Sophienwerder,Spree,Land Berlin,19.10.2022 06:00,18.49,°C,NA,>15 - 20°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=161
+421,MS Teltow-Werft,Teltowkanal,Land Berlin,19.10.2022 06:00,17.26,°C,NA,>15 - 20°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=421
+5865300,Am Bahndamm,Wuhle,Land Berlin,18.10.2022 23:30,12.50,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5865300
+5861101,Am Reitweg,Neuenhagener Mühlenfließ,Land Berlin,19.10.2022 06:30,15.50,°C,NA,>15 - 20°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5861101
+5800107,Am Wolfsschluchtkanal,Krumme Lanke,Land Berlin,19.10.2022 06:30,14.60,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800107
+5800317,Biesdorfer Baggersee,Biesdorfer Baggersee,Land Berlin,19.10.2022 04:30,13.20,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800317
+5867003,Blankenfelde,Blankenfelder Graben,Land Berlin,18.10.2022 05:00,18.50,°C,NA,>15 - 20°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5867003
+5867401,Bürgerpark,Panke,Land Berlin,18.10.2022 23:30,16.00,°C,NA,>15 - 20°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5867401
+5800302,Dreipfuhl,Dreipfuhl,Land Berlin,19.10.2022 05:00,12.80,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800302
+5863000,Eisenacher Straße,Wuhle,Land Berlin,19.10.2022 04:15,12.30,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5863000
+5867900,Eisenbahnbrücke,Nordgraben,Land Berlin,18.10.2022 23:30,17.00,°C,NA,>15 - 20°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5867900
+5827101,Fähre Rahnsdorf,Müggelspree,Land Berlin,18.10.2022 23:00,13.50,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5827101
+5800320,Fennpfuhl,Fennpfuhl,Land Berlin,19.10.2022 05:00,13.00,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800320
+5867101,Flaischlenstraße,Laake,Land Berlin,19.10.2022 06:30,12.30,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5867101
+5800303,Flughafensee,Flughafensee,Land Berlin,19.10.2022 04:15,14.20,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800303
+5800305,Groß Glienicker See,Groß Glienicker See,Land Berlin,18.10.2022 07:00,14.90,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800305
+5800304,Grunewaldsee,Fenngraben,Land Berlin,19.10.2022 04:15,14.30,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800304
+5800306,Halensee,Halensee,Land Berlin,19.10.2022 05:00,13.79,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800306
+5867300,Heinersdorf,Panke,Land Berlin,19.10.2022 05:00,15.80,°C,NA,>15 - 20°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5867300
 5864700,Hellersdorf,Wuhle,Land Berlin,15.10.2022 05:00,9.90,°C,NA,nicht aktuell,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5864700
-5865000,Honsfelder Brücke,Wuhle,Land Berlin,17.10.2022 08:00,10.90,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5865000
-5865200,Hoppendorfer Straße,Wuhle,Land Berlin,17.10.2022 10:00,11.10,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5865200
-5800308,Hundekehlesee,Hundekehlesee,Land Berlin,17.10.2022 05:00,13.40,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800308
-5867100,Krontaler Straße,Panke,Land Berlin,17.10.2022 10:00,14.90,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5867100
-5869700,Krummendammbrücke,Neuenhagener Mühlenfließ,Land Berlin,17.10.2022 05:00,10.00,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5869700
-5867500,Kühnemannstraße,Panke,Land Berlin,17.10.2022 10:00,16.00,°C,NA,>15 - 20°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5867500
-5870100,Lichterfelde,Teltowkanal,Land Berlin,17.10.2022 10:00,17.30,°C,NA,>15 - 20°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5870100
-5800309,Lietzensee,Lietzensee,Land Berlin,17.10.2022 05:00,13.20,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800309
-5819901,Lübars,Tegeler Fließ,Land Berlin,17.10.2022 07:00,11.10,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5819901
-5800318,Malchower See,Malchower See,Land Berlin,17.10.2022 04:15,10.90,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800318
-5826701,Neue Fahlenbergbrücke,Gosener Kanal,Land Berlin,17.10.2022 10:00,12.90,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5826701
-5800315,Obersee,Obersee,Land Berlin,17.10.2022 04:15,13.00,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800315
-5800316,Orankesee,Orankesee,Land Berlin,17.10.2022 04:30,14.30,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800316
-5867700,Pasewalker Brücke,Nordgraben,Land Berlin,17.10.2022 10:00,16.80,°C,NA,>15 - 20°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5867700
-5803500,Pfaueninsel,Havel,Land Berlin,17.10.2022 10:00,14.00,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5803500
-5800312,Plötzensee,Plötzensee,Land Berlin,17.10.2022 04:30,13.80,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800312
-5867000,Röntgental,Panke,Land Berlin,17.10.2022 10:00,13.10,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5867000
-5800106,Schäfersee,Schäfersee,Land Berlin,17.10.2022 10:00,14.00,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800106
-5866700,Schleuse Neukölln OP,Neuk. Schifffahrtskanal,Land Berlin,17.10.2022 05:00,14.10,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5866700
-5866800,Schleuse Neukölln UP,Neuk. Schifffahrtskanal,Land Berlin,17.10.2022 05:00,13.90,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5866800
-5867600,Schönwalder Str.,Panke,Land Berlin,17.10.2022 06:00,15.60,°C,NA,>15 - 20°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5867600
-5827700,Sophienwerder,Spree,Land Berlin,17.10.2022 09:45,14.50,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5827700
-5820000,St.-Joseph-Steg,Tegeler Fließ,Land Berlin,17.10.2022 10:00,11.50,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5820000
-5803200,Tiefwerder,Havel,Land Berlin,17.10.2022 10:00,16.10,°C,NA,>15 - 20°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5803200
-5867301,Venturigerinne,Malchower Fließgraben,Land Berlin,17.10.2022 04:15,12.70,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5867301
-5867201,Verteiler OP,Panke,Land Berlin,17.10.2022 10:00,17.20,°C,NA,>15 - 20°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5867201
-5867202,Verteiler UP,Panke,Land Berlin,17.10.2022 10:00,17.00,°C,NA,>15 - 20°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5867202
-5800310,Waldsee Zehlendorf,Waldsee Zehlendorf,Land Berlin,17.10.2022 05:00,12.90,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800310
-5861200,Wiesengrund,Neuenhagener Mühlenfließ,Land Berlin,17.10.2022 10:00,26.50,°C,NA,>25°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5861200
-5864800,Wuhletal,Wuhle,Land Berlin,17.10.2022 10:00,11.60,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5864800
+5865000,Honsfelder Brücke,Wuhle,Land Berlin,19.10.2022 05:00,13.00,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5865000
+5865200,Hoppendorfer Straße,Wuhle,Land Berlin,18.10.2022 23:30,10.90,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5865200
+5800308,Hundekehlesee,Hundekehlesee,Land Berlin,18.10.2022 17:00,14.20,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800308
+5867100,Krontaler Straße,Panke,Land Berlin,19.10.2022 06:30,15.40,°C,NA,>15 - 20°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5867100
+5869700,Krummendammbrücke,Neuenhagener Mühlenfließ,Land Berlin,19.10.2022 05:00,12.50,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5869700
+5867500,Kühnemannstraße,Panke,Land Berlin,19.10.2022 06:30,15.20,°C,NA,>15 - 20°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5867500
+5870100,Lichterfelde,Teltowkanal,Land Berlin,19.10.2022 06:30,17.90,°C,NA,>15 - 20°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5870100
+5800309,Lietzensee,Lietzensee,Land Berlin,19.10.2022 05:00,13.40,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800309
+5819901,Lübars,Tegeler Fließ,Land Berlin,18.10.2022 07:00,12.70,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5819901
+5800318,Malchower See,Malchower See,Land Berlin,19.10.2022 04:15,13.40,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800318
+5826701,Neue Fahlenbergbrücke,Gosener Kanal,Land Berlin,19.10.2022 06:15,13.50,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5826701
+5800315,Obersee,Obersee,Land Berlin,19.10.2022 04:15,13.18,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800315
+5800316,Orankesee,Orankesee,Land Berlin,19.10.2022 04:30,14.30,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800316
+5867700,Pasewalker Brücke,Nordgraben,Land Berlin,19.10.2022 06:30,16.20,°C,NA,>15 - 20°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5867700
+5803500,Pfaueninsel,Havel,Land Berlin,19.10.2022 06:00,13.90,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5803500
+5800312,Plötzensee,Plötzensee,Land Berlin,19.10.2022 04:30,13.94,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800312
+5867000,Röntgental,Panke,Land Berlin,19.10.2022 06:30,12.10,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5867000
+5800106,Schäfersee,Schäfersee,Land Berlin,19.10.2022 06:00,14.10,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800106
+5866700,Schleuse Neukölln OP,Neuk. Schifffahrtskanal,Land Berlin,18.10.2022 17:00,14.70,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5866700
+5866800,Schleuse Neukölln UP,Neuk. Schifffahrtskanal,Land Berlin,18.10.2022 17:00,14.60,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5866800
+5867600,Schönwalder Str.,Panke,Land Berlin,19.10.2022 06:00,14.80,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5867600
+5827700,Sophienwerder,Spree,Land Berlin,18.10.2022 23:30,14.00,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5827700
+5820000,St.-Joseph-Steg,Tegeler Fließ,Land Berlin,19.10.2022 06:30,12.20,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5820000
+5803200,Tiefwerder,Havel,Land Berlin,18.10.2022 23:00,15.70,°C,NA,>15 - 20°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5803200
+5867301,Venturigerinne,Malchower Fließgraben,Land Berlin,19.10.2022 04:15,13.80,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5867301
+5867201,Verteiler OP,Panke,Land Berlin,19.10.2022 06:30,16.60,°C,NA,>15 - 20°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5867201
+5867202,Verteiler UP,Panke,Land Berlin,19.10.2022 06:30,16.30,°C,NA,>15 - 20°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5867202
+5800310,Waldsee Zehlendorf,Waldsee Zehlendorf,Land Berlin,19.10.2022 05:00,13.10,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5800310
+5861200,Wiesengrund,Neuenhagener Mühlenfließ,Land Berlin,19.10.2022 06:00,15.50,°C,NA,>15 - 20°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5861200
+5864800,Wuhletal,Wuhle,Land Berlin,19.10.2022 06:00,13.40,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&stable=ows&sstation=5864800
 SP_0150,Beeskow,Spree,Land Brandenburg,k. A.,k. A.,k. A.,NA,keine,http://www.lfu.brandenburg.de/cms/detail.php/bb1.c.426656.de
 TK_0025,Kleinmachnow,Teltowkanal,Land Brandenburg,k. A.,k. A.,k. A.,NA,keine,http://www.lfu.brandenburg.de/cms/detail.php/bb1.c.326717.de
 SP_0130,Leibsch,Spree,Land Brandenburg,k. A.,k. A.,k. A.,NA,keine,http://www.lfu.brandenburg.de/cms/detail.php/bb1.c.426654.de
