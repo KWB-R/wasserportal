@@ -2,6 +2,8 @@
 #' Get Stations
 #'
 #' @param run_parallel default: TRUE
+#' @param n_cores number of cores to use if \code{run_parallel = TRUE}.
+#'   Default: one less than the detected number of cores.
 #' @return list with general station "overview" (either as list "overview_list"
 #' or as data.frame "overview_df") and a crosstable with information which
 #' parameters is available per station ("x" if available, NA if not)
@@ -13,10 +15,12 @@
 #' @importFrom rlang .data
 #' @importFrom tidyr pivot_wider separate
 #' @examples
-#' stations <- wasserportal::get_stations()
+#' stations <- wasserportal::get_stations(n_cores = 2L)
 #' str(stations)
 #'
-get_stations <- function(run_parallel = TRUE)
+get_stations <- function(
+    run_parallel = TRUE, n_cores = parallel::detectCores() - 1L
+)
 {
   overview_options <- unlist(get_overview_options())
 
@@ -28,7 +32,7 @@ get_stations <- function(run_parallel = TRUE)
 
   # Prepare parallel processing if desired
   if (run_parallel) {
-    cl <- parallel::makeCluster(parallel::detectCores() - 1L)
+    cl <- parallel::makeCluster(n_cores)
     on.exit(parallel::stopCluster(cl))
   }
 
