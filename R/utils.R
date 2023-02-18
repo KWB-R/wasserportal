@@ -22,6 +22,28 @@ assert_date <- function(x)
   x
 }
 
+# columns_to_labels ------------------------------------------------------------
+#' Create Text Labels from Data Frame Columns
+#'
+#' @param data data frame
+#' @param columns names of columns from which to create labels
+#' @param fmt format string passed to \code{\link{sprintf}}
+#' @param sep separator (default: ", ")
+#' @return vector of character with as many elements as there are rows in data
+#' @export
+#' @importFrom kwb.utils selectColumns
+#' @examples
+#' data <- data.frame(number = 1:2, name = c("adam", "eva"), value = 3:4)
+#' columns <- c("name", "value")
+#' columns_to_labels(data, columns)
+#' columns_to_labels(data, columns, fmt = "<p>%s: %s</p>", sep = "")
+columns_to_labels <- function(data, columns, fmt = "%s: %s", sep = ", ")
+{
+  do.call(paste, c(list(sep = sep), lapply(columns, function(column) sprintf(
+    fmt, column, kwb.utils::selectColumns(data, column)
+  ))))
+}
+
 # date_string_de ---------------------------------------------------------------
 date_string_de <- function(x)
 {
@@ -49,28 +71,6 @@ read <- function(text, ...) {
   }
 
   result
-}
-
-# columns_to_labels ------------------------------------------------------------
-#' Create Text Labels from Data Frame Columns
-#'
-#' @param data data frame
-#' @param columns names of columns from which to create labels
-#' @param fmt format string passed to \code{\link{sprintf}}
-#' @param sep separator (default: ", ")
-#' @return vector of character with as many elements as there are rows in data
-#' @export
-#' @importFrom kwb.utils selectColumns
-#' @examples
-#' data <- data.frame(number = 1:2, name = c("adam", "eva"), value = 3:4)
-#' columns <- c("name", "value")
-#' columns_to_labels(data, columns)
-#' columns_to_labels(data, columns, fmt = "<p>%s: %s</p>", sep = "")
-columns_to_labels <- function(data, columns, fmt = "%s: %s", sep = ", ")
-{
-  do.call(paste, c(list(sep = sep), lapply(columns, function(column) sprintf(
-    fmt, column, kwb.utils::selectColumns(data, column)
-  ))))
 }
 
 # readPackageFile --------------------------------------------------------------

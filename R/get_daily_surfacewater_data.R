@@ -1,73 +1,3 @@
-#' Helper function: convert surface water data list to data frame
-#'
-#' @param sw_data_list sw_data_list
-#'
-#' @return data frame
-#' @keywords internal
-#' @noMd
-#' @noRd
-#' @importFrom stats setNames
-#' @importFrom stringr str_detect str_split_fixed
-#' @importFrom tibble tibble
-#' @importFrom dplyr bind_cols bind_rows
-#' @importFrom kwb.utils getAttribute
-sw_data_list_to_df <- function (sw_data_list)
-{
-  # Helper function to split parameter string into parameter and unit
-  parameter_string_to_tibble <- function(x) {
-
-    parts <- stringr::str_split_fixed(x, pattern = " in | im ", n = 2L)
-
-    tibble::tibble(
-      Parameter = parts[1L],
-      Einheit = parts[2L]
-    )
-  }
-
-  data_frames <- lapply(sw_data_list, function(x) {
-
-    # Select the first data frame
-    data <- x[[1L]]
-
-    # Get its metadata
-    metadata <- if (!is.null(data)) {
-      kwb.utils::getAttribute(data, "metadata")
-    } else {
-      message(sprintf(
-        "Empty data frame when looping through '%s' in %s",
-        "sw_data_list", "sw_data_list_to_df()"
-      ))
-      NULL
-    }
-
-    # Index in metadata where we expect the parameter name and unit
-    index <- min(which(stringr::str_detect(metadata, ":"))) + 3L
-
-    # tibble with columns <parameter name> and <unit>
-    parameter <- parameter_string_to_tibble(metadata[index])
-
-    # Add parameter columns
-    dplyr::bind_cols(data, parameter)
-  })
-
-  data_frames %>%
-    dplyr::bind_rows(.id = "Messstellennummer") %>%
-    dplyr::mutate(Datum = as_date_de(.data$Datum))
-}
-
-#' Helper function: get surface water variables
-#'
-#' @return vector with surface water variables
-#' @export
-#'
-#' @importFrom stringr str_detect
-get_surfacewater_variables <- function()
-{
-  variables <- unlist(get_overview_options())
-
-  variables[startsWith(names(variables), "surface")]
-}
-
 #' Get Daily Surfacewater Data: wrapper to scrape daily surface water data
 #'
 #' @param stations stations as retrieved by by \code{\link{get_stations}}
@@ -148,6 +78,18 @@ get_daily_surfacewater_data <- function(
   dplyr::bind_rows(data_frames)
 }
 
+#' Helper function: get surface water variables
+#'
+#' @return vector with surface water variables
+#' @export
+#'
+#' @importFrom stringr str_detect
+get_surfacewater_variables <- function()
+{
+  variables <- unlist(get_overview_options())
+  variables[startsWith(names(variables), "surface")]
+}
+
 # get_non_external_station_ids -------------------------------------------------
 get_non_external_station_ids <- function(station_data)
 {
@@ -159,4 +101,61 @@ get_non_external_station_ids <- function(station_data)
 
   # Identifiers of monitoring stations to loop through
   as.character(pull("Messstellennummer")[is_berlin & !is_external])
+}
+
+#' Helper function: convert surface water data list to data frame
+#'
+#' @param sw_data_list sw_data_list
+#'
+#' @return data frame
+#' @keywords internal
+#' @noMd
+#' @noRd
+#' @importFrom stats setNames
+#' @importFrom stringr str_detect str_split_fixed
+#' @importFrom tibble tibble
+#' @importFrom dplyr bind_cols bind_rows
+#' @importFrom kwb.utils getAttribute
+sw_data_list_to_df <- function (sw_data_list)
+{
+  # Helper function to split parameter string into parameter and unit
+  parameter_string_to_tibble <- function(x) {
+
+    parts <- stringr::str_split_fixed(x, pattern = " in | im ", n = 2L)
+
+    tibble::tibble(
+      Parameter = parts[1L],
+      Einheit = parts[2L]
+    )
+  }
+
+  data_frames <- lapply(sw_data_list, function(x) {
+
+    # Select the first data frame
+    data <- x[[1L]]
+
+    # Get its metadata
+    metadata <- if (!is.null(data)) {
+      kwb.utils::getAttribute(data, "metadata")
+    } else {
+      message(sprintf(
+        "Empty data frame when looping through '%s' in %s",
+        "sw_data_list", "sw_data_list_to_df()"
+      ))
+      NULL
+    }
+
+    # Index in metadata where we expect the parameter name and unit
+    index <- min(which(stringr::str_detect(metadata, ":"))) + 3L
+
+    # tibble with columns <parameter name> and <unit>
+    parameter <- parameter_string_to_tibble(metadata[index])
+
+    # Add parameter columns
+    dplyr::bind_cols(data, parameter)
+  })
+
+  data_frames %>%
+    dplyr::bind_rows(.id = "Messstellennummer") %>%
+    dplyr::mutate(Datum = as_date_de(.data$Datum))
 }

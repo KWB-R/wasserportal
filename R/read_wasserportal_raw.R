@@ -1,20 +1,3 @@
-#' Helper function: get available station variables
-#'
-#' @param station_df station_df
-#'
-#' @return returns names of available variables for station
-#' @export
-#'
-#' @importFrom dplyr select_if
-#'
-get_station_variables <- function(station_df)
-{
-  station_df %>%
-    dplyr::select_if(function(x){!all(is.na(x))}) %>%
-    names() %>%
-    setdiff(c("Messstellennummer", "Messstellenname"))
-}
-
 # read_wasserportal_raw --------------------------------------------------------
 
 #' Read Wasserportal Raw
@@ -172,8 +155,39 @@ read_wasserportal_raw <- function(
   add_wasserportal_metadata(data, header_fields)
 }
 
-# clean_timestamp_columns ------------------------------------------------------
+# get_wasserportal_url ---------------------------------------------------------
+get_wasserportal_url <- function(station, variable)
+{
+  url_base <- sprintf("%s/station.php", wasserportal_base_url())
 
+  sprintf("%s?sstation=%s&anzeige=%sd", url_base, station, variable)
+}
+
+# get_wasserportal_text --------------------------------------------------------
+get_wasserportal_text <- function(station, variable, station_ids, variable_ids)
+{
+  default_names <- function(ids, prefix) {
+    kwb.utils::defaultIfNULL(names(ids), paste0(prefix, ids))
+  }
+
+  variable_names <- default_names(variable_ids, "variable_")
+  station_names <- default_names(station_ids, "station_")
+
+  sprintf(
+    "Reading '%s' for station %s (%s)",
+    variable_names[match(variable, unlist(variable_ids))],
+    station,
+    station_names[match(station, unlist(station_ids))]
+  )
+}
+
+# add_wasserportal_metadata ----------------------------------------------------
+add_wasserportal_metadata <- function(x, header_fields)
+{
+  structure(x, metadata = header_fields[-(1:2)])
+}
+
+# clean_timestamp_columns ------------------------------------------------------
 clean_timestamp_columns <- function(data, include_raw_time)
 {
   raw_timestamps <- kwb.utils::selectColumns(data, "Datum")
@@ -202,38 +216,6 @@ clean_timestamp_columns <- function(data, include_raw_time)
   }
 
   remove_timestep_outliers(data, data$LocalDateTime, 60 * 15)
-}
-
-# add_wasserportal_metadata ----------------------------------------------------
-add_wasserportal_metadata <- function(x, header_fields)
-{
-  structure(x, metadata = header_fields[-(1:2)])
-}
-
-# get_wasserportal_text --------------------------------------------------------
-get_wasserportal_text <- function(station, variable, station_ids, variable_ids)
-{
-  default_names <- function(ids, prefix) {
-    kwb.utils::defaultIfNULL(names(ids), paste0(prefix, ids))
-  }
-
-  variable_names <- default_names(variable_ids, "variable_")
-  station_names <- default_names(station_ids, "station_")
-
-  sprintf(
-    "Reading '%s' for station %s (%s)",
-    variable_names[match(variable, unlist(variable_ids))],
-    station,
-    station_names[match(station, unlist(station_ids))]
-  )
-}
-
-# get_wasserportal_url ---------------------------------------------------------
-get_wasserportal_url <- function(station, variable)
-{
-  url_base <- sprintf("%s/station.php", wasserportal_base_url())
-
-  sprintf("%s?sstation=%s&anzeige=%sd", url_base, station, variable)
 }
 
 # repair_wasserportal_timestamps -----------------------------------------------
