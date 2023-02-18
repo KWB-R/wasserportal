@@ -54,6 +54,7 @@ Suggests:
     leaflet,
     ggplot2,
     gridExtra,
+    htmltools,
     knitr,
     kwb.pkgbuild,
     openxlsx,
