@@ -1,17 +1,18 @@
 Messstellennummer,Messstellenname,Gewaesser,Betreiber,Datum,Parameterwert,Einheit,Ganglinie,Klassifikation,stammdaten_link
-601,MPS Berlin-Spandauer-Schifffahrtskanal,Berlin-Spandauer-Schifffahrtskanal,Land Berlin,18.10.2022 23:00,45.47,%,NA,>25  - 50,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=601
-151,MPS Caprivibrücke,Spree,Land Berlin,18.10.2022 23:00,12.79,%,NA,<=25,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=151
-153,MPS Charlottenburg,Spree,Land Berlin,18.10.2022 23:00,50.51,%,NA,>50 - 75,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=153
-509,MPS Landwehrkanal,Landwehrkanal,Land Berlin,18.10.2022 23:00,21.91,%,NA,<=25,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=509
-504,MPS Neuköllner Schifffahrtskanal,Neuköllner Schifffahrtskanal,Land Berlin,18.10.2022 23:00,1.45,%,NA,<=25,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=504
-414,MPS Teltowkanal,Teltowkanal,Land Berlin,18.10.2022 23:00,8.31,%,NA,<=25,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=414
-141,MS Mühlendammschleuse,Spree,Land Berlin,18.10.2022 23:00,59.68,%,NA,>50 - 75,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=141
-111,MS Rahnsdorf,Müggelspree,Land Berlin,18.10.2022 23:00,65.62,%,NA,>50 - 75,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=111
-211,MS Schmöckwitz,Dahme,Land Berlin,18.10.2022 23:00,79.65,%,NA,>75 - 100,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=211
-161,MS Sophienwerder,Spree,Land Berlin,18.10.2022 23:00,76.24,%,NA,>75 - 100,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=161
-421,MS Teltow-Werft,Teltowkanal,Land Berlin,18.10.2022 23:00,67.86,%,NA,>50 - 75,https://wasserportal.berlin.de/station.php?anzeige=i&stable=owq&sstation=421
-SP_0150,Beeskow,Spree,Land Brandenburg,k. A.,k. A.,k. A.,NA,keine,http://www.lfu.brandenburg.de/cms/detail.php/bb1.c.426656.de
-TK_0025,Kleinmachnow,Teltowkanal,Land Brandenburg,k. A.,k. A.,k. A.,NA,keine,http://www.lfu.brandenburg.de/cms/detail.php/bb1.c.326717.de
-SP_0130,Leibsch,Spree,Land Brandenburg,k. A.,k. A.,k. A.,NA,keine,http://www.lfu.brandenburg.de/cms/detail.php/bb1.c.426654.de
-SP_0050,Neuhausen,Spree,Land Brandenburg,k. A.,k. A.,k. A.,NA,keine,http://www.lfu.brandenburg.de/cms/detail.php/bb1.c.452822.de
-HV_0110,Potsdam,Havel,Land Brandenburg,k. A.,k. A.,k. A.,NA,keine,http://www.lfu.brandenburg.de/cms/detail.php/bb1.c.326730.de
+601,MPS Berlin-Spandauer-Schifffahrtskanal,Berlin-Spandauer-Schifffahrtskanal,Land Berlin,31.10.2022 12:45,69.24,%,NA,inaktiv,https://wasserportal.berlin.de/station.php?anzeige=i&thema=oos&station=601
+151,MPS Caprivibrücke,Spree,Land Berlin,31.10.2022 13:15,61.79,%,NA,inaktiv,https://wasserportal.berlin.de/station.php?anzeige=i&thema=oos&station=151
+153,MPS Charlottenburg,Spree,Land Berlin,31.10.2022 13:30,59.56,%,NA,inaktiv,https://wasserportal.berlin.de/station.php?anzeige=i&thema=oos&station=153
+509,MPS Landwehrkanal,Landwehrkanal,Land Berlin,31.10.2022 12:15,32.43,%,NA,inaktiv,https://wasserportal.berlin.de/station.php?anzeige=i&thema=oos&station=509
+504,MPS Neuköllner Schifffahrtskanal,Neuköllner Schifffahrtskanal,Land Berlin,31.10.2022 12:45,26.56,%,NA,inaktiv,https://wasserportal.berlin.de/station.php?anzeige=i&thema=oos&station=504
+414,MPS Teltowkanal,Teltowkanal,Land Berlin,31.10.2022 13:30,53.92,%,NA,inaktiv,https://wasserportal.berlin.de/station.php?anzeige=i&thema=oos&station=414
+141,MS Mühlendammschleuse,Spree,Land Berlin,18.02.2023 00:00,96.99,%,NA,>75 - 100,https://wasserportal.berlin.de/station.php?anzeige=i&thema=oos&station=141
+111,MS Rahnsdorf,Müggelspree,Land Berlin,18.02.2023 00:00,93.51,%,NA,>75 - 100,https://wasserportal.berlin.de/station.php?anzeige=i&thema=oos&station=111
+211,MS Schmöckwitz,Dahme,Land Berlin,18.02.2023 00:00,96.21,%,NA,>75 - 100,https://wasserportal.berlin.de/station.php?anzeige=i&thema=oos&station=211
+161,MS Sophienwerder,Spree,Land Berlin,18.02.2023 00:00,99.22,%,NA,>75 - 100,https://wasserportal.berlin.de/station.php?anzeige=i&thema=oos&station=161
+421,MS Teltow-Werft,Teltowkanal,Land Berlin,18.02.2023 00:00,90.31,%,NA,>75 - 100,https://wasserportal.berlin.de/station.php?anzeige=i&thema=oos&station=421
+SP_0150,Beeskow,Spree,Land Brandenburg,k. A.,k. A.,k. A.,NA,keine,https://lfu.brandenburg.de/lfu/de/aufgaben/wasser/fliessgewaesser-und-seen/gewaesserueberwachung/wasserguetemessnetz/beeskow/
+TK_0025,Kleinmachnow,Teltowkanal,Land Brandenburg,k. A.,k. A.,k. A.,NA,keine,https://lfu.brandenburg.de/lfu/de/aufgaben/wasser/fliessgewaesser-und-seen/gewaesserueberwachung/wasserguetemessnetz/kleinmachnow/
+SP_0130,Leibsch,Spree,Land Brandenburg,k. A.,k. A.,k. A.,NA,keine,https://lfu.brandenburg.de/lfu/de/aufgaben/wasser/fliessgewaesser-und-seen/gewaesserueberwachung/wasserguetemessnetz/leibsch/
+SP_0050,Neuhausen,Spree,Land Brandenburg,k. A.,k. A.,k. A.,NA,keine,https://lfu.brandenburg.de/lfu/de/aufgaben/wasser/fliessgewaesser-und-seen/gewaesserueberwachung/wasserguetemessnetz/neuhausen/
+HV_0110,Potsdam,Havel,Land Brandenburg,k. A.,k. A.,k. A.,NA,keine,https://lfu.brandenburg.de/lfu/de/aufgaben/wasser/fliessgewaesser-und-seen/gewaesserueberwachung/wasserguetemessnetz/potsdam/
+SP_0020,Spremberg,Spree,Land Brandenburg,k. A.,k. A.,k. A.,NA,keine,https://lfu.brandenburg.de/lfu/de/aufgaben/wasser/fliessgewaesser-und-seen/gewaesserueberwachung/wasserguetemessnetz/spremberg/

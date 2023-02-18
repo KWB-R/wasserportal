@@ -2,595 +2,785 @@
   {
     "Messstellennummer": "5865900",
     "Messstellenname": "Allee der Kosmonauten",
-    "ws": "x"
+    "ows": "x"
   },
   {
     "Messstellennummer": "5827103",
     "Messstellenname": "Allendestraße",
-    "ws": "x",
-    "df": "x"
+    "ows": "x",
+    "odf": "x"
   },
   {
     "Messstellennummer": "5870400",
     "Messstellenname": "Alsenbrücke",
-    "ws": "x",
-    "df": "x"
-  },
-  {
-    "Messstellennummer": "5865300",
-    "Messstellenname": "Am Bahndamm",
-    "ws": "x",
-    "df": "x",
-    "wt": "x"
+    "ows": "x",
+    "odf": "x"
   },
   {
     "Messstellennummer": "5819900",
     "Messstellenname": "Am Freibad",
-    "ws": "x"
+    "ows": "x"
   },
   {
     "Messstellennummer": "5864801",
     "Messstellenname": "Am Kienberg",
-    "ws": "x",
-    "df": "x"
+    "ows": "x",
+    "odf": "x"
   },
   {
     "Messstellennummer": "5861101",
     "Messstellenname": "Am Reitweg",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5800107",
     "Messstellenname": "Am Wolfsschluchtkanal",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5800317",
     "Messstellenname": "Biesdorfer Baggersee",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5867003",
     "Messstellenname": "Blankenfelde",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5867401",
     "Messstellenname": "Bürgerpark",
-    "ws": "x",
-    "df": "x",
-    "wt": "x"
+    "ows": "x",
+    "odf": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5800301",
     "Messstellenname": "Dianasee",
-    "ws": "x"
+    "ows": "x"
   },
   {
     "Messstellennummer": "5800302",
     "Messstellenname": "Dreipfuhl",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5863000",
     "Messstellenname": "Eisenacher Straße",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5867900",
     "Messstellenname": "Eisenbahnbrücke",
-    "ws": "x",
-    "df": "x",
-    "wt": "x"
+    "ows": "x",
+    "odf": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5827101",
     "Messstellenname": "Fähre Rahnsdorf",
-    "ws": "x",
-    "df": "x",
-    "wt": "x"
+    "ows": "x",
+    "odf": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5800320",
     "Messstellenname": "Fennpfuhl",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5800313",
     "Messstellenname": "Fennsee",
-    "ws": "x"
+    "ows": "x"
   },
   {
     "Messstellennummer": "5860900",
     "Messstellenname": "Fichtenau",
-    "ws": "x"
+    "ows": "x"
   },
   {
     "Messstellennummer": "5867101",
     "Messstellenname": "Flaischlenstraße",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5800303",
     "Messstellenname": "Flughafensee",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5826702",
     "Messstellenname": "Gosener Landstraße",
-    "ws": "x"
+    "ows": "x"
   },
   {
     "Messstellennummer": "5800305",
     "Messstellenname": "Groß Glienicker See",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5800304",
     "Messstellenname": "Grunewaldsee",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5800306",
     "Messstellenname": "Halensee",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5861000",
     "Messstellenname": "Hegemeisterweg",
-    "ws": "x"
+    "ows": "x"
   },
   {
     "Messstellennummer": "5867300",
     "Messstellenname": "Heinersdorf",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5864700",
     "Messstellenname": "Hellersdorf",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5865000",
     "Messstellenname": "Honsfelder Brücke",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5865200",
     "Messstellenname": "Hoppendorfer Straße",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5800308",
     "Messstellenname": "Hundekehlesee",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5867100",
     "Messstellenname": "Krontaler Straße",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5869700",
     "Messstellenname": "Krummendammbrücke",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5867500",
     "Messstellenname": "Kühnemannstraße",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5870100",
     "Messstellenname": "Lichterfelde",
-    "ws": "x",
-    "df": "x",
-    "wt": "x"
+    "ows": "x",
+    "odf": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5800309",
     "Messstellenname": "Lietzensee",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5819901",
     "Messstellenname": "Lübars",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5800318",
     "Messstellenname": "Malchower See",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5826701",
     "Messstellenname": "Neue Fahlenbergbrücke",
-    "ws": "x",
-    "df": "x",
-    "wt": "x"
+    "ows": "x",
+    "odf": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5800315",
     "Messstellenname": "Obersee",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5800316",
     "Messstellenname": "Orankesee",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5867700",
     "Messstellenname": "Pasewalker Brücke",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5803500",
     "Messstellenname": "Pfaueninsel",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5800312",
     "Messstellenname": "Plötzensee",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5867000",
     "Messstellenname": "Röntgental",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5800106",
     "Messstellenname": "Schäfersee",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5866700",
     "Messstellenname": "Schleuse Neukölln OP",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5866800",
     "Messstellenname": "Schleuse Neukölln UP",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5862811",
     "Messstellenname": "Schmöckwitz US",
-    "ws": "x",
-    "df": "x"
+    "ows": "x",
+    "odf": "x"
   },
   {
     "Messstellennummer": "5867600",
     "Messstellenname": "Schönwalder Str.",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5827700",
     "Messstellenname": "Sophienwerder",
-    "ws": "x",
-    "df": "x",
-    "wt": "x"
+    "ows": "x",
+    "odf": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5820000",
     "Messstellenname": "St.-Joseph-Steg",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5815911",
     "Messstellenname": "Tegelort",
-    "ws": "x",
-    "df": "x"
+    "ows": "x",
+    "odf": "x"
   },
   {
     "Messstellennummer": "5803200",
     "Messstellenname": "Tiefwerder",
-    "ws": "x",
-    "df": "x",
-    "wt": "x"
+    "ows": "x",
+    "odf": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5867301",
     "Messstellenname": "Venturigerinne",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5867201",
     "Messstellenname": "Verteiler OP",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5867202",
     "Messstellenname": "Verteiler UP",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5800310",
     "Messstellenname": "Waldsee Zehlendorf",
-    "ws": "x",
-    "wt": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5800314",
     "Messstellenname": "Weißer See",
-    "ws": "x"
+    "ows": "x"
   },
   {
     "Messstellennummer": "5861200",
     "Messstellenname": "Wiesengrund",
-    "ws": "x",
-    "df": "x",
-    "wt": "x"
+    "ows": "x",
+    "odf": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5867001",
     "Messstellenname": "Wiltbergstraße",
-    "ws": "x"
+    "ows": "x"
   },
   {
     "Messstellennummer": "5864800",
     "Messstellenname": "Wuhletal",
-    "ws": "x",
-    "df": "x",
-    "wt": "x"
+    "ows": "x",
+    "odf": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5866301",
     "Messstellenname": "Zoo",
-    "ws": "x",
-    "df": "x"
+    "ows": "x",
+    "odf": "x"
   },
   {
     "Messstellennummer": "5825500",
     "Messstellenname": "Beeskow, Spreeschleuse UP",
-    "ws": "x"
-  },
-  {
-    "Messstellennummer": "5828000",
-    "Messstellenname": "Bräsinchen, Hauptabflusspegel",
-    "ws": "x"
+    "ows": "x",
+    "odf": "x"
   },
   {
     "Messstellennummer": "5821000",
     "Messstellenname": "Cottbus, Sandower Brücke",
-    "ws": "x"
+    "ows": "x",
+    "odf": "x"
   },
   {
     "Messstellennummer": "5827000",
     "Messstellenname": "Hohenbinde",
-    "ws": "x"
-  },
-  {
-    "Messstellennummer": "5804300",
-    "Messstellenname": "Ketzin",
-    "ws": "x"
+    "ows": "x",
+    "odf": "x"
   },
   {
     "Messstellennummer": "5824700",
     "Messstellenname": "Leibsch, Spreewehr UP",
-    "ws": "x"
+    "ows": "x",
+    "odf": "x"
   },
   {
     "Messstellennummer": "5823800",
     "Messstellenname": "Lübben, Zusammenfluss",
-    "ws": "x"
+    "ows": "x",
+    "odf": "x"
   },
   {
     "Messstellennummer": "5862201",
     "Messstellenname": "Prierow 2",
-    "ws": "x"
-  },
-  {
-    "Messstellennummer": "5802600",
-    "Messstellenname": "Sachsenhausen",
-    "ws": "x"
-  },
-  {
-    "Messstellennummer": "5819801",
-    "Messstellenname": "Schildow",
-    "ws": "x"
+    "ows": "x",
+    "odf": "x"
   },
   {
     "Messstellennummer": "5820900",
     "Messstellenname": "Spremberg",
-    "ws": "x"
+    "ows": "x",
+    "odf": "x"
   },
   {
-    "Messstellennummer": "5820901",
-    "Messstellenname": "Talsperre Spremberg, Beckenpegel",
-    "ws": "x"
+    "Messstellennummer": "582730",
+    "Messstellenname": "Berlin-Mühlendamm UP",
+    "ows": "x"
+  },
+  {
+    "Messstellennummer": "586270",
+    "Messstellenname": "Neue Mühle Schleuse OP",
+    "ows": "x"
   },
   {
     "Messstellennummer": "581591",
     "Messstellenname": "Borgsdorf",
-    "df": "x"
+    "ows": "x",
+    "odf": "x"
+  },
+  {
+    "Messstellennummer": "585930",
+    "Messstellenname": "Wernsdorf UP",
+    "ows": "x"
+  },
+  {
+    "Messstellennummer": "586600",
+    "Messstellenname": "Berlin-Oberschleuse OP",
+    "ows": "x"
+  },
+  {
+    "Messstellennummer": "586040",
+    "Messstellenname": "Woltersdorf OP",
+    "ows": "x",
+    "odf": "x"
+  },
+  {
+    "Messstellennummer": "587030",
+    "Messstellenname": "Kleinmachnow UP",
+    "ows": "x"
+  },
+  {
+    "Messstellennummer": "581540",
+    "Messstellenname": "Liebenwalde OP",
+    "ows": "x"
+  },
+  {
+    "Messstellennummer": "586650",
+    "Messstellenname": "Berlin-Ploetzensee UP",
+    "ows": "x"
+  },
+  {
+    "Messstellennummer": "580090",
+    "Messstellenname": "Bredereiche UP",
+    "ows": "x",
+    "odf": "x"
+  },
+  {
+    "Messstellennummer": "586290",
+    "Messstellenname": "Berlin-Köpenick",
+    "ows": "x"
+  },
+  {
+    "Messstellennummer": "586620",
+    "Messstellenname": "Berlin-Unterschleuse OP",
+    "ows": "x",
+    "odf": "x"
+  },
+  {
+    "Messstellennummer": "582640",
+    "Messstellenname": "Fuerstenwalde OP",
+    "ows": "x"
+  },
+  {
+    "Messstellennummer": "580412",
+    "Messstellenname": "Potsdam",
+    "ows": "x"
+  },
+  {
+    "Messstellennummer": "582740",
+    "Messstellenname": "Berlin-Charlottenburg OP",
+    "ows": "x"
+  },
+  {
+    "Messstellennummer": "586810",
+    "Messstellenname": "Berlin-Schmoeckwitz",
+    "ows": "x"
+  },
+  {
+    "Messstellennummer": "582720",
+    "Messstellenname": "Berlin-Mühlendamm OP",
+    "ows": "x",
+    "odf": "x"
+  },
+  {
+    "Messstellennummer": "582660",
+    "Messstellenname": "Grosse Tränke Wehr OP",
+    "ows": "x"
+  },
+  {
+    "Messstellennummer": "585850",
+    "Messstellenname": "Neuhaus OP",
+    "ows": "x"
+  },
+  {
+    "Messstellennummer": "586050",
+    "Messstellenname": "Woltersdorf UP",
+    "ows": "x"
+  },
+  {
+    "Messstellennummer": "603020",
+    "Messstellenname": "Eisenhuettenstadt Schl. UP",
+    "ows": "x"
+  },
+  {
+    "Messstellennummer": "585920",
+    "Messstellenname": "Wernsdorf OP",
+    "ows": "x",
+    "odf": "x"
+  },
+  {
+    "Messstellennummer": "581550",
+    "Messstellenname": "Liebenwalde UP",
+    "ows": "x",
+    "odf": "x"
+  },
+  {
+    "Messstellennummer": "581000",
+    "Messstellenname": "Mirow OP",
+    "ows": "x",
+    "odf": "x"
+  },
+  {
+    "Messstellennummer": "585950",
+    "Messstellenname": "Kersdorf UP",
+    "ows": "x",
+    "odf": "x"
+  },
+  {
+    "Messstellennummer": "585940",
+    "Messstellenname": "Kersdorf OP",
+    "ows": "x"
+  },
+  {
+    "Messstellennummer": "587020",
+    "Messstellenname": "Kleinmachnow OP",
+    "ows": "x",
+    "odf": "x"
+  },
+  {
+    "Messstellennummer": "596030",
+    "Messstellenname": "Waren",
+    "ows": "x"
+  },
+  {
+    "Messstellennummer": "585860",
+    "Messstellenname": "Neuhaus UP",
+    "ows": "x",
+    "odf": "x"
+  },
+  {
+    "Messstellennummer": "586610",
+    "Messstellenname": "Berlin-Oberschleuse UP",
+    "ows": "x",
+    "odf": "x"
+  },
+  {
+    "Messstellennummer": "586280",
+    "Messstellenname": "Neue Mühle Schleuse UP",
+    "ows": "x",
+    "odf": "x"
+  },
+  {
+    "Messstellennummer": "582670",
+    "Messstellenname": "Grosse Tränke Wehr UP",
+    "ows": "x",
+    "odf": "x"
+  },
+  {
+    "Messstellennummer": "586630",
+    "Messstellenname": "Berlin-Unterschleuse UP",
+    "ows": "x"
   },
   {
     "Messstellennummer": "580430",
     "Messstellenname": "Ketzin",
-    "df": "x"
+    "ows": "x",
+    "odf": "x"
+  },
+  {
+    "Messstellennummer": "587050",
+    "Messstellenname": "Schönwalde OP",
+    "ows": "x"
+  },
+  {
+    "Messstellennummer": "690050",
+    "Messstellenname": "Eisenhuettenstadt Schl. OP",
+    "ows": "x"
+  },
+  {
+    "Messstellennummer": "580300",
+    "Messstellenname": "Berlin-Spandau OP",
+    "ows": "x"
+  },
+  {
+    "Messstellennummer": "582650",
+    "Messstellenname": "Fuerstenwalde UP",
+    "ows": "x"
+  },
+  {
+    "Messstellennummer": "586640",
+    "Messstellenname": "Berlin-Ploetzensee OP",
+    "ows": "x"
+  },
+  {
+    "Messstellennummer": "581100",
+    "Messstellenname": "Bolt OP",
+    "ows": "x",
+    "odf": "x"
   },
   {
     "Messstellennummer": "601",
     "Messstellenname": "MPS Berlin-Spandauer-Schifffahrtskanal",
-    "wt": "x",
-    "lf": "x",
-    "ph": "x",
-    "og": "x",
-    "os": "x"
+    "owt": "x",
+    "olf": "x",
+    "oph": "x",
+    "oog": "x",
+    "oos": "x"
   },
   {
     "Messstellennummer": "151",
     "Messstellenname": "MPS Caprivibrücke",
-    "wt": "x",
-    "lf": "x",
-    "ph": "x",
-    "og": "x",
-    "os": "x"
+    "owt": "x",
+    "olf": "x",
+    "oph": "x",
+    "oog": "x",
+    "oos": "x"
   },
   {
     "Messstellennummer": "153",
     "Messstellenname": "MPS Charlottenburg",
-    "wt": "x",
-    "lf": "x",
-    "ph": "x",
-    "og": "x",
-    "os": "x"
+    "owt": "x",
+    "olf": "x",
+    "oph": "x",
+    "oog": "x",
+    "oos": "x"
   },
   {
     "Messstellennummer": "509",
     "Messstellenname": "MPS Landwehrkanal",
-    "wt": "x",
-    "lf": "x",
-    "ph": "x",
-    "og": "x",
-    "os": "x"
+    "owt": "x",
+    "olf": "x",
+    "oph": "x",
+    "oog": "x",
+    "oos": "x"
   },
   {
     "Messstellennummer": "504",
     "Messstellenname": "MPS Neuköllner Schifffahrtskanal",
-    "wt": "x",
-    "lf": "x",
-    "ph": "x",
-    "og": "x",
-    "os": "x"
+    "owt": "x",
+    "olf": "x",
+    "oph": "x",
+    "oog": "x",
+    "oos": "x"
   },
   {
     "Messstellennummer": "414",
     "Messstellenname": "MPS Teltowkanal",
-    "wt": "x",
-    "lf": "x",
-    "ph": "x",
-    "og": "x",
-    "os": "x"
+    "owt": "x",
+    "olf": "x",
+    "oph": "x",
+    "oog": "x",
+    "oos": "x"
   },
   {
     "Messstellennummer": "141",
     "Messstellenname": "MS Mühlendammschleuse",
-    "wt": "x",
-    "lf": "x",
-    "ph": "x",
-    "og": "x",
-    "os": "x"
+    "owt": "x",
+    "olf": "x",
+    "oph": "x",
+    "oog": "x",
+    "oos": "x"
   },
   {
     "Messstellennummer": "111",
     "Messstellenname": "MS Rahnsdorf",
-    "wt": "x",
-    "lf": "x",
-    "ph": "x",
-    "og": "x",
-    "os": "x"
+    "owt": "x",
+    "olf": "x",
+    "oph": "x",
+    "oog": "x",
+    "oos": "x"
   },
   {
     "Messstellennummer": "211",
     "Messstellenname": "MS Schmöckwitz",
-    "wt": "x",
-    "lf": "x",
-    "ph": "x",
-    "og": "x",
-    "os": "x"
+    "owt": "x",
+    "olf": "x",
+    "oph": "x",
+    "oog": "x",
+    "oos": "x"
   },
   {
     "Messstellennummer": "161",
     "Messstellenname": "MS Sophienwerder",
-    "wt": "x",
-    "lf": "x",
-    "ph": "x",
-    "og": "x",
-    "os": "x"
+    "owt": "x",
+    "olf": "x",
+    "oph": "x",
+    "oog": "x",
+    "oos": "x"
   },
   {
     "Messstellennummer": "421",
     "Messstellenname": "MS Teltow-Werft",
-    "wt": "x",
-    "lf": "x",
-    "ph": "x",
-    "og": "x",
-    "os": "x"
+    "owt": "x",
+    "olf": "x",
+    "oph": "x",
+    "oog": "x",
+    "oos": "x"
   },
   {
     "Messstellennummer": "SP_0150",
     "Messstellenname": "Beeskow",
-    "wt": "x",
-    "lf": "x",
-    "ph": "x",
-    "og": "x",
-    "os": "x"
+    "owt": "x",
+    "olf": "x",
+    "oph": "x",
+    "oog": "x",
+    "oos": "x"
   },
   {
     "Messstellennummer": "TK_0025",
     "Messstellenname": "Kleinmachnow",
-    "wt": "x",
-    "lf": "x",
-    "ph": "x",
-    "og": "x",
-    "os": "x"
+    "owt": "x",
+    "olf": "x",
+    "oph": "x",
+    "oog": "x",
+    "oos": "x"
   },
   {
     "Messstellennummer": "SP_0130",
     "Messstellenname": "Leibsch",
-    "wt": "x",
-    "lf": "x",
-    "ph": "x",
-    "og": "x",
-    "os": "x"
+    "owt": "x",
+    "olf": "x",
+    "oph": "x",
+    "oog": "x",
+    "oos": "x"
   },
   {
     "Messstellennummer": "SP_0050",
     "Messstellenname": "Neuhausen",
-    "wt": "x",
-    "lf": "x",
-    "ph": "x",
-    "og": "x",
-    "os": "x"
+    "owt": "x",
+    "olf": "x",
+    "oph": "x",
+    "oog": "x",
+    "oos": "x"
   },
   {
     "Messstellennummer": "HV_0110",
     "Messstellenname": "Potsdam",
-    "wt": "x",
-    "lf": "x",
-    "ph": "x",
-    "og": "x",
-    "os": "x"
+    "owt": "x",
+    "olf": "x",
+    "oph": "x",
+    "oog": "x",
+    "oos": "x"
+  },
+  {
+    "Messstellennummer": "SP_0020",
+    "Messstellenname": "Spremberg",
+    "owt": "x",
+    "olf": "x",
+    "oph": "x",
+    "oog": "x",
+    "oos": "x"
   },
   {
     "Messstellennummer": "1",
@@ -883,10 +1073,6 @@
   },
   {
     "Messstellennummer": "139",
-    "gws": "x"
-  },
-  {
-    "Messstellennummer": "144",
     "gws": "x"
   },
   {
@@ -1995,10 +2181,6 @@
     "gws": "x"
   },
   {
-    "Messstellennummer": "4653",
-    "gws": "x"
-  },
-  {
     "Messstellennummer": "4727",
     "gws": "x",
     "gwq": "x"
@@ -2384,11 +2566,6 @@
   {
     "Messstellennummer": "5253",
     "gws": "x"
-  },
-  {
-    "Messstellennummer": "5255",
-    "gws": "x",
-    "gwq": "x"
   },
   {
     "Messstellennummer": "5270",
@@ -2788,10 +2965,6 @@
     "Messstellennummer": "6121",
     "gws": "x",
     "gwq": "x"
-  },
-  {
-    "Messstellennummer": "6124",
-    "gws": "x"
   },
   {
     "Messstellennummer": "6125",
@@ -3410,6 +3583,10 @@
     "gws": "x"
   },
   {
+    "Messstellennummer": "7706",
+    "gws": "x"
+  },
+  {
     "Messstellennummer": "7713",
     "gws": "x"
   },
@@ -3886,10 +4063,6 @@
     "gws": "x"
   },
   {
-    "Messstellennummer": "15105",
-    "gws": "x"
-  },
-  {
     "Messstellennummer": "15106",
     "gws": "x"
   },
@@ -4107,6 +4280,10 @@
   },
   {
     "Messstellennummer": "17903",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "17904",
     "gws": "x"
   },
   {
