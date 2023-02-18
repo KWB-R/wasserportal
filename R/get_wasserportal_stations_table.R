@@ -11,13 +11,13 @@ get_overview_options <- function()
 {
   list(
     surface_water = list(
-      water_level = "ws",
-      flow = "df",
-      temperature = "wt",
-      conductivity = "lf",
-      ph = "ph",
-      oxygen_concentration = "og",
-      oxygen_saturation = "os"
+      water_level = "ows",
+      flow = "odf",
+      temperature = "owt",
+      conductivity = "olf",
+      ph = "oph",
+      oxygen_concentration = "oog",
+      oxygen_saturation = "oos"
     ),
     groundwater = list(
       level = "gws",
@@ -63,9 +63,17 @@ get_wasserportal_stations_table <- function (
 
   html_overview <- xml2::read_html(overview_url)
 
-  overview_table <-  html_overview %>%
-    rvest::html_node(xpath = '//*[@id="pegeltab"]') %>%
-    rvest::html_table()
+  pegeltab <- html_overview %>%
+    rvest::html_node(xpath = '//*[@id="pegeltab"]')
+
+  if (is.na(pegeltab)) {
+    stop(
+      "Could not find element with id 'pegeltab' in HTML returned by ",
+      overview_url, call. = FALSE
+    )
+  }
+
+  overview_table <- rvest::html_table(pegeltab)
 
   stammdaten_link <- html_overview %>%
     rvest::html_node(xpath = '//*[@id="pegeltab"]') %>%
