@@ -4,10 +4,13 @@
 \alias{get_stations}
 \title{Get Stations}
 \usage{
-get_stations(run_parallel = TRUE)
+get_stations(run_parallel = TRUE, n_cores = parallel::detectCores() - 1L)
 }
 \arguments{
 \item{run_parallel}{default: TRUE}
+
+\item{n_cores}{number of cores to use if \code{run_parallel = TRUE}.
+Default: one less than the detected number of cores.}
 }
 \value{
 list with general station "overview" (either as list "overview_list"
@@ -18,7 +21,7 @@ parameters is available per station ("x" if available, NA if not)
 Get Stations
 }
 \examples{
-stations <- wasserportal::get_stations()
+stations <- wasserportal::get_stations(n_cores = 2L)
 str(stations)
 
 }

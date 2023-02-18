@@ -43,24 +43,28 @@ get_groundwater_data <- function(
     debug = TRUE
 )
 {
+  #kwb.utils::assignPackageObjects("wasserportal")
   result <- lapply(
     X = seq_along(groundwater_options),
     FUN = function(i) {
-      gw_option <- groundwater_options[i]
+      option_key <- groundwater_options[i]
+      option_name <- names(option_key)
       kwb.utils::catAndRun(
         messageText = sprintf(
           "Importing '%s' data (%d/%d)",
-          names(gw_option), i, length(groundwater_options)
+          option_name, i, length(groundwater_options)
         ),
         expr = {
+          ids <- stations$overview_list[[option_name]]$Messstellennummer
           lapply(
-            X = stations$overview_list[[names(gw_option)]]$Messstellennummer,
-            FUN = function(station) {
+            X = ids,
+            FUN = function(id) {
               kwb.utils::catAndRun(
-                sprintf("Downloading Messstellennummer == '%s'", station),
-                expr = {
-                  read_wasserportal_raw_gw(station, stype = gw_option)
-                },
+                sprintf(
+                  "Downloading Messstellennummer '%s' (%d/%d)",
+                  id, which(id == ids), length(ids)
+                ),
+                expr = read_wasserportal_raw_gw(id, stype = option_key),
                 dbg = debug
               )
             }) %>%

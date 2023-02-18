@@ -11,7 +11,8 @@ read_wasserportal_raw(
   type = "single",
   include_raw_time = FALSE,
   handle = NULL,
-  stations_crosstable
+  stations_crosstable,
+  api_version = 2L
 )
 }
 \arguments{
@@ -29,6 +30,9 @@ read_wasserportal_raw(
 
 \item{stations_crosstable}{sublist \code{crosstable} as retrieved from \code{\link{get_stations}}
 i.e. \code{get_stations()$crosstable}}
+
+\item{api_version}{1 integer number representing the version of
+wasserportal's API. 1L: before 2023, 2L: since 2023. Default: 2L}
 }
 \value{
 ????

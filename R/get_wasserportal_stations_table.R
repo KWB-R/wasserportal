@@ -11,13 +11,13 @@ get_overview_options <- function()
 {
   list(
     surface_water = list(
-      water_level = "ws",
-      flow = "df",
-      temperature = "wt",
-      conductivity = "lf",
-      ph = "ph",
-      oxygen_concentration = "og",
-      oxygen_saturation = "os"
+      water_level = "ows",
+      flow = "odf",
+      temperature = "owt",
+      conductivity = "olf",
+      ph = "oph",
+      oxygen_concentration = "oog",
+      oxygen_saturation = "oos"
     ),
     groundwater = list(
       level = "gws",
@@ -63,10 +63,17 @@ get_wasserportal_stations_table <- function (
 
   html <- xml2::read_html(overview_url)
 
+  pegeltab <- rvest::html_node(html, xpath = '//*[@id="pegeltab"]')
+
+  if (is.na(pegeltab)) {
+    stop(
+      "Could not find element with id 'pegeltab' in HTML returned by ",
+      overview_url, call. = FALSE
+    )
+  }
+
   # Convert the HTML table into a data frame
-  overview_table <- html %>%
-    rvest::html_node(xpath = '//*[@id="pegeltab"]') %>%
-    rvest::html_table()
+  overview_table <- rvest::html_table(pegeltab)
 
   # Get the column captions from the table header
   captions <- html %>%
