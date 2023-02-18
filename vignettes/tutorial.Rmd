@@ -276,7 +276,7 @@ gwlmap
 also_available(
   what = "GW level trend plot", 
   format = "on a full html page", 
-  filename = "map_gwl-trend.html", 
+  filename = "map_gwl-trend.html"
 )
 ```
 
@@ -344,7 +344,7 @@ plotly::ggplotly(g)
 also_available(
   what = "The data of all GW level stations",
   format = "in CSV format", 
-  filename = "groundwater_level.csv",
+  filename = "groundwater_level.csv"
 )
 ```
 
@@ -374,7 +374,7 @@ write_pretty_json(stations_gwq_master, "stations_gwq_master.json")
 also_available(
   what = "The master data of GW quality stations",
   format = "in JSON format",
-  filename = "stations_gwq_master.json",
+  filename = "stations_gwq_master.json"
 )
 ```
 
