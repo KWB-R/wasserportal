@@ -8,7 +8,7 @@ list_timeseries_data_to_zip(timeseries_data_list)
 }
 \arguments{
 \item{timeseries_data_list}{time series data in list form as retrieved by
-\code{\link{get_groundwater_data}} or \code{\link{get_dailygroundwater_data}}}
+\code{\link{get_groundwater_data}}}
 }
 \value{
 loops through list of data frames and uses list names as filenames

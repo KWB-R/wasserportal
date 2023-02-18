@@ -92,6 +92,7 @@ get_daily_surfacewater_data <- function(
     list2df = FALSE
 )
 {
+  #kwb.utils::assignPackageObjects("wasserportal")
   overviews <- kwb.utils::selectElements(stations, "overview_list")
   crosstable <- kwb.utils::selectElements(stations, "crosstable")
 
@@ -110,6 +111,8 @@ get_daily_surfacewater_data <- function(
       results_per_station <- lapply(
         X = station_ids,
         FUN = function(station_id) {
+
+          #station_id <- station_ids[1L]
 
           cat(sprintf(
             "Station id: %s (%d/%d)\n",

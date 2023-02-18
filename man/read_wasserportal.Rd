@@ -49,17 +49,17 @@ together with the additional information on the UTC offset (column
 \code{UTCOffset}, 1 in winter, 2 in summer).
 }
 \examples{
+\dontrun{
 # Get a list of available water quality stations and variables
 stations <- wasserportal::get_stations()
 stations_crosstable <- stations$crosstable
-station_crosstable <- stations_crosstable[1,]
 
 # Set the start date
 from_date <- "2021-03-01"
 
 # Read the timeseries (multiple variables for one station)
 water_quality <- wasserportal::read_wasserportal(
-  station = station_crosstable$Messstellennummer,
+  station = stations_crosstable$Messstellennummer[1],
   from_date = from_date,
   include_raw_time = TRUE,
   stations_crosstable = stations_crosstable
@@ -95,5 +95,5 @@ water_quality[grepl(pattern, water_quality$timestamp_raw), ]
 # The original timestamps (timestamps_raw) were not all plausible, e.g.
 # for March 2019. This seems to have been fixed by the "wasserportal"!
 sum(water_quality$timestamp_raw != water_quality$timestamp_corr)
-
+}
 }

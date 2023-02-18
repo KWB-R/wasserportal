@@ -1,7 +1,5 @@
 #' Helper function: base url for download
-#' @keywords internal
-#' @noMd
-#' @noRd
+#'
 #' @return base url for download of csv/zip files prepared by R package
 #' @export
 #'

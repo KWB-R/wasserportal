@@ -27,6 +27,8 @@ get_station_variables <- function(station_df)
 #' @param handle handle (default: NULL)
 #' @param stations_crosstable sublist `crosstable` as retrieved from \code{\link{get_stations}}
 #' i.e. `get_stations()$crosstable`
+#' @param api_version 1 integer number representing the version of
+#'   wasserportal's API. 1L: before 2023, 2L: since 2023. Default: 2L
 #' @return ????
 #' @export
 #' @importFrom kwb.utils catAndRun selectColumns selectElements
@@ -39,13 +41,16 @@ read_wasserportal_raw <- function(
   type = "single",
   include_raw_time = FALSE,
   handle = NULL,
-  stations_crosstable
+  stations_crosstable,
+  api_version = 2L
 )
 {
   #variable <- variables[1]
+  #`%>%` <- magrittr::`%>%`
 
   stopifnot(length(station) == 1L)
   stopifnot(length(variable) == 1L)
+  stopifnot(identical(api_version, 1L) || identical(api_version, 2L))
 
   from_date <- assert_date(from_date)
 
@@ -63,41 +68,64 @@ read_wasserportal_raw <- function(
 
   stopifnot(variable %in% variable_ids)
 
-  sreihe <- kwb.utils::selectElements(elements = type, list(
-    single = "w",
-    single_all = "wa",
-    daily = "m",
-    monthly = "j"
-  ))
+  sreihe_options <- if (api_version == 1L) {
+    list(single = "w", single_all = "wa", daily = "m", monthly = "j")
+  } else {
+    # ew = Einzelwerte
+    # tw = Tageswerte
+    # mw = Monatswerte
+    list(single = "ew", daily = "tw", monthly = "mw")
+  }
 
-  variable_mapping <- list(
-    ws = "w",
-    df = "d",
-    wt = "t",
-    lf = "l",
-    ph = "p",
-    og = "o",
-    os = "s"
-  )
+  sreihe <- kwb.utils::selectElements(sreihe_options, type)
 
-  variable <- kwb.utils::selectElements(variable_mapping, variable)
-  variable_ids <- unlist(variable_mapping)
+  # Compose the URL and the body for the request
+  if (api_version == 1L) {
 
-  # Compose the body of the request
-  body <- list(
-    sreihe = sreihe,
-    smode = "c",
-    sdatum = date_string_de(from_date) # start date
-  )
+    variable_mapping <- list(
+      ows = "w",
+      odf = "d",
+      owt = "t",
+      olf = "l",
+      oph = "p",
+      oog = "o",
+      oos = "s"
+    )
+
+    variable <- kwb.utils::selectElements(variable_mapping, variable)
+    variable_ids <- unlist(variable_mapping)
+
+    url <- get_wasserportal_url(station, variable)
+
+    # Compose the body of the request
+    body <- list(
+      sreihe = sreihe,
+      smode = "c",
+      sdatum = date_string_de(from_date) # start date
+    )
+
+  } else {
+
+    variable_ids <- "NOT_REQRUIRED_ISNT_IT"
+
+    url <- paste0(
+      "https://wasserportal.berlin.de",
+      "/station.php",
+      "?anzeige=d", # = download
+      "&station=", station,
+      "&thema=", variable, # type of measurement
+      "&sreihe=", sreihe, # type of time value
+      "&smode=c", # output format: csv (?)
+      "&sdatum=", date_string_de(from_date) # start date
+    )
+
+    body <- list()
+  }
 
   # Post the request to the web server
   response <- kwb.utils::catAndRun(
     get_wasserportal_text(station, variable, station_ids, variable_ids),
-    httr::POST(
-      url = get_wasserportal_url(station, variable),
-      body = body,
-      handle = handle
-    )
+    httr::POST(url = url, body = body, handle = handle)
   )
 
   if (httr::http_error(response)) {
@@ -107,6 +135,11 @@ read_wasserportal_raw <- function(
 
   # Read the response of the web server as text
   text <- httr::content(response, as = "text", encoding = "Latin1")
+
+  if (text == "") {
+    message("Wasserportal returned an empty string. Returning NULL.")
+    return(NULL)
+  }
 
   # Split the text into separate lines
   textlines <- strsplit(text, "\n")[[1L]]

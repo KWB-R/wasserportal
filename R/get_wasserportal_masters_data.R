@@ -10,8 +10,7 @@
 #' @importFrom parallel detectCores makeCluster stopCluster
 #' @importFrom data.table rbindlist
 #' @examples
-#' stations <- wasserportal::get_stations()
-#' parallel::detectCores()
+#' \dontrun{
 #' stations <- wasserportal::get_stations()
 #' ### Reduce  to monitoring stations maintained by Berlin
 #' master_urls <- stations$overview_list$surface_water.water_level %>%
@@ -26,6 +25,7 @@
 #'   master_urls,
 #'   run_parallel = FALSE
 #' ))
+#' }
 #'
 get_wasserportal_masters_data <- function(
     master_urls,

@@ -17,6 +17,7 @@ data frame with metadata for selected station
 Wasserportal Berlin: get master data for a single station
 }
 \examples{
+\dontrun{
 stations <- wasserportal::get_stations()
 
 ## GW Station
@@ -29,5 +30,6 @@ master_urls <- stations$overview_list$surface_water.water_level \%>\%
 dplyr::filter(.data$Betreiber == "Land Berlin") \%>\%
 dplyr::pull(.data$stammdaten_link)
 get_wasserportal_master_data(master_urls[1])
+}
 
 }
