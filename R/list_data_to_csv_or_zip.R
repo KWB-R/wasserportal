@@ -47,7 +47,7 @@ list_data_to_csv_or_zip <- function(data_list, file_prefix, to_zip)
 #' Helper function: list timeseries data to zip
 #'
 #' @param timeseries_data_list time series data in list form as retrieved by
-#' \code{\link{get_groundwater_data}} or \code{\link{get_dailygroundwater_data}}
+#' \code{\link{get_groundwater_data}}
 #' @return loops through list of data frames and uses list names as filenames
 #' @export
 #' @importFrom readr write_csv
