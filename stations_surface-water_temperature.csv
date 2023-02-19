@@ -5,13 +5,13 @@ Messstellennummer,Messstellenname,Gewaesser,Betreiber,Datum,Wassertemperatur,Ein
 509,MPS Landwehrkanal,Landwehrkanal,Land Berlin,31.10.2022 12:15,13.63,°C,NA,inaktiv,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=509
 504,MPS Neuköllner Schifffahrtskanal,Neuköllner Schifffahrtskanal,Land Berlin,31.10.2022 12:45,13.33,°C,NA,inaktiv,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=504
 414,MPS Teltowkanal,Teltowkanal,Land Berlin,31.10.2022 13:30,14.09,°C,NA,inaktiv,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=414
-141,MS Mühlendammschleuse,Spree,Land Berlin,18.02.2023 23:00,4.81,°C,NA,<=5°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=141
-111,MS Rahnsdorf,Müggelspree,Land Berlin,18.02.2023 23:00,4.60,°C,NA,<=5°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=111
-211,MS Schmöckwitz,Dahme,Land Berlin,18.02.2023 23:00,4.77,°C,NA,<=5°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=211
-161,MS Sophienwerder,Spree,Land Berlin,18.02.2023 23:00,5.13,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=161
-421,MS Teltow-Werft,Teltowkanal,Land Berlin,18.02.2023 23:00,8.30,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=421
-5861101,Am Reitweg,Neuenhagener Mühlenfließ,Land Berlin,18.02.2023 23:00,9.70,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5861101
-5800107,Am Wolfsschluchtkanal,Krumme Lanke,Land Berlin,18.02.2023 23:00,4.60,°C,NA,<=5°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5800107
+141,MS Mühlendammschleuse,Spree,Land Berlin,19.02.2023 02:00,4.72,°C,NA,<=5°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=141
+111,MS Rahnsdorf,Müggelspree,Land Berlin,19.02.2023 02:00,4.54,°C,NA,<=5°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=111
+211,MS Schmöckwitz,Dahme,Land Berlin,19.02.2023 02:00,4.70,°C,NA,<=5°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=211
+161,MS Sophienwerder,Spree,Land Berlin,19.02.2023 02:00,5.18,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=161
+421,MS Teltow-Werft,Teltowkanal,Land Berlin,19.02.2023 02:00,9.62,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=421
+5861101,Am Reitweg,Neuenhagener Mühlenfließ,Land Berlin,19.02.2023 02:15,9.30,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5861101
+5800107,Am Wolfsschluchtkanal,Krumme Lanke,Land Berlin,19.02.2023 02:15,4.60,°C,NA,<=5°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5800107
 5800317,Biesdorfer Baggersee,Biesdorfer Baggersee,Land Berlin,18.02.2023 16:30,5.70,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5800317
 5867003,Blankenfelde,Blankenfelder Graben,Land Berlin,18.02.2023 05:00,12.40,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5867003
 5867401,Bürgerpark,Panke,Land Berlin,18.02.2023 00:30,10.90,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5867401
@@ -20,43 +20,43 @@ Messstellennummer,Messstellenname,Gewaesser,Betreiber,Datum,Wassertemperatur,Ein
 5867900,Eisenbahnbrücke,Nordgraben,Land Berlin,18.02.2023 00:30,7.00,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5867900
 5827101,Fähre Rahnsdorf,Müggelspree,Land Berlin,18.02.2023 00:00,4.80,°C,NA,<=5°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5827101
 5800320,Fennpfuhl,Fennpfuhl,Land Berlin,18.02.2023 17:00,5.70,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5800320
-5867101,Flaischlenstraße,Laake,Land Berlin,18.02.2023 23:00,6.20,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5867101
+5867101,Flaischlenstraße,Laake,Land Berlin,19.02.2023 02:15,6.30,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5867101
 5800303,Flughafensee,Flughafensee,Land Berlin,18.02.2023 04:15,4.90,°C,NA,<=5°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5800303
 5800305,Groß Glienicker See,Groß Glienicker See,Land Berlin,18.02.2023 07:00,4.60,°C,NA,<=5°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5800305
 5800304,Grunewaldsee,Fenngraben,Land Berlin,27.12.2022 19:00,2.20,°C,NA,inaktiv,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5800304
 5800306,Halensee,Halensee,Land Berlin,18.02.2023 16:30,4.15,°C,NA,<=5°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5800306
 5867300,Heinersdorf,Panke,Land Berlin,18.02.2023 17:00,10.00,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5867300
 5864700,Hellersdorf,Wuhle,Land Berlin,18.02.2023 05:00,5.90,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5864700
-5865000,Honsfelder Brücke,Wuhle,Land Berlin,18.02.2023 23:00,7.70,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5865000
+5865000,Honsfelder Brücke,Wuhle,Land Berlin,19.02.2023 02:00,7.30,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5865000
 5865200,Hoppendorfer Straße,Wuhle,Land Berlin,18.02.2023 00:30,6.30,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5865200
 5800308,Hundekehlesee,Hundekehlesee,Land Berlin,18.02.2023 17:00,5.59,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5800308
-5867100,Krontaler Straße,Panke,Land Berlin,18.02.2023 23:00,10.30,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5867100
+5867100,Krontaler Straße,Panke,Land Berlin,19.02.2023 02:15,10.50,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5867100
 5869700,Krummendammbrücke,Neuenhagener Mühlenfließ,Land Berlin,18.02.2023 17:00,5.90,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5869700
-5867500,Kühnemannstraße,Panke,Land Berlin,18.02.2023 23:00,9.40,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5867500
-5870100,Lichterfelde,Teltowkanal,Land Berlin,18.02.2023 23:00,8.80,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5870100
+5867500,Kühnemannstraße,Panke,Land Berlin,19.02.2023 02:15,9.70,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5867500
+5870100,Lichterfelde,Teltowkanal,Land Berlin,19.02.2023 02:15,8.20,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5870100
 5800309,Lietzensee,Lietzensee,Land Berlin,18.02.2023 17:00,4.80,°C,NA,<=5°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5800309
 5819901,Lübars,Tegeler Fließ,Land Berlin,18.02.2023 07:00,5.10,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5819901
 5800318,Malchower See,Malchower See,Land Berlin,18.02.2023 16:15,5.90,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5800318
-5826701,Neue Fahlenbergbrücke,Gosener Kanal,Land Berlin,18.02.2023 23:00,4.90,°C,NA,<=5°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5826701
+5826701,Neue Fahlenbergbrücke,Gosener Kanal,Land Berlin,19.02.2023 02:15,4.90,°C,NA,<=5°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5826701
 5800315,Obersee,Obersee,Land Berlin,18.02.2023 16:15,5.03,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5800315
 5800316,Orankesee,Orankesee,Land Berlin,18.02.2023 16:45,4.40,°C,NA,<=5°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5800316
-5867700,Pasewalker Brücke,Nordgraben,Land Berlin,18.02.2023 23:00,10.00,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5867700
-5803500,Pfaueninsel,Havel,Land Berlin,18.02.2023 23:00,4.20,°C,NA,<=5°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5803500
+5867700,Pasewalker Brücke,Nordgraben,Land Berlin,19.02.2023 02:15,10.60,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5867700
+5803500,Pfaueninsel,Havel,Land Berlin,19.02.2023 02:00,4.20,°C,NA,<=5°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5803500
 5800312,Plötzensee,Plötzensee,Land Berlin,18.02.2023 16:30,4.23,°C,NA,<=5°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5800312
-5867000,Röntgental,Panke,Land Berlin,18.02.2023 23:00,8.60,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5867000
-5800106,Schäfersee,Schäfersee,Land Berlin,18.02.2023 23:00,5.00,°C,NA,<=5°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5800106
+5867000,Röntgental,Panke,Land Berlin,19.02.2023 02:15,8.60,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5867000
+5800106,Schäfersee,Schäfersee,Land Berlin,19.02.2023 02:00,4.60,°C,NA,<=5°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5800106
 5866700,Schleuse Neukölln OP,Neuk. Schifffahrtskanal,Land Berlin,18.02.2023 17:00,6.19,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5866700
 5866800,Schleuse Neukölln UP,Neuk. Schifffahrtskanal,Land Berlin,18.02.2023 17:00,5.50,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5866800
 5867600,Schönwalder Str.,Panke,Land Berlin,18.02.2023 06:00,10.00,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5867600
 5827700,Sophienwerder,Spree,Land Berlin,18.02.2023 00:30,5.10,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5827700
-5820000,St.-Joseph-Steg,Tegeler Fließ,Land Berlin,18.02.2023 23:00,5.60,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5820000
+5820000,St.-Joseph-Steg,Tegeler Fließ,Land Berlin,19.02.2023 02:15,5.40,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5820000
 5803200,Tiefwerder,Havel,Land Berlin,18.02.2023 00:00,5.50,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5803200
 5867301,Venturigerinne,Malchower Fließgraben,Land Berlin,18.02.2023 16:15,7.20,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5867301
-5867201,Verteiler OP,Panke,Land Berlin,18.02.2023 23:00,10.30,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5867201
-5867202,Verteiler UP,Panke,Land Berlin,18.02.2023 23:00,10.10,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5867202
+5867201,Verteiler OP,Panke,Land Berlin,19.02.2023 02:15,10.80,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5867201
+5867202,Verteiler UP,Panke,Land Berlin,19.02.2023 02:15,10.60,°C,NA,>10 - 15°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5867202
 5800310,Waldsee Zehlendorf,Waldsee Zehlendorf,Land Berlin,18.02.2023 16:30,4.00,°C,NA,<=5°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5800310
-5861200,Wiesengrund,Neuenhagener Mühlenfließ,Land Berlin,18.02.2023 23:00,9.80,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5861200
-5864800,Wuhletal,Wuhle,Land Berlin,18.02.2023 23:00,7.80,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5864800
+5861200,Wiesengrund,Neuenhagener Mühlenfließ,Land Berlin,19.02.2023 02:00,9.40,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5861200
+5864800,Wuhletal,Wuhle,Land Berlin,19.02.2023 02:00,7.70,°C,NA,>5 - 10°C,https://wasserportal.berlin.de/station.php?anzeige=i&thema=owt&station=5864800
 SP_0150,Beeskow,Spree,Land Brandenburg,k. A.,k. A.,k. A.,NA,keine,https://lfu.brandenburg.de/lfu/de/aufgaben/wasser/fliessgewaesser-und-seen/gewaesserueberwachung/wasserguetemessnetz/beeskow/
 TK_0025,Kleinmachnow,Teltowkanal,Land Brandenburg,k. A.,k. A.,k. A.,NA,keine,https://lfu.brandenburg.de/lfu/de/aufgaben/wasser/fliessgewaesser-und-seen/gewaesserueberwachung/wasserguetemessnetz/kleinmachnow/
 SP_0130,Leibsch,Spree,Land Brandenburg,k. A.,k. A.,k. A.,NA,keine,https://lfu.brandenburg.de/lfu/de/aufgaben/wasser/fliessgewaesser-und-seen/gewaesserueberwachung/wasserguetemessnetz/leibsch/

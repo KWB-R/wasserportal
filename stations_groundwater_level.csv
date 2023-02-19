@@ -561,8 +561,8 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 7040,Charlottenburg-Wilmersdorf,GW-Stand,Tertiäre GW-Leiter (GWL 4),gespannt,30.01.2023,30.21,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=7040
 7041,Charlottenburg-Wilmersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,30.01.2023,30.46,3.43,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=7041
 7042,Charlottenburg-Wilmersdorf,GW-Stand + GW-Güte,Elsterzeitl. GW-Leiter (GWL 3),gespannt,30.01.2023,30.31,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=7042
-7044,Charlottenburg-Wilmersdorf,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,20.12.2022,29.03,25.48,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=7044
-7045,Charlottenburg-Wilmersdorf,GW-Stand + GW-Güte,Tertiäre GW-Leiter (GWL 4),gespannt,20.12.2022,28.83,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=7045
+7044,Charlottenburg-Wilmersdorf,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,20.12.2022,29.03,25.48,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=7044
+7045,Charlottenburg-Wilmersdorf,GW-Stand + GW-Güte,Tertiäre GW-Leiter (GWL 4),gespannt,20.12.2022,28.83,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=7045
 7048,Charlottenburg-Wilmersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,30.01.2023,29.9,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=7048
 7049,Charlottenburg-Wilmersdorf,GW-Stand,Tertiäre GW-Leiter (GWL 4),gespannt,30.01.2023,29.87,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=7049
 7050,Charlottenburg-Wilmersdorf,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,30.01.2023,28.26,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=7050
@@ -830,17 +830,17 @@ Messstellennummer,Bezirk,Auspraegung,Grundwasserleiter,Grundwasserspannung,Datum
 17305,Lichtenberg,GW-Stand,Elsterzeitl. GW-Leiter (GWL 3),gespannt,02.01.2023,50.65,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=17305
 17306,Lichtenberg,GW-Stand + GW-Güte,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,02.01.2023,51.64,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=17306
 17308,Marzahn-Hellersdorf,GW-Stand,Weitere,gespannt,02.01.2023,49.36,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=17308
-17900,Charlottenburg-Wilmersdorf,GW-Stand,Weitere,keine Angabe,17.02.2023,31.61,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=17900
-17901,Charlottenburg-Wilmersdorf,GW-Stand,Weitere,keine Angabe,17.02.2023,29.96,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=17901
+17900,Charlottenburg-Wilmersdorf,GW-Stand,Weitere,keine Angabe,18.02.2023,31.62,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=17900
+17901,Charlottenburg-Wilmersdorf,GW-Stand,Weitere,keine Angabe,18.02.2023,29.97,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=17901
 17903,Charlottenburg-Wilmersdorf,GW-Stand,Weitere,keine Angabe,10.01.2023,29.08,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=17903
-17904,Treptow-Köpenick,GW-Stand,Weitere,keine Angabe,17.02.2023,32.38,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=17904
-17905,Treptow-Köpenick,GW-Stand,Weitere,keine Angabe,17.02.2023,32.06,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=17905
-17907,Treptow-Köpenick,GW-Stand,Weitere,keine Angabe,17.02.2023,32.42,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=17907
-17908,Treptow-Köpenick,GW-Stand,Weitere,keine Angabe,17.02.2023,31.99,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=17908
-17909,Spandau,GW-Stand,Weitere,keine Angabe,17.02.2023,31.24,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=17909
-17910,Spandau,GW-Stand,Weitere,keine Angabe,17.02.2023,30.52,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=17910
-17911,Spandau,GW-Stand,Weitere,keine Angabe,17.02.2023,31.31,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=17911
-17912,Spandau,GW-Stand,Weitere,keine Angabe,17.02.2023,31.22,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=17912
+17904,Treptow-Köpenick,GW-Stand,Weitere,keine Angabe,18.02.2023,32.4,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=17904
+17905,Treptow-Köpenick,GW-Stand,Weitere,keine Angabe,18.02.2023,32.07,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=17905
+17907,Treptow-Köpenick,GW-Stand,Weitere,keine Angabe,18.02.2023,32.43,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=17907
+17908,Treptow-Köpenick,GW-Stand,Weitere,keine Angabe,18.02.2023,32,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=17908
+17909,Spandau,GW-Stand,Weitere,keine Angabe,18.02.2023,31.26,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=17909
+17910,Spandau,GW-Stand,Weitere,keine Angabe,18.02.2023,30.52,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=17910
+17911,Spandau,GW-Stand,Weitere,keine Angabe,18.02.2023,31.31,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=17911
+17912,Spandau,GW-Stand,Weitere,keine Angabe,18.02.2023,31.24,keine Angabe,NA,keine,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=17912
 21101,Mitte,"GW-Stand, tagesaktuell",Hauptgrundwasserleiter (GWL 1.3 + 2),ungespannt,14.02.2023,30.75,3.11,NA,normal,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=21101
 23101,Pankow,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,20.01.2023,40.96,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=23101
 23201,Pankow,GW-Stand,Hauptgrundwasserleiter (GWL 1.3 + 2),gespannt,23.01.2023,50.92,keine Angabe,NA,extrem niedrig,https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=23201
