@@ -12,14 +12,16 @@ wp_masters_data_to_list(
 )
 }
 \arguments{
+\item{overview_list_names}{names of "overview_list" as retrieved by
+\code{\link{get_stations}}}
+
 \item{target_dir}{target directory for downloading data (default:
 tempdir())}
 
+\item{file_prefix}{prefix given to file names}
+
 \item{is_zipped}{are the data to be downloaded zipped (default:
 FALSE)}
-
-\item{overview_list}{names of "overview_list" as retrieved by
-\code{\link{get_stations}}}
 }
 \value{
 downloads csv master data from Wasserportal

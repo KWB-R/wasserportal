@@ -1,3 +1,22 @@
+# [wasserportal 0.3.0](https://github.com/KWB-R/wasserportal/releases/tag/v0.3.0) <small>2023-02-19</small>
+
+* Fix errors in GitHub actions: use actions from branches `v2`, `v3`, not from 
+  `master`
+* Fix errors in tutorial.Rmd
+* Fix errors in documentation
+* Do not run examples that use parallel processing
+* `get_stations()`: add argument `n_cores`
+* `get_wasserportal_stations_table()`: Use new (three letter) variable codes 
+* `read_wasserportal_raw()`: adapt request to new API version, add argument 
+  `api_version`
+* `read_wasserportal_raw_gw()`: adapt request to new API version
+* Clean code, mainly to reduce duplicated duplication and to improve readability
+  - check for more errors
+  - use "safe" element selection
+  - use more helper functions
+  - use helper functions in vignettes
+  - improve names
+
 # [wasserportal 0.2.0](https://github.com/KWB-R/wasserportal/releases/tag/v0.2.0) <small>2022-09-08</small>
 
 * Add functions for exporting time series data to `zip` files (`wp_masters_data_to_list()`) 

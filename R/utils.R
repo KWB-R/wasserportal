@@ -1,11 +1,18 @@
+# as_date_de -------------------------------------------------------------------
+as_date_de <- function(x)
+{
+  as.Date(x, format = "%d.%m.%Y")
+}
+
 # assert_date ------------------------------------------------------------------
+#' @importFrom kwb.utils isTryError
 assert_date <- function(x)
 {
   if (! inherits(x, "Date")) {
 
     x <- try(as.Date(x))
 
-    if (inherits(x, "try-error")) {
+    if (kwb.utils::isTryError(x)) {
       stop(call. = FALSE, sprintf(
         "%s cannot be converted to a Date object!", deparse(substitute(x))
       ))
@@ -13,27 +20,6 @@ assert_date <- function(x)
   }
 
   x
-}
-
-
-#' Helper function to read CSV
-#'
-#' @param text text
-#' @param ...  \dots additional arguments passed to \code{\link[utils]{read.table}}
-#'
-#' @return data frame with values
-#' @export
-#' @importFrom utils read.table
-#'
-read <- function(text, ...) {
-
-  result <- try(silent = TRUE, utils::read.table(
-    text = text, sep = ";", dec = ",", stringsAsFactors = FALSE, ...
-  ))
-
-  if (! inherits(result, "try-error")) {
-    result
-  }
 }
 
 # columns_to_labels ------------------------------------------------------------
@@ -56,6 +42,35 @@ columns_to_labels <- function(data, columns, fmt = "%s: %s", sep = ", ")
   do.call(paste, c(list(sep = sep), lapply(columns, function(column) sprintf(
     fmt, column, kwb.utils::selectColumns(data, column)
   ))))
+}
+
+# date_string_de ---------------------------------------------------------------
+date_string_de <- function(x)
+{
+  format(x, format = "%d.%m.%Y")
+}
+
+#' Helper function to read CSV
+#'
+#' @param text text
+#' @param ...  \dots additional arguments passed to \code{\link[utils]{read.table}}
+#'
+#' @return data frame with values
+#' @export
+#' @importFrom kwb.utils isTryError
+#' @importFrom utils read.table
+#'
+read <- function(text, ...) {
+
+  result <- try(silent = TRUE, utils::read.table(
+    text = text, sep = ";", dec = ",", stringsAsFactors = FALSE, ...
+  ))
+
+  if (kwb.utils::isTryError(result)) {
+    return(NULL)
+  }
+
+  result
 }
 
 # readPackageFile --------------------------------------------------------------

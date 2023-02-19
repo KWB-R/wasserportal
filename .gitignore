@@ -4,3 +4,9 @@
 .Ruserdata
 docs
 inst/doc
+vignettes/*.zip
+vignettes/*.json
+vignettes/*.csv
+stations_*.json
+stations_*.csv
+groundwater_*.zip

@@ -1,20 +1,3 @@
-#' Helper function: get available station variables
-#'
-#' @param station_df station_df
-#'
-#' @return returns names of available variables for station
-#' @export
-#'
-#' @importFrom dplyr select_if
-#'
-get_station_variables <- function(station_df)
-{
-  station_df %>%
-    dplyr::select_if(function(x){!all(is.na(x))}) %>%
-    names() %>%
-    setdiff(c("Messstellennummer", "Messstellenname"))
-}
-
 # read_wasserportal_raw --------------------------------------------------------
 
 #' Read Wasserportal Raw
@@ -27,6 +10,8 @@ get_station_variables <- function(station_df)
 #' @param handle handle (default: NULL)
 #' @param stations_crosstable sublist `crosstable` as retrieved from \code{\link{get_stations}}
 #' i.e. `get_stations()$crosstable`
+#' @param api_version 1 integer number representing the version of
+#'   wasserportal's API. 1L: before 2023, 2L: since 2023. Default: 2L
 #' @return ????
 #' @export
 #' @importFrom kwb.utils catAndRun selectColumns selectElements
@@ -39,13 +24,16 @@ read_wasserportal_raw <- function(
   type = "single",
   include_raw_time = FALSE,
   handle = NULL,
-  stations_crosstable
+  stations_crosstable,
+  api_version = 2L
 )
 {
   #variable <- variables[1]
+  #`%>%` <- magrittr::`%>%`
 
   stopifnot(length(station) == 1L)
   stopifnot(length(variable) == 1L)
+  stopifnot(identical(api_version, 1L) || identical(api_version, 2L))
 
   from_date <- assert_date(from_date)
 
@@ -63,38 +51,64 @@ read_wasserportal_raw <- function(
 
   stopifnot(variable %in% variable_ids)
 
-  sreihe <- kwb.utils::selectElements(elements = type, list(
-    single = "w",
-    single_all = "wa",
-    daily = "m",
-    monthly = "j"
-  ))
+  sreihe_options <- if (api_version == 1L) {
+    list(single = "w", single_all = "wa", daily = "m", monthly = "j")
+  } else {
+    # ew = Einzelwerte
+    # tw = Tageswerte
+    # mw = Monatswerte
+    list(single = "ew", daily = "tw", monthly = "mw")
+  }
 
-  variable <- kwb.utils::selectElements(elements = variable, list(
-    ws = "w",
-    df = "d",
-    wt = "t",
-    lf = "l",
-    ph = "p",
-    og = "o",
-    os = "s"
-  ))
+  sreihe <- kwb.utils::selectElements(sreihe_options, type)
 
-  # Compose the body of the request
-  body <- list(
-    sreihe = sreihe,
-    smode = "c",
-    sdatum = format(from_date, format = "%d.%m.%Y") # start date
-  )
+  # Compose the URL and the body for the request
+  if (api_version == 1L) {
+
+    variable_mapping <- list(
+      ows = "w",
+      odf = "d",
+      owt = "t",
+      olf = "l",
+      oph = "p",
+      oog = "o",
+      oos = "s"
+    )
+
+    variable <- kwb.utils::selectElements(variable_mapping, variable)
+    variable_ids <- unlist(variable_mapping)
+
+    url <- get_wasserportal_url(station, variable)
+
+    # Compose the body of the request
+    body <- list(
+      sreihe = sreihe,
+      smode = "c",
+      sdatum = date_string_de(from_date) # start date
+    )
+
+  } else {
+
+    variable_ids <- "NOT_REQRUIRED_ISNT_IT"
+
+    url <- paste0(
+      "https://wasserportal.berlin.de",
+      "/station.php",
+      "?anzeige=d", # = download
+      "&station=", station,
+      "&thema=", variable, # type of measurement
+      "&sreihe=", sreihe, # type of time value
+      "&smode=c", # output format: csv (?)
+      "&sdatum=", date_string_de(from_date) # start date
+    )
+
+    body <- list()
+  }
 
   # Post the request to the web server
   response <- kwb.utils::catAndRun(
     get_wasserportal_text(station, variable, station_ids, variable_ids),
-    httr::POST(
-      url = get_wasserportal_url(station, variable),
-      body = body,
-      handle = handle
-    )
+    httr::POST(url = url, body = body, handle = handle)
   )
 
   if (httr::http_error(response)) {
@@ -104,6 +118,11 @@ read_wasserportal_raw <- function(
 
   # Read the response of the web server as text
   text <- httr::content(response, as = "text", encoding = "Latin1")
+
+  if (text == "") {
+    message("Wasserportal returned an empty string. Returning NULL.")
+    return(NULL)
+  }
 
   # Split the text into separate lines
   textlines <- strsplit(text, "\n")[[1L]]
@@ -136,8 +155,39 @@ read_wasserportal_raw <- function(
   add_wasserportal_metadata(data, header_fields)
 }
 
-# clean_timestamp_columns ------------------------------------------------------
+# get_wasserportal_url ---------------------------------------------------------
+get_wasserportal_url <- function(station, variable)
+{
+  url_base <- sprintf("%s/station.php", wasserportal_base_url())
 
+  sprintf("%s?sstation=%s&anzeige=%sd", url_base, station, variable)
+}
+
+# get_wasserportal_text --------------------------------------------------------
+get_wasserportal_text <- function(station, variable, station_ids, variable_ids)
+{
+  default_names <- function(ids, prefix) {
+    kwb.utils::defaultIfNULL(names(ids), paste0(prefix, ids))
+  }
+
+  variable_names <- default_names(variable_ids, "variable_")
+  station_names <- default_names(station_ids, "station_")
+
+  sprintf(
+    "Reading '%s' for station %s (%s)",
+    variable_names[match(variable, unlist(variable_ids))],
+    station,
+    station_names[match(station, unlist(station_ids))]
+  )
+}
+
+# add_wasserportal_metadata ----------------------------------------------------
+add_wasserportal_metadata <- function(x, header_fields)
+{
+  structure(x, metadata = header_fields[-(1:2)])
+}
+
+# clean_timestamp_columns ------------------------------------------------------
 clean_timestamp_columns <- function(data, include_raw_time)
 {
   raw_timestamps <- kwb.utils::selectColumns(data, "Datum")
@@ -166,31 +216,6 @@ clean_timestamp_columns <- function(data, include_raw_time)
   }
 
   remove_timestep_outliers(data, data$LocalDateTime, 60 * 15)
-}
-
-# add_wasserportal_metadata ----------------------------------------------------
-add_wasserportal_metadata <- function(x, header_fields)
-{
-  structure(x, metadata = header_fields[-(1:2)])
-}
-
-# get_wasserportal_text --------------------------------------------------------
-get_wasserportal_text <- function(station, variable, station_ids, variable_ids)
-{
-  sprintf(
-    "Reading '%s' for station %s (%s)",
-    names(variable_ids)[match(variable, unlist(variable_ids))],
-    station,
-    names(station_ids)[match(station, unlist(station_ids))]
-  )
-}
-
-# get_wasserportal_url ---------------------------------------------------------
-get_wasserportal_url <- function(station, variable)
-{
-  url_base <- sprintf("%s/station.php", wasserportal_base_url())
-
-  sprintf("%s?sstation=%s&anzeige=%sd", url_base, station, variable)
 }
 
 # repair_wasserportal_timestamps -----------------------------------------------
