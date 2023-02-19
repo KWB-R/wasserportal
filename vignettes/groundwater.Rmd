@@ -12,6 +12,9 @@ editor_options:
 ---
 
 ```{r, include = FALSE}
+# Should the data of only a subset of stations be downloaded?
+use_random_subset_of_stations <- FALSE
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -63,9 +66,13 @@ cat_file_enumeration(urls$gh_wasserportal, files)
 ## Get Groundwater Data
 
 ```{r groundwater_data_raw_export}
-stations_bak <- stations
-stations$overview_list$groundwater.level <- stations$overview_list$groundwater.level[sample(876, 10), ]
-stations$overview_list$groundwater.quality <- stations$overview_list$groundwater.quality[sample(208, 10), ]
+if (use_random_subset_of_stations) {
+  stations_bak <- stations
+  x <- stations$overview_list$groundwater.level[sample(876, 10), ]
+  stations$overview_list$groundwater.level <- x
+  x <- stations$overview_list$groundwater.quality[sample(208, 10), ]
+  stations$overview_list$groundwater.quality <- x
+}
 
 gw_data_list <- wasserportal::get_groundwater_data(stations, debug = TRUE)
 
