@@ -1,4 +1,3 @@
-
 #' Get Stations
 #'
 #' @param run_parallel default: TRUE
