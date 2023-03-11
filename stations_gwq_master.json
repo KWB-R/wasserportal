@@ -1664,6 +1664,19 @@
     "Hochwert_UTM_33_N": "5810262"
   },
   {
+    "Nummer": "7092",
+    "Bezirk": "Tempelhof-Schöneberg",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand + GW-Güte",
+    "Grundwasserleiter": "Hauptgrundwasserleiter (GWL 1.3 + 2)",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "47.53",
+    "Rohroberkante_m_ue_NHN": "48.24",
+    "Filteroberkante_m_u_GOK": "38.90",
+    "Filterunterkante_m_u_GOK": "40.90",
+    "Rechtswert_UTM_33_N": "393804",
+    "Hochwert_UTM_33_N": "5808358"
+  },
+  {
     "Nummer": "7098",
     "Bezirk": "Neukölln",
     "Betreiber": "Senat",
