@@ -10946,19 +10946,6 @@
     "Hochwert_UTM_33_N": "5827100"
   },
   {
-    "Nummer": "17912",
-    "Bezirk": "Spandau",
-    "Betreiber": "Senat",
-    "Auspraegung": "GW-Stand",
-    "Grundwasserleiter": "Moor-Messstelle",
-    "Gelaendeoberkante_GOK_m_ue_NHN": "31.00",
-    "Rohroberkante_m_ue_NHN": "31.50",
-    "Filteroberkante_m_u_GOK": "0.50",
-    "Filterunterkante_m_u_GOK": "1.50",
-    "Rechtswert_UTM_33_N": "378407",
-    "Hochwert_UTM_33_N": "5826608"
-  },
-  {
     "Nummer": "21101",
     "Bezirk": "Mitte",
     "Betreiber": "Senat",
