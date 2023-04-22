@@ -2990,19 +2990,6 @@
     "Hochwert_UTM_33_N": "5809843"
   },
   {
-    "Nummer": "728",
-    "Bezirk": "Steglitz-Zehlendorf",
-    "Betreiber": "Senat",
-    "Auspraegung": "GW-Stand",
-    "Grundwasserleiter": "Hauptgrundwasserleiter (GWL 1.3 + 2)",
-    "Gelaendeoberkante_GOK_m_ue_NHN": "40.64",
-    "Rohroberkante_m_ue_NHN": "40.98",
-    "Filteroberkante_m_u_GOK": "10.12",
-    "Filterunterkante_m_u_GOK": "12.12",
-    "Rechtswert_UTM_33_N": "378866",
-    "Hochwert_UTM_33_N": "5810204"
-  },
-  {
     "Nummer": "729",
     "Bezirk": "Steglitz-Zehlendorf",
     "Betreiber": "Senat",
