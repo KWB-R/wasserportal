@@ -85,7 +85,7 @@ parameters is available per station ("x" if available, NA if not)</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">stations</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu">get_stations</span><span class="op">(</span>n_cores <span class="op">=</span> <span class="fl">2L</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Importing 9 station overviews from Wasserportal Berlin ... ok. (6.96 secs) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Importing 9 station overviews from Wasserportal Berlin ... ok. (28.06 secs) </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">stations</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> List of 3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ overview_list:List of 9</span>
@@ -94,8 +94,8 @@ parameters is available per station ("x" if available, NA if not)</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Messstellenname  : chr [1:109] "Allee der Kosmonauten" "Allendestraße" "Alsenbrücke" "Am Freibad" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Gewaesser        : chr [1:109] "M.-H.-Grenzgr." "Müggelspree" "Griebnitzkanal" "Tegeler Fließ" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Betreiber        : chr [1:109] "Land Berlin" "Land Berlin" "Land Berlin" "Land Berlin" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Datum            : chr [1:109] "06.05.2023 06:00" "06.05.2023 05:45" "06.05.2023 05:45" "06.05.2023 06:00" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Wasserstand      : num [1:109] 26 52 51 85 13 33 70 80 151 46 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Datum            : chr [1:109] "07.05.2023 05:15" "07.05.2023 05:15" "07.05.2023 05:15" "07.05.2023 05:15" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Wasserstand      : num [1:109] 14 51 51 85 6 26 70 80 78 41 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Einheit          : chr [1:109] "cm" "cm" "cm" "cm" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Ganglinien       : chr [1:109] "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=ows&amp;station=5865900" "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=ows&amp;station=5827103" "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=ows&amp;station=5870400" "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=ows&amp;station=5819900" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Klassifikation   : chr [1:109] "normal" "niedrig" "niedrig" "normal" ...</span>
@@ -105,19 +105,19 @@ parameters is available per station ("x" if available, NA if not)</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Messstellenname  : chr [1:38] "Allendestraße" "Alsenbrücke" "Am Kienberg" "Bürgerpark" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Gewaesser        : chr [1:38] "Müggelspree" "Griebnitzkanal" "Hellersdorfer Graben" "Panke" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Betreiber        : chr [1:38] "Land Berlin" "Land Berlin" "Land Berlin" "Land Berlin" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Datum            : chr [1:38] "" "06.05.2023 05:45" "06.05.2023 06:00" "06.05.2023 05:45" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Durchfluss       : num [1:38] NA -4.937 0.093 1.57 0.868 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Datum            : chr [1:38] "" "07.05.2023 05:15" "07.05.2023 05:15" "07.05.2023 05:15" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Durchfluss       : num [1:38] NA -3.48 0.007 1.01 1.29 5.68 9.06 7.5 7.38 28.5 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Einheit          : chr [1:38] "m³/s" "m³/s" "m³/s" "m³/s" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Ganglinie        : chr [1:38] "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=odf&amp;station=5827103" "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=odf&amp;station=5870400" "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=odf&amp;station=5864801" "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=odf&amp;station=5867401" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Klassifikation   : chr [1:38] "nicht aktuell" "sehr niedrig" "keine" "normal" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Klassifikation   : chr [1:38] "nicht aktuell" "niedrig" "keine" "normal" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ stammdaten_link  : chr [1:38] "https://wasserportal.berlin.de/station.php?anzeige=i&amp;thema=odf&amp;station=5827103" "https://wasserportal.berlin.de/station.php?anzeige=i&amp;thema=odf&amp;station=5870400" "https://wasserportal.berlin.de/station.php?anzeige=i&amp;thema=odf&amp;station=5864801" "https://wasserportal.berlin.de/station.php?anzeige=i&amp;thema=odf&amp;station=5867401" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ surface_water.temperature         : tibble [64 × 10] (S3: tbl_df/tbl/data.frame)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Messstellennummer: chr [1:64] "601" "151" "153" "509" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Messstellenname  : chr [1:64] "MPS Berlin-Spandauer-Schifffahrtskanal" "MPS Caprivibrücke" "MPS Charlottenburg" "MPS Landwehrkanal" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Gewaesser        : chr [1:64] "Berlin-Spandauer-Schifffahrtskanal" "Spree" "Spree" "Landwehrkanal" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Betreiber        : chr [1:64] "Land Berlin" "Land Berlin" "Land Berlin" "Land Berlin" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Datum            : chr [1:64] "06.05.2023 06:00" "06.05.2023 06:00" "06.05.2023 06:00" "06.05.2023 06:00" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Wassertemperatur : chr [1:64] "14.63" "14.72" "14.73" "14.36" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Datum            : chr [1:64] "07.05.2023 05:00" "07.05.2023 05:00" "07.05.2023 05:00" "07.05.2023 05:00" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Wassertemperatur : chr [1:64] "13.89" "13.99" "13.98" "13.54" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Einheit          : chr [1:64] "°C" "°C" "°C" "°C" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Ganglinie        : chr [1:64] "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=owt&amp;station=601" "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=owt&amp;station=151" "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=owt&amp;station=153" "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=owt&amp;station=509" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Klassifikation   : chr [1:64] "&gt;10 - 15°C" "&gt;10 - 15°C" "&gt;10 - 15°C" "&gt;10 - 15°C" ...</span>
@@ -127,8 +127,8 @@ parameters is available per station ("x" if available, NA if not)</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Messstellenname  : chr [1:17] "MPS Berlin-Spandauer-Schifffahrtskanal" "MPS Caprivibrücke" "MPS Charlottenburg" "MPS Landwehrkanal" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Gewaesser        : chr [1:17] "Berlin-Spandauer-Schifffahrtskanal" "Spree" "Spree" "Landwehrkanal" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Betreiber        : chr [1:17] "Land Berlin" "Land Berlin" "Land Berlin" "Land Berlin" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Datum            : chr [1:17] "06.05.2023 06:00" "06.05.2023 06:00" "06.05.2023 06:00" "06.05.2023 06:00" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Leitfaehigkeit   : chr [1:17] "870" "839" "842" "858" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Datum            : chr [1:17] "07.05.2023 05:00" "07.05.2023 05:00" "07.05.2023 05:00" "07.05.2023 05:00" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Leitfaehigkeit   : chr [1:17] "861" "819" "836" "855" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Einheit          : chr [1:17] "µS/cm" "µS/cm" "µS/cm" "µS/cm" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Ganglinie        : chr [1:17] "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=olf&amp;station=601" "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=olf&amp;station=151" "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=olf&amp;station=153" "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=olf&amp;station=509" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Klassifikation   : chr [1:17] "&gt;800 - 1000" "&gt;800 - 1000" "&gt;800 - 1000" "&gt;800 - 1000" ...</span>
@@ -138,18 +138,18 @@ parameters is available per station ("x" if available, NA if not)</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Messstellenname  : chr [1:17] "MPS Berlin-Spandauer-Schifffahrtskanal" "MPS Caprivibrücke" "MPS Charlottenburg" "MPS Landwehrkanal" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Gewaesser        : chr [1:17] "Berlin-Spandauer-Schifffahrtskanal" "Spree" "Spree" "Landwehrkanal" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Betreiber        : chr [1:17] "Land Berlin" "Land Berlin" "Land Berlin" "Land Berlin" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Datum            : chr [1:17] "06.05.2023 06:00" "06.05.2023 06:00" "06.05.2023 06:00" "06.05.2023 06:00" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ pHWert           : chr [1:17] "7.73" "7.70" "7.68" "7.51" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Datum            : chr [1:17] "07.05.2023 05:00" "07.05.2023 05:00" "07.05.2023 05:00" "07.05.2023 05:00" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ pHWert           : chr [1:17] "7.62" "7.64" "7.61" "7.45" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Ganglinie        : chr [1:17] "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=oph&amp;station=601" "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=oph&amp;station=151" "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=oph&amp;station=153" "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=oph&amp;station=509" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Klassifikation   : chr [1:17] "&gt;7.5 - 8.0" "&gt;7.5 - 8.0" "&gt;7.5 - 8.0" "&gt;7.5 - 8.0" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Klassifikation   : chr [1:17] "&gt;7.5 - 8.0" "&gt;7.5 - 8.0" "&gt;7.5 - 8.0" "&gt;7.0 - 7.5" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ stammdaten_link  : chr [1:17] "https://wasserportal.berlin.de/station.php?anzeige=i&amp;thema=oph&amp;station=601" "https://wasserportal.berlin.de/station.php?anzeige=i&amp;thema=oph&amp;station=151" "https://wasserportal.berlin.de/station.php?anzeige=i&amp;thema=oph&amp;station=153" "https://wasserportal.berlin.de/station.php?anzeige=i&amp;thema=oph&amp;station=509" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ surface_water.oxygen_concentration: tibble [17 × 10] (S3: tbl_df/tbl/data.frame)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Messstellennummer: chr [1:17] "601" "151" "153" "509" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Messstellenname  : chr [1:17] "MPS Berlin-Spandauer-Schifffahrtskanal" "MPS Caprivibrücke" "MPS Charlottenburg" "MPS Landwehrkanal" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Gewaesser        : chr [1:17] "Berlin-Spandauer-Schifffahrtskanal" "Spree" "Spree" "Landwehrkanal" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Betreiber        : chr [1:17] "Land Berlin" "Land Berlin" "Land Berlin" "Land Berlin" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Datum            : chr [1:17] "06.05.2023 06:00" "06.05.2023 06:00" "06.05.2023 06:00" "06.05.2023 06:00" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Sauerstoffgehalt : chr [1:17] "8.26" "8.90" "9.01" "8.90" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Datum            : chr [1:17] "07.05.2023 05:00" "07.05.2023 05:00" "07.05.2023 05:00" "07.05.2023 05:00" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Sauerstoffgehalt : chr [1:17] "7.45" "7.93" "8.11" "7.32" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Einheit          : chr [1:17] "mg/l" "mg/l" "mg/l" "mg/l" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Ganglinie        : chr [1:17] "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=oog&amp;station=601" "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=oog&amp;station=151" "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=oog&amp;station=153" "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=oog&amp;station=509" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Klassifikation   : chr [1:17] "&gt;5 - 10" "&gt;5 - 10" "&gt;5 - 10" "&gt;5 - 10" ...</span>
@@ -159,8 +159,8 @@ parameters is available per station ("x" if available, NA if not)</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Messstellenname  : chr [1:17] "MPS Berlin-Spandauer-Schifffahrtskanal" "MPS Caprivibrücke" "MPS Charlottenburg" "MPS Landwehrkanal" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Gewaesser        : chr [1:17] "Berlin-Spandauer-Schifffahrtskanal" "Spree" "Spree" "Landwehrkanal" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Betreiber        : chr [1:17] "Land Berlin" "Land Berlin" "Land Berlin" "Land Berlin" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Datum            : chr [1:17] "06.05.2023 00:00" "06.05.2023 00:00" "06.05.2023 00:00" "06.05.2023 00:00" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Parameterwert    : chr [1:17] "91.62" "90.97" "92.18" "87.30" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Datum            : chr [1:17] "07.05.2023 00:00" "07.05.2023 00:00" "07.05.2023 00:00" "07.05.2023 00:00" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Parameterwert    : chr [1:17] "80.44" "84.68" "83.61" "77.77" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Einheit          : chr [1:17] "%" "%" "%" "%" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Ganglinie        : chr [1:17] "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=oos&amp;station=601" "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=oos&amp;station=151" "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=oos&amp;station=153" "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=oos&amp;station=509" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..$ Klassifikation   : chr [1:17] "&gt;75 - 100" "&gt;75 - 100" "&gt;75 - 100" "&gt;75 - 100" ...</span>
@@ -194,8 +194,8 @@ parameters is available per station ("x" if available, NA if not)</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ Messstellenname          : chr [1:1362] "Allee der Kosmonauten" "Allendestraße" "Alsenbrücke" "Am Freibad" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ Gewaesser                : chr [1:1362] "M.-H.-Grenzgr." "Müggelspree" "Griebnitzkanal" "Tegeler Fließ" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ Betreiber                : chr [1:1362] "Land Berlin" "Land Berlin" "Land Berlin" "Land Berlin" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ Datum                    : chr [1:1362] "06.05.2023 06:00" "06.05.2023 05:45" "06.05.2023 05:45" "06.05.2023 06:00" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ Wasserstand              : num [1:1362] 26 52 51 85 13 33 70 80 151 46 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ Datum                    : chr [1:1362] "07.05.2023 05:15" "07.05.2023 05:15" "07.05.2023 05:15" "07.05.2023 05:15" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ Wasserstand              : num [1:1362] 14 51 51 85 6 26 70 80 78 41 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ Einheit                  : chr [1:1362] "cm" "cm" "cm" "cm" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ Ganglinien               : chr [1:1362] "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=ows&amp;station=5865900" "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=ows&amp;station=5827103" "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=ows&amp;station=5870400" "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=ows&amp;station=5819900" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ Klassifikation           : chr [1:1362] "normal" "niedrig" "niedrig" "normal" ...</span>
