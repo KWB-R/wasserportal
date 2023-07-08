@@ -217,7 +217,7 @@ gwl_classified_only_with_coords <- gwl_classified_only %>%
   ) %>% 
   dplyr::left_join(
     stations_gwl_master %>%
-      dplyr::select("Nummer", rechtswert, hochwert) %>% 
+      dplyr::select(dplyr::all_of(c("Nummer", rechtswert, hochwert))) %>% 
       dplyr::rename(Messstellennummer = "Nummer"),
     by = "Messstellennummer"
   ) %>% 
