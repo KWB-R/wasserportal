@@ -53,9 +53,9 @@ also_available <- function(what, format, filename) {
 }
 
 ggplot2_date_value <- function(data, col) {
-  ggplot2::ggplot(data, mapping = ggplot2::aes_string(
-    x = "Datum", 
-    y = "Messwert", 
+  ggplot2::ggplot(data, mapping = ggplot2::aes(
+    x = Datum, 
+    y = Messwert, 
     col = col
   ))
 }
@@ -167,10 +167,10 @@ title_text <- sprintf(
 g1 <- gwl_classified_only %>% 
   dplyr::count(Klassifikation, Grundwasserspannung) %>% 
   dplyr::mutate(percental_share = kwb.utils::percentage(n, nrow(gwl))) %>% 
-  ggplot2::ggplot(ggplot2::aes_string(
-    x = "Klassifikation",
-    y = "percental_share",
-    fill = "Grundwasserspannung"
+  ggplot2::ggplot(ggplot2::aes(
+    x = Klassifikation,
+    y = percental_share,
+    fill = Grundwasserspannung
   )) +
   ggplot2::geom_bar(stat = "identity") + 
   ggplot2::labs(
