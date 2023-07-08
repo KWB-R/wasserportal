@@ -189,7 +189,8 @@ summarise_min_max_n_arrange <- function(data) {
     dplyr::summarise(
       date_min = min(.data$Datum),
       date_max = max(.data$Datum),
-      n = dplyr::n()
+      n = dplyr::n(), 
+      .groups = "drop"
     ) %>%
     dplyr::arrange(dplyr::desc(.data$n))
 }
