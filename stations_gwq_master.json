@@ -806,6 +806,19 @@
     "Hochwert_UTM_33_N": "5820077"
   },
   {
+    "Nummer": "5167",
+    "Bezirk": "Friedrichshain-Kreuzberg",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand + GW-Güte",
+    "Grundwasserleiter": "Hauptgrundwasserleiter (GWL 1.3 + 2)",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "37.98",
+    "Rohroberkante_m_ue_NHN": "37.89",
+    "Filteroberkante_m_u_GOK": "26.40",
+    "Filterunterkante_m_u_GOK": "28.40",
+    "Rechtswert_UTM_33_N": "394897",
+    "Hochwert_UTM_33_N": "5819658"
+  },
+  {
     "Nummer": "5207",
     "Bezirk": "Lichtenberg",
     "Betreiber": "Senat",
