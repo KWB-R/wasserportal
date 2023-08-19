@@ -5057,6 +5057,19 @@
     "Hochwert_UTM_33_N": "5829034"
   },
   {
+    "Nummer": "5059",
+    "Bezirk": "Pankow",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand, tagesaktuell",
+    "Grundwasserleiter": "lokal ausgebildeter Grundwasserkörper",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "53.42",
+    "Rohroberkante_m_ue_NHN": "53.78",
+    "Filteroberkante_m_u_GOK": "10.00",
+    "Filterunterkante_m_u_GOK": "11.00",
+    "Rechtswert_UTM_33_N": "391080",
+    "Hochwert_UTM_33_N": "5831080"
+  },
+  {
     "Nummer": "5060",
     "Bezirk": "Pankow",
     "Betreiber": "Senat",
