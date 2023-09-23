@@ -7,7 +7,12 @@
 
 test_that("read() works", {
 
-  wasserportal:::read()
+  f <- wasserportal:::read
 
+  expect_identical(f(), NULL)
+
+  expect_identical(
+    f(c("a;b", "1;2,3"), header = TRUE),
+    data.frame(a = 1L, b = 2.3)
+  )
 })
-

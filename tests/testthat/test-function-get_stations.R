@@ -7,7 +7,10 @@
 
 test_that("get_stations() works", {
 
-  wasserportal:::get_stations()
+  expect_output(result <- wasserportal:::get_stations())
 
+  expect_identical(
+    names(result),
+    c("overview_list", "overview_df", "crosstable")
+  )
 })
-

@@ -7,7 +7,9 @@
 
 test_that("get_wasserportal_stations_table() works", {
 
-  wasserportal:::get_wasserportal_stations_table()
+  result <- wasserportal:::get_wasserportal_stations_table()
+
+  expect_true(kwb.utils::mainClass(result) == "tbl_df")
+  expect_true("Messstellennummer" %in% names(result))
 
 })
-

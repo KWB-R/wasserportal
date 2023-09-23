@@ -7,7 +7,10 @@
 
 test_that("wasserportal_base_url() works", {
 
-  wasserportal:::wasserportal_base_url()
+  result <- wasserportal:::wasserportal_base_url()
+
+  expect_type(result, "character")
+  expect_length(result, 1L)
+  expect_true(startsWith(result, "https://"))
 
 })
-

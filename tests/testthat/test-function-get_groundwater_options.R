@@ -7,7 +7,11 @@
 
 test_that("get_groundwater_options() works", {
 
-  wasserportal:::get_groundwater_options()
+  result <- wasserportal:::get_groundwater_options()
 
+  expect_identical(
+    names(result),
+    c("groundwater.level", "groundwater.quality")
+  )
 })
 

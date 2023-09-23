@@ -7,7 +7,12 @@
 
 test_that("get_overview_options() works", {
 
-  wasserportal:::get_overview_options()
+  result <- wasserportal:::get_overview_options()
 
+  expect_identical(
+    names(result),
+    c("surface_water", "groundwater")
+  )
+
+  expect_true(all(sapply(result, is.list)))
 })
-

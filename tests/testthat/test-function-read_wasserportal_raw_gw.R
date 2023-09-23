@@ -7,7 +7,15 @@
 
 test_that("read_wasserportal_raw_gw() works", {
 
-  wasserportal:::read_wasserportal_raw_gw()
+  f <- wasserportal:::read_wasserportal_raw_gw
+
+  result  <- f()
+
+  expect_identical(kwb.utils::mainClass(result), "tbl_df")
+
+  expect_identical(
+    names(result),
+    c("Messstellennummer", "Datum", "Parameter", "Einheit", "Messwert")
+  )
 
 })
-

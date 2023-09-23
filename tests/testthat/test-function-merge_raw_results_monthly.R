@@ -7,10 +7,12 @@
 
 test_that("merge_raw_results_monthly() works", {
 
-  expect_error(
-    wasserportal:::merge_raw_results_monthly()
-    # argument "dfs" is missing, with no default
-  )
+  f <- wasserportal:::merge_raw_results_monthly
+
+  expect_error(suppressWarnings(f()))
+
+  expect_warning(result <- f(123))
+  expect_identical(result, 123)
 
 })
 
