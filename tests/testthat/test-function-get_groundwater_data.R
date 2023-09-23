@@ -7,10 +7,27 @@
 
 test_that("get_groundwater_data() works", {
 
-  expect_error(
-    wasserportal:::get_groundwater_data()
-    # argument "stations" is missing, with no default
+  f <- wasserportal:::get_groundwater_data
+
+  expect_error(f(debug = FALSE))
+
+  stations <- list(
+    overview_list = list(
+      groundwater.level = data.frame(
+        Messstellennummer = 1
+      ),
+      groundwater.quality = data.frame(
+        Messstellennummer = 1
+      )
+    )
   )
 
-})
+  result <- f(stations, debug = FALSE)
 
+  expect_length(result, 2L)
+  expect_type(result, "list")
+
+  expect_true(all(
+    sapply(result, kwb.utils::mainClass) == "data.table"
+  ))
+})
