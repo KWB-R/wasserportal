@@ -626,7 +626,6 @@
   {
     "Messstellennummer": "581100",
     "Messstellenname": "Bolt OP",
-    "ows": "x",
     "odf": "x"
   },
   {
@@ -3053,6 +3052,11 @@
     "gwq": "x"
   },
   {
+    "Messstellennummer": "6535",
+    "gws": "x",
+    "gwq": "x"
+  },
+  {
     "Messstellennummer": "6548",
     "gws": "x",
     "gwq": "x"
@@ -4540,10 +4544,6 @@
   },
   {
     "Messstellennummer": "6518",
-    "gwq": "x"
-  },
-  {
-    "Messstellennummer": "6535",
     "gwq": "x"
   },
   {
