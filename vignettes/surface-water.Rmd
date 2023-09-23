@@ -5,8 +5,10 @@ date: "`r Sys.time()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Surface Water}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r, include = FALSE}
@@ -88,20 +90,22 @@ swl_master <- wasserportal::get_wasserportal_masters_data(
     dplyr::pull(.data$stammdaten_link)
 )
 
+column_level_zero <- "Pegelnullpunkt_m_NHN"
+  
 swl_data <- sw_data_daily_list$surface_water.water_level %>% 
   dplyr::select(where(~!all(is.na(.x)))) %>%
   dplyr::left_join(
-    swl_master[, c("Nummer", "Pegelnullpunkt_m")],
-    by = c("Messstellennummer" = "Nummer")
+    kwb.utils::selectColumns(swl_master, c("Nummer", column_level_zero)),
+    by = c(Messstellennummer = "Nummer")
   ) %>%
   dplyr::mutate(
-    Tagesmittelwert_Pegelstand_mNN = as.numeric(.data$Pegelnullpunkt_m) + 
+    Tagesmittelwert_Pegelstand_mNN = as.numeric(.data[[column_level_zero]]) + 
       .data$Tagesmittelwert / 100
   ) %>%
   ### remove -777 for messstellennummer 5867000 (few values in 2000) resulted by
   ### step above
-  dplyr::filter(.data$Tagesmittelwert_Pegelstand_mNN != -777) %>%
-  dplyr::select(- .data$Pegelnullpunkt_m)
+  dplyr::filter(.data[["Tagesmittelwert_Pegelstand_mNN"]] != -777) %>%
+  kwb.utils::removeColumns(column_level_zero)
 
 str(swl_data)
 ```
