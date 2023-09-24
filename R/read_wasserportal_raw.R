@@ -8,8 +8,8 @@
 #' @param type one of "single", "daily", "monthly" (default: "single")
 #' @param include_raw_time TRUE or FALSE (default: FALSE)
 #' @param handle handle (default: NULL)
-#' @param stations_crosstable sublist `crosstable` as retrieved from \code{\link{get_stations}}
-#' i.e. `get_stations()$crosstable`
+#' @param stations_crosstable data frame as returned by
+#'   \code{\link{get_stations}(type = "crosstable")}
 #' @param api_version 1 integer number representing the version of
 #'   wasserportal's API. 1L: before 2023, 2L: since 2023. Default: 2L
 #' @return ????
