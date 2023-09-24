@@ -35,8 +35,12 @@ get_groundwater_data <- function(
           "Importing '%s' data (%d/%d)",
           option_name, i, length(groundwater_options)
         ),
+        dbg = debug,
         expr = {
-          ids <- stations$overview_list[[option_name]]$Messstellennummer
+          ids <- stations %>%
+            kwb.utils::selectElements("overview_list") %>%
+            kwb.utils::selectElements(option_name) %>%
+            kwb.utils::selectColumns("Messstellennummer")
           lapply(
             X = ids,
             FUN = function(id) {

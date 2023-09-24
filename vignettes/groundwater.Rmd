@@ -176,12 +176,12 @@ str(gw_data)
 # Helper functions to be reused in different data summaries
 select_main_columns <- function(data) {
   data %>%
-    dplyr::select(
-      .data$Messstellennummer,
-      .data$Parameter,
-      .data$Datum,
-      .data$Messwert
-    )
+    dplyr::select(dplyr::all_of(c(
+      "Messstellennummer",
+      "Parameter",
+      "Datum",
+      "Messwert"
+    )))
 }
 
 summarise_min_max_n_arrange <- function(data) {
@@ -189,7 +189,8 @@ summarise_min_max_n_arrange <- function(data) {
     dplyr::summarise(
       date_min = min(.data$Datum),
       date_max = max(.data$Datum),
-      n = dplyr::n()
+      n = dplyr::n(), 
+      .groups = "drop"
     ) %>%
     dplyr::arrange(dplyr::desc(.data$n))
 }

@@ -61,7 +61,8 @@ Suggests:
     plotly,
     rmarkdown,
     sf,
-    tidyselect
+    tidyselect,
+    testthat (>= 3.0.0)
 Remotes: 
     github::kwb-r/kwb.datetime,
     github::kwb-r/kwb.pkgbuild,
@@ -71,3 +72,4 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
 VignetteBuilder: knitr
+Config/testthat/edition: 3
