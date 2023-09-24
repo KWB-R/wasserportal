@@ -8,18 +8,21 @@ as_date_de <- function(x)
 #' @importFrom kwb.utils isTryError
 assert_date <- function(x)
 {
-  if (! inherits(x, "Date")) {
-
-    x <- try(as.Date(x))
-
-    if (kwb.utils::isTryError(x)) {
-      stop(call. = FALSE, sprintf(
-        "%s cannot be converted to a Date object!", deparse(substitute(x))
-      ))
-    }
+  if (inherits(x, "Date")) {
+    return(x)
   }
 
-  x
+  result <- try(as.Date(x), silent = TRUE)
+
+  if (kwb.utils::isTryError(result)) {
+    stop(call. = FALSE, sprintf(
+      "%s cannot be converted to a Date object: %s",
+      deparse(substitute(x)),
+      as.character(result)
+    ))
+  }
+
+  result
 }
 
 # columns_to_labels ------------------------------------------------------------
