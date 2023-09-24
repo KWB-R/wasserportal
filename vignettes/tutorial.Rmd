@@ -74,16 +74,21 @@ overview_options <- wasserportal::get_overview_options()
 
 str(overview_options)
 
-system.time(stations <- wasserportal::get_stations())
+system.time(
+  stations <- wasserportal::get_stations(type = c("list", "crosstable"))
+)
 
 str(stations)
 
-write_pretty_json(stations$crosstable, "stations_crosstable.json")
+stations_list <- kwb.utils::selectElements(stations, "list")
+stations_crosstable <- kwb.utils::selectElements(stations, "crosstable")
+
+write_pretty_json(stations_crosstable, "stations_crosstable.json")
 ```
 
 ```{r stations_crosstable}
 top_filter_datatable(
-  stations$crosstable, 
+  stations_crosstable, 
   "Data availabilty per monitoring station"
 )
 ```
@@ -106,14 +111,14 @@ also_available(
 Overview data of GW level stations can be requested as shown below:
 
 ```{r stations_gwl_table_overview}
-top_filter_datatable(stations$overview_list$groundwater.level)
+top_filter_datatable(stations_list$groundwater.level)
 ```
 
 Master data of GW level stations can be requested as shown below:
 
 ```{r stations_gwl_table_master}
 stations_gwl_master <- wasserportal::get_wasserportal_masters_data(
-  master_urls = stations$overview_list$groundwater.level$stammdaten_link
+  master_urls = stations_list$groundwater.level$stammdaten_link
 )
 
 write_pretty_json(stations_gwl_master, "stations_gwl_master.json")
@@ -136,7 +141,7 @@ GW level trend classification (provided by SenWeb) is visualized below.
 ##### Trend Classification Histogramm
 
 ```{r stations_gwl_trend}
-gwl <- stations$overview_list$groundwater.level %>% 
+gwl <- stations_list$groundwater.level %>% 
   dplyr::mutate(Datum = as.Date(Datum, format = "%d.%m.%Y"))
 
 text_low_levels <- c("extrem niedrig", "sehr niedrig", "niedrig")
@@ -285,7 +290,7 @@ also_available(
 for total period available.
 
 ```{r test_gwl_download_single, eval = FALSE}
-station_gwl <- stations$overview_list$groundwater.level[1L, ]
+station_gwl <- stations_list$groundwater.level[1L, ]
 
 ncols <- 2:ncol(station_gwl)
 
@@ -315,7 +320,7 @@ plotly::ggplotly(g) %>%
 debug <- FALSE
 
 gw_level_multi <- data.table::rbindlist(lapply(
-  stations$overview_list$groundwater.level$Messstellennummer, 
+  stations_list$groundwater.level$Messstellennummer, 
   function(id) kwb.utils::catAndRun(
     sprintf("Downloading Messstellennummer == '%s'", id), 
     wasserportal::read_wasserportal_raw_gw(station = id, stype = "gwl"), 
@@ -326,7 +331,7 @@ gw_level_multi <- data.table::rbindlist(lapply(
 readr::write_csv(gw_level_multi, file = "groundwater_level.csv")
 
 # Plot 10 GW level
-selected_stations <- stations$overview_list$groundwater.level$Messstellennummer[1:10]
+selected_stations <- stations_list$groundwater.level$Messstellennummer[1:10]
 
 g <- gw_level_multi %>% 
   dplyr::filter(Messstellennummer %in% selected_stations) %>% 
@@ -381,7 +386,7 @@ also_available(
 #### GW Quality: Download and Plotting One Station
 
 ```{r test_gwq_download_single, eval = FALSE}
-station_gwq <- stations$overview_list$groundwater.quality[1L, ]
+station_gwq <- stations_list$groundwater.quality[1L, ]
 
 ncols <- 2:ncol(station_gwq)
 
@@ -413,7 +418,7 @@ plotly::ggplotly(g) %>%
 debug <- FALSE
 
 gw_quality_multi <- data.table::rbindlist(lapply(
-  stations$overview_list$groundwater.quality$Messstellennummer, 
+  stations_list$groundwater.quality$Messstellennummer, 
   function(id) kwb.utils::catAndRun(
     sprintf("Downloading Messstellennummer == '%s'", id), 
     wasserportal::read_wasserportal_raw_gw(station = id, stype = "gwq"), 
@@ -424,7 +429,7 @@ gw_quality_multi <- data.table::rbindlist(lapply(
 readr::write_csv(gw_quality_multi, "groundwater_quality.csv")
 
 # Plot 10 GW quality 
-selected_stations <- stations$overview_list$groundwater.quality$Messstellennummer[1:10]
+selected_stations <- stations_list$groundwater.quality$Messstellennummer[1:10]
 
 g <- gw_quality_multi %>% 
   dplyr::filter(Messstellennummer %in% selected_stations) %>% 

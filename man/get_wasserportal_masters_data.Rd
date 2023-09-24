@@ -7,9 +7,9 @@
 get_wasserportal_masters_data(master_urls, run_parallel = TRUE)
 }
 \arguments{
-\item{master_urls}{urls with master data as retrieved by
-\code{\link{get_stations}} and one of  "overview_list" sublist elements
-column name "stammdaten_link"}
+\item{master_urls}{URLs to master data as found in column "stammdaten_link"
+of the data frame returned by
+\code{\link{get_stations}}\code{(type = "list")}}
 
 \item{run_parallel}{default: TRUE}
 }
@@ -21,11 +21,12 @@ Wasserportal Berlin: get master data for a multiple stations
 }
 \examples{
 \dontrun{
-stations <- wasserportal::get_stations()
-### Reduce  to monitoring stations maintained by Berlin
-master_urls <- stations$overview_list$surface_water.water_level \%>\%
-dplyr::filter(.data$Betreiber == "Land Berlin") \%>\%
-dplyr::pull(.data$stammdaten_link)
+stations_list <- wasserportal::get_stations(type = "list")
+
+# Reduce  to monitoring stations maintained by Berlin
+master_urls <- stations_list$surface_water.water_level \%>\%
+  dplyr::filter(.data$Betreiber == "Land Berlin") \%>\%
+  dplyr::pull(.data$stammdaten_link)
 
 system.time(master_parallel <- get_wasserportal_masters_data(
   master_urls

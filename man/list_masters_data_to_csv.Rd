@@ -8,7 +8,7 @@ list_masters_data_to_csv(masters_data_list)
 }
 \arguments{
 \item{masters_data_list}{masters data in list form as retrieved by
-\code{\link{get_stations}} sublist element "overview_list"}
+\code{\link{get_stations}}\code{(type = "list")}}
 }
 \value{
 loops through list of data frames and uses list names as filenames
@@ -18,8 +18,8 @@ Helper function: list masters data to csv
 }
 \examples{
 \dontrun{
-stations <- wasserportal::get_stations()
-masters_data_csv_files <- wasserportal:list_masters_data_to_csv(stations$overview_list)
+stations_list <- get_stations(type = "list")
+masters_data_csv_files <- list_masters_data_to_csv(stations_list)
 masters_data_csv_files
 }
 }

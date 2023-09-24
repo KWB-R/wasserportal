@@ -50,11 +50,11 @@ cat_file_enumeration <- function(base_url, files) {
 ## Master Data
 
 ```{r master_data}
-stations <- wasserportal::get_stations()
+stations_list <- wasserportal::get_stations(type = "list")
 
-is_gw <- stringr::str_detect(names(stations$overview_list), "groundwater")
+is_gw <- stringr::str_detect(names(stations_list), "groundwater")
 
-files <- wasserportal::list_masters_data_to_csv(stations$overview_list[is_gw])
+files <- wasserportal::list_masters_data_to_csv(stations_list[is_gw])
 ```
 
 The following groundwater master data `.csv` files are available for download: 
@@ -67,14 +67,17 @@ cat_file_enumeration(urls$gh_wasserportal, files)
 
 ```{r groundwater_data_raw_export}
 if (use_random_subset_of_stations) {
-  stations_bak <- stations
-  x <- stations$overview_list$groundwater.level[sample(876, 10), ]
-  stations$overview_list$groundwater.level <- x
-  x <- stations$overview_list$groundwater.quality[sample(208, 10), ]
-  stations$overview_list$groundwater.quality <- x
+  stations_list_bak <- stations_list
+  x <- stations_list$groundwater.level[sample(876, 10), ]
+  stations_list$groundwater.level <- x
+  x <- stations_list$groundwater.quality[sample(208, 10), ]
+  stations_list$groundwater.quality <- x
 }
 
-gw_data_list <- wasserportal::get_groundwater_data(stations, debug = TRUE)
+gw_data_list <- wasserportal::get_groundwater_data(
+  stations_list = stations_list, 
+  debug = TRUE
+)
 
 files <- wasserportal::list_timeseries_data_to_zip(gw_data_list)
 
