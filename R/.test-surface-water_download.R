@@ -2,9 +2,7 @@ if (FALSE)
 {
   `%>%` <- magrittr::`%>%`
 
-  stations <- wasserportal::get_stations()
-
-  stations_crosstable <- kwb.utils::selectElements(stations, "crosstable")
+  stations_crosstable <- wasserportal::get_stations(type = "crosstable")
 
   stations_crosstable_bb <- stations_crosstable %>%
     dplyr::filter(stringr::str_detect(
@@ -19,14 +17,12 @@ if (FALSE)
       negate = TRUE
     ))
 
-  station_crosstable_berlin <- stations_crosstable_berlin[1L, ]
-
   stations_crosstable_berlin
 
   from_date <- "1900-01-01"
 
   sw_station_berlin_daily <- wasserportal::read_wasserportal_raw(
-    station = station_crosstable_berlin %>%
+    station = stations_crosstable_berlin[1L, ] %>%
       kwb.utils::selectColumns("Messstellennummer"),
     variable = wasserportal::get_station_variables(stations_crosstable_berlin)[1],
     type = "daily",
