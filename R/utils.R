@@ -12,7 +12,7 @@ assert_date <- function(x)
     return(x)
   }
 
-  result <- try(as.Date(x), silent = TRUE)
+  result <- try(as.Date(x, origin = "1970-01-01"), silent = TRUE)
 
   if (kwb.utils::isTryError(result)) {
     stop(call. = FALSE, sprintf(
