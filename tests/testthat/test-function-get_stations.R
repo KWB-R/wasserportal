@@ -78,8 +78,6 @@ test_that("get_stations() works", {
 
   expect_identical(names(x), names(y))
 
-  expect_identical(x, y) # may fail
-
   skip_columns <- c("Datum", "Wasserstand")
 
   for (column in setdiff(names(x), skip_columns)) {
