@@ -56,7 +56,38 @@ test_that("get_stations() works", {
   # It is possible that new data arrived since the two calls of the function...
   # Which check fails?
 
-  expect_identical(result_all[["overview_list"]], result_list)
-  expect_identical(result_all[["overview_df"]], result_df)
+  remove_measurements <- function(x) {
+    position_date <- which(names(x) == "Datum")
+    x[, -c(position_date, position_date + 1L)]
+  }
+
+  # Compare the list versions (without measurement columns)
+  x <- result_all[["overview_list"]]
+  y <- result_list
+
+  expect_identical(names(x), names(y))
+
+  expect_true(all(sapply(names(x), function(name) identical(
+    remove_measurements(x[[name]]),
+    remove_measurements(y[[name]])
+  ))))
+
+  # Compare the data frame versions
+  x <- result_all[["overview_df"]]
+  y <- result_df
+
+  expect_identical(names(x), names(y))
+
+  expect_identical(x, y) # may fail
+
+  skip_columns <- c("Datum", "Wasserstand")
+
+  for (column in setdiff(names(x), skip_columns)) {
+    if (!identical(x[[column]], y[[column]])) {
+      stop("difference in column '", column, "'")
+    }
+  }
+
+  # Compare crosstable versions
   expect_identical(result_all[["crosstable"]], result_crosstable)
 })
