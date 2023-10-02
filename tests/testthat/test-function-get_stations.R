@@ -1,3 +1,5 @@
+#library(testthat)
+
 test_that("get_stations() works", {
 
   f <- wasserportal:::get_stations
@@ -45,10 +47,16 @@ test_that("get_stations() works", {
   # Check output of all types
 
   expect_output(result_all <- f())
-  expect_identical(result_all, list(
-    overview_list = result_list,
-    overview_df = result_df,
-    crosstable = result_crosstable
-  ))
 
+  expect_identical(
+    names(result_all),
+    c("overview_list", "overview_df", "crosstable")
+  )
+
+  # It is possible that new data arrived since the two calls of the function...
+  # Which check fails?
+
+  expect_identical(result_all[["overview_list"]], result_list)
+  expect_identical(result_all[["overview_df"]], result_df)
+  expect_identical(result_all[["crosstable"]], result_crosstable)
 })
