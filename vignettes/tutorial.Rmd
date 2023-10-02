@@ -68,7 +68,6 @@ ggplot2_date_value <- function(data, col) {
 ```{r stations_overview}
 # install.packages("remotes")
 # remotes::install_github("kwb-r/wasserportal", upgrade = "never", force = TRUE)
-library(wasserportal)
 
 overview_options <- wasserportal::get_overview_options()
 
@@ -80,7 +79,7 @@ system.time(
 
 str(stations)
 
-stations_list <- kwb.utils::selectElements(stations, "list")
+stations_list <- kwb.utils::selectElements(stations, "overview_list")
 stations_crosstable <- kwb.utils::selectElements(stations, "crosstable")
 
 write_pretty_json(stations_crosstable, "stations_crosstable.json")
