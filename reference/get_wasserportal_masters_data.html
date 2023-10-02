@@ -65,9 +65,9 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>master_urls</dt>
-<dd><p>urls with master data as retrieved by
-<code><a href="get_stations.html">get_stations</a></code> and one of  "overview_list" sublist elements
-column name "stammdaten_link"</p></dd>
+<dd><p>URLs to master data as found in column "stammdaten_link"
+of the data frame returned by
+<code><a href="get_stations.html">get_stations</a></code><code>(type = "list")</code></p></dd>
 
 
 <dt>run_parallel</dt>
@@ -84,11 +84,12 @@ column name "stammdaten_link"</p></dd>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span><span class="va">stations</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="get_stations.html">get_stations</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co">### Reduce  to monitoring stations maintained by Berlin</span></span></span>
-<span class="r-in"><span><span class="va">master_urls</span> <span class="op">&lt;-</span> <span class="va">stations</span><span class="op">$</span><span class="va">overview_list</span><span class="op">$</span><span class="va">surface_water.water_level</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">Betreiber</span> <span class="op">==</span> <span class="st">"Land Berlin"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">stammdaten_link</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">stations_list</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="get_stations.html">get_stations</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"list"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Reduce  to monitoring stations maintained by Berlin</span></span></span>
+<span class="r-in"><span><span class="va">master_urls</span> <span class="op">&lt;-</span> <span class="va">stations_list</span><span class="op">$</span><span class="va">surface_water.water_level</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">Betreiber</span> <span class="op">==</span> <span class="st">"Land Berlin"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">stammdaten_link</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="va">master_parallel</span> <span class="op">&lt;-</span> <span class="fu">get_wasserportal_masters_data</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">master_urls</span></span></span>

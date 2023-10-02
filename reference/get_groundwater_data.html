@@ -65,14 +65,16 @@ level and quality data and save in list</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_groundwater_data</span><span class="op">(</span></span>
 <span>  <span class="va">stations</span>,</span>
 <span>  groundwater_options <span class="op">=</span> <span class="fu"><a href="get_groundwater_options.html">get_groundwater_options</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  debug <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  debug <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  stations_list <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>stations</dt>
-<dd><p>stations list as retrieved by <code><a href="get_stations.html">get_stations</a></code></p></dd>
+<dd><p>list as retrieved by <code><a href="get_stations.html">get_stations</a></code>.
+Deprecated. Please use <code>stations_list</code> instead</p></dd>
 
 
 <dt>groundwater_options</dt>
@@ -81,6 +83,11 @@ level and quality data and save in list</p>
 
 <dt>debug</dt>
 <dd><p>print debug messages (default: TRUE)</p></dd>
+
+
+<dt>stations_list</dt>
+<dd><p>list of station metadata as returned by
+<code><a href="get_stations.html">get_stations</a>(type = "list")</code></p></dd>
 
 </dl></div>
     <div class="section level2">
