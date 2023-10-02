@@ -30,4 +30,5 @@ test_that("get_groundwater_data() works", {
   expect_true(all(
     sapply(result, kwb.utils::mainClass) == "data.table"
   ))
+
 })
