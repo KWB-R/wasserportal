@@ -20,9 +20,11 @@ knitr::opts_chunk$set(
 is_ghactions <- identical(Sys.getenv("CI"), "true")
 ```
 
-## Define Helper Functions
+## Load Pipe Operator and Define Helper Functions
 
 ```{r define_helpers}
+`%>%` <- magrittr::`%>%`
+
 write_pretty_json <- function(x, path) {
   jsonlite::write_json(x, path = path, pretty = TRUE)
 }
