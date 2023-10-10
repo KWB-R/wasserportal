@@ -97,7 +97,7 @@ get_non_external_station_ids <- function(station_data)
   pull <- kwb.utils::createAccessor(station_data)
 
   is_external <- is_external_link(pull("stammdaten_link"))
-  is_berlin <- pull("Betreiber") == "Land Berlin"
+  is_berlin <- kwb.utils::defaultIfNA(pull("Betreiber"), "") == "Land Berlin"
 
   # Identifiers of monitoring stations to loop through
   as.character(pull("Messstellennummer")[is_berlin & !is_external])
