@@ -87,11 +87,22 @@ read_wasserportal <- function(
 )
 {
   #kwb.utils::assignPackageObjects("wasserportal")
-  #station=get_wasserportal_stations(type = "flow")$Tiefwerder
-  #variables = get_wasserportal_variables(station);from_date = "2019-01-01";include_raw_time = FALSE
-  station_crosstable <- stations_crosstable[stations_crosstable$Messstellennummer == station,]
+
+  #station <- "5825500"
+  #variables <- c("ows", "odf")
+  #from_date <- as.character(Sys.Date() - 90L)
+  #type = "single"
+  #include_raw_time = FALSE
+  #stations_crosstable <- get_stations(type = "crosstable")
+
+  station_crosstable <- stations_crosstable[stations_crosstable$Messstellennummer == station, ]
+
   variable_ids <- get_station_variables(station_crosstable)
-  if(is.null(variables)) variables <- variable_ids
+
+  if (is.null(variables)) {
+    variables <- variable_ids
+  }
+
   station_ids <- stations_crosstable[["Messstellennummer"]]
 
   stopifnot(all(station %in% station_ids))
@@ -101,26 +112,30 @@ read_wasserportal <- function(
 
   handle <- httr::handle_find(get_wasserportal_url(0, 0))
 
-  dfs <- lapply(
-    X = variables,
-    FUN = read_wasserportal_raw,
-    station = station,
-    from_date = from_date,
-    type = type,
-    include_raw_time = include_raw_time,
-    handle = handle,
-    stations_crosstable = stations_crosstable
-
-  )
+  dfs <- lapply(variables, function(variable) {
+    try(read_wasserportal_raw(
+      variable,
+      station = station,
+      from_date = from_date,
+      type = type,
+      include_raw_time = include_raw_time,
+      handle = handle,
+      stations_crosstable = stations_crosstable
+    ))
+  })
 
   # Remove elements of class "response" that are returned in case of an error
   failed <- sapply(dfs, function(df) {
-    inherits(df, "response") || length(df) == 0
+    kwb.utils::isTryError(df) || inherits(df, "response") || length(df) == 0
   })
 
   if (any(failed)) {
     kwb.utils::catAndRun(
-      sprintf("Removing %d elements that are empty or failed", sum(failed)),
+      sprintf(
+        "Removing %d elements that are empty or failed (variables: %s)",
+        sum(failed),
+        kwb.utils::stringList(variables[failed])
+      ),
       expr = {
         failures <- dfs[failed]
         dfs <- dfs[! failed]
