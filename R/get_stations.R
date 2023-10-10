@@ -1,8 +1,14 @@
 #' Get Stations
 #'
+#' @param type vector of character describing the type(s) of output(s) to be
+#'   returned. Expected values (and default): \code{c("list", "data.frame",
+#'   "crosstable")}. If only one value is given the data is returned in the
+#'   expected type. If more than one values are given, a list is returned with
+#'   one list element per type.
 #' @param run_parallel default: TRUE
 #' @param n_cores number of cores to use if \code{run_parallel = TRUE}.
 #'   Default: one less than the detected number of cores.
+#' @param debug logical indicating whether or not to show debug messages
 #' @return list with general station "overview" (either as list "overview_list"
 #' or as data.frame "overview_df") and a crosstable with information which
 #' parameters is available per station ("x" if available, NA if not)
@@ -18,16 +24,19 @@
 #' str(stations)
 #'
 get_stations <- function(
-    run_parallel = TRUE, n_cores = parallel::detectCores() - 1L
+    type = c("list", "data.frame", "crosstable"),
+    run_parallel = TRUE,
+    n_cores = parallel::detectCores() - 1L,
+    debug = TRUE
 )
 {
-  overview_options <- unlist(get_overview_options())
+  expected_types <- c("list", "data.frame", "crosstable")
 
-  # Prepare message text for console output
-  messageText <- sprintf(
-    "Importing %d station overviews from Wasserportal Berlin",
-    length(overview_options)
-  )
+  stopifnot(is.character(type))
+  stopifnot(all(type %in% expected_types))
+  stopifnot(!anyDuplicated(type))
+
+  overview_options <- unlist(get_overview_options())
 
   # Prepare parallel processing if desired
   if (run_parallel) {
@@ -41,44 +50,76 @@ get_stations <- function(
   }
 
   # Loop through overview_options, either in parallel or sequentially
-  overview_list <- kwb.utils::catAndRun(messageText, expr = {
-    if (run_parallel) {
-      parallel::parLapply(cl, overview_options, FUN)
-    } else {
-      lapply(overview_options, FUN)
-    }
-  })
-
-  overview_df <- data.table::rbindlist(
-    overview_list,
-    fill = TRUE,
-    idcol = "key"
-  )
-
-  metadata <- tidyr::separate(
-    data.frame(
-      key = names(overview_options),
-      station_type = as.vector(overview_options)
+  overview_list <- kwb.utils::catAndRun(
+    sprintf(
+      "Importing %d station overviews from Wasserportal Berlin",
+      length(overview_options)
     ),
-    .data$key,
-    into = c("water_body", "variable"),
-    sep = "\\.",
-    remove = FALSE
+    dbg = debug,
+    expr = {
+      if (run_parallel) {
+        parallel::parLapply(cl, overview_options, FUN)
+      } else {
+        lapply(overview_options, FUN)
+      }
+    }
   )
 
-  overview_df <- dplyr::left_join(overview_df, metadata, by = "key")
+  # Return the list if only the list is requested
+  if (identical(type, "list")) {
+    return(overview_list)
+  }
 
-  crosstable <- overview_df %>%
-    dplyr::select("Messstellennummer", "Messstellenname", "station_type") %>%
-    dplyr::mutate(value = "x") %>%
-    tidyr::pivot_wider(
-      names_from = "station_type",
-      values_from = "value"
+  # Function to convert overview_options to a data frame
+  overview_options_to_df <- function(overview_options) {
+    tidyr::separate(
+      data.frame(
+        key = names(overview_options),
+        station_type = as.vector(overview_options)
+      ),
+      .data$key,
+      into = c("water_body", "variable"),
+      sep = "\\.",
+      remove = FALSE
     )
+  }
 
-  list(
-    overview_list = overview_list,
-    overview_df = overview_df,
-    crosstable = crosstable
+  # Convert overview_list to a data frame and append metadata from options
+  overview_df <- overview_list %>%
+    data.table::rbindlist(fill = TRUE, idcol = "key") %>%
+    dplyr::left_join(overview_options_to_df(overview_options), by = "key")
+
+  # Return the data frame if only the data frame is requested
+  if (identical(type, "data.frame")) {
+    return(overview_df)
+  }
+
+  # Create crosstable if requested
+  crosstable <- if ("crosstable" %in% type) {
+    overview_df %>%
+      dplyr::select("Messstellennummer", "Messstellenname", "station_type") %>%
+      dplyr::mutate(value = "x") %>%
+      tidyr::pivot_wider(names_from = "station_type", values_from = "value")
+  } # else NULL
+
+  # Return the crosstable if only the crosstable is requested
+  if (identical(type, "crosstable")) {
+    return(crosstable)
+  }
+
+  # If we arrive here, there are at least two types of output requested
+  stopifnot(length(type) > 1L)
+
+  # Return a list with all requested types of output
+  c(
+    if ("list" %in% type) {
+      list(overview_list = overview_list)
+    },
+    if ("data.frame" %in% type) {
+      list(overview_df = overview_df)
+    },
+    if (!is.null(crosstable)) {
+      list(crosstable = crosstable)
+    }
   )
 }

@@ -2,10 +2,12 @@
 #'
 #' @description wrapper function to scrape all available raw data, i.e. groundwater
 #' level and quality data and save in list
-#' @param stations stations list as retrieved by \code{\link{get_stations}}
+#' @param stations list as retrieved by \code{\link{get_stations}}.
+#'   Deprecated. Please use \code{stations_list} instead
 #' @param groundwater_options as retrieved by \code{\link{get_groundwater_options}}
 #' @param debug print debug messages (default: TRUE)
-#'
+#' @param stations_list list of station metadata as returned by
+#'   \code{\link{get_stations}(type = "list")}
 #' @return list with elements "groundwater.level" and "groundwater.quality" data
 #' frames
 #' @export
@@ -21,10 +23,16 @@
 get_groundwater_data <- function(
     stations,
     groundwater_options = get_groundwater_options(),
-    debug = TRUE
+    debug = TRUE,
+    stations_list = NULL
 )
 {
   #kwb.utils::assignPackageObjects("wasserportal")
+
+  if (is.null(stations_list)) {
+    stations_list <- kwb.utils::selectElements(stations, "overview_list")
+  }
+
   result <- lapply(
     X = seq_along(groundwater_options),
     FUN = function(i) {
@@ -37,8 +45,7 @@ get_groundwater_data <- function(
         ),
         dbg = debug,
         expr = {
-          ids <- stations %>%
-            kwb.utils::selectElements("overview_list") %>%
+          ids <- stations_list %>%
             kwb.utils::selectElements(option_name) %>%
             kwb.utils::selectColumns("Messstellennummer")
           lapply(

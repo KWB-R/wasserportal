@@ -37,10 +37,11 @@ cat_file_enumeration <- function(files) {
 library(wasserportal)
 
 stations <- wasserportal::get_stations()
+stations_list <- kwb.utils::selectElements(stations, "overview_list")
 
-is_sw <- stringr::str_detect(names(stations$overview_list), "surface")
+is_sw <- stringr::str_detect(names(stations_list), "surface")
 
-files <- wasserportal::list_masters_data_to_csv(stations$overview_list[is_sw])
+files <- wasserportal::list_masters_data_to_csv(stations_list[is_sw])
 ```
 
 The following surface water master data `.csv` files are available for download: 
@@ -85,7 +86,7 @@ cat_file_enumeration(files)
 
 ```{r surface_waterlevel}
 swl_master <- wasserportal::get_wasserportal_masters_data(
-  master_urls = stations$overview_list$surface_water.water_level %>%
+  master_urls = stations_list$surface_water.water_level %>%
     dplyr::filter(.data$Betreiber == "Land Berlin") %>%
     dplyr::pull(.data$stammdaten_link)
 )

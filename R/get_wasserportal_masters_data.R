@@ -1,8 +1,8 @@
 #' Wasserportal Berlin: get master data for a multiple stations
 #'
-#' @param master_urls urls with master data as retrieved by
-#'   \code{\link{get_stations}} and one of  "overview_list" sublist elements
-#'   column name "stammdaten_link"
+#' @param master_urls URLs to master data as found in column "stammdaten_link"
+#'   of the data frame returned by
+#'   \code{\link{get_stations}}\code{(type = "list")}
 #' @param run_parallel default: TRUE
 #'
 #' @return data frame with metadata for selected master urls
@@ -11,11 +11,12 @@
 #' @importFrom data.table rbindlist
 #' @examples
 #' \dontrun{
-#' stations <- wasserportal::get_stations()
-#' ### Reduce  to monitoring stations maintained by Berlin
-#' master_urls <- stations$overview_list$surface_water.water_level %>%
-#' dplyr::filter(.data$Betreiber == "Land Berlin") %>%
-#' dplyr::pull(.data$stammdaten_link)
+#' stations_list <- wasserportal::get_stations(type = "list")
+#'
+#' # Reduce  to monitoring stations maintained by Berlin
+#' master_urls <- stations_list$surface_water.water_level %>%
+#'   dplyr::filter(.data$Betreiber == "Land Berlin") %>%
+#'   dplyr::pull(.data$stammdaten_link)
 #'
 #' system.time(master_parallel <- get_wasserportal_masters_data(
 #'   master_urls
@@ -77,18 +78,24 @@ get_wasserportal_masters_data <- function(
 #' @export
 #' @examples
 #' \dontrun{
-#' stations <- wasserportal::get_stations()
+#' stations_list <- wasserportal::get_stations(type = "list")
 #'
-#' ## GW Station
-#' master_url <- stations$overview_list$groundwater.level$stammdaten_link[1]
+#' # GW Station
+#' master_url <- stations_list %>%
+#'   kwb.utils::selectElements("groundwater.level") %>%
+#'   kwb.utils::selectColumns("stammdaten_link")[1L]
+#'
 #' get_wasserportal_master_data(master_url)
 #'
-#' ## SW Station
-#' ### Reduce  to monitoring stations maintained by Berlin
-#' master_urls <- stations$overview_list$surface_water.water_level %>%
-#' dplyr::filter(.data$Betreiber == "Land Berlin") %>%
-#' dplyr::pull(.data$stammdaten_link)
-#' get_wasserportal_master_data(master_urls[1])
+#' # SW Station
+#'
+#' # Reduce  to monitoring stations maintained by Berlin
+#' master_urls <- stations_list %>%
+#'   kwb.utils::selectElements("surface_water.water_level") %>%
+#'   dplyr::filter(.data$Betreiber == "Land Berlin") %>%
+#'   dplyr::pull(.data$stammdaten_link)
+#'
+#' get_wasserportal_master_data(master_urls[1L])
 #' }
 #'
 get_wasserportal_master_data <- function(master_url)

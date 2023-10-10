@@ -47,7 +47,16 @@ read_wasserportal_raw_gw <- function(
   # Split the text into separate lines
   textlines <- strsplit(text, "\n")[[1L]]
 
-  start_line <- which(startsWith(textlines, "Datum"))
+  date_pattern <- "Datum"
+  start_line <- which(startsWith(textlines, date_pattern))
+
+  if (length(start_line) == 0L) {
+    kwb.utils::stopFormatted(
+      "Could not find the header row (starting with '%s')",
+      date_pattern
+    )
+  }
+
   textlines <- textlines[start_line:length(textlines)]
 
   # Split the header row into fields

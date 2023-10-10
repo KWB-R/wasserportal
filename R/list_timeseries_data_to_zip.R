@@ -9,9 +9,11 @@
 #' @examples
 #' \dontrun{
 #' stations <- wasserportal::get_stations()
+#'
 #' # Groundwater Time Series
 #' gw_tsdata_list <- wasserportal::get_groundwater_data(stations)
 #' gw_tsdata_files <- wasserportal::list_timeseries_data_to_zip(gw_tsdata_list)
+#'
 #' # Surface Water Time Series
 #' sw_tsdata_list <- wasserportal::get_daily_surfacewater_data(stations)
 #' sw_tsdata_files <- wasserportal::list_timeseries_data_to_zip(sw_tsdata_list)

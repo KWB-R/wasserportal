@@ -28,8 +28,8 @@ read_wasserportal_raw(
 
 \item{handle}{handle (default: NULL)}
 
-\item{stations_crosstable}{sublist \code{crosstable} as retrieved from \code{\link{get_stations}}
-i.e. \code{get_stations()$crosstable}}
+\item{stations_crosstable}{data frame as returned by
+\code{\link{get_stations}(type = "crosstable")}}
 
 \item{api_version}{1 integer number representing the version of
 wasserportal's API. 1L: before 2023, 2L: since 2023. Default: 2L}

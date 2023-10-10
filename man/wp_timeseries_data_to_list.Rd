@@ -11,8 +11,8 @@ wp_timeseries_data_to_list(
 )
 }
 \arguments{
-\item{overview_list_names}{names of "overview_list" as retrieved by
-\code{\link{get_stations}}}
+\item{overview_list_names}{names of elements in the list returned by
+\code{\link{get_stations}(type = "list")}}
 
 \item{target_dir}{target directory for downloading data (default:
 tempdir())}
@@ -28,8 +28,7 @@ Wasserportal Time Series Data: download and Import in R List
 }
 \examples{
 \dontrun{
-stations <- wasserportal::get_stations()
-overview_list_names <- names(stations$overview_list)
+overview_list_names <- names(wasserportal::get_stations(type = "list"))
 wp_timeseries_data_list <- wp_timeseries_data_to_list(overview_list_names)
 }
 }
