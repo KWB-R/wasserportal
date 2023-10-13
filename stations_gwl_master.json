@@ -5086,7 +5086,7 @@
     "Nummer": "5058",
     "Bezirk": "Pankow",
     "Betreiber": "Senat",
-    "Auspraegung": "GW-Stand + GW-Güte",
+    "Auspraegung": "GW-Stand, tagesaktuell + GW-Güte",
     "Grundwasserleiter": "Hauptgrundwasserleiter (GWL 1.3 + 2)",
     "Gelaendeoberkante_GOK_m_ue_NHN": "52.47",
     "Rohroberkante_m_ue_NHN": "52.19",
@@ -7005,6 +7005,19 @@
     "Filterunterkante_m_u_GOK": "48.20",
     "Rechtswert_UTM_33_N": "398660",
     "Hochwert_UTM_33_N": "5819629"
+  },
+  {
+    "Nummer": "6518",
+    "Bezirk": "Pankow",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand, tagesaktuell + GW-Güte",
+    "Grundwasserleiter": "lokal ausgebildeter Grundwasserkörper",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "52.37",
+    "Rohroberkante_m_ue_NHN": "52.22",
+    "Filteroberkante_m_u_GOK": "10.60",
+    "Filterunterkante_m_u_GOK": "11.60",
+    "Rechtswert_UTM_33_N": "392910",
+    "Hochwert_UTM_33_N": "5829036"
   },
   {
     "Nummer": "6520",
