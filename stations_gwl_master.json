@@ -10959,6 +10959,19 @@
     "Hochwert_UTM_33_N": "5825115"
   },
   {
+    "Nummer": "17319",
+    "Bezirk": "Lichtenberg",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand, tagesaktuell",
+    "Grundwasserleiter": "Elsterzeitl. GW-Leiter (GWL 3)",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "54.42",
+    "Rohroberkante_m_ue_NHN": "55.26",
+    "Filteroberkante_m_u_GOK": "82.00",
+    "Filterunterkante_m_u_GOK": "84.50",
+    "Rechtswert_UTM_33_N": "396993",
+    "Hochwert_UTM_33_N": "5821537"
+  },
+  {
     "Nummer": "17900",
     "Bezirk": "Charlottenburg-Wilmersdorf",
     "Betreiber": "Senat",
