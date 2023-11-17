@@ -1092,6 +1092,19 @@
     "Hochwert_UTM_33_N": "5809077"
   },
   {
+    "Nummer": "157",
+    "Bezirk": "Reinickendorf",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand",
+    "Grundwasserleiter": "lokal ausgebildeter Grundwasserkörper",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "47.45",
+    "Rohroberkante_m_ue_NHN": "47.89",
+    "Filteroberkante_m_u_GOK": "11.48",
+    "Filterunterkante_m_u_GOK": "12.48",
+    "Rechtswert_UTM_33_N": "385552",
+    "Hochwert_UTM_33_N": "5833978"
+  },
+  {
     "Nummer": "161",
     "Bezirk": "Neukölln",
     "Betreiber": "Senat",
@@ -4810,6 +4823,19 @@
     "Hochwert_UTM_33_N": "5821477"
   },
   {
+    "Nummer": "5014",
+    "Bezirk": "Pankow",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand",
+    "Grundwasserleiter": "lokal ausgebildeter Grundwasserkörper",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "51.95",
+    "Rohroberkante_m_ue_NHN": "51.76",
+    "Filteroberkante_m_u_GOK": "9.00",
+    "Filterunterkante_m_u_GOK": "11.00",
+    "Rechtswert_UTM_33_N": "393115",
+    "Hochwert_UTM_33_N": "5823319"
+  },
+  {
     "Nummer": "5017",
     "Bezirk": "Pankow",
     "Betreiber": "Senat",
@@ -6082,6 +6108,19 @@
     "Filterunterkante_m_u_GOK": "10.00",
     "Rechtswert_UTM_33_N": "403902",
     "Hochwert_UTM_33_N": "5805657"
+  },
+  {
+    "Nummer": "5462",
+    "Bezirk": "Pankow",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand, tagesaktuell",
+    "Grundwasserleiter": "lokal ausgebildeter Grundwasserkörper",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "53.63",
+    "Rohroberkante_m_ue_NHN": "54.28",
+    "Filteroberkante_m_u_GOK": "2.10",
+    "Filterunterkante_m_u_GOK": "3.10",
+    "Rechtswert_UTM_33_N": "398006",
+    "Hochwert_UTM_33_N": "5829096"
   },
   {
     "Nummer": "5471",
