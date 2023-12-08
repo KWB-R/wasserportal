@@ -858,19 +858,6 @@
     "Hochwert_UTM_33_N": "5805078"
   },
   {
-    "Nummer": "128",
-    "Bezirk": "Friedrichshain-Kreuzberg",
-    "Betreiber": "Senat",
-    "Auspraegung": "GW-Stand",
-    "Grundwasserleiter": "Hauptgrundwasserleiter (GWL 1.3 + 2)",
-    "Gelaendeoberkante_GOK_m_ue_NHN": "35.32",
-    "Rohroberkante_m_ue_NHN": "36.14",
-    "Filteroberkante_m_u_GOK": "17.62",
-    "Filterunterkante_m_u_GOK": "18.62",
-    "Rechtswert_UTM_33_N": "390096",
-    "Hochwert_UTM_33_N": "5817801"
-  },
-  {
     "Nummer": "129",
     "Bezirk": "Tempelhof-Schöneberg",
     "Betreiber": "Senat",
