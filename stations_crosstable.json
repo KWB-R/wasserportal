@@ -1803,7 +1803,8 @@
   },
   {
     "Messstellennummer": "762",
-    "gws": "x"
+    "gws": "x",
+    "gwq": "x"
   },
   {
     "Messstellennummer": "765",
@@ -1839,7 +1840,8 @@
   },
   {
     "Messstellennummer": "775",
-    "gws": "x"
+    "gws": "x",
+    "gwq": "x"
   },
   {
     "Messstellennummer": "776",
@@ -3535,7 +3537,8 @@
   },
   {
     "Messstellennummer": "7250",
-    "gws": "x"
+    "gws": "x",
+    "gwq": "x"
   },
   {
     "Messstellennummer": "7251",
@@ -3551,11 +3554,13 @@
   },
   {
     "Messstellennummer": "7255",
-    "gws": "x"
+    "gws": "x",
+    "gwq": "x"
   },
   {
     "Messstellennummer": "7259",
-    "gws": "x"
+    "gws": "x",
+    "gwq": "x"
   },
   {
     "Messstellennummer": "7261",
@@ -3563,7 +3568,8 @@
   },
   {
     "Messstellennummer": "7264",
-    "gws": "x"
+    "gws": "x",
+    "gwq": "x"
   },
   {
     "Messstellennummer": "7269",
@@ -3587,19 +3593,23 @@
   },
   {
     "Messstellennummer": "7286",
-    "gws": "x"
+    "gws": "x",
+    "gwq": "x"
   },
   {
     "Messstellennummer": "7290",
-    "gws": "x"
+    "gws": "x",
+    "gwq": "x"
   },
   {
     "Messstellennummer": "7291",
-    "gws": "x"
+    "gws": "x",
+    "gwq": "x"
   },
   {
     "Messstellennummer": "7292",
-    "gws": "x"
+    "gws": "x",
+    "gwq": "x"
   },
   {
     "Messstellennummer": "7293",
@@ -3607,7 +3617,8 @@
   },
   {
     "Messstellennummer": "7295",
-    "gws": "x"
+    "gws": "x",
+    "gwq": "x"
   },
   {
     "Messstellennummer": "7299",
@@ -3615,7 +3626,8 @@
   },
   {
     "Messstellennummer": "7301",
-    "gws": "x"
+    "gws": "x",
+    "gwq": "x"
   },
   {
     "Messstellennummer": "7323",
@@ -3903,11 +3915,13 @@
   },
   {
     "Messstellennummer": "8469",
-    "gws": "x"
+    "gws": "x",
+    "gwq": "x"
   },
   {
     "Messstellennummer": "8472",
-    "gws": "x"
+    "gws": "x",
+    "gwq": "x"
   },
   {
     "Messstellennummer": "8473",
@@ -3919,7 +3933,8 @@
   },
   {
     "Messstellennummer": "8481",
-    "gws": "x"
+    "gws": "x",
+    "gwq": "x"
   },
   {
     "Messstellennummer": "8484",
@@ -3939,15 +3954,18 @@
   },
   {
     "Messstellennummer": "8949",
-    "gws": "x"
+    "gws": "x",
+    "gwq": "x"
   },
   {
     "Messstellennummer": "8950",
-    "gws": "x"
+    "gws": "x",
+    "gwq": "x"
   },
   {
     "Messstellennummer": "8964",
-    "gws": "x"
+    "gws": "x",
+    "gwq": "x"
   },
   {
     "Messstellennummer": "8974",
@@ -3975,7 +3993,8 @@
   },
   {
     "Messstellennummer": "9092",
-    "gws": "x"
+    "gws": "x",
+    "gwq": "x"
   },
   {
     "Messstellennummer": "9348",
@@ -3983,7 +4002,8 @@
   },
   {
     "Messstellennummer": "9401",
-    "gws": "x"
+    "gws": "x",
+    "gwq": "x"
   },
   {
     "Messstellennummer": "9408",
@@ -4476,7 +4496,8 @@
   },
   {
     "Messstellennummer": "95580",
-    "gws": "x"
+    "gws": "x",
+    "gwq": "x"
   },
   {
     "Messstellennummer": "97175",
@@ -4484,11 +4505,13 @@
   },
   {
     "Messstellennummer": "97766",
-    "gws": "x"
+    "gws": "x",
+    "gwq": "x"
   },
   {
     "Messstellennummer": "97894",
-    "gws": "x"
+    "gws": "x",
+    "gwq": "x"
   },
   {
     "Messstellennummer": "98345",
@@ -4624,6 +4647,30 @@
   },
   {
     "Messstellennummer": "7209",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7257",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7258",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7268",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7285",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "7298",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "8957",
     "gwq": "x"
   },
   {
