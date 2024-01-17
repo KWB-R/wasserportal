@@ -3874,6 +3874,45 @@
     "Hochwert_UTM_33_N": "5821267"
   },
   {
+    "Nummer": "2602",
+    "Bezirk": "Pankow",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand",
+    "Grundwasserleiter": "Panketalgrundwasserleiter (GWL 1.2)",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "57.78",
+    "Rohroberkante_m_ue_NHN": "58.60",
+    "Filteroberkante_m_u_GOK": "8.00",
+    "Filterunterkante_m_u_GOK": "10.00",
+    "Rechtswert_UTM_33_N": "396639",
+    "Hochwert_UTM_33_N": "5835366"
+  },
+  {
+    "Nummer": "2603",
+    "Bezirk": "Pankow",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand",
+    "Grundwasserleiter": "Panketalgrundwasserleiter (GWL 1.2)",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "52.93",
+    "Rohroberkante_m_ue_NHN": "53.85",
+    "Filteroberkante_m_u_GOK": "2.00",
+    "Filterunterkante_m_u_GOK": "2.95",
+    "Rechtswert_UTM_33_N": "395641",
+    "Hochwert_UTM_33_N": "5834020"
+  },
+  {
+    "Nummer": "2604",
+    "Bezirk": "Pankow",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand + GW-Güte",
+    "Grundwasserleiter": "Hauptgrundwasserleiter (GWL 1.3 + 2)",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "53.77",
+    "Rohroberkante_m_ue_NHN": "53.77",
+    "Filteroberkante_m_u_GOK": "27.00",
+    "Filterunterkante_m_u_GOK": "29.00",
+    "Rechtswert_UTM_33_N": "395642",
+    "Hochwert_UTM_33_N": "5834020"
+  },
+  {
     "Nummer": "2606",
     "Bezirk": "Marzahn-Hellersdorf",
     "Betreiber": "Senat",
