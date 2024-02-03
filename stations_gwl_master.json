@@ -4225,19 +4225,6 @@
     "Hochwert_UTM_33_N": "5821032"
   },
   {
-    "Nummer": "3358",
-    "Bezirk": "Pankow",
-    "Betreiber": "Bezirk",
-    "Auspraegung": "GW-Stand",
-    "Grundwasserleiter": "Panketalgrundwasserleiter (GWL 1.2)",
-    "Gelaendeoberkante_GOK_m_ue_NHN": "44.00",
-    "Rohroberkante_m_ue_NHN": "44.80",
-    "Filteroberkante_m_u_GOK": "3.00",
-    "Filterunterkante_m_u_GOK": "6.00",
-    "Rechtswert_UTM_33_N": "390442",
-    "Hochwert_UTM_33_N": "5827194"
-  },
-  {
     "Nummer": "4003",
     "Bezirk": "Spandau",
     "Betreiber": "Senat",
@@ -5902,19 +5889,6 @@
     "Hochwert_UTM_33_N": "5826735"
   },
   {
-    "Nummer": "5316",
-    "Bezirk": "Pankow",
-    "Betreiber": "Senat",
-    "Auspraegung": "GW-Stand",
-    "Grundwasserleiter": "Panketalgrundwasserleiter (GWL 1.2)",
-    "Gelaendeoberkante_GOK_m_ue_NHN": "46.02",
-    "Rohroberkante_m_ue_NHN": "45.91",
-    "Filteroberkante_m_u_GOK": "4.80",
-    "Filterunterkante_m_u_GOK": "5.80",
-    "Rechtswert_UTM_33_N": "393564",
-    "Hochwert_UTM_33_N": "5827230"
-  },
-  {
     "Nummer": "5320",
     "Bezirk": "Pankow",
     "Betreiber": "Senat",
@@ -6095,19 +6069,6 @@
     "Filterunterkante_m_u_GOK": "7.60",
     "Rechtswert_UTM_33_N": "393620",
     "Hochwert_UTM_33_N": "5832701"
-  },
-  {
-    "Nummer": "5405",
-    "Bezirk": "Pankow",
-    "Betreiber": "Senat",
-    "Auspraegung": "GW-Stand",
-    "Grundwasserleiter": "Panketalgrundwasserleiter (GWL 1.2)",
-    "Gelaendeoberkante_GOK_m_ue_NHN": "52.80",
-    "Rohroberkante_m_ue_NHN": "53.52",
-    "Filteroberkante_m_u_GOK": "4.40",
-    "Filterunterkante_m_u_GOK": "5.40",
-    "Rechtswert_UTM_33_N": "394353",
-    "Hochwert_UTM_33_N": "5832700"
   },
   {
     "Nummer": "5412",
