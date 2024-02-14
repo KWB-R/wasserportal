@@ -4147,6 +4147,19 @@
     "Hochwert_UTM_33_N": "5810685"
   },
   {
+    "Nummer": "3216",
+    "Bezirk": "Spandau",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand",
+    "Grundwasserleiter": "lokal ausgebildeter Grundwasserkörper",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "40.74",
+    "Rohroberkante_m_ue_NHN": "41.43",
+    "Filteroberkante_m_u_GOK": "10.90",
+    "Filterunterkante_m_u_GOK": "11.90",
+    "Rechtswert_UTM_33_N": "372028",
+    "Hochwert_UTM_33_N": "5813939"
+  },
+  {
     "Nummer": "3315",
     "Bezirk": "Spandau",
     "Betreiber": "Senat",
@@ -4732,6 +4745,19 @@
     "Hochwert_UTM_33_N": "5832823"
   },
   {
+    "Nummer": "4896",
+    "Bezirk": "Pankow",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand",
+    "Grundwasserleiter": "lokal ausgebildeter Grundwasserkörper",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "71.38",
+    "Rohroberkante_m_ue_NHN": "71.28",
+    "Filteroberkante_m_u_GOK": "11.42",
+    "Filterunterkante_m_u_GOK": "16.32",
+    "Rechtswert_UTM_33_N": "399809",
+    "Hochwert_UTM_33_N": "5832820"
+  },
+  {
     "Nummer": "4897",
     "Bezirk": "Pankow",
     "Betreiber": "Senat",
@@ -4743,6 +4769,19 @@
     "Filterunterkante_m_u_GOK": "47.24",
     "Rechtswert_UTM_33_N": "399515",
     "Hochwert_UTM_33_N": "5832454"
+  },
+  {
+    "Nummer": "4898",
+    "Bezirk": "Pankow",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand",
+    "Grundwasserleiter": "lokal ausgebildeter Grundwasserkörper",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "70.84",
+    "Rohroberkante_m_ue_NHN": "70.73",
+    "Filteroberkante_m_u_GOK": "7.11",
+    "Filterunterkante_m_u_GOK": "11.91",
+    "Rechtswert_UTM_33_N": "399522",
+    "Hochwert_UTM_33_N": "5832450"
   },
   {
     "Nummer": "4928",
@@ -5757,6 +5796,19 @@
     "Filterunterkante_m_u_GOK": "30.30",
     "Rechtswert_UTM_33_N": "396720",
     "Hochwert_UTM_33_N": "5819297"
+  },
+  {
+    "Nummer": "5246",
+    "Bezirk": "Marzahn-Hellersdorf",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand",
+    "Grundwasserleiter": "lokal ausgebildeter Grundwasserkörper",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "55.84",
+    "Rohroberkante_m_ue_NHN": "55.63",
+    "Filteroberkante_m_u_GOK": "6.30",
+    "Filterunterkante_m_u_GOK": "7.40",
+    "Rechtswert_UTM_33_N": "405645",
+    "Hochwert_UTM_33_N": "5819535"
   },
   {
     "Nummer": "5253",
