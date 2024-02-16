@@ -8918,6 +8918,19 @@
     "Hochwert_UTM_33_N": "5814781"
   },
   {
+    "Nummer": "7678",
+    "Bezirk": "Marzahn-Hellersdorf",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand, tagesaktuell",
+    "Grundwasserleiter": "lokal ausgebildeter Grundwasserkörper",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "61.00",
+    "Rohroberkante_m_ue_NHN": "60.93",
+    "Filteroberkante_m_u_GOK": "3.87",
+    "Filterunterkante_m_u_GOK": "4.87",
+    "Rechtswert_UTM_33_N": "403254",
+    "Hochwert_UTM_33_N": "5825093"
+  },
+  {
     "Nummer": "7706",
     "Bezirk": "Pankow",
     "Betreiber": "Senat",
@@ -9137,6 +9150,19 @@
     "Filterunterkante_m_u_GOK": "35.00",
     "Rechtswert_UTM_33_N": "396719",
     "Hochwert_UTM_33_N": "5833150"
+  },
+  {
+    "Nummer": "7917",
+    "Bezirk": "Lichtenberg",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand",
+    "Grundwasserleiter": "lokal ausgebildeter Grundwasserkörper",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "55.81",
+    "Rohroberkante_m_ue_NHN": "57.17",
+    "Filteroberkante_m_u_GOK": "3.20",
+    "Filterunterkante_m_u_GOK": "4.20",
+    "Rechtswert_UTM_33_N": "402359",
+    "Hochwert_UTM_33_N": "5826279"
   },
   {
     "Nummer": "8018",
@@ -11152,19 +11178,6 @@
     "Filterunterkante_m_u_GOK": "0.94",
     "Rechtswert_UTM_33_N": "410507",
     "Hochwert_UTM_33_N": "5808190"
-  },
-  {
-    "Nummer": "17907",
-    "Bezirk": "Treptow-Köpenick",
-    "Betreiber": "Senat",
-    "Auspraegung": "GW-Stand, tagesaktuell",
-    "Grundwasserleiter": "Moor-Messstelle",
-    "Gelaendeoberkante_GOK_m_ue_NHN": "32.51",
-    "Rohroberkante_m_ue_NHN": "33.94",
-    "Filteroberkante_m_u_GOK": "0.07",
-    "Filterunterkante_m_u_GOK": "1.07",
-    "Rechtswert_UTM_33_N": "409231",
-    "Hochwert_UTM_33_N": "5803557"
   },
   {
     "Nummer": "17908",
