@@ -7384,6 +7384,45 @@
     "Hochwert_UTM_33_N": "5819993"
   },
   {
+    "Nummer": "6973",
+    "Bezirk": "Marzahn-Hellersdorf",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand",
+    "Grundwasserleiter": "lokal ausgebildeter Grundwasserkörper",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "55.55",
+    "Rohroberkante_m_ue_NHN": "55.42",
+    "Filteroberkante_m_u_GOK": "1.30",
+    "Filterunterkante_m_u_GOK": "4.30",
+    "Rechtswert_UTM_33_N": "405873",
+    "Hochwert_UTM_33_N": "5820373"
+  },
+  {
+    "Nummer": "6974",
+    "Bezirk": "Marzahn-Hellersdorf",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand",
+    "Grundwasserleiter": "lokal ausgebildeter Grundwasserkörper",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "55.77",
+    "Rohroberkante_m_ue_NHN": "55.58",
+    "Filteroberkante_m_u_GOK": "1.30",
+    "Filterunterkante_m_u_GOK": "3.30",
+    "Rechtswert_UTM_33_N": "405866",
+    "Hochwert_UTM_33_N": "5820272"
+  },
+  {
+    "Nummer": "6975",
+    "Bezirk": "Marzahn-Hellersdorf",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand",
+    "Grundwasserleiter": "lokal ausgebildeter Grundwasserkörper",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "55.85",
+    "Rohroberkante_m_ue_NHN": "55.73",
+    "Filteroberkante_m_u_GOK": "1.30",
+    "Filterunterkante_m_u_GOK": "3.30",
+    "Rechtswert_UTM_33_N": "406075",
+    "Hochwert_UTM_33_N": "5820223"
+  },
+  {
     "Nummer": "7003",
     "Bezirk": "Friedrichshain-Kreuzberg",
     "Betreiber": "Senat",
@@ -9659,6 +9698,19 @@
     "Hochwert_UTM_33_N": "5826814"
   },
   {
+    "Nummer": "8444",
+    "Bezirk": "Lichtenberg",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand",
+    "Grundwasserleiter": "lokal ausgebildeter Grundwasserkörper",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "53.50",
+    "Rohroberkante_m_ue_NHN": "54.52",
+    "Filteroberkante_m_u_GOK": "4.87",
+    "Filterunterkante_m_u_GOK": "6.87",
+    "Rechtswert_UTM_33_N": "398549",
+    "Hochwert_UTM_33_N": "5826461"
+  },
+  {
     "Nummer": "8445",
     "Bezirk": "Lichtenberg",
     "Betreiber": "Senat",
@@ -9969,6 +10021,19 @@
     "Filterunterkante_m_u_GOK": "5.44",
     "Rechtswert_UTM_33_N": "401904",
     "Hochwert_UTM_33_N": "5817188"
+  },
+  {
+    "Nummer": "9016",
+    "Bezirk": "Lichtenberg",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand",
+    "Grundwasserleiter": "lokal ausgebildeter Grundwasserkörper",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "57.80",
+    "Rohroberkante_m_ue_NHN": "57.53",
+    "Filteroberkante_m_u_GOK": "3.00",
+    "Filterunterkante_m_u_GOK": "5.00",
+    "Rechtswert_UTM_33_N": "396762",
+    "Hochwert_UTM_33_N": "5822308"
   },
   {
     "Nummer": "9058",
