@@ -182,7 +182,9 @@ merge_raw_results_single <- function(dfs, variables, include_raw_time)
 
   backbone$row <- seq_len(nrow(backbone))
 
-  data_frames <- c(list(base = backbone), dfs)
+  data_frames <- c(list(backbone), dfs)
+
+  names(data_frames) <- c("base", variables)
 
   result <- kwb.utils::mergeAll(
     data_frames, by = keys, all.x = TRUE, dbg = FALSE
