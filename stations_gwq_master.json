@@ -117,6 +117,19 @@
     "Hochwert_UTM_33_N": "5819297"
   },
   {
+    "Nummer": "645",
+    "Bezirk": "Charlottenburg-Wilmersdorf",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand + GW-Güte",
+    "Grundwasserleiter": "Hauptgrundwasserleiter (GWL 1.3 + 2)",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "38.31",
+    "Rohroberkante_m_ue_NHN": "38.46",
+    "Filteroberkante_m_u_GOK": "27.39",
+    "Filterunterkante_m_u_GOK": "28.39",
+    "Rechtswert_UTM_33_N": "380275",
+    "Hochwert_UTM_33_N": "5820498"
+  },
+  {
     "Nummer": "762",
     "Bezirk": "Steglitz-Zehlendorf",
     "Betreiber": "Senat",
