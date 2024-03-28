@@ -2028,19 +2028,6 @@
     "Hochwert_UTM_33_N": "5817917"
   },
   {
-    "Nummer": "492",
-    "Bezirk": "Neukölln",
-    "Betreiber": "Senat",
-    "Auspraegung": "GW-Stand",
-    "Grundwasserleiter": "Hauptgrundwasserleiter (GWL 1.3 + 2)",
-    "Gelaendeoberkante_GOK_m_ue_NHN": "34.69",
-    "Rohroberkante_m_ue_NHN": "35.51",
-    "Filteroberkante_m_u_GOK": "9.00",
-    "Filterunterkante_m_u_GOK": "10.00",
-    "Rechtswert_UTM_33_N": "394835",
-    "Hochwert_UTM_33_N": "5814685"
-  },
-  {
     "Nummer": "496",
     "Bezirk": "Neukölln",
     "Betreiber": "Senat",
@@ -5666,19 +5653,6 @@
     "Filterunterkante_m_u_GOK": "17.10",
     "Rechtswert_UTM_33_N": "392327",
     "Hochwert_UTM_33_N": "5820113"
-  },
-  {
-    "Nummer": "5162",
-    "Bezirk": "Mitte",
-    "Betreiber": "Senat",
-    "Auspraegung": "GW-Stand",
-    "Grundwasserleiter": "Hauptgrundwasserleiter (GWL 1.3 + 2)",
-    "Gelaendeoberkante_GOK_m_ue_NHN": "36.22",
-    "Rohroberkante_m_ue_NHN": "36.14",
-    "Filteroberkante_m_u_GOK": "25.41",
-    "Filterunterkante_m_u_GOK": "26.41",
-    "Rechtswert_UTM_33_N": "392085",
-    "Hochwert_UTM_33_N": "5820491"
   },
   {
     "Nummer": "5167",
