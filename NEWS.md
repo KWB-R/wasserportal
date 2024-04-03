@@ -1,3 +1,10 @@
+# [wasserportal 0.3.1](https://github.com/KWB-R/wasserportal/releases/tag/v0.3.1) <small>2024-04-04</small>
+
+* Bugfix for groundwater level and quality due to new Wasserportal API 
+* Add project [AD4GD](https://www.kompetenz-wasser.de/de/forschung/projekte/ad4gd) 
+as funder
+
+
 # [wasserportal 0.3.0](https://github.com/KWB-R/wasserportal/releases/tag/v0.3.0) <small>2023-02-19</small>
 
 * Fix errors in GitHub actions: use actions from branches `v2`, `v3`, not from 

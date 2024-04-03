@@ -1,29 +1,20 @@
 Package: wasserportal
-Title: R Package with Functions for Scraping Data of
-    Wasserportal Berlin
-Version: 0.3.0
-Authors@R: 
-    c(person(given = "Hauke",
-             family = "Sonnenberg",
-             role = "aut",
-             email = "hauke.sonnenberg@kompetenz-wasser.de",
-             comment = c(ORCID = "0000-0001-9134-2871")),
-      person(given = "Michael",
-             family = "Rustler",
-             role =  c("aut","cre"),
-             email = "michael.rustler@kompetenz-wasser.de",
-             comment = c(ORCID = "0000-0003-0647-7726")),
-      person(given = "DWC",
-             role = "fnd"),
-      person(given = "IMPETUS",
-             role = "fnd"),
-      person(given = "PROMISCES",
-             role = "fnd"),
-      person(given = "Kompetenzzentrum Wasser Berlin gGmbH (KWB)",
-             role = "cph"))
-Description: R Package with Functions for Scraping Data of
-    Wasserportal Berlin (https://wasserportal.berlin.de), which contains
-    real-time data of surface water and groundwater monitoring stations.
+Title: R Package with Functions for Scraping Data of Wasserportal Berlin
+Version: 0.3.1
+Authors@R: c(
+    person("Hauke", "Sonnenberg", , "hauke.sonnenberg@kompetenz-wasser.de", role = "aut",
+           comment = c(ORCID = "0000-0001-9134-2871")),
+    person("Michael", "Rustler", , "michael.rustler@kompetenz-wasser.de", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0003-0647-7726")),
+    person("AD4GD", role = "fnd"),
+    person("DWC", role = "fnd"),
+    person("IMPETUS", role = "fnd"),
+    person("PROMISCES", role = "fnd"),
+    person("Kompetenzzentrum Wasser Berlin gGmbH (KWB)", role = "cph")
+  )
+Description: R Package with Functions for Scraping Data of Wasserportal
+    Berlin (https://wasserportal.berlin.de), which contains real-time data
+    of surface water and groundwater monitoring stations.
 License: MIT + file LICENSE
 URL: https://github.com/KWB-R/wasserportal
 BugReports: https://github.com/KWB-R/wasserportal/issues
@@ -48,28 +39,29 @@ Suggests:
     covr,
     DT,
     forcats,
-    htmlwidgets,
-    janitor,
-    jsonlite,
-    leaflet,
     ggplot2,
     gridExtra,
     htmltools,
+    htmlwidgets,
+    janitor,
+    jsonlite,
     knitr,
     kwb.pkgbuild,
+    leaflet,
     openxlsx,
     plotly,
     rmarkdown,
     sf,
-    tidyselect,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    tidyselect
+VignetteBuilder: 
+    knitr
 Remotes: 
     github::kwb-r/kwb.datetime,
     github::kwb-r/kwb.pkgbuild,
     github::kwb-r/kwb.utils
+Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
-VignetteBuilder: knitr
-Config/testthat/edition: 3
+RoxygenNote: 7.3.1

@@ -3,25 +3,25 @@
 #' read_wasserportal_raw_gw
 #'
 #' @param station station id
-#' @param stype "gwl" or "gwq"
+#' @param stype "gws" or "gwq"
 #' @param type "single" or "single_all" (if stype = "gwq")
 #' @param from_date (default: "")
 #' @param include_raw_time default: FALSE
 #' @param handle default: NULL
 #'
-#' @return data.frame with values (currently only if stype == "gwl")
+#' @return data.frame with values
 #' @export
 #' @importFrom stringr str_remove str_extract
 #' @importFrom tidyr pivot_longer
 #' @importFrom dplyr select filter mutate
 #' @examples
 #' \dontrun{
-#' read_wasserportal_raw_gw(station = 149, stype = "gwl")
+#' read_wasserportal_raw_gw(station = 149, stype = "gws")
 #' read_wasserportal_raw_gw(station = 149, stype = "gwq")
 #' }
 read_wasserportal_raw_gw <- function(
     station = 149,
-    stype = "gwl",
+    stype = "gws",
     type = "single_all",
     from_date = "",
     include_raw_time = FALSE,
@@ -72,7 +72,7 @@ read_wasserportal_raw_gw <- function(
   data <- read(text, header = FALSE, skip = start_line)
 
   # Get the numbers of the data columns
-  if (type != "monthly" && stype == "gwl") {
+  if (type != "monthly" && stype == "gws") {
     stopifnot(ncol(data) == 2L)
   }
 
@@ -80,7 +80,7 @@ read_wasserportal_raw_gw <- function(
   names(data) <- header_fields[seq_len(ncol(data))]
 
   stype_options <- list(
-    gwl = list(
+    gws = list(
       par_remove_pattern = "\\s+\\(.*\\)",
       unit_extract_pattern = "\\(.*\\)",
       unit_remove_pattern = "\\(|\\)"
@@ -148,7 +148,7 @@ get_url_and_body_for_groundwater_data_download <- function(
     )
   }
 
-  download_shortcuts <- list(gwl = "g", gwq = "q")
+  download_shortcuts <- list(gws = "g", gwq = "q")
 
   download_shortcut <- if (stype %in% names(download_shortcuts)) {
     download_shortcuts[[stype]]
@@ -193,9 +193,9 @@ get_url_and_body_for_groundwater_data_download <- function(
       "/station.php?",
       "anzeige=d", # download
       "&station=", station,
-      "&sreihe=ew",
+      "&sreihe=", sreihe,
       "&smode=c", # data format (= csv?)
-      "&thema=gws",
+      "&thema=", stype,
       "&exportthema=gw",
       "&sdatum=", sdatum,
       "&senddatum=", senddatum

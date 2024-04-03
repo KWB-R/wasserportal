@@ -17,7 +17,8 @@ get_overview_options <- function()
       conductivity = "olf",
       ph = "oph",
       oxygen_concentration = "oog",
-      oxygen_saturation = "oos"
+      oxygen_saturation = "oos" #,
+      #quality = "opq"
     ),
     groundwater = list(
       level = "gws",

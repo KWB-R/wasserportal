@@ -6,7 +6,7 @@
 \usage{
 read_wasserportal_raw_gw(
   station = 149,
-  stype = "gwl",
+  stype = "gws",
   type = "single_all",
   from_date = "",
   include_raw_time = FALSE,
@@ -16,7 +16,7 @@ read_wasserportal_raw_gw(
 \arguments{
 \item{station}{station id}
 
-\item{stype}{"gwl" or "gwq"}
+\item{stype}{"gws" or "gwq"}
 
 \item{type}{"single" or "single_all" (if stype = "gwq")}
 
@@ -27,14 +27,14 @@ read_wasserportal_raw_gw(
 \item{handle}{default: NULL}
 }
 \value{
-data.frame with values (currently only if stype == "gwl")
+data.frame with values
 }
 \description{
 read_wasserportal_raw_gw
 }
 \examples{
 \dontrun{
-read_wasserportal_raw_gw(station = 149, stype = "gwl")
+read_wasserportal_raw_gw(station = 149, stype = "gws")
 read_wasserportal_raw_gw(station = 149, stype = "gwq")
 }
 }
