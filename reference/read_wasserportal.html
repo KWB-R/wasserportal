@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">wasserportal</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,7 +72,8 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>station</dt>
-<dd><p>station number, as returned by <code><a href="get_stations.html">get_stations</a></code></p></dd>
+<dd><p>station number, as found in column "Messstellennummer" of the
+data frame returned by <code><a href="get_stations.html">get_stations</a>(type = "crosstable")</code></p></dd>
 
 
 <dt>variables</dt>
@@ -97,8 +98,8 @@ default is <code>FALSE</code>.</p></dd>
 
 
 <dt>stations_crosstable</dt>
-<dd><p>sublist <code>crosstable</code> as retrieved from
-<code><a href="get_stations.html">get_stations</a></code> i.e. <code>get_stations()$crosstable</code></p></dd>
+<dd><p>data frame as returned by
+<code><a href="get_stations.html">get_stations</a>(type = "crosstable")</code></p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -123,15 +124,14 @@ together with the additional information on the UTC offset (column
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="co"># Get a list of available water quality stations and variables</span></span></span>
-<span class="r-in"><span><span class="va">stations</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="get_stations.html">get_stations</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">stations_crosstable</span> <span class="op">&lt;-</span> <span class="va">stations</span><span class="op">$</span><span class="va">crosstable</span></span></span>
+<span class="r-in"><span><span class="va">stations_crosstable</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="get_stations.html">get_stations</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"crosstable"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Set the start date</span></span></span>
 <span class="r-in"><span><span class="va">from_date</span> <span class="op">&lt;-</span> <span class="st">"2021-03-01"</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Read the timeseries (multiple variables for one station)</span></span></span>
 <span class="r-in"><span><span class="va">water_quality</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu">read_wasserportal</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  station <span class="op">=</span> <span class="va">stations_crosstable</span><span class="op">$</span><span class="va">Messstellennummer</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span></span>
+<span class="r-in"><span>  station <span class="op">=</span> <span class="va">stations_crosstable</span><span class="op">$</span><span class="va">Messstellennummer</span><span class="op">[</span><span class="fl">1L</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>  from_date <span class="op">=</span> <span class="va">from_date</span>,</span></span>
 <span class="r-in"><span>  include_raw_time <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>  stations_crosstable <span class="op">=</span> <span class="va">stations_crosstable</span></span></span>
@@ -175,7 +175,7 @@ together with the additional information on the UTC offset (column
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by <a href="https://github.com/hsonne" class="external-link">Hauke Sonnenberg</a>, <a href="https://mrustl.de" class="external-link">Michael Rustler</a>, <a href="https://www.kompetenz-wasser.de/en/forschung/projekte/dwc" class="external-link"><img src="https://kompetenz-wasser.de/media/pages/forschung/projekte/dwc/6263c55e76-1639132760/dwc-rvb-grey.jpg" alt="Project DWC" width="72"></a>, <a href="https://www.kompetenz-wasser.de/en/forschung/projekte/impetus" class="external-link"><img src="https://climate-impetus.eu/wp-content/uploads/2021/12/horizontal.png" alt="Project IMPETUS" width="72"></a>, <a href="https://www.kompetenz-wasser.de/en/forschung/projekte/promisces" class="external-link"><img src="https://promisces.eu/skin/promisces/assets/img/logo.png" alt="Project PROMISCES" width="72"></a>.</p>
+  <p></p><p>Developed by <a href="https://github.com/hsonne" class="external-link">Hauke Sonnenberg</a>, <a href="https://mrustl.de" class="external-link">Michael Rustler</a>, <a href="https://www.kompetenz-wasser.de/en/forschung/projekte/ad4gd" class="external-link"><img src="https://ad4gd.eu/wp-content/uploads/2023/02/logointegrat-color.png" alt="Project AD4GD" width="72"></a>, <a href="https://www.kompetenz-wasser.de/en/forschung/projekte/dwc" class="external-link"><img src="https://kompetenz-wasser.de/media/pages/forschung/projekte/dwc/6263c55e76-1639132760/dwc-rvb-grey.jpg" alt="Project DWC" width="72"></a>, <a href="https://www.kompetenz-wasser.de/en/forschung/projekte/impetus" class="external-link"><img src="https://climate-impetus.eu/wp-content/uploads/2021/12/horizontal.png" alt="Project IMPETUS" width="72"></a>, <a href="https://www.kompetenz-wasser.de/en/forschung/projekte/promisces" class="external-link"><img src="https://promisces.eu/skin/promisces/assets/img/logo.png" alt="Project PROMISCES" width="72"></a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
