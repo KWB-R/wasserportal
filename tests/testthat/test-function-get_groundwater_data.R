@@ -14,10 +14,10 @@ test_that("get_groundwater_data() works", {
   stations <- list(
     overview_list = list(
       groundwater.level = data.frame(
-        Messstellennummer = 1
+        Messstellennummer = 3
       ),
       groundwater.quality = data.frame(
-        Messstellennummer = 1
+        Messstellennummer = 3
       )
     )
   )
