@@ -87,7 +87,8 @@ get_daily_surfacewater_data <- function(
 get_surfacewater_variables <- function()
 {
   variables <- unlist(get_overview_options())
-  variables[startsWith(names(variables), "surface")]
+  variables <- variables[startsWith(names(variables), "surface")]
+  variables[variables != "opq"]
 }
 
 # get_non_external_station_ids -------------------------------------------------
