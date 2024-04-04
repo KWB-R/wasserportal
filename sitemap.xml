@@ -79,6 +79,12 @@
     <loc>https://kwb-r.github.io/wasserportal/reference/get_stations.html</loc>
   </url>
   <url>
+    <loc>https://kwb-r.github.io/wasserportal/reference/get_surfacewater_qualities.html</loc>
+  </url>
+  <url>
+    <loc>https://kwb-r.github.io/wasserportal/reference/get_surfacewater_quality.html</loc>
+  </url>
+  <url>
     <loc>https://kwb-r.github.io/wasserportal/reference/get_surfacewater_variables.html</loc>
   </url>
   <url>
