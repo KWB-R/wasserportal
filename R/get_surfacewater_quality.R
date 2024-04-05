@@ -50,8 +50,7 @@ get_surfacewater_quality <- function(station_id) {
   text <- httr::content(response, as = "text", encoding = "Latin1")
 
   # Split the text into separate lines
-  textlines <- strsplit(text, "\n")[[1L]]
-
+  textlines <- split_into_lines(text)
 
   date_pattern <- "Datum"
   start_line <- which(stringr::str_detect(textlines, date_pattern))

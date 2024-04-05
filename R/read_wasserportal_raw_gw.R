@@ -45,7 +45,7 @@ read_wasserportal_raw_gw <- function(
   text <- httr::content(response, as = "text", encoding = "Latin1")
 
   # Split the text into separate lines
-  textlines <- strsplit(text, "\n")[[1L]]
+  textlines <- split_into_lines(text)
 
   date_pattern <- "Datum"
   start_line <- which(startsWith(textlines, date_pattern))

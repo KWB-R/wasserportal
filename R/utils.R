@@ -100,6 +100,14 @@ select_columns <- kwb.utils::selectColumns
 #' @importFrom kwb.utils selectElements
 select_elements <- kwb.utils::selectElements
 
+# split_into_lines -------------------------------------------------------------
+split_into_lines <- function(text)
+{
+  stopifnot(is.character(x), length(x) == 1L)
+
+  strsplit(text, "\n")[[1L]]
+}
+
 # stop_if_not_all_in -----------------------------------------------------------
 stop_if_not_all_in <- function(x, set, type = "element")
 {

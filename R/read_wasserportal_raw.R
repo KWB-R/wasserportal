@@ -130,7 +130,7 @@ read_wasserportal_raw <- function(
   }
 
   # Split the text into separate lines
-  textlines <- strsplit(text, "\n")[[1L]]
+  textlines <- split_into_lines(text)
 
   # Split the header row into fields
   header_fields <- as.character(read(textlines[1L]))
