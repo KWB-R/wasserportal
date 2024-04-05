@@ -1,7 +1,7 @@
 #' Wasserportal Time Series Data: download and Import in R List
 #'
-#' @param overview_list_names names of "overview_list" as retrieved by
-#' \code{\link{get_stations}}
+#' @param overview_list_names names of elements in the list returned by
+#'   \code{\link{get_stations}(type = "list")}
 #' @param target_dir target directory for downloading data (default:
 #' tempdir())
 #' @param is_zipped are the data to be downloaded zipped (default:
@@ -17,8 +17,7 @@
 #' @importFrom withr with_dir
 #' @examples
 #' \dontrun{
-#' stations <- wasserportal::get_stations()
-#' overview_list_names <- names(stations$overview_list)
+#' overview_list_names <- names(wasserportal::get_stations(type = "list"))
 #' wp_timeseries_data_list <- wp_timeseries_data_to_list(overview_list_names)
 #' }
 wp_timeseries_data_to_list <- function(

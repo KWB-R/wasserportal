@@ -1,3 +1,36 @@
+# get_text_response_of_httr_post_request ---------------------------------------
+#' @importFrom httr content http_error POST
+get_text_response_of_httr_post_request <- function(
+    url,
+    body = NULL,
+    handle = NULL,
+    text = paste("Sending POST request to", url),
+    dbg = FALSE,
+    encoding = "Latin1"
+)
+{
+  cat_and_run(
+    text,
+    dbg = dbg,
+    expr = {
+
+      # Post the request to the web server
+      response <- httr::POST(url, body = body, handle = handle)
+
+      if (httr::http_error(response)) {
+
+        message("POST request failed. Returning the response object.")
+        response
+
+      } else {
+
+        # Read the response of the web server as text
+        httr::content(response, as = "text", encoding = encoding)
+      }
+    }
+  )
+}
+
 # is_external_link -------------------------------------------------------------
 is_external_link <- function(url)
 {

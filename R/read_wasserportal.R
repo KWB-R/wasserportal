@@ -12,7 +12,8 @@
 #' together with the additional information on the UTC offset (column
 #' \code{UTCOffset}, 1 in winter, 2 in summer).
 #'
-#' @param station station number, as returned by \code{\link{get_stations}}
+#' @param station station number, as found in column "Messstellennummer" of the
+#'   data frame returned by \code{\link{get_stations}(type = "crosstable")}
 #' @param variables vector of variable identifiers, as returned by
 #'   \code{\link{get_station_variables}}
 #' @param from_date \code{Date} object (or string in format "yyyy-mm-dd" that
@@ -22,25 +23,24 @@
 #' @param include_raw_time if \code{TRUE} the original time column and the
 #'   column with the corrected winter time are included in the output. The
 #'   default is \code{FALSE}.
-#' @param stations_crosstable sublist `crosstable` as retrieved from
-#'   \code{\link{get_stations}} i.e. `get_stations()$crosstable`
+#' @param stations_crosstable data frame as returned by
+#'   \code{\link{get_stations}(type = "crosstable")}
 #' @return data frame read from the CSV file that the download provides.
 #'   IMPORTANT: It is not yet clear how to interpret the timestamp, see example
-#' @importFrom httr POST content
+#' @importFrom httr handle_find
 #' @importFrom utils read.table
 #' @export
 #' @examples
 #' \dontrun{
 #' # Get a list of available water quality stations and variables
-#' stations <- wasserportal::get_stations()
-#' stations_crosstable <- stations$crosstable
+#' stations_crosstable <- wasserportal::get_stations(type = "crosstable")
 #'
 #' # Set the start date
 #' from_date <- "2021-03-01"
 #'
 #' # Read the timeseries (multiple variables for one station)
 #' water_quality <- wasserportal::read_wasserportal(
-#'   station = stations_crosstable$Messstellennummer[1],
+#'   station = stations_crosstable$Messstellennummer[1L],
 #'   from_date = from_date,
 #'   include_raw_time = TRUE,
 #'   stations_crosstable = stations_crosstable
@@ -87,40 +87,56 @@ read_wasserportal <- function(
 )
 {
   #kwb.utils::assignPackageObjects("wasserportal")
-  #station=get_wasserportal_stations(type = "flow")$Tiefwerder
-  #variables = get_wasserportal_variables(station);from_date = "2019-01-01";include_raw_time = FALSE
-  station_crosstable <- stations_crosstable[stations_crosstable$Messstellennummer == station,]
-  variable_ids <- get_station_variables(station_crosstable)
-  if(is.null(variables)) variables <- variable_ids
-  station_ids <- stations_crosstable[["Messstellennummer"]]
 
-  stopifnot(all(station %in% station_ids))
-  stopifnot(all(variables %in% variable_ids))
+  #station <- "5825500"
+  #variables <- c("ows", "odf")
+  #from_date <- as.character(Sys.Date() - 90L)
+  #type = "single"
+  #include_raw_time = FALSE
+  #stations_crosstable <- get_stations(type = "crosstable")
+
+  station_ids <- select_columns(stations_crosstable, "Messstellennummer")
+
+  station_info <- stations_crosstable[station_ids == station, , drop = FALSE]
+
+  variable_ids <- get_station_variables(station_info)
+
+  if (is.null(variables)) {
+    variables <- variable_ids
+  }
+
+  stop_if_not_all_in(station, station_ids, type = "station id")
+  stop_if_not_all_in(variables, variable_ids, type = "variable code")
 
   names(variables) <- names(variable_ids)[match(variables, variable_ids)]
 
   handle <- httr::handle_find(get_wasserportal_url(0, 0))
 
-  dfs <- lapply(
-    X = variables,
-    FUN = read_wasserportal_raw,
-    station = station,
-    from_date = from_date,
-    type = type,
-    include_raw_time = include_raw_time,
-    handle = handle,
-    stations_crosstable = stations_crosstable
-
-  )
+  dfs <- lapply(variables, function(variable) {
+    #variable <- variables[1L]
+    try(read_wasserportal_raw(
+      variable,
+      station = station,
+      from_date = from_date,
+      type = type,
+      include_raw_time = include_raw_time,
+      handle = handle,
+      stations_crosstable = stations_crosstable
+    ))
+  })
 
   # Remove elements of class "response" that are returned in case of an error
   failed <- sapply(dfs, function(df) {
-    inherits(df, "response") || length(df) == 0
+    is_try_error(df) || inherits(df, "response") || length(df) == 0
   })
 
   if (any(failed)) {
-    kwb.utils::catAndRun(
-      sprintf("Removing %d elements that are empty or failed", sum(failed)),
+    cat_and_run(
+      sprintf(
+        "Removing %d elements that are empty or failed (variables: %s)",
+        sum(failed),
+        string_list(variables[failed])
+      ),
       expr = {
         failures <- dfs[failed]
         dfs <- dfs[! failed]
@@ -150,7 +166,7 @@ read_wasserportal <- function(
     stop("type must be one of 'single', 'daily', 'monthly'")
   }
 
-  metadata <- lapply(dfs, kwb.utils::getAttribute, "metadata")
+  metadata <- lapply(dfs, get_attribute, "metadata")
 
   structure(
     result,
@@ -162,11 +178,11 @@ read_wasserportal <- function(
 # merge_raw_results_single -----------------------------------------------------
 merge_raw_results_single <- function(dfs, variables, include_raw_time)
 {
-  date_vectors <- lapply(dfs, kwb.utils::selectColumns, "LocalDateTime")
+  date_vectors <- lapply(dfs, select_columns, "LocalDateTime")
 
-  if (length(variables) > 1 && ! kwb.utils::allAreIdentical(date_vectors)) {
+  if (length(variables) > 1 && ! all_are_identical(date_vectors)) {
     message("Not all requests return the same timestamp column:")
-    kwb.utils::printIf(TRUE, lengths(date_vectors))
+    print_if(TRUE, lengths(date_vectors))
   }
 
   keys <- c(
@@ -174,7 +190,7 @@ merge_raw_results_single <- function(dfs, variables, include_raw_time)
     "LocalDateTime"
   )
 
-  backbones <- lapply(dfs, kwb.utils::selectColumns, keys, drop = FALSE)
+  backbones <- lapply(dfs, select_columns, keys, drop = FALSE)
 
   backbone <- unique(do.call(rbind, backbones))
 
@@ -186,11 +202,9 @@ merge_raw_results_single <- function(dfs, variables, include_raw_time)
 
   names(data_frames) <- c("base", variables)
 
-  result <- kwb.utils::mergeAll(
-    data_frames, by = keys, all.x = TRUE, dbg = FALSE
-  )
+  result <- merge_all(data_frames, by = keys, all.x = TRUE, dbg = FALSE)
 
-  result <- kwb.utils::removeColumns(result[order(result$row), ], "row.base")
+  result <- remove_columns(result[order(result$row), ], "row.base")
 
   names(result) <- gsub("Einzelwert\\.", "", names(result))
 
@@ -199,9 +213,7 @@ merge_raw_results_single <- function(dfs, variables, include_raw_time)
     DateTimeUTC = format(result$LocalDateTime, tz = "UTC")
   )
 
-  kwb.utils::insertColumns(
-    result, after = "LocalDateTime", UTCOffset = utc_offset
-  )
+  insert_columns(result, after = "LocalDateTime", UTCOffset = utc_offset)
 }
 
 # merge_raw_results_daily ------------------------------------------------------

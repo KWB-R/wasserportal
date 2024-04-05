@@ -24,7 +24,7 @@ if (FALSE)
   # Show data sections where the 15 minute timestep is broken
   lapply(dfs, function(df) {
     diffs <- diff(df$LocalDateTime)
-    kwb.utils::printIf(TRUE, table(diffs))
+    print_if(TRUE, table(diffs))
     indices <- which(diffs != 15)
     df[sort(unique(c(indices - 1, indices, indices + 1))), ]
   })
