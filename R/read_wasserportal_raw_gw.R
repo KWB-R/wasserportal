@@ -33,16 +33,11 @@ read_wasserportal_raw_gw <- function(
     stype, type, station, from_date
   )
 
-  # Post the request to the web server
-  response <- httr::POST(info$url, body = info$body, handle = handle)
-
-  if (httr::http_error(response)) {
-    message("POST request failed. Returning the response object.")
-    return(response)
-  }
-
-  # Read the response of the web server as text
-  text <- httr::content(response, as = "text", encoding = "Latin1")
+  text <- get_text_response_of_httr_post_request(
+    url = info$url,
+    body = info$body,
+    handle = handle
+  )
 
   # Split the text into separate lines
   textlines <- split_into_lines(text)

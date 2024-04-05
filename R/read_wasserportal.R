@@ -27,7 +27,7 @@
 #'   \code{\link{get_stations}(type = "crosstable")}
 #' @return data frame read from the CSV file that the download provides.
 #'   IMPORTANT: It is not yet clear how to interpret the timestamp, see example
-#' @importFrom httr POST content
+#' @importFrom httr handle_find
 #' @importFrom utils read.table
 #' @export
 #' @examples

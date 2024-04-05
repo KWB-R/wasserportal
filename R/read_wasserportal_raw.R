@@ -16,7 +16,6 @@
 #' @export
 #' @importFrom kwb.utils catAndRun selectColumns selectElements
 #' @importFrom kwb.datetime textToEuropeBerlinPosix
-#' @importFrom httr content POST
 read_wasserportal_raw <- function(
   variable,
   station,
@@ -110,19 +109,19 @@ read_wasserportal_raw <- function(
     body <- list()
   }
 
-  # Post the request to the web server
-  response <- kwb.utils::catAndRun(
-    get_wasserportal_text(station, variable, station_ids, variable_ids = variable),
-    httr::POST(url = url, body = body, handle = handle)
+  text <- kwb.utils::catAndRun(
+    get_wasserportal_text(
+      station,
+      variable,
+      station_ids,
+      variable_ids = variable
+    ),
+    expr = get_text_response_of_httr_post_request(
+      url,
+      body = body,
+      handle = handle
+    )
   )
-
-  if (httr::http_error(response)) {
-    message("POST request failed. Returning the response object.")
-    return(response)
-  }
-
-  # Read the response of the web server as text
-  text <- httr::content(response, as = "text", encoding = "Latin1")
 
   if (text == "") {
     message("Wasserportal returned an empty string. Returning NULL.")

@@ -5,7 +5,6 @@
 #' @return data frame with water quality data for one monitoring station
 #' @export
 #' @importFrom kwb.utils stopFormatted
-#' @importFrom httr content http_error
 #' @importFrom stringr str_detect str_remove
 #' @examples
 #' \dontrun{
@@ -38,16 +37,7 @@ get_surfacewater_quality <- function(station_id) {
     )
   )
 
-  # Post the request to the web server
-  response <- httr::POST(url)
-
-  if (httr::http_error(response)) {
-    message("POST request failed. Returning the response object.")
-    return(response)
-  }
-
-  # Read the response of the web server as text
-  text <- httr::content(response, as = "text", encoding = "Latin1")
+  text <- get_text_response_of_httr_post_request(url)
 
   # Split the text into separate lines
   textlines <- split_into_lines(text)
