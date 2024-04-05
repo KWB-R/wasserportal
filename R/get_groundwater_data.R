@@ -56,7 +56,7 @@ get_groundwater_data <- function(
                   id, which(id == ids), length(ids)
                 ),
                 expr = read_wasserportal_raw_gw(id, stype = option_key),
-                dbg = debug
+                dbg = debug > 1L
               )
             }) %>%
             data.table::rbindlist()
