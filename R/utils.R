@@ -117,3 +117,13 @@ stop_if_not_all_in <- function(x, set, type = "element")
 # subst_special_chars ----------------------------------------------------------
 #' @importFrom kwb.utils substSpecialChars
 subst_special_chars <- kwb.utils::substSpecialChars
+
+# url_parameter_string ---------------------------------------------------------
+url_parameter_string <- function(...)
+{
+  arguments <- list(...)
+
+  stopifnot(!any(kwb.utils::is.unnamed(arguments)))
+
+  paste(names(arguments), arguments, sep = "=", collapse = "&")
+}

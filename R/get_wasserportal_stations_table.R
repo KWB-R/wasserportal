@@ -27,10 +27,10 @@ get_wasserportal_stations_table <- function (
     type <- match.arg(type, unlist(get_overview_options()))
   }
 
-  overview_url <- sprintf(
-    "%s/messwerte.php?anzeige=tabelle&thema=%s",
+  overview_url <- paste0(
     url_wasserportal,
-    type
+    "/messwerte.php?",
+    url_parameter_string(anzeige = "tabelle", thema = type)
   )
 
   html <- xml2::read_html(overview_url)

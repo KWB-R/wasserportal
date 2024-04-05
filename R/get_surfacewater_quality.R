@@ -26,14 +26,16 @@ get_surfacewater_quality <- function(station_id) {
   url <- paste0(
     wasserportal_base_url(),
     "/station.php?",
-    "anzeige=d", # download
-    "&station=", station_id,
-    "&sreihe=", sreihe,
-    "&smode=c", # data format (= csv?)
-    "&thema=", stype,
-    "&exportthema=", exportthema,
-    "&sdatum=", sdatum,
-    "&senddatum=", senddatum
+    url_parameter_string(
+      anzeige = "d", # download
+      station = station_id,
+      sreihe = sreihe,
+      smode = "c", # data format (= csv?)
+      thema = stype,
+      exportthema = exportthema,
+      sdatum = sdatum,
+      senddatum = senddatum
+    )
   )
 
   # Post the request to the web server

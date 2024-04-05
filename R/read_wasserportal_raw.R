@@ -95,14 +95,16 @@ read_wasserportal_raw <- function(
   } else {
 
     url <- paste0(
-      "https://wasserportal.berlin.de",
-      "/station.php",
-      "?anzeige=d", # = download
-      "&station=", station,
-      "&thema=", variable, # type of measurement
-      "&sreihe=", sreihe, # type of time value
-      "&smode=c", # output format: csv (?)
-      "&sdatum=", date_string_de(from_date) # start date
+      wasserportal_base_url(),
+      "/station.php?",
+      url_parameter_string(
+        anzeige = "d", # = download
+        station = station,
+        thema = variable, # type of measurement
+        sreihe = sreihe, # type of time value
+        smode = "c", # output format: csv (?)
+        sdatum = date_string_de(from_date) # start date
+      )
     )
 
     body <- list()

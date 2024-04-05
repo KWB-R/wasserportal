@@ -176,11 +176,9 @@ get_url_and_body_for_groundwater_data_download <- function(
 
   if (api_version == 1L) {
 
-    url <- sprintf(
-      "%s/station.php?anzeige=%sd&sstation=%s",
-      wasserportal_base_url(),
-      download_shortcut,
-      station
+    url_parameters <- list(
+      anzeige = download_shortcut,
+      sstation = station
     )
 
     # Compose the body of the request
@@ -194,21 +192,26 @@ get_url_and_body_for_groundwater_data_download <- function(
 
   } else {
 
-    url <- paste0(
-      wasserportal_base_url(),
-      "/station.php?",
-      "anzeige=d", # download
-      "&station=", station,
-      "&sreihe=", sreihe,
-      "&smode=c", # data format (= csv?)
-      "&thema=", stype,
-      "&exportthema=gw",
-      "&sdatum=", sdatum,
-      "&senddatum=", senddatum
+    url_parameters <- list(
+      anzeige = "d", # download
+      station = station,
+      sreihe = sreihe,
+      smode = "c", # data format (= csv?)
+      thema = stype,
+      exportthema = "gw",
+      sdatum = sdatum,
+      senddatum = senddatum
     )
 
     body <- list()
   }
 
-  list(url = url, body = body)
+  list(
+    url = paste0(
+      wasserportal_base_url(),
+      "/station.php?",
+      do.call(url_parameter_string, url_parameters)
+    ),
+    body = body
+  )
 }
