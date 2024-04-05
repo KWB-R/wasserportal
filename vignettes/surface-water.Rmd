@@ -50,7 +50,7 @@ The following surface water master data `.csv` files are available for download:
 cat_file_enumeration(files)
 ```
 
-## Daily Surface Water Data
+## Daily Surface Water Data & Overall Surface Water Quality
 
 By running the code below all available `daily surface water` data of monitoring 
 stations from Wasserportal Berlin will be downloaded and exported into one `.json`
@@ -67,19 +67,31 @@ sw_data_daily_list <- wasserportal::get_daily_surfacewater_data(
 )
 
 files <- wasserportal::list_timeseries_data_to_zip(sw_data_daily_list)
-
 files
 
 # Data availability per parameter
 sw_data_daily_list %>%
   dplyr::bind_rows() %>% 
   dplyr::count(Parameter, Einheit)
+
+
+station_ids <- stations$overview_list$surface_water.quality$Messstellennummer
+
+swq_data <- wasserportal::get_surfacewater_qualities(station_ids)
+
+files1 <- wasserportal::list_timeseries_data_to_zip(
+  list("surface-water_quality" = swq_data)
+  )
+
+files2 <- "surface-water_quality.zip"
+
+file.rename(files1, files2)
 ```
 
 The following `.zip` files are available for download: 
 
 ```{r daily_surface_water_data_zip, echo = FALSE, results ='asis'}
-cat_file_enumeration(files)
+cat_file_enumeration(c(files, files2))
 ```
 
 ## Daily Surface Water Levels
