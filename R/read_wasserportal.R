@@ -95,26 +95,25 @@ read_wasserportal <- function(
   #include_raw_time = FALSE
   #stations_crosstable <- get_stations(type = "crosstable")
 
-  site_ids <- select_columns(stations_crosstable, "Messstellennummer")
+  station_ids <- select_columns(stations_crosstable, "Messstellennummer")
 
-  station_crosstable <- stations_crosstable[site_ids == station, ]
+  station_info <- stations_crosstable[station_ids == station, , drop = FALSE]
 
-  variable_ids <- get_station_variables(station_crosstable)
+  variable_ids <- get_station_variables(station_info)
 
   if (is.null(variables)) {
     variables <- variable_ids
   }
 
-  station_ids <- stations_crosstable[["Messstellennummer"]]
-
-  stopifnot(all(station %in% station_ids))
-  stopifnot(all(variables %in% variable_ids))
+  stop_if_not_all_in(station, station_ids, type = "station id")
+  stop_if_not_all_in(variables, variable_ids, type = "variable code")
 
   names(variables) <- names(variable_ids)[match(variables, variable_ids)]
 
   handle <- httr::handle_find(get_wasserportal_url(0, 0))
 
   dfs <- lapply(variables, function(variable) {
+    #variable <- variables[1L]
     try(read_wasserportal_raw(
       variable,
       station = station,
