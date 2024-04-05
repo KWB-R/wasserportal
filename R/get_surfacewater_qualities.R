@@ -14,7 +14,7 @@
 #' }
 get_surfacewater_qualities <- function(station_ids, dbg = TRUE) {
   n_stations <- length(station_ids)
-  kwb.utils::catAndRun(
+  cat_and_run(
     messageText = "Downloading surface water quality data",
     newLine = 3,
   expr = {
@@ -22,8 +22,7 @@ get_surfacewater_qualities <- function(station_ids, dbg = TRUE) {
     station_ids,
     FUN = function (station_id) {
       n <- which(station_id == station_ids)
-
-      kwb.utils::catAndRun(
+      cat_and_run(
         messageText = sprintf(
           "%02d/%02d: station_id = '%s'",
           n,

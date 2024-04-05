@@ -12,7 +12,6 @@
 #' frames
 #' @export
 #' @importFrom stats setNames
-#' @importFrom kwb.utils catAndRun
 #' @importFrom data.table rbindlist
 #' @examples
 #' \dontrun{
@@ -30,7 +29,7 @@ get_groundwater_data <- function(
   #kwb.utils::assignPackageObjects("wasserportal")
 
   if (is.null(stations_list)) {
-    stations_list <- kwb.utils::selectElements(stations, "overview_list")
+    stations_list <- select_elements(stations, "overview_list")
   }
 
   result <- lapply(
@@ -38,7 +37,7 @@ get_groundwater_data <- function(
     FUN = function(i) {
       option_key <- groundwater_options[i]
       option_name <- names(option_key)
-      kwb.utils::catAndRun(
+      cat_and_run(
         messageText = sprintf(
           "Importing '%s' data (%d/%d)",
           option_name, i, length(groundwater_options)
@@ -46,12 +45,12 @@ get_groundwater_data <- function(
         dbg = debug,
         expr = {
           ids <- stations_list %>%
-            kwb.utils::selectElements(option_name) %>%
-            kwb.utils::selectColumns("Messstellennummer")
+            select_elements(option_name) %>%
+            select_columns("Messstellennummer")
           lapply(
             X = ids,
             FUN = function(id) {
-              kwb.utils::catAndRun(
+              cat_and_run(
                 sprintf(
                   "Downloading Messstellennummer '%s' (%d/%d)",
                   id, which(id == ids), length(ids)

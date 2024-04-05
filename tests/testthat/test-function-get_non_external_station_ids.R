@@ -6,7 +6,7 @@ test_that("get_non_external_station_ids() works", {
 
   expect_error(f())
 
-  portal_url <- "https://wasserportal.berlin.de"
+  portal_url <- wasserportal::wasserportal_base_url()
 
   station_data <- read.table(sep = ",", header = TRUE, text = "
     Messstellennummer,Betreiber,stammdaten_link

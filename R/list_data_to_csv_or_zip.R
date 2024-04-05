@@ -23,7 +23,7 @@ list_data_to_csv_or_zip <- function(data_list, file_prefix, to_zip)
 
     filename <- ifelse(to_zip, filename_zip, filename_csv)
 
-    kwb.utils::catAndRun(
+    cat_and_run(
       messageText = sprintf("Writing '%s'", filename),
       expr = {
 

@@ -33,25 +33,20 @@ read_wasserportal_raw_gw <- function(
     stype, type, station, from_date
   )
 
-  # Post the request to the web server
-  response <- httr::POST(info$url, body = info$body, handle = handle)
-
-  if (httr::http_error(response)) {
-    message("POST request failed. Returning the response object.")
-    return(response)
-  }
-
-  # Read the response of the web server as text
-  text <- httr::content(response, as = "text", encoding = "Latin1")
+  text <- get_text_response_of_httr_post_request(
+    url = info$url,
+    body = info$body,
+    handle = handle
+  )
 
   # Split the text into separate lines
-  textlines <- strsplit(text, "\n")[[1L]]
+  textlines <- split_into_lines(text)
 
   date_pattern <- "Datum"
   start_line <- which(startsWith(textlines, date_pattern))
 
   if (length(start_line) == 0L) {
-    kwb.utils::stopFormatted(
+    stop_formatted(
       "Could not find the header row (starting with '%s')",
       date_pattern
     )
@@ -117,7 +112,7 @@ read_wasserportal_raw_gw <- function(
           )
       ) %>%
       dplyr::filter(!is.na(.data$Messwert)) %>%
-      kwb.utils::selectColumns(c(
+      select_columns(c(
         "Messstellennummer",
         "Datum",
         "Parameter",
@@ -140,12 +135,18 @@ get_url_and_body_for_groundwater_data_download <- function(
 )
 {
   sreihe <- if (stype == "gwq") {
+
     "wa"
+
   } else {
-    kwb.utils::selectElements(
-      list(single = "w", single_all = "wa", daily = "m", monthly = "j"),
-      type
-    )
+
+    select_elements(elements = type, x = list(
+      single = "w",
+      single_all = "wa",
+      daily = "m",
+      monthly = "j"
+    ))
+
   }
 
   download_shortcuts <- list(gws = "g", gwq = "q")
@@ -170,11 +171,9 @@ get_url_and_body_for_groundwater_data_download <- function(
 
   if (api_version == 1L) {
 
-    url <- sprintf(
-      "%s/station.php?anzeige=%sd&sstation=%s",
-      wasserportal_base_url(),
-      download_shortcut,
-      station
+    url_parameters <- list(
+      anzeige = download_shortcut,
+      sstation = station
     )
 
     # Compose the body of the request
@@ -188,21 +187,26 @@ get_url_and_body_for_groundwater_data_download <- function(
 
   } else {
 
-    url <- paste0(
-      wasserportal_base_url(),
-      "/station.php?",
-      "anzeige=d", # download
-      "&station=", station,
-      "&sreihe=", sreihe,
-      "&smode=c", # data format (= csv?)
-      "&thema=", stype,
-      "&exportthema=gw",
-      "&sdatum=", sdatum,
-      "&senddatum=", senddatum
+    url_parameters <- list(
+      anzeige = "d", # download
+      station = station,
+      sreihe = sreihe,
+      smode = "c", # data format (= csv?)
+      thema = stype,
+      exportthema = "gw",
+      sdatum = sdatum,
+      senddatum = senddatum
     )
 
     body <- list()
   }
 
-  list(url = url, body = body)
+  list(
+    url = paste0(
+      wasserportal_base_url(),
+      "/station.php?",
+      do.call(url_parameter_string, url_parameters)
+    ),
+    body = body
+  )
 }

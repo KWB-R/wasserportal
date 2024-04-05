@@ -12,10 +12,9 @@ test_that("get_daily_surfacewater_data() works", {
   tmp <- stations$overview_list$surface_water.water_level[1L, ]
   stations$overview_list$surface_water.water_level <- tmp
 
-  expect_warning(capture.output(result <- f(
-    stations,
-    variables = c(surface_water.water_level = "ows")
-  )))
+  variables <- c(surface_water.water_level = "ows")
+
+  expect_warning(capture.output(result <- f(stations, variables = variables)))
 
   expect_identical(
     names(result$surface_water.water_level),

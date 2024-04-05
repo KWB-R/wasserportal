@@ -35,7 +35,7 @@ if (FALSE)
 
   sw_stations_berlin_daily <- stations_crosstable_berlin %>%
     kwb.utils::selectColumns("Messstellennummer") %>%
-    lapply(function(station) kwb.utils::catAndRun(
+    lapply(function(station) cat_and_run(
       sprintf("Fetching data for station '%s'", station),
       expr = wasserportal::read_wasserportal(
         station = station,

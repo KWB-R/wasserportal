@@ -4,8 +4,6 @@
 #'
 #' @return data frame with water quality data for one monitoring station
 #' @export
-#' @importFrom kwb.utils stopFormatted
-#' @importFrom httr content http_error
 #' @importFrom stringr str_detect str_remove
 #' @examples
 #' \dontrun{
@@ -26,36 +24,28 @@ get_surfacewater_quality <- function(station_id) {
   url <- paste0(
     wasserportal_base_url(),
     "/station.php?",
-    "anzeige=d", # download
-    "&station=", station_id,
-    "&sreihe=", sreihe,
-    "&smode=c", # data format (= csv?)
-    "&thema=", stype,
-    "&exportthema=", exportthema,
-    "&sdatum=", sdatum,
-    "&senddatum=", senddatum
+    url_parameter_string(
+      anzeige = "d", # download
+      station = station_id,
+      sreihe = sreihe,
+      smode = "c", # data format (= csv?)
+      thema = stype,
+      exportthema = exportthema,
+      sdatum = sdatum,
+      senddatum = senddatum
+    )
   )
 
-  # Post the request to the web server
-  response <- httr::POST(url)
-
-  if (httr::http_error(response)) {
-    message("POST request failed. Returning the response object.")
-    return(response)
-  }
-
-  # Read the response of the web server as text
-  text <- httr::content(response, as = "text", encoding = "Latin1")
+  text <- get_text_response_of_httr_post_request(url)
 
   # Split the text into separate lines
-  textlines <- strsplit(text, "\n")[[1L]]
-
+  textlines <- split_into_lines(text)
 
   date_pattern <- "Datum"
   start_line <- which(stringr::str_detect(textlines, date_pattern))
 
   if (length(start_line) == 0L) {
-    kwb.utils::stopFormatted(
+    stop_formatted(
       "Could not find the header row (starting with '%s')",
       date_pattern
     )

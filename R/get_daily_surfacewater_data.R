@@ -13,7 +13,6 @@
 #' variables
 #' sw_data_daily <- wasserportal::get_daily_surfacewater_data(stations, variables)
 #' }
-#' @importFrom kwb.utils catAndRun
 #' @importFrom dplyr bind_rows filter pull
 #' @importFrom stats setNames
 get_daily_surfacewater_data <- function(
@@ -23,17 +22,17 @@ get_daily_surfacewater_data <- function(
 )
 {
   #kwb.utils::assignPackageObjects("wasserportal")
-  overviews <- kwb.utils::selectElements(stations, "overview_list")
-  crosstable <- kwb.utils::selectElements(stations, "crosstable")
+  overviews <- select_elements(stations, "overview_list")
+  crosstable <- select_elements(stations, "crosstable")
 
   data_frames <- lapply(names(variables), function(variable_name) {
 
     #variable_name <- names(variables)[1L]
 
-    kwb.utils::catAndRun(sprintf("Importing '%s'", variable_name), expr = {
+    cat_and_run(sprintf("Importing '%s'", variable_name), expr = {
 
       # data frame with stations at which <variable_name> is measured
-      station_data <- kwb.utils::selectElements(overviews, variable_name)
+      station_data <- select_elements(overviews, variable_name)
 
       # Identifiers of non-external monitoring stations to loop through
       station_ids <- get_non_external_station_ids(station_data)
@@ -95,10 +94,10 @@ get_surfacewater_variables <- function()
 get_non_external_station_ids <- function(station_data)
 {
   # Function to safely select columns from station_data
-  pull <- kwb.utils::createAccessor(station_data)
+  pull <- create_accessor(station_data)
 
   is_external <- is_external_link(pull("stammdaten_link"))
-  is_berlin <- kwb.utils::defaultIfNA(pull("Betreiber"), "") == "Land Berlin"
+  is_berlin <- default_if_na(pull("Betreiber"), "") == "Land Berlin"
 
   # Identifiers of monitoring stations to loop through
   as.character(pull("Messstellennummer")[is_berlin & !is_external])
@@ -116,7 +115,6 @@ get_non_external_station_ids <- function(station_data)
 #' @importFrom stringr str_detect str_split_fixed
 #' @importFrom tibble tibble
 #' @importFrom dplyr bind_cols bind_rows
-#' @importFrom kwb.utils getAttribute
 sw_data_list_to_df <- function (sw_data_list)
 {
   # Helper function to split parameter string into parameter and unit
@@ -137,7 +135,7 @@ sw_data_list_to_df <- function (sw_data_list)
 
     # Get its metadata
     metadata <- if (!is.null(data)) {
-      kwb.utils::getAttribute(data, "metadata")
+      get_attribute(data, "metadata")
     } else {
       message(sprintf(
         "Empty data frame when looping through '%s' in %s",
