@@ -25,6 +25,9 @@ assert_date <- function(x)
   result
 }
 
+# cat_and_run ------------------------------------------------------------------
+#' @importFrom kwb.utils catAndRun
+cat_and_run <- kwb.utils::catAndRun
 # columns_to_labels ------------------------------------------------------------
 #' Create Text Labels from Data Frame Columns
 #'

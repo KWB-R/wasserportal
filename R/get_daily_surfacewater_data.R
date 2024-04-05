@@ -13,7 +13,6 @@
 #' variables
 #' sw_data_daily <- wasserportal::get_daily_surfacewater_data(stations, variables)
 #' }
-#' @importFrom kwb.utils catAndRun
 #' @importFrom dplyr bind_rows filter pull
 #' @importFrom stats setNames
 get_daily_surfacewater_data <- function(
@@ -30,7 +29,7 @@ get_daily_surfacewater_data <- function(
 
     #variable_name <- names(variables)[1L]
 
-    kwb.utils::catAndRun(sprintf("Importing '%s'", variable_name), expr = {
+    cat_and_run(sprintf("Importing '%s'", variable_name), expr = {
 
       # data frame with stations at which <variable_name> is measured
       station_data <- select_elements(overviews, variable_name)

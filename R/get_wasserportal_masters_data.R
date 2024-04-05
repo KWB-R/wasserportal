@@ -44,7 +44,7 @@ get_wasserportal_masters_data <- function(
     try(get_wasserportal_master_data(master_url))
   }
 
-  master_list <- kwb.utils::catAndRun(
+  master_list <- cat_and_run(
     messageText = sprintf(
       "Importing %d station metadata from Wasserportal Berlin",
       length(master_urls)

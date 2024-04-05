@@ -9,7 +9,7 @@ get_text_response_of_httr_post_request <- function(
     encoding = "Latin1"
 )
 {
-  kwb.utils::catAndRun(
+  cat_and_run(
     text,
     dbg = dbg,
     expr = {

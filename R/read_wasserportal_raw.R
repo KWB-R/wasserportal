@@ -14,7 +14,6 @@
 #'   wasserportal's API. 1L: before 2023, 2L: since 2023. Default: 2L
 #' @return ????
 #' @export
-#' @importFrom kwb.utils catAndRun selectColumns selectElements
 #' @importFrom kwb.datetime textToEuropeBerlinPosix
 read_wasserportal_raw <- function(
   variable,
@@ -109,7 +108,7 @@ read_wasserportal_raw <- function(
     body <- list()
   }
 
-  text <- kwb.utils::catAndRun(
+  text <- cat_and_run(
     get_wasserportal_text(
       station,
       variable,

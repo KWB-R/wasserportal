@@ -131,7 +131,7 @@ read_wasserportal <- function(
   })
 
   if (any(failed)) {
-    kwb.utils::catAndRun(
+    cat_and_run(
       sprintf(
         "Removing %d elements that are empty or failed (variables: %s)",
         sum(failed),

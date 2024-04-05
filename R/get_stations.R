@@ -15,7 +15,6 @@
 #' @export
 #' @importFrom data.table rbindlist
 #' @importFrom dplyr left_join mutate select
-#' @importFrom kwb.utils catAndRun
 #' @importFrom parallel makeCluster parLapply stopCluster
 #' @importFrom rlang .data
 #' @importFrom tidyr pivot_wider separate
@@ -50,7 +49,7 @@ get_stations <- function(
   }
 
   # Loop through overview_options, either in parallel or sequentially
-  overview_list <- kwb.utils::catAndRun(
+  overview_list <- cat_and_run(
     sprintf(
       "Importing %d station overviews from Wasserportal Berlin",
       length(overview_options)
