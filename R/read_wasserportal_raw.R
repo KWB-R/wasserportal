@@ -39,22 +39,30 @@ read_wasserportal_raw <- function(
 
   station_ids <- select_columns(stations_crosstable, "Messstellennummer")
 
-  stopifnot(station %in% station_ids)
+  stop_if_not_all_in(station, station_ids)
 
-  station_df <- stations_crosstable[station_ids == station, , drop = FALSE] %>%
-    dplyr::select_if(function(x){!all(is.na(x))})
+  variable_ids <- get_station_variables(
+    stations_crosstable[station_ids == station, , drop = FALSE]
+  )
 
-  variable_ids <- get_station_variables(station_df)
-
-  stopifnot(variable %in% variable_ids)
+  stop_if_not_all_in(variable, variable_ids)
 
   sreihe_options <- if (api_version == 1L) {
-    list(single = "w", single_all = "wa", daily = "m", monthly = "j")
+
+    list(
+      single = "w",
+      single_all = "wa",
+      daily = "m",
+      monthly = "j"
+    )
+
   } else {
-    # ew = Einzelwerte
-    # tw = Tageswerte
-    # mw = Monatswerte
-    list(single = "ew", daily = "tw", monthly = "mw")
+
+    list(
+      single = "ew", # ew = Einzelwerte
+      daily = "tw",  # tw = Tageswerte
+      monthly = "mw" # mw = Monatswerte
+    )
   }
 
   sreihe <- select_elements(sreihe_options, type)
@@ -86,8 +94,6 @@ read_wasserportal_raw <- function(
 
   } else {
 
-    variable_ids <- "NOT_REQRUIRED_ISNT_IT"
-
     url <- paste0(
       "https://wasserportal.berlin.de",
       "/station.php",
@@ -104,7 +110,7 @@ read_wasserportal_raw <- function(
 
   # Post the request to the web server
   response <- kwb.utils::catAndRun(
-    get_wasserportal_text(station, variable, station_ids, variable_ids),
+    get_wasserportal_text(station, variable, station_ids, variable_ids = variable),
     httr::POST(url = url, body = body, handle = handle)
   )
 
