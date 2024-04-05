@@ -56,7 +56,7 @@ get_wasserportal_masters_data <- function(
     }
   )
 
-  failed <- sapply(master_list, kwb.utils::isTryError)
+  failed <- sapply(master_list, is_try_error)
 
   if (any(failed)) {
     message("Failed fetching data from the following URLs:")
@@ -72,7 +72,6 @@ get_wasserportal_masters_data <- function(
 #' \code{\link{get_wasserportal_stations_table}}
 #' @return data frame with metadata for selected station
 #' @importFrom dplyr mutate rename
-#' @importFrom kwb.utils stopFormatted
 #' @importFrom rlang .data
 #' @importFrom tidyr pivot_wider
 #' @export
@@ -108,13 +107,13 @@ get_wasserportal_master_data <- function(master_url)
     rvest::html_table()
 
   if (nrow(master_table) == 0L) {
-    kwb.utils::stopFormatted("No master table available at '%s'", master_url)
+    stop_formatted("No master table available at '%s'", master_url)
   }
 
   master_table %>%
     dplyr::rename("key" = "X1", "value" = "X2") %>%
     dplyr::mutate(key = stringr::str_remove_all(.data$key, "-")) %>%
-    dplyr::mutate(key = kwb.utils::substSpecialChars(.data$key)) %>%
+    dplyr::mutate(key = subst_special_chars(.data$key)) %>%
     tidyr::pivot_wider(names_from = "key", values_from = "value")
 }
 
@@ -123,7 +122,7 @@ stop_on_external_data_provider <- function(url)
 {
   if (is_external_link(url)) {
 
-    kwb.utils::stopFormatted(
+    stop_formatted(
       paste0(
         "The master_url '%s' you provided refers to an external ",
         "data provider. Currently only master data within '%s' can be ",

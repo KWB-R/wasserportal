@@ -94,10 +94,10 @@ get_surfacewater_variables <- function()
 get_non_external_station_ids <- function(station_data)
 {
   # Function to safely select columns from station_data
-  pull <- kwb.utils::createAccessor(station_data)
+  pull <- create_accessor(station_data)
 
   is_external <- is_external_link(pull("stammdaten_link"))
-  is_berlin <- kwb.utils::defaultIfNA(pull("Betreiber"), "") == "Land Berlin"
+  is_berlin <- default_if_na(pull("Betreiber"), "") == "Land Berlin"
 
   # Identifiers of monitoring stations to loop through
   as.character(pull("Messstellennummer")[is_berlin & !is_external])
@@ -115,7 +115,6 @@ get_non_external_station_ids <- function(station_data)
 #' @importFrom stringr str_detect str_split_fixed
 #' @importFrom tibble tibble
 #' @importFrom dplyr bind_cols bind_rows
-#' @importFrom kwb.utils getAttribute
 sw_data_list_to_df <- function (sw_data_list)
 {
   # Helper function to split parameter string into parameter and unit
@@ -136,7 +135,7 @@ sw_data_list_to_df <- function (sw_data_list)
 
     # Get its metadata
     metadata <- if (!is.null(data)) {
-      kwb.utils::getAttribute(data, "metadata")
+      get_attribute(data, "metadata")
     } else {
       message(sprintf(
         "Empty data frame when looping through '%s' in %s",

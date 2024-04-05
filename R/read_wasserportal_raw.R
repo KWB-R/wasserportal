@@ -170,7 +170,7 @@ get_wasserportal_url <- function(station, variable)
 get_wasserportal_text <- function(station, variable, station_ids, variable_ids)
 {
   default_names <- function(ids, prefix) {
-    kwb.utils::defaultIfNULL(names(ids), paste0(prefix, ids))
+    default_if_null(names(ids), paste0(prefix, ids))
   }
 
   variable_names <- default_names(variable_ids, "variable_")
@@ -195,7 +195,7 @@ clean_timestamp_columns <- function(data, include_raw_time)
 {
   raw_timestamps <- select_columns(data, "Datum")
 
-  data <- kwb.utils::renameColumns(data, list(Datum = "timestamp_raw"))
+  data <- rename_columns(data, list(Datum = "timestamp_raw"))
 
   data$timestamp_corr <- repair_wasserportal_timestamps(raw_timestamps)
 
@@ -212,10 +212,10 @@ clean_timestamp_columns <- function(data, include_raw_time)
 
   keys <- c("timestamp_raw", "timestamp_corr", "LocalDateTime")
 
-  data <- kwb.utils::moveColumnsToFront(data, keys)
+  data <- move_columns_to_front(data, keys)
 
   if (! include_raw_time) {
-    data <- kwb.utils::removeColumns(data, keys[1:2])
+    data <- remove_columns(data, keys[1:2])
   }
 
   remove_timestep_outliers(data, data$LocalDateTime, 60 * 15)
@@ -234,13 +234,13 @@ repair_wasserportal_timestamps <- function(timestamps, dbg = FALSE)
 
   stopifnot(all(lengths(index_pairs) == 2L))
 
-  first_indices <- sapply(index_pairs, kwb.utils::firstElement)
+  first_indices <- sapply(index_pairs, first_element)
 
   if (dbg && ! all(is_expected <- grepl(" 03", timestamps[first_indices]))) {
 
     message(
       "There are unexpected duplicated timestamps: ",
-      kwb.utils::stringList(timestamps[first_indices][! is_expected])
+      string_list(timestamps[first_indices][! is_expected])
     )
   }
 
@@ -250,7 +250,7 @@ repair_wasserportal_timestamps <- function(timestamps, dbg = FALSE)
 
   indices <- sort(unlist(index_pairs))
 
-  kwb.utils::printIf(dbg, caption = "After timestamp repair", data.frame(
+  print_if(dbg, caption = "After timestamp repair", data.frame(
     row = indices,
     old = timestamps_old[indices],
     new = timestamps[indices]

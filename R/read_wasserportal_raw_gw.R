@@ -46,7 +46,7 @@ read_wasserportal_raw_gw <- function(
   start_line <- which(startsWith(textlines, date_pattern))
 
   if (length(start_line) == 0L) {
-    kwb.utils::stopFormatted(
+    stop_formatted(
       "Could not find the header row (starting with '%s')",
       date_pattern
     )

@@ -17,8 +17,8 @@ get_station_variables <- function(station_df)
   stopifnot(is.data.frame(station_df))
 
   variables <- station_df %>%
-    kwb.utils::removeColumns(c("Messstellennummer", "Messstellenname")) %>%
-    kwb.utils::removeEmptyColumns(dbg = FALSE) %>%
+    remove_columns(c("Messstellennummer", "Messstellenname")) %>%
+    remove_empty_columns(dbg = FALSE) %>%
     names()
 
   all_variables <- unlist(get_overview_options())

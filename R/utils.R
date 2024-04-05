@@ -1,3 +1,7 @@
+# all_are_identical ------------------------------------------------------------
+#' @importFrom kwb.utils allAreIdentical
+all_are_identical <- kwb.utils::allAreIdentical
+
 # as_date_de -------------------------------------------------------------------
 as_date_de <- function(x)
 {
@@ -5,7 +9,6 @@ as_date_de <- function(x)
 }
 
 # assert_date ------------------------------------------------------------------
-#' @importFrom kwb.utils isTryError
 assert_date <- function(x)
 {
   if (inherits(x, "Date")) {
@@ -14,7 +17,7 @@ assert_date <- function(x)
 
   result <- try(as.Date(x, origin = "1970-01-01"), silent = TRUE)
 
-  if (kwb.utils::isTryError(result)) {
+  if (is_try_error(result)) {
     stop(call. = FALSE, sprintf(
       "%s cannot be converted to a Date object: %s",
       deparse(substitute(x)),
@@ -50,6 +53,10 @@ columns_to_labels <- function(data, columns, fmt = "%s: %s", sep = ", ")
   ))))
 }
 
+# create_accessor --------------------------------------------------------------
+#' @importFrom kwb.utils createAccessor
+create_accessor <- kwb.utils::createAccessor
+
 # date_string_de ---------------------------------------------------------------
 date_string_de <- function(x)
 {
@@ -63,7 +70,6 @@ date_string_de <- function(x)
 #'
 #' @return data frame with values
 #' @export
-#' @importFrom kwb.utils isTryError
 #' @importFrom utils read.table
 #'
 read <- function(text, ...) {
@@ -72,12 +78,60 @@ read <- function(text, ...) {
     text = text, sep = ";", dec = ",", stringsAsFactors = FALSE, ...
   ))
 
-  if (kwb.utils::isTryError(result)) {
+  if (is_try_error(result)) {
     return(NULL)
   }
 
   result
 }
+
+# default_if_na ----------------------------------------------------------------
+#' @importFrom kwb.utils defaultIfNA
+default_if_na <- kwb.utils::defaultIfNA
+
+# default_if_null --------------------------------------------------------------
+#' @importFrom kwb.utils defaultIfNULL
+default_if_null <- kwb.utils::defaultIfNULL
+
+# first_element ----------------------------------------------------------------
+#' @importFrom kwb.utils firstElement
+first_element <- kwb.utils::firstElement
+
+# get_attribute ----------------------------------------------------------------
+#' @importFrom kwb.utils getAttribute
+get_attribute <- kwb.utils::getAttribute
+
+# insert_columns ---------------------------------------------------------------
+#' @importFrom kwb.utils::insertColumns
+insert_columns <- kwb.utils::insertColumns
+
+# is_na_or_empty ---------------------------------------------------------------
+#' @importFrom kwb.utils::isNaOrEmpty(hrefs)
+is_na_or_empty <- kwb.utils::isNaOrEmpty
+
+# is_try_error -----------------------------------------------------------------
+#' @importFrom kwb.utils isTryError
+is_try_error <- kwb.utils::isTryError
+
+# merge_all --------------------------------------------------------------------
+#' @importFrom kwb.utils mergeAll
+merge_all <- kwb.utils::mergeAll
+
+# move_columns_to_front --------------------------------------------------------
+#' @importFrom kwb.utils moveColumnsToFront
+move_columns_to_front <- kwb.utils::moveColumnsToFront
+
+# multi_substitute -------------------------------------------------------------
+#' @importFrom kwb.utils::multiSubstitute
+multi_substitute <- kwb.utils::multiSubstitute
+
+# parallel_non_na --------------------------------------------------------------
+#' @importFrom kwb.utils parallelNonNA
+parallel_non_na <- kwb.utils::parallelNonNA
+
+# print_if ---------------------------------------------------------------------
+#' @importFrom kwb.utils printIf
+print_if <- kwb.utils::printIf
 
 # readPackageFile --------------------------------------------------------------
 
@@ -95,6 +149,18 @@ readPackageFile <- function(file, ...)
   kwb.utils::readPackageFile(file, package = "wasserportal", ...)
 }
 
+# remove_columns ---------------------------------------------------------------
+#' @importFrom kwb.utils removeColumns
+remove_columns <- kwb.utils::removeColumns
+
+# remove_empty_columns ---------------------------------------------------------
+#' @importFrom kwb.utils removeEmptyColumns
+remove_empty_columns <- kwb.utils::removeEmptyColumns
+
+# rename_columns ---------------------------------------------------------------
+#' @importFrom kwb.utils renameColumns
+rename_columns <- kwb.utils::renameColumns
+
 # select_columns ---------------------------------------------------------------
 #' @importFrom kwb.utils selectColumns
 select_columns <- kwb.utils::selectColumns
@@ -111,13 +177,17 @@ split_into_lines <- function(x)
   strsplit(x, "\n")[[1L]]
 }
 
+# stop_formatted ---------------------------------------------------------------
+#' @importFrom kwb.utils stopFormatted
+stop_formatted <- kwb.utils::stopFormatted
+
 # stop_if_not_all_in -----------------------------------------------------------
 stop_if_not_all_in <- function(x, set, type = "element")
 {
   is_missing <- !(x %in% set)
 
   if (any(is_missing)) {
-    kwb.utils::stopFormatted(kwb.utils::noSuchElements(
+    stop_formatted(kwb.utils::noSuchElements(
       x = x[is_missing],
       available = set,
       type = type
@@ -125,9 +195,17 @@ stop_if_not_all_in <- function(x, set, type = "element")
   }
 }
 
+# string_list ------------------------------------------------------------------
+#' @importFrom  kwb.utils stringList
+string_list <- kwb.utils::stringList
+
 # subst_special_chars ----------------------------------------------------------
 #' @importFrom kwb.utils substSpecialChars
 subst_special_chars <- kwb.utils::substSpecialChars
+
+# to_lookup_list ---------------------------------------------------------------
+#' @importFrom kwb.utils toLookupList
+to_lookup_list <- kwb.utils::toLookupList
 
 # url_parameter_string ---------------------------------------------------------
 url_parameter_string <- function(...)
@@ -138,3 +216,4 @@ url_parameter_string <- function(...)
 
   paste(names(arguments), arguments, sep = "=", collapse = "&")
 }
+

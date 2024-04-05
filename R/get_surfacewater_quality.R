@@ -4,7 +4,6 @@
 #'
 #' @return data frame with water quality data for one monitoring station
 #' @export
-#' @importFrom kwb.utils stopFormatted
 #' @importFrom stringr str_detect str_remove
 #' @examples
 #' \dontrun{
@@ -46,7 +45,7 @@ get_surfacewater_quality <- function(station_id) {
   start_line <- which(stringr::str_detect(textlines, date_pattern))
 
   if (length(start_line) == 0L) {
-    kwb.utils::stopFormatted(
+    stop_formatted(
       "Could not find the header row (starting with '%s')",
       date_pattern
     )

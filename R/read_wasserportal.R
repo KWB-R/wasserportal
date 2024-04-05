@@ -127,7 +127,7 @@ read_wasserportal <- function(
 
   # Remove elements of class "response" that are returned in case of an error
   failed <- sapply(dfs, function(df) {
-    kwb.utils::isTryError(df) || inherits(df, "response") || length(df) == 0
+    is_try_error(df) || inherits(df, "response") || length(df) == 0
   })
 
   if (any(failed)) {
@@ -135,7 +135,7 @@ read_wasserportal <- function(
       sprintf(
         "Removing %d elements that are empty or failed (variables: %s)",
         sum(failed),
-        kwb.utils::stringList(variables[failed])
+        string_list(variables[failed])
       ),
       expr = {
         failures <- dfs[failed]
@@ -166,7 +166,7 @@ read_wasserportal <- function(
     stop("type must be one of 'single', 'daily', 'monthly'")
   }
 
-  metadata <- lapply(dfs, kwb.utils::getAttribute, "metadata")
+  metadata <- lapply(dfs, get_attribute, "metadata")
 
   structure(
     result,
@@ -180,9 +180,9 @@ merge_raw_results_single <- function(dfs, variables, include_raw_time)
 {
   date_vectors <- lapply(dfs, select_columns, "LocalDateTime")
 
-  if (length(variables) > 1 && ! kwb.utils::allAreIdentical(date_vectors)) {
+  if (length(variables) > 1 && ! all_are_identical(date_vectors)) {
     message("Not all requests return the same timestamp column:")
-    kwb.utils::printIf(TRUE, lengths(date_vectors))
+    print_if(TRUE, lengths(date_vectors))
   }
 
   keys <- c(
@@ -200,11 +200,9 @@ merge_raw_results_single <- function(dfs, variables, include_raw_time)
 
   data_frames <- c(list(base = backbone), dfs)
 
-  result <- kwb.utils::mergeAll(
-    data_frames, by = keys, all.x = TRUE, dbg = FALSE
-  )
+  result <- merge_all(data_frames, by = keys, all.x = TRUE, dbg = FALSE)
 
-  result <- kwb.utils::removeColumns(result[order(result$row), ], "row.base")
+  result <- remove_columns(result[order(result$row), ], "row.base")
 
   names(result) <- gsub("Einzelwert\\.", "", names(result))
 
@@ -213,9 +211,7 @@ merge_raw_results_single <- function(dfs, variables, include_raw_time)
     DateTimeUTC = format(result$LocalDateTime, tz = "UTC")
   )
 
-  kwb.utils::insertColumns(
-    result, after = "LocalDateTime", UTCOffset = utc_offset
-  )
+  insert_columns(result, after = "LocalDateTime", UTCOffset = utc_offset)
 }
 
 # merge_raw_results_daily ------------------------------------------------------

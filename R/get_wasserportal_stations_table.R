@@ -6,7 +6,6 @@
 #' \code{\link{wasserportal_base_url}}
 #' @return data frame with master data of selected monitoring stations
 #' @export
-#' @importFrom kwb.utils substSpecialChars
 #' @importFrom rvest html_node html_table html_nodes html_attr
 #' @importFrom stringr str_remove_all
 #' @importFrom xml2 read_html
@@ -80,14 +79,14 @@ get_wasserportal_stations_table <- function (
   # # different from those in column "Messstellennummer". Adapt the links in
   # # column "Ganglinie" before "merging" them with the links in column
   # # "Messstellennummer".
-  # hrefs_graph <- kwb.utils::multiSubstitute(hrefs_graph, list(
+  # hrefs_graph <- multi_substitute(hrefs_graph, list(
   #   "anzeige=[^&]+" = "anzeige=i",
   #   "stable=gwq" = "stable=gws"
   # ))
   #
   # # "Merge" hrefs_id with hrefs_graph: Use hrefs_id if not NA else hrefs_graph
   # # and warn if both are given but different
-  # hrefs <- kwb.utils::parallelNonNA(hrefs_id, hrefs_graph)
+  # hrefs <- parallel_non_na(hrefs_id, hrefs_graph)
   #
   # # Report about differing hrefs in the two columns
   # #print_invalid_hrefs(hrefs)
@@ -95,7 +94,7 @@ get_wasserportal_stations_table <- function (
   # Prefix the wasserportal-related hyperlinks with the wasserportal base URL
   add_baseurl <- function(hrefs) {
 
-  is_not_na <- ! kwb.utils::isNaOrEmpty(hrefs)
+  is_not_na <- !is_na_or_empty(hrefs)
 
   if(sum(is_not_na) > 0) {
   is_wasserportal <- startsWith(hrefs, "station.php") & is_not_na
@@ -116,7 +115,7 @@ get_wasserportal_stations_table <- function (
 
   names(overview_table) <- names(overview_table) %>%
     stringr::str_remove_all("-") %>%
-    kwb.utils::substSpecialChars()
+    subst_special_chars()
 
 
   dplyr::bind_cols(

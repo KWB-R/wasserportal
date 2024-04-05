@@ -24,5 +24,5 @@ get_wasserportal_stations <- function(type = "quality")
   }
 
   select_columns(stations, c("name", "id"))[is_available, ] %>%
-    kwb.utils::toLookupList(data = .)
+    to_lookup_list(data = .)
 }
