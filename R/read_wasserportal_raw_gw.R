@@ -162,7 +162,7 @@ get_url_and_body_for_groundwater_data_download <- function(
   }
 
   if (sreihe == "wa") {
-    sdatum <- "01.01.1900"
+    sdatum <- "01.01.1850"
   }
 
   # Format the end date (today)
