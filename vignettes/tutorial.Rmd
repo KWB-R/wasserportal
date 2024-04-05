@@ -322,12 +322,11 @@ debug <- FALSE
 
 gw_level_multi <- data.table::rbindlist(lapply(
   stations_list$groundwater.level$Messstellennummer, 
-  function(id) kwb.utils::catAndRun(
+  function(id) { kwb.utils::catAndRun(
     sprintf("Downloading Messstellennummer == '%s'", id), 
-    wasserportal::read_wasserportal_raw_gw(station = id, stype = "gwl"), 
-    dbg = debug
-  )
-))
+    wasserportal::read_wasserportal_raw_gw(station = id, stype = "gws"), 
+    dbg = debug) }
+  ))
 
 readr::write_csv(gw_level_multi, file = "groundwater_level.csv")
 
