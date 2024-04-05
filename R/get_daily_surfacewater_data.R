@@ -23,8 +23,8 @@ get_daily_surfacewater_data <- function(
 )
 {
   #kwb.utils::assignPackageObjects("wasserportal")
-  overviews <- kwb.utils::selectElements(stations, "overview_list")
-  crosstable <- kwb.utils::selectElements(stations, "crosstable")
+  overviews <- select_elements(stations, "overview_list")
+  crosstable <- select_elements(stations, "crosstable")
 
   data_frames <- lapply(names(variables), function(variable_name) {
 
@@ -33,7 +33,7 @@ get_daily_surfacewater_data <- function(
     kwb.utils::catAndRun(sprintf("Importing '%s'", variable_name), expr = {
 
       # data frame with stations at which <variable_name> is measured
-      station_data <- kwb.utils::selectElements(overviews, variable_name)
+      station_data <- select_elements(overviews, variable_name)
 
       # Identifiers of non-external monitoring stations to loop through
       station_ids <- get_non_external_station_ids(station_data)

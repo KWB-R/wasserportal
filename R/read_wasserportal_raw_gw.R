@@ -117,7 +117,7 @@ read_wasserportal_raw_gw <- function(
           )
       ) %>%
       dplyr::filter(!is.na(.data$Messwert)) %>%
-      kwb.utils::selectColumns(c(
+      select_columns(c(
         "Messstellennummer",
         "Datum",
         "Parameter",
@@ -140,12 +140,18 @@ get_url_and_body_for_groundwater_data_download <- function(
 )
 {
   sreihe <- if (stype == "gwq") {
+
     "wa"
+
   } else {
-    kwb.utils::selectElements(
-      list(single = "w", single_all = "wa", daily = "m", monthly = "j"),
-      type
-    )
+
+    select_elements(elements = type, x = list(
+      single = "w",
+      single_all = "wa",
+      daily = "m",
+      monthly = "j"
+    ))
+
   }
 
   download_shortcuts <- list(gws = "g", gwq = "q")

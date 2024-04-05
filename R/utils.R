@@ -43,7 +43,7 @@ assert_date <- function(x)
 columns_to_labels <- function(data, columns, fmt = "%s: %s", sep = ", ")
 {
   do.call(paste, c(list(sep = sep), lapply(columns, function(column) sprintf(
-    fmt, column, kwb.utils::selectColumns(data, column)
+    fmt, column, select_columns(data, column)
   ))))
 }
 
@@ -91,3 +91,15 @@ readPackageFile <- function(file, ...)
 {
   kwb.utils::readPackageFile(file, package = "wasserportal", ...)
 }
+
+# select_columns ---------------------------------------------------------------
+#' @importFrom kwb.utils selectColumns
+select_columns <- kwb.utils::selectColumns
+
+# select_elements --------------------------------------------------------------
+#' @importFrom kwb.utils selectElements
+select_elements <- kwb.utils::selectElements
+
+# subst_special_chars ----------------------------------------------------------
+#' @importFrom package kwb.utils substSpecialChars
+subst_special_chars <- kwb.utils::substSpecialChars

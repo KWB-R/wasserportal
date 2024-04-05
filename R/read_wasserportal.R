@@ -95,7 +95,9 @@ read_wasserportal <- function(
   #include_raw_time = FALSE
   #stations_crosstable <- get_stations(type = "crosstable")
 
-  station_crosstable <- stations_crosstable[stations_crosstable$Messstellennummer == station, ]
+  site_ids <- select_columns(stations_crosstable, "Messstellennummer")
+
+  station_crosstable <- stations_crosstable[site_ids == station, ]
 
   variable_ids <- get_station_variables(station_crosstable)
 
@@ -177,7 +179,7 @@ read_wasserportal <- function(
 # merge_raw_results_single -----------------------------------------------------
 merge_raw_results_single <- function(dfs, variables, include_raw_time)
 {
-  date_vectors <- lapply(dfs, kwb.utils::selectColumns, "LocalDateTime")
+  date_vectors <- lapply(dfs, select_columns, "LocalDateTime")
 
   if (length(variables) > 1 && ! kwb.utils::allAreIdentical(date_vectors)) {
     message("Not all requests return the same timestamp column:")
@@ -189,7 +191,7 @@ merge_raw_results_single <- function(dfs, variables, include_raw_time)
     "LocalDateTime"
   )
 
-  backbones <- lapply(dfs, kwb.utils::selectColumns, keys, drop = FALSE)
+  backbones <- lapply(dfs, select_columns, keys, drop = FALSE)
 
   backbone <- unique(do.call(rbind, backbones))
 

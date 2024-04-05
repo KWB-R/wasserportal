@@ -30,7 +30,7 @@ get_groundwater_data <- function(
   #kwb.utils::assignPackageObjects("wasserportal")
 
   if (is.null(stations_list)) {
-    stations_list <- kwb.utils::selectElements(stations, "overview_list")
+    stations_list <- select_elements(stations, "overview_list")
   }
 
   result <- lapply(
@@ -46,8 +46,8 @@ get_groundwater_data <- function(
         dbg = debug,
         expr = {
           ids <- stations_list %>%
-            kwb.utils::selectElements(option_name) %>%
-            kwb.utils::selectColumns("Messstellennummer")
+            select_elements(option_name) %>%
+            select_columns("Messstellennummer")
           lapply(
             X = ids,
             FUN = function(id) {

@@ -37,10 +37,7 @@ read_wasserportal_raw <- function(
 
   from_date <- assert_date(from_date)
 
-  station_ids <- kwb.utils::selectColumns(
-    stations_crosstable,
-    "Messstellennummer"
-  )
+  station_ids <- select_columns(stations_crosstable, "Messstellennummer")
 
   stopifnot(station %in% station_ids)
 
@@ -60,7 +57,7 @@ read_wasserportal_raw <- function(
     list(single = "ew", daily = "tw", monthly = "mw")
   }
 
-  sreihe <- kwb.utils::selectElements(sreihe_options, type)
+  sreihe <- select_elements(sreihe_options, type)
 
   # Compose the URL and the body for the request
   if (api_version == 1L) {
@@ -75,7 +72,7 @@ read_wasserportal_raw <- function(
       oos = "s"
     )
 
-    variable <- kwb.utils::selectElements(variable_mapping, variable)
+    variable <- select_elements(variable_mapping, variable)
     variable_ids <- unlist(variable_mapping)
 
     url <- get_wasserportal_url(station, variable)
@@ -190,7 +187,7 @@ add_wasserportal_metadata <- function(x, header_fields)
 # clean_timestamp_columns ------------------------------------------------------
 clean_timestamp_columns <- function(data, include_raw_time)
 {
-  raw_timestamps <- kwb.utils::selectColumns(data, "Datum")
+  raw_timestamps <- select_columns(data, "Datum")
 
   data <- kwb.utils::renameColumns(data, list(Datum = "timestamp_raw"))
 
@@ -259,7 +256,7 @@ repair_wasserportal_timestamps <- function(timestamps, dbg = FALSE)
 # remove_remaining_duplicates --------------------------------------------------
 remove_remaining_duplicates <- function(data)
 {
-  timestamps <- kwb.utils::selectColumns(data, "timestamp_corr")
+  timestamps <- select_columns(data, "timestamp_corr")
 
   is_duplicate <- duplicated(timestamps)
 
