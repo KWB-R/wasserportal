@@ -101,5 +101,5 @@ select_columns <- kwb.utils::selectColumns
 select_elements <- kwb.utils::selectElements
 
 # subst_special_chars ----------------------------------------------------------
-#' @importFrom package kwb.utils substSpecialChars
+#' @importFrom kwb.utils substSpecialChars
 subst_special_chars <- kwb.utils::substSpecialChars
