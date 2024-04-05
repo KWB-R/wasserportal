@@ -4,12 +4,17 @@ test_that("get_station_variables() works", {
 
   expect_error(f())
 
-  station_df <- data.frame(
-    Messstellennummer = 1:3,
-    Messstellenname = LETTERS[1:3],
-    a = 2:4,
-    b = 3:5
+  df1 <- data.frame(
+    Messstellennummer = 1:2,
+    Messstellenname = c("a", "b"),
+    my_var = c("x", NA)
   )
 
-  expect_identical(f(station_df), c("a", "b"))
+  df2 <- kwb.utils::renameColumns(df1, list(my_var = "gwq"))
+
+  expect_error(f(df1), "No such variable code")
+
+  result <- f(df2)
+
+  expect_identical(result, c(groundwater.quality = "gwq"))
 })

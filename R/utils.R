@@ -100,6 +100,20 @@ select_columns <- kwb.utils::selectColumns
 #' @importFrom kwb.utils selectElements
 select_elements <- kwb.utils::selectElements
 
+# stop_if_not_all_in -----------------------------------------------------------
+stop_if_not_all_in <- function(x, set, type = "element")
+{
+  is_missing <- !(x %in% set)
+
+  if (any(is_missing)) {
+    kwb.utils::stopFormatted(kwb.utils::noSuchElements(
+      x = x[is_missing],
+      available = set,
+      type = type
+    ))
+  }
+}
+
 # subst_special_chars ----------------------------------------------------------
 #' @importFrom kwb.utils substSpecialChars
 subst_special_chars <- kwb.utils::substSpecialChars
