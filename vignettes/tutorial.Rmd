@@ -18,29 +18,16 @@ knitr::opts_chunk$set(
 )
 
 is_ghactions <- identical(Sys.getenv("CI"), "true")
-```
 
-## Load Pipe Operator and Define Helper Functions
+### Functions that are used in this document but not shown to the user
 
-```{r define_helpers}
-`%>%` <- magrittr::`%>%`
-
-write_pretty_json <- function(x, path) {
-  jsonlite::write_json(x, path = path, pretty = TRUE)
+write_json_and_inform <- function(x, filename, what, format) {
+  write_pretty_json(x, filename)
+  also_available(what, format = "in JSON format", filename)
 }
 
-top_filter_datatable <- function(x, caption = NULL) {
-  DT::datatable(x, filter = "top", caption = caption)
-}
-
-create_title_text <- function(x, ncols) {
-  paste0(
-    paste0(names(x)[1L], ": ", x[1L], collapse = ", "),
-    "<br>",
-    "<sup>",
-    paste0(names(x)[ncols], ": ", x[ncols], collapse =", "),
-    "</sup>"
-  )
+write_pretty_json <- function(x, filename) {
+  jsonlite::write_json(x, path = filename, pretty = TRUE)
 }
 
 also_available <- function(what, format, filename) {
@@ -54,6 +41,36 @@ also_available <- function(what, format, filename) {
   ))
 }
 
+top_filter_datatable <- function(x, caption = NULL) {
+  DT::datatable(x, filter = "top", caption = caption)
+}
+```
+
+## Install the Package
+
+Use the "remotes" package to install the package "wasserportal" directly from
+KWB's GitHub site:
+
+```{r eval = FALSE}
+# install.packages("remotes")
+remotes::install_github("kwb-r/wasserportal", upgrade = "never", force = TRUE)
+```
+
+## Load Pipe Operator and Define Helper Functions
+
+```{r define_helpers}
+`%>%` <- magrittr::`%>%`
+
+create_title_text <- function(x, ncols) {
+  paste0(
+    paste0(names(x)[1L], ": ", x[1L], collapse = ", "),
+    "<br>",
+    "<sup>",
+    paste0(names(x)[ncols], ": ", x[ncols], collapse =", "),
+    "</sup>"
+  )
+}
+
 ggplot2_date_value <- function(data, col) {
   ggplot2::ggplot(data, mapping = ggplot2::aes(
     x = Datum, 
@@ -63,86 +80,84 @@ ggplot2_date_value <- function(data, col) {
 }
 ```
 
-## Stations
+### Overview on Monitoring Stations and Parameters
 
-### General overview
+Get information on monitoring stations and parameters that are available on the Wasserportal:
 
-```{r stations_overview}
-# install.packages("remotes")
-# remotes::install_github("kwb-r/wasserportal", upgrade = "never", force = TRUE)
-
-overview_options <- wasserportal::get_overview_options()
-
-str(overview_options)
-
-system.time(
-  stations <- wasserportal::get_stations(type = c("list", "crosstable"))
-)
-
-str(stations)
-
-stations_list <- kwb.utils::selectElements(stations, "overview_list")
-stations_crosstable <- kwb.utils::selectElements(stations, "crosstable")
-
-write_pretty_json(stations_crosstable, "stations_crosstable.json")
+```{r get_stations}
+stations <- wasserportal::get_stations(type = c("list", "crosstable"))
+str(stations, 2)
 ```
 
-```{r stations_crosstable}
+The data frame `stations$crosstable` informs about the parameters that are 
+measured at the different monitoring stations:
+
+```{r datatable_stations_crosstable, echo = FALSE}
 top_filter_datatable(
-  stations_crosstable, 
+  stations$crosstable, 
   "Data availabilty per monitoring station"
 )
 ```
 
+The parameter abbreviations that appear as column names in the above table have
+the following meanings:
+
+```{r get_parameters}
+parameters <- wasserportal::get_overview_options()
+str(parameters)
+```
+
 ```{r input_ghactions0, echo = FALSE, results = 'asis', eval = is_ghactions}
-also_available(
-  what = paste0(
-    "The crosstable data for checking data availabilty of the monitoring ",
-    "stations"
-  ),
-  format = "in JSON format", 
-  filename = "stations_crosstable.json"
+write_json_and_inform(
+  x = stations$crosstable, 
+  filename = "stations_crosstable.json", 
+  what = "The table of data availabilty for each monitoring station"
 )
 ```
 
-### GW level
+### Groundwater Level
+
+The data frame `stations$overview_list$groundwater.level` gives general 
+information on the groundwater monitoring stations:
+
+```{r datatable_stations_list_groundwater_level, echo = FALSE}
+top_filter_datatable(stations$overview_list$groundwater.level)
+```
 
 #### Master data 
 
-Overview data of GW level stations can be requested as shown below:
-
-```{r stations_gwl_table_overview}
-top_filter_datatable(stations_list$groundwater.level)
-```
-
-Master data of GW level stations can be requested as shown below:
+More information on the groundwater level stations, such as the coordinates of 
+the wells (master data), can be found if you follow the web link (URL) that is
+given in column `stammdaten_link` of the above table. The "wasserportal" package
+provides a function to retrieve information from these links:
 
 ```{r stations_gwl_table_master}
-stations_gwl_master <- wasserportal::get_wasserportal_masters_data(
-  master_urls = stations_list$groundwater.level$stammdaten_link
-)
+urls <- stations$overview_list$groundwater.level$stammdaten_link
+stations_gwl_master <- wasserportal::get_wasserportal_masters_data(urls)
+``` 
 
-write_pretty_json(stations_gwl_master, "stations_gwl_master.json")
+This is how the resulting table `stations_gwl_master` looks like:
 
+```{r datatable_stations_gwl_master, echo = FALSE}
 top_filter_datatable(stations_gwl_master)
 ``` 
 
 ```{r input_ghactions1, echo = FALSE, results = 'asis', eval = is_ghactions}
-also_available(
-  what = "The master data of GW level stations", 
-  format = "in JSON format",
-  filename = "stations_gwl_master.json"
+write_json_and_inform(
+  x = stations_gwl_master, 
+  filename = filename, 
+  what = "The master data of groundwater level stations"
 )
 ```
 
 #### Trend Classification 
 
-GW level trend classification (provided by SenWeb) is visualized below.
+Groundwater level trend classification (provided by SenWeb) is visualized below.
 
 ##### Trend Classification Histogramm
 
 ```{r stations_gwl_trend}
-gwl <- stations_list$groundwater.level %>% 
+gwl <- stations$overview_list$groundwater.level %>% 
   dplyr::mutate(Datum = as.Date(Datum, format = "%d.%m.%Y"))
 
 text_low_levels <- c("extrem niedrig", "sehr niedrig", "niedrig")
@@ -286,12 +301,12 @@ also_available(
 )
 ```
 
-#### Download and Plotting One Station
+#### Download and Plot Data for One Station
 
 for total period available.
 
 ```{r test_gwl_download_single, eval = FALSE}
-station_gwl <- stations_list$groundwater.level[1L, ]
+station_gwl <- stations$overview_list$groundwater.level[1L, ]
 
 ncols <- 2:ncol(station_gwl)
 
@@ -315,13 +330,13 @@ plotly::ggplotly(g) %>%
   plotly::layout(title = list(text = title_subtitle))
 ```
 
-#### Download and Plotting Multiple Stations
+#### Download and Plot Data for Multiple Stations
 
 ```{r test_gwl_download_multiple, eval = FALSE}
 debug <- FALSE
 
 gw_level_multi <- data.table::rbindlist(lapply(
-  stations_list$groundwater.level$Messstellennummer, 
+  stations$overview_list$groundwater.level$Messstellennummer, 
   function(id) { kwb.utils::catAndRun(
     sprintf("Downloading Messstellennummer == '%s'", id), 
     wasserportal::read_wasserportal_raw_gw(station = id, stype = "gws"), 
@@ -331,7 +346,7 @@ gw_level_multi <- data.table::rbindlist(lapply(
 readr::write_csv(gw_level_multi, file = "groundwater_level.csv")
 
 # Plot 10 GW level
-selected_stations <- stations_list$groundwater.level$Messstellennummer[1:10]
+selected_stations <- stations$overview_list$groundwater.level$Messstellennummer[1:10]
 
 g <- gw_level_multi %>% 
   dplyr::filter(Messstellennummer %in% selected_stations) %>% 
@@ -353,15 +368,17 @@ also_available(
 )
 ```
 
-### GW quality
+### Groundwater Quality
 
 Overview data of GW level stations can be requested as shown below:
 
 ```{r stations_gwq_table_overview}
 stations_gwq <- wasserportal::get_wasserportal_stations_table(
-  type = overview_options$groundwater$quality
+  type = parameters$groundwater$quality
 )
+```
 
+```{r datatable_stations_gwq, echo = FALSE}
 top_filter_datatable(stations_gwq)
 ```
 
@@ -371,22 +388,20 @@ Master data of GW quality stations can be requested as shown below:
 stations_gwq_master <- wasserportal::get_wasserportal_masters_data(
   master_urls = stations_gwq$stammdaten_link
 )
-
-write_pretty_json(stations_gwq_master, "stations_gwq_master.json")
 ``` 
 
 ```{r input_ghactions2, echo = FALSE, results = 'asis', eval = is_ghactions}
-also_available(
-  what = "The master data of GW quality stations",
-  format = "in JSON format",
-  filename = "stations_gwq_master.json"
+write_json_and_inform(
+  x = stations_gwq_master, 
+  filename = filename,
+  what = "The master data of groundwater quality stations"
 )
 ```
 
 #### GW Quality: Download and Plotting One Station
 
 ```{r test_gwq_download_single, eval = FALSE}
-station_gwq <- stations_list$groundwater.quality[1L, ]
+station_gwq <- stations$overview_list$groundwater.quality[1L, ]
 
 ncols <- 2:ncol(station_gwq)
 
@@ -418,7 +433,7 @@ plotly::ggplotly(g) %>%
 debug <- FALSE
 
 gw_quality_multi <- data.table::rbindlist(lapply(
-  stations_list$groundwater.quality$Messstellennummer, 
+  stations$overview_list$groundwater.quality$Messstellennummer, 
   function(id) kwb.utils::catAndRun(
     sprintf("Downloading Messstellennummer == '%s'", id), 
     wasserportal::read_wasserportal_raw_gw(station = id, stype = "gwq"), 
@@ -429,7 +444,7 @@ gw_quality_multi <- data.table::rbindlist(lapply(
 readr::write_csv(gw_quality_multi, "groundwater_quality.csv")
 
 # Plot 10 GW quality 
-selected_stations <- stations_list$groundwater.quality$Messstellennummer[1:10]
+selected_stations <- stations$overview_list$groundwater.quality$Messstellennummer[1:10]
 
 g <- gw_quality_multi %>% 
   dplyr::filter(Messstellennummer %in% selected_stations) %>% 
