@@ -158,7 +158,7 @@ write_json_and_inform(
 
 Groundwater level trend classification (provided by SenWeb) is visualized below.
 
-#### Trend Classification Histogramm
+#### 1. Trend Classification Histogram
 
 ```{r stations_gwl_trend}
 gwl <- stations$overview_list$groundwater.level %>% 
@@ -216,7 +216,7 @@ plotly::ggplotly(g1)
 (`r paste(text_high_levels, collapse = ", ")`) 
 GW levels.
 
-#### Trend Classification Map
+#### 2. Trend Classification Map
 
 ```{r stations_gwl_trend_spatially}
 level_colors <- data.frame(
