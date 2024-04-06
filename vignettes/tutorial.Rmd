@@ -56,31 +56,8 @@ KWB's GitHub site:
 remotes::install_github("kwb-r/wasserportal", upgrade = "never", force = TRUE)
 ```
 
-## Load Pipe Operator and Define Helper Functions
 
-```{r define_helpers}
-`%>%` <- magrittr::`%>%`
-
-create_title_text <- function(x, ncols) {
-  paste0(
-    paste0(names(x)[1L], ": ", x[1L], collapse = ", "),
-    "<br>",
-    "<sup>",
-    paste0(names(x)[ncols], ": ", x[ncols], collapse =", "),
-    "</sup>"
-  )
-}
-
-ggplot2_date_value <- function(data, col) {
-  ggplot2::ggplot(data, mapping = ggplot2::aes(
-    x = Datum, 
-    y = Messwert, 
-    col = col
-  ))
-}
-```
-
-### Overview on Monitoring Stations and Parameters
+## Overview on Monitoring Stations and Parameters
 
 Get information on monitoring stations and parameters that are available on the Wasserportal:
 
@@ -115,7 +92,35 @@ write_json_and_inform(
 )
 ```
 
-### Groundwater Level
+
+## Provide Pipe Operator Helper Functions
+
+The code provided in the following requires the pipe operator `%>%` of the 
+"magrittr" package and some helper functions to be defined:
+
+```{r define_helpers}
+`%>%` <- magrittr::`%>%`
+
+create_title_text <- function(x, ncols) {
+  paste0(
+    paste0(names(x)[1L], ": ", x[1L], collapse = ", "),
+    "<br>",
+    "<sup>",
+    paste0(names(x)[ncols], ": ", x[ncols], collapse =", "),
+    "</sup>"
+  )
+}
+
+ggplot2_date_value <- function(data, col) {
+  ggplot2::ggplot(data, mapping = ggplot2::aes(
+    x = Datum, 
+    y = Messwert, 
+    col = col
+  ))
+}
+```
+
+## Groundwater Level Data
 
 The data frame `stations$overview_list$groundwater.level` gives general 
 information on the groundwater monitoring stations:
@@ -124,7 +129,7 @@ information on the groundwater monitoring stations:
 top_filter_datatable(stations$overview_list$groundwater.level)
 ```
 
-#### Master data 
+### Master data 
 
 More information on the groundwater level stations, such as the coordinates of 
 the wells (master data), can be found if you follow the web link (URL) that is
@@ -150,11 +155,11 @@ write_json_and_inform(
 )
 ```
 
-#### Trend Classification 
+### Trend Classification 
 
 Groundwater level trend classification (provided by SenWeb) is visualized below.
 
-##### Trend Classification Histogramm
+#### Trend Classification Histogramm
 
 ```{r stations_gwl_trend}
 gwl <- stations$overview_list$groundwater.level %>% 
@@ -212,7 +217,7 @@ plotly::ggplotly(g1)
 (`r paste(text_high_levels, collapse = ", ")`) 
 GW levels.
 
-##### Trend Classification Map
+#### Trend Classification Map
 
 ```{r stations_gwl_trend_spatially}
 level_colors <- data.frame(
@@ -301,9 +306,10 @@ also_available(
 )
 ```
 
-#### Download and Plot Data for One Station
+### Groundwater Levels: One Station
 
-for total period available.
+The following code downloads and plots groundwater level data for one monitoring
+station:
 
 ```{r test_gwl_download_single, eval = FALSE}
 station_gwl <- stations$overview_list$groundwater.level[1L, ]
@@ -330,7 +336,10 @@ plotly::ggplotly(g) %>%
   plotly::layout(title = list(text = title_subtitle))
 ```
 
-#### Download and Plot Data for Multiple Stations
+### Groundwater Levels: Multiple Stations
+
+The following code downloads and plots groundwater level data for multiple 
+monitoring stations:
 
 ```{r test_gwl_download_multiple, eval = FALSE}
 debug <- FALSE
@@ -368,7 +377,7 @@ also_available(
 )
 ```
 
-### Groundwater Quality
+## Groundwater Quality Data
 
 Overview data of GW level stations can be requested as shown below:
 
@@ -398,7 +407,10 @@ write_json_and_inform(
 )
 ```
 
-#### GW Quality: Download and Plotting One Station
+### Groundwater Quality: One Station
+
+The following code downloads and plots groundwater quality data for 
+one monitoring station:
 
 ```{r test_gwq_download_single, eval = FALSE}
 station_gwq <- stations$overview_list$groundwater.quality[1L, ]
@@ -427,7 +439,10 @@ plotly::ggplotly(g) %>%
   plotly::layout(title = list(text = title_subtitle))
 ```
 
-#### GW Quality: Download and Plotting Multiple Stations
+### Groundwater Quality: Multiple Stations
+
+The following code downloads and plots groundwater quality data for 
+multiple monitoring stations:
 
 ```{r test_gwq_download_multiple, eval = FALSE}
 debug <- FALSE
