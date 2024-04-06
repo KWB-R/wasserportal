@@ -1,0 +1,165 @@
+nstoff_id,stoff_name_lang,einheit
+111,Silber gesamt,myg/l
+112,Aluminium geloest,myg/l
+113,Aluminium gesamt,myg/l
+125,Arsen geloest,myg/l
+126,Arsen gesamt,myg/l
+127,Desethylatrazin,myg/l
+128,Atrazin,myg/l
+129,Azinphos-ethyl,myg/l^
+130,Azinphos-methyl,myg/l
+131,b-Endosulfan,ng/l
+132,b-HCH,myg/l
+133,Barium geloest,myg/l
+134,Barium gesamt,myg/l
+135,Beta-Cyfluthrin,myg/l
+144,Beryllium gesamt,myg/l
+145,Bentazon,myg/l
+146,Benzidin,myg/l
+147,Dichlorbenzidine,myg/l
+148,Benzol,myg/l
+149,Bezafibrat,myg/l
+151,Bifenthrin,myg/l
+152,Bifenox,myg/l
+153,Biphenyl,myg/l
+154,Bisphenol A,myg/l
+156,Bor gesamt,myg/l
+157,Bromoxynil,myg/l
+158,Bromacil,myg/l
+167,"Chlordan,cis-",myg/l
+168,C10-C13-Chloralkane,myg/l
+169,"1,2-Dichlorethen,cis-",myg/l
+170,Tetrachlorethen,myg/l
+171,Trichlorethen,myg/l
+172,Calcium,mg/l
+173,Carbamazepin,myg/l
+174,Carbendazim,myg/l
+175,Tetrachlorkohlenstoff,myg/l
+176,Cadmium geloest,myg/l
+177,Cadmium gesamt,myg/l
+178,Chlorophyll-a,myg/l
+179,Chlordan,myg/l
+180,Chlorethen (Vinylchlorid),myg/l
+181,Chlorflurenol,myg/l
+182,"Chloropren (2-Chlorbuta-1,3-dien)",myg/l
+183,Chrysen,myg/l
+184,Ciprofloxacin,myg/l
+185,"1,3-Dichlorpropen,cis-",myg/l
+186,Chloralhydrat,myg/l
+187,Chlorbenzol,myg/l
+188,Chloressigsaeure,myg/l
+189,2-Chlorethanol,myg/l
+190,Chlorfenvinphos,myg/l
+191,Chlorid,mg/l
+192,Chlornaphtaline (technische Mischung),myg/l
+193,Dichlordiisopropylether,myg/l
+214,Cypermethrin,myg/l
+215,d-HCH,myg/l
+216,"Dibenzo[a,h]anthracen",myg/l
+217,DEHP (Diethylhexylphthalat),myg/l
+218,Deltamethrin,myg/l
+228,Dichlormethan,myg/l
+229,"Dichlorprop (2,4-DP)",myg/l
+230,Diclofenac,myg/l
+231,Dieldrin,myg/l
+232,Diflufenican,myg/l
+233,Dimethachlor,myg/l
+234,Dimethoat,myg/l
+235,Dimoxystrobin,myg/l
+236,DINP+DIDP (Diisononyl- + Diisodecylphthalat),myg/l
+237,Disulfoton,myg/l
+238,Diuron,myg/l
+239,PCB-118,ng/l
+240,Dimethylaminophenazon (DMAA),myg/l
+241,Dimethylpyrazolon (DP),myg/l
+242,DOC (Geloester organischer Kohlenstoff),mg/l
+243,Desphenylchloridazon,myg/l
+244,e-HCH,myg/l
+245,E.Coli,/100ml
+246,EDTA,myg/l
+247,Intestinale Enterokokken,/100ml
+248,Endrin,myg/l
+253,Ethylbenzol,myg/l
+254,Diethylamin,myg/l
+255,Etrimphos,myg/l
+256,Famoxadon,myg/l
+258,Eisen gesamt,mg/l
+287,Quecksilber gesamt,myg/l
+288,Ibuprofen,myg/l
+296,Kalium,mg/l
+297,Ketoprofen,myg/l
+300,Lenacil,myg/l
+301,Leitfaehigkeit,myS/cm
+303,Lithium gesamt,myg/l
+304,Linuron,myg/l
+305,"1,3- + 1,4-Dimethylbenzol",myg/l
+306,"Desphenylchloridazon, Methyl-",myg/l
+307,Malathion,myg/l
+308,Methylenblau-aktive Substanz (MBAS),mg/l
+309,MCPA,myg/l
+311,Methamidophos,myg/l
+312,Metaflumizon,myg/l
+313,Metamitron,myg/l
+314,Metazachlor,myg/l
+316,Metconazol,myg/l
+317,Metformin,myg/l
+318,Methabenzthiazuron,myg/l
+319,Methoxychlor,myg/l
+320,Dimethylamin,myg/l
+321,Metolachlor,myg/l
+322,Metribuzin,myg/l
+323,Mevinphos,ng/l
+324,Magnesium,mg/l
+325,Miconazol,myg/l
+326,MKW (Mineraloelkohlenwasserstoffe),myg/l
+328,Mangan gesamt,mg/l
+330,Molybdaen gesamt,myg/l
+331,Monolinuron,myg/l
+332,Natrium,mg/l
+333,Naphthalin,myg/l
+336,Ammonium-Stickstoff,mg/l
+338,Nickel gesamt,myg/l
+339,Nitrobenzol,myg/l
+340,Nicosulfuron,myg/l
+341,Nitrit-Stickstoff,mg/l
+342,Nitrat-Stickstoff,mg/l
+343,Gesamt-Stickstoff (N) geloest,mg/l
+344,Gesamt-Stickstoff (N) gesamt,mg/l
+345,Nitrilotriessigsaeure (NTA),myg/l
+346,ortho-Phosphat-Phosphor,mg/l
+347,"1,2-Dimethylbenzol",myg/l
+348,Sauerstoff-Gehalt,mg/l
+356,Blei gesamt,myg/l
+363,Pentachlorphenol (PCP),myg/l
+364,Penconazol,myg/l
+365,Pendimethalin,myg/l
+366,Pentachlorbenzol,myg/l
+367,Permethrin,myg/l
+368,Pethoxamid,myg/l
+384,PFPeS (Perfluorpentansulfonsaeure),myg/l
+385,PFTrDA (Perfluortridecansaeure),myg/l
+386,PFTrDS (Perfluortridecansulfonsaeure),myg/l
+387,PFUnDA (Perfluorundecansaeure),myg/l
+388,PFUnDS (Perfluorundecansulfonsaeure),myg/l
+389,pH-Wert,---
+390,Phaeophytin,myg/l
+391,Phenol,myg/l
+392,Phenanthren,myg/l
+393,Phenazon,myg/l
+394,Phenole,mg/l
+405,Gesamt-Phosphor (P) gesamt,mg/l
+410,Redoxpotential,mV
+411,Spektraler Absorptionskoeffizient (SAK) 254nm,m-1
+413,Antimon gesamt,myg/l
+415,Selen gesamt,myg/l
+416,Silicium geloest,mg/l
+417,Sichttiefe,cm
+434,Thallium gesamt,myg/l
+435,Lufttemperatur,deg. Celsius
+436,TOC (Organischer Kohlenstoff),mg/l
+437,Toluol,myg/l
+448,Wassertemperatur,deg. Celsius
+449,Uran geloest,myg/l
+450,Uran gesamt,myg/l
+455,Zink geloest,myg/l
+456,Zink gesamt,myg/l
