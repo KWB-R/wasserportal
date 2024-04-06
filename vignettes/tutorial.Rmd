@@ -337,15 +337,16 @@ The following code downloads and plots groundwater level data for multiple
 monitoring stations:
 
 ```{r test_gwl_download_multiple, eval = FALSE}
-debug <- FALSE
-
 gw_level_multi <- data.table::rbindlist(lapply(
   stations$overview_list$groundwater.level$Messstellennummer, 
-  function(id) { kwb.utils::catAndRun(
-    sprintf("Downloading Messstellennummer == '%s'", id), 
-    wasserportal::read_wasserportal_raw_gw(station = id, stype = "gws"), 
-    dbg = debug) }
-  ))
+  function(id) { 
+    kwb.utils::catAndRun(
+      sprintf("Downloading Messstellennummer == '%s'", id), 
+      wasserportal::read_wasserportal_raw_gw(station = id, stype = "gws"), 
+      dbg = FALSE
+    )
+  }
+))
 
 readr::write_csv(gw_level_multi, file = "groundwater_level.csv")
 
@@ -436,14 +437,12 @@ The following code downloads and plots groundwater quality data for
 multiple monitoring stations:
 
 ```{r test_gwq_download_multiple, eval = FALSE}
-debug <- FALSE
-
 gw_quality_multi <- data.table::rbindlist(lapply(
   stations$overview_list$groundwater.quality$Messstellennummer, 
   function(id) kwb.utils::catAndRun(
     sprintf("Downloading Messstellennummer == '%s'", id), 
     wasserportal::read_wasserportal_raw_gw(station = id, stype = "gwq"), 
-    dbg = debug
+    dbg = FALSE
   )
 ))
 
