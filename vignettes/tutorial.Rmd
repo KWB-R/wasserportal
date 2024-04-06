@@ -101,14 +101,13 @@ The code provided in the following requires the pipe operator `%>%` of the
 ```{r define_helpers}
 `%>%` <- magrittr::`%>%`
 
-create_title_text <- function(x, ncols) {
-  paste0(
-    paste0(names(x)[1L], ": ", x[1L], collapse = ", "),
-    "<br>",
-    "<sup>",
-    paste0(names(x)[ncols], ": ", x[ncols], collapse =", "),
-    "</sup>"
-  )
+to_plotly_title <- function(x) {
+  key_values <- paste(names(x), unname(unlist(x)), sep = ": ")
+  list(text = sprintf(
+    "%s<br><sup>%s</sup>", 
+    key_values[1L], 
+    paste(key_values[-1L], collapse = ", ")
+  ))
 }
 
 ggplot2_date_value <- function(data, col) {
@@ -314,8 +313,6 @@ station:
 ```{r test_gwl_download_single, eval = FALSE}
 station_gwl <- stations$overview_list$groundwater.level[1L, ]
 
-ncols <- 2:ncol(station_gwl)
-
 gw_level <- wasserportal::read_wasserportal_raw_gw(
   station = station_gwl$Messstellennummer, 
   stype = "gwl"
@@ -330,10 +327,8 @@ g <- gw_level %>%
   ggplot2::geom_point() +
   ggplot2::theme_bw()
 
-title_subtitle <- create_title_text(x = station_gwl, ncols = ncols)
-
 plotly::ggplotly(g) %>%
-  plotly::layout(title = list(text = title_subtitle))
+  plotly::layout(title = to_plotly_title(station_gwl))
 ```
 
 ### Groundwater Levels: Multiple Stations
@@ -415,8 +410,6 @@ one monitoring station:
 ```{r test_gwq_download_single, eval = FALSE}
 station_gwq <- stations$overview_list$groundwater.quality[1L, ]
 
-ncols <- 2:ncol(station_gwq)
-
 gw_quality <- wasserportal::read_wasserportal_raw_gw(
   station = station_gwq$Messstellennummer, 
   stype = "gwq"
@@ -433,10 +426,8 @@ g <- gw_quality %>%
   ggplot2::geom_point() +
   ggplot2::theme_bw()
 
-title_subtitle <- create_title_text(x = station_gwq, ncols = ncols)
-
 plotly::ggplotly(g) %>%
-  plotly::layout(title = list(text = title_subtitle))
+  plotly::layout(title = to_plotly_title(station_gwq))
 ```
 
 ### Groundwater Quality: Multiple Stations
