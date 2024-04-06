@@ -93,7 +93,7 @@ write_json_and_inform(
 ```
 
 
-## Provide Pipe Operator Helper Functions
+## Provide Pipe Operator and Helper Functions
 
 The code provided in the following requires the pipe operator `%>%` of the 
 "magrittr" package and some helper functions to be defined:
@@ -130,8 +130,8 @@ top_filter_datatable(stations$overview_list$groundwater.level)
 
 ### Master data 
 
-More information on the groundwater level stations, such as the coordinates of 
-the wells (master data), can be found if you follow the web link (URL) that is
+More information on the groundwater level stations (master data), such as the
+coordinates of the wells, can be found if you follow the web link (URL) that is
 given in column `stammdaten_link` of the above table. The "wasserportal" package
 provides a function to retrieve information from these links:
 
