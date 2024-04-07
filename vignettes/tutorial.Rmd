@@ -44,6 +44,11 @@ also_available <- function(what, format, filename) {
 top_filter_datatable <- function(x, caption = NULL) {
   DT::datatable(x, filter = "top", caption = caption)
 }
+
+rounded_percentage <- function(x, basis, digits = 2L) {
+  round(kwb.utils::percentage(x, basis), digits)
+}
+
 ```
 
 ## Install the Package
@@ -101,12 +106,16 @@ The code provided in the following requires the pipe operator `%>%` of the
 ```{r define_helpers}
 `%>%` <- magrittr::`%>%`
 
+comma_separated <- function(x) {
+  paste(x, collapse = ", ")
+}
+  
 to_plotly_title <- function(x) {
   key_values <- paste(names(x), unname(unlist(x)), sep = ": ")
   list(text = sprintf(
     "%s<br><sup>%s</sup>", 
     key_values[1L], 
-    paste(key_values[-1L], collapse = ", ")
+    comma_separated(key_values[-1L])
   ))
 }
 
@@ -173,12 +182,12 @@ gwl$Klassifikation <- forcats::fct_relevel(gwl$Klassifikation, levels_ordered)
 gwl_classified_only <- gwl %>% 
   dplyr::filter(Klassifikation != "keine")
 
-percental_share_low_levels <- kwb.utils::percentage(
+percental_share_low_levels <- rounded_percentage(
   sum(gwl_classified_only$Klassifikation %in% text_low_levels), 
   basis = nrow(gwl_classified_only)
 )
 
-percental_share_high_levels <- kwb.utils::percentage(
+percental_share_high_levels <- rounded_percentage(
   sum(gwl_classified_only$Klassifikation %in% text_high_levels), 
   basis = nrow(gwl_classified_only)
 )
@@ -208,13 +217,17 @@ g1 <- gwl_classified_only %>%
 plotly::ggplotly(g1)
 ```
 
-`r round(percental_share_low_levels, 2L)` percent of all considered 
-`r nrow(gwl_classified_only)` GW level monitoring stations containing `classification` data (out of `r nrow(gwl)` provided by SenWeb) indicate 
-`below normal` 
-(`r paste(text_low_levels, collapse = ", ")`) GW levels. However, only 
-`r round(percental_share_low_levels, 2L)` percent are indicate `above normal` 
-(`r paste(text_high_levels, collapse = ", ")`) 
-GW levels.
+`r percental_share_low_levels` 
+percent of all considered 
+`r nrow(gwl_classified_only)` 
+groundwater level monitoring stations containing `classification` data 
+(out of `r nrow(gwl)` provided by SenWeb) indicate `below normal` 
+(`r comma_separated(text_low_levels)`)
+groundwater levels. However, only 
+`r percental_share_low_levels` 
+percent are indicate `above normal` 
+(`r comma_separated(text_high_levels)`)
+groundwater levels.
 
 #### 2. Trend Classification Map
 
@@ -315,7 +328,8 @@ station_gwl <- stations$overview_list$groundwater.level[1L, ]
 
 gw_level <- wasserportal::read_wasserportal_raw_gw(
   station = station_gwl$Messstellennummer, 
-  stype = "gwl"
+  stype = "gws"
+  #, as_text = TRUE, dbg = TRUE
 ) %>% 
   dplyr::mutate(Label = sprintf("%s (%s)", Parameter, Einheit))
 
@@ -387,7 +401,7 @@ stations_gwq <- wasserportal::get_wasserportal_stations_table(
 top_filter_datatable(stations_gwq)
 ```
 
-Master data of GW quality stations can be requested as shown below:
+Master data of groundwater quality stations can be requested as shown below:
 
 ```{r stations_gwq_table_master}
 stations_gwq_master <- wasserportal::get_wasserportal_masters_data(
