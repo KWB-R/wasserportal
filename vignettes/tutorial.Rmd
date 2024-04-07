@@ -149,7 +149,7 @@ top_filter_datatable(stations_gwl_master)
 ```{r input_ghactions1, echo = FALSE, results = 'asis', eval = is_ghactions}
 write_json_and_inform(
   x = stations_gwl_master, 
-  filename = filename, 
+  filename = "stations_gwl_master.json", 
   what = "The master data of groundwater level stations"
 )
 ```
@@ -398,7 +398,7 @@ stations_gwq_master <- wasserportal::get_wasserportal_masters_data(
 ```{r input_ghactions2, echo = FALSE, results = 'asis', eval = is_ghactions}
 write_json_and_inform(
   x = stations_gwq_master, 
-  filename = filename,
+  filename = "stations_gwq_master.json",
   what = "The master data of groundwater quality stations"
 )
 ```
