@@ -17,8 +17,8 @@ use_random_subset_of_stations <- FALSE
 
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>",
-  eval = FALSE # to temporarily "switch off" this (long running) vignette
+  comment = "#>"
+  #, eval = FALSE # to temporarily "switch off" this (long running) vignette
 )
 ```
 

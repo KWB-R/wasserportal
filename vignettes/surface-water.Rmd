@@ -14,8 +14,8 @@ editor_options:
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>",
-  eval = FALSE # to temporarily "switch off" this (long running) vignette
+  comment = "#>"
+  #, eval = FALSE # to temporarily "switch off" this (long running) vignette
 )
 ```
 
