@@ -5,7 +5,7 @@
 #' The tables that appear in the API documentation of the wasserportal
 #' (https://wasserportal.berlin.de/download/wasserportal_berlin_getting_data.pdf)
 #' have been added to the wasserportal package. This function returns a list
-#' of data frames with each element representing on of these tables.
+#' of data frames with each element representing one of these tables.
 #'
 #' @param name of element from the list of data frames to be selected. If this
 #'   argument is left blank (name = NULL), the default, the list of data frames

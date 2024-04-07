@@ -18,7 +18,7 @@ list of data frames or data frame specified by the \code{name} argument
 The tables that appear in the API documentation of the wasserportal
 (https://wasserportal.berlin.de/download/wasserportal_berlin_getting_data.pdf)
 have been added to the wasserportal package. This function returns a list
-of data frames with each element representing on of these tables.
+of data frames with each element representing one of these tables.
 }
 \examples{
 get_api_tables()
