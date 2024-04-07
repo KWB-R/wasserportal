@@ -10,7 +10,9 @@ read_wasserportal_raw_gw(
   type = "single_all",
   from_date = "",
   include_raw_time = FALSE,
-  handle = NULL
+  handle = NULL,
+  as_text = FALSE,
+  dbg = FALSE
 )
 }
 \arguments{
@@ -25,6 +27,16 @@ read_wasserportal_raw_gw(
 \item{include_raw_time}{default: FALSE}
 
 \item{handle}{default: NULL}
+
+\item{as_text}{if TRUE, the raw text that is returned by the HTTP request to
+the Wasserportal is returned by this function. Otherwise (the default)
+the raw text is tried to be interpreted as comma separated values and a
+corresponding data frame is returned. Use as_text = TRUE to analyse the raw
+text in case that an error occurs when trying to convert the text to a data
+frame.}
+
+\item{dbg}{logical indicating whether or not to show debug messages. The
+default is FALSE}
 }
 \value{
 data.frame with values

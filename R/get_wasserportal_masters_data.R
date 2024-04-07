@@ -46,7 +46,7 @@ get_wasserportal_masters_data <- function(
 
   master_list <- cat_and_run(
     messageText = sprintf(
-      "Importing %d station metadata from Wasserportal Berlin",
+      "Importing master data for %d stations from Wasserportal Berlin",
       length(master_urls)
     ),
     expr = if (run_parallel) {

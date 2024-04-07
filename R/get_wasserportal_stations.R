@@ -17,12 +17,12 @@ get_wasserportal_stations <- function(type = "quality")
   stations$id <- as.character(select_columns(stations, "id"))
   stations$name <- subst_special_chars(select_columns(stations, "name"))
 
-  is_available <- if (is.null(type)) {
-    seq_len(nrow(stations))
-  } else {
-    nzchar(select_columns(stations, type))
+  if (!is.null(type)) {
+    stations <- stations[nzchar(select_columns(stations, type)), ]
   }
 
-  select_columns(stations, c("name", "id"))[is_available, ] %>%
-    to_lookup_list(data = .)
+  to_lookup_list(
+    keys = select_columns(stations, "name"),
+    values = select_columns(stations, "id")
+  )
 }

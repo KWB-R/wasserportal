@@ -18,7 +18,7 @@ test_that("get_wasserportal_masters_data() works", {
 
   url <- "https://wasserportal.berlin.de/station.php?anzeige=i&thema=ows&station=5866301"
 
-  expect_output(result <- f(url), "Importing 1 station metadata")
+  expect_output(result <- f(url), "Importing master data for 1")
 
   expect_identical(names(result), c(
     "Nummer",

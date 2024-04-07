@@ -8,7 +8,14 @@
 #' @param from_date (default: "")
 #' @param include_raw_time default: FALSE
 #' @param handle default: NULL
-#'
+#' @param as_text if TRUE, the raw text that is returned by the HTTP request to
+#'   the Wasserportal is returned by this function. Otherwise (the default)
+#'   the raw text is tried to be interpreted as comma separated values and a
+#'   corresponding data frame is returned. Use as_text = TRUE to analyse the raw
+#'   text in case that an error occurs when trying to convert the text to a data
+#'   frame.
+#' @param dbg logical indicating whether or not to show debug messages. The
+#'   default is FALSE
 #' @return data.frame with values
 #' @export
 #' @importFrom stringr str_remove str_extract
@@ -25,7 +32,9 @@ read_wasserportal_raw_gw <- function(
     type = "single_all",
     from_date = "",
     include_raw_time = FALSE,
-    handle = NULL
+    handle = NULL,
+    as_text = FALSE,
+    dbg = FALSE
 )
 {
   # Prepare URL and body for HTTP request
@@ -36,11 +45,17 @@ read_wasserportal_raw_gw <- function(
   text <- get_text_response_of_httr_post_request(
     url = info$url,
     body = info$body,
-    handle = handle
+    handle = handle,
+    dbg = dbg
   )
 
   # Split the text into separate lines
   textlines <- split_into_lines(text)
+
+  # Return the HTML text lines if requested
+  if (as_text) {
+    return(textlines)
+  }
 
   date_pattern <- "Datum"
   start_line <- which(startsWith(textlines, date_pattern))

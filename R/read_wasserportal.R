@@ -110,7 +110,7 @@ read_wasserportal <- function(
 
   names(variables) <- names(variable_ids)[match(variables, variable_ids)]
 
-  handle <- httr::handle_find(get_wasserportal_url(0, 0))
+  handle <- httr::handle_find(wasserportal_base_url())
 
   dfs <- lapply(variables, function(variable) {
     #variable <- variables[1L]

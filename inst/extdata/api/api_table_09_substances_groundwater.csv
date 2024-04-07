@@ -1,0 +1,30 @@
+nstoff_id,stoff_name,stoff_name_lang,Einheit..unit.
+2,TL,Temperatur (Luft),grd Celsius
+5,PH,pH-Wert (Feld),-
+6,LEITF,Leitfaehigkeit vor Ort,myS/cm
+7,OX,Redoxpotential,mV
+10,TW,Temperatur (Wasser),grd Celsius
+12,OS,Redoxspannung,mV
+13,EH,Eh-Wert (Feld),-
+37,CL,Chlorid,mg/l
+38,F,Fluorid,mg/l
+39,HCO3,Hydrogenkarbonat,mg/l
+43,S,Sulfid,mg/l
+44,SO4,Sulfat,mg/l
+45,CYANID,Cyanide (ges.),mg/l
+46,BR,Bromid,mg/l
+47,NO2,Nitrit,mg/l
+48,NO3,Nitrat,mg/l
+49,PO4_O,Ortho-Phosphat,mg/l
+50,JOD,Jod,myg/l
+51,SIO2,SiO2,mg/l
+52,S_GEL,Sulfid (geloest),mg/l
+55,PO4_G,Phosphat (ges.),mg/l
+57,NH4_N,Ammonium (N),mg/l N
+58,FE_2,Eisen-2,mg/l
+59,FE_G,Eisen (ges.),mg/l
+60,K,Kalium,mg/l
+61,CA,Kalzium,mg/l
+62,MG,Magnesium,mg/l
+63,NA,Natrium,mg/l
+64,MN,Mangan,mg/l
