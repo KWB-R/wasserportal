@@ -157,6 +157,10 @@ remove_columns <- kwb.utils::removeColumns
 #' @importFrom kwb.utils removeEmptyColumns
 remove_empty_columns <- kwb.utils::removeEmptyColumns
 
+# remove_extension -------------------------------------------------------------
+#' @importFrom kwb.utils removeExtension
+remove_extension <- kwb.utils::removeExtension
+
 # rename_columns ---------------------------------------------------------------
 #' @importFrom kwb.utils renameColumns
 rename_columns <- kwb.utils::renameColumns
