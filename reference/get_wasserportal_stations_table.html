@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">wasserportal</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,7 +89,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">types</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="get_overview_options.html">get_overview_options</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">types</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> List of 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ surface_water:List of 7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ surface_water:List of 8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ water_level         : chr "ows"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ flow                : chr "odf"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ temperature         : chr "owt"</span>
@@ -97,6 +97,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ ph                  : chr "oph"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ oxygen_concentration: chr "oog"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ oxygen_saturation   : chr "oos"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ quality             : chr "opq"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ groundwater  :List of 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ level  : chr "gws"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ quality: chr "gwq"</span>
@@ -107,8 +108,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ Messstellenname  : chr [1:108] "Allee der Kosmonauten" "Allendestraße" "Alsenbrücke" "Am Bahndamm" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ Gewaesser        : chr [1:108] "M.-H.-Grenzgr." "Müggelspree" "Griebnitzkanal" "Wuhle" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ Betreiber        : chr [1:108] "Land Berlin" "Land Berlin" "Land Berlin" "Land Berlin" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ Datum            : chr [1:108] "07.04.2024 06:15" "07.04.2024 06:15" "07.04.2024 06:15" "" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ Wasserstand      : num [1:108] 11 52 60 NA 94 7 32 70 106 76 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ Datum            : chr [1:108] "07.04.2024 09:15" "07.04.2024 09:15" "07.04.2024 09:15" "" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ Wasserstand      : num [1:108] 8 52 60 NA 94 7 33 70 106 76 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ Einheit          : chr [1:108] "cm" "cm" "cm" "cm" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ Ganglinien       : chr [1:108] "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=ows&amp;station=5865900" "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=ows&amp;station=5827103" "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=ows&amp;station=5870400" "https://wasserportal.berlin.de/station.php?anzeige=g&amp;thema=ows&amp;station=5865300" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ Klassifikation   : chr [1:108] "niedrig" "niedrig" "normal" "nicht aktuell" ...</span>
@@ -120,7 +121,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by <a href="https://github.com/hsonne" class="external-link">Hauke Sonnenberg</a>, <a href="https://mrustl.de" class="external-link">Michael Rustler</a>, <a href="https://www.kompetenz-wasser.de/en/forschung/projekte/dwc" class="external-link"><img src="https://kompetenz-wasser.de/media/pages/forschung/projekte/dwc/6263c55e76-1639132760/dwc-rvb-grey.jpg" alt="Project DWC" width="72"></a>, <a href="https://www.kompetenz-wasser.de/en/forschung/projekte/impetus" class="external-link"><img src="https://climate-impetus.eu/wp-content/uploads/2021/12/horizontal.png" alt="Project IMPETUS" width="72"></a>, <a href="https://www.kompetenz-wasser.de/en/forschung/projekte/promisces" class="external-link"><img src="https://promisces.eu/skin/promisces/assets/img/logo.png" alt="Project PROMISCES" width="72"></a>.</p>
+  <p></p><p>Developed by <a href="https://github.com/hsonne" class="external-link">Hauke Sonnenberg</a>, <a href="https://mrustl.de" class="external-link">Michael Rustler</a>, <a href="https://www.kompetenz-wasser.de/en/forschung/projekte/ad4gd" class="external-link"><img src="https://ad4gd.eu/wp-content/uploads/2023/02/logointegrat-color.png" alt="Project AD4GD" width="72"></a>, <a href="https://www.kompetenz-wasser.de/en/forschung/projekte/dwc" class="external-link"><img src="https://kompetenz-wasser.de/media/pages/forschung/projekte/dwc/d4fd01b847-1702890606/dwc-rvb-grey.jpg" alt="Project DWC" width="72"></a>, <a href="https://www.kompetenz-wasser.de/en/forschung/projekte/impetus" class="external-link"><img src="https://climate-impetus.eu/wp-content/uploads/2021/12/horizontal.png" alt="Project IMPETUS" width="72"></a>, <a href="https://www.kompetenz-wasser.de/en/forschung/projekte/promisces" class="external-link"><img src="https://promisces.eu/skin/promisces/assets/img/logo.png" alt="Project PROMISCES" width="72"></a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
