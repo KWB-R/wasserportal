@@ -102,11 +102,11 @@ first_element <- kwb.utils::firstElement
 get_attribute <- kwb.utils::getAttribute
 
 # insert_columns ---------------------------------------------------------------
-#' @importFrom kwb.utils::insertColumns
+#' @importFrom kwb.utils insertColumns
 insert_columns <- kwb.utils::insertColumns
 
 # is_na_or_empty ---------------------------------------------------------------
-#' @importFrom kwb.utils::isNaOrEmpty(hrefs)
+#' @importFrom kwb.utils isNaOrEmpty
 is_na_or_empty <- kwb.utils::isNaOrEmpty
 
 # is_try_error -----------------------------------------------------------------
@@ -122,7 +122,7 @@ merge_all <- kwb.utils::mergeAll
 move_columns_to_front <- kwb.utils::moveColumnsToFront
 
 # multi_substitute -------------------------------------------------------------
-#' @importFrom kwb.utils::multiSubstitute
+#' @importFrom kwb.utils multiSubstitute
 multi_substitute <- kwb.utils::multiSubstitute
 
 # parallel_non_na --------------------------------------------------------------
@@ -196,7 +196,7 @@ stop_if_not_all_in <- function(x, set, type = "element")
 }
 
 # string_list ------------------------------------------------------------------
-#' @importFrom  kwb.utils stringList
+#' @importFrom kwb.utils stringList
 string_list <- kwb.utils::stringList
 
 # subst_special_chars ----------------------------------------------------------
