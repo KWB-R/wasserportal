@@ -216,6 +216,10 @@ url_parameter_string <- function(...)
 {
   arguments <- list(...)
 
+  if (length(arguments) == 0L) {
+    return("")
+  }
+
   stopifnot(!any(kwb.utils::is.unnamed(arguments)))
 
   paste(names(arguments), arguments, sep = "=", collapse = "&")
