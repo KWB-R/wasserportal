@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">wasserportal</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,13 +61,11 @@
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">read_wasserportal_raw_gw</span><span class="op">(</span></span>
 <span>  station <span class="op">=</span> <span class="fl">149</span>,</span>
-<span>  stype <span class="op">=</span> <span class="st">"gws"</span>,</span>
+<span>  stype <span class="op">=</span> <span class="st">"gwl"</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"single_all"</span>,</span>
 <span>  from_date <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  include_raw_time <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  handle <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  as_text <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  dbg <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  handle <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -78,7 +76,7 @@
 
 
 <dt>stype</dt>
-<dd><p>"gws" or "gwq"</p></dd>
+<dd><p>"gwl" or "gwq"</p></dd>
 
 
 <dt>type</dt>
@@ -96,32 +94,18 @@
 <dt>handle</dt>
 <dd><p>default: NULL</p></dd>
 
-
-<dt>as_text</dt>
-<dd><p>if TRUE, the raw text that is returned by the HTTP request to
-the Wasserportal is returned by this function. Otherwise (the default)
-the raw text is tried to be interpreted as comma separated values and a
-corresponding data frame is returned. Use as_text = TRUE to analyse the raw
-text in case that an error occurs when trying to convert the text to a data
-frame.</p></dd>
-
-
-<dt>dbg</dt>
-<dd><p>logical indicating whether or not to show debug messages. The
-default is FALSE</p></dd>
-
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>data.frame with values</p>
+<p>data.frame with values (currently only if stype == "gwl")</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span><span class="fu">read_wasserportal_raw_gw</span><span class="op">(</span>station <span class="op">=</span> <span class="fl">149</span>, stype <span class="op">=</span> <span class="st">"gws"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">read_wasserportal_raw_gw</span><span class="op">(</span>station <span class="op">=</span> <span class="fl">149</span>, stype <span class="op">=</span> <span class="st">"gwl"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">read_wasserportal_raw_gw</span><span class="op">(</span>station <span class="op">=</span> <span class="fl">149</span>, stype <span class="op">=</span> <span class="st">"gwq"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
@@ -131,7 +115,7 @@ default is FALSE</p></dd>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by <a href="https://github.com/hsonne" class="external-link">Hauke Sonnenberg</a>, <a href="https://mrustl.de" class="external-link">Michael Rustler</a>, <a href="https://www.kompetenz-wasser.de/en/forschung/projekte/ad4gd" class="external-link"><img src="https://ad4gd.eu/wp-content/uploads/2023/02/logointegrat-color.png" alt="Project AD4GD" width="72"></a>, <a href="https://www.kompetenz-wasser.de/en/forschung/projekte/dwc" class="external-link"><img src="https://kompetenz-wasser.de/media/pages/forschung/projekte/dwc/d4fd01b847-1702890606/dwc-rvb-grey.jpg" alt="Project DWC" width="72"></a>, <a href="https://www.kompetenz-wasser.de/en/forschung/projekte/impetus" class="external-link"><img src="https://climate-impetus.eu/wp-content/uploads/2021/12/horizontal.png" alt="Project IMPETUS" width="72"></a>, <a href="https://www.kompetenz-wasser.de/en/forschung/projekte/promisces" class="external-link"><img src="https://promisces.eu/skin/promisces/assets/img/logo.png" alt="Project PROMISCES" width="72"></a>.</p>
+  <p></p><p>Developed by <a href="https://github.com/hsonne" class="external-link">Hauke Sonnenberg</a>, <a href="https://mrustl.de" class="external-link">Michael Rustler</a>, <a href="https://www.kompetenz-wasser.de/en/forschung/projekte/dwc" class="external-link"><img src="https://kompetenz-wasser.de/media/pages/forschung/projekte/dwc/6263c55e76-1639132760/dwc-rvb-grey.jpg" alt="Project DWC" width="72"></a>, <a href="https://www.kompetenz-wasser.de/en/forschung/projekte/impetus" class="external-link"><img src="https://climate-impetus.eu/wp-content/uploads/2021/12/horizontal.png" alt="Project IMPETUS" width="72"></a>, <a href="https://www.kompetenz-wasser.de/en/forschung/projekte/promisces" class="external-link"><img src="https://promisces.eu/skin/promisces/assets/img/logo.png" alt="Project PROMISCES" width="72"></a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
