@@ -1,4 +1,4 @@
-Name,UsedParameter,Types,Translation
+par_name,par_value,par_meaning_de,par_meaning
 station,ID,Messstelle,Station number
 thema,gwq,Grundwasserqualitaet,Groundwater quality
 exportthema,gw,Grundwasser,Groundwater

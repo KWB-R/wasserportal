@@ -1,4 +1,4 @@
-nstoff_id,stoff_name,stoff_name_lang,Einheit..unit.
+chem_par_id,chem_par_name,chem_par_name_long,unit
 2,TL,Temperatur (Luft),grd Celsius
 5,PH,pH-Wert (Feld),-
 6,LEITF,Leitfaehigkeit vor Ort,myS/cm

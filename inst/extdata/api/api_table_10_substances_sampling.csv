@@ -1,4 +1,4 @@
-nstoff_id,stoff_name_lang,einheit
+chem_par_id,chem_par_name_long,unit
 111,Silber gesamt,myg/l
 112,Aluminium geloest,myg/l
 113,Aluminium gesamt,myg/l
