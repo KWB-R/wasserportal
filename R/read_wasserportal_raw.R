@@ -115,8 +115,9 @@ read_wasserportal_raw <- function(
       station_ids,
       variable_ids = variable
     ),
-    expr = get_text_response_of_httr_post_request(
+    expr = get_text_response_of_httr_request(
       url,
+      method = "POST",
       body = body,
       handle = handle
     )

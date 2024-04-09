@@ -1,10 +1,11 @@
-# get_text_response_of_httr_post_request ---------------------------------------
+# get_text_response_of_httr_request --------------------------------------------
 #' @importFrom httr content http_error POST
-get_text_response_of_httr_post_request <- function(
+get_text_response_of_httr_request <- function(
     url,
-    body = NULL,
+    method,
     handle = NULL,
-    text = paste("Sending POST request to", url),
+    body = NULL,
+    text = paste("Sending", method, "request to", url),
     dbg = FALSE,
     encoding = "Latin1"
 )
@@ -15,7 +16,13 @@ get_text_response_of_httr_post_request <- function(
     expr = {
 
       # Post the request to the web server
-      response <- httr::POST(url, body = body, handle = handle)
+      response <- if (method == "POST") {
+        httr::POST(url, body = body, handle = handle)
+      } else if (method == "GET") {
+        httr::POST(url, body = body, handle = handle)
+      } else {
+        stop_formatted("Method must be one of 'GET', 'POST'.")
+      }
 
       if (httr::http_error(response)) {
 

@@ -42,8 +42,9 @@ read_wasserportal_raw_gw <- function(
     stype, type, station, from_date
   )
 
-  text <- get_text_response_of_httr_post_request(
+  text <- get_text_response_of_httr_request(
     url = info$url,
+    method = "POST",
     body = info$body,
     handle = handle,
     dbg = dbg
