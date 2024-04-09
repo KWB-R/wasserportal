@@ -265,14 +265,18 @@ if (FALSE)
   )
 }
 
-# MAIN: Download text from URLs ------------------------------------------------
+# MAIN: Download data frames or text from URLs ---------------------------------
 if (FALSE)
 {
   example_urls <- lapply(stats::setNames(nm = ls(pattern = "^url_")), get)
 
-  text_contents <- lapply(example_urls, function(url) try(download(url)))
+  by_class <- split(example_urls, sapply(example_urls, kwb.utils::mainClass))
 
-  text_contents[!sapply(text_contents, kwb.utils::isTryError)]
+  results <- lapply(by_class[-1L], function(x) lapply(x, download))
+
+  str(results$url_overview)
+  str(results$url_groundwater)
+  str(results$url_surface_soil_water)
 }
 
 `%>%` <- magrittr::`%>%`
@@ -419,8 +423,11 @@ download.url_overview <- function(url, ...)
 {
   message("download of overview...")
 
-  http_get_as_textlines(url) %>%
-    head(10L)
+  url %>%
+    unclass() %>%
+    rvest::read_html() %>%
+    rvest::html_table() %>%
+    as.data.frame()
 }
 
 # download.url_groundwater -----------------------------------------------------
