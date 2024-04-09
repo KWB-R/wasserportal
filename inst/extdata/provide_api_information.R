@@ -401,11 +401,6 @@ order_parameters <- function(x)
   paste0(parts[1L], "?", paste(key_values, collapse = "&"))
 }
 
-download_as_text <- function(parameters)
-{
-  url_1_1
-}
-
 # download ---------------------------------------------------------------------
 download <- function(url, ...)
 {
