@@ -17,7 +17,7 @@ get_text_response_of_httr_request <- function(
 
       # Post the request to the web server
       response <- if (method == "GET") {
-        httr::POST(url, handle = handle)
+        httr::GET(url, handle = handle)
       } else if (method == "POST") {
         httr::POST(url, body = body, handle = handle)
       } else {
