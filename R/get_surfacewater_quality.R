@@ -36,7 +36,7 @@ get_surfacewater_quality <- function(station_id) {
     )
   )
 
-  text <- get_text_response_of_httr_post_request(url)
+  text <- get_text_response_of_httr_request(url, method = "POST")
 
   # Split the text into separate lines
   textlines <- split_into_lines(text)
