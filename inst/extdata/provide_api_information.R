@@ -263,7 +263,16 @@ if (FALSE)
     order_parameters(url_6_1_c),
     order_parameters("https://wasserportal.berlin.de/station.php?anzeige=d&station=15156&smode=c&thema=gwq&exportthema=gw&nstoffid=10&nstoffid2=2&sreihe=ew&sdatum=09.01.2014&senddatum=09.01.2020")
   )
+}
 
+# MAIN: Download text from URLs ------------------------------------------------
+if (FALSE)
+{
+  example_urls <- lapply(stats::setNames(nm = ls(pattern = "^url_")), get)
+
+  text_contents <- lapply(example_urls, function(url) try(download(url)))
+
+  text_contents[!sapply(text_contents, kwb.utils::isTryError)]
 }
 
 `%>%` <- magrittr::`%>%`
@@ -366,13 +375,15 @@ create_url_creator <- function(endpoint)
     has_parameters <- length(parameters) > 0L
     stopifnot(!has_parameters || inherits(parameters, "parameters"))
 
-    sprintf(
+    url <- sprintf(
       "%s/%s%s%s",
       wasserportal::wasserportal_base_url(),
       endpoint,
       ifelse(has_parameters, "?", ""),
       do.call(wasserportal:::url_parameter_string, parameters)
     )
+
+    structure(url, class = gsub("parameters", "url", class(parameters)[1L]))
   }
 }
 
@@ -388,4 +399,54 @@ order_parameters <- function(x)
   parts <- strsplit(x, "[?]")[[1L]]
   key_values <- sort(strsplit(parts[2L], "&")[[1L]])
   paste0(parts[1L], "?", paste(key_values, collapse = "&"))
+}
+
+download_as_text <- function(parameters)
+{
+  url_1_1
+}
+
+# download ---------------------------------------------------------------------
+download <- function(url, ...)
+{
+  UseMethod("download")
+}
+
+# download.url_overview --------------------------------------------------------
+download.url_overview <- function(url, ...)
+{
+  message("download of overview...")
+
+  httr::GET(url) %>%
+    httr::content(as = "text", encoding = "WINDOWS-1252") %>%
+    wasserportal:::split_into_lines() %>%
+    head(10L)
+}
+
+# download.url_groundwater -----------------------------------------------------
+download.url_groundwater <- function(url, ...)
+{
+  message("download of groundwater data...")
+
+  httr::GET(url) %>%
+    httr::content(as = "text", encoding = "WINDOWS-1252") %>%
+    wasserportal:::split_into_lines() %>%
+    head(10L)
+}
+
+# download.url_surface_soil_water ----------------------------------------------
+download.url_surface_soil_water <- function(url, ...)
+{
+  message("download of surface water or soil water data...")
+
+  httr::GET(url) %>%
+    httr::content(as = "text", encoding = "WINDOWS-1252") %>%
+    wasserportal:::split_into_lines() %>%
+    head(10L)
+}
+
+# download.default -------------------------------------------------------------
+download.default <- function(url, ...)
+{
+  stop("No download function implemented for this type of url: ", url)
 }
