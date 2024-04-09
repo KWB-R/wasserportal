@@ -401,6 +401,13 @@ order_parameters <- function(x)
   paste0(parts[1L], "?", paste(key_values, collapse = "&"))
 }
 
+# http_get_as_textlines --------------------------------------------------------
+http_get_as_textlines <- function(url)
+{
+  wasserportal:::get_text_response_of_httr_request(url, "GET", dbg = TRUE) %>%
+    wasserportal:::split_into_lines()
+}
+
 # download ---------------------------------------------------------------------
 download <- function(url, ...)
 {
@@ -412,9 +419,7 @@ download.url_overview <- function(url, ...)
 {
   message("download of overview...")
 
-  httr::GET(url) %>%
-    httr::content(as = "text", encoding = "WINDOWS-1252") %>%
-    wasserportal:::split_into_lines() %>%
+  http_get_as_textlines(url) %>%
     head(10L)
 }
 
@@ -423,9 +428,7 @@ download.url_groundwater <- function(url, ...)
 {
   message("download of groundwater data...")
 
-  httr::GET(url) %>%
-    httr::content(as = "text", encoding = "WINDOWS-1252") %>%
-    wasserportal:::split_into_lines() %>%
+  http_get_as_textlines(url) %>%
     head(10L)
 }
 
@@ -434,9 +437,7 @@ download.url_surface_soil_water <- function(url, ...)
 {
   message("download of surface water or soil water data...")
 
-  httr::GET(url) %>%
-    httr::content(as = "text", encoding = "WINDOWS-1252") %>%
-    wasserportal:::split_into_lines() %>%
+  http_get_as_textlines(url) %>%
     head(10L)
 }
 
