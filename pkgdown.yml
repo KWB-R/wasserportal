@@ -1,11 +1,11 @@
 pandoc: 3.1.11
-pkgdown: 2.0.8
+pkgdown: 2.0.9
 pkgdown_sha: ~
 articles:
   groundwater: groundwater.html
   surface-water: surface-water.html
   tutorial: tutorial.html
-last_built: 2024-04-18T05:17Z
+last_built: 2024-04-19T05:16Z
 urls:
   reference: https://kwb-r.github.io/wasserportal/reference
   article: https://kwb-r.github.io/wasserportal/articles
