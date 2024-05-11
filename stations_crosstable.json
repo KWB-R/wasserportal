@@ -1060,7 +1060,8 @@
   },
   {
     "Messstellennummer": "137",
-    "gws": "x"
+    "gws": "x",
+    "gwq": "x"
   },
   {
     "Messstellennummer": "138",
@@ -4564,6 +4565,10 @@
     "gws": "x"
   },
   {
+    "Messstellennummer": "484",
+    "gwq": "x"
+  },
+  {
     "Messstellennummer": "4233",
     "gwq": "x"
   },
@@ -4585,6 +4590,10 @@
   },
   {
     "Messstellennummer": "5130",
+    "gwq": "x"
+  },
+  {
+    "Messstellennummer": "6015",
     "gwq": "x"
   },
   {
