@@ -7150,6 +7150,19 @@
     "Hochwert_UTM_33_N": "5825274"
   },
   {
+    "Nummer": "6532",
+    "Bezirk": "Marzahn-Hellersdorf",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand, tagesaktuell",
+    "Grundwasserleiter": "lokal ausgebildeter Grundwasserkörper",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "57.65",
+    "Rohroberkante_m_ue_NHN": "58.11",
+    "Filteroberkante_m_u_GOK": "11.00",
+    "Filterunterkante_m_u_GOK": "13.00",
+    "Rechtswert_UTM_33_N": "405535",
+    "Hochwert_UTM_33_N": "5821451"
+  },
+  {
     "Nummer": "6533",
     "Bezirk": "Marzahn-Hellersdorf",
     "Betreiber": "Senat",

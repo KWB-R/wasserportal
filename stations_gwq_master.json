@@ -312,19 +312,6 @@
     "Hochwert_UTM_33_N": "5820818"
   },
   {
-    "Nummer": "4612",
-    "Bezirk": "Spandau",
-    "Betreiber": "Senat",
-    "Auspraegung": "GW-Stand + GW-Güte",
-    "Grundwasserleiter": "Hauptgrundwasserleiter (GWL 1.3 + 2)",
-    "Gelaendeoberkante_GOK_m_ue_NHN": "32.76",
-    "Rohroberkante_m_ue_NHN": "32.97",
-    "Filteroberkante_m_u_GOK": "19.00",
-    "Filterunterkante_m_u_GOK": "37.00",
-    "Rechtswert_UTM_33_N": "375883",
-    "Hochwert_UTM_33_N": "5820820"
-  },
-  {
     "Nummer": "4640",
     "Bezirk": "Spandau",
     "Betreiber": "Senat",
