@@ -31,7 +31,10 @@ wp_timeseries_data_to_list <- function(
     target_dir,
     is_zipped,
     modify_filenames = function(x) {
-      stringr::str_replace_all(x, "^surface", "daily_surface")
-    }
-  )
+      is_not_sw_quality <- !grepl("surface-water_quality", x)
+      stringr::str_replace_all(x[is_not_sw_quality],
+                               "^surface",
+                               "daily_surface")
+      }
+    )
 }
