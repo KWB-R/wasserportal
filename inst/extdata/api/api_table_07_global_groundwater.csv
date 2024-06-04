@@ -1,0 +1,10 @@
+par_name,par_value,par_meaning_de,par_meaning
+station,ID,Messstelle,Station number
+thema,gwq,Grundwasserqualitaet,Groundwater quality
+exportthema,gw,Grundwasser,Groundwater
+exportthema,pq,Probenahme,
+sreihe,ew,Einzelwerte,Single values
+smode,c,CSV format,CSV format
+nstoffid,numbers(count:nstoffid;nstoffid2),IDs fuer Stoffe,IDs of substances
+sdatum,dd:mm:yyyy,Datumsangabe (von),Date (from)
+senddatum,dd:mm:yyyy,Datumsangabe (bis),Date (until)

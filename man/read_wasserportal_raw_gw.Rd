@@ -6,17 +6,19 @@
 \usage{
 read_wasserportal_raw_gw(
   station = 149,
-  stype = "gwl",
+  stype = "gws",
   type = "single_all",
   from_date = "",
   include_raw_time = FALSE,
-  handle = NULL
+  handle = NULL,
+  as_text = FALSE,
+  dbg = FALSE
 )
 }
 \arguments{
 \item{station}{station id}
 
-\item{stype}{"gwl" or "gwq"}
+\item{stype}{"gws" or "gwq"}
 
 \item{type}{"single" or "single_all" (if stype = "gwq")}
 
@@ -25,16 +27,26 @@ read_wasserportal_raw_gw(
 \item{include_raw_time}{default: FALSE}
 
 \item{handle}{default: NULL}
+
+\item{as_text}{if TRUE, the raw text that is returned by the HTTP request to
+the Wasserportal is returned by this function. Otherwise (the default)
+the raw text is tried to be interpreted as comma separated values and a
+corresponding data frame is returned. Use as_text = TRUE to analyse the raw
+text in case that an error occurs when trying to convert the text to a data
+frame.}
+
+\item{dbg}{logical indicating whether or not to show debug messages. The
+default is FALSE}
 }
 \value{
-data.frame with values (currently only if stype == "gwl")
+data.frame with values
 }
 \description{
 read_wasserportal_raw_gw
 }
 \examples{
 \dontrun{
-read_wasserportal_raw_gw(station = 149, stype = "gwl")
+read_wasserportal_raw_gw(station = 149, stype = "gws")
 read_wasserportal_raw_gw(station = 149, stype = "gwq")
 }
 }

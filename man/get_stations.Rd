@@ -4,13 +4,26 @@
 \alias{get_stations}
 \title{Get Stations}
 \usage{
-get_stations(run_parallel = TRUE, n_cores = parallel::detectCores() - 1L)
+get_stations(
+  type = c("list", "data.frame", "crosstable"),
+  run_parallel = TRUE,
+  n_cores = parallel::detectCores() - 1L,
+  debug = TRUE
+)
 }
 \arguments{
+\item{type}{vector of character describing the type(s) of output(s) to be
+returned. Expected values (and default): \code{c("list", "data.frame",
+  "crosstable")}. If only one value is given the data is returned in the
+expected type. If more than one values are given, a list is returned with
+one list element per type.}
+
 \item{run_parallel}{default: TRUE}
 
 \item{n_cores}{number of cores to use if \code{run_parallel = TRUE}.
 Default: one less than the detected number of cores.}
+
+\item{debug}{logical indicating whether or not to show debug messages}
 }
 \value{
 list with general station "overview" (either as list "overview_list"

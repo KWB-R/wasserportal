@@ -1,0 +1,10 @@
+par_name,par_value,par_meaning_de,par_meaning
+station,ID,Messstelle,Station number
+sreihe,ew,Einzelwerte,Single values
+sreihe,tw,Tageswerte,Daily values
+sreihe,mw,Monatswerte,Monthly values
+smode,c,CSV,CSV
+smode,x,XML (WaterML),XML
+sdatum,dd:mm:yyyy,Datumsangabe (ab wann),Date (from when)
+anzeige,d,Download,Download
+anzeige,g,Graphische Ausgabe,Graphical output

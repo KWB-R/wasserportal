@@ -14,7 +14,8 @@ read_wasserportal(
 )
 }
 \arguments{
-\item{station}{station number, as returned by \code{\link{get_stations}}}
+\item{station}{station number, as found in column "Messstellennummer" of the
+data frame returned by \code{\link{get_stations}(type = "crosstable")}}
 
 \item{variables}{vector of variable identifiers, as returned by
 \code{\link{get_station_variables}}}
@@ -29,8 +30,8 @@ which to request data. Default: \code{as.character(Sys.Date() - 90L)}}
 column with the corrected winter time are included in the output. The
 default is \code{FALSE}.}
 
-\item{stations_crosstable}{sublist \code{crosstable} as retrieved from
-\code{\link{get_stations}} i.e. \code{get_stations()$crosstable}}
+\item{stations_crosstable}{data frame as returned by
+\code{\link{get_stations}(type = "crosstable")}}
 }
 \value{
 data frame read from the CSV file that the download provides.
@@ -51,15 +52,14 @@ together with the additional information on the UTC offset (column
 \examples{
 \dontrun{
 # Get a list of available water quality stations and variables
-stations <- wasserportal::get_stations()
-stations_crosstable <- stations$crosstable
+stations_crosstable <- wasserportal::get_stations(type = "crosstable")
 
 # Set the start date
 from_date <- "2021-03-01"
 
 # Read the timeseries (multiple variables for one station)
 water_quality <- wasserportal::read_wasserportal(
-  station = stations_crosstable$Messstellennummer[1],
+  station = stations_crosstable$Messstellennummer[1L],
   from_date = from_date,
   include_raw_time = TRUE,
   stations_crosstable = stations_crosstable

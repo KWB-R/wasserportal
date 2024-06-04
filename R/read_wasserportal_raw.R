@@ -8,15 +8,13 @@
 #' @param type one of "single", "daily", "monthly" (default: "single")
 #' @param include_raw_time TRUE or FALSE (default: FALSE)
 #' @param handle handle (default: NULL)
-#' @param stations_crosstable sublist `crosstable` as retrieved from \code{\link{get_stations}}
-#' i.e. `get_stations()$crosstable`
+#' @param stations_crosstable data frame as returned by
+#'   \code{\link{get_stations}(type = "crosstable")}
 #' @param api_version 1 integer number representing the version of
 #'   wasserportal's API. 1L: before 2023, 2L: since 2023. Default: 2L
 #' @return ????
 #' @export
-#' @importFrom kwb.utils catAndRun selectColumns selectElements
 #' @importFrom kwb.datetime textToEuropeBerlinPosix
-#' @importFrom httr content POST
 read_wasserportal_raw <- function(
   variable,
   station,
@@ -37,30 +35,35 @@ read_wasserportal_raw <- function(
 
   from_date <- assert_date(from_date)
 
-  station_ids <- kwb.utils::selectColumns(
-    stations_crosstable,
-    "Messstellennummer"
+  station_ids <- select_columns(stations_crosstable, "Messstellennummer")
+
+  stop_if_not_all_in(station, station_ids)
+
+  variable_ids <- get_station_variables(
+    stations_crosstable[station_ids == station, , drop = FALSE]
   )
 
-  stopifnot(station %in% station_ids)
-
-  station_df <- stations_crosstable[station_ids == station, , drop = FALSE] %>%
-    dplyr::select_if(function(x){!all(is.na(x))})
-
-  variable_ids <- get_station_variables(station_df)
-
-  stopifnot(variable %in% variable_ids)
+  stop_if_not_all_in(variable, variable_ids)
 
   sreihe_options <- if (api_version == 1L) {
-    list(single = "w", single_all = "wa", daily = "m", monthly = "j")
+
+    list(
+      single = "w",
+      single_all = "wa",
+      daily = "m",
+      monthly = "j"
+    )
+
   } else {
-    # ew = Einzelwerte
-    # tw = Tageswerte
-    # mw = Monatswerte
-    list(single = "ew", daily = "tw", monthly = "mw")
+
+    list(
+      single = "ew", # ew = Einzelwerte
+      daily = "tw",  # tw = Tageswerte
+      monthly = "mw" # mw = Monatswerte
+    )
   }
 
-  sreihe <- kwb.utils::selectElements(sreihe_options, type)
+  sreihe <- select_elements(sreihe_options, type)
 
   # Compose the URL and the body for the request
   if (api_version == 1L) {
@@ -75,7 +78,7 @@ read_wasserportal_raw <- function(
       oos = "s"
     )
 
-    variable <- kwb.utils::selectElements(variable_mapping, variable)
+    variable <- select_elements(variable_mapping, variable)
     variable_ids <- unlist(variable_mapping)
 
     url <- get_wasserportal_url(station, variable)
@@ -89,35 +92,36 @@ read_wasserportal_raw <- function(
 
   } else {
 
-    variable_ids <- "NOT_REQRUIRED_ISNT_IT"
-
     url <- paste0(
-      "https://wasserportal.berlin.de",
-      "/station.php",
-      "?anzeige=d", # = download
-      "&station=", station,
-      "&thema=", variable, # type of measurement
-      "&sreihe=", sreihe, # type of time value
-      "&smode=c", # output format: csv (?)
-      "&sdatum=", date_string_de(from_date) # start date
+      wasserportal_base_url(),
+      "/station.php?",
+      url_parameter_string(
+        anzeige = "d", # = download
+        station = station,
+        thema = variable, # type of measurement
+        sreihe = sreihe, # type of time value
+        smode = "c", # output format: csv (?)
+        sdatum = date_string_de(from_date) # start date
+      )
     )
 
     body <- list()
   }
 
-  # Post the request to the web server
-  response <- kwb.utils::catAndRun(
-    get_wasserportal_text(station, variable, station_ids, variable_ids),
-    httr::POST(url = url, body = body, handle = handle)
+  text <- cat_and_run(
+    get_wasserportal_text(
+      station,
+      variable,
+      station_ids,
+      variable_ids = variable
+    ),
+    expr = get_text_response_of_httr_request(
+      url,
+      method = "POST",
+      body = body,
+      handle = handle
+    )
   )
-
-  if (httr::http_error(response)) {
-    message("POST request failed. Returning the response object.")
-    return(response)
-  }
-
-  # Read the response of the web server as text
-  text <- httr::content(response, as = "text", encoding = "Latin1")
 
   if (text == "") {
     message("Wasserportal returned an empty string. Returning NULL.")
@@ -125,7 +129,7 @@ read_wasserportal_raw <- function(
   }
 
   # Split the text into separate lines
-  textlines <- strsplit(text, "\n")[[1L]]
+  textlines <- split_into_lines(text)
 
   # Split the header row into fields
   header_fields <- as.character(read(textlines[1L]))
@@ -167,7 +171,7 @@ get_wasserportal_url <- function(station, variable)
 get_wasserportal_text <- function(station, variable, station_ids, variable_ids)
 {
   default_names <- function(ids, prefix) {
-    kwb.utils::defaultIfNULL(names(ids), paste0(prefix, ids))
+    default_if_null(names(ids), paste0(prefix, ids))
   }
 
   variable_names <- default_names(variable_ids, "variable_")
@@ -190,9 +194,9 @@ add_wasserportal_metadata <- function(x, header_fields)
 # clean_timestamp_columns ------------------------------------------------------
 clean_timestamp_columns <- function(data, include_raw_time)
 {
-  raw_timestamps <- kwb.utils::selectColumns(data, "Datum")
+  raw_timestamps <- select_columns(data, "Datum")
 
-  data <- kwb.utils::renameColumns(data, list(Datum = "timestamp_raw"))
+  data <- rename_columns(data, list(Datum = "timestamp_raw"))
 
   data$timestamp_corr <- repair_wasserportal_timestamps(raw_timestamps)
 
@@ -209,10 +213,10 @@ clean_timestamp_columns <- function(data, include_raw_time)
 
   keys <- c("timestamp_raw", "timestamp_corr", "LocalDateTime")
 
-  data <- kwb.utils::moveColumnsToFront(data, keys)
+  data <- move_columns_to_front(data, keys)
 
   if (! include_raw_time) {
-    data <- kwb.utils::removeColumns(data, keys[1:2])
+    data <- remove_columns(data, keys[1:2])
   }
 
   remove_timestep_outliers(data, data$LocalDateTime, 60 * 15)
@@ -231,13 +235,13 @@ repair_wasserportal_timestamps <- function(timestamps, dbg = FALSE)
 
   stopifnot(all(lengths(index_pairs) == 2L))
 
-  first_indices <- sapply(index_pairs, kwb.utils::firstElement)
+  first_indices <- sapply(index_pairs, first_element)
 
   if (dbg && ! all(is_expected <- grepl(" 03", timestamps[first_indices]))) {
 
     message(
       "There are unexpected duplicated timestamps: ",
-      kwb.utils::stringList(timestamps[first_indices][! is_expected])
+      string_list(timestamps[first_indices][! is_expected])
     )
   }
 
@@ -247,7 +251,7 @@ repair_wasserportal_timestamps <- function(timestamps, dbg = FALSE)
 
   indices <- sort(unlist(index_pairs))
 
-  kwb.utils::printIf(dbg, caption = "After timestamp repair", data.frame(
+  print_if(dbg, caption = "After timestamp repair", data.frame(
     row = indices,
     old = timestamps_old[indices],
     new = timestamps[indices]
@@ -259,7 +263,7 @@ repair_wasserportal_timestamps <- function(timestamps, dbg = FALSE)
 # remove_remaining_duplicates --------------------------------------------------
 remove_remaining_duplicates <- function(data)
 {
-  timestamps <- kwb.utils::selectColumns(data, "timestamp_corr")
+  timestamps <- select_columns(data, "timestamp_corr")
 
   is_duplicate <- duplicated(timestamps)
 

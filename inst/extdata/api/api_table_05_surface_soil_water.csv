@@ -1,0 +1,11 @@
+topic,topic_meaning_de,topic_meaning,unit
+ows,Wasserstand,Water level,cm
+odf,Durchfluss,Flow meter,m3/s
+owt,Wassertemperatur,Water temperature,deg. Celsius
+olf,Leitfaehigkeit,Conductivity,myS/cm
+oph,pH Wert,pH value,-
+oog,Sauerstoffgehalt,Oxygen content,mg/liter
+oos,Sauerstoffsaettigung,Oxygen saturation,%
+opq,Oberflaechen-Probenahme,,
+bbf,Bodenfeuchte,Soil moisture,pF %
+bbt,Bodentemperatur,Soil temperature,grd Celsius

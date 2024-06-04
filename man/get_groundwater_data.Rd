@@ -7,15 +7,20 @@
 get_groundwater_data(
   stations,
   groundwater_options = get_groundwater_options(),
-  debug = TRUE
+  debug = TRUE,
+  stations_list = NULL
 )
 }
 \arguments{
-\item{stations}{stations list as retrieved by \code{\link{get_stations}}}
+\item{stations}{list as retrieved by \code{\link{get_stations}}.
+Deprecated. Please use \code{stations_list} instead}
 
 \item{groundwater_options}{as retrieved by \code{\link{get_groundwater_options}}}
 
 \item{debug}{print debug messages (default: TRUE)}
+
+\item{stations_list}{list of station metadata as returned by
+\code{\link{get_stations}(type = "list")}}
 }
 \value{
 list with elements "groundwater.level" and "groundwater.quality" data
