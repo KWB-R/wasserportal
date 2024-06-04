@@ -253,8 +253,9 @@ gwl_classified_only_with_coords <- gwl_classified_only %>%
   dplyr::mutate(
     Messstellennummer = as.character(Messstellennummer),
   ) %>% 
-  dplyr::left_join(
+  dplyr::inner_join(
     stations_gwl_master %>%
+      tibble::as_tibble() %>% 
       dplyr::select(dplyr::all_of(c("Nummer", rechtswert, hochwert))) %>% 
       dplyr::rename(Messstellennummer = "Nummer"),
     by = "Messstellennummer"
@@ -268,6 +269,8 @@ gwl_classified_only_with_coords <- gwl_classified_only %>%
     crs = 25833
   ) %>% 
   sf::st_transform(crs = 4326)
+
+if(nrow(gwl_classified_only_with_coords) > 0) {
 
 # Create a vector of labels for each row in gwl_classified_only_with_coords
 labs <- wasserportal::columns_to_labels(
@@ -308,6 +311,7 @@ htmlwidgets::saveWidget(
 )
 
 gwlmap
+}
 ```
 
 ```{r input_ghactions_map, echo=FALSE, results='asis', eval=is_ghactions}
