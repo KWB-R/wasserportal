@@ -84,7 +84,7 @@
 Rustler</h4>
             
             <h4 data-toc-skip class="date">2024-06-04
-11:28:01.494123</h4>
+13:21:27.750042</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KWB-R/wasserportal/blob/HEAD/vignettes/groundwater.Rmd" class="external-link"><code>vignettes/groundwater.Rmd</code></a></small>
       <div class="d-none name"><code>groundwater.Rmd</code></div>
@@ -123,14 +123,14 @@ Rustler</h4>
 </h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">stations_list</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/get_stations.html">get_stations</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"list"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Importing 10 station overviews from Wasserportal Berlin ... ok. (7.81 secs)</span></span></code></pre></div>
+<span><span class="co">#&gt; Importing 10 station overviews from Wasserportal Berlin ... ok. (8.69 secs)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">is_gw</span> <span class="op">&lt;-</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html" class="external-link">str_detect</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">stations_list</span><span class="op">)</span>, <span class="st">"groundwater"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">files</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/list_masters_data_to_csv.html">list_masters_data_to_csv</a></span><span class="op">(</span><span class="va">stations_list</span><span class="op">[</span><span class="va">is_gw</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Writing 'stations_groundwater_level.csv' ... ok. (0.09 secs) </span></span>
-<span><span class="co">#&gt; Writing 'stations_groundwater_quality.csv' ... ok. (0.00 secs)</span></span></code></pre></div>
+<span><span class="co">#&gt; Writing 'stations_groundwater_level.csv' ... ok. (0.08 secs) </span></span>
+<span><span class="co">#&gt; Writing 'stations_groundwater_quality.csv' ... ok. (0.01 secs)</span></span></code></pre></div>
 <p>The following groundwater master data <code>.csv</code> files are
 available for download:</p>
 <ul>
@@ -154,13 +154,13 @@ available for download:</p>
 <span>  stations_list <span class="op">=</span> <span class="va">stations_list</span>, </span>
 <span>  debug <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; Importing 'groundwater.level' data (1/2) ... ok. (14.44 mins) </span></span>
-<span><span class="co">#&gt; Importing 'groundwater.quality' data (2/2) ... ok. (4.07 mins)</span></span></code></pre></div>
+<span><span class="co">#&gt; Importing 'groundwater.level' data (1/2) ... ok. (14.46 mins) </span></span>
+<span><span class="co">#&gt; Importing 'groundwater.quality' data (2/2) ... ok. (4.31 mins)</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">files</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/list_timeseries_data_to_zip.html">list_timeseries_data_to_zip</a></span><span class="op">(</span><span class="va">gw_data_list</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Writing 'groundwater_level.zip' ... ok. (11.08 secs) </span></span>
-<span><span class="co">#&gt; Writing 'groundwater_quality.zip' ... ok. (1.00 secs)</span></span></code></pre></div>
+<span><span class="co">#&gt; Writing 'groundwater_level.zip' ... ok. (11.17 secs) </span></span>
+<span><span class="co">#&gt; Writing 'groundwater_quality.zip' ... ok. (1.04 secs)</span></span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">files</span></span>
@@ -210,7 +210,7 @@ options). Note: includes also surface monitoring stations!</p></li>
 <span><span class="va">stations_crosstable</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span><span class="va">urls</span><span class="op">$</span><span class="va">stations_crosstable</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">stations_crosstable</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 'data.frame':    1065 obs. of  11 variables:</span></span>
+<span><span class="co">#&gt; 'data.frame':    1120 obs. of  12 variables:</span></span>
 <span><span class="co">#&gt;  $ Messstellennummer: chr  "5865900" "5827103" "5870400" "5865300" ...</span></span>
 <span><span class="co">#&gt;  $ Messstellenname  : chr  "Allee der Kosmonauten" "Allendestraße" "Alsenbrücke" "Am Bahndamm" ...</span></span>
 <span><span class="co">#&gt;  $ ows              : chr  "x" "x" "x" "x" ...</span></span>
@@ -220,6 +220,7 @@ options). Note: includes also surface monitoring stations!</p></li>
 <span><span class="co">#&gt;  $ oph              : chr  NA NA NA NA ...</span></span>
 <span><span class="co">#&gt;  $ oog              : chr  NA NA NA NA ...</span></span>
 <span><span class="co">#&gt;  $ oos              : chr  NA NA NA NA ...</span></span>
+<span><span class="co">#&gt;  $ opq              : chr  NA NA NA NA ...</span></span>
 <span><span class="co">#&gt;  $ gws              : chr  NA NA NA NA ...</span></span>
 <span><span class="co">#&gt;  $ gwq              : chr  NA NA NA NA ...</span></span></code></pre></div>
 <ul>
