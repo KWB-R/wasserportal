@@ -83,8 +83,8 @@
                         <h4 data-toc-skip class="author">Michael
 Rustler</h4>
             
-            <h4 data-toc-skip class="date">2024-06-08
-05:10:22.056244</h4>
+            <h4 data-toc-skip class="date">2024-06-09
+05:10:31.997165</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KWB-R/wasserportal/blob/HEAD/vignettes/groundwater.Rmd" class="external-link"><code>vignettes/groundwater.Rmd</code></a></small>
       <div class="d-none name"><code>groundwater.Rmd</code></div>
@@ -123,13 +123,13 @@ Rustler</h4>
 </h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">stations_list</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/get_stations.html">get_stations</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"list"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Importing 10 station overviews from Wasserportal Berlin ... ok. (6.90 secs)</span></span></code></pre></div>
+<span><span class="co">#&gt; Importing 10 station overviews from Wasserportal Berlin ... ok. (23.53 secs)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">is_gw</span> <span class="op">&lt;-</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html" class="external-link">str_detect</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">stations_list</span><span class="op">)</span>, <span class="st">"groundwater"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">files</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/list_masters_data_to_csv.html">list_masters_data_to_csv</a></span><span class="op">(</span><span class="va">stations_list</span><span class="op">[</span><span class="va">is_gw</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Writing 'stations_groundwater_level.csv' ... ok. (0.09 secs) </span></span>
+<span><span class="co">#&gt; Writing 'stations_groundwater_level.csv' ... ok. (0.07 secs) </span></span>
 <span><span class="co">#&gt; Writing 'stations_groundwater_quality.csv' ... ok. (0.00 secs)</span></span></code></pre></div>
 <p>The following groundwater master data <code>.csv</code> files are
 available for download:</p>
@@ -154,13 +154,13 @@ available for download:</p>
 <span>  stations_list <span class="op">=</span> <span class="va">stations_list</span>, </span>
 <span>  debug <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; Importing 'groundwater.level' data (1/2) ... ok. (12.76 mins) </span></span>
-<span><span class="co">#&gt; Importing 'groundwater.quality' data (2/2) ... ok. (4.29 mins)</span></span></code></pre></div>
+<span><span class="co">#&gt; Importing 'groundwater.level' data (1/2) ... ok. (31.61 mins) </span></span>
+<span><span class="co">#&gt; Importing 'groundwater.quality' data (2/2) ... ok. (5.11 mins)</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">files</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/list_timeseries_data_to_zip.html">list_timeseries_data_to_zip</a></span><span class="op">(</span><span class="va">gw_data_list</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Writing 'groundwater_level.zip' ... ok. (10.46 secs) </span></span>
-<span><span class="co">#&gt; Writing 'groundwater_quality.zip' ... ok. (1.00 secs)</span></span></code></pre></div>
+<span><span class="co">#&gt; Writing 'groundwater_level.zip' ... ok. (10.61 secs) </span></span>
+<span><span class="co">#&gt; Writing 'groundwater_quality.zip' ... ok. (0.96 secs)</span></span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">files</span></span>
@@ -174,7 +174,7 @@ available for download:</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                 Parameter   Einheit       n</span></span>
 <span><span class="co">#&gt;                    &lt;char&gt;    &lt;char&gt;   &lt;int&gt;</span></span>
-<span><span class="co">#&gt;   1:             GW-Stand m ü. NHN) 8113243</span></span>
+<span><span class="co">#&gt;   1:             GW-Stand m ü. NHN) 8113295</span></span>
 <span><span class="co">#&gt;   2:              Chlorid     mg/l]    9255</span></span>
 <span><span class="co">#&gt;   3:              Kalzium     mg/l]    9254</span></span>
 <span><span class="co">#&gt;   4:               Sulfat     mg/l]    9249</span></span>
@@ -210,7 +210,7 @@ options). Note: includes also surface monitoring stations!</p></li>
 <span><span class="va">stations_crosstable</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span><span class="va">urls</span><span class="op">$</span><span class="va">stations_crosstable</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">stations_crosstable</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 'data.frame':    1120 obs. of  12 variables:</span></span>
+<span><span class="co">#&gt; 'data.frame':    1119 obs. of  12 variables:</span></span>
 <span><span class="co">#&gt;  $ Messstellennummer: chr  "5865900" "5827103" "5870400" "5865300" ...</span></span>
 <span><span class="co">#&gt;  $ Messstellenname  : chr  "Allee der Kosmonauten" "Allendestraße" "Alsenbrücke" "Am Bahndamm" ...</span></span>
 <span><span class="co">#&gt;  $ ows              : chr  "x" "x" "x" "x" ...</span></span>
