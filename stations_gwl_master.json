@@ -6526,6 +6526,19 @@
     "Hochwert_UTM_33_N": "5823563"
   },
   {
+    "Nummer": "6027",
+    "Bezirk": "Reinickendorf",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand",
+    "Grundwasserleiter": "Hauptgrundwasserleiter (GWL 1.3 + 2)",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "32.46",
+    "Rohroberkante_m_ue_NHN": "32.92",
+    "Filteroberkante_m_u_GOK": "41.50",
+    "Filterunterkante_m_u_GOK": "53.30",
+    "Rechtswert_UTM_33_N": "383619",
+    "Hochwert_UTM_33_N": "5823696"
+  },
+  {
     "Nummer": "6029",
     "Bezirk": "Reinickendorf",
     "Betreiber": "Senat",
