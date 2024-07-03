@@ -447,6 +447,11 @@
     "odf": "x"
   },
   {
+    "Messstellennummer": "580310",
+    "Messstellenname": "Berlin-Spandau UP",
+    "ows": "x"
+  },
+  {
     "Messstellennummer": "587030",
     "Messstellenname": "Kleinmachnow UP",
     "ows": "x"
@@ -554,6 +559,11 @@
     "ows": "x"
   },
   {
+    "Messstellennummer": "587060",
+    "Messstellenname": "Schönwalde UP",
+    "ows": "x"
+  },
+  {
     "Messstellennummer": "587020",
     "Messstellenname": "Kleinmachnow OP",
     "ows": "x",
@@ -600,6 +610,11 @@
     "odf": "x"
   },
   {
+    "Messstellennummer": "582750",
+    "Messstellenname": "Berlin-Charlottenburg UP",
+    "ows": "x"
+  },
+  {
     "Messstellennummer": "587050",
     "Messstellenname": "Schönwalde OP",
     "ows": "x"
@@ -617,6 +632,11 @@
   {
     "Messstellennummer": "582650",
     "Messstellenname": "Fuerstenwalde UP",
+    "ows": "x"
+  },
+  {
+    "Messstellennummer": "586640",
+    "Messstellenname": "Berlin-Ploetzensee OP",
     "ows": "x"
   },
   {
