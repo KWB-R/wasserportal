@@ -598,6 +598,19 @@
     "Hochwert_UTM_33_N": "5808696"
   },
   {
+    "Nummer": "5044",
+    "Bezirk": "Pankow",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand + GW-Güte",
+    "Grundwasserleiter": "Hauptgrundwasserleiter (GWL 1.3 + 2)",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "45.13",
+    "Rohroberkante_m_ue_NHN": "45.83",
+    "Filteroberkante_m_u_GOK": "27.90",
+    "Filterunterkante_m_u_GOK": "30.00",
+    "Rechtswert_UTM_33_N": "390468",
+    "Hochwert_UTM_33_N": "5828005"
+  },
+  {
     "Nummer": "5049",
     "Bezirk": "Treptow-Köpenick",
     "Betreiber": "Senat",
