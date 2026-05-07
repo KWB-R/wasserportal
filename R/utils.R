@@ -207,6 +207,17 @@ string_list <- kwb.utils::stringList
 #' @importFrom kwb.utils substSpecialChars
 subst_special_chars <- kwb.utils::substSpecialChars
 
+# trim_bytes -------------------------------------------------------------------
+# Locale-safe whitespace trim: gsub() with useBytes = TRUE skips the wide-string
+# conversion that fails on Windows R when the input contains UTF-8 bytes
+# outside the C locale (e.g. "Auspr<e4>gung"). Used in place of trimws() and
+# xml2::xml_text(trim = TRUE), both of which delegate to a regex pass that
+# breaks under those conditions.
+trim_bytes <- function(x)
+{
+  gsub("(^[ \t\r\n]+)|([ \t\r\n]+$)", "", x, useBytes = TRUE)
+}
+
 # to_lookup_list ---------------------------------------------------------------
 #' @importFrom kwb.utils toLookupList
 to_lookup_list <- kwb.utils::toLookupList

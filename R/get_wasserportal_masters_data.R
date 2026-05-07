@@ -125,12 +125,17 @@ get_wasserportal_master_data <- function(master_url)
   # Extract rows manually rather than via rvest::html_table(): on Windows R
   # the latter pipes the cell text through gsub() in the C locale and chokes
   # on the Latin-1 bytes returned by wasserportal (e.g. "Auspr<e4>gung").
-  # Going through xml2 + enc2utf8 keeps the strings in UTF-8 throughout.
+  # Going through xml2 + manual byte-level trim keeps the strings intact;
+  # xml_text(trim = TRUE) also fails on Windows because xml2's internal
+  # trim_text() calls sub("^[[:space:] ]+", ...) which needs a wide-string
+  # conversion that the C locale cannot provide.
   rows <- xml2::xml_find_all(node, ".//tbody/tr")
 
   pair_text <- function(row) {
     cells <- xml2::xml_find_all(row, ".//td|.//th")
-    text <- enc2utf8(xml2::xml_text(cells, trim = TRUE))
+    text <- xml2::xml_text(cells)
+    text <- trim_bytes(text)
+    Encoding(text) <- "UTF-8"
     length(text) <- 2L
     text
   }

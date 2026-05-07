@@ -166,7 +166,9 @@ html_table_utf8 <- function(table_node, n_cols)
 
   cell_values <- function(row) {
     cells <- xml2::xml_find_all(row, ".//td|.//th")
-    text <- enc2utf8(xml2::xml_text(cells, trim = TRUE))
+    text <- xml2::xml_text(cells)
+    text <- trim_bytes(text)
+    Encoding(text) <- "UTF-8"
     length(text) <- n_cols
     text
   }
