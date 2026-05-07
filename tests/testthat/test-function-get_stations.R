@@ -56,9 +56,14 @@ test_that("get_stations() works", {
   # It is possible that new data arrived since the two calls of the function...
   # Which check fails?
 
+  # Drop the Datum column and every column that follows it: these contain
+  # the most recent measurement value(s) and can change between two
+  # consecutive scrapes (e.g. Wasserstand, Wassertemperatur,
+  # Klassifikation, ...).
   remove_measurements <- function(x) {
     position_date <- which(names(x) == "Datum")
-    x[, -c(position_date, position_date + 1L)]
+    if (length(position_date) == 0L) return(x)
+    x[, seq_len(position_date[1L] - 1L), drop = FALSE]
   }
 
   # Compare the list versions (without measurement columns)
@@ -78,9 +83,23 @@ test_that("get_stations() works", {
 
   expect_identical(names(x), names(y))
 
-  skip_columns <- c("Datum", "Wasserstand")
+  # The wide overview_df merges measurement columns from all 10 station
+  # types (Datum, Wasserstand, Wassertemperatur, Klassifikation, ...).
+  # All of those are real-time values and can change between two scrapes.
+  # Compare only the structural columns that are stable across calls.
+  stable_columns <- c(
+    "key",
+    "Messstellennummer",
+    "Messstellenname",
+    "Betreiber",
+    "stammdaten_link",
+    "Ganglinie",
+    "water_body",
+    "variable",
+    "station_type"
+  )
 
-  for (column in setdiff(names(x), skip_columns)) {
+  for (column in intersect(stable_columns, names(x))) {
     if (!identical(x[[column]], y[[column]])) {
       stop("difference in column '", column, "'")
     }
