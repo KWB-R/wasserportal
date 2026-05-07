@@ -104,10 +104,15 @@ get_wasserportal_master_data <- function(master_url)
 {
   stop_on_external_data_provider(master_url)
 
-  master_table <- master_url %>%
-    xml2::read_html() %>%
-    rvest::html_node(xpath = '//*[@summary="Pegel Berlin"]') %>%
-    rvest::html_table()
+  node <- master_url %>%
+    xml2::read_html(encoding = "UTF-8") %>%
+    rvest::html_node(xpath = '//*[@summary="Pegel Berlin"]')
+
+  if (inherits(node, "xml_missing")) {
+    stop_formatted("No master table available at '%s'", master_url)
+  }
+
+  master_table <- rvest::html_table(node)
 
   if (nrow(master_table) == 0L) {
     stop_formatted("No master table available at '%s'", master_url)

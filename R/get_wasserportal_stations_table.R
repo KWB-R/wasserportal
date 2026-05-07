@@ -32,7 +32,7 @@ get_wasserportal_stations_table <- function (
     url_parameter_string(anzeige = "tabelle", thema = type)
   )
 
-  html <- xml2::read_html(overview_url)
+  html <- xml2::read_html(overview_url, encoding = "UTF-8")
 
   pegeltab <- rvest::html_node(html, xpath = '//*[@id="pegeltab"]')
 
