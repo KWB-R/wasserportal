@@ -1,25 +1,36 @@
-# wasserportal 0.4.0.9000 <small>(development version)</small>
+# [wasserportal 0.5.0](https://github.com/KWB-R/wasserportal/releases/tag/v0.5.0) <small>2026-05-07</small>
 
-* Modernize GitHub Actions workflows: use `actions/checkout@v4`,
-  `ubuntu-latest`, `r-lib/actions/setup-r-dependencies@v2` and
-  `r-lib/actions/check-r-package@v2` instead of the deprecated v2/`ubuntu-20.04`
-  /`r-hub/sysreqs` toolchain
+* Modernize GitHub Actions workflows: use `r-lib/actions/setup-r-dependencies@v2`
+  and `r-lib/actions/check-r-package@v2` on `ubuntu-latest` instead of the
+  deprecated v2/`ubuntu-20.04`/`r-hub/sysreqs` toolchain
+* Bump JavaScript actions to Node-24-compatible versions
+  (`actions/checkout@v5`, `actions/upload-artifact@v5`) and set
+  `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true` so transitive `r-lib/actions/*@v2`
+  steps opt into Node 24 as well, ahead of the June 2nd 2026 deprecation of
+  Node 20 on GitHub Actions runners
 * Add Claude Code review workflows (`claude.yaml`, `claude-code-review.yaml`)
 * `get_wasserportal_master_data()`: match the new HTML5 markup of the
   master-data table (`<caption>Pegel Berlin</caption>` instead of the legacy
   `summary="Pegel Berlin"` attribute)
+* Decode wasserportal pages explicitly as `windows-1252`. The pages declare
+  UTF-8 in `<meta charset>` but the server actually emits Latin-1 bytes
+  (e.g. `0xE4` for `ä`); trusting the meta declaration left those bytes
+  mis-marked as UTF-8 and broke `subst_special_chars()`'s `ä→ae` /
+  `ü→ue` substitutions on Windows R
 * Bypass `rvest::html_table()` and `xml2::xml_text(trim = TRUE)` in
   `get_wasserportal_master_data()` and `get_wasserportal_stations_table()`:
   both delegate to a `sub("^[[:space:] ]+", ...)` pass that fails on Windows
-  R when wasserportal returns Latin-1-encoded German umlauts (e.g.
-  "Auspr<e4>gung"). Tables are now extracted directly via `xml2` and trimmed
-  with `useBytes = TRUE`
+  R when the cell text contains umlauts. Tables are now extracted directly
+  via `xml2` and trimmed with a locale-safe `gsub(..., useBytes = TRUE)`
+  helper (`trim_bytes()`)
 * Make `get_stations()` and `get_wasserportal_masters_data()` resilient when
   parallel workers cannot fetch a station overview: load the `wasserportal`
   namespace into the cluster and drop `try-error` results before
   `data.table::rbindlist()` / `dplyr::left_join()`
 * Make live-HTTP tests skip gracefully when `wasserportal.berlin.de` is
   unreachable from the test host (CRAN, sandboxed CI)
+* Update `get_wasserportal_masters_data()` test expectations to include the
+  new `Anmerkung` column that wasserportal added to surface-water master data
 
 # [wasserportal 0.4.0](https://github.com/KWB-R/wasserportal/releases/tag/v0.4.0) <small>2024-04-05</small>
 
