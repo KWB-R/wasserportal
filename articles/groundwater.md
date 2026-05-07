@@ -32,12 +32,12 @@ cat_file_enumeration <- function(base_url, files) {
 ``` r
 
 stations_list <- wasserportal::get_stations(type = "list")
-#> Importing 10 station overviews from Wasserportal Berlin ... ok. (6.98 secs)
+#> Importing 10 station overviews from Wasserportal Berlin ... ok. (7.81 secs)
 
 is_gw <- stringr::str_detect(names(stations_list), "groundwater")
 
 files <- wasserportal::list_masters_data_to_csv(stations_list[is_gw])
-#> Writing 'stations_groundwater_level.csv' ... ok. (0.12 secs) 
+#> Writing 'stations_groundwater_level.csv' ... ok. (0.11 secs) 
 #> Writing 'stations_groundwater_quality.csv' ... ok. (0.01 secs)
 ```
 
@@ -64,12 +64,12 @@ gw_data_list <- wasserportal::get_groundwater_data(
   stations_list = stations_list, 
   debug = TRUE
 )
-#> Importing 'groundwater.level' data (1/2) ... ok. (11.72 mins) 
-#> Importing 'groundwater.quality' data (2/2) ... ok. (2.14 mins)
+#> Importing 'groundwater.level' data (1/2) ... ok. (11.92 mins) 
+#> Importing 'groundwater.quality' data (2/2) ... ok. (3.10 mins)
 
 files <- wasserportal::list_timeseries_data_to_zip(gw_data_list)
-#> Writing 'groundwater_level.zip' ... ok. (11.81 secs) 
-#> Writing 'groundwater_quality.zip' ... ok. (1.17 secs)
+#> Writing 'groundwater_level.zip' ... ok. (12.84 secs) 
+#> Writing 'groundwater_quality.zip' ... ok. (1.10 secs)
 
 files
 #> [1] "groundwater_level.zip"   "groundwater_quality.zip"
@@ -120,12 +120,12 @@ library(wasserportal)
 stations_crosstable <- jsonlite::fromJSON(urls$stations_crosstable)
 
 str(stations_crosstable)
-#> 'data.frame':    1123 obs. of  12 variables:
+#> 'data.frame':    1111 obs. of  12 variables:
 #>  $ Messstellennummer: chr  "5865900" "5827103" "5870400" "5865300" ...
 #>  $ Messstellenname  : chr  "Allee der Kosmonauten" "Allendestraße" "Alsenbrücke" "Am Bahndamm" ...
 #>  $ ows              : chr  "x" "x" "x" "x" ...
-#>  $ odf              : chr  NA "x" "x" "x" ...
-#>  $ owt              : chr  NA NA NA "x" ...
+#>  $ owt              : chr  "x" NA "x" "x" ...
+#>  $ odf              : chr  NA NA NA "x" ...
 #>  $ olf              : chr  NA NA NA NA ...
 #>  $ oph              : chr  NA NA NA NA ...
 #>  $ oog              : chr  NA NA NA NA ...

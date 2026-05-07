@@ -30,7 +30,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/KWB-R/wasserportal/blob/dev/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/KWB-R/wasserportal/blob/master/DESCRIPTION)
 
 Sonnenberg H, Rustler M (2026). *wasserportal: R Package with Functions
 for Scraping Data of Wasserportal Berlin*. R package version 0.5.0,
