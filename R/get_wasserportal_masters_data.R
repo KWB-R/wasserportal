@@ -37,11 +37,14 @@ get_wasserportal_masters_data <- function(
   if (run_parallel) {
     cl <- parallel::makeCluster(parallel::detectCores() - 1L)
     on.exit(parallel::stopCluster(cl))
+    parallel::clusterEvalQ(cl, loadNamespace("wasserportal"))
   }
 
-  # Define function to be called within the loop
+  # Define function to be called within the loop. Use a namespace-qualified
+  # call so that the function is found in worker processes regardless of
+  # whether the wasserportal package is attached there.
   FUN <- function(master_url) {
-    try(get_wasserportal_master_data(master_url))
+    try(wasserportal::get_wasserportal_master_data(master_url))
   }
 
   master_list <- cat_and_run(
