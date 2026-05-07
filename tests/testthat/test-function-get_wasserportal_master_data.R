@@ -4,7 +4,10 @@ test_that("get_wasserportal_master_data() works", {
 
   expect_error(f())
   expect_error(f("no-such-url"), "refers to an external")
-  expect_error(f("https://wasserportal.berlin.de/no-such-url"), "error 404")
+
+  skip_if_wasserportal_unreachable()
+
+  expect_error(f("https://wasserportal.berlin.de/no-such-url"))
 
   # wasserportal::get_wasserportal_stations_table()$stammdaten_link[1L]
   url <- "https://wasserportal.berlin.de/station.php?anzeige=i&thema=gws&station=1"

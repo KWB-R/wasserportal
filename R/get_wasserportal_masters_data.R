@@ -37,11 +37,14 @@ get_wasserportal_masters_data <- function(
   if (run_parallel) {
     cl <- parallel::makeCluster(parallel::detectCores() - 1L)
     on.exit(parallel::stopCluster(cl))
+    parallel::clusterEvalQ(cl, loadNamespace("wasserportal"))
   }
 
-  # Define function to be called within the loop
+  # Define function to be called within the loop. Use a namespace-qualified
+  # call so that the function is found in worker processes regardless of
+  # whether the wasserportal package is attached there.
   FUN <- function(master_url) {
-    try(get_wasserportal_master_data(master_url))
+    try(wasserportal::get_wasserportal_master_data(master_url))
   }
 
   master_list <- cat_and_run(
@@ -71,9 +74,11 @@ get_wasserportal_masters_data <- function(
 #' @param master_url url with master data for single station as retrieved by
 #' \code{\link{get_wasserportal_stations_table}}
 #' @return data frame with metadata for selected station
-#' @importFrom dplyr mutate rename
+#' @importFrom dplyr mutate
 #' @importFrom rlang .data
+#' @importFrom tibble tibble
 #' @importFrom tidyr pivot_wider
+#' @importFrom xml2 read_html xml_find_all xml_text
 #' @export
 #' @examples
 #' \dontrun{
@@ -101,17 +106,64 @@ get_wasserportal_master_data <- function(master_url)
 {
   stop_on_external_data_provider(master_url)
 
-  master_table <- master_url %>%
-    xml2::read_html() %>%
-    rvest::html_node(xpath = '//*[@summary="Pegel Berlin"]') %>%
-    rvest::html_table()
+  # The wasserportal pages have switched from the legacy HTML4 attribute
+  # `summary="Pegel Berlin"` on the master-data <table> to a child
+  # <caption class="sr-only">Pegel Berlin</caption>. Match on the caption so
+  # the function works with the current HTML5 markup. The page renders the
+  # table twice (desktop view + mobile view); html_node() returns the first
+  # match, which is the desktop variant.
+  #
+  # Decode as windows-1252 even though the page declares UTF-8 in
+  # <meta charset>: the server actually emits raw 0xE4 / 0xFC bytes
+  # (Latin-1 for ä / ü). Trusting the meta would store those bytes
+  # mis-marked as UTF-8 and break subst_special_chars()'s ä→ae
+  # substitutions on Windows R.
+  node <- master_url %>%
+    xml2::read_html(encoding = "windows-1252") %>%
+    rvest::html_node(
+      xpath = '//table[caption[normalize-space()="Pegel Berlin"]]'
+    )
 
-  if (nrow(master_table) == 0L) {
+  if (inherits(node, "xml_missing")) {
     stop_formatted("No master table available at '%s'", master_url)
   }
 
-  master_table %>%
-    dplyr::rename("key" = "X1", "value" = "X2") %>%
+  # Extract rows manually rather than via rvest::html_table(): on Windows R
+  # the latter pipes the cell text through gsub() in the C locale and chokes
+  # on the Latin-1 bytes returned by wasserportal (e.g. "Auspr<e4>gung").
+  # Going through xml2 + manual byte-level trim keeps the strings intact;
+  # xml_text(trim = TRUE) also fails on Windows because xml2's internal
+  # trim_text() calls sub("^[[:space:] ]+", ...) which needs a wide-string
+  # conversion that the C locale cannot provide.
+  rows <- xml2::xml_find_all(node, ".//tbody/tr")
+
+  pair_text <- function(row) {
+    cells <- xml2::xml_find_all(row, ".//td|.//th")
+    text <- xml2::xml_text(cells)
+    text <- trim_bytes(text)
+    Encoding(text) <- "UTF-8"
+    length(text) <- 2L
+    text
+  }
+
+  if (length(rows) == 0L) {
+    stop_formatted("No master table available at '%s'", master_url)
+  }
+
+  pairs <- vapply(rows, pair_text, character(2L))
+
+  if (is.null(dim(pairs))) {
+    pairs <- matrix(pairs, nrow = 2L)
+  }
+
+  keys <- pairs[1L, ]
+  values <- pairs[2L, ]
+
+  if (all(is.na(keys))) {
+    stop_formatted("No master table available at '%s'", master_url)
+  }
+
+  tibble::tibble(key = keys, value = values) %>%
     dplyr::mutate(key = stringr::str_remove_all(.data$key, "-")) %>%
     dplyr::mutate(key = subst_special_chars(.data$key)) %>%
     tidyr::pivot_wider(names_from = "key", values_from = "value")

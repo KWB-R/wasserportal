@@ -41,11 +41,14 @@ get_stations <- function(
   if (run_parallel) {
     cl <- parallel::makeCluster(n_cores)
     on.exit(parallel::stopCluster(cl))
+    parallel::clusterEvalQ(cl, loadNamespace("wasserportal"))
   }
 
-  # Function to be called within a loop
+  # Function to be called within a loop. Use a namespace-qualified call so
+  # that the function is found in worker processes regardless of whether the
+  # wasserportal package is attached there.
   FUN <- function(type) {
-    try(get_wasserportal_stations_table(type = type))
+    try(wasserportal::get_wasserportal_stations_table(type = type))
   }
 
   # Loop through overview_options, either in parallel or sequentially
@@ -63,6 +66,16 @@ get_stations <- function(
       }
     }
   )
+
+  # Drop entries that failed to fetch so downstream rbindlist/joins do not
+  # choke on try-error objects.
+  failed <- vapply(overview_list, inherits, logical(1L), what = "try-error")
+  if (any(failed)) {
+    message("Failed fetching station overviews for: ",
+            paste(names(overview_options)[failed], collapse = ", "))
+    overview_list <- overview_list[!failed]
+    overview_options <- overview_options[!failed]
+  }
 
   # Return the list if only the list is requested
   if (identical(type, "list")) {
