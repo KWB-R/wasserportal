@@ -2,19 +2,19 @@
   {
     "Messstellennummer": "5865900",
     "Messstellenname": "Allee der Kosmonauten",
-    "ows": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5827103",
     "Messstellenname": "Allendestraße",
-    "ows": "x",
-    "odf": "x"
+    "ows": "x"
   },
   {
     "Messstellennummer": "5870400",
     "Messstellenname": "Alsenbrücke",
     "ows": "x",
-    "odf": "x"
+    "owt": "x"
   },
   {
     "Messstellennummer": "5865300",
@@ -68,7 +68,8 @@
   {
     "Messstellennummer": "5800301",
     "Messstellenname": "Dianasee",
-    "ows": "x"
+    "ows": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5800302",
@@ -79,12 +80,18 @@
   {
     "Messstellennummer": "5863000",
     "Messstellenname": "Eisenacher Straße",
-    "ows": "x",
-    "owt": "x"
+    "ows": "x"
   },
   {
     "Messstellennummer": "5867900",
     "Messstellenname": "Eisenbahnbrücke",
+    "ows": "x",
+    "odf": "x",
+    "owt": "x"
+  },
+  {
+    "Messstellennummer": "5867601",
+    "Messstellenname": "Eisstadion",
     "ows": "x",
     "odf": "x",
     "owt": "x"
@@ -115,6 +122,12 @@
   {
     "Messstellennummer": "5867101",
     "Messstellenname": "Flaischlenstraße",
+    "ows": "x",
+    "owt": "x"
+  },
+  {
+    "Messstellennummer": "5800303",
+    "Messstellenname": "Flughafensee",
     "ows": "x",
     "owt": "x"
   },
@@ -168,11 +181,18 @@
     "Messstellennummer": "5865200",
     "Messstellenname": "Hoppendorfer Straße",
     "ows": "x",
+    "odf": "x",
     "owt": "x"
   },
   {
     "Messstellennummer": "5800308",
     "Messstellenname": "Hundekehlesee",
+    "ows": "x",
+    "owt": "x"
+  },
+  {
+    "Messstellennummer": "5800321",
+    "Messstellenname": "Jungfernheideteich",
     "ows": "x",
     "owt": "x"
   },
@@ -224,6 +244,12 @@
     "Messstellenname": "Neue Fahlenbergbrücke",
     "ows": "x",
     "odf": "x",
+    "owt": "x"
+  },
+  {
+    "Messstellennummer": "5866403",
+    "Messstellenname": "Nonnengraben",
+    "ows": "x",
     "owt": "x"
   },
   {
@@ -296,8 +322,7 @@
     "Messstellennummer": "5827700",
     "Messstellenname": "Sophienwerder",
     "ows": "x",
-    "odf": "x",
-    "owt": "x"
+    "odf": "x"
   },
   {
     "Messstellennummer": "5820000",
@@ -308,8 +333,7 @@
   {
     "Messstellennummer": "5815911",
     "Messstellenname": "Tegelort",
-    "ows": "x",
-    "odf": "x"
+    "ows": "x"
   },
   {
     "Messstellennummer": "5803200",
@@ -370,7 +394,8 @@
     "Messstellennummer": "5866301",
     "Messstellenname": "Zoo",
     "ows": "x",
-    "odf": "x"
+    "odf": "x",
+    "owt": "x"
   },
   {
     "Messstellennummer": "5825500",
@@ -431,7 +456,7 @@
     "odf": "x"
   },
   {
-    "Messstellennummer": "585930",
+    "Messstellennummer": "5859300",
     "Messstellenname": "Wernsdorf UP",
     "ows": "x"
   },
@@ -447,11 +472,6 @@
     "odf": "x"
   },
   {
-    "Messstellennummer": "580310",
-    "Messstellenname": "Berlin-Spandau UP",
-    "ows": "x"
-  },
-  {
     "Messstellennummer": "587030",
     "Messstellenname": "Kleinmachnow UP",
     "ows": "x"
@@ -459,7 +479,8 @@
   {
     "Messstellennummer": "581540",
     "Messstellenname": "Liebenwalde OP",
-    "ows": "x"
+    "ows": "x",
+    "odf": "x"
   },
   {
     "Messstellennummer": "586650",
@@ -469,8 +490,7 @@
   {
     "Messstellennummer": "580090",
     "Messstellenname": "Bredereiche UP",
-    "ows": "x",
-    "odf": "x"
+    "ows": "x"
   },
   {
     "Messstellennummer": "586290",
@@ -550,17 +570,11 @@
   {
     "Messstellennummer": "585950",
     "Messstellenname": "Kersdorf UP",
-    "ows": "x",
-    "odf": "x"
+    "ows": "x"
   },
   {
     "Messstellennummer": "585940",
     "Messstellenname": "Kersdorf OP",
-    "ows": "x"
-  },
-  {
-    "Messstellennummer": "587060",
-    "Messstellenname": "Schönwalde UP",
     "ows": "x"
   },
   {
@@ -570,7 +584,7 @@
     "odf": "x"
   },
   {
-    "Messstellennummer": "596030",
+    "Messstellennummer": "5960300",
     "Messstellenname": "Waren",
     "ows": "x"
   },
@@ -583,8 +597,7 @@
   {
     "Messstellennummer": "586610",
     "Messstellenname": "Berlin-Oberschleuse UP",
-    "ows": "x",
-    "odf": "x"
+    "ows": "x"
   },
   {
     "Messstellennummer": "586280",
@@ -640,7 +653,7 @@
     "ows": "x"
   },
   {
-    "Messstellennummer": "581100",
+    "Messstellennummer": "5811000",
     "Messstellenname": "Bolt OP",
     "odf": "x"
   },
@@ -665,6 +678,15 @@
   {
     "Messstellennummer": "153",
     "Messstellenname": "MPS Charlottenburg",
+    "owt": "x",
+    "olf": "x",
+    "oph": "x",
+    "oog": "x",
+    "oos": "x"
+  },
+  {
+    "Messstellennummer": "139",
+    "Messstellenname": "MPS Fischerinsel",
     "owt": "x",
     "olf": "x",
     "oph": "x",
@@ -799,7 +821,7 @@
   },
   {
     "Messstellennummer": "102",
-    "Messstellenname": "Gosener Graben",
+    "Messstellenname": "Gosener Graben - Gosener Landstr.",
     "opq": "x"
   },
   {
@@ -894,7 +916,7 @@
   },
   {
     "Messstellennummer": "316",
-    "Messstellenname": "Kuhlake",
+    "Messstellenname": "Kuhlake - oh. Kuhlaketeich",
     "opq": "x"
   },
   {
@@ -973,6 +995,11 @@
     "opq": "x"
   },
   {
+    "Messstellennummer": "602",
+    "Messstellenname": "Berlin-Spandauer Schifffahrtskanal - Föhrer Brücke",
+    "opq": "x"
+  },
+  {
     "Messstellennummer": "605",
     "Messstellenname": "Hohenzollernkanal - oh. Schleuse Plötzensee",
     "opq": "x"
@@ -1004,7 +1031,7 @@
   },
   {
     "Messstellennummer": "718",
-    "Messstellenname": "Wuhle - Cecilienstrasse",
+    "Messstellenname": "Wuhle - Cecilienstr.",
     "opq": "x"
   },
   {
@@ -1039,17 +1066,17 @@
   },
   {
     "Messstellennummer": "740",
-    "Messstellenname": "Lietzengraben",
+    "Messstellenname": "Lietzengraben - Hobrechtsfelder Str.",
     "opq": "x"
   },
   {
     "Messstellennummer": "741",
-    "Messstellenname": "Laake",
+    "Messstellenname": "Laake - Freischützstr.",
     "opq": "x"
   },
   {
     "Messstellennummer": "742",
-    "Messstellenname": "Malchower Fließgraben",
+    "Messstellenname": "Malchower Fließgraben - Parkstr.",
     "opq": "x"
   },
   {
@@ -1091,10 +1118,6 @@
   },
   {
     "Messstellennummer": "9",
-    "gws": "x"
-  },
-  {
-    "Messstellennummer": "21",
     "gws": "x"
   },
   {
@@ -1203,10 +1226,6 @@
   },
   {
     "Messstellennummer": "73",
-    "gws": "x"
-  },
-  {
-    "Messstellennummer": "74",
     "gws": "x"
   },
   {
@@ -1330,24 +1349,17 @@
     "gws": "x"
   },
   {
-    "Messstellennummer": "124",
-    "gws": "x"
-  },
-  {
     "Messstellennummer": "125",
     "gws": "x"
   },
   {
+    "Messstellennummer": "128",
+    "gws": "x"
+  },
+  {
     "Messstellennummer": "129",
-    "gws": "x"
-  },
-  {
-    "Messstellennummer": "130",
-    "gws": "x"
-  },
-  {
-    "Messstellennummer": "132",
-    "gws": "x"
+    "gws": "x",
+    "gwq": "x"
   },
   {
     "Messstellennummer": "136",
@@ -1473,15 +1485,7 @@
     "gws": "x"
   },
   {
-    "Messstellennummer": "205",
-    "gws": "x"
-  },
-  {
     "Messstellennummer": "206",
-    "gws": "x"
-  },
-  {
-    "Messstellennummer": "208",
     "gws": "x"
   },
   {
@@ -1891,6 +1895,10 @@
     "gws": "x"
   },
   {
+    "Messstellennummer": "644",
+    "gws": "x"
+  },
+  {
     "Messstellennummer": "645",
     "gws": "x",
     "gwq": "x"
@@ -2005,10 +2013,6 @@
   },
   {
     "Messstellennummer": "721",
-    "gws": "x"
-  },
-  {
-    "Messstellennummer": "725",
     "gws": "x"
   },
   {
@@ -2167,10 +2171,6 @@
   },
   {
     "Messstellennummer": "798",
-    "gws": "x"
-  },
-  {
-    "Messstellennummer": "799",
     "gws": "x"
   },
   {
@@ -2572,6 +2572,10 @@
     "gws": "x"
   },
   {
+    "Messstellennummer": "4923",
+    "gws": "x"
+  },
+  {
     "Messstellennummer": "4928",
     "gws": "x"
   },
@@ -2707,9 +2711,8 @@
     "gws": "x"
   },
   {
-    "Messstellennummer": "5049",
-    "gws": "x",
-    "gwq": "x"
+    "Messstellennummer": "5051",
+    "gws": "x"
   },
   {
     "Messstellennummer": "5052",
@@ -2734,11 +2737,6 @@
   },
   {
     "Messstellennummer": "5060",
-    "gws": "x",
-    "gwq": "x"
-  },
-  {
-    "Messstellennummer": "5066",
     "gws": "x",
     "gwq": "x"
   },
@@ -2885,10 +2883,6 @@
   },
   {
     "Messstellennummer": "5169",
-    "gws": "x"
-  },
-  {
-    "Messstellennummer": "5176",
     "gws": "x"
   },
   {
@@ -3064,10 +3058,6 @@
     "gws": "x"
   },
   {
-    "Messstellennummer": "5475",
-    "gws": "x"
-  },
-  {
     "Messstellennummer": "5476",
     "gws": "x"
   },
@@ -3109,9 +3099,8 @@
     "gws": "x"
   },
   {
-    "Messstellennummer": "6014",
-    "gws": "x",
-    "gwq": "x"
+    "Messstellennummer": "6015",
+    "gws": "x"
   },
   {
     "Messstellennummer": "6016",
@@ -3471,10 +3460,6 @@
     "gwq": "x"
   },
   {
-    "Messstellennummer": "7021",
-    "gws": "x"
-  },
-  {
     "Messstellennummer": "7027",
     "gws": "x",
     "gwq": "x"
@@ -3685,11 +3670,6 @@
   },
   {
     "Messstellennummer": "7137",
-    "gws": "x",
-    "gwq": "x"
-  },
-  {
-    "Messstellennummer": "7144",
     "gws": "x",
     "gwq": "x"
   },
@@ -3907,11 +3887,6 @@
     "gwq": "x"
   },
   {
-    "Messstellennummer": "7290",
-    "gws": "x",
-    "gwq": "x"
-  },
-  {
     "Messstellennummer": "7291",
     "gws": "x",
     "gwq": "x"
@@ -3984,10 +3959,6 @@
     "gws": "x"
   },
   {
-    "Messstellennummer": "7723",
-    "gws": "x"
-  },
-  {
     "Messstellennummer": "7742",
     "gws": "x"
   },
@@ -4004,10 +3975,6 @@
     "gws": "x"
   },
   {
-    "Messstellennummer": "7751",
-    "gws": "x"
-  },
-  {
     "Messstellennummer": "7752",
     "gws": "x"
   },
@@ -4017,10 +3984,6 @@
   },
   {
     "Messstellennummer": "7882",
-    "gws": "x"
-  },
-  {
-    "Messstellennummer": "7883",
     "gws": "x"
   },
   {
@@ -4064,10 +4027,6 @@
     "gws": "x"
   },
   {
-    "Messstellennummer": "8050",
-    "gws": "x"
-  },
-  {
     "Messstellennummer": "8053",
     "gws": "x"
   },
@@ -4093,10 +4052,6 @@
   },
   {
     "Messstellennummer": "8118",
-    "gws": "x"
-  },
-  {
-    "Messstellennummer": "8197",
     "gws": "x"
   },
   {
@@ -4212,10 +4167,6 @@
     "gws": "x"
   },
   {
-    "Messstellennummer": "8456",
-    "gws": "x"
-  },
-  {
     "Messstellennummer": "8458",
     "gws": "x"
   },
@@ -4250,16 +4201,7 @@
     "gws": "x"
   },
   {
-    "Messstellennummer": "8481",
-    "gws": "x",
-    "gwq": "x"
-  },
-  {
     "Messstellennummer": "8484",
-    "gws": "x"
-  },
-  {
-    "Messstellennummer": "8485",
     "gws": "x"
   },
   {
@@ -4313,10 +4255,6 @@
     "Messstellennummer": "9092",
     "gws": "x",
     "gwq": "x"
-  },
-  {
-    "Messstellennummer": "9348",
-    "gws": "x"
   },
   {
     "Messstellennummer": "9401",
@@ -4392,10 +4330,6 @@
     "gws": "x"
   },
   {
-    "Messstellennummer": "10034",
-    "gws": "x"
-  },
-  {
     "Messstellennummer": "10035",
     "gws": "x"
   },
@@ -4458,10 +4392,6 @@
   },
   {
     "Messstellennummer": "15104",
-    "gws": "x"
-  },
-  {
-    "Messstellennummer": "15106",
     "gws": "x"
   },
   {
@@ -4558,10 +4488,6 @@
     "gws": "x"
   },
   {
-    "Messstellennummer": "15177",
-    "gws": "x"
-  },
-  {
     "Messstellennummer": "15178",
     "gws": "x"
   },
@@ -4618,6 +4544,14 @@
     "gws": "x"
   },
   {
+    "Messstellennummer": "15198",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "15199",
+    "gws": "x"
+  },
+  {
     "Messstellennummer": "15201",
     "gws": "x"
   },
@@ -4661,7 +4595,35 @@
     "gws": "x"
   },
   {
+    "Messstellennummer": "17310",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "17311",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "17312",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "17315",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "17316",
+    "gws": "x"
+  },
+  {
     "Messstellennummer": "17319",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "17321",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "17322",
     "gws": "x"
   },
   {
@@ -4685,6 +4647,10 @@
     "gws": "x"
   },
   {
+    "Messstellennummer": "17907",
+    "gws": "x"
+  },
+  {
     "Messstellennummer": "17908",
     "gws": "x"
   },
@@ -4698,6 +4664,10 @@
   },
   {
     "Messstellennummer": "17911",
+    "gws": "x"
+  },
+  {
+    "Messstellennummer": "17912",
     "gws": "x"
   },
   {
@@ -4727,11 +4697,6 @@
   },
   {
     "Messstellennummer": "23703",
-    "gws": "x",
-    "gwq": "x"
-  },
-  {
-    "Messstellennummer": "23704",
     "gws": "x",
     "gwq": "x"
   },
@@ -4888,10 +4853,6 @@
     "gwq": "x"
   },
   {
-    "Messstellennummer": "6015",
-    "gwq": "x"
-  },
-  {
     "Messstellennummer": "6028",
     "gwq": "x"
   },
@@ -5001,10 +4962,6 @@
   },
   {
     "Messstellennummer": "15109",
-    "gwq": "x"
-  },
-  {
-    "Messstellennummer": "17309",
     "gwq": "x"
   }
 ]

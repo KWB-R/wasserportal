@@ -8,8 +8,8 @@
 <title>Groundwater • wasserportal</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Groundwater">
 </head>
 <body>
@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">wasserportal</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.5.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,24 +54,23 @@
 
 
 
-<link href="groundwater_files/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<link href="groundwater_files/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
 <script src="groundwater_files/htmlwidgets-1.6.4/htmlwidgets.js"></script><link href="groundwater_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="groundwater_files/datatables-binding-0.33/datatables.js"></script><link href="groundwater_files/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+<script src="groundwater_files/datatables-binding-0.34.0/datatables.js"></script><link href="groundwater_files/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="groundwater_files/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
 <script src="groundwater_files/dt-core-1.13.6/js/jquery.dataTables.min.js"></script><link href="groundwater_files/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet">
 <script src="groundwater_files/nouislider-7.0.10/jquery.nouislider.min.js"></script><link href="groundwater_files/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet">
-<script src="groundwater_files/selectize-0.12.0/selectize.min.js"></script><link href="groundwater_files/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
-<script src="groundwater_files/crosstalk-1.2.1/js/crosstalk.min.js"></script><div class="row">
+<script src="groundwater_files/selectize-0.12.0/selectize.min.js"></script><link href="groundwater_files/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+<script src="groundwater_files/crosstalk-1.2.2/js/crosstalk.min.js"></script><div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Groundwater</h1>
                         <h4 data-toc-skip class="author">Michael
 Rustler</h4>
             
-            <h4 data-toc-skip class="date">2024-07-09
-05:13:05.147413</h4>
+            <h4 data-toc-skip class="date">2026-05-07 17:22:37.8173</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/KWB-R/wasserportal/blob/master/vignettes/groundwater.Rmd" class="external-link"><code>vignettes/groundwater.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/KWB-R/wasserportal/blob/dev/vignettes/groundwater.Rmd" class="external-link"><code>vignettes/groundwater.Rmd</code></a></small>
       <div class="d-none name"><code>groundwater.Rmd</code></div>
     </div>
 
@@ -108,12 +107,12 @@ Rustler</h4>
 </h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">stations_list</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/get_stations.html">get_stations</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"list"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Importing 10 station overviews from Wasserportal Berlin ... ok. (8.00 secs)</span></span>
+<span><span class="co">#&gt; Importing 10 station overviews from Wasserportal Berlin ... ok. (6.98 secs)</span></span>
 <span></span>
 <span><span class="va">is_gw</span> <span class="op">&lt;-</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html" class="external-link">str_detect</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">stations_list</span><span class="op">)</span>, <span class="st">"groundwater"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">files</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/list_masters_data_to_csv.html">list_masters_data_to_csv</a></span><span class="op">(</span><span class="va">stations_list</span><span class="op">[</span><span class="va">is_gw</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Writing 'stations_groundwater_level.csv' ... ok. (0.11 secs) </span></span>
+<span><span class="co">#&gt; Writing 'stations_groundwater_level.csv' ... ok. (0.12 secs) </span></span>
 <span><span class="co">#&gt; Writing 'stations_groundwater_quality.csv' ... ok. (0.01 secs)</span></span></code></pre></div>
 <p>The following groundwater master data <code>.csv</code> files are
 available for download:</p>
@@ -138,12 +137,12 @@ available for download:</p>
 <span>  stations_list <span class="op">=</span> <span class="va">stations_list</span>, </span>
 <span>  debug <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; Importing 'groundwater.level' data (1/2) ... ok. (13.47 mins) </span></span>
-<span><span class="co">#&gt; Importing 'groundwater.quality' data (2/2) ... ok. (4.52 mins)</span></span>
+<span><span class="co">#&gt; Importing 'groundwater.level' data (1/2) ... ok. (11.72 mins) </span></span>
+<span><span class="co">#&gt; Importing 'groundwater.quality' data (2/2) ... ok. (2.14 mins)</span></span>
 <span></span>
 <span><span class="va">files</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/list_timeseries_data_to_zip.html">list_timeseries_data_to_zip</a></span><span class="op">(</span><span class="va">gw_data_list</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Writing 'groundwater_level.zip' ... ok. (10.60 secs) </span></span>
-<span><span class="co">#&gt; Writing 'groundwater_quality.zip' ... ok. (0.95 secs)</span></span>
+<span><span class="co">#&gt; Writing 'groundwater_level.zip' ... ok. (11.81 secs) </span></span>
+<span><span class="co">#&gt; Writing 'groundwater_quality.zip' ... ok. (1.17 secs)</span></span>
 <span></span>
 <span><span class="va">files</span></span>
 <span><span class="co">#&gt; [1] "groundwater_level.zip"   "groundwater_quality.zip"</span></span>
@@ -155,11 +154,11 @@ available for download:</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                 Parameter   Einheit       n</span></span>
 <span><span class="co">#&gt;                    &lt;char&gt;    &lt;char&gt;   &lt;int&gt;</span></span>
-<span><span class="co">#&gt;   1:             GW-Stand m ü. NHN) 8139440</span></span>
-<span><span class="co">#&gt;   2:              Chlorid     mg/l]    9255</span></span>
-<span><span class="co">#&gt;   3:              Kalzium     mg/l]    9254</span></span>
-<span><span class="co">#&gt;   4:               Sulfat     mg/l]    9249</span></span>
-<span><span class="co">#&gt;   5:            Magnesium     mg/l]    9242</span></span>
+<span><span class="co">#&gt;   1:             GW-Stand m ü. NHN) 8543442</span></span>
+<span><span class="co">#&gt;   2:              Chlorid     mg/l]    9436</span></span>
+<span><span class="co">#&gt;   3:              Kalzium     mg/l]    9435</span></span>
+<span><span class="co">#&gt;   4:               Sulfat     mg/l]    9431</span></span>
+<span><span class="co">#&gt;   5:            Magnesium     mg/l]    9423</span></span>
 <span><span class="co">#&gt;  ---                                       </span></span>
 <span><span class="co">#&gt; 250:        Phenobarbital     µg/l]       2</span></span>
 <span><span class="co">#&gt; 251:    Tetrachlorethylen     µg/l]       2</span></span>
@@ -188,7 +187,7 @@ options). Note: includes also surface monitoring stations!</p></li>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/KWB-R/wasserportal" class="external-link">wasserportal</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">stations_crosstable</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span><span class="va">urls</span><span class="op">$</span><span class="va">stations_crosstable</span><span class="op">)</span></span>
+<span><span class="va">stations_crosstable</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span><span class="va">urls</span><span class="op">$</span><span class="va">stations_crosstable</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">stations_crosstable</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 'data.frame':    1123 obs. of  12 variables:</span></span>
@@ -235,8 +234,8 @@ single data frame:</p>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="co">### GW levels</span></span>
-<span><span class="va">gwl_master</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span><span class="va">urls</span><span class="op">$</span><span class="va">stations_gwl_meta</span><span class="op">)</span></span>
-<span><span class="va">gwl_data</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span><span class="va">urls</span><span class="op">$</span><span class="va">stations_gwl_data</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>  </span>
+<span><span class="va">gwl_master</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span><span class="va">urls</span><span class="op">$</span><span class="va">stations_gwl_meta</span><span class="op">)</span></span>
+<span><span class="va">gwl_data</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span><span class="va">urls</span><span class="op">$</span><span class="va">stations_gwl_data</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>  </span>
 <span>  <span class="fu">site_number_to_character</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">left_join_by_site</span><span class="op">(</span><span class="va">gwl_master</span><span class="op">)</span></span>
 <span></span>
@@ -259,8 +258,8 @@ single data frame:</p>
 <span><span class="co">#&gt;  $ Hochwert_UTM_33_N             : chr  "5831712" "5831712" "5831712" "5831712" ...</span></span>
 <span></span>
 <span><span class="co">### GW quality (all available parameters!)</span></span>
-<span><span class="va">gwq_master</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span><span class="va">urls</span><span class="op">$</span><span class="va">stations_gwq_meta</span><span class="op">)</span></span>
-<span><span class="va">gwq_data</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span><span class="va">urls</span><span class="op">$</span><span class="va">stations_gwq_data</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>  </span>
+<span><span class="va">gwq_master</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span><span class="va">urls</span><span class="op">$</span><span class="va">stations_gwq_meta</span><span class="op">)</span></span>
+<span><span class="va">gwq_data</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span><span class="va">urls</span><span class="op">$</span><span class="va">stations_gwq_data</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>  </span>
 <span>  <span class="fu">site_number_to_character</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">left_join_by_site</span><span class="op">(</span><span class="va">gwq_master</span><span class="op">)</span></span>
 <span></span>
@@ -383,7 +382,7 @@ single data frame:</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>
