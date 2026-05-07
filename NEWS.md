@@ -1,3 +1,26 @@
+# wasserportal 0.4.0.9000 <small>(development version)</small>
+
+* Modernize GitHub Actions workflows: use `actions/checkout@v4`,
+  `ubuntu-latest`, `r-lib/actions/setup-r-dependencies@v2` and
+  `r-lib/actions/check-r-package@v2` instead of the deprecated v2/`ubuntu-20.04`
+  /`r-hub/sysreqs` toolchain
+* Add Claude Code review workflows (`claude.yaml`, `claude-code-review.yaml`)
+* `get_wasserportal_master_data()`: match the new HTML5 markup of the
+  master-data table (`<caption>Pegel Berlin</caption>` instead of the legacy
+  `summary="Pegel Berlin"` attribute)
+* Bypass `rvest::html_table()` and `xml2::xml_text(trim = TRUE)` in
+  `get_wasserportal_master_data()` and `get_wasserportal_stations_table()`:
+  both delegate to a `sub("^[[:space:] ]+", ...)` pass that fails on Windows
+  R when wasserportal returns Latin-1-encoded German umlauts (e.g.
+  "Auspr<e4>gung"). Tables are now extracted directly via `xml2` and trimmed
+  with `useBytes = TRUE`
+* Make `get_stations()` and `get_wasserportal_masters_data()` resilient when
+  parallel workers cannot fetch a station overview: load the `wasserportal`
+  namespace into the cluster and drop `try-error` results before
+  `data.table::rbindlist()` / `dplyr::left_join()`
+* Make live-HTTP tests skip gracefully when `wasserportal.berlin.de` is
+  unreachable from the test host (CRAN, sandboxed CI)
+
 # [wasserportal 0.4.0](https://github.com/KWB-R/wasserportal/releases/tag/v0.4.0) <small>2024-04-05</small>
 
 * New feature: add support for downloading all available surface water quality 
