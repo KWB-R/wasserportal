@@ -104,9 +104,17 @@ get_wasserportal_master_data <- function(master_url)
 {
   stop_on_external_data_provider(master_url)
 
+  # The wasserportal pages have switched from the legacy HTML4 attribute
+  # `summary="Pegel Berlin"` on the master-data <table> to a child
+  # <caption class="sr-only">Pegel Berlin</caption>. Match on the caption so
+  # the function works with the current HTML5 markup. The page renders the
+  # table twice (desktop view + mobile view); html_node() returns the first
+  # match, which is the desktop variant.
   node <- master_url %>%
     xml2::read_html(encoding = "UTF-8") %>%
-    rvest::html_node(xpath = '//*[@summary="Pegel Berlin"]')
+    rvest::html_node(
+      xpath = '//table[caption[normalize-space()="Pegel Berlin"]]'
+    )
 
   if (inherits(node, "xml_missing")) {
     stop_formatted("No master table available at '%s'", master_url)
