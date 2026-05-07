@@ -74,9 +74,11 @@ get_wasserportal_masters_data <- function(
 #' @param master_url url with master data for single station as retrieved by
 #' \code{\link{get_wasserportal_stations_table}}
 #' @return data frame with metadata for selected station
-#' @importFrom dplyr mutate rename
+#' @importFrom dplyr mutate
 #' @importFrom rlang .data
+#' @importFrom tibble tibble
 #' @importFrom tidyr pivot_wider
+#' @importFrom xml2 read_html xml_find_all xml_text
 #' @export
 #' @examples
 #' \dontrun{
@@ -120,14 +122,37 @@ get_wasserportal_master_data <- function(master_url)
     stop_formatted("No master table available at '%s'", master_url)
   }
 
-  master_table <- rvest::html_table(node)
+  # Extract rows manually rather than via rvest::html_table(): on Windows R
+  # the latter pipes the cell text through gsub() in the C locale and chokes
+  # on the Latin-1 bytes returned by wasserportal (e.g. "Auspr<e4>gung").
+  # Going through xml2 + enc2utf8 keeps the strings in UTF-8 throughout.
+  rows <- xml2::xml_find_all(node, ".//tbody/tr")
 
-  if (nrow(master_table) == 0L) {
+  pair_text <- function(row) {
+    cells <- xml2::xml_find_all(row, ".//td|.//th")
+    text <- enc2utf8(xml2::xml_text(cells, trim = TRUE))
+    length(text) <- 2L
+    text
+  }
+
+  if (length(rows) == 0L) {
     stop_formatted("No master table available at '%s'", master_url)
   }
 
-  master_table %>%
-    dplyr::rename("key" = "X1", "value" = "X2") %>%
+  pairs <- vapply(rows, pair_text, character(2L))
+
+  if (is.null(dim(pairs))) {
+    pairs <- matrix(pairs, nrow = 2L)
+  }
+
+  keys <- pairs[1L, ]
+  values <- pairs[2L, ]
+
+  if (all(is.na(keys))) {
+    stop_formatted("No master table available at '%s'", master_url)
+  }
+
+  tibble::tibble(key = keys, value = values) %>%
     dplyr::mutate(key = stringr::str_remove_all(.data$key, "-")) %>%
     dplyr::mutate(key = subst_special_chars(.data$key)) %>%
     tidyr::pivot_wider(names_from = "key", values_from = "value")

@@ -6,11 +6,11 @@
 #' \code{\link{wasserportal_base_url}}
 #' @return data frame with master data of selected monitoring stations
 #' @export
-#' @importFrom rvest html_node html_table html_nodes html_attr
+#' @importFrom rvest html_node html_nodes html_attr
 #' @importFrom stringr str_remove_all
-#' @importFrom xml2 read_html
+#' @importFrom xml2 read_html xml_find_all xml_text
 #' @importFrom dplyr bind_cols
-#' @importFrom tibble tibble
+#' @importFrom tibble tibble as_tibble
 #' @examples
 #' types <- wasserportal::get_overview_options()
 #' str(types)
@@ -43,13 +43,20 @@ get_wasserportal_stations_table <- function (
     )
   }
 
-  # Convert the HTML table into a data frame
-  overview_table <- rvest::html_table(pegeltab)
-
   # Get the column captions from the table header
   captions <- html %>%
     rvest::html_nodes(xpath = '//table[@id="pegeltab"]/thead/tr/th') %>%
     rvest::html_text()
+
+  # Convert the HTML table into a data frame manually rather than via
+  # rvest::html_table(). On Windows R the latter pipes cell text through
+  # gsub() in the C locale and chokes on the Latin-1 bytes the wasserportal
+  # server returns (e.g. "Auspr<e4>gung"). Going through xml2 + enc2utf8
+  # keeps the strings in UTF-8 throughout.
+  overview_table <- html_table_utf8(pegeltab, n_cols = length(captions))
+
+  # Apply the captions (with special characters preserved as UTF-8) as names
+  names(overview_table) <- enc2utf8(captions)
 
   # Identify columns "Messstellennummer" and "Ganglinie"
   column_id <- grep("Mess.?stellen.?nummer", captions)
@@ -138,6 +145,41 @@ extract_hrefs <- function(x)
   hrefs[has_link] <- rvest::html_attr(links[has_link], "href")
 
   hrefs
+}
+
+# html_table_utf8 --------------------------------------------------------------
+# Lightweight replacement for rvest::html_table() that keeps cell text in UTF-8.
+# rvest::html_table() routes cell text through gsub() in the current C locale;
+# on Windows R that fails on Latin-1 bytes returned by wasserportal.berlin.de
+# with "input string ... is invalid" / "unable to translate '...' to a wide
+# string". We extract rows directly via xml2 and force-encode each value with
+# enc2utf8() so downstream string operations succeed regardless of the locale.
+html_table_utf8 <- function(table_node, n_cols)
+{
+  rows <- xml2::xml_find_all(table_node, ".//tbody/tr")
+
+  if (length(rows) == 0L) {
+    cols <- replicate(n_cols, character(0L), simplify = FALSE)
+    names(cols) <- paste0("X", seq_len(n_cols))
+    return(tibble::as_tibble(cols))
+  }
+
+  cell_values <- function(row) {
+    cells <- xml2::xml_find_all(row, ".//td|.//th")
+    text <- enc2utf8(xml2::xml_text(cells, trim = TRUE))
+    length(text) <- n_cols
+    text
+  }
+
+  matrix_cells <- vapply(rows, cell_values, character(n_cols))
+
+  if (is.null(dim(matrix_cells))) {
+    matrix_cells <- matrix(matrix_cells, nrow = n_cols)
+  }
+
+  cols <- lapply(seq_len(n_cols), function(i) matrix_cells[i, ])
+  names(cols) <- paste0("X", seq_len(n_cols))
+  tibble::as_tibble(cols)
 }
 
 # print_invalid_hrefs ----------------------------------------------------------
