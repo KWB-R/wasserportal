@@ -112,8 +112,14 @@ get_wasserportal_master_data <- function(master_url)
   # the function works with the current HTML5 markup. The page renders the
   # table twice (desktop view + mobile view); html_node() returns the first
   # match, which is the desktop variant.
+  #
+  # Decode as windows-1252 even though the page declares UTF-8 in
+  # <meta charset>: the server actually emits raw 0xE4 / 0xFC bytes
+  # (Latin-1 for ä / ü). Trusting the meta would store those bytes
+  # mis-marked as UTF-8 and break subst_special_chars()'s ä→ae
+  # substitutions on Windows R.
   node <- master_url %>%
-    xml2::read_html(encoding = "UTF-8") %>%
+    xml2::read_html(encoding = "windows-1252") %>%
     rvest::html_node(
       xpath = '//table[caption[normalize-space()="Pegel Berlin"]]'
     )

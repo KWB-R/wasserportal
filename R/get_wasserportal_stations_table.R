@@ -32,7 +32,11 @@ get_wasserportal_stations_table <- function (
     url_parameter_string(anzeige = "tabelle", thema = type)
   )
 
-  html <- xml2::read_html(overview_url, encoding = "UTF-8")
+  # Decode as windows-1252 even though the page declares UTF-8 in
+  # <meta charset>: the server actually emits raw 0xE4 / 0xFC bytes
+  # (Latin-1 for ä / ü). Trusting the meta would store those bytes
+  # mis-marked as UTF-8 and break subst_special_chars() on Windows R.
+  html <- xml2::read_html(overview_url, encoding = "windows-1252")
 
   pegeltab <- rvest::html_node(html, xpath = '//*[@id="pegeltab"]')
 
