@@ -33,7 +33,8 @@ test_that("get_wasserportal_masters_data() works", {
     "Flusskilometer",
     "Pegelnullpunkt_m_NHN",
     "Rechtswert_UTM_33_N",
-    "Hochwert_UTM_33_N"
+    "Hochwert_UTM_33_N",
+    "Anmerkung"
   ))
 
 })
