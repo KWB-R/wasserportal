@@ -9,6 +9,7 @@ on:
     # * is a special character in YAML so you have to quote this string ()
     # Run this job every day at 05:00 a.m UTC ('0 5 * * *')
     - cron:  '0 5 * * *'
+
 name: pkgdown
 
 jobs:
@@ -18,31 +19,18 @@ jobs:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       ZENODO_PAT: ${{ secrets.ZENODO_PAT }}
     steps:
-      - uses: actions/checkout@v2
-
-      - uses: r-lib/actions/setup-r@v2
+      - uses: actions/checkout@v4
 
       - uses: r-lib/actions/setup-pandoc@v2
 
-      - name: Query dependencies
-        run: |
-          install.packages('remotes')
-          saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
-          writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
-        shell: Rscript {0}
-
-      - name: Cache R packages
-        uses: actions/cache@v4
+      - uses: r-lib/actions/setup-r@v2
         with:
-          path: ${{ env.R_LIBS_USER }}
-          key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
-          restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
+          use-public-rspm: true
 
-      - name: Install dependencies
-        run: |
-          remotes::install_deps(dependencies = TRUE)
-          install.packages("pkgdown", type = "binary")
-        shell: Rscript {0}
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::pkgdown, github::kwb-r/kwb.pkgbuild
+          needs: website
 
       - name: Install package
         run: R CMD INSTALL .
