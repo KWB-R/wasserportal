@@ -35,9 +35,8 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: |
-            any::archive
             any::httr2
-            any::readr
+            any::jsonlite
           needs: check
 
       - name: Install package

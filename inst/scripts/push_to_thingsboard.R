@@ -1,15 +1,16 @@
 #!/usr/bin/env Rscript
 #
-# Push a small demo selection of Wasserportal time series to a ThingsBoard
-# tenant. Reads the daily ZIP files that the pkgdown workflow publishes to
-# the gh-pages branch every morning at 05:00 UTC, so this script needs no
-# Wasserportal scrape of its own.
+# Push a small demo selection of Wasserportal **groundwater** data to a
+# ThingsBoard tenant. Reads the JSONs and ZIPs that the pkgdown workflow
+# publishes to the gh-pages branch every morning at 05:00 UTC, so this
+# script needs no Wasserportal scrape of its own.
 #
-# By default the seven daily surface-water parameter files are pulled, plus
-# the surface-water quality data for the same Messstellen (irregular,
-# multi-parameter laboratory measurements). Each ThingsBoard device ends up
-# with several telemetry keys (e.g. "Wasserstand", "Wassertemperatur",
-# plus quality keys like "Nitrat") whenever the station offers them.
+# Demo focus: stations that have **both** groundwater level (gwl) and
+# groundwater quality (gwq) measurements. Per device the script uploads
+#
+#   * combined master data (gwl + gwq) as ThingsBoard attributes,
+#   * the gwl time series  (key per Parameter, e.g. "Grundwasserstand"),
+#   * the gwq time series  (key per Parameter, e.g. "Nitrat", "Chlorid").
 #
 # Designed to be invoked from GitHub Actions:
 #   Rscript inst/scripts/push_to_thingsboard.R
@@ -19,153 +20,164 @@
 #   TB_API_KEY    Account-level API key (Bearer credential)
 #
 # Optional environment variables:
-#   TB_STATION_IDS    Comma-separated Messstellennummer values to push.
-#                     Defaults to five well-known Berlin surface water gauges.
-#   TB_GH_PAGES_URL   Base URL where the ZIPs are hosted.
+#   TB_STATION_IDS    Comma-separated Messstellennummer values. If unset,
+#                     the first five stations that occur in **both** master
+#                     JSONs are picked automatically.
+#   TB_GH_PAGES_URL   Base URL where the data files are hosted.
 #                     Default: https://kwb-r.github.io/wasserportal
-#   TB_ZIP_FILES      Comma-separated list of ZIP file names under
-#                     TB_GH_PAGES_URL. Default: all seven daily
-#                     surface-water parameter ZIPs plus the surface-water
-#                     quality ZIP.
 #   TB_DEVICE_PREFIX  Prefix for ThingsBoard device names. Default
-#                     "wasserportal-".
+#                     "wasserportal-gw-".
+#   TB_MAX_DEVICES    Maximum number of devices to set up when station ids
+#                     are auto-selected. Default 5 (ThingsBoard Cloud free
+#                     tier limit).
 
 stopifnot(
   nzchar(Sys.getenv("TB_HOST")),
   nzchar(Sys.getenv("TB_API_KEY"))
 )
 
-station_ids <- strsplit(
-  Sys.getenv(
-    "TB_STATION_IDS",
-    "5803900,5805600,5867000,5826200,5824300"
-  ),
-  ","
-)[[1L]]
-
 base_url <- sub(
   "/+$", "",
   Sys.getenv("TB_GH_PAGES_URL", "https://kwb-r.github.io/wasserportal")
 )
 
-zip_files <- strsplit(
-  Sys.getenv(
-    "TB_ZIP_FILES",
-    paste(
-      "daily_surface-water_water-level.zip",
-      "daily_surface-water_flow.zip",
-      "daily_surface-water_temperature.zip",
-      "daily_surface-water_conductivity.zip",
-      "daily_surface-water_ph.zip",
-      "daily_surface-water_oxygen-concentration.zip",
-      "daily_surface-water_oxygen-saturation.zip",
-      "surface-water_quality.zip",
-      sep = ","
-    )
-  ),
-  ","
-)[[1L]]
+device_prefix <- Sys.getenv("TB_DEVICE_PREFIX", "wasserportal-gw-")
 
-device_prefix <- Sys.getenv("TB_DEVICE_PREFIX", "wasserportal-")
+max_devices <- as.integer(Sys.getenv("TB_MAX_DEVICES", "5"))
+
+# ---- 1. master data ----------------------------------------------------------
+
+read_json <- function(path) {
+  jsonlite::fromJSON(paste0(base_url, "/", path))
+}
+
+message("Loading master data from gh-pages ...")
+gwl_master <- read_json("stations_gwl_master.json")
+gwq_master <- read_json("stations_gwq_master.json")
+
+stopifnot("Nummer" %in% names(gwl_master), "Nummer" %in% names(gwq_master))
+
+gwl_master$Nummer <- as.character(gwl_master$Nummer)
+gwq_master$Nummer <- as.character(gwq_master$Nummer)
+
+both_ids <- intersect(gwl_master$Nummer, gwq_master$Nummer)
+message(sprintf(
+  "%d stations have both gwl and gwq master data",
+  length(both_ids)
+))
+
+env_ids <- Sys.getenv("TB_STATION_IDS", "")
+station_ids <- if (nzchar(env_ids)) {
+  strsplit(env_ids, ",")[[1L]]
+} else {
+  utils::head(both_ids, max_devices)
+}
+
+if (length(station_ids) == 0L) {
+  stop("No station ids selected. Set TB_STATION_IDS or check master JSONs.")
+}
 
 message(sprintf(
-  "Pushing %d station(s) from %d ZIP file(s) at %s",
-  length(station_ids), length(zip_files), base_url
+  "Pushing %d station(s): %s",
+  length(station_ids), paste(station_ids, collapse = ", ")
 ))
+
+# ---- 2. devices --------------------------------------------------------------
 
 device_tokens <- wasserportal::tb_setup_devices(
   station_ids = station_ids,
   name_prefix = device_prefix
 )
 
-read_zip_to_long <- function(zip_url) {
-  tmp_dir <- tempfile("wasserportal-push-")
-  dir.create(tmp_dir)
-  on.exit(unlink(tmp_dir, recursive = TRUE), add = TRUE)
+# ---- 3. attributes (master data) --------------------------------------------
 
-  zip_path <- file.path(tmp_dir, basename(zip_url))
-  utils::download.file(zip_url, zip_path, mode = "wb", quiet = TRUE)
-  archive::archive_extract(zip_path, dir = tmp_dir)
+# ThingsBoard attributes are key/value pairs. Drop list-typed columns and NA
+# values, coerce to character/numeric, prefix to keep gwl and gwq separate.
+flatten_master_row <- function(row, prefix) {
+  if (nrow(row) == 0L) return(list())
+  row <- row[1L, , drop = FALSE]
+  out <- list()
+  for (col in names(row)) {
+    val <- row[[col]]
+    if (is.list(val) || is.data.frame(val)) next
+    if (length(val) != 1L) next
+    if (is.na(val) || identical(val, "")) next
+    out[[paste0(prefix, col)]] <- if (is.character(val)) as.character(val) else val
+  }
+  out
+}
 
-  csv_files <- list.files(tmp_dir, pattern = "\\.csv$", full.names = TRUE)
-  stopifnot(length(csv_files) == 1L)
+for (station_id in station_ids) {
+  attrs <- c(
+    list(Messstellennummer = station_id),
+    flatten_master_row(
+      gwl_master[gwl_master$Nummer == station_id, , drop = FALSE],
+      prefix = "level."
+    ),
+    flatten_master_row(
+      gwq_master[gwq_master$Nummer == station_id, , drop = FALSE],
+      prefix = "quality."
+    )
+  )
 
-  readr::read_csv(
-    csv_files,
-    show_col_types = FALSE,
-    guess_max = 50000L
+  message(sprintf(
+    "  station %s: pushing %d attributes",
+    station_id, length(attrs)
+  ))
+
+  wasserportal::tb_push_station_attributes(
+    attributes   = attrs,
+    device_token = device_tokens[[station_id]]
   )
 }
 
-# The daily surface-water ZIPs use "Tagesmittelwert"; the quality ZIP uses
-# "Messwert". Pick the first column that is present.
-detect_value_col <- function(data) {
-  candidates <- c("Tagesmittelwert", "Messwert")
-  hit <- intersect(candidates, names(data))
-  if (length(hit) == 0L) NA_character_ else hit[1L]
-}
+# ---- 4. telemetry (gwl + gwq) -----------------------------------------------
 
-total_points <- 0L
-
-for (zip_file in zip_files) {
-  zip_url <- paste0(base_url, "/", zip_file)
-  message(sprintf("\n=== %s ===", zip_file))
+push_long_json <- function(json_path, label) {
+  message(sprintf("\n=== %s (%s) ===", json_path, label))
 
   data <- tryCatch(
-    read_zip_to_long(zip_url),
+    read_json(json_path),
     error = function(e) {
       message(sprintf("  skipped: %s", conditionMessage(e)))
       NULL
     }
   )
-  if (is.null(data)) next
+  if (is.null(data) || nrow(data) == 0L) return(invisible(0L))
 
-  if (!"Messstellennummer" %in% names(data)) {
-    message("  no Messstellennummer column; skipped")
-    next
-  }
   data$Messstellennummer <- as.character(data$Messstellennummer)
+  data <- data[data$Messstellennummer %in% station_ids, , drop = FALSE]
 
-  value_col <- detect_value_col(data)
-  if (is.na(value_col)) {
-    message(sprintf(
-      "  no recognised value column (have: %s); skipped",
-      paste(names(data), collapse = ", ")
-    ))
-    next
-  }
-
-  data <- data[data$Messstellennummer %in% station_ids, ]
   if (nrow(data) == 0L) {
-    message("  no rows for the configured stations; skipped")
-    next
+    message("  no rows for the selected stations; skipped")
+    return(invisible(0L))
   }
 
-  data[[value_col]] <- suppressWarnings(as.numeric(data[[value_col]]))
-  data <- data[!is.na(data[[value_col]]), ]
-  if (nrow(data) == 0L) {
-    message("  all values non-numeric or NA; skipped")
-    next
-  }
+  data$Messwert <- suppressWarnings(as.numeric(data$Messwert))
+  data <- data[!is.na(data$Messwert), , drop = FALSE]
 
+  pushed <- 0L
   for (station_id in unique(data$Messstellennummer)) {
-    one_station <- data[data$Messstellennummer == station_id, ]
+    one <- data[data$Messstellennummer == station_id, , drop = FALSE]
 
-    message(sprintf(
-      "  station %s: %d values [%s]",
-      station_id, nrow(one_station), value_col
-    ))
+    message(sprintf("  station %s: %d values", station_id, nrow(one)))
 
     wasserportal::tb_push_station_telemetry(
-      data         = one_station,
+      data         = one,
       device_token = device_tokens[[station_id]],
       ts_col       = "Datum",
-      value_col    = value_col,
+      value_col    = "Messwert",
       key_col      = "Parameter",
       verbose      = FALSE
     )
-    total_points <- total_points + nrow(one_station)
+    pushed <- pushed + nrow(one)
   }
+
+  invisible(pushed)
 }
 
-message(sprintf("\nDone. Pushed %d data points total.", total_points))
+total <- 0L
+total <- total + push_long_json("stations_gwl_data.json", "groundwater level")
+total <- total + push_long_json("stations_gwq_data.json", "groundwater quality")
+
+message(sprintf("\nDone. Pushed %d data points total.", total))
