@@ -1,0 +1,193 @@
+# ThingsBoard Demo (Free Tier)
+
+This vignette shows how to push Wasserportal Berlin data into a
+[ThingsBoard](https://thingsboard.io) instance — for example the **free
+Maker tier** on `https://eu.thingsboard.cloud` (5 devices, 1M data
+points/month). The same code works against self-hosted ThingsBoard
+Community Edition by changing `TB_HOST`.
+
+## 1. Prerequisites
+
+1.  Sign up at <https://eu.thingsboard.cloud> (EU) or
+    <https://thingsboard.cloud> (US).
+
+2.  Generate an **account API key**: *Account \> Security \> API keys \>
+    Generate*. Give it a description like `wasserportal-demo` and copy
+    the key once (it is shown only on creation).
+
+3.  Install the package and `httr2`:
+
+    ``` r
+
+    # install.packages("httr2")
+    remotes::install_github("kwb-r/wasserportal")
+    ```
+
+4.  Store credentials as environment variables (e.g. in `~/.Renviron`):
+
+    ``` r
+    TB_HOST=https://eu.thingsboard.cloud
+    TB_API_KEY=<your-api-key>
+    ```
+
+    Restart your R session so the variables are loaded.
+
+> **Free-Tier-Limit**: 5 devices. The demo therefore pushes a small
+> selection of stations. To push the full Wasserportal dataset you need
+> to self-host ThingsBoard CE or upgrade to a paid Cloud tier.
+
+## 2. Pick a Handful of Stations
+
+``` r
+
+library(wasserportal)
+
+stations <- wasserportal::get_stations()
+
+# Five well-known Berlin surface water level gauges as a demo selection.
+demo_station_ids <- c("5803900", "5805600", "5867000", "5826200", "5824300")
+```
+
+## 3. Create Devices in ThingsBoard
+
+`tb_setup_devices()` uses the API key to create one device per
+`Messstellennummer` (or returns the id if it already exists) and reads
+back the device-specific access token used for telemetry pushes.
+
+``` r
+
+device_tokens <- wasserportal::tb_setup_devices(
+  station_ids = demo_station_ids
+)
+
+# Names are Messstellennummer, values are tokens. Treat as secret.
+str(device_tokens)
+```
+
+## 4. Push Station Master Data as Attributes
+
+Static metadata (coordinates, level reference, operator) is sent once
+per station as ThingsBoard *attributes*. They show up under the device’s
+*Attributes \> Server* tab and can be referenced from widgets and rule
+chains.
+
+``` r
+
+sw_master_urls <- stations$overview_list$surface_water.water_level |>
+  dplyr::filter(.data$Messstellennummer %in% demo_station_ids) |>
+  dplyr::pull(.data$stammdaten_link)
+
+sw_master <- wasserportal::get_wasserportal_masters_data(
+  master_urls = sw_master_urls
+)
+
+for (station_id in demo_station_ids) {
+  master_row <- sw_master[sw_master$Nummer == station_id, ]
+  if (nrow(master_row) == 0L) next
+
+  wasserportal::tb_push_station_attributes(
+    attributes = as.list(master_row[1L, ]),
+    device_token = device_tokens[[station_id]]
+  )
+}
+```
+
+## 5. Push Daily Time Series
+
+The
+[`get_daily_surfacewater_data()`](https://kwb-r.github.io/wasserportal/dev/reference/get_daily_surfacewater_data.md)
+result is keyed by parameter; for the demo we push the daily water level
+(`Tagesmittelwert`).
+
+``` r
+
+variables <- wasserportal::get_surfacewater_variables()
+
+sw_data_daily <- wasserportal::get_daily_surfacewater_data(
+  stations  = stations,
+  variables = variables["surface_water.water_level"]
+)
+
+water_level <- sw_data_daily$surface_water.water_level
+
+for (station_id in demo_station_ids) {
+  one_station <- water_level[water_level$Messstellennummer == station_id, ]
+  if (nrow(one_station) == 0L) next
+
+  wasserportal::tb_push_station_telemetry(
+    data         = one_station,
+    device_token = device_tokens[[station_id]],
+    ts_col       = "Datum",
+    value_col    = "Tagesmittelwert",
+    key_col      = "Parameter"
+  )
+}
+```
+
+To push groundwater data the call is identical apart from the value
+column:
+
+``` r
+
+gw_data <- wasserportal::get_groundwater_data(
+  stations_list = stations$overview_list[
+    grepl("groundwater", names(stations$overview_list))
+  ]
+)
+
+# Pick five groundwater level stations for the free tier
+gwl <- gw_data$groundwater.level
+gwl_demo_ids <- unique(as.character(gwl$Messstellennummer))[1:5]
+gwl_tokens <- wasserportal::tb_setup_devices(
+  station_ids = gwl_demo_ids,
+  name_prefix = "wasserportal-gwl-"
+)
+
+for (station_id in gwl_demo_ids) {
+  one_station <- gwl[gwl$Messstellennummer == station_id, ]
+  wasserportal::tb_push_station_telemetry(
+    data         = one_station,
+    device_token = gwl_tokens[[station_id]],
+    value_col    = "Messwert"
+  )
+}
+```
+
+## 6. Visualise in ThingsBoard
+
+After the pushes, open the *wasserportal* dashboard in ThingsBoard:
+
+1.  *Add widget \> Charts \> Time series chart*.
+2.  Datasource: pick one of the `wasserportal-*` devices.
+3.  As key, choose the parameter you pushed (e.g. `Wasserstand` for
+    surface water level).
+4.  Adjust the time window in the top-right; Wasserportal data starts in
+    the early 2000s for many stations, so set the window wide on first
+    view.
+
+For multiple stations on one chart, add several datasources to the same
+widget. Coordinates pushed as attributes can be used to drop pins on the
+*Map* widget.
+
+## 7. Re-Running and Idempotency
+
+- `tb_setup_devices()` is idempotent — re-running it returns the
+  existing device tokens.
+- Telemetry POSTs are **not** deduplicated by ThingsBoard. Re-running
+  the push will create duplicate points at the same timestamp. For
+  incremental daily updates, filter `Datum > <last successful run>`
+  before calling `tb_push_station_telemetry()` (e.g. by storing the last
+  timestamp as a server attribute).
+
+## 8. Switching to Self-Hosted CE
+
+When you outgrow the 5-device free-tier limit, the only change required
+is the `TB_HOST` environment variable:
+
+``` r
+
+Sys.setenv(TB_HOST = "https://thingsboard.your-domain.example")
+```
+
+The same R code now talks to your own ThingsBoard CE deployment.
+Devices, tokens and pushes all use the same endpoints.
