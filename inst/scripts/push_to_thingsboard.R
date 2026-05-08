@@ -61,6 +61,34 @@ read_json <- function(path) {
   jsonlite::fromJSON(paste0(base_url, "/", path))
 }
 
+# Read a CSV that is published on gh-pages inside a ZIP file. Used for the
+# groundwater time series, where the JSON files turn out to load as a
+# nested structure that yields only a single Messstellennummer through
+# `$Messstellennummer`. The ZIPs ship the same data as a flat CSV with a
+# stable five-column schema (Messstellennummer, Datum, Parameter, Einheit,
+# Messwert).
+read_zip_csv <- function(zip_filename) {
+  zip_url  <- paste0(base_url, "/", zip_filename)
+  tmp_dir  <- tempfile("wasserportal-zip-")
+  dir.create(tmp_dir)
+  zip_path <- file.path(tmp_dir, basename(zip_filename))
+  utils::download.file(zip_url, zip_path, mode = "wb", quiet = TRUE)
+  archive::archive_extract(zip_path, dir = tmp_dir)
+  csv_files <- list.files(tmp_dir, pattern = "\\.csv$", full.names = TRUE)
+  stopifnot(length(csv_files) == 1L)
+  readr::read_csv(
+    csv_files[1L],
+    show_col_types = FALSE,
+    col_types = readr::cols(
+      Messstellennummer = readr::col_character(),
+      Datum             = readr::col_date(),
+      Parameter         = readr::col_character(),
+      Einheit           = readr::col_character(),
+      Messwert          = readr::col_double()
+    )
+  )
+}
+
 # Convert ETRS89 / UTM zone 33N (EPSG:25833) -- the official CRS used by
 # Wasserportal Berlin for Rechtswert_UTM_33_N / Hochwert_UTM_33_N -- to
 # WGS84 longitude/latitude (EPSG:4326). ThingsBoard map widgets look for
@@ -85,8 +113,8 @@ gwl_master$Nummer <- as.character(gwl_master$Nummer)
 gwq_master$Nummer <- as.character(gwq_master$Nummer)
 
 message("Loading time series from gh-pages ...")
-gwl_data <- read_json("stations_gwl_data.json")
-gwq_data <- read_json("stations_gwq_data.json")
+gwl_data <- read_zip_csv("groundwater_level.zip")
+gwq_data <- read_zip_csv("groundwater_quality.zip")
 
 gwl_data$Messstellennummer <- as.character(gwl_data$Messstellennummer)
 gwq_data$Messstellennummer <- as.character(gwq_data$Messstellennummer)
