@@ -29,9 +29,15 @@
   HTTP 401)
 * Drop pre-1970 timestamps inside `build_telemetry_payload()`. Some
   Wasserportal groundwater stations start in the 1950s, which yields
-  negative epoch milliseconds. ThingsBoard rejects those with an
-  opaque HTTP 500 on the Maker free tier (and several other plan
-  tiers); filtering `ts_ms > 0` keeps the rest of the (post-1970)
+  negative epoch milliseconds (the Unix/POSIX epoch is defined as
+  1970-01-01 UTC, see
+  [IEEE Std 1003.1, "4.16 Seconds Since the Epoch"](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_16)).
+  ThingsBoard transports `ts` as a Java `Long` of epoch milliseconds
+  (see the
+  [HTTP Device API](https://thingsboard.io/docs/reference/http-api/#publish-telemetry-data)
+  reference); negative values are spec-legal but the Maker free tier
+  observed in this branch responds with an opaque HTTP 500 to such
+  posts. Filtering `ts_ms > 0` keeps the rest of the (post-1970)
   history flowing through. For station 3 this drops about 17 years
   of monthly groundwater level readings while preserving the
   remaining ~7800 values
