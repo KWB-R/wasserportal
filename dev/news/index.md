@@ -23,6 +23,28 @@
   push to `main` / `master` / `dev`, daily at 07:00 UTC and via
   `workflow_dispatch`. Credentials are read from the `TB_HOST` and
   `TB_API_KEY` repository secrets
+- Authenticate `tb_setup_devices()` with the
+  `X-Authorization: ApiKey <key>` request header that ThingsBoard
+  expects for account-level API keys (the standard
+  `Authorization: Bearer ...` and the JWT-style
+  `X-Authorization: Bearer ...` variants both return HTTP 401)
+- Drop pre-1970 timestamps inside `build_telemetry_payload()`. Some
+  Wasserportal groundwater stations start in the 1950s, which yields
+  negative epoch milliseconds (the Unix/POSIX epoch is defined as
+  1970-01-01 UTC, see [IEEE Std 1003.1, “4.16 Seconds Since the
+  Epoch”](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_16)).
+  ThingsBoard transports `ts` as a Java `Long` of epoch milliseconds
+  (see the [HTTP Device
+  API](https://thingsboard.io/docs/reference/http-api/#publish-telemetry-data)
+  reference); negative values are spec-legal but the Maker free tier
+  observed in this branch responds with an opaque HTTP 500 to such
+  posts. Filtering `ts_ms > 0` keeps the rest of the (post-1970) history
+  flowing through. For station 3 this drops about 17 years of monthly
+  groundwater level readings while preserving the remaining ~7800 values
+- Wire a `tb_error_body()` helper into `httr2::req_error(body = ...)` on
+  the telemetry and attributes calls so future ThingsBoard failures
+  surface the JSON `message` field in the R error instead of the generic
+  “HTTP 500 Internal Server Error” wrapper
 
 ## [wasserportal 0.5.0](https://github.com/KWB-R/wasserportal/releases/tag/v0.5.0) 2026-05-07
 
