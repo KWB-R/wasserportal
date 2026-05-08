@@ -236,8 +236,11 @@ build_telemetry_payload <- function(
 #' @param station_ids character vector of Wasserportal `Messstellennummer`
 #'   values. Each becomes a ThingsBoard device named
 #'   `paste0(name_prefix, station_id)`.
-#' @param api_key account-level API key (or JWT) used as Bearer credential.
-#'   Defaults to env var `TB_API_KEY`.
+#' @param api_key account-level API key generated under
+#'   *Account > Security > API keys > Generate*. Sent in the
+#'   `X-Authorization: ApiKey <key>` request header that ThingsBoard
+#'   expects (not the standard `Authorization: Bearer ...`). Defaults to
+#'   env var `TB_API_KEY`.
 #' @param host base URL of the ThingsBoard instance, without trailing slash.
 #'   Defaults to env var `TB_HOST` if set, otherwise
 #'   `"https://thingsboard.cloud"`. Use `"https://eu.thingsboard.cloud"` for
@@ -305,7 +308,7 @@ tb_get_or_create_device <- function(device_name, device_type, api_key, host)
   lookup <- tryCatch(
     httr2::request(sprintf("%s/api/tenant/devices", host)) |>
       httr2::req_url_query(deviceName = device_name) |>
-      httr2::req_headers(`X-Authorization` = paste("Bearer", api_key)) |>
+      httr2::req_headers(`X-Authorization` = paste("ApiKey", api_key)) |>
       httr2::req_error(is_error = function(resp) {
         httr2::resp_status(resp) >= 500L
       }) |>
@@ -319,7 +322,7 @@ tb_get_or_create_device <- function(device_name, device_type, api_key, host)
   }
 
   created <- httr2::request(sprintf("%s/api/device", host)) |>
-    httr2::req_headers(`X-Authorization` = paste("Bearer", api_key)) |>
+    httr2::req_headers(`X-Authorization` = paste("ApiKey", api_key)) |>
     httr2::req_body_json(
       list(name = device_name, type = device_type),
       auto_unbox = TRUE
@@ -345,7 +348,7 @@ tb_get_device_access_token <- function(device_id, api_key, host)
   resp <- httr2::request(
     sprintf("%s/api/device/%s/credentials", host, device_id)
   ) |>
-    httr2::req_headers(`X-Authorization` = paste("Bearer", api_key)) |>
+    httr2::req_headers(`X-Authorization` = paste("ApiKey", api_key)) |>
     httr2::req_perform() |>
     httr2::resp_body_json()
 
