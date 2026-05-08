@@ -381,6 +381,7 @@ tb_get_or_create_device <- function(device_name, device_type, api_key, host)
       list(name = device_name, type = device_type),
       auto_unbox = TRUE
     ) |>
+    httr2::req_error(body = tb_error_body) |>
     httr2::req_perform() |>
     httr2::resp_body_json()
 
@@ -403,6 +404,7 @@ tb_get_device_access_token <- function(device_id, api_key, host)
     sprintf("%s/api/device/%s/credentials", host, device_id)
   ) |>
     httr2::req_headers(`X-Authorization` = paste("ApiKey", api_key)) |>
+    httr2::req_error(body = tb_error_body) |>
     httr2::req_perform() |>
     httr2::resp_body_json()
 
