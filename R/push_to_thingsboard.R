@@ -102,10 +102,36 @@ tb_push_station_telemetry <- function(
     httr2::request(url) |>
       httr2::req_body_json(chunk, auto_unbox = TRUE, digits = NA) |>
       httr2::req_retry(max_tries = 4L, backoff = function(i) 2^i) |>
+      httr2::req_error(body = tb_error_body) |>
       httr2::req_perform()
   }
 
   invisible(n)
+}
+
+# tb_error_body ----------------------------------------------------------------
+
+#' Surface the ThingsBoard response body in httr2 errors
+#'
+#' By default httr2 stops on >= 400 responses with a generic
+#' "HTTP 500 Internal Server Error" message that does not include the
+#' actual ThingsBoard error payload. Wire this helper into
+#' `httr2::req_error(body = tb_error_body)` so the JSON message field
+#' is added to the R error.
+#'
+#' @param resp an httr2 response object.
+#' @return character body excerpt or `NULL` if the body cannot be read.
+#' @keywords internal
+#' @noRd
+tb_error_body <- function(resp)
+{
+  txt <- tryCatch(
+    httr2::resp_body_string(resp),
+    error = function(e) NULL
+  )
+  if (is.null(txt) || !nzchar(txt)) return(NULL)
+  if (nchar(txt) > 800L) txt <- paste0(substr(txt, 1L, 800L), " ...")
+  paste0("ThingsBoard response: ", txt)
 }
 
 # tb_push_station_attributes ---------------------------------------------------
@@ -156,6 +182,7 @@ tb_push_station_attributes <- function(
   httr2::request(url) |>
     httr2::req_body_json(attributes, auto_unbox = TRUE, digits = NA) |>
     httr2::req_retry(max_tries = 4L, backoff = function(i) 2^i) |>
+    httr2::req_error(body = tb_error_body) |>
     httr2::req_perform()
 
   invisible(length(attributes))
@@ -185,7 +212,10 @@ build_telemetry_payload <- function(
 
   values <- data[[value_col]]
 
-  finite <- !is.na(ts_ms) & !is.na(values)
+  # ThingsBoard rejects pre-epoch (negative) timestamps with HTTP 500 on
+  # several plan tiers. Drop them to keep the push robust; Wasserportal
+  # groundwater stations occasionally start in the 1950s.
+  finite <- !is.na(ts_ms) & !is.na(values) & ts_ms > 0
   ts_ms  <- ts_ms[finite]
   values <- values[finite]
 
