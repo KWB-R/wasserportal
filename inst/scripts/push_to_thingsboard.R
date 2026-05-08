@@ -263,7 +263,50 @@ for (station_id in station_ids) {
   )
 }
 
-# ---- 5. telemetry ------------------------------------------------------------
+# ---- 5. telemetry smoke test -------------------------------------------------
+
+# Bulk telemetry POSTs to ThingsBoard Cloud Maker (free) tier have repeatedly
+# returned an opaque HTTP 500 with an empty body, while the same device
+# accepts attribute writes and the simpler "latest"-style telemetry payload.
+# Run a smoke test first that pushes a single recent value per station via
+# tb_push_latest_telemetry() (`{"key": value}` -- server stamps the time).
+# If that fails we abort with the surfaced error body; if it succeeds we
+# proceed with the bulk historical push.
+message("\n=== smoke test (latest telemetry, server time) ===")
+smoke_failed <- FALSE
+for (station_id in station_ids) {
+  one <- gwl_data[gwl_data$Messstellennummer == station_id, , drop = FALSE]
+  if (nrow(one) == 0L) next
+  one <- one[order(one$Datum, decreasing = TRUE), , drop = FALSE]
+  latest_value <- one$Messwert[1L]
+  latest_key   <- one$Parameter[1L]
+
+  tryCatch({
+    wasserportal::tb_push_latest_telemetry(
+      values       = stats::setNames(list(latest_value), latest_key),
+      device_token = device_tokens[[station_id]]
+    )
+    message(sprintf(
+      "  station %s: latest %s = %s ok",
+      station_id, latest_key, format(latest_value)
+    ))
+  }, error = function(e) {
+    smoke_failed <<- TRUE
+    message(sprintf(
+      "  station %s: smoke push FAILED: %s",
+      station_id, conditionMessage(e)
+    ))
+  })
+}
+
+if (smoke_failed) {
+  stop(
+    "Smoke test failed: even the simplest single-key telemetry POST does ",
+    "not go through. Aborting before the bulk push to keep the log readable."
+  )
+}
+
+# ---- 6. telemetry ------------------------------------------------------------
 
 push_telemetry_subset <- function(data, label) {
   message(sprintf("\n=== %s ===", label))

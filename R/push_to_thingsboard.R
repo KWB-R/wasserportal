@@ -212,6 +212,55 @@ tb_push_station_attributes <- function(
   invisible(length(attributes))
 }
 
+# tb_push_latest_telemetry -----------------------------------------------------
+
+#' Push a Single "Latest" Telemetry Record (no Timestamp)
+#'
+#' Sends a flat `{"key": value, ...}` JSON object to the ThingsBoard
+#' telemetry endpoint, letting the server stamp it with the current time.
+#' This is the simplest possible telemetry POST and is useful both as a
+#' smoke test for the device-token auth path and as a fallback when the
+#' bulk-with-ts format is rejected (some ThingsBoard Cloud Maker tier
+#' configurations return an opaque HTTP 500 to the array-of-records form
+#' even though the same device accepts attributes and `latest`-style
+#' single records).
+#'
+#' @param values named list (or named numeric vector) of telemetry
+#'   key/value pairs.
+#' @param device_token ThingsBoard device access token.
+#' @param host base URL of the ThingsBoard instance. Defaults to env var
+#'   `TB_HOST` if set, otherwise `"https://thingsboard.cloud"`.
+#' @return invisibly the number of keys that were sent.
+#' @export
+#' @examples
+#' \dontrun{
+#' tb_push_latest_telemetry(
+#'   values = list(`GW-Stand` = 35.6, `Wassertemperatur` = 11.2),
+#'   device_token = Sys.getenv("TB_DEVICE_TOKEN")
+#' )
+#' }
+tb_push_latest_telemetry <- function(
+    values,
+    device_token,
+    host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud")
+)
+{
+  stopifnot(nzchar(device_token), nzchar(host), length(values) >= 1L)
+
+  if (!is.list(values)) values <- as.list(values)
+  stopifnot(!is.null(names(values)), all(nzchar(names(values))))
+
+  url <- sprintf("%s/api/v1/%s/telemetry", sub("/+$", "", host), device_token)
+
+  httr2::request(url) |>
+    httr2::req_body_json(values, auto_unbox = TRUE, digits = NA) |>
+    httr2::req_retry(max_tries = 4L, backoff = function(i) 2^i) |>
+    httr2::req_error(body = tb_error_body) |>
+    httr2::req_perform()
+
+  invisible(length(values))
+}
+
 # build_telemetry_payload ------------------------------------------------------
 
 #' Build ThingsBoard Telemetry Payload from a Long-Format Data Frame
