@@ -305,7 +305,7 @@ tb_get_or_create_device <- function(device_name, device_type, api_key, host)
   lookup <- tryCatch(
     httr2::request(sprintf("%s/api/tenant/devices", host)) |>
       httr2::req_url_query(deviceName = device_name) |>
-      httr2::req_auth_bearer_token(api_key) |>
+      httr2::req_headers(`X-Authorization` = paste("Bearer", api_key)) |>
       httr2::req_error(is_error = function(resp) {
         httr2::resp_status(resp) >= 500L
       }) |>
@@ -319,7 +319,7 @@ tb_get_or_create_device <- function(device_name, device_type, api_key, host)
   }
 
   created <- httr2::request(sprintf("%s/api/device", host)) |>
-    httr2::req_auth_bearer_token(api_key) |>
+    httr2::req_headers(`X-Authorization` = paste("Bearer", api_key)) |>
     httr2::req_body_json(
       list(name = device_name, type = device_type),
       auto_unbox = TRUE
@@ -345,7 +345,7 @@ tb_get_device_access_token <- function(device_id, api_key, host)
   resp <- httr2::request(
     sprintf("%s/api/device/%s/credentials", host, device_id)
   ) |>
-    httr2::req_auth_bearer_token(api_key) |>
+    httr2::req_headers(`X-Authorization` = paste("Bearer", api_key)) |>
     httr2::req_perform() |>
     httr2::resp_body_json()
 
