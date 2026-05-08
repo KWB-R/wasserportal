@@ -17,7 +17,7 @@ on:
       history_days:
         description: 'Push only the most recent N days per station (0 = all)'
         required: false
-        default: '365'
+        default: '0'
 
 name: thingsboard-push
 
@@ -29,7 +29,7 @@ jobs:
       TB_HOST: ${{ secrets.TB_HOST }}
       TB_API_KEY: ${{ secrets.TB_API_KEY }}
       TB_STATION_IDS: ${{ github.event.inputs.station_ids }}
-      TB_HISTORY_DAYS: ${{ github.event.inputs.history_days || '365' }}
+      TB_HISTORY_DAYS: ${{ github.event.inputs.history_days || '0' }}
     steps:
       - uses: actions/checkout@v5
 
