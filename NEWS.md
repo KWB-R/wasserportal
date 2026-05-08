@@ -1,3 +1,28 @@
+# wasserportal 0.5.0.9000 <small>(development version)</small>
+
+* Add `tb_setup_devices()`, `tb_push_station_telemetry()` and
+  `tb_push_station_attributes()` for shipping Wasserportal time series
+  and master data into a ThingsBoard tenant via the device-token
+  telemetry API. `tb_setup_devices()` bootstraps a fresh tenant from an
+  account-level API key, so the rest of the workflow runs from R alone
+* Add `vignettes/thingsboard-demo.Rmd` walking through the
+  ThingsBoard Cloud free-tier (Maker) demo on `eu.thingsboard.cloud`,
+  including the switch to self-hosted Community Edition
+* Add `inst/scripts/push_to_thingsboard.R` consuming the daily JSON
+  artefacts on the `gh-pages` branch (no Wasserportal scrape of its
+  own). The script picks the five groundwater stations with the
+  longest combined gwl + gwq history and the most distinct gwq
+  parameters, uploads merged master data as device attributes and
+  pushes both the level and quality time series as telemetry
+* Convert `Rechtswert_UTM_33_N` / `Hochwert_UTM_33_N`
+  (ETRS89 / UTM zone 33N, EPSG:25833) to WGS84 `latitude` /
+  `longitude` attributes so ThingsBoard map widgets work out of the
+  box
+* Add `.github/workflows/thingsboard-push.yaml` running the script on
+  push to `main` / `master` / `dev`, daily at 07:00 UTC and via
+  `workflow_dispatch`. Credentials are read from the `TB_HOST` and
+  `TB_API_KEY` repository secrets
+
 # [wasserportal 0.5.0](https://github.com/KWB-R/wasserportal/releases/tag/v0.5.0) <small>2026-05-07</small>
 
 * Modernize GitHub Actions workflows: use `r-lib/actions/setup-r-dependencies@v2`

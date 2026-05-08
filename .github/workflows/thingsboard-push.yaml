@@ -37,6 +37,7 @@ jobs:
           extra-packages: |
             any::httr2
             any::jsonlite
+            any::sf
           needs: check
 
       - name: Install package
