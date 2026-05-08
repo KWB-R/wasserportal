@@ -45,6 +45,19 @@
   on the telemetry and attributes calls so future ThingsBoard
   failures surface the JSON `message` field in the R error instead
   of the generic "HTTP 500 Internal Server Error" wrapper
+* Add `tb_push_latest_telemetry()` for the simplest
+  `{"key": value}` form (server-stamped time). Used in
+  `inst/scripts/push_to_thingsboard.R` as a smoke test before the
+  bulk push: the bulk array-of-records form returns an opaque
+  HTTP 500 on the ThingsBoard Cloud Maker free tier even though
+  the same device accepts attribute writes and the simpler
+  per-record format
+* Add a `mode` parameter to `tb_push_station_telemetry()`
+  (`"single"` by default, `"bulk"` for self-hosted CE). Single mode
+  POSTs each record as a standalone `{"ts": ms, "values": {...}}`
+  object so historical telemetry actually goes through on Maker
+  free; bulk mode keeps the previous fast array-per-chunk
+  behaviour for self-hosted CE
 
 # [wasserportal 0.5.0](https://github.com/KWB-R/wasserportal/releases/tag/v0.5.0) <small>2026-05-07</small>
 

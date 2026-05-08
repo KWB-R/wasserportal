@@ -31,10 +31,14 @@
 #' @param host base URL of the ThingsBoard instance, without trailing slash.
 #'   Defaults to env var `TB_HOST` if set, otherwise
 #'   `"https://thingsboard.cloud"`.
-#' @param chunk_size maximum number of timestamps per HTTP POST. Default
-#'   `100`. Larger values trigger an opaque HTTP 500 from the
-#'   ThingsBoard Cloud Maker free tier; bumping this is safe on
-#'   self-hosted CE.
+#' @param chunk_size maximum number of timestamps per HTTP POST when
+#'   `mode = "bulk"`. Default `100`. Ignored in single mode.
+#' @param mode one of `"single"` (default) or `"bulk"`. The Maker free
+#'   tier on ThingsBoard Cloud rejects the bulk array form with an
+#'   opaque HTTP 500 even though the same device accepts the per-record
+#'   `{"ts": ms, "values": {...}}` object; single mode therefore POSTs
+#'   each record on its own. Use `"bulk"` against self-hosted CE for
+#'   the much faster array-of-records form.
 #' @param verbose print one line per chunk (default `TRUE`).
 #' @return invisibly the number of telemetry timestamps that were sent.
 #' @export
@@ -60,9 +64,12 @@ tb_push_station_telemetry <- function(
     single_key = "value",
     host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud"),
     chunk_size = 100L,
+    mode = c("single", "bulk"),
     verbose = TRUE
 )
 {
+  mode <- match.arg(mode)
+
   stopifnot(
     is.data.frame(data),
     nzchar(device_token),
@@ -88,6 +95,28 @@ tb_push_station_telemetry <- function(
   url <- sprintf("%s/api/v1/%s/telemetry", sub("/+$", "", host), device_token)
 
   n <- length(payload)
+
+  if (mode == "single") {
+    # Send each record as a standalone `{"ts": ms, "values": {...}}` object,
+    # one per HTTP POST. Slower but the only format the ThingsBoard Cloud
+    # Maker free tier reliably accepts; the bulk array format returns an
+    # opaque HTTP 500 there.
+    for (i in seq_len(n)) {
+      httr2::request(url) |>
+        httr2::req_body_json(payload[[i]], auto_unbox = TRUE, digits = NA) |>
+        httr2::req_retry(max_tries = 4L, backoff = function(j) 2^j) |>
+        httr2::req_error(body = tb_error_body) |>
+        httr2::req_perform()
+
+      if (verbose && i %% 100L == 0L) {
+        message(sprintf("  POSTed %d/%d records", i, n))
+      }
+      Sys.sleep(0.05)  # ~20 req/sec safety throttle
+    }
+    return(invisible(n))
+  }
+
+  # mode == "bulk" -- works on self-hosted CE, fast.
   starts <- seq.int(1L, n, by = chunk_size)
 
   for (start in starts) {
@@ -107,10 +136,6 @@ tb_push_station_telemetry <- function(
       httr2::req_error(body = tb_error_body) |>
       httr2::req_perform()
 
-    # Throttle: stay safely below per-second message limits on
-    # ThingsBoard Cloud Maker (free) tier. 100 ms / chunk = 10 chunks
-    # per second, which is a few orders of magnitude under any
-    # documented limit and slow enough to avoid burst rejections.
     if (length(starts) > 1L) Sys.sleep(0.1)
   }
 

@@ -37,6 +37,10 @@
 #                     (ThingsBoard Cloud free tier limit).
 #   TB_HISTORY_DAYS   Limit telemetry to the most recent N days per
 #                     station. Default 0 (= push all history).
+#   TB_TELEMETRY_MODE One of "single" (default) or "bulk". The Maker
+#                     free tier on ThingsBoard Cloud rejects bulk
+#                     arrays; switch to "bulk" only against
+#                     self-hosted CE.
 
 stopifnot(
   nzchar(Sys.getenv("TB_HOST")),
@@ -56,6 +60,12 @@ max_devices <- as.integer(Sys.getenv("TB_MAX_DEVICES", "5"))
 # all history. Useful while diagnosing whether the ThingsBoard Cloud free
 # tier silently rejects historical timestamps with HTTP 500.
 history_days <- as.integer(Sys.getenv("TB_HISTORY_DAYS", "0"))
+
+# Telemetry POST format. ThingsBoard Cloud Maker (free) tier returned an
+# opaque HTTP 500 to the bulk array-of-records form while accepting the
+# per-record object (smoke test passed for all five devices). Default to
+# the safer single-record mode; override to "bulk" against self-hosted CE.
+telemetry_mode <- Sys.getenv("TB_TELEMETRY_MODE", "single")
 
 read_json <- function(path) {
   jsonlite::fromJSON(paste0(base_url, "/", path))
@@ -339,7 +349,8 @@ push_telemetry_subset <- function(data, label) {
       ts_col       = "Datum",
       value_col    = "Messwert",
       key_col      = "Parameter",
-      verbose      = FALSE
+      mode         = telemetry_mode,
+      verbose      = TRUE
     )
     pushed <- pushed + nrow(one)
   }
