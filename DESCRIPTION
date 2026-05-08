@@ -24,6 +24,7 @@ Imports:
     dplyr,
     fs,
     httr,
+    httr2,
     kwb.datetime,
     kwb.utils,
     magrittr,
