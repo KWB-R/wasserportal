@@ -32,7 +32,9 @@
 #'   Defaults to env var `TB_HOST` if set, otherwise
 #'   `"https://thingsboard.cloud"`.
 #' @param chunk_size maximum number of timestamps per HTTP POST. Default
-#'   `1000`.
+#'   `100`. Larger values trigger an opaque HTTP 500 from the
+#'   ThingsBoard Cloud Maker free tier; bumping this is safe on
+#'   self-hosted CE.
 #' @param verbose print one line per chunk (default `TRUE`).
 #' @return invisibly the number of telemetry timestamps that were sent.
 #' @export
@@ -57,7 +59,7 @@ tb_push_station_telemetry <- function(
     key_col = "Parameter",
     single_key = "value",
     host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud"),
-    chunk_size = 1000L,
+    chunk_size = 100L,
     verbose = TRUE
 )
 {
@@ -104,6 +106,12 @@ tb_push_station_telemetry <- function(
       httr2::req_retry(max_tries = 4L, backoff = function(i) 2^i) |>
       httr2::req_error(body = tb_error_body) |>
       httr2::req_perform()
+
+    # Throttle: stay safely below per-second message limits on
+    # ThingsBoard Cloud Maker (free) tier. 100 ms / chunk = 10 chunks
+    # per second, which is a few orders of magnitude under any
+    # documented limit and slow enough to avoid burst rejections.
+    if (length(starts) > 1L) Sys.sleep(0.1)
   }
 
   invisible(n)
@@ -125,14 +133,30 @@ tb_push_station_telemetry <- function(
 #' @noRd
 tb_error_body <- function(resp)
 {
+  status <- tryCatch(
+    httr2::resp_status(resp),
+    error = function(e) NA_integer_
+  )
+  ctype <- tryCatch(
+    httr2::resp_header(resp, "Content-Type"),
+    error = function(e) NA_character_
+  )
   txt <- tryCatch(
     httr2::resp_body_string(resp),
-    error = function(e) NULL
+    error = function(e) sprintf("(could not read body: %s)", conditionMessage(e))
   )
-  if (is.null(txt) || !nzchar(txt)) return(NULL)
-  if (nchar(txt) > 800L) txt <- paste0(substr(txt, 1L, 800L), " ...")
-  paste0("ThingsBoard response: ", txt)
+  if (is.null(txt) || !nzchar(txt)) {
+    txt <- "(empty body)"
+  } else if (nchar(txt) > 800L) {
+    txt <- paste0(substr(txt, 1L, 800L), " ...")
+  }
+  sprintf(
+    "ThingsBoard response [status=%s, content-type=%s]: %s",
+    status, ctype %||% "NA", txt
+  )
 }
+
+`%||%` <- function(a, b) if (is.null(a) || is.na(a)) b else a
 
 # tb_push_station_attributes ---------------------------------------------------
 
