@@ -1,14 +1,15 @@
 #!/usr/bin/env Rscript
 #
 # Push a small demo selection of Wasserportal time series to a ThingsBoard
-# tenant. Reads the daily surface-water ZIP files that the pkgdown workflow
-# publishes to the gh-pages branch every morning at 05:00 UTC, so this
-# script needs no Wasserportal scrape of its own.
+# tenant. Reads the daily ZIP files that the pkgdown workflow publishes to
+# the gh-pages branch every morning at 05:00 UTC, so this script needs no
+# Wasserportal scrape of its own.
 #
-# By default the seven daily surface-water parameter files are pulled and
-# pushed for the same set of demo stations, so each ThingsBoard device ends
-# up with multiple telemetry keys (e.g. "Wasserstand", "Abfluss",
-# "Wassertemperatur", ...).
+# By default the seven daily surface-water parameter files are pulled, plus
+# the surface-water quality data for the same Messstellen (irregular,
+# multi-parameter laboratory measurements). Each ThingsBoard device ends up
+# with several telemetry keys (e.g. "Wasserstand", "Wassertemperatur",
+# plus quality keys like "Nitrat") whenever the station offers them.
 #
 # Designed to be invoked from GitHub Actions:
 #   Rscript inst/scripts/push_to_thingsboard.R
@@ -20,11 +21,12 @@
 # Optional environment variables:
 #   TB_STATION_IDS    Comma-separated Messstellennummer values to push.
 #                     Defaults to five well-known Berlin surface water gauges.
-#   TB_GH_PAGES_URL   Base URL where the daily ZIPs are hosted.
+#   TB_GH_PAGES_URL   Base URL where the ZIPs are hosted.
 #                     Default: https://kwb-r.github.io/wasserportal
 #   TB_ZIP_FILES      Comma-separated list of ZIP file names under
-#                     TB_GH_PAGES_URL. Default: all seven daily surface-water
-#                     parameter ZIPs.
+#                     TB_GH_PAGES_URL. Default: all seven daily
+#                     surface-water parameter ZIPs plus the surface-water
+#                     quality ZIP.
 #   TB_DEVICE_PREFIX  Prefix for ThingsBoard device names. Default
 #                     "wasserportal-".
 
@@ -57,6 +59,7 @@ zip_files <- strsplit(
       "daily_surface-water_ph.zip",
       "daily_surface-water_oxygen-concentration.zip",
       "daily_surface-water_oxygen-saturation.zip",
+      "surface-water_quality.zip",
       sep = ","
     )
   ),
@@ -90,14 +93,16 @@ read_zip_to_long <- function(zip_url) {
   readr::read_csv(
     csv_files,
     show_col_types = FALSE,
-    col_types = readr::cols(
-      Messstellennummer = readr::col_character(),
-      Datum             = readr::col_date(),
-      Tagesmittelwert   = readr::col_double(),
-      Parameter         = readr::col_character(),
-      .default          = readr::col_character()
-    )
+    guess_max = 50000L
   )
+}
+
+# The daily surface-water ZIPs use "Tagesmittelwert"; the quality ZIP uses
+# "Messwert". Pick the first column that is present.
+detect_value_col <- function(data) {
+  candidates <- c("Tagesmittelwert", "Messwert")
+  hit <- intersect(candidates, names(data))
+  if (length(hit) == 0L) NA_character_ else hit[1L]
 }
 
 total_points <- 0L
@@ -115,9 +120,31 @@ for (zip_file in zip_files) {
   )
   if (is.null(data)) next
 
+  if (!"Messstellennummer" %in% names(data)) {
+    message("  no Messstellennummer column; skipped")
+    next
+  }
+  data$Messstellennummer <- as.character(data$Messstellennummer)
+
+  value_col <- detect_value_col(data)
+  if (is.na(value_col)) {
+    message(sprintf(
+      "  no recognised value column (have: %s); skipped",
+      paste(names(data), collapse = ", ")
+    ))
+    next
+  }
+
   data <- data[data$Messstellennummer %in% station_ids, ]
   if (nrow(data) == 0L) {
     message("  no rows for the configured stations; skipped")
+    next
+  }
+
+  data[[value_col]] <- suppressWarnings(as.numeric(data[[value_col]]))
+  data <- data[!is.na(data[[value_col]]), ]
+  if (nrow(data) == 0L) {
+    message("  all values non-numeric or NA; skipped")
     next
   }
 
@@ -125,15 +152,15 @@ for (zip_file in zip_files) {
     one_station <- data[data$Messstellennummer == station_id, ]
 
     message(sprintf(
-      "  station %s: %d values",
-      station_id, nrow(one_station)
+      "  station %s: %d values [%s]",
+      station_id, nrow(one_station), value_col
     ))
 
     wasserportal::tb_push_station_telemetry(
       data         = one_station,
       device_token = device_tokens[[station_id]],
       ts_col       = "Datum",
-      value_col    = "Tagesmittelwert",
+      value_col    = value_col,
       key_col      = "Parameter",
       verbose      = FALSE
     )
