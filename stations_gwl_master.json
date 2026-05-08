@@ -8983,6 +8983,19 @@
     "Hochwert_UTM_33_N": "5826279"
   },
   {
+    "Nummer": "7918",
+    "Bezirk": "Lichtenberg",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand, tagesaktuell",
+    "Grundwasserleiter": "lokal ausgebildeter Grundwasserkörper",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "55.88",
+    "Rohroberkante_m_ue_NHN": "56.75",
+    "Filteroberkante_m_u_GOK": "3.10",
+    "Filterunterkante_m_u_GOK": "4.10",
+    "Rechtswert_UTM_33_N": "401838",
+    "Hochwert_UTM_33_N": "5826801"
+  },
+  {
     "Nummer": "8018",
     "Bezirk": "Treptow-Köpenick",
     "Betreiber": "Senat",
