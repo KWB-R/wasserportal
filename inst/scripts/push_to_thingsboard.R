@@ -35,6 +35,8 @@
 #                     "wasserportal-gw-".
 #   TB_MAX_DEVICES    Maximum number of devices to set up. Default 5
 #                     (ThingsBoard Cloud free tier limit).
+#   TB_HISTORY_DAYS   Limit telemetry to the most recent N days per
+#                     station. Default 0 (= push all history).
 
 stopifnot(
   nzchar(Sys.getenv("TB_HOST")),
@@ -49,6 +51,11 @@ base_url <- sub(
 device_prefix <- Sys.getenv("TB_DEVICE_PREFIX", "wasserportal-gw-")
 
 max_devices <- as.integer(Sys.getenv("TB_MAX_DEVICES", "5"))
+
+# Limit telemetry to the most recent N days per station. Set to 0 to push
+# all history. Useful while diagnosing whether the ThingsBoard Cloud free
+# tier silently rejects historical timestamps with HTTP 500.
+history_days <- as.integer(Sys.getenv("TB_HISTORY_DAYS", "0"))
 
 read_json <- function(path) {
   jsonlite::fromJSON(paste0(base_url, "/", path))
@@ -99,9 +106,27 @@ if (nzchar(env_ids)) {
     length(station_ids)
   ))
 } else {
-  both_ids <- intersect(gwl_master$Nummer, gwq_master$Nummer)
-  both_ids <- intersect(both_ids, gwl_data$Messstellennummer)
-  both_ids <- intersect(both_ids, gwq_data$Messstellennummer)
+  master_intersect <- intersect(gwl_master$Nummer, gwq_master$Nummer)
+  with_gwl <- intersect(master_intersect, unique(gwl_data$Messstellennummer))
+  with_both <- intersect(with_gwl, unique(gwq_data$Messstellennummer))
+
+  message(sprintf(
+    paste0(
+      "Station counts:\n",
+      "  gwl_master   = %d\n",
+      "  gwq_master   = %d\n",
+      "  master_intersect (both files)     = %d\n",
+      "  + present in stations_gwl_data    = %d\n",
+      "  + present in stations_gwq_data    = %d"
+    ),
+    length(unique(gwl_master$Nummer)),
+    length(unique(gwq_master$Nummer)),
+    length(master_intersect),
+    length(with_gwl),
+    length(with_both)
+  ))
+
+  both_ids <- with_both
 
   message(sprintf(
     "%d stations have both gwl and gwq data; scoring ...",
@@ -215,6 +240,16 @@ for (station_id in station_ids) {
 push_telemetry_subset <- function(data, label) {
   message(sprintf("\n=== %s ===", label))
   data <- data[data$Messstellennummer %in% station_ids, , drop = FALSE]
+
+  if (history_days > 0L) {
+    cutoff <- Sys.Date() - history_days
+    before <- nrow(data)
+    data <- data[as.Date(data$Datum) >= cutoff, , drop = FALSE]
+    message(sprintf(
+      "  TB_HISTORY_DAYS=%d: kept %d/%d rows (>= %s)",
+      history_days, nrow(data), before, format(cutoff)
+    ))
+  }
 
   if (nrow(data) == 0L) {
     message("  no rows for the selected stations; skipped")
