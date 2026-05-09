@@ -81,6 +81,7 @@ timestamp.</p>
 <span>  chunk_size <span class="op">=</span> <span class="fl">100L</span>,</span>
 <span>  mode <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"single"</span>, <span class="st">"bulk"</span><span class="op">)</span>,</span>
 <span>  throttle_seconds <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  max_active <span class="op">=</span> <span class="fl">10L</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -153,9 +154,16 @@ the target ThingsBoard plan; set to <code>0</code> to push as fast as the
 server permits (e.g. self-hosted CE).</p></dd>
 
 
+<dt id="arg-max-active">max_active<a class="anchor" aria-label="anchor" href="#arg-max-active"></a></dt>
+<dd><p>number of concurrent HTTP POSTs in single mode
+(passed to <code><a href="https://httr2.r-lib.org/reference/req_perform_parallel.html" class="external-link">httr2::req_perform_parallel()</a></code>). Default <code>10</code>, which
+stays below the ThingsBoard Cloud Free tier's 50 messages/second
+per-device transport rate limit. Ignored in bulk mode.</p></dd>
+
+
 <dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
 <dd><p>print one line per chunk in bulk mode and one line
-every 100 records in single mode (default <code>TRUE</code>).</p></dd>
+per parallel batch in single mode (default <code>TRUE</code>).</p></dd>
 
 </dl></div>
     <div class="section level2">

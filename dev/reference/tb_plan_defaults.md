@@ -31,11 +31,13 @@ tb_plan_defaults(plan = "free")
   - `"free"` – proven Single-record mode (`mode = "single"`,
     `chunk_size = 1`, `throttle_seconds = 0.05`).
 
-  - `"free-bulk"` – experimental Bulk mode tuned to stay under Free's
-    per-device 100 dp/s and 2,000 dp/min caps (`chunk_size = 10`,
-    `throttle_seconds = 1.0`); a previous bulk attempt at 1,000 dp/s
-    burst was rejected with an empty 500, so test on a small history
-    before relying on it.
+  - `"free-bulk"` – bulk preset tuned to stay under Free's per-device
+    100 dp/s and 2,000 dp/min caps (`chunk_size = 10`,
+    `throttle_seconds = 1.0`). Confirmed not to work on the public
+    ThingsBoard Cloud Maker free tier as of 2026-05: the gateway returns
+    an opaque empty-body HTTP 500 to the array form regardless of how
+    small the chunk is. Kept as a reproducible baseline; on Free use
+    `"free"`.
 
   - `"prototype"`, `"pilot"`, `"startup"`, `"business"` – the paid PaaS
     tiers. All use `mode = "bulk"`, `chunk_size = 30`,
@@ -66,6 +68,9 @@ tb_plan_defaults("free")
 #> $throttle_seconds
 #> [1] 0.05
 #> 
+#> $max_active
+#> [1] 10
+#> 
 tb_plan_defaults("free-bulk")
 #> $mode
 #> [1] "bulk"
@@ -74,6 +79,9 @@ tb_plan_defaults("free-bulk")
 #> [1] 10
 #> 
 #> $throttle_seconds
+#> [1] 1
+#> 
+#> $max_active
 #> [1] 1
 #> 
 tb_plan_defaults("ce")
@@ -85,5 +93,8 @@ tb_plan_defaults("ce")
 #> 
 #> $throttle_seconds
 #> [1] 0
+#> 
+#> $max_active
+#> [1] 1
 #> 
 ```

@@ -78,22 +78,26 @@
   limits documented at
   <https://thingsboard.io/docs/paas/eu/subscriptions/>. Presets: `free`
   -\> `single` mode (proven to work end-to-end on the Maker free tier);
-  `free-bulk` -\> experimental bulk preset for Free with
-  `chunk_size = 10` / `throttle_seconds = 1.0` (10 dp/s, well under the
-  100 dp/s burst cap that previously rejected the array form);
-  `prototype` / `pilot` / `startup` / `business` -\> `bulk` with
-  `chunk_size = 30` / `throttle_seconds = 1.0` (~30 dp/s, near the 2 000
-  dp/min per-device cap shared across all paid tiers); `ce` -\>
-  unlimited bulk for self-hosted Community Edition. Add
-  `TB_TELEMETRY_MODE`, `TB_CHUNK_SIZE` and `TB_THROTTLE_SECONDS` env
-  vars on top of `TB_PLAN` so individual values can be overridden
-  without switching plans
+  `free-bulk` -\> bulk preset for Free with `chunk_size = 10` /
+  `throttle_seconds = 1.0`; **confirmed not to work** on the public
+  Cloud Maker tier as of 2026-05 – the gateway returns the same
+  empty-body HTTP 500 to a 10-record array as it did to the original
+  100-record one, so the array form is rejected regardless of payload
+  size. Kept as a reproducible baseline. `prototype` / `pilot` /
+  `startup` / `business` -\> `bulk` with `chunk_size = 30` /
+  `throttle_seconds = 1.0` (~30 dp/s, near the 2 000 dp/min per-device
+  cap shared across all paid tiers); `ce` -\> unlimited bulk for
+  self-hosted Community Edition. Add `TB_TELEMETRY_MODE`,
+  `TB_CHUNK_SIZE` and `TB_THROTTLE_SECONDS` env vars on top of `TB_PLAN`
+  so individual values can be overridden without switching plans
 - Expose the plan and the per-run knobs as `workflow_dispatch` inputs in
   `thingsboard-push.yaml` (`plan`, `station_ids`, `history_days`,
   `telemetry_types`) and document the workflow_dispatch input -\>
   repository secret -\> hardcoded default fallback chain in a header
-  comment of the env block. The default plan is now `free-bulk` so the
-  next run tests the faster bulk path on Free
+  comment of the env block. The default plan is `free` (single mode,
+  proven to work); `free-bulk` is exposed as a workflow_dispatch option
+  but stays out of the cron path until ThingsBoard lifts the Maker
+  array-form rejection
 - Add `inst/extdata/thingsboard-dashboard.json`, an importable
   ThingsBoard dashboard for the demo: an OpenStreetMap markers map on
   the `latitude` / `longitude` attributes, a master-data entities table
@@ -103,6 +107,29 @@
   hardcoding device IDs. The dashboard-level timewindow defaults to a
   365-day history (not the realtime sliding window) so charts show the
   full backfill immediately after import
+- Speed up `mode = "single"` with
+  [`httr2::req_perform_parallel()`](https://httr2.r-lib.org/reference/req_perform_parallel.html).
+  The previous sequential one-POST-at-a-time loop was network-bound at
+  ~1.2 records/s for the GWQ push (~5 h per station for the full
+  history); concurrent posting with `max_active = 10` lifts that to ~10
+  records/s while staying below the Free tier’s 50 msg/s per-device
+  transport rate limit.
+  [`tb_push_station_telemetry()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_push_station_telemetry.md)
+  gains a `max_active` parameter;
+  [`tb_plan_defaults()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_plan_defaults.md)
+  returns it per plan (default `10` for Free, `1` elsewhere); the script
+  reads `TB_MAX_ACTIVE` from env / repo secrets through the same
+  `env_or()` plan-fallback chain
+- Send one telemetry record per `(timestamp, key, value)` triple in
+  `mode = "single"` instead of grouping every Parameter that shares a
+  timestamp into a single record. Wasserportal groundwater quality data
+  has ~30 analytes per sampling event; the resulting “fat” `values`
+  dicts produced an opaque empty-body HTTP 500 on Cloud Maker even
+  though the same keys went through one at a time (see
+  [`tb_push_latest_telemetry()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_push_latest_telemetry.md)
+  smoke tests). `build_telemetry_payload()` gains a `group_by_ts`
+  parameter (default `TRUE`); the push function flips it off in single
+  mode and keeps grouping in bulk mode for compact array chunks
 - Sanitise telemetry keys before serialising the values dict.
   Wasserportal groundwater quality parameters such as
   `Leitfaehigkeit 25 grd C vor Ort`, `Wasserst. (ROK) vor`,

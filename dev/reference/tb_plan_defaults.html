@@ -95,11 +95,14 @@ hence the much larger chunk size and zero throttle.</p>
 <dl><dt id="arg-plan">plan<a class="anchor" aria-label="anchor" href="#arg-plan"></a></dt>
 <dd><p>one of</p><ul><li><p><code>"free"</code> – proven Single-record mode (<code>mode = "single"</code>,
     <code>chunk_size = 1</code>, <code>throttle_seconds = 0.05</code>).</p></li>
-<li><p><code>"free-bulk"</code> – experimental Bulk mode tuned to stay under
+<li><p><code>"free-bulk"</code> – bulk preset tuned to stay under
     Free's per-device 100 dp/s and 2,000 dp/min caps
-    (<code>chunk_size = 10</code>, <code>throttle_seconds = 1.0</code>); a previous
-    bulk attempt at 1,000 dp/s burst was rejected with an empty
-    500, so test on a small history before relying on it.</p></li>
+    (<code>chunk_size = 10</code>, <code>throttle_seconds = 1.0</code>).
+    Confirmed not to work on the public ThingsBoard Cloud Maker
+    free tier as of 2026-05: the gateway returns an opaque
+    empty-body HTTP 500 to the array form regardless of how small
+    the chunk is. Kept as a reproducible baseline; on Free use
+    <code>"free"</code>.</p></li>
 <li><p><code>"prototype"</code>, <code>"pilot"</code>, <code>"startup"</code>, <code>"business"</code> – the
     paid PaaS tiers. All use <code>mode = "bulk"</code>,
     <code>chunk_size = 30</code>, <code>throttle_seconds = 1.0</code> (~30 dp/s,
@@ -127,6 +130,9 @@ ready to be spread into <code><a href="tb_push_station_telemetry.html">tb_push_s
 <span class="r-out co"><span class="r-pr">#&gt;</span> $throttle_seconds</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.05</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $max_active</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu">tb_plan_defaults</span><span class="op">(</span><span class="st">"free-bulk"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $mode</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "bulk"</span>
@@ -135,6 +141,9 @@ ready to be spread into <code><a href="tb_push_station_telemetry.html">tb_push_s
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $throttle_seconds</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $max_active</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu">tb_plan_defaults</span><span class="op">(</span><span class="st">"ce"</span><span class="op">)</span></span></span>
@@ -146,6 +155,9 @@ ready to be spread into <code><a href="tb_push_station_telemetry.html">tb_push_s
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $throttle_seconds</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $max_active</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
