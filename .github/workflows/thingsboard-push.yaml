@@ -25,7 +25,7 @@ on:
       plan:
         description: 'ThingsBoard plan: free | free-bulk | prototype | pilot | startup | business | ce'
         required: false
-        default: 'free'
+        default: 'free-bulk'
 
 name: thingsboard-push
 
@@ -68,7 +68,7 @@ jobs:
       TB_STATION_IDS: ${{ github.event.inputs.station_ids || secrets.TB_STATION_IDS }}
       TB_HISTORY_DAYS: ${{ github.event.inputs.history_days || secrets.TB_HISTORY_DAYS || '0' }}
       TB_TELEMETRY_TYPES: ${{ github.event.inputs.telemetry_types || secrets.TB_TELEMETRY_TYPES || 'gwl,gwq' }}
-      TB_PLAN: ${{ github.event.inputs.plan || secrets.TB_PLAN || 'free' }}
+      TB_PLAN: ${{ github.event.inputs.plan || secrets.TB_PLAN || 'free-bulk' }}
       TB_TELEMETRY_MODE: ${{ secrets.TB_TELEMETRY_MODE }}
       TB_CHUNK_SIZE: ${{ secrets.TB_CHUNK_SIZE }}
       TB_THROTTLE_SECONDS: ${{ secrets.TB_THROTTLE_SECONDS }}
