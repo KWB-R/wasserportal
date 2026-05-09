@@ -66,7 +66,7 @@ tb_plan_defaults("free")
 #> [1] 1
 #> 
 #> $throttle_seconds
-#> [1] 0.05
+#> [1] 1
 #> 
 #> $max_active
 #> [1] 10
