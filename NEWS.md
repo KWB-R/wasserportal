@@ -58,6 +58,19 @@
   object so historical telemetry actually goes through on Maker
   free; bulk mode keeps the previous fast array-per-chunk
   behaviour for self-hosted CE
+* Add `tb_plan_defaults()` and a matching `TB_PLAN` env var so the
+  GH-Actions push picks `mode`, `chunk_size` and `throttle_seconds`
+  from the per-device transport rate limits documented at
+  <https://thingsboard.io/docs/paas/eu/subscriptions/>. Defaults:
+  `free` -> `single` mode (bulk arrays are rejected on the device
+  telemetry endpoint there); `prototype` / `pilot` / `startup` /
+  `business` -> `bulk` with `chunk_size = 30` and
+  `throttle_seconds = 1.0` (~30 dp/s, well under the 2 000 dp/min
+  per-device cap shared across all paid tiers); `ce` -> unlimited
+  bulk for self-hosted Community Edition. Add `TB_TELEMETRY_MODE`,
+  `TB_CHUNK_SIZE` and `TB_THROTTLE_SECONDS` env vars on top of
+  `TB_PLAN` so individual values can be overridden without
+  switching plans
 * Sanitise telemetry keys before serialising the values dict.
   Wasserportal groundwater quality parameters such as
   `Leitfaehigkeit 25 grd C vor Ort`, `Wasserst. (ROK) vor`,

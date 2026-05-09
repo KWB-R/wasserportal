@@ -37,10 +37,17 @@
 #                     (ThingsBoard Cloud free tier limit).
 #   TB_HISTORY_DAYS   Limit telemetry to the most recent N days per
 #                     station. Default 0 (= push all history).
-#   TB_TELEMETRY_MODE One of "single" (default) or "bulk". The Maker
-#                     free tier on ThingsBoard Cloud rejects bulk
-#                     arrays; switch to "bulk" only against
-#                     self-hosted CE.
+#   TB_PLAN           One of "free" (default), "prototype", "pilot",
+#                     "startup", "business" or "ce" (self-hosted).
+#                     Selects the push tunables (mode, chunk_size,
+#                     throttle_seconds) via tb_plan_defaults() to stay
+#                     within the per-device transport rate limits
+#                     documented at
+#                     https://thingsboard.io/docs/paas/eu/subscriptions/.
+#   TB_TELEMETRY_MODE Override the plan-derived mode ("single" /
+#                     "bulk"). Free rejects bulk arrays.
+#   TB_CHUNK_SIZE     Override the plan-derived chunk size for bulk.
+#   TB_THROTTLE_SECONDS Override the plan-derived inter-request sleep.
 #   TB_TELEMETRY_TYPES Comma-separated subset of "gwl,gwq" (default
 #                     both). Useful to skip the slow gwl re-push when
 #                     iterating only on the gwq fix.
@@ -64,11 +71,29 @@ max_devices <- as.integer(Sys.getenv("TB_MAX_DEVICES", "5"))
 # tier silently rejects historical timestamps with HTTP 500.
 history_days <- as.integer(Sys.getenv("TB_HISTORY_DAYS", "0"))
 
-# Telemetry POST format. ThingsBoard Cloud Maker (free) tier returned an
-# opaque HTTP 500 to the bulk array-of-records form while accepting the
-# per-record object (smoke test passed for all five devices). Default to
-# the safer single-record mode; override to "bulk" against self-hosted CE.
-telemetry_mode <- Sys.getenv("TB_TELEMETRY_MODE", "single")
+# Resolve push tunables from the ThingsBoard plan via tb_plan_defaults().
+# TB_PLAN takes precedence; individual TB_TELEMETRY_MODE / TB_CHUNK_SIZE /
+# TB_THROTTLE_SECONDS env vars override the plan-derived defaults if set,
+# so e.g. a Free user can still test bulk mode by setting both
+# TB_PLAN=free and TB_TELEMETRY_MODE=bulk.
+plan_defaults <- wasserportal::tb_plan_defaults(
+  Sys.getenv("TB_PLAN", "free")
+)
+telemetry_mode <- Sys.getenv("TB_TELEMETRY_MODE", plan_defaults$mode)
+chunk_size <- as.integer(Sys.getenv(
+  "TB_CHUNK_SIZE",
+  as.character(plan_defaults$chunk_size)
+))
+throttle_seconds <- as.numeric(Sys.getenv(
+  "TB_THROTTLE_SECONDS",
+  as.character(plan_defaults$throttle_seconds)
+))
+
+message(sprintf(
+  "Push tunables: plan='%s', mode='%s', chunk_size=%d, throttle_seconds=%g",
+  Sys.getenv("TB_PLAN", "free"),
+  telemetry_mode, chunk_size, throttle_seconds
+))
 
 # Which telemetry datasets to push. Default both. Set to "gwl" or "gwq"
 # only to skip a long retry after a partial success.
@@ -354,13 +379,15 @@ push_telemetry_subset <- function(data, label) {
     message(sprintf("  station %s: %d values", station_id, nrow(one)))
 
     wasserportal::tb_push_station_telemetry(
-      data         = one,
-      device_token = device_tokens[[station_id]],
-      ts_col       = "Datum",
-      value_col    = "Messwert",
-      key_col      = "Parameter",
-      mode         = telemetry_mode,
-      verbose      = TRUE
+      data             = one,
+      device_token     = device_tokens[[station_id]],
+      ts_col           = "Datum",
+      value_col        = "Messwert",
+      key_col          = "Parameter",
+      mode             = telemetry_mode,
+      chunk_size       = chunk_size,
+      throttle_seconds = throttle_seconds,
+      verbose          = TRUE
     )
     pushed <- pushed + nrow(one)
   }

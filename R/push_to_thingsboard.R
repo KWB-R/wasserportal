@@ -65,10 +65,15 @@ tb_push_station_telemetry <- function(
     host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud"),
     chunk_size = 100L,
     mode = c("single", "bulk"),
+    throttle_seconds = NULL,
     verbose = TRUE
 )
 {
   mode <- match.arg(mode)
+  if (is.null(throttle_seconds)) {
+    throttle_seconds <- if (mode == "single") 0.05 else 0.1
+  }
+  throttle_seconds <- max(0, as.numeric(throttle_seconds))
 
   stopifnot(
     is.data.frame(data),
@@ -111,7 +116,7 @@ tb_push_station_telemetry <- function(
       if (verbose && i %% 100L == 0L) {
         message(sprintf("  POSTed %d/%d records", i, n))
       }
-      Sys.sleep(0.05)  # ~20 req/sec safety throttle
+      if (throttle_seconds > 0) Sys.sleep(throttle_seconds)
     }
     return(invisible(n))
   }
@@ -136,7 +141,9 @@ tb_push_station_telemetry <- function(
       httr2::req_error(body = tb_error_body) |>
       httr2::req_perform()
 
-    if (length(starts) > 1L) Sys.sleep(0.1)
+    if (length(starts) > 1L && throttle_seconds > 0) {
+      Sys.sleep(throttle_seconds)
+    }
   }
 
   invisible(n)
@@ -235,6 +242,79 @@ tb_push_station_attributes <- function(
     httr2::req_perform()
 
   invisible(length(attributes))
+}
+
+# tb_plan_defaults -------------------------------------------------------------
+
+#' Recommended Push Defaults per ThingsBoard Subscription Plan
+#'
+#' Wraps the per-device transport rate limits documented at
+#' <https://thingsboard.io/docs/paas/eu/subscriptions/> into the
+#' parameters this package's push functions take. Pass the result into
+#' `tb_push_station_telemetry()` via `mode`, `chunk_size` and
+#' `throttle_seconds` so you stay below your plan's
+#' "Telemetry Transport messages/data points (Device)" thresholds.
+#'
+#' Across all paid PaaS tiers the per-device sustained limits are
+#' identical (2 000 telemetry data points per minute, 15 000 per hour),
+#' the only thing that changes is how aggressive a burst the platform
+#' tolerates before it drops a request. Free additionally rejects the
+#' bulk array form on the device telemetry endpoint, so its default is
+#' `mode = "single"`.
+#'
+#' Self-hosted ThingsBoard CE has no per-tenant rate limit by default,
+#' hence the much larger chunk size and zero throttle.
+#'
+#' @param plan one of `"free"`, `"prototype"`, `"pilot"`, `"startup"`,
+#'   `"business"`, `"ce"`. Case-insensitive.
+#' @return named list with `mode`, `chunk_size` and `throttle_seconds`,
+#'   ready to be spread into `tb_push_station_telemetry()`.
+#' @export
+#' @examples
+#' tb_plan_defaults("free")
+#' tb_plan_defaults("ce")
+tb_plan_defaults <- function(plan = "free")
+{
+  plan <- tolower(plan)
+  presets <- list(
+    free = list(
+      mode = "single",
+      chunk_size = 1L,
+      throttle_seconds = 0.05
+    ),
+    prototype = list(
+      mode = "bulk",
+      chunk_size = 30L,
+      throttle_seconds = 1.0
+    ),
+    pilot = list(
+      mode = "bulk",
+      chunk_size = 30L,
+      throttle_seconds = 1.0
+    ),
+    startup = list(
+      mode = "bulk",
+      chunk_size = 30L,
+      throttle_seconds = 1.0
+    ),
+    business = list(
+      mode = "bulk",
+      chunk_size = 30L,
+      throttle_seconds = 1.0
+    ),
+    ce = list(
+      mode = "bulk",
+      chunk_size = 1000L,
+      throttle_seconds = 0
+    )
+  )
+  if (!plan %in% names(presets)) {
+    stop_formatted(
+      "Unknown plan '%s'. Valid: %s",
+      plan, paste(names(presets), collapse = ", ")
+    )
+  }
+  presets[[plan]]
 }
 
 # tb_push_latest_telemetry -----------------------------------------------------
