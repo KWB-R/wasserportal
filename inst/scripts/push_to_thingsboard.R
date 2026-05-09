@@ -52,24 +52,32 @@
 #                     both). Useful to skip the slow gwl re-push when
 #                     iterating only on the gwq fix.
 
+# Helper: Sys.getenv() returns "" (not the default) when the variable is
+# set to an empty string -- which happens whenever a workflow_dispatch
+# input is left blank or an unset secret is interpolated by GitHub
+# Actions. env_or() falls back to `default` for both unset and empty.
+env_or <- function(name, default) {
+  v <- Sys.getenv(name, unset = "")
+  if (nzchar(v)) v else default
+}
+
 stopifnot(
   nzchar(Sys.getenv("TB_HOST")),
   nzchar(Sys.getenv("TB_API_KEY"))
 )
 
-base_url <- sub(
-  "/+$", "",
-  Sys.getenv("TB_GH_PAGES_URL", "https://kwb-r.github.io/wasserportal")
-)
+base_url <- sub("/+$", "", env_or(
+  "TB_GH_PAGES_URL", "https://kwb-r.github.io/wasserportal"
+))
 
-device_prefix <- Sys.getenv("TB_DEVICE_PREFIX", "wasserportal-gw-")
+device_prefix <- env_or("TB_DEVICE_PREFIX", "wasserportal-gw-")
 
-max_devices <- as.integer(Sys.getenv("TB_MAX_DEVICES", "5"))
+max_devices <- as.integer(env_or("TB_MAX_DEVICES", "5"))
 
 # Limit telemetry to the most recent N days per station. Set to 0 to push
 # all history. Useful while diagnosing whether the ThingsBoard Cloud free
 # tier silently rejects historical timestamps with HTTP 500.
-history_days <- as.integer(Sys.getenv("TB_HISTORY_DAYS", "0"))
+history_days <- as.integer(env_or("TB_HISTORY_DAYS", "0"))
 
 # Resolve push tunables from the ThingsBoard plan via tb_plan_defaults().
 # TB_PLAN takes precedence; individual TB_TELEMETRY_MODE / TB_CHUNK_SIZE /
@@ -77,28 +85,28 @@ history_days <- as.integer(Sys.getenv("TB_HISTORY_DAYS", "0"))
 # so e.g. a Free user can still test bulk mode by setting both
 # TB_PLAN=free and TB_TELEMETRY_MODE=bulk.
 plan_defaults <- wasserportal::tb_plan_defaults(
-  Sys.getenv("TB_PLAN", "free")
+  env_or("TB_PLAN", "free")
 )
-telemetry_mode <- Sys.getenv("TB_TELEMETRY_MODE", plan_defaults$mode)
-chunk_size <- as.integer(Sys.getenv(
+telemetry_mode <- env_or("TB_TELEMETRY_MODE", plan_defaults$mode)
+chunk_size <- as.integer(env_or(
   "TB_CHUNK_SIZE",
   as.character(plan_defaults$chunk_size)
 ))
-throttle_seconds <- as.numeric(Sys.getenv(
+throttle_seconds <- as.numeric(env_or(
   "TB_THROTTLE_SECONDS",
   as.character(plan_defaults$throttle_seconds)
 ))
 
 message(sprintf(
   "Push tunables: plan='%s', mode='%s', chunk_size=%d, throttle_seconds=%g",
-  Sys.getenv("TB_PLAN", "free"),
+  env_or("TB_PLAN", "free"),
   telemetry_mode, chunk_size, throttle_seconds
 ))
 
 # Which telemetry datasets to push. Default both. Set to "gwl" or "gwq"
 # only to skip a long retry after a partial success.
 telemetry_types <- strsplit(
-  Sys.getenv("TB_TELEMETRY_TYPES", "gwl,gwq"),
+  env_or("TB_TELEMETRY_TYPES", "gwl,gwq"),
   ","
 )[[1L]]
 
