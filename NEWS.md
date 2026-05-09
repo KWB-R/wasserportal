@@ -102,6 +102,16 @@
   dashboard-level timewindow defaults to a 365-day history (not
   the realtime sliding window) so charts show the full backfill
   immediately after import
+* Speed up `mode = "single"` with `httr2::req_perform_parallel()`.
+  The previous sequential one-POST-at-a-time loop was network-bound
+  at ~1.2 records/s for the GWQ push (~5 h per station for the full
+  history); concurrent posting with `max_active = 10` lifts that to
+  ~10 records/s while staying below the Free tier's 50 msg/s
+  per-device transport rate limit. `tb_push_station_telemetry()`
+  gains a `max_active` parameter; `tb_plan_defaults()` returns it
+  per plan (default `10` for Free, `1` elsewhere); the script
+  reads `TB_MAX_ACTIVE` from env / repo secrets through the same
+  `env_or()` plan-fallback chain
 * Send one telemetry record per `(timestamp, key, value)` triple in
   `mode = "single"` instead of grouping every Parameter that
   shares a timestamp into a single record. Wasserportal

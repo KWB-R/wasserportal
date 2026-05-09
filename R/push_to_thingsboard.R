@@ -47,8 +47,12 @@
 #'   safely below the per-second / per-minute transport rate limits of
 #'   the target ThingsBoard plan; set to `0` to push as fast as the
 #'   server permits (e.g. self-hosted CE).
+#' @param max_active number of concurrent HTTP POSTs in single mode
+#'   (passed to `httr2::req_perform_parallel()`). Default `10`, which
+#'   stays below the ThingsBoard Cloud Free tier's 50 messages/second
+#'   per-device transport rate limit. Ignored in bulk mode.
 #' @param verbose print one line per chunk in bulk mode and one line
-#'   every 100 records in single mode (default `TRUE`).
+#'   per parallel batch in single mode (default `TRUE`).
 #' @return invisibly the number of telemetry timestamps that were sent.
 #' @export
 #' @examples
@@ -75,6 +79,7 @@ tb_push_station_telemetry <- function(
     chunk_size = 100L,
     mode = c("single", "bulk"),
     throttle_seconds = NULL,
+    max_active = 10L,
     verbose = TRUE
 )
 {
@@ -83,6 +88,7 @@ tb_push_station_telemetry <- function(
     throttle_seconds <- if (mode == "single") 0.05 else 0.1
   }
   throttle_seconds <- max(0, as.numeric(throttle_seconds))
+  max_active <- max(1L, as.integer(max_active))
 
   stopifnot(
     is.data.frame(data),
@@ -119,20 +125,40 @@ tb_push_station_telemetry <- function(
 
   if (mode == "single") {
     # Send each record as a standalone `{"ts": ms, "values": {...}}` object,
-    # one per HTTP POST. Slower but the only format the ThingsBoard Cloud
-    # Maker free tier reliably accepts; the bulk array format returns an
-    # opaque HTTP 500 there.
-    for (i in seq_len(n)) {
+    # one per HTTP POST. The bulk array format is rejected on ThingsBoard
+    # Cloud Maker; this mode is the only reliable shape there.
+    #
+    # Sequential single POSTs are network-bound (~700 ms per request once
+    # TLS, server processing and TB's retry overhead are added up). To
+    # reclaim that latency we send `max_active` requests concurrently via
+    # httr2::req_perform_parallel(); the per-device 50 messages/second
+    # transport rate limit on the Free tier still leaves headroom for
+    # max_active = 10. Throttle, if requested, applies between batches.
+    reqs <- lapply(payload, function(record) {
       httr2::request(url) |>
-        httr2::req_body_json(payload[[i]], auto_unbox = TRUE, digits = NA) |>
+        httr2::req_body_json(record, auto_unbox = TRUE, digits = NA) |>
         httr2::req_retry(max_tries = 4L, backoff = function(j) 2^j) |>
-        httr2::req_error(body = tb_error_body) |>
-        httr2::req_perform()
+        httr2::req_error(body = tb_error_body)
+    })
 
-      if (verbose && i %% 100L == 0L) {
-        message(sprintf("  POSTed %d/%d records", i, n))
+    batch_size <- max(max_active * 10L, 1L)
+    starts <- seq.int(1L, n, by = batch_size)
+
+    for (start in starts) {
+      end <- min(start + batch_size - 1L, n)
+      httr2::req_perform_parallel(
+        reqs[start:end],
+        max_active = max_active,
+        progress = FALSE
+      )
+
+      if (verbose) {
+        message(sprintf(
+          "  POSTed %d/%d records (parallel max_active=%d)",
+          end, n, max_active
+        ))
       }
-      if (throttle_seconds > 0) Sys.sleep(throttle_seconds)
+      if (throttle_seconds > 0 && end < n) Sys.sleep(throttle_seconds)
     }
     return(invisible(n))
   }
@@ -313,7 +339,8 @@ tb_plan_defaults <- function(plan = "free")
     free = list(
       mode = "single",
       chunk_size = 1L,
-      throttle_seconds = 0.05
+      throttle_seconds = 0.05,
+      max_active = 10L
     ),
     `free-bulk` = list(
       # Confirmed not to work on the public ThingsBoard Cloud Maker
@@ -328,32 +355,38 @@ tb_plan_defaults <- function(plan = "free")
       # baseline if ThingsBoard ever lifts the restriction.
       mode = "bulk",
       chunk_size = 10L,
-      throttle_seconds = 1.0
+      throttle_seconds = 1.0,
+      max_active = 1L
     ),
     prototype = list(
       mode = "bulk",
       chunk_size = 30L,
-      throttle_seconds = 1.0
+      throttle_seconds = 1.0,
+      max_active = 1L
     ),
     pilot = list(
       mode = "bulk",
       chunk_size = 30L,
-      throttle_seconds = 1.0
+      throttle_seconds = 1.0,
+      max_active = 1L
     ),
     startup = list(
       mode = "bulk",
       chunk_size = 30L,
-      throttle_seconds = 1.0
+      throttle_seconds = 1.0,
+      max_active = 1L
     ),
     business = list(
       mode = "bulk",
       chunk_size = 30L,
-      throttle_seconds = 1.0
+      throttle_seconds = 1.0,
+      max_active = 1L
     ),
     ce = list(
       mode = "bulk",
       chunk_size = 1000L,
-      throttle_seconds = 0
+      throttle_seconds = 0,
+      max_active = 1L
     )
   )
   if (!plan %in% names(presets)) {

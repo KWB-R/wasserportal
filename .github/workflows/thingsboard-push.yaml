@@ -61,6 +61,7 @@ jobs:
       #   TB_TELEMETRY_MODE    override the plan-derived mode
       #   TB_CHUNK_SIZE        override the plan-derived chunk size
       #   TB_THROTTLE_SECONDS  override the plan-derived inter-POST sleep
+      #   TB_MAX_ACTIVE        concurrent POSTs per device in single mode
       # ----------------------------------------------------------------------
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       TB_HOST: ${{ secrets.TB_HOST }}
@@ -72,6 +73,7 @@ jobs:
       TB_TELEMETRY_MODE: ${{ secrets.TB_TELEMETRY_MODE }}
       TB_CHUNK_SIZE: ${{ secrets.TB_CHUNK_SIZE }}
       TB_THROTTLE_SECONDS: ${{ secrets.TB_THROTTLE_SECONDS }}
+      TB_MAX_ACTIVE: ${{ secrets.TB_MAX_ACTIVE }}
     steps:
       - uses: actions/checkout@v5
 

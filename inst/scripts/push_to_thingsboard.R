@@ -96,11 +96,19 @@ throttle_seconds <- as.numeric(env_or(
   "TB_THROTTLE_SECONDS",
   as.character(plan_defaults$throttle_seconds)
 ))
+plan_max_active <- if (is.null(plan_defaults$max_active)) 10L else
+  plan_defaults$max_active
+max_active <- as.integer(env_or(
+  "TB_MAX_ACTIVE", as.character(plan_max_active)
+))
 
 message(sprintf(
-  "Push tunables: plan='%s', mode='%s', chunk_size=%d, throttle_seconds=%g",
+  paste0(
+    "Push tunables: plan='%s', mode='%s', chunk_size=%d, ",
+    "throttle_seconds=%g, max_active=%d"
+  ),
   env_or("TB_PLAN", "free"),
-  telemetry_mode, chunk_size, throttle_seconds
+  telemetry_mode, chunk_size, throttle_seconds, max_active
 ))
 
 # Which telemetry datasets to push. Default both. Set to "gwl" or "gwq"
@@ -389,6 +397,7 @@ push_telemetry_subset <- function(data, label) {
     wasserportal::tb_push_station_telemetry(
       data             = one,
       device_token     = device_tokens[[station_id]],
+      max_active       = max_active,
       ts_col           = "Datum",
       value_col        = "Messwert",
       key_col          = "Parameter",
