@@ -277,11 +277,13 @@ tb_push_station_attributes <- function(
 #' @param plan one of
 #'   * `"free"` -- proven Single-record mode (`mode = "single"`,
 #'     `chunk_size = 1`, `throttle_seconds = 0.05`).
-#'   * `"free-bulk"` -- experimental Bulk mode tuned to stay under
-#'     Free's per-device 100 dp/s and 2,000 dp/min caps
-#'     (`chunk_size = 10`, `throttle_seconds = 1.0`); a previous
-#'     bulk attempt at 1,000 dp/s burst was rejected with an empty
-#'     500, so test on a small history before relying on it.
+#'   * `"free-bulk"` -- bulk preset tuned to stay under Free's
+#'     per-device 100 dp/s and 2,000 dp/min caps (`chunk_size = 10`,
+#'     `throttle_seconds = 1.0`). Confirmed not to work on the
+#'     public ThingsBoard Cloud Maker free tier as of 2026-05: the
+#'     gateway returns an opaque empty-body HTTP 500 to the array
+#'     form regardless of how small the chunk is. Kept as a
+#'     reproducible baseline; on Free use `"free"`.
 #'   * `"prototype"`, `"pilot"`, `"startup"`, `"business"` -- the
 #'     paid PaaS tiers. All use `mode = "bulk"`,
 #'     `chunk_size = 30`, `throttle_seconds = 1.0` (~30 dp/s,
@@ -307,14 +309,16 @@ tb_plan_defaults <- function(plan = "free")
       throttle_seconds = 0.05
     ),
     `free-bulk` = list(
-      # Untested. ThingsBoard Cloud Free's per-device limits suggest
-      # bulk should fit at 10 data points per second sustained, but the
-      # only previous bulk attempt used chunk_size=100 + throttle=0.1s
-      # (= 1000 dp/s burst, 10x above Free's 100/sec) and was rejected
-      # with an empty-body HTTP 500. The 500 may have been a proxy-level
-      # reject of the array form rather than a rate-limit response, in
-      # which case smaller chunks will not help -- run a small test
-      # before relying on it.
+      # Confirmed not to work on the public ThingsBoard Cloud Maker
+      # free tier as of 2026-05: even chunk_size=10 + throttle=1.0s
+      # (10 dp/s, well under the documented 100 dp/s burst and
+      # 2,000 dp/min sustained per-device caps) returns the same
+      # opaque empty-body HTTP 500 as the original 100-record
+      # attempt. The Maker plan apparently rejects the array form
+      # at the gateway irrespective of payload size; single mode
+      # remains the only reliable shape on Free. The preset is kept
+      # so the experiment is reproducible and so it can serve as a
+      # baseline if ThingsBoard ever lifts the restriction.
       mode = "bulk",
       chunk_size = 10L,
       throttle_seconds = 1.0
