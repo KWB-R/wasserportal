@@ -18,6 +18,10 @@ on:
         description: 'Push only the most recent N days per station (0 = all)'
         required: false
         default: '0'
+      telemetry_types:
+        description: 'Which telemetry to push: gwl,gwq | gwl | gwq'
+        required: false
+        default: 'gwl,gwq'
 
 name: thingsboard-push
 
@@ -30,6 +34,7 @@ jobs:
       TB_API_KEY: ${{ secrets.TB_API_KEY }}
       TB_STATION_IDS: ${{ github.event.inputs.station_ids }}
       TB_HISTORY_DAYS: ${{ github.event.inputs.history_days || '0' }}
+      TB_TELEMETRY_TYPES: ${{ github.event.inputs.telemetry_types || 'gwl,gwq' }}
     steps:
       - uses: actions/checkout@v5
 
