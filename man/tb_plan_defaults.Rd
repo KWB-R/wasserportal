@@ -11,11 +11,14 @@ tb_plan_defaults(plan = "free")
 \itemize{
   \item \code{"free"} -- proven Single-record mode (\code{mode = "single"},
     \code{chunk_size = 1}, \code{throttle_seconds = 0.05}).
-  \item \code{"free-bulk"} -- experimental Bulk mode tuned to stay under
+  \item \code{"free-bulk"} -- bulk preset tuned to stay under
     Free's per-device 100 dp/s and 2,000 dp/min caps
-    (\code{chunk_size = 10}, \code{throttle_seconds = 1.0}); a previous
-    bulk attempt at 1,000 dp/s burst was rejected with an empty
-    500, so test on a small history before relying on it.
+    (\code{chunk_size = 10}, \code{throttle_seconds = 1.0}).
+    Confirmed not to work on the public ThingsBoard Cloud Maker
+    free tier as of 2026-05: the gateway returns an opaque
+    empty-body HTTP 500 to the array form regardless of how small
+    the chunk is. Kept as a reproducible baseline; on Free use
+    \code{"free"}.
   \item \code{"prototype"}, \code{"pilot"}, \code{"startup"}, \code{"business"} -- the
     paid PaaS tiers. All use \code{mode = "bulk"},
     \code{chunk_size = 30}, \code{throttle_seconds = 1.0} (~30 dp/s,

@@ -69,10 +69,14 @@
   from the per-device transport rate limits documented at
   <https://thingsboard.io/docs/paas/eu/subscriptions/>. Presets:
   `free` -> `single` mode (proven to work end-to-end on the Maker
-  free tier); `free-bulk` -> experimental bulk preset for Free
-  with `chunk_size = 10` / `throttle_seconds = 1.0` (10 dp/s,
-  well under the 100 dp/s burst cap that previously rejected the
-  array form); `prototype` / `pilot` / `startup` / `business` ->
+  free tier); `free-bulk` -> bulk preset for Free with
+  `chunk_size = 10` / `throttle_seconds = 1.0`; **confirmed not to
+  work** on the public Cloud Maker tier as of 2026-05 -- the
+  gateway returns the same empty-body HTTP 500 to a 10-record
+  array as it did to the original 100-record one, so the array
+  form is rejected regardless of payload size. Kept as a
+  reproducible baseline. `prototype` / `pilot` / `startup` /
+  `business` ->
   `bulk` with `chunk_size = 30` / `throttle_seconds = 1.0`
   (~30 dp/s, near the 2 000 dp/min per-device cap shared across
   all paid tiers); `ce` -> unlimited bulk for self-hosted
@@ -84,8 +88,10 @@
   `history_days`, `telemetry_types`) and document the
   workflow_dispatch input -> repository secret -> hardcoded
   default fallback chain in a header comment of the env block.
-  The default plan is now `free-bulk` so the next run tests the
-  faster bulk path on Free
+  The default plan is `free` (single mode, proven to work);
+  `free-bulk` is exposed as a workflow_dispatch option but stays
+  out of the cron path until ThingsBoard lifts the Maker
+  array-form rejection
 * Add `inst/extdata/thingsboard-dashboard.json`, an importable
   ThingsBoard dashboard for the demo: an OpenStreetMap markers map
   on the `latitude` / `longitude` attributes, a master-data
