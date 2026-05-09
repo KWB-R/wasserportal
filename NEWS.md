@@ -102,6 +102,16 @@
   dashboard-level timewindow defaults to a 365-day history (not
   the realtime sliding window) so charts show the full backfill
   immediately after import
+* Send one telemetry record per `(timestamp, key, value)` triple in
+  `mode = "single"` instead of grouping every Parameter that
+  shares a timestamp into a single record. Wasserportal
+  groundwater quality data has ~30 analytes per sampling event;
+  the resulting "fat" `values` dicts produced an opaque empty-body
+  HTTP 500 on Cloud Maker even though the same keys went through
+  one at a time (see `tb_push_latest_telemetry()` smoke tests).
+  `build_telemetry_payload()` gains a `group_by_ts` parameter
+  (default `TRUE`); the push function flips it off in single mode
+  and keeps grouping in bulk mode for compact array chunks
 * Sanitise telemetry keys before serialising the values dict.
   Wasserportal groundwater quality parameters such as
   `Leitfaehigkeit 25 grd C vor Ort`, `Wasserst. (ROK) vor`,
