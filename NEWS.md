@@ -93,15 +93,20 @@
   out of the cron path until ThingsBoard lifts the Maker
   array-form rejection
 * Add `inst/extdata/thingsboard-dashboard.json`, an importable
-  ThingsBoard dashboard for the demo: an OpenStreetMap markers map
-  on the `latitude` / `longitude` attributes, a master-data
-  entities table and two time-series charts (groundwater level,
-  selected quality parameters). All four widgets discover the
+  ThingsBoard dashboard for the demo: a master-data entities
+  table for the five Berlin groundwater stations and two
+  time-series charts (groundwater level, selected quality
+  parameters). All three widgets discover the
   `wasserportal-gw-*` devices via an `entityName`-prefix alias so
   the import works without hardcoding device IDs. The
-  dashboard-level timewindow defaults to a 365-day history (not
-  the realtime sliding window) so charts show the full backfill
-  immediately after import
+  dashboard-level timewindow defaults to a 100-year sliding
+  history (effectively "since 1970-01-01") so charts show the
+  full backfill immediately after import. The map widget is not
+  included in the JSON because the bundle alias has shifted
+  between ThingsBoard versions and the import would fail; add it
+  manually post-import via *Add widget > Maps* against the same
+  `wasserportal_devices` entity alias and `latitude` /
+  `longitude` server attributes
 * Speed up `mode = "single"` with `httr2::req_perform_parallel()`.
   The previous sequential one-POST-at-a-time loop was network-bound
   at ~1.2 records/s for the GWQ push (~5 h per station for the full

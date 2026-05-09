@@ -4,76 +4,8 @@
   "mobileHide": false,
   "mobileOrder": null,
   "configuration": {
-    "description": "Auto-importable demo dashboard for the kwb-r/wasserportal ThingsBoard push: shows the five Berlin groundwater stations created by inst/scripts/push_to_thingsboard.R on a map, with current values, master data and time-series.",
+    "description": "Auto-importable demo dashboard for the kwb-r/wasserportal ThingsBoard push: master-data table for the five Berlin groundwater stations and two time-series charts (level + selected quality parameters). The map widget bundle alias has shifted between ThingsBoard versions, so the map is not part of this JSON; add it manually after import via Add widget > Maps and pick latitude / longitude attributes from the wasserportal_devices alias.",
     "widgets": {
-      "wp-map": {
-        "id": "wp-map",
-        "isSystemType": true,
-        "bundleAlias": "maps_v2",
-        "typeAlias": "markers_map",
-        "type": "latest",
-        "title": "Berlin groundwater stations",
-        "image": null,
-        "sizeX": 12,
-        "sizeY": 7,
-        "config": {
-          "datasources": [
-            {
-              "type": "entity",
-              "entityAliasId": "wasserportal_devices",
-              "dataKeys": [
-                {
-                  "name": "latitude",
-                  "type": "attribute",
-                  "label": "latitude",
-                  "color": "#2196f3",
-                  "settings": {},
-                  "_hash": 0.1
-                },
-                {
-                  "name": "longitude",
-                  "type": "attribute",
-                  "label": "longitude",
-                  "color": "#4caf50",
-                  "settings": {},
-                  "_hash": 0.2
-                },
-                {
-                  "name": "Bezirk",
-                  "type": "attribute",
-                  "label": "Bezirk",
-                  "color": "#f44336",
-                  "settings": {},
-                  "_hash": 0.3
-                },
-                {
-                  "name": "Auspraegung",
-                  "type": "attribute",
-                  "label": "Auspraegung",
-                  "color": "#ff9800",
-                  "settings": {},
-                  "_hash": 0.4
-                }
-              ]
-            }
-          ],
-          "title": "Berlin groundwater stations",
-          "showTitle": true,
-          "settings": {
-            "latKeyName": "latitude",
-            "lngKeyName": "longitude",
-            "showLabel": true,
-            "label": "${entityName}",
-            "showTooltip": true,
-            "tooltipPattern": "<b>${entityName}</b><br/>Bezirk: ${Bezirk}<br/>Ausprägung: ${Auspraegung}<br/>lat/lon: ${latitude}, ${longitude}",
-            "defaultZoomLevel": 11,
-            "useDefaultCenterPosition": true,
-            "defaultCenterPosition": "52.5200,13.4050",
-            "fitMapBounds": true,
-            "mapProvider": "OpenStreetMap.Mapnik"
-          }
-        }
-      },
       "wp-attributes": {
         "id": "wp-attributes",
         "isSystemType": true,
@@ -215,10 +147,9 @@
         "layouts": {
           "main": {
             "widgets": {
-              "wp-map":        { "sizeX": 12, "sizeY": 7, "row": 0,  "col": 0 },
-              "wp-attributes": { "sizeX": 12, "sizeY": 5, "row": 7,  "col": 0 },
-              "wp-timeseries": { "sizeX": 12, "sizeY": 8, "row": 12, "col": 0 },
-              "wp-quality":    { "sizeX": 12, "sizeY": 8, "row": 20, "col": 0 }
+              "wp-attributes": { "sizeX": 12, "sizeY": 5, "row": 0,  "col": 0 },
+              "wp-timeseries": { "sizeX": 12, "sizeY": 8, "row": 5,  "col": 0 },
+              "wp-quality":    { "sizeX": 12, "sizeY": 8, "row": 13, "col": 0 }
             },
             "gridSettings": {
               "backgroundColor": "#eeeeee",
@@ -244,7 +175,7 @@
       }
     },
     "timewindow": {
-      "displayValue": "Last 365 days",
+      "displayValue": "Since 1970-01-01",
       "selectedTab": 1,
       "realtime": {
         "realtimeType": 1,
@@ -254,13 +185,13 @@
       "history": {
         "historyType": 0,
         "interval": 86400000,
-        "timewindowMs": 31536000000,
+        "timewindowMs": 3153600000000,
         "fixedTimewindow": {
           "startTimeMs": 0,
           "endTimeMs": 0
         }
       },
-      "aggregation": { "type": "AVG", "limit": 25000 }
+      "aggregation": { "type": "AVG", "limit": 50000 }
     },
     "settings": {
       "stateControllerId": "entity",
