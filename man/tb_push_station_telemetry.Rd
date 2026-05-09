@@ -15,6 +15,7 @@ tb_push_station_telemetry(
   chunk_size = 100L,
   mode = c("single", "bulk"),
   throttle_seconds = NULL,
+  max_active = 10L,
   verbose = TRUE
 )
 }
@@ -63,8 +64,13 @@ safely below the per-second / per-minute transport rate limits of
 the target ThingsBoard plan; set to \code{0} to push as fast as the
 server permits (e.g. self-hosted CE).}
 
+\item{max_active}{number of concurrent HTTP POSTs in single mode
+(passed to \code{httr2::req_perform_parallel()}). Default \code{10}, which
+stays below the ThingsBoard Cloud Free tier's 50 messages/second
+per-device transport rate limit. Ignored in bulk mode.}
+
 \item{verbose}{print one line per chunk in bulk mode and one line
-every 100 records in single mode (default \code{TRUE}).}
+per parallel batch in single mode (default \code{TRUE}).}
 }
 \value{
 invisibly the number of telemetry timestamps that were sent.
