@@ -23,7 +23,7 @@ on:
         required: false
         default: 'gwl,gwq'
       plan:
-        description: 'ThingsBoard plan: free | prototype | pilot | startup | business | ce'
+        description: 'ThingsBoard plan: free | free-bulk | prototype | pilot | startup | business | ce'
         required: false
         default: 'free'
 

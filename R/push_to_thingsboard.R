@@ -282,6 +282,19 @@ tb_plan_defaults <- function(plan = "free")
       chunk_size = 1L,
       throttle_seconds = 0.05
     ),
+    `free-bulk` = list(
+      # Untested. ThingsBoard Cloud Free's per-device limits suggest
+      # bulk should fit at 10 data points per second sustained, but the
+      # only previous bulk attempt used chunk_size=100 + throttle=0.1s
+      # (= 1000 dp/s burst, 10x above Free's 100/sec) and was rejected
+      # with an empty-body HTTP 500. The 500 may have been a proxy-level
+      # reject of the array form rather than a rate-limit response, in
+      # which case smaller chunks will not help -- run a small test
+      # before relying on it.
+      mode = "bulk",
+      chunk_size = 10L,
+      throttle_seconds = 1.0
+    ),
     prototype = list(
       mode = "bulk",
       chunk_size = 30L,
