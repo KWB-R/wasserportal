@@ -99,9 +99,10 @@
   parameters). All three widgets discover the
   `wasserportal-gw-*` devices via an `entityName`-prefix alias so
   the import works without hardcoding device IDs. The
-  dashboard-level timewindow defaults to a 100-year sliding
-  history (effectively "since 1970-01-01") so charts show the
-  full backfill immediately after import. The map widget is not
+  dashboard-level timewindow uses a fixed range from
+  `1970-01-01 UTC` (`startTimeMs = 0`) to `2100-01-01 UTC` so
+  charts show the full backfill immediately after import,
+  regardless of when the dashboard is loaded. The map widget is not
   included in the JSON because the bundle alias has shifted
   between ThingsBoard versions and the import would fail; add it
   manually post-import via *Add widget > Maps* against the same

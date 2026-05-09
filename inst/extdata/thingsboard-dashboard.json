@@ -183,12 +183,12 @@
         "timewindowMs": 60000
       },
       "history": {
-        "historyType": 0,
+        "historyType": 1,
         "interval": 86400000,
         "timewindowMs": 3153600000000,
         "fixedTimewindow": {
           "startTimeMs": 0,
-          "endTimeMs": 0
+          "endTimeMs": 4102444800000
         }
       },
       "aggregation": { "type": "AVG", "limit": 50000 }
