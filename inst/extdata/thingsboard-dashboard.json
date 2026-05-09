@@ -9,8 +9,8 @@
       "wp-map": {
         "id": "wp-map",
         "isSystemType": true,
-        "bundleAlias": "maps",
-        "typeAlias": "openstreetmap",
+        "bundleAlias": "maps_v2",
+        "typeAlias": "markers_map",
         "type": "latest",
         "title": "Berlin groundwater stations",
         "image": null,
@@ -127,9 +127,14 @@
                 {
                   "name": "GW-Stand",
                   "type": "timeseries",
-                  "label": "${entityName} – GW-Stand",
+                  "label": "${entityName} - GW-Stand",
                   "color": "#2196f3",
-                  "settings": { "fillLines": false, "showLines": true, "showPoints": false },
+                  "settings": {
+                    "fillLines": false,
+                    "showLines": true,
+                    "showPoints": false,
+                    "tooltipValueFormatter": ""
+                  },
                   "_hash": 2.1
                 }
               ]
@@ -138,14 +143,13 @@
           "title": "Groundwater level history (last year)",
           "showTitle": true,
           "showLegend": true,
+          "useDashboardTimewindow": true,
+          "displayTimewindow": true,
           "settings": {
             "shadowSize": 0,
             "smoothLines": true,
             "stack": false,
-            "yaxis": { "min": null, "max": null, "title": "GW-Stand [m ü NHN]" }
-          },
-          "timewindow": {
-            "history": { "timewindowMs": 31536000000 }
+            "tooltipValueFormatter": ""
           }
         }
       },
@@ -164,18 +168,42 @@
               "type": "entity",
               "entityAliasId": "wasserportal_devices",
               "dataKeys": [
-                { "name": "Nitrat", "type": "timeseries", "label": "${entityName} – Nitrat", "color": "#4caf50", "_hash": 3.1 },
-                { "name": "Chlorid", "type": "timeseries", "label": "${entityName} – Chlorid", "color": "#ff9800", "_hash": 3.2 },
-                { "name": "Sulfat", "type": "timeseries", "label": "${entityName} – Sulfat", "color": "#9c27b0", "_hash": 3.3 }
+                {
+                  "name": "Nitrat",
+                  "type": "timeseries",
+                  "label": "${entityName} - Nitrat",
+                  "color": "#4caf50",
+                  "settings": { "tooltipValueFormatter": "" },
+                  "_hash": 3.1
+                },
+                {
+                  "name": "Chlorid",
+                  "type": "timeseries",
+                  "label": "${entityName} - Chlorid",
+                  "color": "#ff9800",
+                  "settings": { "tooltipValueFormatter": "" },
+                  "_hash": 3.2
+                },
+                {
+                  "name": "Sulfat",
+                  "type": "timeseries",
+                  "label": "${entityName} - Sulfat",
+                  "color": "#9c27b0",
+                  "settings": { "tooltipValueFormatter": "" },
+                  "_hash": 3.3
+                }
               ]
             }
           ],
           "title": "Quality parameters (last year)",
           "showTitle": true,
           "showLegend": true,
-          "settings": { "smoothLines": false, "stack": false },
-          "timewindow": {
-            "history": { "timewindowMs": 31536000000 }
+          "useDashboardTimewindow": true,
+          "displayTimewindow": true,
+          "settings": {
+            "smoothLines": false,
+            "stack": false,
+            "tooltipValueFormatter": ""
           }
         }
       }
@@ -216,15 +244,23 @@
       }
     },
     "timewindow": {
-      "displayValue": "",
-      "selectedTab": 0,
-      "realtime": { "interval": 1000, "timewindowMs": 60000 },
+      "displayValue": "Last 365 days",
+      "selectedTab": 1,
+      "realtime": {
+        "realtimeType": 1,
+        "interval": 1000,
+        "timewindowMs": 60000
+      },
       "history": {
         "historyType": 0,
         "interval": 86400000,
-        "timewindowMs": 31536000000
+        "timewindowMs": 31536000000,
+        "fixedTimewindow": {
+          "startTimeMs": 0,
+          "endTimeMs": 0
+        }
       },
-      "aggregation": { "type": "AVG", "limit": 5000 }
+      "aggregation": { "type": "AVG", "limit": 25000 }
     },
     "settings": {
       "stateControllerId": "entity",

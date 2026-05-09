@@ -38,8 +38,17 @@
 #'   opaque HTTP 500 even though the same device accepts the per-record
 #'   `{"ts": ms, "values": {...}}` object; single mode therefore POSTs
 #'   each record on its own. Use `"bulk"` against self-hosted CE for
-#'   the much faster array-of-records form.
-#' @param verbose print one line per chunk (default `TRUE`).
+#'   the much faster array-of-records form. See
+#'   \code{\link{tb_plan_defaults}} for plan-aware presets that pick
+#'   `mode`, `chunk_size` and `throttle_seconds` together.
+#' @param throttle_seconds inter-request sleep, in seconds, between
+#'   consecutive HTTP POSTs. `NULL` (default) picks `0.05` for
+#'   `mode = "single"` and `0.1` for `mode = "bulk"`. Increase to stay
+#'   safely below the per-second / per-minute transport rate limits of
+#'   the target ThingsBoard plan; set to `0` to push as fast as the
+#'   server permits (e.g. self-hosted CE).
+#' @param verbose print one line per chunk in bulk mode and one line
+#'   every 100 records in single mode (default `TRUE`).
 #' @return invisibly the number of telemetry timestamps that were sent.
 #' @export
 #' @examples
@@ -65,10 +74,15 @@ tb_push_station_telemetry <- function(
     host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud"),
     chunk_size = 100L,
     mode = c("single", "bulk"),
+    throttle_seconds = NULL,
     verbose = TRUE
 )
 {
   mode <- match.arg(mode)
+  if (is.null(throttle_seconds)) {
+    throttle_seconds <- if (mode == "single") 0.05 else 0.1
+  }
+  throttle_seconds <- max(0, as.numeric(throttle_seconds))
 
   stopifnot(
     is.data.frame(data),
@@ -111,7 +125,7 @@ tb_push_station_telemetry <- function(
       if (verbose && i %% 100L == 0L) {
         message(sprintf("  POSTed %d/%d records", i, n))
       }
-      Sys.sleep(0.05)  # ~20 req/sec safety throttle
+      if (throttle_seconds > 0) Sys.sleep(throttle_seconds)
     }
     return(invisible(n))
   }
@@ -136,7 +150,9 @@ tb_push_station_telemetry <- function(
       httr2::req_error(body = tb_error_body) |>
       httr2::req_perform()
 
-    if (length(starts) > 1L) Sys.sleep(0.1)
+    if (length(starts) > 1L && throttle_seconds > 0) {
+      Sys.sleep(throttle_seconds)
+    }
   }
 
   invisible(n)
@@ -237,6 +253,107 @@ tb_push_station_attributes <- function(
   invisible(length(attributes))
 }
 
+# tb_plan_defaults -------------------------------------------------------------
+
+#' Recommended Push Defaults per ThingsBoard Subscription Plan
+#'
+#' Wraps the per-device transport rate limits documented at
+#' <https://thingsboard.io/docs/paas/eu/subscriptions/> into the
+#' parameters this package's push functions take. Pass the result into
+#' `tb_push_station_telemetry()` via `mode`, `chunk_size` and
+#' `throttle_seconds` so you stay below your plan's
+#' "Telemetry Transport messages/data points (Device)" thresholds.
+#'
+#' Across all paid PaaS tiers the per-device sustained limits are
+#' identical (2 000 telemetry data points per minute, 15 000 per hour),
+#' the only thing that changes is how aggressive a burst the platform
+#' tolerates before it drops a request. Free additionally rejects the
+#' bulk array form on the device telemetry endpoint, so its default is
+#' `mode = "single"`.
+#'
+#' Self-hosted ThingsBoard CE has no per-tenant rate limit by default,
+#' hence the much larger chunk size and zero throttle.
+#'
+#' @param plan one of
+#'   * `"free"` -- proven Single-record mode (`mode = "single"`,
+#'     `chunk_size = 1`, `throttle_seconds = 0.05`).
+#'   * `"free-bulk"` -- experimental Bulk mode tuned to stay under
+#'     Free's per-device 100 dp/s and 2,000 dp/min caps
+#'     (`chunk_size = 10`, `throttle_seconds = 1.0`); a previous
+#'     bulk attempt at 1,000 dp/s burst was rejected with an empty
+#'     500, so test on a small history before relying on it.
+#'   * `"prototype"`, `"pilot"`, `"startup"`, `"business"` -- the
+#'     paid PaaS tiers. All use `mode = "bulk"`,
+#'     `chunk_size = 30`, `throttle_seconds = 1.0` (~30 dp/s,
+#'     well under the 2,000 dp/min cap that all paid tiers share).
+#'   * `"ce"` -- self-hosted Community Edition: `mode = "bulk"`,
+#'     `chunk_size = 1000`, `throttle_seconds = 0`.
+#'
+#'   Case-insensitive. Unknown values raise an error.
+#' @return named list with `mode`, `chunk_size` and `throttle_seconds`,
+#'   ready to be spread into `tb_push_station_telemetry()`.
+#' @export
+#' @examples
+#' tb_plan_defaults("free")
+#' tb_plan_defaults("free-bulk")
+#' tb_plan_defaults("ce")
+tb_plan_defaults <- function(plan = "free")
+{
+  plan <- tolower(plan)
+  presets <- list(
+    free = list(
+      mode = "single",
+      chunk_size = 1L,
+      throttle_seconds = 0.05
+    ),
+    `free-bulk` = list(
+      # Untested. ThingsBoard Cloud Free's per-device limits suggest
+      # bulk should fit at 10 data points per second sustained, but the
+      # only previous bulk attempt used chunk_size=100 + throttle=0.1s
+      # (= 1000 dp/s burst, 10x above Free's 100/sec) and was rejected
+      # with an empty-body HTTP 500. The 500 may have been a proxy-level
+      # reject of the array form rather than a rate-limit response, in
+      # which case smaller chunks will not help -- run a small test
+      # before relying on it.
+      mode = "bulk",
+      chunk_size = 10L,
+      throttle_seconds = 1.0
+    ),
+    prototype = list(
+      mode = "bulk",
+      chunk_size = 30L,
+      throttle_seconds = 1.0
+    ),
+    pilot = list(
+      mode = "bulk",
+      chunk_size = 30L,
+      throttle_seconds = 1.0
+    ),
+    startup = list(
+      mode = "bulk",
+      chunk_size = 30L,
+      throttle_seconds = 1.0
+    ),
+    business = list(
+      mode = "bulk",
+      chunk_size = 30L,
+      throttle_seconds = 1.0
+    ),
+    ce = list(
+      mode = "bulk",
+      chunk_size = 1000L,
+      throttle_seconds = 0
+    )
+  )
+  if (!plan %in% names(presets)) {
+    stop_formatted(
+      "Unknown plan '%s'. Valid: %s",
+      plan, paste(names(presets), collapse = ", ")
+    )
+  }
+  presets[[plan]]
+}
+
 # tb_push_latest_telemetry -----------------------------------------------------
 
 #' Push a Single "Latest" Telemetry Record (no Timestamp)
@@ -274,6 +391,7 @@ tb_push_latest_telemetry <- function(
 
   if (!is.list(values)) values <- as.list(values)
   stopifnot(!is.null(names(values)), all(nzchar(names(values))))
+  names(values) <- sanitize_tb_key(names(values))
 
   url <- sprintf("%s/api/v1/%s/telemetry", sub("/+$", "", host), device_token)
 
@@ -326,6 +444,7 @@ build_telemetry_payload <- function(
   } else {
     keys <- as.character(data[[key_col]][finite])
   }
+  keys <- sanitize_tb_key(keys)
 
   # Group by timestamp so that several Parameter values that share the same
   # Datum end up in one ThingsBoard telemetry record.
@@ -483,6 +602,39 @@ tb_get_device_access_token <- function(device_id, api_key, host)
     httr2::resp_body_json()
 
   resp$credentialsId
+}
+
+# to_epoch_ms ------------------------------------------------------------------
+
+#' Sanitise a String for Use as a ThingsBoard Telemetry Key
+#'
+#' ThingsBoard's transport layer accepts arbitrary Unicode JSON keys in
+#' theory, but the Cloud Maker free tier returns an opaque HTTP 500 when
+#' the values dict contains keys with spaces, parentheses, micro/degree
+#' signs or umlauts (e.g. "Leitfaehigkeit 25 grd C vor Ort"). This helper
+#' folds umlauts, drops bracket characters and replaces other unsafe
+#' punctuation with underscores so Wasserportal Parameter names land as
+#' clean keys.
+#'
+#' @param x character vector.
+#' @return character vector, same length as `x`, with each element
+#'   transliterated.
+#' @keywords internal
+#' @noRd
+sanitize_tb_key <- function(x)
+{
+  if (length(x) == 0L) return(x)
+  out <- as.character(x)
+  out <- chartr("äöüÄÖÜ",
+                "aouAOU", out)
+  out <- gsub("ß", "ss", out, perl = TRUE)
+  out <- gsub("µ", "u",  out, perl = TRUE)  # micro sign
+  out <- gsub("°", "",   out, perl = TRUE)  # degree sign
+  out <- gsub("[()\\[\\]{}]", "", out, perl = TRUE)
+  out <- gsub("[ /.,;:]+", "_", out, perl = TRUE)
+  out <- gsub("_+", "_", out, perl = TRUE)
+  out <- gsub("^_|_$", "", out, perl = TRUE)
+  out
 }
 
 # to_epoch_ms ------------------------------------------------------------------
