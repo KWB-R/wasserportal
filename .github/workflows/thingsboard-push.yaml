@@ -29,6 +29,30 @@ jobs:
   push:
     runs-on: ubuntu-latest
     env:
+      # ----------------------------------------------------------------------
+      # Resolution chain for every TB_* variable below:
+      #
+      #   workflow_dispatch input  >  repository secret  >  hardcoded default
+      #
+      # i.e. typing a value in the "Run workflow" dialog always wins;
+      # otherwise the optional repo secret (Settings > Secrets and
+      # variables > Actions) takes over; otherwise the literal default
+      # at the end of the line is used. This keeps cron runs configurable
+      # without editing this yaml.
+      #
+      # Required secrets (no default, the script aborts without them):
+      #   TB_HOST              e.g. https://eu.thingsboard.cloud
+      #   TB_API_KEY           account-level API key (X-Authorization: ApiKey)
+      #
+      # Optional secrets, all currently NOT set, all override the defaults
+      # below when added:
+      #   TB_STATION_IDS       comma-separated Messstellennummer (default:
+      #                        auto-pick top 5 by gwl+gwq score)
+      #   TB_HISTORY_DAYS      "0" = full history since 1970, "30"/"365"
+      #                        for short windows
+      #   TB_TELEMETRY_TYPES   "gwl,gwq" | "gwl" | "gwq"
+      #   TB_TELEMETRY_MODE    "single" (Maker free) | "bulk" (self-hosted CE)
+      # ----------------------------------------------------------------------
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       TB_HOST: ${{ secrets.TB_HOST }}
       TB_API_KEY: ${{ secrets.TB_API_KEY }}
