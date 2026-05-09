@@ -58,6 +58,17 @@
   object so historical telemetry actually goes through on Maker
   free; bulk mode keeps the previous fast array-per-chunk
   behaviour for self-hosted CE
+* Sanitise telemetry keys before serialising the values dict.
+  Wasserportal groundwater quality parameters such as
+  `Leitfaehigkeit 25 grd C vor Ort`, `Wasserst. (ROK) vor`,
+  `pH-Wert (Feld)` or `Temperatur (Wasser)` triggered an opaque
+  HTTP 500 on the Maker free tier when used as raw JSON keys
+  (after the level data already pushed cleanly). The new
+  `sanitize_tb_key()` helper folds umlauts, drops parentheses
+  and replaces spaces / dots / commas with underscores so quality
+  data goes through too. Add a `TB_TELEMETRY_TYPES` env var
+  (`"gwl,gwq"` by default) so a partial retry can skip the slow
+  level re-push and only re-do the quality push
 
 # [wasserportal 0.5.0](https://github.com/KWB-R/wasserportal/releases/tag/v0.5.0) <small>2026-05-07</small>
 

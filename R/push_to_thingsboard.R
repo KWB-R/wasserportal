@@ -274,6 +274,7 @@ tb_push_latest_telemetry <- function(
 
   if (!is.list(values)) values <- as.list(values)
   stopifnot(!is.null(names(values)), all(nzchar(names(values))))
+  names(values) <- sanitize_tb_key(names(values))
 
   url <- sprintf("%s/api/v1/%s/telemetry", sub("/+$", "", host), device_token)
 
@@ -326,6 +327,7 @@ build_telemetry_payload <- function(
   } else {
     keys <- as.character(data[[key_col]][finite])
   }
+  keys <- sanitize_tb_key(keys)
 
   # Group by timestamp so that several Parameter values that share the same
   # Datum end up in one ThingsBoard telemetry record.
@@ -483,6 +485,39 @@ tb_get_device_access_token <- function(device_id, api_key, host)
     httr2::resp_body_json()
 
   resp$credentialsId
+}
+
+# to_epoch_ms ------------------------------------------------------------------
+
+#' Sanitise a String for Use as a ThingsBoard Telemetry Key
+#'
+#' ThingsBoard's transport layer accepts arbitrary Unicode JSON keys in
+#' theory, but the Cloud Maker free tier returns an opaque HTTP 500 when
+#' the values dict contains keys with spaces, parentheses, micro/degree
+#' signs or umlauts (e.g. "Leitfaehigkeit 25 grd C vor Ort"). This helper
+#' folds umlauts, drops bracket characters and replaces other unsafe
+#' punctuation with underscores so Wasserportal Parameter names land as
+#' clean keys.
+#'
+#' @param x character vector.
+#' @return character vector, same length as `x`, with each element
+#'   transliterated.
+#' @keywords internal
+#' @noRd
+sanitize_tb_key <- function(x)
+{
+  if (length(x) == 0L) return(x)
+  out <- as.character(x)
+  out <- chartr("äöüÄÖÜ",
+                "aouAOU", out)
+  out <- gsub("ß", "ss", out, perl = TRUE)
+  out <- gsub("µ", "u",  out, perl = TRUE)  # micro sign
+  out <- gsub("°", "",   out, perl = TRUE)  # degree sign
+  out <- gsub("[()\\[\\]{}]", "", out, perl = TRUE)
+  out <- gsub("[ /.,;:]+", "_", out, perl = TRUE)
+  out <- gsub("_+", "_", out, perl = TRUE)
+  out <- gsub("^_|_$", "", out, perl = TRUE)
+  out
 }
 
 # to_epoch_ms ------------------------------------------------------------------

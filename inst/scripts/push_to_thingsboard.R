@@ -41,6 +41,9 @@
 #                     free tier on ThingsBoard Cloud rejects bulk
 #                     arrays; switch to "bulk" only against
 #                     self-hosted CE.
+#   TB_TELEMETRY_TYPES Comma-separated subset of "gwl,gwq" (default
+#                     both). Useful to skip the slow gwl re-push when
+#                     iterating only on the gwq fix.
 
 stopifnot(
   nzchar(Sys.getenv("TB_HOST")),
@@ -66,6 +69,13 @@ history_days <- as.integer(Sys.getenv("TB_HISTORY_DAYS", "0"))
 # per-record object (smoke test passed for all five devices). Default to
 # the safer single-record mode; override to "bulk" against self-hosted CE.
 telemetry_mode <- Sys.getenv("TB_TELEMETRY_MODE", "single")
+
+# Which telemetry datasets to push. Default both. Set to "gwl" or "gwq"
+# only to skip a long retry after a partial success.
+telemetry_types <- strsplit(
+  Sys.getenv("TB_TELEMETRY_TYPES", "gwl,gwq"),
+  ","
+)[[1L]]
 
 read_json <- function(path) {
   jsonlite::fromJSON(paste0(base_url, "/", path))
@@ -358,7 +368,15 @@ push_telemetry_subset <- function(data, label) {
 }
 
 total <- 0L
-total <- total + push_telemetry_subset(gwl_data, "groundwater level")
-total <- total + push_telemetry_subset(gwq_data, "groundwater quality")
+if ("gwl" %in% telemetry_types) {
+  total <- total + push_telemetry_subset(gwl_data, "groundwater level")
+} else {
+  message("\nSkipping groundwater level (TB_TELEMETRY_TYPES does not include 'gwl').")
+}
+if ("gwq" %in% telemetry_types) {
+  total <- total + push_telemetry_subset(gwq_data, "groundwater quality")
+} else {
+  message("\nSkipping groundwater quality (TB_TELEMETRY_TYPES does not include 'gwq').")
+}
 
 message(sprintf("\nDone. Pushed %d data points total.", total))
