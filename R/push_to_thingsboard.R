@@ -103,7 +103,14 @@ tb_push_station_telemetry <- function(
     ts_col = ts_col,
     value_col = value_col,
     key_col = key_col,
-    single_key = single_key
+    single_key = single_key,
+    # In single mode keep one (ts, key, value) per record -- otherwise
+    # ThingsBoard Cloud Maker rejects the "fat" values dict produced
+    # when many parameters share a timestamp (groundwater quality
+    # often has 30+ analytes per sampling event) with an opaque
+    # empty-body HTTP 500. In bulk mode keep grouping so each chunk
+    # POST stays compact.
+    group_by_ts = mode != "single"
   )
 
   url <- sprintf("%s/api/v1/%s/telemetry", sub("/+$", "", host), device_token)
@@ -421,11 +428,20 @@ tb_push_latest_telemetry <- function(
 #' @param value_col value column name.
 #' @param key_col key column name or `NULL`.
 #' @param single_key telemetry key used when `key_col` is `NULL`.
+#' @param group_by_ts when `TRUE` (default), several rows that share
+#'   the same timestamp are merged into a single record whose
+#'   `values` dict carries every Parameter measured at that point in
+#'   time. Set to `FALSE` to keep one record per row -- ThingsBoard
+#'   Cloud Maker rejects "fat" `values` dicts (the ~30-key
+#'   groundwater-quality records hit an opaque HTTP 500 even though
+#'   each individual key works on its own), so the script flips this
+#'   off in single mode.
 #' @return list of `list(ts = <numeric ms>, values = list(<key> = <value>))`.
 #' @keywords internal
 #' @noRd
 build_telemetry_payload <- function(
-    data, ts_col, value_col, key_col, single_key
+    data, ts_col, value_col, key_col, single_key,
+    group_by_ts = TRUE
 )
 {
   ts_ms <- to_epoch_ms(data[[ts_col]])
@@ -450,12 +466,19 @@ build_telemetry_payload <- function(
   }
   keys <- sanitize_tb_key(keys)
 
-  # Group by timestamp so that several Parameter values that share the same
-  # Datum end up in one ThingsBoard telemetry record.
   ord <- order(ts_ms)
   ts_ms <- ts_ms[ord]
   values <- values[ord]
   keys   <- keys[ord]
+
+  if (!group_by_ts) {
+    return(lapply(seq_along(ts_ms), function(i) {
+      list(
+        ts = ts_ms[i],
+        values = stats::setNames(list(values[i]), keys[i])
+      )
+    }))
+  }
 
   splits <- split(seq_along(ts_ms), ts_ms)
 
