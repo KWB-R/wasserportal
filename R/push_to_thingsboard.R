@@ -131,17 +131,27 @@ tb_push_station_telemetry <- function(
     # Sequential single POSTs are network-bound (~700 ms per request once
     # TLS, server processing and TB's retry overhead are added up). To
     # reclaim that latency we send `max_active` requests concurrently via
-    # httr2::req_perform_parallel(); the per-device 50 messages/second
-    # transport rate limit on the Free tier still leaves headroom for
-    # max_active = 10. Throttle, if requested, applies between batches.
+    # httr2::req_perform_parallel(); the batch size matches max_active so
+    # `throttle_seconds` paces *every* group of concurrent requests, not
+    # only every Nth batch -- otherwise even max_active = 10 quickly
+    # overshoots Free's 600 messages/minute per-device sustained limit.
+    # is_transient is widened so the inevitable 500s from rate-limit
+    # bursts get retried with exponential backoff.
+    is_transient_500 <- function(resp) {
+      httr2::resp_status(resp) %in% c(408L, 429L, 500L, 502L, 503L, 504L)
+    }
     reqs <- lapply(payload, function(record) {
       httr2::request(url) |>
         httr2::req_body_json(record, auto_unbox = TRUE, digits = NA) |>
-        httr2::req_retry(max_tries = 4L, backoff = function(j) 2^j) |>
+        httr2::req_retry(
+          max_tries = 4L,
+          backoff = function(j) 2^j,
+          is_transient = is_transient_500
+        ) |>
         httr2::req_error(body = tb_error_body)
     })
 
-    batch_size <- max(max_active * 10L, 1L)
+    batch_size <- max(max_active, 1L)
     starts <- seq.int(1L, n, by = batch_size)
 
     for (start in starts) {
@@ -339,7 +349,7 @@ tb_plan_defaults <- function(plan = "free")
     free = list(
       mode = "single",
       chunk_size = 1L,
-      throttle_seconds = 0.05,
+      throttle_seconds = 1.0,
       max_active = 10L
     ),
     `free-bulk` = list(
