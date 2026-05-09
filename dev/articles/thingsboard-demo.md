@@ -50,9 +50,10 @@ demo_station_ids <- c("5803900", "5805600", "5867000", "5826200", "5824300")
 
 ## 3. Create Devices in ThingsBoard
 
-`tb_setup_devices()` uses the API key to create one device per
-`Messstellennummer` (or returns the id if it already exists) and reads
-back the device-specific access token used for telemetry pushes.
+[`tb_setup_devices()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_setup_devices.md)
+uses the API key to create one device per `Messstellennummer` (or
+returns the id if it already exists) and reads back the device-specific
+access token used for telemetry pushes.
 
 ``` r
 
@@ -171,13 +172,14 @@ widget. Coordinates pushed as attributes can be used to drop pins on the
 
 ## 7. Re-Running and Idempotency
 
-- `tb_setup_devices()` is idempotent — re-running it returns the
-  existing device tokens.
+- [`tb_setup_devices()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_setup_devices.md)
+  is idempotent — re-running it returns the existing device tokens.
 - Telemetry POSTs are **not** deduplicated by ThingsBoard. Re-running
   the push will create duplicate points at the same timestamp. For
   incremental daily updates, filter `Datum > <last successful run>`
-  before calling `tb_push_station_telemetry()` (e.g. by storing the last
-  timestamp as a server attribute).
+  before calling
+  [`tb_push_station_telemetry()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_push_station_telemetry.md)
+  (e.g. by storing the last timestamp as a server attribute).
 
 ## 8. Switching to Self-Hosted CE
 

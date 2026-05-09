@@ -2,11 +2,16 @@
 
 ## wasserportal 0.5.0.9000 (development version)
 
-- Add `tb_setup_devices()`, `tb_push_station_telemetry()` and
-  `tb_push_station_attributes()` for shipping Wasserportal time series
-  and master data into a ThingsBoard tenant via the device-token
-  telemetry API. `tb_setup_devices()` bootstraps a fresh tenant from an
-  account-level API key, so the rest of the workflow runs from R alone
+- Add
+  [`tb_setup_devices()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_setup_devices.md),
+  [`tb_push_station_telemetry()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_push_station_telemetry.md)
+  and
+  [`tb_push_station_attributes()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_push_station_attributes.md)
+  for shipping Wasserportal time series and master data into a
+  ThingsBoard tenant via the device-token telemetry API.
+  [`tb_setup_devices()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_setup_devices.md)
+  bootstraps a fresh tenant from an account-level API key, so the rest
+  of the workflow runs from R alone
 - Add `vignettes/thingsboard-demo.Rmd` walking through the ThingsBoard
   Cloud free-tier (Maker) demo on `eu.thingsboard.cloud`, including the
   switch to self-hosted Community Edition
@@ -23,9 +28,10 @@
   push to `main` / `master` / `dev`, daily at 07:00 UTC and via
   `workflow_dispatch`. Credentials are read from the `TB_HOST` and
   `TB_API_KEY` repository secrets
-- Authenticate `tb_setup_devices()` with the
-  `X-Authorization: ApiKey <key>` request header that ThingsBoard
-  expects for account-level API keys (the standard
+- Authenticate
+  [`tb_setup_devices()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_setup_devices.md)
+  with the `X-Authorization: ApiKey <key>` request header that
+  ThingsBoard expects for account-level API keys (the standard
   `Authorization: Bearer ...` and the JWT-style
   `X-Authorization: Bearer ...` variants both return HTTP 401)
 - Drop pre-1970 timestamps inside `build_telemetry_payload()`. Some
@@ -45,6 +51,68 @@
   the telemetry and attributes calls so future ThingsBoard failures
   surface the JSON `message` field in the R error instead of the generic
   “HTTP 500 Internal Server Error” wrapper
+- Add
+  [`tb_push_latest_telemetry()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_push_latest_telemetry.md)
+  for the simplest `{"key": value}` form (server-stamped time). Used in
+  `inst/scripts/push_to_thingsboard.R` as a smoke test before the bulk
+  push: the bulk array-of-records form returns an opaque HTTP 500 on the
+  ThingsBoard Cloud Maker free tier even though the same device accepts
+  attribute writes and the simpler per-record format
+- Add a `mode` parameter to
+  [`tb_push_station_telemetry()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_push_station_telemetry.md)
+  (`"single"` by default, `"bulk"` for self-hosted CE). Single mode
+  POSTs each record as a standalone `{"ts": ms, "values": {...}}` object
+  so historical telemetry actually goes through on Maker free; bulk mode
+  keeps the previous fast array-per-chunk behaviour for self-hosted CE
+- Add a `throttle_seconds` parameter to
+  [`tb_push_station_telemetry()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_push_station_telemetry.md)
+  so the inter-request sleep can be tuned per ThingsBoard plan instead
+  of being hardcoded. `NULL` (default) keeps the previous values (50 ms
+  in single mode, 100 ms in bulk mode); pass a non-zero number to slow
+  down or `0` to push as fast as the server permits (e.g. self-hosted
+  CE)
+- Add
+  [`tb_plan_defaults()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_plan_defaults.md)
+  and a matching `TB_PLAN` env var so the GH-Actions push picks `mode`,
+  `chunk_size` and `throttle_seconds` from the per-device transport rate
+  limits documented at
+  <https://thingsboard.io/docs/paas/eu/subscriptions/>. Presets: `free`
+  -\> `single` mode (proven to work end-to-end on the Maker free tier);
+  `free-bulk` -\> experimental bulk preset for Free with
+  `chunk_size = 10` / `throttle_seconds = 1.0` (10 dp/s, well under the
+  100 dp/s burst cap that previously rejected the array form);
+  `prototype` / `pilot` / `startup` / `business` -\> `bulk` with
+  `chunk_size = 30` / `throttle_seconds = 1.0` (~30 dp/s, near the 2 000
+  dp/min per-device cap shared across all paid tiers); `ce` -\>
+  unlimited bulk for self-hosted Community Edition. Add
+  `TB_TELEMETRY_MODE`, `TB_CHUNK_SIZE` and `TB_THROTTLE_SECONDS` env
+  vars on top of `TB_PLAN` so individual values can be overridden
+  without switching plans
+- Expose the plan and the per-run knobs as `workflow_dispatch` inputs in
+  `thingsboard-push.yaml` (`plan`, `station_ids`, `history_days`,
+  `telemetry_types`) and document the workflow_dispatch input -\>
+  repository secret -\> hardcoded default fallback chain in a header
+  comment of the env block. The default plan is now `free-bulk` so the
+  next run tests the faster bulk path on Free
+- Add `inst/extdata/thingsboard-dashboard.json`, an importable
+  ThingsBoard dashboard for the demo: an OpenStreetMap markers map on
+  the `latitude` / `longitude` attributes, a master-data entities table
+  and two time-series charts (groundwater level, selected quality
+  parameters). All four widgets discover the `wasserportal-gw-*` devices
+  via an `entityName`-prefix alias so the import works without
+  hardcoding device IDs. The dashboard-level timewindow defaults to a
+  365-day history (not the realtime sliding window) so charts show the
+  full backfill immediately after import
+- Sanitise telemetry keys before serialising the values dict.
+  Wasserportal groundwater quality parameters such as
+  `Leitfaehigkeit 25 grd C vor Ort`, `Wasserst. (ROK) vor`,
+  `pH-Wert (Feld)` or `Temperatur (Wasser)` triggered an opaque HTTP 500
+  on the Maker free tier when used as raw JSON keys (after the level
+  data already pushed cleanly). The new `sanitize_tb_key()` helper folds
+  umlauts, drops parentheses and replaces spaces / dots / commas with
+  underscores so quality data goes through too. Add a
+  `TB_TELEMETRY_TYPES` env var (`"gwl,gwq"` by default) so a partial
+  retry can skip the slow level re-push and only re-do the quality push
 
 ## [wasserportal 0.5.0](https://github.com/KWB-R/wasserportal/releases/tag/v0.5.0) 2026-05-07
 

@@ -64,8 +64,8 @@
                         <h4 data-toc-skip class="author">Michael
 Rustler</h4>
             
-            <h4 data-toc-skip class="date">2026-05-08
-19:49:12.317222</h4>
+            <h4 data-toc-skip class="date">2026-05-09
+13:20:13.55232</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KWB-R/wasserportal/blob/dev/vignettes/thingsboard-demo.Rmd" class="external-link"><code>vignettes/thingsboard-demo.Rmd</code></a></small>
       <div class="d-none name"><code>thingsboard-demo.Rmd</code></div>
@@ -122,12 +122,12 @@ tier.</p>
 <div class="section level2">
 <h2 id="create-devices-in-thingsboard">3. Create Devices in ThingsBoard<a class="anchor" aria-label="anchor" href="#create-devices-in-thingsboard"></a>
 </h2>
-<p><code>tb_setup_devices()</code> uses the API key to create one device
+<p><code><a href="../reference/tb_setup_devices.html">tb_setup_devices()</a></code> uses the API key to create one device
 per <code>Messstellennummer</code> (or returns the id if it already
 exists) and reads back the device-specific access token used for
 telemetry pushes.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">device_tokens</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu">tb_setup_devices</span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="va">device_tokens</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/tb_setup_devices.html">tb_setup_devices</a></span><span class="op">(</span></span>
 <span>  station_ids <span class="op">=</span> <span class="va">demo_station_ids</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -154,7 +154,7 @@ widgets and rule chains.</p>
 <span>  <span class="va">master_row</span> <span class="op">&lt;-</span> <span class="va">sw_master</span><span class="op">[</span><span class="va">sw_master</span><span class="op">$</span><span class="va">Nummer</span> <span class="op">==</span> <span class="va">station_id</span>, <span class="op">]</span></span>
 <span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">master_row</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0L</span><span class="op">)</span> <span class="kw">next</span></span>
 <span></span>
-<span>  <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu">tb_push_station_attributes</span><span class="op">(</span></span>
+<span>  <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/tb_push_station_attributes.html">tb_push_station_attributes</a></span><span class="op">(</span></span>
 <span>    attributes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">as.list</a></span><span class="op">(</span><span class="va">master_row</span><span class="op">[</span><span class="fl">1L</span>, <span class="op">]</span><span class="op">)</span>,</span>
 <span>    device_token <span class="op">=</span> <span class="va">device_tokens</span><span class="op">[[</span><span class="va">station_id</span><span class="op">]</span><span class="op">]</span></span>
 <span>  <span class="op">)</span></span>
@@ -180,7 +180,7 @@ parameter; for the demo we push the daily water level
 <span>  <span class="va">one_station</span> <span class="op">&lt;-</span> <span class="va">water_level</span><span class="op">[</span><span class="va">water_level</span><span class="op">$</span><span class="va">Messstellennummer</span> <span class="op">==</span> <span class="va">station_id</span>, <span class="op">]</span></span>
 <span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">one_station</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0L</span><span class="op">)</span> <span class="kw">next</span></span>
 <span></span>
-<span>  <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu">tb_push_station_telemetry</span><span class="op">(</span></span>
+<span>  <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/tb_push_station_telemetry.html">tb_push_station_telemetry</a></span><span class="op">(</span></span>
 <span>    data         <span class="op">=</span> <span class="va">one_station</span>,</span>
 <span>    device_token <span class="op">=</span> <span class="va">device_tokens</span><span class="op">[[</span><span class="va">station_id</span><span class="op">]</span><span class="op">]</span>,</span>
 <span>    ts_col       <span class="op">=</span> <span class="st">"Datum"</span>,</span>
@@ -200,14 +200,14 @@ column:</p>
 <span><span class="co"># Pick five groundwater level stations for the free tier</span></span>
 <span><span class="va">gwl</span> <span class="op">&lt;-</span> <span class="va">gw_data</span><span class="op">$</span><span class="va">groundwater.level</span></span>
 <span><span class="va">gwl_demo_ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">gwl</span><span class="op">$</span><span class="va">Messstellennummer</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
-<span><span class="va">gwl_tokens</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu">tb_setup_devices</span><span class="op">(</span></span>
+<span><span class="va">gwl_tokens</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/tb_setup_devices.html">tb_setup_devices</a></span><span class="op">(</span></span>
 <span>  station_ids <span class="op">=</span> <span class="va">gwl_demo_ids</span>,</span>
 <span>  name_prefix <span class="op">=</span> <span class="st">"wasserportal-gwl-"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">station_id</span> <span class="kw">in</span> <span class="va">gwl_demo_ids</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">one_station</span> <span class="op">&lt;-</span> <span class="va">gwl</span><span class="op">[</span><span class="va">gwl</span><span class="op">$</span><span class="va">Messstellennummer</span> <span class="op">==</span> <span class="va">station_id</span>, <span class="op">]</span></span>
-<span>  <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu">tb_push_station_telemetry</span><span class="op">(</span></span>
+<span>  <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/tb_push_station_telemetry.html">tb_push_station_telemetry</a></span><span class="op">(</span></span>
 <span>    data         <span class="op">=</span> <span class="va">one_station</span>,</span>
 <span>    device_token <span class="op">=</span> <span class="va">gwl_tokens</span><span class="op">[[</span><span class="va">station_id</span><span class="op">]</span><span class="op">]</span>,</span>
 <span>    value_col    <span class="op">=</span> <span class="st">"Messwert"</span></span>
@@ -239,13 +239,13 @@ on the <em>Map</em> widget.</p>
 </h2>
 <ul>
 <li>
-<code>tb_setup_devices()</code> is idempotent — re-running it
+<code><a href="../reference/tb_setup_devices.html">tb_setup_devices()</a></code> is idempotent — re-running it
 returns the existing device tokens.</li>
 <li>Telemetry POSTs are <strong>not</strong> deduplicated by
 ThingsBoard. Re-running the push will create duplicate points at the
 same timestamp. For incremental daily updates, filter
 <code>Datum &gt; &lt;last successful run&gt;</code> before calling
-<code>tb_push_station_telemetry()</code> (e.g. by storing the last
+<code><a href="../reference/tb_push_station_telemetry.html">tb_push_station_telemetry()</a></code> (e.g. by storing the last
 timestamp as a server attribute).</li>
 </ul>
 </div>
