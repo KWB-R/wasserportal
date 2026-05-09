@@ -38,8 +38,17 @@
 #'   opaque HTTP 500 even though the same device accepts the per-record
 #'   `{"ts": ms, "values": {...}}` object; single mode therefore POSTs
 #'   each record on its own. Use `"bulk"` against self-hosted CE for
-#'   the much faster array-of-records form.
-#' @param verbose print one line per chunk (default `TRUE`).
+#'   the much faster array-of-records form. See
+#'   \code{\link{tb_plan_defaults}} for plan-aware presets that pick
+#'   `mode`, `chunk_size` and `throttle_seconds` together.
+#' @param throttle_seconds inter-request sleep, in seconds, between
+#'   consecutive HTTP POSTs. `NULL` (default) picks `0.05` for
+#'   `mode = "single"` and `0.1` for `mode = "bulk"`. Increase to stay
+#'   safely below the per-second / per-minute transport rate limits of
+#'   the target ThingsBoard plan; set to `0` to push as fast as the
+#'   server permits (e.g. self-hosted CE).
+#' @param verbose print one line per chunk in bulk mode and one line
+#'   every 100 records in single mode (default `TRUE`).
 #' @return invisibly the number of telemetry timestamps that were sent.
 #' @export
 #' @examples
@@ -265,13 +274,28 @@ tb_push_station_attributes <- function(
 #' Self-hosted ThingsBoard CE has no per-tenant rate limit by default,
 #' hence the much larger chunk size and zero throttle.
 #'
-#' @param plan one of `"free"`, `"prototype"`, `"pilot"`, `"startup"`,
-#'   `"business"`, `"ce"`. Case-insensitive.
+#' @param plan one of
+#'   * `"free"` -- proven Single-record mode (`mode = "single"`,
+#'     `chunk_size = 1`, `throttle_seconds = 0.05`).
+#'   * `"free-bulk"` -- experimental Bulk mode tuned to stay under
+#'     Free's per-device 100 dp/s and 2,000 dp/min caps
+#'     (`chunk_size = 10`, `throttle_seconds = 1.0`); a previous
+#'     bulk attempt at 1,000 dp/s burst was rejected with an empty
+#'     500, so test on a small history before relying on it.
+#'   * `"prototype"`, `"pilot"`, `"startup"`, `"business"` -- the
+#'     paid PaaS tiers. All use `mode = "bulk"`,
+#'     `chunk_size = 30`, `throttle_seconds = 1.0` (~30 dp/s,
+#'     well under the 2,000 dp/min cap that all paid tiers share).
+#'   * `"ce"` -- self-hosted Community Edition: `mode = "bulk"`,
+#'     `chunk_size = 1000`, `throttle_seconds = 0`.
+#'
+#'   Case-insensitive. Unknown values raise an error.
 #' @return named list with `mode`, `chunk_size` and `throttle_seconds`,
 #'   ready to be spread into `tb_push_station_telemetry()`.
 #' @export
 #' @examples
 #' tb_plan_defaults("free")
+#' tb_plan_defaults("free-bulk")
 #' tb_plan_defaults("ce")
 tb_plan_defaults <- function(plan = "free")
 {
