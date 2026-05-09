@@ -102,7 +102,11 @@
   dashboard-level timewindow uses a fixed range from
   `1970-01-01 UTC` (`startTimeMs = 0`) to `2100-01-01 UTC` so
   charts show the full backfill immediately after import,
-  regardless of when the dashboard is loaded. The map widget is not
+  regardless of when the dashboard is loaded. The map widget
+  uses the modern `typeFullFqn = "system.map"` reference rather
+  than the deprecated `bundleAlias = "maps"` / `typeAlias =
+  "openstreetmap"` so it survives ThingsBoard widget-bundle
+  renames between Cloud versions. The map widget is not
   included in the JSON because the bundle alias has shifted
   between ThingsBoard versions and the import would fail; add it
   manually post-import via *Add widget > Maps* against the same

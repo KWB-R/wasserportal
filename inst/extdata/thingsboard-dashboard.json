@@ -4,8 +4,63 @@
   "mobileHide": false,
   "mobileOrder": null,
   "configuration": {
-    "description": "Auto-importable demo dashboard for the kwb-r/wasserportal ThingsBoard push: master-data table for the five Berlin groundwater stations and two time-series charts (level + selected quality parameters). The map widget bundle alias has shifted between ThingsBoard versions, so the map is not part of this JSON; add it manually after import via Add widget > Maps and pick latitude / longitude attributes from the wasserportal_devices alias.",
+    "description": "Auto-importable demo dashboard for the kwb-r/wasserportal ThingsBoard push: an OpenStreetMap on the latitude / longitude attributes, a master-data table for the five Berlin groundwater stations and two time-series charts (level + selected quality parameters). Uses the modern typeFullFqn widget references so it survives ThingsBoard widget-bundle renames.",
     "widgets": {
+      "wp-map": {
+        "id": "wp-map",
+        "typeFullFqn": "system.map",
+        "type": "latest",
+        "title": "Berlin groundwater stations",
+        "sizeX": 12,
+        "sizeY": 7,
+        "config": {
+          "datasources": [
+            {
+              "type": "entity",
+              "entityAliasId": "wasserportal_devices",
+              "dataKeys": [
+                { "name": "latitude",   "type": "attribute", "label": "latitude",   "color": "#2196f3", "settings": {}, "_hash": 0.11 },
+                { "name": "longitude",  "type": "attribute", "label": "longitude",  "color": "#4caf50", "settings": {}, "_hash": 0.12 },
+                { "name": "Bezirk",     "type": "attribute", "label": "Bezirk",     "color": "#f44336", "settings": {}, "_hash": 0.13 },
+                { "name": "Auspraegung","type": "attribute", "label": "Auspraegung","color": "#ff9800", "settings": {}, "_hash": 0.14 }
+              ]
+            }
+          ],
+          "showTitle": true,
+          "title": "Berlin groundwater stations",
+          "showTitleIcon": true,
+          "titleIcon": "map",
+          "iconColor": "#1F6BDD",
+          "titleStyle": { "fontSize": "16px", "fontWeight": 400 },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.87)",
+          "padding": "0px",
+          "margin": "0px",
+          "borderRadius": "0px",
+          "dropShadow": true,
+          "enableFullscreen": true,
+          "configMode": "basic",
+          "pageSize": 1024,
+          "settings": {
+            "mapType": "geoMap",
+            "latKeyName": "latitude",
+            "lngKeyName": "longitude",
+            "showLabel": true,
+            "label": "${entityName}",
+            "showTooltip": true,
+            "tooltipPattern": "<b>${entityName}</b><br/>Bezirk: ${Bezirk}<br/>Auspraegung: ${Auspraegung}<br/>lat/lon: ${latitude}, ${longitude}",
+            "useDefaultCenterPosition": true,
+            "defaultCenterPosition": "52.5200,13.4050",
+            "defaultZoomLevel": 11,
+            "fitMapBounds": true,
+            "mapProvider": "OpenStreetMap.Mapnik",
+            "markers": [],
+            "polygons": [],
+            "circles": [],
+            "additionalDataSources": []
+          }
+        }
+      },
       "wp-attributes": {
         "id": "wp-attributes",
         "isSystemType": true,
@@ -147,9 +202,10 @@
         "layouts": {
           "main": {
             "widgets": {
-              "wp-attributes": { "sizeX": 12, "sizeY": 5, "row": 0,  "col": 0 },
-              "wp-timeseries": { "sizeX": 12, "sizeY": 8, "row": 5,  "col": 0 },
-              "wp-quality":    { "sizeX": 12, "sizeY": 8, "row": 13, "col": 0 }
+              "wp-map":        { "sizeX": 12, "sizeY": 7, "row": 0,  "col": 0 },
+              "wp-attributes": { "sizeX": 12, "sizeY": 5, "row": 7,  "col": 0 },
+              "wp-timeseries": { "sizeX": 12, "sizeY": 8, "row": 12, "col": 0 },
+              "wp-quality":    { "sizeX": 12, "sizeY": 8, "row": 20, "col": 0 }
             },
             "gridSettings": {
               "backgroundColor": "#eeeeee",
