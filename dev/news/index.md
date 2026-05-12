@@ -2,6 +2,23 @@
 
 ## wasserportal 0.5.0.9000 (development version)
 
+- Pass `retry_on_failure = TRUE` to every
+  [`httr2::req_retry()`](https://httr2.r-lib.org/reference/req_retry.html)
+  call in `R/push_to_thingsboard.R` (single-mode and bulk telemetry,
+  attributes, latest telemetry, telemetry delete). The default
+  `req_retry()` only retries HTTP responses with selected status codes;
+  transport-layer dropouts that error out before the request produces a
+  response (TCP “Broken pipe”, peer-closed TLS session, brief DNS
+  hiccups) used to bubble straight up through
+  [`httr2::req_perform_parallel()`](https://httr2.r-lib.org/reference/req_perform_parallel.html)
+  and abort the whole station mid push – observed in the wild after ~25
+  min on station 7044 at record ~9030/13362. With
+  `retry_on_failure = TRUE` the same record gets retried up to four
+  times with the existing exponential backoff (2, 4, 8, 16 s), and
+  because ThingsBoard de-duplicates by `(ts, key)` the retry never
+  produces a duplicate row even when the first attempt actually reached
+  the server before the connection dropped.
+
 - Add
   [`tb_setup_devices()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_setup_devices.md),
   [`tb_push_station_telemetry()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_push_station_telemetry.md)
@@ -12,28 +29,34 @@
   [`tb_setup_devices()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_setup_devices.md)
   bootstraps a fresh tenant from an account-level API key, so the rest
   of the workflow runs from R alone
+
 - Add `vignettes/thingsboard-demo.Rmd` walking through the ThingsBoard
   Cloud free-tier (Maker) demo on `eu.thingsboard.cloud`, including the
   switch to self-hosted Community Edition
+
 - Add `inst/scripts/push_to_thingsboard.R` consuming the daily JSON
   artefacts on the `gh-pages` branch (no Wasserportal scrape of its
   own). The script picks the five groundwater stations with the longest
   combined gwl + gwq history and the most distinct gwq parameters,
   uploads merged master data as device attributes and pushes both the
   level and quality time series as telemetry
+
 - Convert `Rechtswert_UTM_33_N` / `Hochwert_UTM_33_N` (ETRS89 / UTM zone
   33N, EPSG:25833) to WGS84 `latitude` / `longitude` attributes so
   ThingsBoard map widgets work out of the box
+
 - Add `.github/workflows/thingsboard-push.yaml` running the script on
   push to `main` / `master` / `dev`, daily at 07:00 UTC and via
   `workflow_dispatch`. Credentials are read from the `TB_HOST` and
   `TB_API_KEY` repository secrets
+
 - Authenticate
   [`tb_setup_devices()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_setup_devices.md)
   with the `X-Authorization: ApiKey <key>` request header that
   ThingsBoard expects for account-level API keys (the standard
   `Authorization: Bearer ...` and the JWT-style
   `X-Authorization: Bearer ...` variants both return HTTP 401)
+
 - Drop pre-1970 timestamps inside `build_telemetry_payload()`. Some
   Wasserportal groundwater stations start in the 1950s, which yields
   negative epoch milliseconds (the Unix/POSIX epoch is defined as
@@ -47,10 +70,12 @@
   posts. Filtering `ts_ms > 0` keeps the rest of the (post-1970) history
   flowing through. For station 3 this drops about 17 years of monthly
   groundwater level readings while preserving the remaining ~7800 values
+
 - Wire a `tb_error_body()` helper into `httr2::req_error(body = ...)` on
   the telemetry and attributes calls so future ThingsBoard failures
   surface the JSON `message` field in the R error instead of the generic
   “HTTP 500 Internal Server Error” wrapper
+
 - Add
   [`tb_push_latest_telemetry()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_push_latest_telemetry.md)
   for the simplest `{"key": value}` form (server-stamped time). Used in
@@ -58,12 +83,14 @@
   push: the bulk array-of-records form returns an opaque HTTP 500 on the
   ThingsBoard Cloud Maker free tier even though the same device accepts
   attribute writes and the simpler per-record format
+
 - Add a `mode` parameter to
   [`tb_push_station_telemetry()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_push_station_telemetry.md)
   (`"single"` by default, `"bulk"` for self-hosted CE). Single mode
   POSTs each record as a standalone `{"ts": ms, "values": {...}}` object
   so historical telemetry actually goes through on Maker free; bulk mode
   keeps the previous fast array-per-chunk behaviour for self-hosted CE
+
 - Add a `throttle_seconds` parameter to
   [`tb_push_station_telemetry()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_push_station_telemetry.md)
   so the inter-request sleep can be tuned per ThingsBoard plan instead
@@ -71,6 +98,7 @@
   in single mode, 100 ms in bulk mode); pass a non-zero number to slow
   down or `0` to push as fast as the server permits (e.g. self-hosted
   CE)
+
 - Add
   [`tb_plan_defaults()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_plan_defaults.md)
   and a matching `TB_PLAN` env var so the GH-Actions push picks `mode`,
@@ -90,6 +118,7 @@
   self-hosted Community Edition. Add `TB_TELEMETRY_MODE`,
   `TB_CHUNK_SIZE` and `TB_THROTTLE_SECONDS` env vars on top of `TB_PLAN`
   so individual values can be overridden without switching plans
+
 - Expose the plan and the per-run knobs as `workflow_dispatch` inputs in
   `thingsboard-push.yaml` (`plan`, `station_ids`, `history_days`,
   `telemetry_types`) and document the workflow_dispatch input -\>
@@ -98,6 +127,7 @@
   proven to work); `free-bulk` is exposed as a workflow_dispatch option
   but stays out of the cron path until ThingsBoard lifts the Maker
   array-form rejection
+
 - Drop the
   [`tb_push_latest_telemetry()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_push_latest_telemetry.md)
   “smoke test” that `inst/scripts/push_to_thingsboard.R` ran per device
@@ -110,6 +140,7 @@
   fails on its own first POST anyway, so the safety net was redundant.
   [`tb_push_latest_telemetry()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_push_latest_telemetry.md)
   itself stays as an exported helper for ad-hoc connectivity probes
+
 - Add
   [`tb_get_device_id()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_get_device_id.md),
   [`tb_list_device_telemetry_keys()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_list_device_telemetry_keys.md)
@@ -128,6 +159,7 @@
   keeps working after a wipe. Stale rows from the now-removed smoke test
   can also be cleared interactively in the ThingsBoard UI (Device \>
   Latest telemetry \> tick the row \> trash icon)
+
 - Add `inst/extdata/thingsboard-dashboard.json`, an importable
   ThingsBoard dashboard for the demo: an OpenStreetMap of the five
   Berlin groundwater stations, a master-data entities table and two
@@ -151,6 +183,7 @@
   backward-compatible attribute mapping, so markers render right after
   import (an earlier `markers` array variant with `xKey` / `yKey` left
   the map empty against the same lat/lon attributes)
+
 - Speed up `mode = "single"` with
   [`httr2::req_perform_parallel()`](https://httr2.r-lib.org/reference/req_perform_parallel.html).
   The previous sequential one-POST-at-a-time loop was network-bound at
@@ -168,6 +201,7 @@
   messages/minute sustained per-device limit doesn’t trip the gateway
   after ~35 s at 48 records/s (the symptom we hit with the initial
   implementation)
+
 - Send one telemetry record per `(timestamp, key, value)` triple in
   `mode = "single"` instead of grouping every Parameter that shares a
   timestamp into a single record. Wasserportal groundwater quality data
@@ -178,6 +212,7 @@
   smoke tests). `build_telemetry_payload()` gains a `group_by_ts`
   parameter (default `TRUE`); the push function flips it off in single
   mode and keeps grouping in bulk mode for compact array chunks
+
 - Sanitise telemetry keys before serialising the values dict.
   Wasserportal groundwater quality parameters such as
   `Leitfaehigkeit 25 grd C vor Ort`, `Wasserst. (ROK) vor`,
