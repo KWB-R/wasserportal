@@ -55,6 +55,13 @@
   : Read Wasserportal Raw
 - [`read_wasserportal_raw_gw()`](https://kwb-r.github.io/wasserportal/dev/reference/read_wasserportal_raw_gw.md)
   : read_wasserportal_raw_gw
+- [`tb_delete_device_telemetry()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_delete_device_telemetry.md)
+  : Delete All Time-Series Data for Selected Keys on a ThingsBoard
+  Device
+- [`tb_get_device_id()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_get_device_id.md)
+  : Look Up a ThingsBoard Device's UUID by Name
+- [`tb_list_device_telemetry_keys()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_list_device_telemetry_keys.md)
+  : List the Telemetry Keys Currently Stored for a ThingsBoard Device
 - [`tb_plan_defaults()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_plan_defaults.md)
   : Recommended Push Defaults per ThingsBoard Subscription Plan
 - [`tb_push_latest_telemetry()`](https://kwb-r.github.io/wasserportal/dev/reference/tb_push_latest_telemetry.md)

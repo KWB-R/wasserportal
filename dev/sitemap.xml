@@ -38,6 +38,9 @@
 <url><loc>https://kwb-r.github.io/wasserportal/dev/reference/read_wasserportal.html</loc></url>
 <url><loc>https://kwb-r.github.io/wasserportal/dev/reference/read_wasserportal_raw.html</loc></url>
 <url><loc>https://kwb-r.github.io/wasserportal/dev/reference/read_wasserportal_raw_gw.html</loc></url>
+<url><loc>https://kwb-r.github.io/wasserportal/dev/reference/tb_delete_device_telemetry.html</loc></url>
+<url><loc>https://kwb-r.github.io/wasserportal/dev/reference/tb_get_device_id.html</loc></url>
+<url><loc>https://kwb-r.github.io/wasserportal/dev/reference/tb_list_device_telemetry_keys.html</loc></url>
 <url><loc>https://kwb-r.github.io/wasserportal/dev/reference/tb_plan_defaults.html</loc></url>
 <url><loc>https://kwb-r.github.io/wasserportal/dev/reference/tb_push_latest_telemetry.html</loc></url>
 <url><loc>https://kwb-r.github.io/wasserportal/dev/reference/tb_push_station_attributes.html</loc></url>
