@@ -1,7 +1,7 @@
 ---
 title: "ThingsBoard Demo (Free Tier)"
 author: "Michael Rustler"
-date: "`r Sys.time()`"
+date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{ThingsBoard Demo (Free Tier)}
