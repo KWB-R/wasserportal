@@ -4,7 +4,7 @@
   "mobileHide": false,
   "mobileOrder": null,
   "configuration": {
-    "description": "Auto-importable demo dashboard for the kwb-r/wasserportal ThingsBoard push: an OpenStreetMap on the latitude / longitude attributes, a master-data table for the five Berlin groundwater stations and two time-series charts (level + selected quality parameters). The map widget uses the modern typeFullFqn reference together with the latKeyName / lngKeyName settings format that the system.map widget accepts as a stable backward-compatible binding, so markers render right after import without manual basic-configuration tweaks. The dashboard timewindow defaults to a fixed four-year window from 2023-01-01 to 2027-01-01 (covering the four current calendar years) so the time-series charts load quickly and only show the most recent four years of data; widen it from the dashboard time-window selector if more history is needed.",
+    "description": "Auto-importable demo dashboard for the kwb-r/wasserportal ThingsBoard push: an OpenStreetMap on the latitude / longitude attributes, a master-data table for the five Berlin groundwater stations and two time-series charts (level + selected quality parameters). The map widget uses the modern typeFullFqn reference together with the latKeyName / lngKeyName settings format that the system.map widget accepts as a stable backward-compatible binding, so markers render right after import without manual basic-configuration tweaks. The dashboard timewindow defaults to a fixed range from 1970-01-01 (POSIX epoch) to 2027-01-01 UTC with `aggregation = NONE` (and `limit = 50000` points per series), so the charts show raw, unaveraged measurements over the full available history. Each chart returns at most 50000 points per (entity, key) pair which is comfortably above the Wasserportal counts (~16000 GW-Stand and ~8000 GWQ records per station over the whole archive); shorten the dashboard time-window via the selector if you only want to look at a specific period.",
     "widgets": {
       "wp-map": {
         "id": "wp-map",
@@ -139,7 +139,7 @@
               ]
             }
           ],
-          "title": "Groundwater level history (four years)",
+          "title": "Groundwater level history",
           "showTitle": true,
           "showLegend": true,
           "useDashboardTimewindow": true,
@@ -194,7 +194,7 @@
               ]
             }
           ],
-          "title": "Quality parameters (four years)",
+          "title": "Quality parameters",
           "showTitle": true,
           "showLegend": true,
           "useDashboardTimewindow": true,
@@ -253,13 +253,13 @@
       "history": {
         "historyType": 1,
         "interval": 86400000,
-        "timewindowMs": 126230400000,
+        "timewindowMs": 1798761600000,
         "fixedTimewindow": {
-          "startTimeMs": 1672531200000,
+          "startTimeMs": 0,
           "endTimeMs": 1798761600000
         }
       },
-      "aggregation": { "type": "AVG", "limit": 50000 }
+      "aggregation": { "type": "NONE", "limit": 50000 }
     },
     "settings": {
       "stateControllerId": "entity",
