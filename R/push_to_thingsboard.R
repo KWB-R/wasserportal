@@ -136,7 +136,12 @@ tb_push_station_telemetry <- function(
     # only every Nth batch -- otherwise even max_active = 10 quickly
     # overshoots Free's 600 messages/minute per-device sustained limit.
     # is_transient is widened so the inevitable 500s from rate-limit
-    # bursts get retried with exponential backoff.
+    # bursts get retried with exponential backoff, and retry_on_failure
+    # is enabled so transport-layer dropouts (TCP "Broken pipe",
+    # peer-closed TLS session, brief DNS hiccups) on a 25 min push
+    # also get retried instead of aborting the rest of the batch.
+    # All ThingsBoard telemetry POSTs are idempotent on (ts, key) so
+    # a retried record never duplicates data.
     is_transient_500 <- function(resp) {
       httr2::resp_status(resp) %in% c(408L, 429L, 500L, 502L, 503L, 504L)
     }
@@ -144,9 +149,10 @@ tb_push_station_telemetry <- function(
       httr2::request(url) |>
         httr2::req_body_json(record, auto_unbox = TRUE, digits = NA) |>
         httr2::req_retry(
-          max_tries = 4L,
-          backoff = function(j) 2^j,
-          is_transient = is_transient_500
+          max_tries        = 4L,
+          backoff          = function(j) 2^j,
+          is_transient     = is_transient_500,
+          retry_on_failure = TRUE
         ) |>
         httr2::req_error(body = tb_error_body)
     })
@@ -189,7 +195,7 @@ tb_push_station_telemetry <- function(
 
     httr2::request(url) |>
       httr2::req_body_json(chunk, auto_unbox = TRUE, digits = NA) |>
-      httr2::req_retry(max_tries = 4L, backoff = function(i) 2^i) |>
+      httr2::req_retry(max_tries = 4L, backoff = function(i) 2^i, retry_on_failure = TRUE) |>
       httr2::req_error(body = tb_error_body) |>
       httr2::req_perform()
 
@@ -289,7 +295,7 @@ tb_push_station_attributes <- function(
 
   httr2::request(url) |>
     httr2::req_body_json(attributes, auto_unbox = TRUE, digits = NA) |>
-    httr2::req_retry(max_tries = 4L, backoff = function(i) 2^i) |>
+    httr2::req_retry(max_tries = 4L, backoff = function(i) 2^i, retry_on_failure = TRUE) |>
     httr2::req_error(body = tb_error_body) |>
     httr2::req_perform()
 
@@ -451,7 +457,7 @@ tb_push_latest_telemetry <- function(
 
   httr2::request(url) |>
     httr2::req_body_json(values, auto_unbox = TRUE, digits = NA) |>
-    httr2::req_retry(max_tries = 4L, backoff = function(i) 2^i) |>
+    httr2::req_retry(max_tries = 4L, backoff = function(i) 2^i, retry_on_failure = TRUE) |>
     httr2::req_error(body = tb_error_body) |>
     httr2::req_perform()
 
@@ -762,7 +768,7 @@ tb_delete_device_telemetry <- function(
       deleteAllDataForKeys = "true",
       deleteLatest = if (delete_latest) "true" else "false"
     ) |>
-    httr2::req_retry(max_tries = 4L, backoff = function(i) 2^i) |>
+    httr2::req_retry(max_tries = 4L, backoff = function(i) 2^i, retry_on_failure = TRUE) |>
     httr2::req_error(body = tb_error_body) |>
     httr2::req_perform()
 
