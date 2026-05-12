@@ -92,16 +92,50 @@
   `free-bulk` is exposed as a workflow_dispatch option but stays
   out of the cron path until ThingsBoard lifts the Maker
   array-form rejection
+* Drop the `tb_push_latest_telemetry()` "smoke test" that
+  `inst/scripts/push_to_thingsboard.R` ran per device before the bulk
+  telemetry push. The smoke test posted one value per station with
+  `{"key": value}` (no timestamp -- server stamped with the current
+  wall-clock time), originally as a fail-fast probe for the Maker
+  free-tier auth/payload path. The visible side effect was a stale
+  "GW-Stand = <last historical value> @ <push time>" row that drowned
+  out the real most-recent measurement in the device's *Latest
+  telemetry* view. The bulk historical push fails on its own first
+  POST anyway, so the safety net was redundant. `tb_push_latest_telemetry()`
+  itself stays as an exported helper for ad-hoc connectivity probes
+* Add `tb_get_device_id()`, `tb_list_device_telemetry_keys()` and
+  `tb_delete_device_telemetry()` for read-only device discovery and
+  selective telemetry cleanup against the ThingsBoard plugin API
+  (`GET /api/tenant/devices`, `GET /api/plugins/telemetry/DEVICE/{id}/keys/timeseries`,
+  `DELETE /api/plugins/telemetry/DEVICE/{id}/timeseries/delete`). All
+  three accept `TB_HOST` / `TB_API_KEY` from the environment so they
+  can be called from a fresh R session without explicit credentials.
+  Pass `keys = NULL` to `tb_delete_device_telemetry()` to wipe every
+  key the device currently stores; server-side attributes (latitude,
+  longitude, Bezirk, ...) are left in place so the map widget keeps
+  working after a wipe. Stale rows from the now-removed smoke test
+  can also be cleared interactively in the ThingsBoard UI
+  (Device > Latest telemetry > tick the row > trash icon)
 * Add `inst/extdata/thingsboard-dashboard.json`, an importable
-  ThingsBoard dashboard for the demo: an OpenStreetMap markers map
-  on the `latitude` / `longitude` attributes, a master-data
-  entities table and two time-series charts (groundwater level,
-  selected quality parameters). All four widgets discover the
+  ThingsBoard dashboard for the demo: an OpenStreetMap of the
+  five Berlin groundwater stations, a master-data entities
+  table and two time-series charts (groundwater level, selected
+  quality parameters). All four widgets discover the
   `wasserportal-gw-*` devices via an `entityName`-prefix alias so
   the import works without hardcoding device IDs. The
-  dashboard-level timewindow defaults to a 365-day history (not
-  the realtime sliding window) so charts show the full backfill
-  immediately after import
+  dashboard-level timewindow uses a fixed four-year window from
+  `2023-01-01 UTC` to `2027-01-01 UTC` so the charts load
+  quickly (the previous 130-year `1970..2100` window made
+  ThingsBoard show an indefinite loading spinner whenever the
+  time-window was adjusted); widen it from the dashboard
+  time-window selector if you need more history. The map widget
+  uses the modern `typeFullFqn = "system.map"` reference together
+  with the `latKeyName = "latitude"` / `lngKeyName = "longitude"`
+  settings binding that the `system.map` widget accepts as a
+  stable backward-compatible attribute mapping, so markers render
+  right after import (an earlier `markers` array variant with
+  `xKey` / `yKey` left the map empty against the same lat/lon
+  attributes)
 * Speed up `mode = "single"` with `httr2::req_perform_parallel()`.
   The previous sequential one-POST-at-a-time loop was network-bound
   at ~1.2 records/s for the GWQ push (~5 h per station for the full
