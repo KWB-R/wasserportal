@@ -64,8 +64,7 @@
                         <h4 data-toc-skip class="author">Michael
 Rustler</h4>
             
-            <h4 data-toc-skip class="date">2026-05-12
-08:03:21.277016</h4>
+            <h4 data-toc-skip class="date">2026-05-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KWB-R/wasserportal/blob/dev/vignettes/thingsboard-demo.Rmd" class="external-link"><code>vignettes/thingsboard-demo.Rmd</code></a></small>
       <div class="d-none name"><code>thingsboard-demo.Rmd</code></div>
@@ -73,11 +72,22 @@ Rustler</h4>
 
     
     
-<p>This vignette shows how to push Wasserportal Berlin data into a <a href="https://thingsboard.io" class="external-link">ThingsBoard</a> instance — for example the
+<p>This vignette walks through pushing Berlin
+<strong>groundwater</strong> stations from <a href="https://wasserportal.berlin.de" class="external-link">Wasserportal</a> into a <a href="https://thingsboard.io" class="external-link">ThingsBoard</a> tenant – typically the
 <strong>free Maker tier</strong> on
-<code>https://eu.thingsboard.cloud</code> (5 devices, 1M data
-points/month). The same code works against self-hosted ThingsBoard
-Community Edition by changing <code>TB_HOST</code>.</p>
+<code>https://eu.thingsboard.cloud</code> (5 devices, 1 M data points /
+month). The same code works against self-hosted ThingsBoard Community
+Edition (CE) by pointing <code>TB_HOST</code> at it.</p>
+<p>Groundwater is the primary focus because that is what the daily
+GitHub-Actions push
+(<code>.github/workflows/thingsboard-push.yaml</code>) and the
+importable dashboard at
+<code>inst/extdata/thingsboard-dashboard.json</code> ship out of the
+box: five Berlin groundwater stations with both a <strong>level</strong>
+(<code>GW-Stand</code>) time series and a <strong>quality</strong> time
+series spanning dozens of analytes (<code>Chlorid</code>,
+<code>Nitrat</code>, <code>Sulfat</code>, …). A short note at the end
+shows how the same primitives apply to surface water gauges.</p>
 <div class="section level2">
 <h2 id="prerequisites">1. Prerequisites<a class="anchor" aria-label="anchor" href="#prerequisites"></a>
 </h2>
@@ -85,8 +95,8 @@ Community Edition by changing <code>TB_HOST</code>.</p>
 <li><p>Sign up at <a href="https://eu.thingsboard.cloud" class="external-link uri">https://eu.thingsboard.cloud</a> (EU) or <a href="https://thingsboard.cloud" class="external-link uri">https://thingsboard.cloud</a> (US).</p></li>
 <li><p>Generate an <strong>account API key</strong>: <em>Account &gt;
 Security &gt; API keys &gt; Generate</em>. Give it a description like
-<code>wasserportal-demo</code> and copy the key once (it is shown only
-on creation).</p></li>
+<code>wasserportal-demo</code> and copy the key once – it is only shown
+on creation.</p></li>
 <li>
 <p>Install the package and <code>httr2</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -98,166 +108,436 @@ on creation).</p></li>
 <code>~/.Renviron</code>):</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>TB_HOST<span class="ot">=</span>https<span class="sc">:</span><span class="er">//</span>eu.thingsboard.cloud</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>TB_API_KEY<span class="ot">=</span><span class="er">&lt;</span>your<span class="sc">-</span>api<span class="sc">-</span>key<span class="sc">&gt;</span></span></code></pre></div>
-<p>Restart your R session so the variables are loaded.</p>
+<p>Restart the R session so the variables are loaded.</p>
 </li>
 </ol>
 <blockquote>
-<p><strong>Free-Tier-Limit</strong>: 5 devices. The demo therefore
+<p><strong>Free-tier limit</strong>: 5 devices. The demo therefore
 pushes a small selection of stations. To push the full Wasserportal
-dataset you need to self-host ThingsBoard CE or upgrade to a paid Cloud
+archive you need to self-host ThingsBoard CE or upgrade to a paid Cloud
 tier.</p>
 </blockquote>
 </div>
 <div class="section level2">
-<h2 id="pick-a-handful-of-stations">2. Pick a Handful of Stations<a class="anchor" aria-label="anchor" href="#pick-a-handful-of-stations"></a>
+<h2 id="inspect-what-will-be-pushed">2. Inspect What Will Be Pushed<a class="anchor" aria-label="anchor" href="#inspect-what-will-be-pushed"></a>
 </h2>
+<p>The <code>pkgdown</code> workflow publishes the day’s groundwater
+level and quality ZIPs to the <code>gh-pages</code> branch every morning
+at 05:00 UTC. <code><a href="../reference/inspect_gh_pages_zips.html">inspect_gh_pages_zips()</a></code> downloads and
+summarises them locally so you can see record counts per station before
+any data hits ThingsBoard:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/KWB-R/wasserportal" class="external-link">wasserportal</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">stations</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/get_stations.html">get_stations</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/inspect_gh_pages_zips.html">inspect_gh_pages_zips</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">gwl</span> <span class="op">&lt;-</span> <span class="va">dat</span><span class="op">$</span><span class="va">groundwater_level</span>     <span class="co"># daily groundwater level</span></span>
+<span><span class="va">gwq</span> <span class="op">&lt;-</span> <span class="va">dat</span><span class="op">$</span><span class="va">groundwater_quality</span>   <span class="co"># irregular groundwater quality</span></span>
 <span></span>
-<span><span class="co"># Five well-known Berlin surface water level gauges as a demo selection.</span></span>
-<span><span class="va">demo_station_ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"5803900"</span>, <span class="st">"5805600"</span>, <span class="st">"5867000"</span>, <span class="st">"5826200"</span>, <span class="st">"5824300"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="co"># Five top stations by combined gwl+gwq history &amp; analyte breadth:</span></span>
+<span><span class="va">demo_station_ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"6038"</span>, <span class="st">"7044"</span>, <span class="st">"7045"</span>, <span class="st">"7206"</span>, <span class="st">"7207"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Expected record counts (full archive):</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">gwl</span><span class="op">$</span><span class="va">Messstellennummer</span><span class="op">[</span><span class="va">gwl</span><span class="op">$</span><span class="va">Messstellennummer</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">demo_station_ids</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">gwq</span><span class="op">$</span><span class="va">Messstellennummer</span><span class="op">[</span><span class="va">gwq</span><span class="op">$</span><span class="va">Messstellennummer</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">demo_station_ids</span><span class="op">]</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Drill into one station, see how many distinct GWQ parameters it has:</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">gwq</span><span class="op">$</span><span class="va">Parameter</span><span class="op">[</span><span class="va">gwq</span><span class="op">$</span><span class="va">Messstellennummer</span> <span class="op">==</span> <span class="st">"6038"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>The <code>inst/scripts/push_to_thingsboard.R</code> script picks
+these top-five automatically via the score
+<code>(n_gwl_rows + n_gwq_rows) * n_distinct_gwq_parameters</code>, so
+you can also just let the production script choose for you.</p>
 </div>
 <div class="section level2">
 <h2 id="create-devices-in-thingsboard">3. Create Devices in ThingsBoard<a class="anchor" aria-label="anchor" href="#create-devices-in-thingsboard"></a>
 </h2>
-<p><code><a href="../reference/tb_setup_devices.html">tb_setup_devices()</a></code> uses the API key to create one device
-per <code>Messstellennummer</code> (or returns the id if it already
-exists) and reads back the device-specific access token used for
-telemetry pushes.</p>
+<p><code><a href="../reference/tb_setup_devices.html">tb_setup_devices()</a></code> uses the API key to create (or look
+up) one device per <code>Messstellennummer</code> and reads back the
+device-specific access token used for telemetry pushes. The device
+profile defaults to <code>wasserportal</code> and is auto-created on
+first use.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">device_tokens</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/tb_setup_devices.html">tb_setup_devices</a></span><span class="op">(</span></span>
-<span>  station_ids <span class="op">=</span> <span class="va">demo_station_ids</span></span>
+<span>  station_ids <span class="op">=</span> <span class="va">demo_station_ids</span>,</span>
+<span>  name_prefix <span class="op">=</span> <span class="st">"wasserportal-gw-"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Names are Messstellennummer, values are tokens. Treat as secret.</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">device_tokens</span><span class="op">)</span></span></code></pre></div>
+<p>Re-running is safe: existing devices are reused, their tokens are
+re-read but not regenerated.</p>
 </div>
 <div class="section level2">
 <h2 id="push-station-master-data-as-attributes">4. Push Station Master Data as Attributes<a class="anchor" aria-label="anchor" href="#push-station-master-data-as-attributes"></a>
 </h2>
-<p>Static metadata (coordinates, level reference, operator) is sent once
-per station as ThingsBoard <em>attributes</em>. They show up under the
-device’s <em>Attributes &gt; Server</em> tab and can be referenced from
-widgets and rule chains.</p>
+<p>Static metadata (district, aquifer, terrain elevation, screen depth,
+operator, …) is sent once per station as ThingsBoard
+<em>attributes</em>. They show up under the device’s <em>Attributes &gt;
+Server</em> tab and are referenced from the dashboard widgets (the
+master-data table and the map’s marker tooltips).</p>
+<p>The Wasserportal master files report coordinates in ETRS89 / UTM zone
+33N (EPSG:25833); ThingsBoard map widgets read WGS84 from attributes
+named exactly <code>latitude</code> and <code>longitude</code>. The push
+script does the conversion via <code><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">sf::st_transform()</a></code> before
+posting the attributes, so the OpenStreetMap markers drop in the right
+place without any UI fiddling.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sw_master_urls</span> <span class="op">&lt;-</span> <span class="va">stations</span><span class="op">$</span><span class="va">overview_list</span><span class="op">$</span><span class="va">surface_water.water_level</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">Messstellennummer</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">demo_station_ids</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">stammdaten_link</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">sw_master</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/get_wasserportal_masters_data.html">get_wasserportal_masters_data</a></span><span class="op">(</span></span>
-<span>  master_urls <span class="op">=</span> <span class="va">sw_master_urls</span></span>
+<code class="sourceCode R"><span><span class="va">gwl_master</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span></span>
+<span>  <span class="st">"https://kwb-r.github.io/wasserportal/stations_gwl_master.json"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">gwq_master</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span></span>
+<span>  <span class="st">"https://kwb-r.github.io/wasserportal/stations_gwq_master.json"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
+<span><span class="co"># (simplified: combine gwl + gwq master per station, then push)</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">station_id</span> <span class="kw">in</span> <span class="va">demo_station_ids</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">master_row</span> <span class="op">&lt;-</span> <span class="va">sw_master</span><span class="op">[</span><span class="va">sw_master</span><span class="op">$</span><span class="va">Nummer</span> <span class="op">==</span> <span class="va">station_id</span>, <span class="op">]</span></span>
-<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">master_row</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0L</span><span class="op">)</span> <span class="kw">next</span></span>
-<span></span>
+<span>  <span class="va">attrs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">as.list</a></span><span class="op">(</span></span>
+<span>    <span class="va">gwl_master</span><span class="op">[</span><span class="va">gwl_master</span><span class="op">$</span><span class="va">Nummer</span> <span class="op">==</span> <span class="va">station_id</span>, , drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span></span>
+<span>  <span class="op">)</span></span>
+<span>  <span class="co"># ... merge gwq fields, drop NA / list columns, convert UTM33N -&gt; WGS84</span></span>
+<span>  <span class="co"># (see inst/scripts/push_to_thingsboard.R for the full helper)</span></span>
 <span>  <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/tb_push_station_attributes.html">tb_push_station_attributes</a></span><span class="op">(</span></span>
-<span>    attributes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">as.list</a></span><span class="op">(</span><span class="va">master_row</span><span class="op">[</span><span class="fl">1L</span>, <span class="op">]</span><span class="op">)</span>,</span>
+<span>    attributes   <span class="op">=</span> <span class="va">attrs</span>,</span>
 <span>    device_token <span class="op">=</span> <span class="va">device_tokens</span><span class="op">[[</span><span class="va">station_id</span><span class="op">]</span><span class="op">]</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
+<p>In practice run
+<code>Rscript inst/scripts/push_to_thingsboard.R</code> instead of
+hand-rolling the master-data flatten step – the script ships the
+production-grade version including UTM-to-WGS84 conversion, NA filtering
+and shared key fallbacks between gwl and gwq master tables.</p>
 </div>
 <div class="section level2">
-<h2 id="push-daily-time-series">5. Push Daily Time Series<a class="anchor" aria-label="anchor" href="#push-daily-time-series"></a>
+<h2 id="push-time-series-level-quality">5. Push Time Series (Level + Quality)<a class="anchor" aria-label="anchor" href="#push-time-series-level-quality"></a>
 </h2>
-<p>The <code><a href="../reference/get_daily_surfacewater_data.html">get_daily_surfacewater_data()</a></code> result is keyed by
-parameter; for the demo we push the daily water level
-(<code>Tagesmittelwert</code>).</p>
+<p><code><a href="../reference/tb_push_station_telemetry.html">tb_push_station_telemetry()</a></code> pivots the long-format
+Wasserportal data on the fly so every distinct <code>Parameter</code>
+value becomes a ThingsBoard telemetry key sharing the same
+timestamp.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">variables</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/get_surfacewater_variables.html">get_surfacewater_variables</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">sw_data_daily</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/get_daily_surfacewater_data.html">get_daily_surfacewater_data</a></span><span class="op">(</span></span>
-<span>  stations  <span class="op">=</span> <span class="va">stations</span>,</span>
-<span>  variables <span class="op">=</span> <span class="va">variables</span><span class="op">[</span><span class="st">"surface_water.water_level"</span><span class="op">]</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">water_level</span> <span class="op">&lt;-</span> <span class="va">sw_data_daily</span><span class="op">$</span><span class="va">surface_water.water_level</span></span>
-<span></span>
+<code class="sourceCode R"><span><span class="co"># Pushed as telemetry keys "GW-Stand", "Wassertemperatur", ...</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">station_id</span> <span class="kw">in</span> <span class="va">demo_station_ids</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">one_station</span> <span class="op">&lt;-</span> <span class="va">water_level</span><span class="op">[</span><span class="va">water_level</span><span class="op">$</span><span class="va">Messstellennummer</span> <span class="op">==</span> <span class="va">station_id</span>, <span class="op">]</span></span>
-<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">one_station</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0L</span><span class="op">)</span> <span class="kw">next</span></span>
+<span>  <span class="va">one</span> <span class="op">&lt;-</span> <span class="va">gwl</span><span class="op">[</span><span class="va">gwl</span><span class="op">$</span><span class="va">Messstellennummer</span> <span class="op">==</span> <span class="va">station_id</span>, , drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">one</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0L</span><span class="op">)</span> <span class="kw">next</span></span>
 <span></span>
 <span>  <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/tb_push_station_telemetry.html">tb_push_station_telemetry</a></span><span class="op">(</span></span>
-<span>    data         <span class="op">=</span> <span class="va">one_station</span>,</span>
+<span>    data         <span class="op">=</span> <span class="va">one</span>,</span>
 <span>    device_token <span class="op">=</span> <span class="va">device_tokens</span><span class="op">[[</span><span class="va">station_id</span><span class="op">]</span><span class="op">]</span>,</span>
+<span>    ts_col       <span class="op">=</span> <span class="st">"Datum"</span>,</span>
+<span>    value_col    <span class="op">=</span> <span class="st">"Messwert"</span>,</span>
+<span>    key_col      <span class="op">=</span> <span class="st">"Parameter"</span>,</span>
+<span>    mode         <span class="op">=</span> <span class="st">"single"</span>        <span class="co"># see section 6</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<p>For groundwater quality the call is identical – the wide value-key
+matrix is built per-record so <code>Chlorid</code>, <code>Nitrat</code>,
+… all land as separate telemetry keys:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw">for</span> <span class="op">(</span><span class="va">station_id</span> <span class="kw">in</span> <span class="va">demo_station_ids</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">one</span> <span class="op">&lt;-</span> <span class="va">gwq</span><span class="op">[</span><span class="va">gwq</span><span class="op">$</span><span class="va">Messstellennummer</span> <span class="op">==</span> <span class="va">station_id</span>, , drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">one</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0L</span><span class="op">)</span> <span class="kw">next</span></span>
+<span></span>
+<span>  <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/tb_push_station_telemetry.html">tb_push_station_telemetry</a></span><span class="op">(</span></span>
+<span>    data         <span class="op">=</span> <span class="va">one</span>,</span>
+<span>    device_token <span class="op">=</span> <span class="va">device_tokens</span><span class="op">[[</span><span class="va">station_id</span><span class="op">]</span><span class="op">]</span>,</span>
+<span>    ts_col       <span class="op">=</span> <span class="st">"Datum"</span>,</span>
+<span>    value_col    <span class="op">=</span> <span class="st">"Messwert"</span>,</span>
+<span>    key_col      <span class="op">=</span> <span class="st">"Parameter"</span>,</span>
+<span>    mode         <span class="op">=</span> <span class="st">"single"</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<p>Two transforms run silently inside the helper that are worth knowing
+about for debugging:</p>
+<ul>
+<li>
+<strong>Key sanitisation</strong> (<code>sanitize_tb_key()</code>):
+Wasserportal GWQ parameter names like
+<code>Leitfaehigkeit 25 grd C vor Ort</code> or
+<code>pH-Wert (Feld)</code> trigger an opaque HTTP 500 on the Maker free
+tier when used as raw JSON keys. The helper folds umlauts, drops
+parentheses and replaces spaces / dots / commas with underscores (so
+e.g. <code>pH-Wert_Feld</code>,
+<code>Leitfaehigkeit_25_grd_C_vor_Ort</code>). The ThingsBoard dashboard
+widgets reference these sanitised names, not the raw German labels.</li>
+<li>
+<strong>Pre-1970 filtering</strong>
+(<code>build_telemetry_payload()</code>): some Wasserportal groundwater
+stations start in the 1950s, which yields negative epoch milliseconds.
+ThingsBoard transports <code>ts</code> as a Java <code>Long</code> of
+epoch milliseconds; negative values are spec-legal but the Maker free
+tier returns an opaque HTTP 500 to such posts. Records with
+<code>ts_ms &lt;= 0</code> are silently dropped; for a typical Berlin
+station this trims ~17 years of pre-1970 monthly readings while
+preserving the post-1970 history.</li>
+</ul>
+</div>
+<div class="section level2">
+<h2 id="plan-aware-tuning">6. Plan-Aware Tuning<a class="anchor" aria-label="anchor" href="#plan-aware-tuning"></a>
+</h2>
+<p>ThingsBoard PaaS subscription tiers have very different per-device
+transport rate limits, and the Maker free tier additionally rejects the
+bulk array-of-records form on the device telemetry endpoint regardless
+of payload size. <code><a href="../reference/tb_plan_defaults.html">tb_plan_defaults()</a></code> wraps the documented
+limits into the parameters this package’s push functions take:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/tb_plan_defaults.html">tb_plan_defaults</a></span><span class="op">(</span><span class="st">"free"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $mode             "single"   # array form rejected on Maker</span></span>
+<span><span class="co">#&gt; $chunk_size       1L</span></span>
+<span><span class="co">#&gt; $throttle_seconds 1.0</span></span>
+<span><span class="co">#&gt; $max_active       10L</span></span>
+<span></span>
+<span><span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/tb_plan_defaults.html">tb_plan_defaults</a></span><span class="op">(</span><span class="st">"ce"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $mode             "bulk"     # no rate limit on self-hosted</span></span>
+<span><span class="co">#&gt; $chunk_size       1000L</span></span>
+<span><span class="co">#&gt; $throttle_seconds 0</span></span>
+<span><span class="co">#&gt; $max_active       1L</span></span></code></pre></div>
+<p>Pass the result straight through to the push function:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">preset</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/tb_plan_defaults.html">tb_plan_defaults</a></span><span class="op">(</span><span class="st">"free"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/tb_push_station_telemetry.html">tb_push_station_telemetry</a></span><span class="op">(</span></span>
+<span>  data             <span class="op">=</span> <span class="va">one</span>,</span>
+<span>  device_token     <span class="op">=</span> <span class="va">device_tokens</span><span class="op">[[</span><span class="va">station_id</span><span class="op">]</span><span class="op">]</span>,</span>
+<span>  mode             <span class="op">=</span> <span class="va">preset</span><span class="op">$</span><span class="va">mode</span>,</span>
+<span>  chunk_size       <span class="op">=</span> <span class="va">preset</span><span class="op">$</span><span class="va">chunk_size</span>,</span>
+<span>  throttle_seconds <span class="op">=</span> <span class="va">preset</span><span class="op">$</span><span class="va">throttle_seconds</span>,</span>
+<span>  max_active       <span class="op">=</span> <span class="va">preset</span><span class="op">$</span><span class="va">max_active</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>In <code>mode = "single"</code> the helper sends each
+<code>(ts, key, value)</code> record as a standalone
+<code>{"ts": ms, "values": {&lt;key&gt;: &lt;value&gt;}}</code> POST.
+The loop runs <code>max_active</code> requests concurrently via
+<code><a href="https://httr2.r-lib.org/reference/req_perform_parallel.html" class="external-link">httr2::req_perform_parallel()</a></code>, paced one max_active-group
+at a time by <code>throttle_seconds</code> so even Free’s 600
+messages-per-minute per-device sustained limit is respected. Transient
+HTTP 408/429/500/502/503/504 are retried with exponential backoff (2 s,
+4 s, 8 s, 16 s).</p>
+</div>
+<div class="section level2">
+<h2 id="visualise-import-the-demo-dashboard">7. Visualise – Import the Demo Dashboard<a class="anchor" aria-label="anchor" href="#visualise-import-the-demo-dashboard"></a>
+</h2>
+<p>The package ships an auto-importable dashboard at
+<code>inst/extdata/thingsboard-dashboard.json</code> so you do not have
+to wire up widgets by hand. It contains four widgets, all driven by an
+entity-name-prefix alias (<code>wasserportal-gw-*</code>) so no device
+IDs are hardcoded:</p>
+<ul>
+<li>
+<strong>Berlin groundwater stations</strong> – OpenStreetMap with
+one marker per device. Binds via the legacy-style
+<code>latKeyName: "latitude"</code> /
+<code>lngKeyName: "longitude"</code> settings that the
+<code>system.map</code> widget accepts as a stable backward-compatible
+attribute mapping, with marker labels and tooltips driven by the
+<code>entityName</code>, <code>Bezirk</code> and
+<code>Auspraegung</code> attributes.</li>
+<li>
+<strong>Master data per station</strong> – table widget showing
+Bezirk, Ausprägung, aquifer, terrain elevation (GOK) and screen depth
+per station.</li>
+<li>
+<strong>Groundwater level history</strong> – time-series chart of
+the <code>GW-Stand</code> key across all five stations.</li>
+<li>
+<strong>Quality parameters</strong> – time-series chart for
+<code>Nitrat</code>, <code>Chlorid</code>, <code>Sulfat</code> (extend
+interactively with more keys via the legend / data-source editor).</li>
+</ul>
+<p>The dashboard-level timewindow is
+<code>1970-01-01 .. 2027-01-01 UTC</code> with
+<code>aggregation = NONE</code> (and <code>limit = 50000</code> points
+per series), so the charts display raw unaveraged measurements over the
+full Wasserportal archive. The server only needs to return up to 50000
+sorted raw points per (entity, key) pair, which is comfortably above the
+~16000 GW-Stand and ~8000 GWQ records per station in the archive.</p>
+<p>To import:</p>
+<ol style="list-style-type: decimal">
+<li>In ThingsBoard go to <strong>Dashboards</strong> → top-right
+<strong>+</strong> → <strong>Import dashboard</strong>.</li>
+<li>Drop in <code>inst/extdata/thingsboard-dashboard.json</code> or
+paste its contents.</li>
+<li>Open the dashboard. The map auto-fits to the five stations; the
+table fills from server attributes; the charts use the dashboard-level
+timewindow defined above.</li>
+</ol>
+<p>If you want to add a chart for another GWQ parameter (Wasserportal
+exposes ~190–220 distinct analytes per station), the quickest path is
+the device-side discovery view: in <strong>Devices &gt;
+wasserportal-gw-</strong>* <strong>&gt; Latest telemetry</strong>, hover
+over the row of interest and click the small chart icon to plot that
+key’s history without touching the dashboard.</p>
+</div>
+<div class="section level2">
+<h2 id="operational-helpers">8. Operational Helpers<a class="anchor" aria-label="anchor" href="#operational-helpers"></a>
+</h2>
+<p>A handful of read / cleanup helpers complement the push
+primitives:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Look up a device's internal UUID by name (returns NA if missing):</span></span>
+<span><span class="va">dev_id</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/tb_get_device_id.html">tb_get_device_id</a></span><span class="op">(</span><span class="st">"wasserportal-gw-6038"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Discover every telemetry key the device currently stores:</span></span>
+<span><span class="va">keys</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/tb_list_device_telemetry_keys.html">tb_list_device_telemetry_keys</a></span><span class="op">(</span><span class="va">dev_id</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">keys</span><span class="op">)</span>              <span class="co"># typically ~190-220 for the demo stations</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">keys</span>, <span class="fl">10</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Wipe stale rows. By default deletes every key the device knows;</span></span>
+<span><span class="co"># server-side attributes (latitude, longitude, Bezirk, ...) are NOT</span></span>
+<span><span class="co"># touched, so the map widget keeps working after a wipe.</span></span>
+<span><span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/tb_delete_device_telemetry.html">tb_delete_device_telemetry</a></span><span class="op">(</span><span class="va">dev_id</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Or wipe just one key (e.g. after a Parameter rename):</span></span>
+<span><span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/tb_delete_device_telemetry.html">tb_delete_device_telemetry</a></span><span class="op">(</span><span class="va">dev_id</span>, keys <span class="op">=</span> <span class="st">"GW-Stand"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Smoke-test the device-token auth path without a timestamp -- the</span></span>
+<span><span class="co"># server stamps it with the current wall-clock time:</span></span>
+<span><span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/tb_push_latest_telemetry.html">tb_push_latest_telemetry</a></span><span class="op">(</span></span>
+<span>  values       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>`GW-Stand` <span class="op">=</span> <span class="fl">35.6</span><span class="op">)</span>,</span>
+<span>  device_token <span class="op">=</span> <span class="va">device_tokens</span><span class="op">[[</span><span class="st">"6038"</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p><code><a href="../reference/tb_push_latest_telemetry.html">tb_push_latest_telemetry()</a></code> is the simplest possible
+telemetry POST (<code>{"key": value}</code>); historically it was wired
+into the demo push script as a fail-fast probe but the visible side
+effect was a stale “GW-Stand = <last historical value> @ <push time>”
+row that drowned out the real most-recent measurement. The probe has
+been removed from <code>inst/scripts/push_to_thingsboard.R</code>; the
+helper itself stays as a one-off connectivity check.</push></last></p>
+</div>
+<div class="section level2">
+<h2 id="production-push-via-github-actions">9. Production Push via GitHub Actions<a class="anchor" aria-label="anchor" href="#production-push-via-github-actions"></a>
+</h2>
+<p>The <code>.github/workflows/thingsboard-push.yaml</code> workflow
+runs the <code>inst/scripts/push_to_thingsboard.R</code> script on push
+to <code>main</code> / <code>master</code> / <code>dev</code>, daily at
+07:00 UTC via cron, and on <code>workflow_dispatch</code>. Required
+repository secrets:</p>
+<ul>
+<li>
+<code>TB_HOST</code> –
+e.g. <code>https://eu.thingsboard.cloud</code>
+</li>
+<li>
+<code>TB_API_KEY</code> – account-level API key</li>
+</ul>
+<p>Optional <code>workflow_dispatch</code> inputs override the cron
+defaults for a single run without editing the YAML:</p>
+<table class="table">
+<colgroup>
+<col width="14%">
+<col width="74%">
+<col width="10%">
+</colgroup>
+<thead><tr class="header">
+<th>Input</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>station_ids</code></td>
+<td>Comma-separated Messstellennummer values. Empty = auto-pick top 5 by
+(gwl+gwq) × q-params.</td>
+<td><code>6038,7044</code></td>
+</tr>
+<tr class="even">
+<td><code>history_days</code></td>
+<td>Push only the most recent N days per station (<code>0</code> = full
+history).</td>
+<td><code>1460</code></td>
+</tr>
+<tr class="odd">
+<td><code>telemetry_types</code></td>
+<td>Subset of <code>gwl,gwq</code> to push.</td>
+<td><code>gwl</code></td>
+</tr>
+<tr class="even">
+<td><code>plan</code></td>
+<td>ThingsBoard plan: <code>free</code> / <code>free-bulk</code> /
+<code>prototype</code> / <code>pilot</code> / <code>startup</code> /
+<code>business</code> / <code>ce</code>.</td>
+<td><code>free</code></td>
+</tr>
+</tbody>
+</table>
+<p>These mirror the underlying env vars (<code>TB_STATION_IDS</code>,
+<code>TB_HISTORY_DAYS</code>, <code>TB_TELEMETRY_TYPES</code>,
+<code>TB_PLAN</code>) which the script also reads from the environment
+if run standalone.</p>
+</div>
+<div class="section level2">
+<h2 id="re-running-and-idempotency">10. Re-Running and Idempotency<a class="anchor" aria-label="anchor" href="#re-running-and-idempotency"></a>
+</h2>
+<ul>
+<li>
+<code><a href="../reference/tb_setup_devices.html">tb_setup_devices()</a></code> is idempotent: re-running it returns
+the existing device tokens unchanged.</li>
+<li>
+<code><a href="../reference/tb_push_station_attributes.html">tb_push_station_attributes()</a></code> overwrites the previous
+attribute values on every push (ThingsBoard attributes are
+last-write-wins).</li>
+<li>
+<code><a href="../reference/tb_push_station_telemetry.html">tb_push_station_telemetry()</a></code> does <strong>not</strong>
+track which records were already pushed. ThingsBoard de-duplicates on
+the server side by <code>(timestamp, key)</code> – identical pairs are
+overwritten in place, not duplicated – but the helper still POSTs every
+record again, so a full <code>TB_HISTORY_DAYS=0</code> re-run takes the
+same ~1.5 h on the Maker free tier as the first push.</li>
+<li>For incremental daily pushes set <code>TB_HISTORY_DAYS=30</code> (or
+so) in the workflow: only the recent rows are re-broadcast, older
+history is skipped client-side and stays untouched on ThingsBoard.</li>
+</ul>
+</div>
+<div class="section level2">
+<h2 id="surface-water-as-an-alternative">11. Surface Water as an Alternative<a class="anchor" aria-label="anchor" href="#surface-water-as-an-alternative"></a>
+</h2>
+<p>The same primitives push surface-water gauges – the call signature
+only differs in the value column name (<code>Tagesmittelwert</code>
+instead of <code>Messwert</code>) and a different
+<code>name_prefix</code> to keep the devices in separate ThingsBoard
+namespaces. A minimal example:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sw_data_daily</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/get_daily_surfacewater_data.html">get_daily_surfacewater_data</a></span><span class="op">(</span></span>
+<span>  stations <span class="op">=</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/get_stations.html">get_stations</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">sw_water_level</span> <span class="op">&lt;-</span> <span class="va">sw_data_daily</span><span class="op">$</span><span class="va">surface_water.water_level</span></span>
+<span></span>
+<span><span class="va">sw_demo_ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"5803900"</span>, <span class="st">"5805600"</span>, <span class="st">"5867000"</span>, <span class="st">"5826200"</span>, <span class="st">"5824300"</span><span class="op">)</span></span>
+<span><span class="va">sw_tokens</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/tb_setup_devices.html">tb_setup_devices</a></span><span class="op">(</span></span>
+<span>  station_ids <span class="op">=</span> <span class="va">sw_demo_ids</span>,</span>
+<span>  name_prefix <span class="op">=</span> <span class="st">"wasserportal-sw-"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">station_id</span> <span class="kw">in</span> <span class="va">sw_demo_ids</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">one</span> <span class="op">&lt;-</span> <span class="va">sw_water_level</span><span class="op">[</span><span class="va">sw_water_level</span><span class="op">$</span><span class="va">Messstellennummer</span> <span class="op">==</span> <span class="va">station_id</span>, <span class="op">]</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">one</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0L</span><span class="op">)</span> <span class="kw">next</span></span>
+<span>  <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/tb_push_station_telemetry.html">tb_push_station_telemetry</a></span><span class="op">(</span></span>
+<span>    data         <span class="op">=</span> <span class="va">one</span>,</span>
+<span>    device_token <span class="op">=</span> <span class="va">sw_tokens</span><span class="op">[[</span><span class="va">station_id</span><span class="op">]</span><span class="op">]</span>,</span>
 <span>    ts_col       <span class="op">=</span> <span class="st">"Datum"</span>,</span>
 <span>    value_col    <span class="op">=</span> <span class="st">"Tagesmittelwert"</span>,</span>
 <span>    key_col      <span class="op">=</span> <span class="st">"Parameter"</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<p>To push groundwater data the call is identical apart from the value
-column:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">gw_data</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/get_groundwater_data.html">get_groundwater_data</a></span><span class="op">(</span></span>
-<span>  stations_list <span class="op">=</span> <span class="va">stations</span><span class="op">$</span><span class="va">overview_list</span><span class="op">[</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"groundwater"</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">stations</span><span class="op">$</span><span class="va">overview_list</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="op">]</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Pick five groundwater level stations for the free tier</span></span>
-<span><span class="va">gwl</span> <span class="op">&lt;-</span> <span class="va">gw_data</span><span class="op">$</span><span class="va">groundwater.level</span></span>
-<span><span class="va">gwl_demo_ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">gwl</span><span class="op">$</span><span class="va">Messstellennummer</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
-<span><span class="va">gwl_tokens</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/tb_setup_devices.html">tb_setup_devices</a></span><span class="op">(</span></span>
-<span>  station_ids <span class="op">=</span> <span class="va">gwl_demo_ids</span>,</span>
-<span>  name_prefix <span class="op">=</span> <span class="st">"wasserportal-gwl-"</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="kw">for</span> <span class="op">(</span><span class="va">station_id</span> <span class="kw">in</span> <span class="va">gwl_demo_ids</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">one_station</span> <span class="op">&lt;-</span> <span class="va">gwl</span><span class="op">[</span><span class="va">gwl</span><span class="op">$</span><span class="va">Messstellennummer</span> <span class="op">==</span> <span class="va">station_id</span>, <span class="op">]</span></span>
-<span>  <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/tb_push_station_telemetry.html">tb_push_station_telemetry</a></span><span class="op">(</span></span>
-<span>    data         <span class="op">=</span> <span class="va">one_station</span>,</span>
-<span>    device_token <span class="op">=</span> <span class="va">gwl_tokens</span><span class="op">[[</span><span class="va">station_id</span><span class="op">]</span><span class="op">]</span>,</span>
-<span>    value_col    <span class="op">=</span> <span class="st">"Messwert"</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
+<p>The imported demo dashboard is groundwater-specific (its entity alias
+filters on the <code>wasserportal-gw-</code> name prefix); to visualise
+the <code>wasserportal-sw-</code> devices either change the alias’s
+filter prefix or clone the dashboard and bind the widgets to a second
+entity alias.</p>
 </div>
 <div class="section level2">
-<h2 id="visualise-in-thingsboard">6. Visualise in ThingsBoard<a class="anchor" aria-label="anchor" href="#visualise-in-thingsboard"></a>
+<h2 id="switching-to-self-hosted-ce">12. Switching to Self-Hosted CE<a class="anchor" aria-label="anchor" href="#switching-to-self-hosted-ce"></a>
 </h2>
-<p>After the pushes, open the <em>wasserportal</em> dashboard in
-ThingsBoard:</p>
-<ol style="list-style-type: decimal">
-<li>
-<em>Add widget &gt; Charts &gt; Time series chart</em>.</li>
-<li>Datasource: pick one of the <code>wasserportal-*</code>
-devices.</li>
-<li>As key, choose the parameter you pushed
-(e.g. <code>Wasserstand</code> for surface water level).</li>
-<li>Adjust the time window in the top-right; Wasserportal data starts in
-the early 2000s for many stations, so set the window wide on first
-view.</li>
-</ol>
-<p>For multiple stations on one chart, add several datasources to the
-same widget. Coordinates pushed as attributes can be used to drop pins
-on the <em>Map</em> widget.</p>
-</div>
-<div class="section level2">
-<h2 id="re-running-and-idempotency">7. Re-Running and Idempotency<a class="anchor" aria-label="anchor" href="#re-running-and-idempotency"></a>
-</h2>
-<ul>
-<li>
-<code><a href="../reference/tb_setup_devices.html">tb_setup_devices()</a></code> is idempotent — re-running it
-returns the existing device tokens.</li>
-<li>Telemetry POSTs are <strong>not</strong> deduplicated by
-ThingsBoard. Re-running the push will create duplicate points at the
-same timestamp. For incremental daily updates, filter
-<code>Datum &gt; &lt;last successful run&gt;</code> before calling
-<code><a href="../reference/tb_push_station_telemetry.html">tb_push_station_telemetry()</a></code> (e.g. by storing the last
-timestamp as a server attribute).</li>
-</ul>
-</div>
-<div class="section level2">
-<h2 id="switching-to-self-hosted-ce">8. Switching to Self-Hosted CE<a class="anchor" aria-label="anchor" href="#switching-to-self-hosted-ce"></a>
-</h2>
-<p>When you outgrow the 5-device free-tier limit, the only change
-required is the <code>TB_HOST</code> environment variable:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>TB_HOST <span class="op">=</span> <span class="st">"https://thingsboard.your-domain.example"</span><span class="op">)</span></span></code></pre></div>
-<p>The same R code now talks to your own ThingsBoard CE deployment.
-Devices, tokens and pushes all use the same endpoints.</p>
+<p>When the 5-device free-tier limit becomes the bottleneck, point
+<code>TB_HOST</code> at your own deployment and switch the plan
+preset:</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>TB_HOST <span class="op">=</span> <span class="st">"https://thingsboard.your-domain.example"</span><span class="op">)</span></span>
+<span><span class="va">ce_preset</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/tb_plan_defaults.html">tb_plan_defaults</a></span><span class="op">(</span><span class="st">"ce"</span><span class="op">)</span></span>
+<span><span class="co"># bulk mode, chunk_size = 1000, throttle_seconds = 0</span></span></code></pre></div>
+<p>The same R code now talks to your ThingsBoard CE deployment; devices,
+tokens and pushes all use the same endpoints. On CE the bulk
+array-of-records format goes through (Maker rejects it), so the
+<code>ce</code> preset is roughly 30 × faster than <code>free</code> on
+the same hardware.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

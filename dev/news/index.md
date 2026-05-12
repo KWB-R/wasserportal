@@ -134,12 +134,17 @@
   time-series charts (groundwater level, selected quality parameters).
   All four widgets discover the `wasserportal-gw-*` devices via an
   `entityName`-prefix alias so the import works without hardcoding
-  device IDs. The dashboard-level timewindow uses a fixed four-year
-  window from `2023-01-01 UTC` to `2027-01-01 UTC` so the charts load
-  quickly (the previous 130-year `1970..2100` window made ThingsBoard
-  show an indefinite loading spinner whenever the time-window was
-  adjusted); widen it from the dashboard time-window selector if you
-  need more history. The map widget uses the modern
+  device IDs. The dashboard-level timewindow runs from `1970-01-01 UTC`
+  (POSIX epoch) to `2027-01-01 UTC` with `aggregation = NONE` and
+  `limit = 50000` per series, so the charts return raw unaveraged
+  measurements over the full Wasserportal archive rather than daily
+  averages (the earlier `AVG` aggregation over the 130-year `1970..2100`
+  window had made ThingsBoard show an indefinite loading spinner
+  whenever the time-window selector was touched; switching to `NONE`
+  keeps the wide range usable because the server only needs to return up
+  to 50000 sorted raw points per (entity, key) pair which is comfortably
+  above the ~16000 GW-Stand and ~8000 GWQ records per station that the
+  Wasserportal archive contains). The map widget uses the modern
   `typeFullFqn = "system.map"` reference together with the
   `latKeyName = "latitude"` / `lngKeyName = "longitude"` settings
   binding that the `system.map` widget accepts as a stable
