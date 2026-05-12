@@ -1,5 +1,21 @@
 # wasserportal 0.5.0.9000 <small>(development version)</small>
 
+* Pass `retry_on_failure = TRUE` to every `httr2::req_retry()` call
+  in `R/push_to_thingsboard.R` (single-mode and bulk telemetry,
+  attributes, latest telemetry, telemetry delete). The default
+  `req_retry()` only retries HTTP responses with selected status
+  codes; transport-layer dropouts that error out before the request
+  produces a response (TCP "Broken pipe", peer-closed TLS session,
+  brief DNS hiccups) used to bubble straight up through
+  `httr2::req_perform_parallel()` and abort the whole station mid
+  push -- observed in the wild after ~25 min on station 7044 at
+  record ~9030/13362. With `retry_on_failure = TRUE` the same record
+  gets retried up to four times with the existing exponential
+  backoff (2, 4, 8, 16 s), and because ThingsBoard de-duplicates by
+  `(ts, key)` the retry never produces a duplicate row even when the
+  first attempt actually reached the server before the connection
+  dropped.
+
 * Add `tb_setup_devices()`, `tb_push_station_telemetry()` and
   `tb_push_station_attributes()` for shipping Wasserportal time series
   and master data into a ThingsBoard tenant via the device-token
