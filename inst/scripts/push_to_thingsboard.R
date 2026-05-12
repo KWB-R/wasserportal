@@ -324,50 +324,21 @@ for (station_id in station_ids) {
   )
 }
 
-# ---- 5. telemetry smoke test -------------------------------------------------
+# Note: earlier revisions of this script ran a "smoke test" before the bulk
+# telemetry push that posted a single value per station via
+# tb_push_latest_telemetry() ({"key": value}; the server stamped the
+# current wall-clock time). The intent was fail-fast on Maker-tier
+# auth/payload issues, but the side effect was a stale "GW-Stand =
+# <whatever was last historically> @ <push time>" row that drowned out the
+# real most-recent measurement in the device's "Latest telemetry" view.
+# The bulk push fails fast on its own first POST, so the smoke test has
+# been removed. If you ever need to clear telemetry for one of the demo
+# devices, do it interactively in the ThingsBoard UI (Device > Latest
+# telemetry > tick the row(s) > trash icon) or call
+# `wasserportal::tb_delete_device_telemetry()` from an R session against
+# the device UUID returned by `wasserportal::tb_get_device_id()`.
 
-# Bulk telemetry POSTs to ThingsBoard Cloud Maker (free) tier have repeatedly
-# returned an opaque HTTP 500 with an empty body, while the same device
-# accepts attribute writes and the simpler "latest"-style telemetry payload.
-# Run a smoke test first that pushes a single recent value per station via
-# tb_push_latest_telemetry() (`{"key": value}` -- server stamps the time).
-# If that fails we abort with the surfaced error body; if it succeeds we
-# proceed with the bulk historical push.
-message("\n=== smoke test (latest telemetry, server time) ===")
-smoke_failed <- FALSE
-for (station_id in station_ids) {
-  one <- gwl_data[gwl_data$Messstellennummer == station_id, , drop = FALSE]
-  if (nrow(one) == 0L) next
-  one <- one[order(one$Datum, decreasing = TRUE), , drop = FALSE]
-  latest_value <- one$Messwert[1L]
-  latest_key   <- one$Parameter[1L]
-
-  tryCatch({
-    wasserportal::tb_push_latest_telemetry(
-      values       = stats::setNames(list(latest_value), latest_key),
-      device_token = device_tokens[[station_id]]
-    )
-    message(sprintf(
-      "  station %s: latest %s = %s ok",
-      station_id, latest_key, format(latest_value)
-    ))
-  }, error = function(e) {
-    smoke_failed <<- TRUE
-    message(sprintf(
-      "  station %s: smoke push FAILED: %s",
-      station_id, conditionMessage(e)
-    ))
-  })
-}
-
-if (smoke_failed) {
-  stop(
-    "Smoke test failed: even the simplest single-key telemetry POST does ",
-    "not go through. Aborting before the bulk push to keep the log readable."
-  )
-}
-
-# ---- 6. telemetry ------------------------------------------------------------
+# ---- 5. telemetry ------------------------------------------------------------
 
 push_telemetry_subset <- function(data, label) {
   message(sprintf("\n=== %s ===", label))

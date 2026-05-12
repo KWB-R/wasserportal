@@ -606,6 +606,169 @@ tb_setup_devices <- function(
   stats::setNames(tokens, station_ids)
 }
 
+# tb_get_device_id -------------------------------------------------------------
+
+#' Look Up a ThingsBoard Device's UUID by Name
+#'
+#' Lightweight read-only companion to \code{\link{tb_setup_devices}}: when you
+#' only need a device's internal UUID (e.g. to call the telemetry-delete
+#' endpoint), this returns it directly without touching the access token or
+#' creating the device on the side. Returns `NA_character_` when the device
+#' does not exist.
+#'
+#' @param device_name device name as shown in the ThingsBoard UI.
+#' @param api_key account-level API key. Defaults to env var `TB_API_KEY`.
+#' @param host base URL of the ThingsBoard instance. Defaults to env var
+#'   `TB_HOST` if set, otherwise `"https://thingsboard.cloud"`.
+#' @return device UUID (character) or `NA_character_` if the lookup did not
+#'   resolve.
+#' @export
+#' @examples
+#' \dontrun{
+#' tb_get_device_id("wasserportal-gw-6038")
+#' }
+tb_get_device_id <- function(
+    device_name,
+    api_key = Sys.getenv("TB_API_KEY"),
+    host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud")
+)
+{
+  stopifnot(nzchar(api_key), nzchar(host), nzchar(device_name))
+  host <- sub("/+$", "", host)
+
+  resp <- tryCatch(
+    httr2::request(sprintf("%s/api/tenant/devices", host)) |>
+      httr2::req_url_query(deviceName = device_name) |>
+      httr2::req_headers(`X-Authorization` = paste("ApiKey", api_key)) |>
+      httr2::req_error(is_error = function(r) httr2::resp_status(r) >= 500L) |>
+      httr2::req_perform(),
+    error = function(e) NULL
+  )
+
+  if (is.null(resp) || httr2::resp_status(resp) >= 300L) {
+    return(NA_character_)
+  }
+
+  body <- httr2::resp_body_json(resp)
+  if (is.null(body$id$id)) NA_character_ else body$id$id
+}
+
+# tb_list_device_telemetry_keys -----------------------------------------------
+
+#' List the Telemetry Keys Currently Stored for a ThingsBoard Device
+#'
+#' Wraps `GET /api/plugins/telemetry/DEVICE/{id}/keys/timeseries`. Useful to
+#' discover what's actually in the device-side time-series store before a
+#' wipe, or to compare against the `Parameter` column of the gh-pages
+#' source data.
+#'
+#' @param device_id device UUID. Use \code{\link{tb_get_device_id}} to
+#'   resolve a name.
+#' @param api_key account-level API key. Defaults to env var `TB_API_KEY`.
+#' @param host base URL of the ThingsBoard instance. Defaults to env var
+#'   `TB_HOST` if set, otherwise `"https://thingsboard.cloud"`.
+#' @return character vector of telemetry key names. May be of length 0.
+#' @export
+#' @examples
+#' \dontrun{
+#' id <- tb_get_device_id("wasserportal-gw-6038")
+#' tb_list_device_telemetry_keys(id)
+#' }
+tb_list_device_telemetry_keys <- function(
+    device_id,
+    api_key = Sys.getenv("TB_API_KEY"),
+    host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud")
+)
+{
+  stopifnot(nzchar(api_key), nzchar(host), nzchar(device_id))
+  host <- sub("/+$", "", host)
+
+  resp <- httr2::request(sprintf(
+    "%s/api/plugins/telemetry/DEVICE/%s/keys/timeseries",
+    host, device_id
+  )) |>
+    httr2::req_headers(`X-Authorization` = paste("ApiKey", api_key)) |>
+    httr2::req_error(body = tb_error_body) |>
+    httr2::req_perform() |>
+    httr2::resp_body_json()
+
+  as.character(unlist(resp))
+}
+
+# tb_delete_device_telemetry --------------------------------------------------
+
+#' Delete All Time-Series Data for Selected Keys on a ThingsBoard Device
+#'
+#' Wipes historical telemetry rows from ThingsBoard for the given device and
+#' keys via `DELETE /api/plugins/telemetry/DEVICE/{id}/timeseries/delete`.
+#' Pass `keys = NULL` (the default) to clear every key the device currently
+#' knows -- the function then calls
+#' \code{\link{tb_list_device_telemetry_keys}} first to discover them.
+#'
+#' Server-side attributes (latitude, longitude, Bezirk, ...) and the device
+#' itself are NOT touched, only the time-series telemetry store. Re-running
+#' the demo push afterwards re-fills the cleared keys with the real
+#' Wasserportal timestamps.
+#'
+#' @param device_id device UUID.
+#' @param keys character vector of telemetry keys to delete, or `NULL` to
+#'   clear every key the device currently knows.
+#' @param api_key account-level API key. Defaults to env var `TB_API_KEY`.
+#' @param host base URL of the ThingsBoard instance. Defaults to env var
+#'   `TB_HOST` if set, otherwise `"https://thingsboard.cloud"`.
+#' @param delete_latest if `TRUE` (default) ThingsBoard also drops the
+#'   cached "latest telemetry" entry so the device-detail tab in the UI
+#'   immediately reflects the deletion. Set to `FALSE` to keep the latest
+#'   value visible for keys that get repopulated by the next push anyway.
+#' @return invisibly the number of keys submitted for deletion.
+#' @export
+#' @examples
+#' \dontrun{
+#' id <- tb_get_device_id("wasserportal-gw-6038")
+#' # wipe everything currently stored:
+#' tb_delete_device_telemetry(id)
+#' # wipe just the smoke-test GW-Stand value:
+#' tb_delete_device_telemetry(id, keys = "GW-Stand")
+#' }
+tb_delete_device_telemetry <- function(
+    device_id,
+    keys = NULL,
+    api_key = Sys.getenv("TB_API_KEY"),
+    host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud"),
+    delete_latest = TRUE
+)
+{
+  stopifnot(nzchar(api_key), nzchar(host), nzchar(device_id))
+  host <- sub("/+$", "", host)
+
+  if (is.null(keys)) {
+    keys <- tb_list_device_telemetry_keys(
+      device_id = device_id, api_key = api_key, host = host
+    )
+  }
+
+  if (length(keys) == 0L) {
+    return(invisible(0L))
+  }
+
+  httr2::request(sprintf(
+    "%s/api/plugins/telemetry/DEVICE/%s/timeseries/delete",
+    host, device_id
+  )) |>
+    httr2::req_method("DELETE") |>
+    httr2::req_headers(`X-Authorization` = paste("ApiKey", api_key)) |>
+    httr2::req_url_query(
+      keys = paste(keys, collapse = ","),
+      deleteAllDataForKeys = "true",
+      deleteLatest = if (delete_latest) "true" else "false"
+    ) |>
+    httr2::req_retry(max_tries = 4L, backoff = function(i) 2^i) |>
+    httr2::req_error(body = tb_error_body) |>
+    httr2::req_perform()
+
+  invisible(length(keys))
+}
+
 # tb_get_or_create_device ------------------------------------------------------
 
 #' Look Up or Create a Device on ThingsBoard
