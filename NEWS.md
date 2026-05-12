@@ -93,25 +93,25 @@
   out of the cron path until ThingsBoard lifts the Maker
   array-form rejection
 * Add `inst/extdata/thingsboard-dashboard.json`, an importable
-  ThingsBoard dashboard for the demo: a master-data entities
-  table for the five Berlin groundwater stations and two
-  time-series charts (groundwater level, selected quality
-  parameters). All three widgets discover the
+  ThingsBoard dashboard for the demo: an OpenStreetMap of the
+  five Berlin groundwater stations, a master-data entities
+  table and two time-series charts (groundwater level, selected
+  quality parameters). All four widgets discover the
   `wasserportal-gw-*` devices via an `entityName`-prefix alias so
   the import works without hardcoding device IDs. The
-  dashboard-level timewindow uses a fixed range from
-  `1970-01-01 UTC` (`startTimeMs = 0`) to `2100-01-01 UTC` so
-  charts show the full backfill immediately after import,
-  regardless of when the dashboard is loaded. The map widget
-  uses the modern `typeFullFqn = "system.map"` reference rather
-  than the deprecated `bundleAlias = "maps"` / `typeAlias =
-  "openstreetmap"` so it survives ThingsBoard widget-bundle
-  renames between Cloud versions. The map widget is not
-  included in the JSON because the bundle alias has shifted
-  between ThingsBoard versions and the import would fail; add it
-  manually post-import via *Add widget > Maps* against the same
-  `wasserportal_devices` entity alias and `latitude` /
-  `longitude` server attributes
+  dashboard-level timewindow uses a fixed four-year window from
+  `2023-01-01 UTC` to `2027-01-01 UTC` so the charts load
+  quickly (the previous 130-year `1970..2100` window made
+  ThingsBoard show an indefinite loading spinner whenever the
+  time-window was adjusted); widen it from the dashboard
+  time-window selector if you need more history. The map widget
+  uses the modern `typeFullFqn = "system.map"` reference together
+  with the `latKeyName = "latitude"` / `lngKeyName = "longitude"`
+  settings binding that the `system.map` widget accepts as a
+  stable backward-compatible attribute mapping, so markers render
+  right after import (an earlier `markers` array variant with
+  `xKey` / `yKey` left the map empty against the same lat/lon
+  attributes)
 * Speed up `mode = "single"` with `httr2::req_perform_parallel()`.
   The previous sequential one-POST-at-a-time loop was network-bound
   at ~1.2 records/s for the GWQ push (~5 h per station for the full
