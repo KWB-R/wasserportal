@@ -1,5 +1,24 @@
 # wasserportal 0.5.0.9000 <small>(development version)</small>
 
+* Wrap each `httr2::req_perform_parallel()` batch in
+  `tb_push_station_telemetry()` `mode = "single"` in a batch-level
+  retry loop (4 attempts with `2 / 4 / 8 s` backoff). The per-request
+  `retry_on_failure = TRUE` added in the previous bullet recovers
+  from a curl-level error on a *fresh* libcurl handle, but when the
+  upstream load balancer silently drops a connection in the curl
+  pool the dead handle stays poisoned across all four configured
+  per-request retries: every retry hits the same dead handle and
+  dies with "Send failure: Broken pipe" within milliseconds, the
+  resulting curl condition bubbles up through `req_perform_parallel()`
+  and aborts the whole station (observed in the wild after only
+  ~2240/13039 records on station 7045 on 2026-05-13 09:45,
+  3 s between last good POST and the abort -- no perceptible
+  retry pause). Retrying the *batch* as a whole forces httr2 to
+  allocate a new connection on the next attempt and is safe because
+  the underlying `(ts, key)` telemetry POSTs are idempotent on the
+  ThingsBoard side -- a re-POST of an already accepted record
+  overwrites itself with the same value, never creates a duplicate
+  row.
 * Pass `retry_on_failure = TRUE` to every `httr2::req_retry()` call
   in `R/push_to_thingsboard.R` (single-mode and bulk telemetry,
   attributes, latest telemetry, telemetry delete). The default
