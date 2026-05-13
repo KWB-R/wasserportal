@@ -159,14 +159,50 @@ tb_push_station_telemetry <- function(
 
     batch_size <- max(max_active, 1L)
     starts <- seq.int(1L, n, by = batch_size)
+    batch_max_tries <- 4L
 
     for (start in starts) {
       end <- min(start + batch_size - 1L, n)
-      httr2::req_perform_parallel(
-        reqs[start:end],
-        max_active = max_active,
-        progress = FALSE
-      )
+      batch_reqs <- reqs[start:end]
+
+      # Wrap the parallel batch in a retry loop. The per-request
+      # `retry_on_failure = TRUE` inside req_retry() recovers from a
+      # transient HTTP/curl error on a *fresh* libcurl handle, but the
+      # connection-pool entry that the upstream gateway has silently
+      # dropped stays poisoned across all four configured per-request
+      # retries: every retry hits the same dead handle and dies with
+      # "Send failure: Broken pipe" within milliseconds. The result is
+      # a curl error that bubbles up through req_perform_parallel() and
+      # aborts the whole batch. Retrying the *batch* as a whole forces
+      # httr2 to allocate a new connection on the next attempt and is
+      # safe because the underlying (ts, key) telemetry POSTs are
+      # idempotent on the ThingsBoard side -- a re-POST of an already
+      # accepted record overwrites itself with the same value, never
+      # creates a duplicate row.
+      for (batch_try in seq_len(batch_max_tries)) {
+        batch_ok <- tryCatch({
+          httr2::req_perform_parallel(
+            batch_reqs,
+            max_active = max_active,
+            progress   = FALSE
+          )
+          TRUE
+        }, error = function(e) {
+          if (batch_try < batch_max_tries) {
+            wait <- 2^batch_try
+            message(sprintf(
+              "  batch %d-%d failed (%s); batch retry %d/%d in %g s",
+              start, end, conditionMessage(e),
+              batch_try, batch_max_tries - 1L, wait
+            ))
+            Sys.sleep(wait)
+            FALSE
+          } else {
+            stop(e)
+          }
+        })
+        if (isTRUE(batch_ok)) break
+      }
 
       if (verbose) {
         message(sprintf(
