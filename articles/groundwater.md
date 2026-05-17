@@ -32,12 +32,12 @@ cat_file_enumeration <- function(base_url, files) {
 ``` r
 
 stations_list <- wasserportal::get_stations(type = "list")
-#> Importing 10 station overviews from Wasserportal Berlin ... ok. (7.64 secs)
+#> Importing 10 station overviews from Wasserportal Berlin ... ok. (8.28 secs)
 
 is_gw <- stringr::str_detect(names(stations_list), "groundwater")
 
 files <- wasserportal::list_masters_data_to_csv(stations_list[is_gw])
-#> Writing 'stations_groundwater_level.csv' ... ok. (0.17 secs) 
+#> Writing 'stations_groundwater_level.csv' ... ok. (0.09 secs) 
 #> Writing 'stations_groundwater_quality.csv' ... ok. (0.00 secs)
 ```
 
@@ -64,12 +64,12 @@ gw_data_list <- wasserportal::get_groundwater_data(
   stations_list = stations_list, 
   debug = TRUE
 )
-#> Importing 'groundwater.level' data (1/2) ... ok. (12.12 mins) 
-#> Importing 'groundwater.quality' data (2/2) ... ok. (3.64 mins)
+#> Importing 'groundwater.level' data (1/2) ... ok. (20.36 mins) 
+#> Importing 'groundwater.quality' data (2/2) ... ok. (4.30 mins)
 
 files <- wasserportal::list_timeseries_data_to_zip(gw_data_list)
-#> Writing 'groundwater_level.zip' ... ok. (12.40 secs) 
-#> Writing 'groundwater_quality.zip' ... ok. (0.99 secs)
+#> Writing 'groundwater_level.zip' ... ok. (12.65 secs) 
+#> Writing 'groundwater_quality.zip' ... ok. (1.23 secs)
 
 files
 #> [1] "groundwater_level.zip"   "groundwater_quality.zip"
@@ -81,7 +81,7 @@ gw_data_list %>%
   dplyr::arrange(dplyr::desc(.data$n))
 #>                 Parameter   Einheit       n
 #>                    <char>    <char>   <int>
-#>   1:             GW-Stand m ü. NHN) 8557832
+#>   1:             GW-Stand m ü. NHN) 8558102
 #>   2:              Chlorid     mg/l]    9436
 #>   3:              Kalzium     mg/l]    9435
 #>   4:               Sulfat     mg/l]    9431
