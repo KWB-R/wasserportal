@@ -32,12 +32,12 @@ cat_file_enumeration <- function(base_url, files) {
 ``` r
 
 stations_list <- wasserportal::get_stations(type = "list")
-#> Importing 10 station overviews from Wasserportal Berlin ... ok. (10.65 secs)
+#> Importing 10 station overviews from Wasserportal Berlin ... ok. (22.35 secs)
 
 is_gw <- stringr::str_detect(names(stations_list), "groundwater")
 
 files <- wasserportal::list_masters_data_to_csv(stations_list[is_gw])
-#> Writing 'stations_groundwater_level.csv' ... ok. (0.08 secs) 
+#> Writing 'stations_groundwater_level.csv' ... ok. (0.07 secs) 
 #> Writing 'stations_groundwater_quality.csv' ... ok. (0.00 secs)
 ```
 
@@ -64,12 +64,12 @@ gw_data_list <- wasserportal::get_groundwater_data(
   stations_list = stations_list, 
   debug = TRUE
 )
-#> Importing 'groundwater.level' data (1/2) ... ok. (13.13 mins) 
-#> Importing 'groundwater.quality' data (2/2) ... ok. (3.42 mins)
+#> Importing 'groundwater.level' data (1/2) ... ok. (30.01 mins) 
+#> Importing 'groundwater.quality' data (2/2) ... ok. (5.40 mins)
 
 files <- wasserportal::list_timeseries_data_to_zip(gw_data_list)
-#> Writing 'groundwater_level.zip' ... ok. (11.68 secs) 
-#> Writing 'groundwater_quality.zip' ... ok. (1.20 secs)
+#> Writing 'groundwater_level.zip' ... ok. (13.14 secs) 
+#> Writing 'groundwater_quality.zip' ... ok. (1.30 secs)
 
 files
 #> [1] "groundwater_level.zip"   "groundwater_quality.zip"
@@ -81,7 +81,7 @@ gw_data_list %>%
   dplyr::arrange(dplyr::desc(.data$n))
 #>                 Parameter   Einheit       n
 #>                    <char>    <char>   <int>
-#>   1:             GW-Stand m ü. NHN) 8561835
+#>   1:             GW-Stand m ü. NHN) 8562105
 #>   2:              Chlorid     mg/l]    9436
 #>   3:              Kalzium     mg/l]    9435
 #>   4:               Sulfat     mg/l]    9431
@@ -120,7 +120,7 @@ library(wasserportal)
 stations_crosstable <- jsonlite::fromJSON(urls$stations_crosstable)
 
 str(stations_crosstable)
-#> 'data.frame':    1112 obs. of  12 variables:
+#> 'data.frame':    1113 obs. of  12 variables:
 #>  $ Messstellennummer: chr  "5865900" "5827103" "5870400" "5865300" ...
 #>  $ Messstellenname  : chr  "Allee der Kosmonauten" "Allendestraße" "Alsenbrücke" "Am Bahndamm" ...
 #>  $ ows              : chr  "x" "x" "x" "x" ...
