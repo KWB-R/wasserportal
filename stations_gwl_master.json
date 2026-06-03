@@ -2652,19 +2652,6 @@
     "Hochwert_UTM_33_N": "5820382"
   },
   {
-    "Nummer": "669",
-    "Bezirk": "Tempelhof-Schöneberg",
-    "Betreiber": "Senat",
-    "Auspraegung": "GW-Stand",
-    "Grundwasserleiter": "Hauptgrundwasserleiter (GWL 1.3 + 2)",
-    "Gelaendeoberkante_GOK_m_ue_NHN": "40.12",
-    "Rohroberkante_m_ue_NHN": "40.46",
-    "Filteroberkante_m_u_GOK": "13.75",
-    "Filterunterkante_m_u_GOK": "15.75",
-    "Rechtswert_UTM_33_N": "389026",
-    "Hochwert_UTM_33_N": "5811868"
-  },
-  {
     "Nummer": "671",
     "Bezirk": "Charlottenburg-Wilmersdorf",
     "Betreiber": "Senat",
