@@ -7410,6 +7410,32 @@
     "Hochwert_UTM_33_N": "5817604"
   },
   {
+    "Nummer": "7041",
+    "Bezirk": "Charlottenburg-Wilmersdorf",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand",
+    "Grundwasserleiter": "Hauptgrundwasserleiter (GWL 1.3 + 2)",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "33.89",
+    "Rohroberkante_m_ue_NHN": "34.15",
+    "Filteroberkante_m_u_GOK": "18.60",
+    "Filterunterkante_m_u_GOK": "32.60",
+    "Rechtswert_UTM_33_N": "382085",
+    "Hochwert_UTM_33_N": "5815759"
+  },
+  {
+    "Nummer": "7042",
+    "Bezirk": "Charlottenburg-Wilmersdorf",
+    "Betreiber": "Senat",
+    "Auspraegung": "GW-Stand + GW-Güte",
+    "Grundwasserleiter": "Elsterzeitl. GW-Leiter (GWL 3)",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "33.82",
+    "Rohroberkante_m_ue_NHN": "34.15",
+    "Filteroberkante_m_u_GOK": "50.33",
+    "Filterunterkante_m_u_GOK": "66.30",
+    "Rechtswert_UTM_33_N": "382089",
+    "Hochwert_UTM_33_N": "5815757"
+  },
+  {
     "Nummer": "7044",
     "Bezirk": "Charlottenburg-Wilmersdorf",
     "Betreiber": "Senat",
