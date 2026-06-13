@@ -19,7 +19,7 @@ on the Wasserportal:
 ``` r
 
 stations <- wasserportal::get_stations(type = c("list", "crosstable"))
-#> Importing 10 station overviews from Wasserportal Berlin ... ok. (5.59 secs)
+#> Importing 10 station overviews from Wasserportal Berlin ... ok. (5.25 secs)
 str(stations, 2)
 #> List of 2
 #>  $ overview_list:List of 10
@@ -113,7 +113,7 @@ these links:
 
 urls <- stations$overview_list$groundwater.level$stammdaten_link
 stations_gwl_master <- wasserportal::get_wasserportal_masters_data(urls)
-#> Importing master data for 889 stations from Wasserportal Berlin ... ok. (6.83 mins)
+#> Importing master data for 889 stations from Wasserportal Berlin ... ok. (5.99 mins)
 ```
 
 This is how the resulting table `stations_gwl_master` looks like:
@@ -178,10 +178,10 @@ g1 <- gwl_classified_only %>%
 plotly::ggplotly(g1)
 ```
 
-57.52 percent of all considered 758 groundwater level monitoring
+58.09 percent of all considered 754 groundwater level monitoring
 stations containing `classification` data (out of 889 provided by
 SenWeb) indicate `below normal` (extrem niedrig, sehr niedrig, niedrig)
-groundwater levels. However, only 57.52 percent are indicate
+groundwater levels. However, only 58.09 percent are indicate
 `above normal` (hoch, sehr hoch, extrem hoch) groundwater levels.
 
 #### 2. Trend Classification Map
@@ -358,7 +358,7 @@ below:
 stations_gwq_master <- wasserportal::get_wasserportal_masters_data(
   master_urls = stations_gwq$stammdaten_link
 )
-#> Importing master data for 208 stations from Wasserportal Berlin ... ok. (1.57 mins)
+#> Importing master data for 208 stations from Wasserportal Berlin ... ok. (1.48 mins)
 ```
 
 The master data of groundwater quality stations is also available in
