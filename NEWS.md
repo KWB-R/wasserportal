@@ -15,7 +15,7 @@
   Cloud) keeps working unchanged, and the device-token telemetry push
   (`/api/v1/{token}/telemetry`) is identical on all editions. The
   `thingsboard-push.yaml` workflow reads the two new credentials from the
-  `TB_USERNAME` / `TB_PASSWORD` repository secrets
+  `TB_USERNAME` / `TB_PASSWORD` repository secrets.
 * Make the station selection of `inst/scripts/push_to_thingsboard.R`
   configurable for full (non-demo) pushes: `TB_MAX_DEVICES=0` lifts the
   5-device cap (push every candidate station), and a new `TB_STATION_SCOPE`
@@ -25,10 +25,10 @@
   that series). Both knobs are exposed as `thingsboard-push.yaml` repository
   secrets and `workflow_dispatch` inputs. Distinct gwq parameters per
   station are now counted once via `tapply()` instead of a per-station
-  table rescan, so scoring the full several-hundred-station pool stays fast
+  table rescan, so scoring the full several-hundred-station pool stays fast.
 * Update the Kompetenzzentrum Wasser Berlin (KWB) author logo in
   `_pkgdown.yml` to the new brand asset
-  (`logos.kompetenz-wasser.io/KWB_Logo_M_Blau_RGB.svg`)
+  (`logos.kompetenz-wasser.io/KWB_Logo_M_Blau_RGB.svg`).
 
 # [wasserportal 0.6.0](https://github.com/KWB-R/wasserportal/releases/tag/v0.6.0) <small>2026-06-17</small>
 
