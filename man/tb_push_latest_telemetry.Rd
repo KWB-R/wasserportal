@@ -7,7 +7,7 @@
 tb_push_latest_telemetry(
   values,
   device_token,
-  host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud")
+  host = tb_default_host()
 )
 }
 \arguments{

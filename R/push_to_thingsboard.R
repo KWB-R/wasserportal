@@ -1,3 +1,16 @@
+# tb_default_host --------------------------------------------------------------
+
+# Resolve TB_HOST with empty-string-aware fallback. Unlike
+# Sys.getenv("TB_HOST", unset = "..."), this also treats TB_HOST="" (set but
+# empty in .Renviron or a blank workflow_dispatch input) as unset and returns
+# the public-cloud default, so users don't silently hit
+# https://thingsboard.cloud after blanking the var.
+tb_default_host <- function()
+{
+  host <- Sys.getenv("TB_HOST")
+  if (nzchar(host)) host else "https://thingsboard.cloud"
+}
+
 # tb_push_station_telemetry ----------------------------------------------------
 
 #' Push Time Series of one Wasserportal Station to ThingsBoard
@@ -75,7 +88,7 @@ tb_push_station_telemetry <- function(
     value_col = "Messwert",
     key_col = "Parameter",
     single_key = "value",
-    host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud"),
+    host = tb_default_host(),
     chunk_size = 100L,
     mode = c("single", "bulk"),
     throttle_seconds = NULL,
@@ -315,7 +328,7 @@ tb_error_body <- function(resp)
 tb_push_station_attributes <- function(
     attributes,
     device_token,
-    host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud")
+    host = tb_default_host()
 )
 {
   stopifnot(nzchar(device_token), nzchar(host))
@@ -480,7 +493,7 @@ tb_plan_defaults <- function(plan = "free")
 tb_push_latest_telemetry <- function(
     values,
     device_token,
-    host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud")
+    host = tb_default_host()
 )
 {
   stopifnot(nzchar(device_token), nzchar(host), length(values) >= 1L)
@@ -639,7 +652,7 @@ build_telemetry_payload <- function(
 tb_setup_devices <- function(
     station_ids,
     api_key = Sys.getenv("TB_API_KEY"),
-    host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud"),
+    host = tb_default_host(),
     name_prefix = "wasserportal-",
     device_type = "wasserportal",
     username = Sys.getenv("TB_USERNAME"),
@@ -696,7 +709,7 @@ tb_setup_devices <- function(
 tb_get_device_id <- function(
     device_name,
     api_key = Sys.getenv("TB_API_KEY"),
-    host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud"),
+    host = tb_default_host(),
     username = Sys.getenv("TB_USERNAME"),
     password = Sys.getenv("TB_PASSWORD")
 )
@@ -742,6 +755,11 @@ tb_get_device_id <- function(
 #' @param username ThingsBoard user for the username/password (JWT) login
 #'   (self-hosted / Community Edition). Defaults to env var `TB_USERNAME`.
 #' @param password ThingsBoard password. Defaults to env var `TB_PASSWORD`.
+#' @param auth optional pre-resolved `X-Authorization` header value. When
+#'   supplied, the credential arguments are ignored and no extra
+#'   `POST /api/auth/login` round-trip is performed. Mainly useful when this
+#'   function is chained from another helper that has already obtained an
+#'   auth header (e.g. \code{\link{tb_delete_device_telemetry}}).
 #' @return character vector of telemetry key names. May be of length 0.
 #' @export
 #' @examples
@@ -752,17 +770,20 @@ tb_get_device_id <- function(
 tb_list_device_telemetry_keys <- function(
     device_id,
     api_key = Sys.getenv("TB_API_KEY"),
-    host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud"),
+    host = tb_default_host(),
     username = Sys.getenv("TB_USERNAME"),
-    password = Sys.getenv("TB_PASSWORD")
+    password = Sys.getenv("TB_PASSWORD"),
+    auth = NULL
 )
 {
   stopifnot(nzchar(host), nzchar(device_id))
   host <- sub("/+$", "", host)
-  auth <- tb_auth_header(
-    api_key = api_key, host = host,
-    username = username, password = password
-  )
+  if (is.null(auth)) {
+    auth <- tb_auth_header(
+      api_key = api_key, host = host,
+      username = username, password = password
+    )
+  }
 
   resp <- httr2::request(sprintf(
     "%s/api/plugins/telemetry/DEVICE/%s/keys/timeseries",
@@ -818,7 +839,7 @@ tb_delete_device_telemetry <- function(
     device_id,
     keys = NULL,
     api_key = Sys.getenv("TB_API_KEY"),
-    host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud"),
+    host = tb_default_host(),
     delete_latest = TRUE,
     username = Sys.getenv("TB_USERNAME"),
     password = Sys.getenv("TB_PASSWORD")
@@ -833,8 +854,7 @@ tb_delete_device_telemetry <- function(
 
   if (is.null(keys)) {
     keys <- tb_list_device_telemetry_keys(
-      device_id = device_id, api_key = api_key, host = host,
-      username = username, password = password
+      device_id = device_id, host = host, auth = auth
     )
   }
 
@@ -1028,7 +1048,7 @@ to_epoch_ms <- function(x)
 tb_login <- function(
     username = Sys.getenv("TB_USERNAME"),
     password = Sys.getenv("TB_PASSWORD"),
-    host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud")
+    host = tb_default_host()
 )
 {
   stopifnot(nzchar(username), nzchar(password), nzchar(host))
@@ -1073,7 +1093,7 @@ tb_login <- function(
 #' @noRd
 tb_auth_header <- function(
     api_key = Sys.getenv("TB_API_KEY"),
-    host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud"),
+    host = tb_default_host(),
     username = Sys.getenv("TB_USERNAME"),
     password = Sys.getenv("TB_PASSWORD")
 )
@@ -1083,12 +1103,10 @@ tb_auth_header <- function(
   } else if (nzchar(api_key)) {
     paste("ApiKey", api_key)
   } else {
-    stop_formatted(
-      paste0(
-        "No ThingsBoard credentials found. Set TB_USERNAME + TB_PASSWORD ",
-        "(self-hosted / Community Edition, recommended) or TB_API_KEY ",
-        "(ThingsBoard Cloud)."
-      )
-    )
+    stop(paste0(
+      "No ThingsBoard credentials found. Set TB_USERNAME + TB_PASSWORD ",
+      "(self-hosted / Community Edition, recommended) or TB_API_KEY ",
+      "(ThingsBoard Cloud)."
+    ))
   }
 }

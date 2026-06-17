@@ -7,7 +7,7 @@
 tb_get_device_id(
   device_name,
   api_key = Sys.getenv("TB_API_KEY"),
-  host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud"),
+  host = tb_default_host(),
   username = Sys.getenv("TB_USERNAME"),
   password = Sys.getenv("TB_PASSWORD")
 )

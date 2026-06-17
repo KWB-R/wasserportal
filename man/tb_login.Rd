@@ -7,7 +7,7 @@
 tb_login(
   username = Sys.getenv("TB_USERNAME"),
   password = Sys.getenv("TB_PASSWORD"),
-  host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud")
+  host = tb_default_host()
 )
 }
 \arguments{

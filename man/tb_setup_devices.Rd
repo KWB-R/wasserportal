@@ -7,7 +7,7 @@
 tb_setup_devices(
   station_ids,
   api_key = Sys.getenv("TB_API_KEY"),
-  host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud"),
+  host = tb_default_host(),
   name_prefix = "wasserportal-",
   device_type = "wasserportal",
   username = Sys.getenv("TB_USERNAME"),

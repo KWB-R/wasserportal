@@ -11,7 +11,7 @@ tb_push_station_telemetry(
   value_col = "Messwert",
   key_col = "Parameter",
   single_key = "value",
-  host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud"),
+  host = tb_default_host(),
   chunk_size = 100L,
   mode = c("single", "bulk"),
   throttle_seconds = NULL,
