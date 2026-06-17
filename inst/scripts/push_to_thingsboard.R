@@ -114,8 +114,9 @@ device_prefix <- env_or("TB_DEVICE_PREFIX", "wasserportal-gw-")
 max_devices <- as.integer(env_or("TB_MAX_DEVICES", "5"))
 
 # Candidate pool for the auto-pick (used only when TB_STATION_IDS is unset):
-# "both" (default) = level AND quality, "any" = level OR quality,
-# "gwl" / "gwq" = only that series.
+# "both" (default) = level AND quality; "any" = level OR quality;
+# "gwl" / "gwq" = has that series (may also have the other);
+# "gwl-only" / "gwq-only" = has only that series (excludes both-stations).
 station_scope <- tolower(env_or("TB_STATION_SCOPE", "both"))
 
 # Limit telemetry to the most recent N days per station. Set to 0 to push
