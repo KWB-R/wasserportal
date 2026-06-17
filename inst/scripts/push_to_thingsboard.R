@@ -42,7 +42,13 @@
 #   TB_DEVICE_PREFIX  Prefix for ThingsBoard device names. Default
 #                     "wasserportal-gw-".
 #   TB_MAX_DEVICES    Maximum number of devices to set up. Default 5
-#                     (ThingsBoard Cloud free tier limit).
+#                     (ThingsBoard Cloud free tier limit). Set to 0 for
+#                     no limit (push every candidate station).
+#   TB_STATION_SCOPE  Which groundwater stations the auto-pick considers
+#                     (ignored when TB_STATION_IDS is set): "both"
+#                     (default) = stations with BOTH level and quality
+#                     data; "any" = level OR quality; "gwl" / "gwq" =
+#                     only that series.
 #   TB_HISTORY_DAYS   Limit telemetry to the most recent N days per
 #                     station. Default 0 (= push all history).
 #   TB_PLAN           One of "free" (default), "prototype", "pilot",
@@ -101,7 +107,14 @@ base_url <- sub("/+$", "", env_or(
 
 device_prefix <- env_or("TB_DEVICE_PREFIX", "wasserportal-gw-")
 
+# Maximum number of devices/stations to set up. 0 (or negative) = no limit
+# (push every candidate station -- only sensible on self-hosted / paid tiers).
 max_devices <- as.integer(env_or("TB_MAX_DEVICES", "5"))
+
+# Candidate pool for the auto-pick (used only when TB_STATION_IDS is unset):
+# "both" (default) = level AND quality, "any" = level OR quality,
+# "gwl" / "gwq" = only that series.
+station_scope <- tolower(env_or("TB_STATION_SCOPE", "both"))
 
 # Limit telemetry to the most recent N days per station. Set to 0 to push
 # all history. Useful while diagnosing whether the ThingsBoard Cloud free
@@ -225,66 +238,94 @@ if (nzchar(env_ids)) {
   ))
 } else {
   master_intersect <- intersect(gwl_master$Nummer, gwq_master$Nummer)
-  with_gwl <- intersect(master_intersect, unique(gwl_data$Messstellennummer))
-  with_both <- intersect(with_gwl, unique(gwq_data$Messstellennummer))
+  master_union     <- union(gwl_master$Nummer, gwq_master$Nummer)
+  ids_gwl <- unique(gwl_data$Messstellennummer)
+  ids_gwq <- unique(gwq_data$Messstellennummer)
+
+  # Candidate pool depends on TB_STATION_SCOPE (default "both" -- the proven
+  # demo set). The push still honours TB_TELEMETRY_TYPES per station, so a
+  # gwl-only station picked under "any"/"gwl" simply contributes no gwq rows.
+  candidate_ids <- switch(
+    station_scope,
+    both = intersect(intersect(master_intersect, ids_gwl), ids_gwq),
+    any  = intersect(master_union, union(ids_gwl, ids_gwq)),
+    gwl  = intersect(master_union, ids_gwl),
+    gwq  = intersect(master_union, ids_gwq),
+    stop(sprintf(
+      "Unknown TB_STATION_SCOPE '%s' (use both | any | gwl | gwq).",
+      station_scope
+    ))
+  )
 
   message(sprintf(
     paste0(
-      "Station counts:\n",
-      "  gwl_master   = %d\n",
-      "  gwq_master   = %d\n",
-      "  master_intersect (both files)     = %d\n",
-      "  + present in stations_gwl_data    = %d\n",
-      "  + present in stations_gwq_data    = %d"
+      "Station selection (TB_STATION_SCOPE='%s'):\n",
+      "  with gwl data     = %d\n",
+      "  with gwq data     = %d\n",
+      "  with gwl AND gwq  = %d\n",
+      "  with gwl OR gwq   = %d\n",
+      "  -> candidate pool = %d"
     ),
-    length(unique(gwl_master$Nummer)),
-    length(unique(gwq_master$Nummer)),
-    length(master_intersect),
-    length(with_gwl),
-    length(with_both)
+    station_scope,
+    length(intersect(master_union, ids_gwl)),
+    length(intersect(master_union, ids_gwq)),
+    length(intersect(intersect(master_intersect, ids_gwl), ids_gwq)),
+    length(intersect(master_union, union(ids_gwl, ids_gwq))),
+    length(candidate_ids)
   ))
 
-  both_ids <- with_both
-
-  message(sprintf(
-    "%d stations have both gwl and gwq data; scoring ...",
-    length(both_ids)
-  ))
+  if (length(candidate_ids) == 0L) {
+    stop(sprintf(
+      "No candidate stations for TB_STATION_SCOPE='%s'.", station_scope
+    ))
+  }
 
   l_counts <- table(gwl_data$Messstellennummer)
   q_counts <- table(gwq_data$Messstellennummer)
-  q_param_counts <- vapply(
-    both_ids,
-    function(id) length(unique(
-      gwq_data$Parameter[gwq_data$Messstellennummer == id]
-    )),
-    integer(1L)
+  # Distinct gwq parameters per station, computed once via tapply. The old
+  # per-id vapply rescanned the whole gwq table for every candidate, which
+  # got slow once the pool grew from ~170 to several hundred stations.
+  q_param_by_id <- tapply(
+    gwq_data$Parameter, gwq_data$Messstellennummer,
+    function(p) length(unique(p))
   )
 
   scoreboard <- data.frame(
-    Nummer    = both_ids,
-    n_gwl     = as.integer(l_counts[both_ids]),
-    n_gwq     = as.integer(q_counts[both_ids]),
-    n_q_param = q_param_counts,
+    Nummer    = candidate_ids,
+    n_gwl     = as.integer(l_counts[candidate_ids]),
+    n_gwq     = as.integer(q_counts[candidate_ids]),
+    n_q_param = as.integer(q_param_by_id[candidate_ids]),
     stringsAsFactors = FALSE
   )
   scoreboard$n_gwl[is.na(scoreboard$n_gwl)] <- 0L
   scoreboard$n_gwq[is.na(scoreboard$n_gwq)] <- 0L
+  scoreboard$n_q_param[is.na(scoreboard$n_q_param)] <- 0L
   scoreboard$score <- with(
     scoreboard,
     (n_gwl + n_gwq) * pmax(n_q_param, 1L)
   )
 
   scoreboard <- scoreboard[order(-scoreboard$score), , drop = FALSE]
-  picked <- utils::head(scoreboard, max_devices)
 
-  message("Top candidates by (gwl_rows + gwq_rows) * gwq_parameters:")
-  for (i in seq_len(nrow(picked))) {
+  # TB_MAX_DEVICES = 0 (or negative) means "no limit": push every candidate.
+  no_limit <- is.na(max_devices) || max_devices <= 0L
+  picked <- if (no_limit) scoreboard else utils::head(scoreboard, max_devices)
+
+  message(sprintf(
+    "Pushing %d of %d candidate stations (TB_MAX_DEVICES=%s).",
+    nrow(picked), nrow(scoreboard),
+    if (no_limit) "0 -> all" else as.character(max_devices)
+  ))
+  message("Top stations by (gwl_rows + gwq_rows) * gwq_parameters:")
+  for (i in seq_len(min(nrow(picked), 10L))) {
     message(sprintf(
       "  %s : gwl=%d, gwq=%d, q-params=%d, score=%d",
       picked$Nummer[i], picked$n_gwl[i], picked$n_gwq[i],
       picked$n_q_param[i], picked$score[i]
     ))
+  }
+  if (nrow(picked) > 10L) {
+    message(sprintf("  ... and %d more", nrow(picked) - 10L))
   }
 
   station_ids <- picked$Nummer

@@ -26,6 +26,14 @@ on:
         description: 'ThingsBoard plan: free | free-bulk | prototype | pilot | startup | business | ce'
         required: false
         default: 'free'
+      max_devices:
+        description: 'Max devices/stations to set up (0 = no limit; empty = default 5)'
+        required: false
+        default: ''
+      station_scope:
+        description: 'Auto-pick scope: both | any | gwl | gwq (empty = default both)'
+        required: false
+        default: ''
 
 name: thingsboard-push
 
@@ -60,6 +68,10 @@ jobs:
       # below when added:
       #   TB_STATION_IDS       comma-separated Messstellennummer (default:
       #                        auto-pick top 5 by gwl+gwq score)
+      #   TB_MAX_DEVICES       max devices/stations to set up (default 5;
+      #                        0 = no limit, push every candidate station)
+      #   TB_STATION_SCOPE     auto-pick pool: both (default) | any | gwl |
+      #                        gwq -- which groundwater stations qualify
       #   TB_HISTORY_DAYS      "0" = full history since 1970, "30"/"365"
       #                        for short windows
       #   TB_TELEMETRY_TYPES   "gwl,gwq" | "gwl" | "gwq"
@@ -77,6 +89,8 @@ jobs:
       TB_USERNAME: ${{ secrets.TB_USERNAME }}
       TB_PASSWORD: ${{ secrets.TB_PASSWORD }}
       TB_STATION_IDS: ${{ github.event.inputs.station_ids || secrets.TB_STATION_IDS }}
+      TB_MAX_DEVICES: ${{ github.event.inputs.max_devices || secrets.TB_MAX_DEVICES }}
+      TB_STATION_SCOPE: ${{ github.event.inputs.station_scope || secrets.TB_STATION_SCOPE }}
       TB_HISTORY_DAYS: ${{ github.event.inputs.history_days || secrets.TB_HISTORY_DAYS || '0' }}
       TB_TELEMETRY_TYPES: ${{ github.event.inputs.telemetry_types || secrets.TB_TELEMETRY_TYPES || 'gwl,gwq' }}
       TB_PLAN: ${{ github.event.inputs.plan || secrets.TB_PLAN || 'free' }}

@@ -78,6 +78,15 @@
   (`/api/v1/{token}/telemetry`) is identical on all editions. The
   `thingsboard-push.yaml` workflow reads the two new credentials from the
   `TB_USERNAME` / `TB_PASSWORD` repository secrets
+* Make the station selection of `inst/scripts/push_to_thingsboard.R`
+  configurable for full (non-demo) pushes: `TB_MAX_DEVICES=0` lifts the
+  5-device cap (push every candidate station), and a new `TB_STATION_SCOPE`
+  chooses which groundwater stations qualify -- `both` (default: level AND
+  quality, the proven demo set), `any` (level OR quality), or `gwl` / `gwq`
+  (only that series). Both are exposed as `thingsboard-push.yaml` repository
+  secrets and `workflow_dispatch` inputs. Distinct gwq parameters per
+  station are now counted once via `tapply()` instead of a per-station
+  table rescan, so scoring the full several-hundred-station pool stays fast
 * Drop pre-1970 timestamps inside `build_telemetry_payload()`. Some
   Wasserportal groundwater stations start in the 1950s, which yields
   negative epoch milliseconds (the Unix/POSIX epoch is defined as
