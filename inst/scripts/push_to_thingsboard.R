@@ -46,9 +46,11 @@
 #                     no limit (push every candidate station).
 #   TB_STATION_SCOPE  Which groundwater stations the auto-pick considers
 #                     (ignored when TB_STATION_IDS is set): "both"
-#                     (default) = stations with BOTH level and quality
-#                     data; "any" = level OR quality; "gwl" / "gwq" =
-#                     only that series.
+#                     (default) = stations with level AND quality data;
+#                     "any" = level OR quality; "gwl" / "gwq" = has that
+#                     series (may also have the other); "gwl-only" /
+#                     "gwq-only" = has ONLY that series (excludes
+#                     both-stations).
 #   TB_HISTORY_DAYS   Limit telemetry to the most recent N days per
 #                     station. Default 0 (= push all history).
 #   TB_PLAN           One of "free" (default), "prototype", "pilot",
@@ -243,16 +245,23 @@ if (nzchar(env_ids)) {
   ids_gwq <- unique(gwq_data$Messstellennummer)
 
   # Candidate pool depends on TB_STATION_SCOPE (default "both" -- the proven
-  # demo set). The push still honours TB_TELEMETRY_TYPES per station, so a
-  # gwl-only station picked under "any"/"gwl" simply contributes no gwq rows.
+  # demo set). "gwl"/"gwq" = has that series (may also have the other);
+  # "gwl-only"/"gwq-only" = has ONLY that series (excludes both-stations).
+  # The push still honours TB_TELEMETRY_TYPES per station, so a gwl-only
+  # station picked under "any"/"gwl" simply contributes no gwq rows.
   candidate_ids <- switch(
     station_scope,
-    both = intersect(intersect(master_intersect, ids_gwl), ids_gwq),
-    any  = intersect(master_union, union(ids_gwl, ids_gwq)),
-    gwl  = intersect(master_union, ids_gwl),
-    gwq  = intersect(master_union, ids_gwq),
+    both       = intersect(intersect(master_intersect, ids_gwl), ids_gwq),
+    any        = intersect(master_union, union(ids_gwl, ids_gwq)),
+    gwl        = intersect(master_union, ids_gwl),
+    gwq        = intersect(master_union, ids_gwq),
+    `gwl-only` = setdiff(intersect(master_union, ids_gwl), ids_gwq),
+    `gwq-only` = setdiff(intersect(master_union, ids_gwq), ids_gwl),
     stop(sprintf(
-      "Unknown TB_STATION_SCOPE '%s' (use both | any | gwl | gwq).",
+      paste0(
+        "Unknown TB_STATION_SCOPE '%s' ",
+        "(use both | any | gwl | gwq | gwl-only | gwq-only)."
+      ),
       station_scope
     ))
   )
@@ -263,14 +272,16 @@ if (nzchar(env_ids)) {
       "  with gwl data     = %d\n",
       "  with gwq data     = %d\n",
       "  with gwl AND gwq  = %d\n",
-      "  with gwl OR gwq   = %d\n",
+      "  only gwl (no gwq) = %d\n",
+      "  only gwq (no gwl) = %d\n",
       "  -> candidate pool = %d"
     ),
     station_scope,
     length(intersect(master_union, ids_gwl)),
     length(intersect(master_union, ids_gwq)),
     length(intersect(intersect(master_intersect, ids_gwl), ids_gwq)),
-    length(intersect(master_union, union(ids_gwl, ids_gwq))),
+    length(setdiff(intersect(master_union, ids_gwl), ids_gwq)),
+    length(setdiff(intersect(master_union, ids_gwq), ids_gwl)),
     length(candidate_ids)
   ))
 

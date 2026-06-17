@@ -31,7 +31,7 @@ on:
         required: false
         default: ''
       station_scope:
-        description: 'Auto-pick scope: both | any | gwl | gwq (empty = default both)'
+        description: 'Auto-pick scope: both | any | gwl | gwq | gwl-only | gwq-only (empty = default both)'
         required: false
         default: ''
 
@@ -71,7 +71,9 @@ jobs:
       #   TB_MAX_DEVICES       max devices/stations to set up (default 5;
       #                        0 = no limit, push every candidate station)
       #   TB_STATION_SCOPE     auto-pick pool: both (default) | any | gwl |
-      #                        gwq -- which groundwater stations qualify
+      #                        gwq | gwl-only | gwq-only -- which groundwater
+      #                        stations qualify (gwl/gwq = has that series;
+      #                        *-only = excludes stations that have both)
       #   TB_HISTORY_DAYS      "0" = full history since 1970, "30"/"365"
       #                        for short windows
       #   TB_TELEMETRY_TYPES   "gwl,gwq" | "gwl" | "gwq"

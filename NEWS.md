@@ -82,8 +82,9 @@
   configurable for full (non-demo) pushes: `TB_MAX_DEVICES=0` lifts the
   5-device cap (push every candidate station), and a new `TB_STATION_SCOPE`
   chooses which groundwater stations qualify -- `both` (default: level AND
-  quality, the proven demo set), `any` (level OR quality), or `gwl` / `gwq`
-  (only that series). Both are exposed as `thingsboard-push.yaml` repository
+  quality, the proven demo set), `any` (level OR quality), `gwl` / `gwq`
+  (has that series, possibly both) or `gwl-only` / `gwq-only` (has only
+  that series). Both knobs are exposed as `thingsboard-push.yaml` repository
   secrets and `workflow_dispatch` inputs. Distinct gwq parameters per
   station are now counted once via `tapply()` instead of a per-station
   table rescan, so scoring the full several-hundred-station pool stays fast

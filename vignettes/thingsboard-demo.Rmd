@@ -387,7 +387,7 @@ single run without editing the YAML:
 | `telemetry_types` | Subset of `gwl,gwq` to push.                                                                  | `gwl`        |
 | `plan`            | ThingsBoard plan: `free` / `free-bulk` / `prototype` / `pilot` / `startup` / `business` / `ce`. | `free`       |
 | `max_devices`     | Max devices/stations to set up. `0` = no limit (every candidate); empty = default 5.          | `0`          |
-| `station_scope`   | Auto-pick pool: `both` (default) / `any` / `gwl` / `gwq`.                                      | `any`        |
+| `station_scope`   | Auto-pick pool: `both` (default) / `any` / `gwl` / `gwq` / `gwl-only` / `gwq-only`.            | `any`        |
 
 These mirror the underlying env vars (`TB_STATION_IDS`,
 `TB_MAX_DEVICES`, `TB_STATION_SCOPE`, `TB_HISTORY_DAYS`,
@@ -396,9 +396,11 @@ environment if run standalone.
 
 To push **every** groundwater station, set `max_devices = 0` and
 `station_scope = any` (level-only and quality-only stations included).
-Mind the volume -- several hundred devices over the full archive is
-millions of data points; start with a bounded `history_days` to validate
-the run.
+`gwl` / `gwq` select stations that *have* that series (a both-station
+matches too), while `gwl-only` / `gwq-only` are the exclusive sets --
+stations that have *only* level resp. *only* quality data. Mind the
+volume -- several hundred devices over the full archive is millions of
+data points; start with a bounded `history_days` to validate the run.
 
 ## 10. Re-Running and Idempotency
 
