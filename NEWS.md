@@ -1,4 +1,4 @@
-# wasserportal 0.5.0.9000 <small>(development version)</small>
+# [wasserportal 0.6.0](https://github.com/KWB-R/wasserportal/releases/tag/v0.6.0) <small>2026-06-17</small>
 
 * Wrap each `httr2::req_perform_parallel()` batch in
   `tb_push_station_telemetry()` `mode = "single"` in a batch-level
