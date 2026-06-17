@@ -22,8 +22,16 @@
 #   Rscript inst/scripts/push_to_thingsboard.R
 #
 # Required environment variables:
-#   TB_HOST       e.g. https://eu.thingsboard.cloud
-#   TB_API_KEY    Account-level API key (Bearer credential)
+#   TB_HOST       e.g. https://eu.thingsboard.cloud or
+#                 https://dashboards.inowas.org (self-hosted)
+#
+# Authentication -- provide ONE of the following (username/password wins):
+#   TB_USERNAME + TB_PASSWORD  ThingsBoard login -> JWT Bearer token. Works
+#                 on every edition and is the ONLY option for self-hosted
+#                 Community Edition (which has no account-level API keys).
+#                 For self-hosted instances also set TB_PLAN=ce.
+#   TB_API_KEY    Account-level API key, ThingsBoard Cloud only
+#                 (Account > Security > API keys > Generate).
 #
 # Optional environment variables:
 #   TB_STATION_IDS    Comma-separated Messstellennummer values. If unset,
@@ -61,10 +69,31 @@ env_or <- function(name, default) {
   if (nzchar(v)) v else default
 }
 
-stopifnot(
-  nzchar(Sys.getenv("TB_HOST")),
-  nzchar(Sys.getenv("TB_API_KEY"))
-)
+if (!nzchar(Sys.getenv("TB_HOST"))) {
+  stop(paste0(
+    "TB_HOST is required (e.g. https://eu.thingsboard.cloud or ",
+    "https://dashboards.inowas.org)."
+  ))
+}
+
+# Authenticate with either a username/password login (JWT -- works on every
+# ThingsBoard edition, required for self-hosted Community Edition) or an
+# account-level API key (ThingsBoard Cloud only). Username/password wins.
+# tb_setup_devices() resolves the same TB_USERNAME / TB_PASSWORD / TB_API_KEY
+# env vars itself; this is just a fail-fast preflight with a clear message.
+has_login   <- nzchar(Sys.getenv("TB_USERNAME")) &&
+  nzchar(Sys.getenv("TB_PASSWORD"))
+has_api_key <- nzchar(Sys.getenv("TB_API_KEY"))
+if (!has_login && !has_api_key) {
+  stop(paste0(
+    "No ThingsBoard credentials. Set TB_USERNAME + TB_PASSWORD ",
+    "(self-hosted / Community Edition) or TB_API_KEY (ThingsBoard Cloud)."
+  ))
+}
+message(sprintf(
+  "ThingsBoard auth: %s",
+  if (has_login) "username/password (JWT Bearer)" else "account API key"
+))
 
 base_url <- sub("/+$", "", env_or(
   "TB_GH_PAGES_URL", "https://kwb-r.github.io/wasserportal"

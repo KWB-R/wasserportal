@@ -62,6 +62,22 @@
   API keys (the standard `Authorization: Bearer ...` and the
   JWT-style `X-Authorization: Bearer ...` variants both return
   HTTP 401)
+* Add `tb_login()` and username/password (JWT) authentication across the
+  ThingsBoard tenant-API helpers (`tb_setup_devices()`,
+  `tb_get_device_id()`, `tb_list_device_telemetry_keys()`,
+  `tb_delete_device_telemetry()`). Self-hosted ThingsBoard Community
+  Edition (e.g. `https://dashboards.inowas.org`) has no account-level API
+  keys -- that is a ThingsBoard Cloud convenience -- so it can only be
+  reached via `POST /api/auth/login` (username + password), which returns
+  a short-lived JWT sent as `X-Authorization: Bearer <token>`. Each helper
+  now resolves its auth header via an internal `tb_auth_header()`: set
+  `TB_USERNAME` + `TB_PASSWORD` (these take precedence over `TB_API_KEY`
+  when both are present) and, for self-hosted instances, `TB_PLAN=ce`
+  (bulk mode, no throttling). The account-level API-key path (ThingsBoard
+  Cloud) keeps working unchanged, and the device-token telemetry push
+  (`/api/v1/{token}/telemetry`) is identical on all editions. The
+  `thingsboard-push.yaml` workflow reads the two new credentials from the
+  `TB_USERNAME` / `TB_PASSWORD` repository secrets
 * Drop pre-1970 timestamps inside `build_telemetry_payload()`. Some
   Wasserportal groundwater stations start in the 1950s, which yields
   negative epoch milliseconds (the Unix/POSIX epoch is defined as

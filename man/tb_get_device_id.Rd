@@ -7,7 +7,9 @@
 tb_get_device_id(
   device_name,
   api_key = Sys.getenv("TB_API_KEY"),
-  host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud")
+  host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud"),
+  username = Sys.getenv("TB_USERNAME"),
+  password = Sys.getenv("TB_PASSWORD")
 )
 }
 \arguments{
@@ -17,6 +19,11 @@ tb_get_device_id(
 
 \item{host}{base URL of the ThingsBoard instance. Defaults to env var
 \code{TB_HOST} if set, otherwise \code{"https://thingsboard.cloud"}.}
+
+\item{username}{ThingsBoard user for the username/password (JWT) login
+(self-hosted / Community Edition). Defaults to env var \code{TB_USERNAME}.}
+
+\item{password}{ThingsBoard password. Defaults to env var \code{TB_PASSWORD}.}
 }
 \value{
 device UUID (character) or \code{NA_character_} if the lookup did not

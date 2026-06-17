@@ -7,7 +7,9 @@
 tb_list_device_telemetry_keys(
   device_id,
   api_key = Sys.getenv("TB_API_KEY"),
-  host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud")
+  host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud"),
+  username = Sys.getenv("TB_USERNAME"),
+  password = Sys.getenv("TB_PASSWORD")
 )
 }
 \arguments{
@@ -18,6 +20,11 @@ resolve a name.}
 
 \item{host}{base URL of the ThingsBoard instance. Defaults to env var
 \code{TB_HOST} if set, otherwise \code{"https://thingsboard.cloud"}.}
+
+\item{username}{ThingsBoard user for the username/password (JWT) login
+(self-hosted / Community Edition). Defaults to env var \code{TB_USERNAME}.}
+
+\item{password}{ThingsBoard password. Defaults to env var \code{TB_PASSWORD}.}
 }
 \value{
 character vector of telemetry key names. May be of length 0.

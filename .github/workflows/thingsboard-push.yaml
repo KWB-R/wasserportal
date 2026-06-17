@@ -45,8 +45,16 @@ jobs:
       # without editing this yaml.
       #
       # Required secrets (no default, the script aborts without them):
-      #   TB_HOST              e.g. https://eu.thingsboard.cloud
-      #   TB_API_KEY           account-level API key (X-Authorization: ApiKey)
+      #   TB_HOST              e.g. https://eu.thingsboard.cloud or
+      #                        https://dashboards.inowas.org (self-hosted)
+      #
+      # Authentication -- set ONE of the following (username/password wins):
+      #   TB_USERNAME +        ThingsBoard login -> JWT Bearer token. Works on
+      #   TB_PASSWORD          every edition and is the ONLY option for
+      #                        self-hosted Community Edition (no account API
+      #                        keys there). For self-hosted also set TB_PLAN=ce.
+      #   TB_API_KEY           account-level API key, ThingsBoard Cloud only
+      #                        (X-Authorization: ApiKey)
       #
       # Optional secrets, all currently NOT set, all override the defaults
       # below when added:
@@ -66,6 +74,8 @@ jobs:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       TB_HOST: ${{ secrets.TB_HOST }}
       TB_API_KEY: ${{ secrets.TB_API_KEY }}
+      TB_USERNAME: ${{ secrets.TB_USERNAME }}
+      TB_PASSWORD: ${{ secrets.TB_PASSWORD }}
       TB_STATION_IDS: ${{ github.event.inputs.station_ids || secrets.TB_STATION_IDS }}
       TB_HISTORY_DAYS: ${{ github.event.inputs.history_days || secrets.TB_HISTORY_DAYS || '0' }}
       TB_TELEMETRY_TYPES: ${{ github.event.inputs.telemetry_types || secrets.TB_TELEMETRY_TYPES || 'gwl,gwq' }}
