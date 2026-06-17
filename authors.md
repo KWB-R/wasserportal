@@ -33,13 +33,13 @@ Source:
 [`DESCRIPTION`](https://github.com/KWB-R/wasserportal/blob/master/DESCRIPTION)
 
 Sonnenberg H, Rustler M (2026). *wasserportal: R Package with Functions
-for Scraping Data of Wasserportal Berlin*. R package version 0.5.0,
+for Scraping Data of Wasserportal Berlin*. R package version 0.6.0,
 <https://github.com/KWB-R/wasserportal>.
 
     @Manual{,
       title = {wasserportal: R Package with Functions for Scraping Data of Wasserportal Berlin},
       author = {Hauke Sonnenberg and Michael Rustler},
       year = {2026},
-      note = {R package version 0.5.0},
+      note = {R package version 0.6.0},
       url = {https://github.com/KWB-R/wasserportal},
     }

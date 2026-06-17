@@ -12,6 +12,7 @@
 <url><loc>https://kwb-r.github.io/wasserportal/articles/reach.html</loc></url>
 <url><loc>https://kwb-r.github.io/wasserportal/articles/reach_uba.html</loc></url>
 <url><loc>https://kwb-r.github.io/wasserportal/articles/surface-water.html</loc></url>
+<url><loc>https://kwb-r.github.io/wasserportal/articles/thingsboard-demo.html</loc></url>
 <url><loc>https://kwb-r.github.io/wasserportal/articles/tutorial.html</loc></url>
 <url><loc>https://kwb-r.github.io/wasserportal/authors.html</loc></url>
 <url><loc>https://kwb-r.github.io/wasserportal/index.html</loc></url>
@@ -36,6 +37,7 @@
 <url><loc>https://kwb-r.github.io/wasserportal/reference/get_wasserportal_stations_table.html</loc></url>
 <url><loc>https://kwb-r.github.io/wasserportal/reference/get_wasserportal_variables.html</loc></url>
 <url><loc>https://kwb-r.github.io/wasserportal/reference/index.html</loc></url>
+<url><loc>https://kwb-r.github.io/wasserportal/reference/inspect_gh_pages_zips.html</loc></url>
 <url><loc>https://kwb-r.github.io/wasserportal/reference/list_data_to_csv_or_zip.html</loc></url>
 <url><loc>https://kwb-r.github.io/wasserportal/reference/list_masters_data_to_csv.html</loc></url>
 <url><loc>https://kwb-r.github.io/wasserportal/reference/list_timeseries_data_to_zip.html</loc></url>
@@ -45,6 +47,14 @@
 <url><loc>https://kwb-r.github.io/wasserportal/reference/read_wasserportal.html</loc></url>
 <url><loc>https://kwb-r.github.io/wasserportal/reference/read_wasserportal_raw.html</loc></url>
 <url><loc>https://kwb-r.github.io/wasserportal/reference/read_wasserportal_raw_gw.html</loc></url>
+<url><loc>https://kwb-r.github.io/wasserportal/reference/tb_delete_device_telemetry.html</loc></url>
+<url><loc>https://kwb-r.github.io/wasserportal/reference/tb_get_device_id.html</loc></url>
+<url><loc>https://kwb-r.github.io/wasserportal/reference/tb_list_device_telemetry_keys.html</loc></url>
+<url><loc>https://kwb-r.github.io/wasserportal/reference/tb_plan_defaults.html</loc></url>
+<url><loc>https://kwb-r.github.io/wasserportal/reference/tb_push_latest_telemetry.html</loc></url>
+<url><loc>https://kwb-r.github.io/wasserportal/reference/tb_push_station_attributes.html</loc></url>
+<url><loc>https://kwb-r.github.io/wasserportal/reference/tb_push_station_telemetry.html</loc></url>
+<url><loc>https://kwb-r.github.io/wasserportal/reference/tb_setup_devices.html</loc></url>
 <url><loc>https://kwb-r.github.io/wasserportal/reference/wasserportal_base_url.html</loc></url>
 <url><loc>https://kwb-r.github.io/wasserportal/reference/wp_masters_data_to_list.html</loc></url>
 <url><loc>https://kwb-r.github.io/wasserportal/reference/wp_timeseries_data_to_list.html</loc></url>

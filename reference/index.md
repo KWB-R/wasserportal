@@ -37,6 +37,8 @@
   : Wasserportal Berlin: get stations overview table
 - [`get_wasserportal_variables()`](https://kwb-r.github.io/wasserportal/reference/get_wasserportal_variables.md)
   : Get Names and IDs of the Variables of wasserportal.berlin.de
+- [`inspect_gh_pages_zips()`](https://kwb-r.github.io/wasserportal/reference/inspect_gh_pages_zips.md)
+  : Download and Inspect Wasserportal ZIP Files Hosted on gh-pages
 - [`list_data_to_csv_or_zip()`](https://kwb-r.github.io/wasserportal/reference/list_data_to_csv_or_zip.md)
   : Helper function: list data to csv or zip
 - [`list_masters_data_to_csv()`](https://kwb-r.github.io/wasserportal/reference/list_masters_data_to_csv.md)
@@ -53,6 +55,23 @@
   : Read Wasserportal Raw
 - [`read_wasserportal_raw_gw()`](https://kwb-r.github.io/wasserportal/reference/read_wasserportal_raw_gw.md)
   : read_wasserportal_raw_gw
+- [`tb_delete_device_telemetry()`](https://kwb-r.github.io/wasserportal/reference/tb_delete_device_telemetry.md)
+  : Delete All Time-Series Data for Selected Keys on a ThingsBoard
+  Device
+- [`tb_get_device_id()`](https://kwb-r.github.io/wasserportal/reference/tb_get_device_id.md)
+  : Look Up a ThingsBoard Device's UUID by Name
+- [`tb_list_device_telemetry_keys()`](https://kwb-r.github.io/wasserportal/reference/tb_list_device_telemetry_keys.md)
+  : List the Telemetry Keys Currently Stored for a ThingsBoard Device
+- [`tb_plan_defaults()`](https://kwb-r.github.io/wasserportal/reference/tb_plan_defaults.md)
+  : Recommended Push Defaults per ThingsBoard Subscription Plan
+- [`tb_push_latest_telemetry()`](https://kwb-r.github.io/wasserportal/reference/tb_push_latest_telemetry.md)
+  : Push a Single "Latest" Telemetry Record (no Timestamp)
+- [`tb_push_station_attributes()`](https://kwb-r.github.io/wasserportal/reference/tb_push_station_attributes.md)
+  : Push Static Attributes of one Wasserportal Station to ThingsBoard
+- [`tb_push_station_telemetry()`](https://kwb-r.github.io/wasserportal/reference/tb_push_station_telemetry.md)
+  : Push Time Series of one Wasserportal Station to ThingsBoard
+- [`tb_setup_devices()`](https://kwb-r.github.io/wasserportal/reference/tb_setup_devices.md)
+  : Create ThingsBoard Devices and Return their Access Tokens
 - [`wasserportal_base_url()`](https://kwb-r.github.io/wasserportal/reference/wasserportal_base_url.md)
   : Helper function: Base Url of Berlin Wassersportal
 - [`wp_masters_data_to_list()`](https://kwb-r.github.io/wasserportal/reference/wp_masters_data_to_list.md)
