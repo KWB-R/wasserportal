@@ -1,0 +1,276 @@
+{
+  "title": "Wasserportal Berlin Groundwater Demo",
+  "image": null,
+  "mobileHide": false,
+  "mobileOrder": null,
+  "configuration": {
+    "description": "Auto-importable demo dashboard for the kwb-r/wasserportal ThingsBoard push: an OpenStreetMap on the latitude / longitude attributes, a master-data table for the five Berlin groundwater stations and two time-series charts (level + selected quality parameters). The map widget uses the modern typeFullFqn reference together with the latKeyName / lngKeyName settings format that the system.map widget accepts as a stable backward-compatible binding, so markers render right after import without manual basic-configuration tweaks. The dashboard timewindow defaults to a fixed range from 1970-01-01 (POSIX epoch) to 2027-01-01 UTC with `aggregation = NONE` (and `limit = 50000` points per series), so the charts show raw, unaveraged measurements over the full available history. Each chart returns at most 50000 points per (entity, key) pair which is comfortably above the Wasserportal counts (~16000 GW-Stand and ~8000 GWQ records per station over the whole archive); shorten the dashboard time-window via the selector if you only want to look at a specific period.",
+    "widgets": {
+      "wp-map": {
+        "id": "wp-map",
+        "typeFullFqn": "system.map",
+        "type": "latest",
+        "title": "Berlin groundwater stations",
+        "sizeX": 12,
+        "sizeY": 7,
+        "config": {
+          "datasources": [
+            {
+              "type": "entity",
+              "entityAliasId": "wasserportal_devices",
+              "dataKeys": [
+                { "name": "latitude",    "type": "attribute", "label": "latitude",    "color": "#2196f3", "settings": {}, "_hash": 0.11 },
+                { "name": "longitude",   "type": "attribute", "label": "longitude",   "color": "#4caf50", "settings": {}, "_hash": 0.12 },
+                { "name": "Bezirk",      "type": "attribute", "label": "Bezirk",      "color": "#f44336", "settings": {}, "_hash": 0.13 },
+                { "name": "Auspraegung", "type": "attribute", "label": "Auspraegung", "color": "#ff9800", "settings": {}, "_hash": 0.14 }
+              ]
+            }
+          ],
+          "showTitle": true,
+          "title": "Berlin groundwater stations",
+          "showTitleIcon": true,
+          "titleIcon": "map",
+          "iconColor": "#1F6BDD",
+          "titleStyle": { "fontSize": "16px", "fontWeight": 400 },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "color": "rgba(0, 0, 0, 0.87)",
+          "padding": "0px",
+          "margin": "0px",
+          "borderRadius": "0px",
+          "dropShadow": true,
+          "enableFullscreen": true,
+          "settings": {
+            "mapProvider": "openstreet-map",
+            "mapProviderHere": "HEREv3.normalDay",
+            "useDefaultCenterPosition": false,
+            "defaultCenterPosition": "52.520,13.405",
+            "defaultZoomLevel": 11,
+            "disableScrollZooming": false,
+            "fitMapBounds": true,
+            "latKeyName": "latitude",
+            "lngKeyName": "longitude",
+            "showLabel": true,
+            "useLabelFunction": false,
+            "label": "${entityName}",
+            "showTooltip": true,
+            "useTooltipFunction": false,
+            "autocloseTooltip": false,
+            "tooltipPattern": "<b>${entityName}</b><br/>Bezirk: ${Bezirk}<br/>Auspraegung: ${Auspraegung}<br/>lat/lon: ${latitude}, ${longitude}",
+            "showTooltipAction": "click",
+            "color": "#FE7569",
+            "useColorFunction": false,
+            "markerImageSize": 34,
+            "useMarkerImageFunction": false,
+            "markerImages": [],
+            "draggableMarker": false,
+            "showPolygon": false,
+            "polygonKeyName": "perimeter",
+            "polygonColor": "#0000ff",
+            "polygonOpacity": 0.5,
+            "polygonStrokeColor": "#0000ff",
+            "polygonStrokeOpacity": 1,
+            "polygonStrokeWeight": 1
+          }
+        }
+      },
+      "wp-attributes": {
+        "id": "wp-attributes",
+        "isSystemType": true,
+        "bundleAlias": "cards",
+        "typeAlias": "entities_table",
+        "type": "latest",
+        "title": "Master data per station",
+        "sizeX": 12,
+        "sizeY": 5,
+        "config": {
+          "datasources": [
+            {
+              "type": "entity",
+              "entityAliasId": "wasserportal_devices",
+              "dataKeys": [
+                { "name": "Bezirk", "type": "attribute", "label": "Bezirk", "_hash": 1.1 },
+                { "name": "Auspraegung", "type": "attribute", "label": "Ausprägung", "_hash": 1.2 },
+                { "name": "Grundwasserleiter", "type": "attribute", "label": "GW-Leiter", "_hash": 1.3 },
+                { "name": "Gelaendeoberkante_GOK_m_ue_NHN", "type": "attribute", "label": "GOK [m ü NHN]", "_hash": 1.4 },
+                { "name": "Filteroberkante_m_u_GOK", "type": "attribute", "label": "Filter top [m u GOK]", "_hash": 1.5 },
+                { "name": "Filterunterkante_m_u_GOK", "type": "attribute", "label": "Filter bottom [m u GOK]", "_hash": 1.6 }
+              ]
+            }
+          ],
+          "title": "Master data per station",
+          "showTitle": true,
+          "settings": {
+            "enableSearch": true,
+            "displayPagination": true,
+            "defaultPageSize": 10,
+            "displayEntityName": true,
+            "entityNameColumnTitle": "Station"
+          }
+        }
+      },
+      "wp-timeseries": {
+        "id": "wp-timeseries",
+        "isSystemType": true,
+        "bundleAlias": "charts",
+        "typeAlias": "basic_timeseries",
+        "type": "timeseries",
+        "title": "Groundwater level history",
+        "sizeX": 12,
+        "sizeY": 8,
+        "config": {
+          "datasources": [
+            {
+              "type": "entity",
+              "entityAliasId": "wasserportal_devices",
+              "dataKeys": [
+                {
+                  "name": "GW-Stand",
+                  "type": "timeseries",
+                  "label": "${entityName} - GW-Stand",
+                  "color": "#2196f3",
+                  "settings": {
+                    "fillLines": false,
+                    "showLines": true,
+                    "showPoints": false,
+                    "tooltipValueFormatter": ""
+                  },
+                  "_hash": 2.1
+                }
+              ]
+            }
+          ],
+          "title": "Groundwater level history",
+          "showTitle": true,
+          "showLegend": true,
+          "useDashboardTimewindow": true,
+          "displayTimewindow": true,
+          "settings": {
+            "shadowSize": 0,
+            "smoothLines": true,
+            "stack": false,
+            "tooltipValueFormatter": ""
+          }
+        }
+      },
+      "wp-quality": {
+        "id": "wp-quality",
+        "isSystemType": true,
+        "bundleAlias": "charts",
+        "typeAlias": "basic_timeseries",
+        "type": "timeseries",
+        "title": "Groundwater quality (selected parameters)",
+        "sizeX": 12,
+        "sizeY": 8,
+        "config": {
+          "datasources": [
+            {
+              "type": "entity",
+              "entityAliasId": "wasserportal_devices",
+              "dataKeys": [
+                {
+                  "name": "Nitrat",
+                  "type": "timeseries",
+                  "label": "${entityName} - Nitrat",
+                  "color": "#4caf50",
+                  "settings": { "tooltipValueFormatter": "" },
+                  "_hash": 3.1
+                },
+                {
+                  "name": "Chlorid",
+                  "type": "timeseries",
+                  "label": "${entityName} - Chlorid",
+                  "color": "#ff9800",
+                  "settings": { "tooltipValueFormatter": "" },
+                  "_hash": 3.2
+                },
+                {
+                  "name": "Sulfat",
+                  "type": "timeseries",
+                  "label": "${entityName} - Sulfat",
+                  "color": "#9c27b0",
+                  "settings": { "tooltipValueFormatter": "" },
+                  "_hash": 3.3
+                }
+              ]
+            }
+          ],
+          "title": "Quality parameters",
+          "showTitle": true,
+          "showLegend": true,
+          "useDashboardTimewindow": true,
+          "displayTimewindow": true,
+          "settings": {
+            "smoothLines": false,
+            "stack": false,
+            "tooltipValueFormatter": ""
+          }
+        }
+      }
+    },
+    "states": {
+      "default": {
+        "name": "Wasserportal Berlin",
+        "root": true,
+        "layouts": {
+          "main": {
+            "widgets": {
+              "wp-map":        { "sizeX": 12, "sizeY": 7, "row": 0,  "col": 0 },
+              "wp-attributes": { "sizeX": 12, "sizeY": 5, "row": 7,  "col": 0 },
+              "wp-timeseries": { "sizeX": 12, "sizeY": 8, "row": 12, "col": 0 },
+              "wp-quality":    { "sizeX": 12, "sizeY": 8, "row": 20, "col": 0 }
+            },
+            "gridSettings": {
+              "backgroundColor": "#eeeeee",
+              "color": "rgba(0,0,0,0.870588)",
+              "columns": 24,
+              "margin": 10,
+              "backgroundSizeMode": "100%"
+            }
+          }
+        }
+      }
+    },
+    "entityAliases": {
+      "wasserportal_devices": {
+        "id": "wasserportal_devices",
+        "alias": "Wasserportal devices",
+        "filter": {
+          "type": "entityName",
+          "entityType": "DEVICE",
+          "entityNameFilter": "wasserportal-gw-",
+          "resolveMultiple": true
+        }
+      }
+    },
+    "timewindow": {
+      "displayValue": "",
+      "selectedTab": 1,
+      "realtime": {
+        "realtimeType": 1,
+        "interval": 86400000,
+        "timewindowMs": 60000
+      },
+      "history": {
+        "historyType": 1,
+        "interval": 86400000,
+        "timewindowMs": 1798761600000,
+        "fixedTimewindow": {
+          "startTimeMs": 0,
+          "endTimeMs": 1798761600000
+        }
+      },
+      "aggregation": { "type": "NONE", "limit": 50000 }
+    },
+    "settings": {
+      "stateControllerId": "entity",
+      "showTitle": true,
+      "titleColor": "rgba(0,0,0,0.870588)",
+      "showDashboardsSelect": true,
+      "showEntitiesSelect": false,
+      "showFilters": true,
+      "showDashboardTimewindow": true,
+      "showDashboardExport": true,
+      "toolbarAlwaysOpen": true
+    }
+  }
+}
