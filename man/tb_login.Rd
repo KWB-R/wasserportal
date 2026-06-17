@@ -23,16 +23,17 @@ Defaults to env var \code{TB_HOST} if set, otherwise
 }
 \value{
 the JWT access token as a character scalar, ready to be sent in an
-\code{X-Authorization: Bearer <token>} request header.
+\verb{X-Authorization: Bearer <token>} request header.
 }
 \description{
-Calls \verb{POST /api/auth/login} with a username/password pair and returns the
+Calls \code{POST /api/auth/login} with a username/password pair and returns the
 JWT access token. This is the \strong{standard ThingsBoard REST API
 authentication} and the only one available on self-hosted ThingsBoard
 Community Edition: unlike the account-level \emph{API key} (a ThingsBoard Cloud
 convenience, generated under \emph{Account > Security > API keys}), every
 edition -- CE, PE and Cloud -- accepts a username/password login.
-
+}
+\details{
 The token is short-lived (ThingsBoard's default JWT expiration is 2.5 h),
 which is ample for the one-off device setup done by
 \code{\link{tb_setup_devices}}: the subsequent telemetry push uses the

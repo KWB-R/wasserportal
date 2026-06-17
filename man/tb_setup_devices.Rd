@@ -21,7 +21,7 @@ values. Each becomes a ThingsBoard device named
 
 \item{api_key}{account-level API key (ThingsBoard Cloud only), generated
 under \emph{Account > Security > API keys > Generate}. Sent in the
-\code{X-Authorization: ApiKey <key>} request header. Defaults to env var
+\verb{X-Authorization: ApiKey <key>} request header. Defaults to env var
 \code{TB_API_KEY}. Ignored when \code{username} and \code{password} are supplied.}
 
 \item{host}{base URL of the ThingsBoard instance, without trailing slash.
@@ -53,13 +53,14 @@ tenant. Authenticates with either a username/password login (JWT -- works
 on every ThingsBoard edition, required for self-hosted Community Edition)
 or an account-level API key (ThingsBoard Cloud), then:
 \enumerate{
-  \item Create one device per name (or fetch the device if it already
-    exists),
-  \item Read each device's access token via the credentials endpoint.
+\item Create one device per name (or fetch the device if it already
+exists),
+\item Read each device's access token via the credentials endpoint.
 }
 The returned named character vector can be fed directly into
 \code{\link{tb_push_station_telemetry}} as \code{device_token}.
-
+}
+\details{
 Set \code{TB_USERNAME} + \code{TB_PASSWORD} for the login route, or generate an API
 key in the ThingsBoard Cloud UI under
 \emph{Account > Security > API keys > Generate} and set \code{TB_API_KEY}.

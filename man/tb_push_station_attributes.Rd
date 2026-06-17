@@ -25,7 +25,7 @@ invisibly the number of attributes that were sent.
 \description{
 Sends station metadata (coordinates, level reference, operator, ...) as
 client-side attributes to the ThingsBoard device attributes endpoint
-(\code{/api/v1/{token}/attributes}). Attributes are key/value pairs without a
+(\verb{/api/v1/\{token\}/attributes}). Attributes are key/value pairs without a
 timestamp; ThingsBoard overwrites the previous value on every push.
 }
 \examples{

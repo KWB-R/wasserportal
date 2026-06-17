@@ -16,7 +16,7 @@ inspect_gh_pages_zips(
 \code{base_url}. Defaults to the two groundwater ZIPs.}
 
 \item{base_url}{base URL where the ZIPs are hosted, without trailing
-slash. Default: \code{https://kwb-r.github.io/wasserportal}.}
+slash. Default: \verb{https://kwb-r.github.io/wasserportal}.}
 
 \item{destdir}{directory used to download and extract the ZIPs. Default
 is a fresh tempdir; pass an explicit path to keep the unpacked CSVs
@@ -37,7 +37,8 @@ summary (columns, row count, unique \code{Messstellennummer} count, head of
 the data). The intersection of Messstellennummer values across all
 loaded files is reported at the end so you can quickly see how many
 stations have measurements in \emph{every} file.
-
+}
+\details{
 Returns the loaded data frames invisibly so the caller can further
 inspect them in R, e.g. \code{dat$groundwater_level$Parameter |> table()}.
 }

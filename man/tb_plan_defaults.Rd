@@ -9,22 +9,21 @@ tb_plan_defaults(plan = "free")
 \arguments{
 \item{plan}{one of
 \itemize{
-  \item \code{"free"} -- proven Single-record mode (\code{mode = "single"},
-    \code{chunk_size = 1}, \code{throttle_seconds = 0.05}).
-  \item \code{"free-bulk"} -- bulk preset tuned to stay under
-    Free's per-device 100 dp/s and 2,000 dp/min caps
-    (\code{chunk_size = 10}, \code{throttle_seconds = 1.0}).
-    Confirmed not to work on the public ThingsBoard Cloud Maker
-    free tier as of 2026-05: the gateway returns an opaque
-    empty-body HTTP 500 to the array form regardless of how small
-    the chunk is. Kept as a reproducible baseline; on Free use
-    \code{"free"}.
-  \item \code{"prototype"}, \code{"pilot"}, \code{"startup"}, \code{"business"} -- the
-    paid PaaS tiers. All use \code{mode = "bulk"},
-    \code{chunk_size = 30}, \code{throttle_seconds = 1.0} (~30 dp/s,
-    well under the 2,000 dp/min cap that all paid tiers share).
-  \item \code{"ce"} -- self-hosted Community Edition: \code{mode = "bulk"},
-    \code{chunk_size = 1000}, \code{throttle_seconds = 0}.
+\item \code{"free"} -- proven Single-record mode (\code{mode = "single"},
+\code{chunk_size = 1}, \code{throttle_seconds = 0.05}).
+\item \code{"free-bulk"} -- bulk preset tuned to stay under Free's
+per-device 100 dp/s and 2,000 dp/min caps (\code{chunk_size = 10},
+\code{throttle_seconds = 1.0}). Confirmed not to work on the
+public ThingsBoard Cloud Maker free tier as of 2026-05: the
+gateway returns an opaque empty-body HTTP 500 to the array
+form regardless of how small the chunk is. Kept as a
+reproducible baseline; on Free use \code{"free"}.
+\item \code{"prototype"}, \code{"pilot"}, \code{"startup"}, \code{"business"} -- the
+paid PaaS tiers. All use \code{mode = "bulk"},
+\code{chunk_size = 30}, \code{throttle_seconds = 1.0} (~30 dp/s,
+well under the 2,000 dp/min cap that all paid tiers share).
+\item \code{"ce"} -- self-hosted Community Edition: \code{mode = "bulk"},
+\code{chunk_size = 1000}, \code{throttle_seconds = 0}.
 }
 
 Case-insensitive. Unknown values raise an error.}
@@ -40,7 +39,8 @@ parameters this package's push functions take. Pass the result into
 \code{tb_push_station_telemetry()} via \code{mode}, \code{chunk_size} and
 \code{throttle_seconds} so you stay below your plan's
 "Telemetry Transport messages/data points (Device)" thresholds.
-
+}
+\details{
 Across all paid PaaS tiers the per-device sustained limits are
 identical (2 000 telemetry data points per minute, 15 000 per hour),
 the only thing that changes is how aggressive a burst the platform

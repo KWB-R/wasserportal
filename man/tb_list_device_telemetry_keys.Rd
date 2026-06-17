@@ -30,7 +30,7 @@ resolve a name.}
 character vector of telemetry key names. May be of length 0.
 }
 \description{
-Wraps \verb{GET /api/plugins/telemetry/DEVICE/\{id\}/keys/timeseries}. Useful to
+Wraps \code{GET /api/plugins/telemetry/DEVICE/{id}/keys/timeseries}. Useful to
 discover what's actually in the device-side time-series store before a
 wipe, or to compare against the \code{Parameter} column of the gh-pages
 source data.

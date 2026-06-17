@@ -40,7 +40,7 @@ invisibly the number of keys submitted for deletion.
 }
 \description{
 Wipes historical telemetry rows from ThingsBoard for the given device and
-keys via \verb{DELETE /api/plugins/telemetry/DEVICE/\{id\}/timeseries/delete}.
+keys via \code{DELETE /api/plugins/telemetry/DEVICE/{id}/timeseries/delete}.
 Pass \code{keys = NULL} (the default) to clear every key the device currently
 knows -- the function then calls
 \code{\link{tb_list_device_telemetry_keys}} first to discover them.
