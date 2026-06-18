@@ -29,6 +29,29 @@
 * Update the Kompetenzzentrum Wasser Berlin (KWB) author logo in
   `_pkgdown.yml` to the new brand asset
   (`logos.kompetenz-wasser.io/KWB_Logo_M_Blau_RGB.svg`).
+* Warn in `tb_auth_header()` when only one of `TB_USERNAME` /
+  `TB_PASSWORD` is set and a leftover `TB_API_KEY` causes a silent
+  fallback to the Cloud API-key path. The typical misconfiguration
+  (workflow secret missing on one of the two JWT credentials with a
+  stale `TB_API_KEY` still populated) used to surface only as a
+  generic `auth: account API key` log line; the new `warning()` calls
+  out the misconfiguration so the user can fix the missing secret
+  instead of chasing a wrong-credentials failure further downstream.
+  The pure Cloud (only `TB_API_KEY`) and pure JWT (both `TB_USERNAME`
+  and `TB_PASSWORD`) paths stay quiet, and the existing `stop()` for
+  the no-credentials case is unchanged.
+* Clarify the station-selection diagnostic in
+  `inst/scripts/push_to_thingsboard.R`: the row previously labelled
+  `with gwl AND gwq` is now `in both master files AND has both
+  series` because it is the only row that intersects `master_gwl`
+  and `master_gwq` (strict), while the per-series rows
+  (`with gwl data`, `with gwq data`) count against the union of the
+  two master files (relaxed). Stations that appear in only one master
+  file but have rows in both gwl and gwq data were being counted in
+  the per-series totals but not in the intersect total, so the
+  displayed numbers did not add up the way a reader expected when
+  the two master files don't perfectly overlap. An inline comment
+  documents the intentional asymmetry.
 
 # [wasserportal 0.6.0](https://github.com/KWB-R/wasserportal/releases/tag/v0.6.0) <small>2026-06-17</small>
 
