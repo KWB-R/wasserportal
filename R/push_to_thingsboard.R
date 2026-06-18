@@ -1098,9 +1098,17 @@ tb_auth_header <- function(
     password = Sys.getenv("TB_PASSWORD")
 )
 {
-  if (nzchar(username) && nzchar(password)) {
+  has_username <- nzchar(username)
+  has_password <- nzchar(password)
+  if (has_username && has_password) {
     paste("Bearer", tb_login(username, password, host))
   } else if (nzchar(api_key)) {
+    if (has_username || has_password) {
+      warning(
+        "Only one of TB_USERNAME / TB_PASSWORD is set; ",
+        "falling back to API-key auth. Set both to use JWT login."
+      )
+    }
     paste("ApiKey", api_key)
   } else {
     stop(paste0(
