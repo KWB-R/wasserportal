@@ -33,6 +33,11 @@
 * Update the Kompetenzzentrum Wasser Berlin (KWB) author logo in
   `_pkgdown.yml` to the new brand asset
   (`logos.kompetenz-wasser.io/KWB_Logo_M_Blau_RGB.svg`).
+* Declare `Depends: R (>= 4.1.0)` -- the package (notably
+  `R/push_to_thingsboard.R` and `inst/scripts/push_to_thingsboard.R`) uses
+  the native `|>` pipe, which `R CMD check` otherwise flags as an
+  undeclared dependency -- and drop the unused `LazyData` field (there is
+  no `data/` directory, so `R CMD build` omitted it anyway).
 * Warn in `tb_auth_header()` when only one of `TB_USERNAME` /
   `TB_PASSWORD` is set and a leftover `TB_API_KEY` causes a silent
   fallback to the Cloud API-key path. The typical misconfiguration
