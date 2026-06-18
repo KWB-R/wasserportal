@@ -755,11 +755,6 @@ tb_get_device_id <- function(
 #' @param username ThingsBoard user for the username/password (JWT) login
 #'   (self-hosted / Community Edition). Defaults to env var `TB_USERNAME`.
 #' @param password ThingsBoard password. Defaults to env var `TB_PASSWORD`.
-#' @param auth optional pre-resolved `X-Authorization` header value. When
-#'   supplied, the credential arguments are ignored and no extra
-#'   `POST /api/auth/login` round-trip is performed. Mainly useful when this
-#'   function is chained from another helper that has already obtained an
-#'   auth header (e.g. \code{\link{tb_delete_device_telemetry}}).
 #' @return character vector of telemetry key names. May be of length 0.
 #' @export
 #' @examples
@@ -772,19 +767,25 @@ tb_list_device_telemetry_keys <- function(
     api_key = Sys.getenv("TB_API_KEY"),
     host = tb_default_host(),
     username = Sys.getenv("TB_USERNAME"),
-    password = Sys.getenv("TB_PASSWORD"),
-    auth = NULL
+    password = Sys.getenv("TB_PASSWORD")
 )
 {
   stopifnot(nzchar(host), nzchar(device_id))
   host <- sub("/+$", "", host)
-  if (is.null(auth)) {
-    auth <- tb_auth_header(
-      api_key = api_key, host = host,
-      username = username, password = password
-    )
-  }
+  auth <- tb_auth_header(
+    api_key = api_key, host = host,
+    username = username, password = password
+  )
+  tb_list_device_telemetry_keys_impl(device_id, auth, host)
+}
 
+# Internal worker shared by tb_list_device_telemetry_keys() and
+# tb_delete_device_telemetry(). Takes a pre-resolved X-Authorization header
+# so the chained-call case (delete -> list) does not require a second
+# /api/auth/login round-trip. The public wrapper resolves `auth` itself; the
+# delete helper passes its own already-resolved header.
+tb_list_device_telemetry_keys_impl <- function(device_id, auth, host)
+{
   resp <- httr2::request(sprintf(
     "%s/api/plugins/telemetry/DEVICE/%s/keys/timeseries",
     host, device_id
@@ -853,9 +854,7 @@ tb_delete_device_telemetry <- function(
   )
 
   if (is.null(keys)) {
-    keys <- tb_list_device_telemetry_keys(
-      device_id = device_id, host = host, auth = auth
-    )
+    keys <- tb_list_device_telemetry_keys_impl(device_id, auth, host)
   }
 
   if (length(keys) == 0L) {

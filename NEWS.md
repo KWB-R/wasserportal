@@ -84,6 +84,16 @@
   attribute set has already been pushed. The message points out the usual
   cause: `.Renviron` does not support inline `# comments`, so
   `TB_HISTORY_DAYS = 7  # ...` otherwise coerces to `NA`.
+* Clean up the public signature of `tb_list_device_telemetry_keys()` by
+  dropping the `auth` argument that 0.7.0 had briefly added for the
+  chained-call case. The single in-package consumer
+  (`tb_delete_device_telemetry()`) now calls an internal
+  `tb_list_device_telemetry_keys_impl(device_id, auth, host)` that takes
+  the pre-resolved `X-Authorization` header, so the one-round-trip saving
+  is preserved without mixing "pass me credentials" and "skip credentials,
+  here's the header" in the same exported function. Removes the silent
+  precedence where `auth = "Bearer ..."` together with `api_key` / JWT
+  credentials would have ignored the latter without warning.
 
 # [wasserportal 0.6.0](https://github.com/KWB-R/wasserportal/releases/tag/v0.6.0) <small>2026-06-17</small>
 

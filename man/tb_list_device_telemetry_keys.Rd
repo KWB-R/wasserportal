@@ -9,8 +9,7 @@ tb_list_device_telemetry_keys(
   api_key = Sys.getenv("TB_API_KEY"),
   host = tb_default_host(),
   username = Sys.getenv("TB_USERNAME"),
-  password = Sys.getenv("TB_PASSWORD"),
-  auth = NULL
+  password = Sys.getenv("TB_PASSWORD")
 )
 }
 \arguments{
@@ -26,12 +25,6 @@ resolve a name.}
 (self-hosted / Community Edition). Defaults to env var \code{TB_USERNAME}.}
 
 \item{password}{ThingsBoard password. Defaults to env var \code{TB_PASSWORD}.}
-
-\item{auth}{optional pre-resolved \code{X-Authorization} header value. When
-supplied, the credential arguments are ignored and no extra
-\code{POST /api/auth/login} round-trip is performed. Mainly useful when this
-function is chained from another helper that has already obtained an
-auth header (e.g. \code{\link{tb_delete_device_telemetry}}).}
 }
 \value{
 character vector of telemetry key names. May be of length 0.
