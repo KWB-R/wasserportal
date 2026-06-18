@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">wasserportal</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.6.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.7.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,7 +65,7 @@ Rustler</h4>
             
             <h4 data-toc-skip class="date">2026-06-18</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/KWB-R/wasserportal/blob/master/vignettes/thingsboard-demo.Rmd" class="external-link"><code>vignettes/thingsboard-demo.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/KWB-R/wasserportal/blob/dev/vignettes/thingsboard-demo.Rmd" class="external-link"><code>vignettes/thingsboard-demo.Rmd</code></a></small>
       <div class="d-none name"><code>thingsboard-demo.Rmd</code></div>
     </div>
 
@@ -76,7 +76,9 @@ Rustler</h4>
 <strong>free Maker tier</strong> on
 <code>https://eu.thingsboard.cloud</code> (5 devices, 1 M data points /
 month). The same code works against self-hosted ThingsBoard Community
-Edition (CE) by pointing <code>TB_HOST</code> at it.</p>
+Edition (CE) by pointing <code>TB_HOST</code> at it and authenticating
+with a username/password login instead of an account API key (CE has no
+account API keys – see step 2 below).</p>
 <p>Groundwater is the primary focus because that is what the daily
 GitHub-Actions push
 (<code>.github/workflows/thingsboard-push.yaml</code>) and the
@@ -92,10 +94,25 @@ shows how the same primitives apply to surface water gauges.</p>
 </h2>
 <ol style="list-style-type: decimal">
 <li><p>Sign up at <a href="https://eu.thingsboard.cloud" class="external-link uri">https://eu.thingsboard.cloud</a> (EU) or <a href="https://thingsboard.cloud" class="external-link uri">https://thingsboard.cloud</a> (US).</p></li>
-<li><p>Generate an <strong>account API key</strong>: <em>Account &gt;
-Security &gt; API keys &gt; Generate</em>. Give it a description like
-<code>wasserportal-demo</code> and copy the key once – it is only shown
-on creation.</p></li>
+<li>
+<p><strong>Authenticate</strong> – pick the option that matches your
+instance:</p>
+<ul>
+<li>
+<em>ThingsBoard Cloud</em>: generate an <strong>account API
+key</strong> under <em>Account &gt; Security &gt; API keys &gt;
+Generate</em>. Give it a description like <code>wasserportal-demo</code>
+and copy the key once – it is only shown on creation. Store it in
+<code>TB_API_KEY</code>.</li>
+<li>
+<em>Self-hosted Community Edition</em> (e.g.
+<code>https://dashboards.inowas.org</code>): CE has no account API keys,
+so use your ThingsBoard <strong>username + password</strong>
+(<code>TB_USERNAME</code> / <code>TB_PASSWORD</code>); the package logs
+in via <code><a href="../reference/tb_login.html">tb_login()</a></code> to obtain a JWT. The account needs
+tenant-administrator rights to create devices.</li>
+</ul>
+</li>
 <li>
 <p>Install the package and <code>httr2</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -105,8 +122,15 @@ on creation.</p></li>
 <li>
 <p>Store credentials as environment variables (e.g. in
 <code>~/.Renviron</code>):</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>TB_HOST<span class="ot">=</span>https<span class="sc">:</span><span class="er">//</span>eu.thingsboard.cloud</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>TB_API_KEY<span class="ot">=</span><span class="er">&lt;</span>your<span class="sc">-</span>api<span class="sc">-</span>key<span class="sc">&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># ThingsBoard Cloud (account API key):</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>TB_HOST<span class="ot">=</span>https<span class="sc">:</span><span class="er">//</span>eu.thingsboard.cloud</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>TB_API_KEY<span class="ot">=</span><span class="er">&lt;</span>your<span class="sc">-</span>api<span class="sc">-</span>key<span class="sc">&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co"># ...or self-hosted Community Edition (username/password login):</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co"># TB_HOST=https://dashboards.inowas.org</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co"># TB_USERNAME=&lt;your-thingsboard-user&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co"># TB_PASSWORD=&lt;your-thingsboard-password&gt;</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co"># TB_PLAN=ce</span></span></code></pre></div>
 <p>Restart the R session so the variables are loaded.</p>
 </li>
 </ol>
@@ -412,10 +436,14 @@ repository secrets:</p>
 <ul>
 <li>
 <code>TB_HOST</code> –
-e.g. <code>https://eu.thingsboard.cloud</code>
-</li>
+e.g. <code>https://eu.thingsboard.cloud</code>, or
+<code>https://dashboards.inowas.org</code> for a self-hosted
+instance</li>
 <li>
-<code>TB_API_KEY</code> – account-level API key</li>
+<strong>Authentication</strong> (set one): <code>TB_API_KEY</code>
+(account-level API key, ThingsBoard Cloud) <em>or</em>
+<code>TB_USERNAME</code> + <code>TB_PASSWORD</code> (login, required for
+self-hosted Community Edition; these win when both are set)</li>
 </ul>
 <p>Optional <code>workflow_dispatch</code> inputs override the cron
 defaults for a single run without editing the YAML:</p>
@@ -455,12 +483,36 @@ history).</td>
 <code>business</code> / <code>ce</code>.</td>
 <td><code>free</code></td>
 </tr>
+<tr class="odd">
+<td><code>max_devices</code></td>
+<td>Max devices/stations to set up. <code>0</code> = no limit (every
+candidate); empty = default 5.</td>
+<td><code>0</code></td>
+</tr>
+<tr class="even">
+<td><code>station_scope</code></td>
+<td>Auto-pick pool: <code>both</code> (default) / <code>any</code> /
+<code>gwl</code> / <code>gwq</code> / <code>gwl-only</code> /
+<code>gwq-only</code>.</td>
+<td><code>any</code></td>
+</tr>
 </tbody>
 </table>
 <p>These mirror the underlying env vars (<code>TB_STATION_IDS</code>,
+<code>TB_MAX_DEVICES</code>, <code>TB_STATION_SCOPE</code>,
 <code>TB_HISTORY_DAYS</code>, <code>TB_TELEMETRY_TYPES</code>,
 <code>TB_PLAN</code>) which the script also reads from the environment
 if run standalone.</p>
+<p>To push <strong>every</strong> groundwater station, set
+<code>max_devices = 0</code> and <code>station_scope = any</code>
+(level-only and quality-only stations included). <code>gwl</code> /
+<code>gwq</code> select stations that <em>have</em> that series (a
+both-station matches too), while <code>gwl-only</code> /
+<code>gwq-only</code> are the exclusive sets – stations that have
+<em>only</em> level resp. <em>only</em> quality data. Mind the volume –
+several hundred devices over the full archive is millions of data
+points; start with a bounded <code>history_days</code> to validate the
+run.</p>
 </div>
 <div class="section level2">
 <h2 id="re-running-and-idempotency">10. Re-Running and Idempotency<a class="anchor" aria-label="anchor" href="#re-running-and-idempotency"></a>
@@ -526,12 +578,22 @@ entity alias.</p>
 <h2 id="switching-to-self-hosted-ce">12. Switching to Self-Hosted CE<a class="anchor" aria-label="anchor" href="#switching-to-self-hosted-ce"></a>
 </h2>
 <p>When the 5-device free-tier limit becomes the bottleneck, point
-<code>TB_HOST</code> at your own deployment and switch the plan
-preset:</p>
+<code>TB_HOST</code> at your own deployment and switch the plan preset.
+Self-hosted Community Edition has <strong>no account API keys</strong>,
+so authenticate with your ThingsBoard username and password (the package
+logs in via <code><a href="../reference/tb_login.html">tb_login()</a></code> to obtain a JWT); the account needs
+tenant-administrator rights:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>TB_HOST <span class="op">=</span> <span class="st">"https://thingsboard.your-domain.example"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span></span>
+<span>  TB_HOST     <span class="op">=</span> <span class="st">"https://dashboards.inowas.org"</span>,</span>
+<span>  TB_USERNAME <span class="op">=</span> <span class="st">"me@example.org"</span>,</span>
+<span>  TB_PASSWORD <span class="op">=</span> <span class="st">"secret"</span></span>
+<span><span class="op">)</span></span>
 <span><span class="va">ce_preset</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/tb_plan_defaults.html">tb_plan_defaults</a></span><span class="op">(</span><span class="st">"ce"</span><span class="op">)</span></span>
-<span><span class="co"># bulk mode, chunk_size = 1000, throttle_seconds = 0</span></span></code></pre></div>
+<span><span class="co"># bulk mode, chunk_size = 1000, throttle_seconds = 0</span></span>
+<span></span>
+<span><span class="co"># quick credential check -- returns a JWT string on success:</span></span>
+<span><span class="co"># wasserportal::tb_login()</span></span></code></pre></div>
 <p>The same R code now talks to your ThingsBoard CE deployment; devices,
 tokens and pushes all use the same endpoints. On CE the bulk
 array-of-records format goes through (Maker rejects it), so the

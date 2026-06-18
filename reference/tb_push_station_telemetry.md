@@ -7,10 +7,6 @@ free Maker tier on `https://thingsboard.cloud`), self-hosted ThingsBoard
 Community Edition and `https://demo.thingsboard.io` since the
 device-token API is identical on all of them.
 
-Long-format input is pivoted on the fly so that every distinct value of
-`key_col` becomes one telemetry key inside ThingsBoard, sharing the same
-timestamp.
-
 ## Usage
 
 ``` r
@@ -21,7 +17,7 @@ tb_push_station_telemetry(
   value_col = "Messwert",
   key_col = "Parameter",
   single_key = "value",
-  host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud"),
+  host = tb_default_host(),
   chunk_size = 100L,
   mode = c("single", "bulk"),
   throttle_seconds = NULL,
@@ -111,6 +107,12 @@ tb_push_station_telemetry(
 ## Value
 
 invisibly the number of telemetry timestamps that were sent.
+
+## Details
+
+Long-format input is pivoted on the fly so that every distinct value of
+`key_col` becomes one telemetry key inside ThingsBoard, sharing the same
+timestamp.
 
 ## Examples
 

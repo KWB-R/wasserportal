@@ -1,5 +1,44 @@
 # Changelog
 
+## [wasserportal 0.7.0](https://github.com/KWB-R/wasserportal/releases/tag/v0.7.0) 2026-06-18
+
+- Add
+  [`tb_login()`](https://kwb-r.github.io/wasserportal/reference/tb_login.md)
+  and username/password (JWT) authentication across the ThingsBoard
+  tenant-API helpers
+  ([`tb_setup_devices()`](https://kwb-r.github.io/wasserportal/reference/tb_setup_devices.md),
+  [`tb_get_device_id()`](https://kwb-r.github.io/wasserportal/reference/tb_get_device_id.md),
+  [`tb_list_device_telemetry_keys()`](https://kwb-r.github.io/wasserportal/reference/tb_list_device_telemetry_keys.md),
+  [`tb_delete_device_telemetry()`](https://kwb-r.github.io/wasserportal/reference/tb_delete_device_telemetry.md)).
+  Self-hosted ThingsBoard Community Edition
+  (e.g. `https://dashboards.inowas.org`) has no account-level API keys –
+  that is a ThingsBoard Cloud convenience – so it can only be reached
+  via `POST /api/auth/login` (username + password), which returns a
+  short-lived JWT sent as `X-Authorization: Bearer <token>`. Each helper
+  now resolves its auth header via an internal `tb_auth_header()`: set
+  `TB_USERNAME` + `TB_PASSWORD` (these take precedence over `TB_API_KEY`
+  when both are present) and, for self-hosted instances, `TB_PLAN=ce`
+  (bulk mode, no throttling). The account-level API-key path
+  (ThingsBoard Cloud) keeps working unchanged, and the device-token
+  telemetry push (`/api/v1/{token}/telemetry`) is identical on all
+  editions. The `thingsboard-push.yaml` workflow reads the two new
+  credentials from the `TB_USERNAME` / `TB_PASSWORD` repository secrets.
+- Make the station selection of `inst/scripts/push_to_thingsboard.R`
+  configurable for full (non-demo) pushes: `TB_MAX_DEVICES=0` lifts the
+  5-device cap (push every candidate station), and a new
+  `TB_STATION_SCOPE` chooses which groundwater stations qualify – `both`
+  (default: level AND quality, the proven demo set), `any` (level OR
+  quality), `gwl` / `gwq` (has that series, possibly both) or `gwl-only`
+  / `gwq-only` (has only that series). Both knobs are exposed as
+  `thingsboard-push.yaml` repository secrets and `workflow_dispatch`
+  inputs. Distinct gwq parameters per station are now counted once via
+  [`tapply()`](https://rdrr.io/r/base/tapply.html) instead of a
+  per-station table rescan, so scoring the full several-hundred-station
+  pool stays fast.
+- Update the Kompetenzzentrum Wasser Berlin (KWB) author logo in
+  `_pkgdown.yml` to the new brand asset
+  (`logos.kompetenz-wasser.io/KWB_Logo_M_Blau_RGB.svg`).
+
 ## [wasserportal 0.6.0](https://github.com/KWB-R/wasserportal/releases/tag/v0.6.0) 2026-06-17
 
 - Wrap each

@@ -50,6 +50,7 @@
 <url><loc>https://kwb-r.github.io/wasserportal/reference/tb_delete_device_telemetry.html</loc></url>
 <url><loc>https://kwb-r.github.io/wasserportal/reference/tb_get_device_id.html</loc></url>
 <url><loc>https://kwb-r.github.io/wasserportal/reference/tb_list_device_telemetry_keys.html</loc></url>
+<url><loc>https://kwb-r.github.io/wasserportal/reference/tb_login.html</loc></url>
 <url><loc>https://kwb-r.github.io/wasserportal/reference/tb_plan_defaults.html</loc></url>
 <url><loc>https://kwb-r.github.io/wasserportal/reference/tb_push_latest_telemetry.html</loc></url>
 <url><loc>https://kwb-r.github.io/wasserportal/reference/tb_push_station_attributes.html</loc></url>

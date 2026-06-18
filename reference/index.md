@@ -62,6 +62,9 @@
   : Look Up a ThingsBoard Device's UUID by Name
 - [`tb_list_device_telemetry_keys()`](https://kwb-r.github.io/wasserportal/reference/tb_list_device_telemetry_keys.md)
   : List the Telemetry Keys Currently Stored for a ThingsBoard Device
+- [`tb_login()`](https://kwb-r.github.io/wasserportal/reference/tb_login.md)
+  : Obtain a JWT Bearer Token from ThingsBoard (Username / Password
+  Login)
 - [`tb_plan_defaults()`](https://kwb-r.github.io/wasserportal/reference/tb_plan_defaults.md)
   : Recommended Push Defaults per ThingsBoard Subscription Plan
 - [`tb_push_latest_telemetry()`](https://kwb-r.github.io/wasserportal/reference/tb_push_latest_telemetry.md)

@@ -15,8 +15,10 @@ tb_delete_device_telemetry(
   device_id,
   keys = NULL,
   api_key = Sys.getenv("TB_API_KEY"),
-  host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud"),
-  delete_latest = TRUE
+  host = tb_default_host(),
+  delete_latest = TRUE,
+  username = Sys.getenv("TB_USERNAME"),
+  password = Sys.getenv("TB_PASSWORD")
 )
 ```
 
@@ -46,6 +48,15 @@ tb_delete_device_telemetry(
   telemetry" entry so the device-detail tab in the UI immediately
   reflects the deletion. Set to `FALSE` to keep the latest value visible
   for keys that get repopulated by the next push anyway.
+
+- username:
+
+  ThingsBoard user for the username/password (JWT) login (self-hosted /
+  Community Edition). Defaults to env var `TB_USERNAME`.
+
+- password:
+
+  ThingsBoard password. Defaults to env var `TB_PASSWORD`.
 
 ## Value
 

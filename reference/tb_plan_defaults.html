@@ -4,28 +4,12 @@ https://thingsboard.io/docs/paas/eu/subscriptions/ into the
 parameters this package's push functions take. Pass the result into
 tb_push_station_telemetry() via mode, chunk_size and
 throttle_seconds so you stay below your plan's
-&quot;Telemetry Transport messages/data points (Device)&quot; thresholds.
-Across all paid PaaS tiers the per-device sustained limits are
-identical (2 000 telemetry data points per minute, 15 000 per hour),
-the only thing that changes is how aggressive a burst the platform
-tolerates before it drops a request. Free additionally rejects the
-bulk array form on the device telemetry endpoint, so its default is
-mode = &quot;single&quot;.
-Self-hosted ThingsBoard CE has no per-tenant rate limit by default,
-hence the much larger chunk size and zero throttle."><meta property="og:description" content="Wraps the per-device transport rate limits documented at
+&quot;Telemetry Transport messages/data points (Device)&quot; thresholds."><meta property="og:description" content="Wraps the per-device transport rate limits documented at
 https://thingsboard.io/docs/paas/eu/subscriptions/ into the
 parameters this package's push functions take. Pass the result into
 tb_push_station_telemetry() via mode, chunk_size and
 throttle_seconds so you stay below your plan's
-&quot;Telemetry Transport messages/data points (Device)&quot; thresholds.
-Across all paid PaaS tiers the per-device sustained limits are
-identical (2 000 telemetry data points per minute, 15 000 per hour),
-the only thing that changes is how aggressive a burst the platform
-tolerates before it drops a request. Free additionally rejects the
-bulk array form on the device telemetry endpoint, so its default is
-mode = &quot;single&quot;.
-Self-hosted ThingsBoard CE has no per-tenant rate limit by default,
-hence the much larger chunk size and zero throttle."></head><body>
+&quot;Telemetry Transport messages/data points (Device)&quot; thresholds."></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -33,7 +17,7 @@ hence the much larger chunk size and zero throttle."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">wasserportal</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.6.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.7.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,7 +46,7 @@ hence the much larger chunk size and zero throttle."></head><body>
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Recommended Push Defaults per ThingsBoard Subscription Plan</h1>
-      <small class="dont-index">Source: <a href="https://github.com/KWB-R/wasserportal/blob/master/R/push_to_thingsboard.R" class="external-link"><code>R/push_to_thingsboard.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/KWB-R/wasserportal/blob/dev/R/push_to_thingsboard.R" class="external-link"><code>R/push_to_thingsboard.R</code></a></small>
       <div class="d-none name"><code>tb_plan_defaults.Rd</code></div>
     </div>
 
@@ -73,14 +57,6 @@ parameters this package's push functions take. Pass the result into
 <code><a href="tb_push_station_telemetry.html">tb_push_station_telemetry()</a></code> via <code>mode</code>, <code>chunk_size</code> and
 <code>throttle_seconds</code> so you stay below your plan's
 "Telemetry Transport messages/data points (Device)" thresholds.</p>
-<p>Across all paid PaaS tiers the per-device sustained limits are
-identical (2 000 telemetry data points per minute, 15 000 per hour),
-the only thing that changes is how aggressive a burst the platform
-tolerates before it drops a request. Free additionally rejects the
-bulk array form on the device telemetry endpoint, so its default is
-<code>mode = "single"</code>.</p>
-<p>Self-hosted ThingsBoard CE has no per-tenant rate limit by default,
-hence the much larger chunk size and zero throttle.</p>
     </div>
 
     <div class="section level2">
@@ -94,21 +70,20 @@ hence the much larger chunk size and zero throttle.</p>
 
 <dl><dt id="arg-plan">plan<a class="anchor" aria-label="anchor" href="#arg-plan"></a></dt>
 <dd><p>one of</p><ul><li><p><code>"free"</code> – proven Single-record mode (<code>mode = "single"</code>,
-    <code>chunk_size = 1</code>, <code>throttle_seconds = 0.05</code>).</p></li>
-<li><p><code>"free-bulk"</code> – bulk preset tuned to stay under
-    Free's per-device 100 dp/s and 2,000 dp/min caps
-    (<code>chunk_size = 10</code>, <code>throttle_seconds = 1.0</code>).
-    Confirmed not to work on the public ThingsBoard Cloud Maker
-    free tier as of 2026-05: the gateway returns an opaque
-    empty-body HTTP 500 to the array form regardless of how small
-    the chunk is. Kept as a reproducible baseline; on Free use
-    <code>"free"</code>.</p></li>
+<code>chunk_size = 1</code>, <code>throttle_seconds = 0.05</code>).</p></li>
+<li><p><code>"free-bulk"</code> – bulk preset tuned to stay under Free's
+per-device 100 dp/s and 2,000 dp/min caps (<code>chunk_size = 10</code>,
+<code>throttle_seconds = 1.0</code>). Confirmed not to work on the
+public ThingsBoard Cloud Maker free tier as of 2026-05: the
+gateway returns an opaque empty-body HTTP 500 to the array
+form regardless of how small the chunk is. Kept as a
+reproducible baseline; on Free use <code>"free"</code>.</p></li>
 <li><p><code>"prototype"</code>, <code>"pilot"</code>, <code>"startup"</code>, <code>"business"</code> – the
-    paid PaaS tiers. All use <code>mode = "bulk"</code>,
-    <code>chunk_size = 30</code>, <code>throttle_seconds = 1.0</code> (~30 dp/s,
-    well under the 2,000 dp/min cap that all paid tiers share).</p></li>
+paid PaaS tiers. All use <code>mode = "bulk"</code>,
+<code>chunk_size = 30</code>, <code>throttle_seconds = 1.0</code> (~30 dp/s,
+well under the 2,000 dp/min cap that all paid tiers share).</p></li>
 <li><p><code>"ce"</code> – self-hosted Community Edition: <code>mode = "bulk"</code>,
-    <code>chunk_size = 1000</code>, <code>throttle_seconds = 0</code>.</p></li>
+<code>chunk_size = 1000</code>, <code>throttle_seconds = 0</code>.</p></li>
 </ul><p>Case-insensitive. Unknown values raise an error.</p></dd>
 
 </dl></div>
@@ -116,6 +91,17 @@ hence the much larger chunk size and zero throttle.</p>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>named list with <code>mode</code>, <code>chunk_size</code> and <code>throttle_seconds</code>,
 ready to be spread into <code><a href="tb_push_station_telemetry.html">tb_push_station_telemetry()</a></code>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>Across all paid PaaS tiers the per-device sustained limits are
+identical (2 000 telemetry data points per minute, 15 000 per hour),
+the only thing that changes is how aggressive a burst the platform
+tolerates before it drops a request. Free additionally rejects the
+bulk array form on the device telemetry endpoint, so its default is
+<code>mode = "single"</code>.</p>
+<p>Self-hosted ThingsBoard CE has no per-tenant rate limit by default,
+hence the much larger chunk size and zero throttle.</p>
     </div>
 
     <div class="section level2">
