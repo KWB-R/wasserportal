@@ -7,9 +7,11 @@
 tb_setup_devices(
   station_ids,
   api_key = Sys.getenv("TB_API_KEY"),
-  host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud"),
+  host = tb_default_host(),
   name_prefix = "wasserportal-",
-  device_type = "wasserportal"
+  device_type = "wasserportal",
+  username = Sys.getenv("TB_USERNAME"),
+  password = Sys.getenv("TB_PASSWORD")
 )
 }
 \arguments{
@@ -17,22 +19,29 @@ tb_setup_devices(
 values. Each becomes a ThingsBoard device named
 \code{paste0(name_prefix, station_id)}.}
 
-\item{api_key}{account-level API key generated under
-\emph{Account > Security > API keys > Generate}. Sent in the
-\code{X-Authorization: ApiKey <key>} request header that ThingsBoard
-expects (not the standard \code{Authorization: Bearer ...}). Defaults to
-env var \code{TB_API_KEY}.}
+\item{api_key}{account-level API key (ThingsBoard Cloud only), generated
+under \emph{Account > Security > API keys > Generate}. Sent in the
+\verb{X-Authorization: ApiKey <key>} request header. Defaults to env var
+\code{TB_API_KEY}. Ignored when \code{username} and \code{password} are supplied.}
 
 \item{host}{base URL of the ThingsBoard instance, without trailing slash.
 Defaults to env var \code{TB_HOST} if set, otherwise
 \code{"https://thingsboard.cloud"}. Use \code{"https://eu.thingsboard.cloud"} for
-the EU cloud.}
+the EU cloud or e.g. \code{"https://dashboards.inowas.org"} for a self-hosted
+instance.}
 
 \item{name_prefix}{prefix added in front of every station id when forming
 the ThingsBoard device name. Default \code{"wasserportal-"}.}
 
 \item{device_type}{ThingsBoard device profile / type. Default
 \code{"wasserportal"}. The profile is auto-created on first use.}
+
+\item{username}{ThingsBoard user for the username/password (JWT) login.
+Defaults to env var \code{TB_USERNAME}. When set together with \code{password} it
+takes precedence over \code{api_key} -- this is the route to use for
+self-hosted Community Edition.}
+
+\item{password}{ThingsBoard password. Defaults to env var \code{TB_PASSWORD}.}
 }
 \value{
 named character vector. Names are the input \code{station_ids}, values
@@ -40,25 +49,37 @@ are device access tokens.
 }
 \description{
 Convenience wrapper for the initial setup against a fresh ThingsBoard
-tenant. Uses an account-level \strong{API key} (Bearer token) to:
+tenant. Authenticates with either a username/password login (JWT -- works
+on every ThingsBoard edition, required for self-hosted Community Edition)
+or an account-level API key (ThingsBoard Cloud), then:
 \enumerate{
-  \item Create one device per name (or fetch the device if it already
-    exists),
-  \item Read each device's access token via the credentials endpoint.
+\item Create one device per name (or fetch the device if it already
+exists),
+\item Read each device's access token via the credentials endpoint.
 }
 The returned named character vector can be fed directly into
 \code{\link{tb_push_station_telemetry}} as \code{device_token}.
-
-Generate the API key in the ThingsBoard UI under
-\emph{Account > Security > API keys > Generate}.
+}
+\details{
+Set \code{TB_USERNAME} + \code{TB_PASSWORD} for the login route, or generate an API
+key in the ThingsBoard Cloud UI under
+\emph{Account > Security > API keys > Generate} and set \code{TB_API_KEY}.
 }
 \examples{
 \dontrun{
+# Self-hosted ThingsBoard Community Edition (username/password login):
+Sys.setenv(
+  TB_HOST = "https://dashboards.inowas.org",
+  TB_USERNAME = "me@example.org",
+  TB_PASSWORD = "secret"
+)
+tokens <- tb_setup_devices(c("149", "5867000", "5803900"))
+
+# ThingsBoard Cloud (account API key):
 Sys.setenv(
   TB_HOST = "https://eu.thingsboard.cloud",
   TB_API_KEY = "<paste-your-API-key-here>"
 )
 tokens <- tb_setup_devices(c("149", "5867000", "5803900"))
-tokens
 }
 }

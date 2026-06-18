@@ -11,7 +11,7 @@ tb_push_station_telemetry(
   value_col = "Messwert",
   key_col = "Parameter",
   single_key = "value",
-  host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud"),
+  host = tb_default_host(),
   chunk_size = 100L,
   mode = c("single", "bulk"),
   throttle_seconds = NULL,
@@ -51,7 +51,7 @@ Defaults to env var \code{TB_HOST} if set, otherwise
 \item{mode}{one of \code{"single"} (default) or \code{"bulk"}. The Maker free
 tier on ThingsBoard Cloud rejects the bulk array form with an
 opaque HTTP 500 even though the same device accepts the per-record
-\code{{"ts": ms, "values": {...}}} object; single mode therefore POSTs
+\verb{\{"ts": ms, "values": \{...\}\}} object; single mode therefore POSTs
 each record on its own. Use \code{"bulk"} against self-hosted CE for
 the much faster array-of-records form. See
 \code{\link{tb_plan_defaults}} for plan-aware presets that pick
@@ -78,11 +78,12 @@ invisibly the number of telemetry timestamps that were sent.
 \description{
 Sends long-format measurements of a single Wasserportal monitoring station
 to the device telemetry endpoint of a ThingsBoard instance
-(\code{/api/v1/{token}/telemetry}). Works against ThingsBoard Cloud
-(e.g. the free Maker tier on \code{https://thingsboard.cloud}),
-self-hosted ThingsBoard Community Edition and \code{https://demo.thingsboard.io}
+(\verb{/api/v1/\{token\}/telemetry}). Works against ThingsBoard Cloud
+(e.g. the free Maker tier on \verb{https://thingsboard.cloud}),
+self-hosted ThingsBoard Community Edition and \verb{https://demo.thingsboard.io}
 since the device-token API is identical on all of them.
-
+}
+\details{
 Long-format input is pivoted on the fly so that every distinct value of
 \code{key_col} becomes one telemetry key inside ThingsBoard, sharing the same
 timestamp.
