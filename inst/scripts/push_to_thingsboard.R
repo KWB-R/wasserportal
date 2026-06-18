@@ -77,6 +77,26 @@ env_or <- function(name, default) {
   if (nzchar(v)) v else default
 }
 
+# Parse a numeric/integer env var, failing fast with a clear message rather
+# than letting an NA crash a downstream `if (x > 0)` after a long push.
+# NB: .Renviron does NOT support inline `# comments` -- e.g.
+# `TB_HISTORY_DAYS = 7  # foo` sets the value to "7  # foo", which coerces to
+# NA here; put any such comment on its own line.
+num_env <- function(name, default, integer = FALSE) {
+  raw <- env_or(name, default)
+  val <- suppressWarnings(if (integer) as.integer(raw) else as.numeric(raw))
+  if (is.na(val)) {
+    stop(sprintf(
+      paste0(
+        "%s must be %s, got '%s'. Note: .Renviron does not support inline ",
+        "'# comments' -- put any comment on its own line."
+      ),
+      name, if (integer) "an integer" else "numeric", raw
+    ), call. = FALSE)
+  }
+  val
+}
+
 if (!nzchar(Sys.getenv("TB_HOST"))) {
   stop(paste0(
     "TB_HOST is required (e.g. https://eu.thingsboard.cloud or ",
@@ -111,7 +131,7 @@ device_prefix <- env_or("TB_DEVICE_PREFIX", "wasserportal-gw-")
 
 # Maximum number of devices/stations to set up. 0 (or negative) = no limit
 # (push every candidate station -- only sensible on self-hosted / paid tiers).
-max_devices <- as.integer(env_or("TB_MAX_DEVICES", "5"))
+max_devices <- num_env("TB_MAX_DEVICES", "5", integer = TRUE)
 
 # Candidate pool for the auto-pick (used only when TB_STATION_IDS is unset):
 # "both" (default) = level AND quality; "any" = level OR quality;
@@ -122,7 +142,7 @@ station_scope <- tolower(env_or("TB_STATION_SCOPE", "both"))
 # Limit telemetry to the most recent N days per station. Set to 0 to push
 # all history. Useful while diagnosing whether the ThingsBoard Cloud free
 # tier silently rejects historical timestamps with HTTP 500.
-history_days <- as.integer(env_or("TB_HISTORY_DAYS", "0"))
+history_days <- num_env("TB_HISTORY_DAYS", "0", integer = TRUE)
 
 # Resolve push tunables from the ThingsBoard plan via tb_plan_defaults().
 # TB_PLAN takes precedence; individual TB_TELEMETRY_MODE / TB_CHUNK_SIZE /
@@ -133,19 +153,20 @@ plan_defaults <- wasserportal::tb_plan_defaults(
   env_or("TB_PLAN", "free")
 )
 telemetry_mode <- env_or("TB_TELEMETRY_MODE", plan_defaults$mode)
-chunk_size <- as.integer(env_or(
+chunk_size <- num_env(
   "TB_CHUNK_SIZE",
-  as.character(plan_defaults$chunk_size)
-))
-throttle_seconds <- as.numeric(env_or(
+  as.character(plan_defaults$chunk_size),
+  integer = TRUE
+)
+throttle_seconds <- num_env(
   "TB_THROTTLE_SECONDS",
   as.character(plan_defaults$throttle_seconds)
-))
+)
 plan_max_active <- if (is.null(plan_defaults$max_active)) 10L else
   plan_defaults$max_active
-max_active <- as.integer(env_or(
-  "TB_MAX_ACTIVE", as.character(plan_max_active)
-))
+max_active <- num_env(
+  "TB_MAX_ACTIVE", as.character(plan_max_active), integer = TRUE
+)
 
 message(sprintf(
   paste0(
