@@ -1,4 +1,4 @@
-# [wasserportal 0.7.0](https://github.com/KWB-R/wasserportal/releases/tag/v0.7.0) <small>2026-06-17</small>
+# [wasserportal 0.7.0](https://github.com/KWB-R/wasserportal/releases/tag/v0.7.0) <small>2026-06-18</small>
 
 * Add `tb_login()` and username/password (JWT) authentication across the
   ThingsBoard tenant-API helpers (`tb_setup_devices()`,
