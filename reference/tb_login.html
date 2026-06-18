@@ -99,6 +99,24 @@ Defaults to env var <code>TB_HOST</code> if set, otherwise
 which is ample for the one-off device setup done by
 <code><a href="tb_setup_devices.html">tb_setup_devices</a></code>: the subsequent telemetry push uses the
 per-device access token, not this JWT, so no token refresh is implemented.</p>
+<p>Transient failures (HTTP 408 / 429 / 500 / 502 / 503 / 504 and transport
+dropouts) are retried with exponential backoff, matching the predicate
+used for the telemetry POSTs so a flaky upstream does not abort the
+device-setup run on the first 5xx.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="credentials-in-error-output">Credentials in error output<a class="anchor" aria-label="anchor" href="#credentials-in-error-output"></a></h2>
+
+
+<p>On a non-2xx response this helper surfaces an excerpt of the server's
+response body (via <code>tb_error_body()</code>, up to ~800 chars) in the R error
+message, and <code><a href="https://httr2.r-lib.org/reference/req_retry.html" class="external-link">httr2::req_retry()</a></code> prints retry messages to stderr.
+Stock ThingsBoard only echoes back the error description, not the
+request payload, so the password does not leak. If a self-hosted
+instance or reverse proxy is configured to echo request fields back in
+the error body, that excerpt would surface in R errors and – when
+captured with <code>2&gt;&amp;1</code> – in CI logs. Mask the relevant secrets in such
+environments.</p>
     </div>
 
     <div class="section level2">

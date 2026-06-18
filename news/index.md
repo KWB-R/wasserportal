@@ -32,12 +32,58 @@
   / `gwq-only` (has only that series). Both knobs are exposed as
   `thingsboard-push.yaml` repository secrets and `workflow_dispatch`
   inputs. Distinct gwq parameters per station are now counted once via
-  [`tapply()`](https://rdrr.io/r/base/tapply.html) instead of a
+  [`split()`](https://rdrr.io/r/base/split.html) +
+  [`vapply()`](https://rdrr.io/r/base/lapply.html) instead of a
   per-station table rescan, so scoring the full several-hundred-station
-  pool stays fast.
+  pool stays fast. The helper returns a plain named integer vector
+  (matching the idiom already used in `R/get_stations.R` and
+  `R/inspect_gh_pages_zips.R`) instead of the 1-D array that an
+  intermediate [`tapply()`](https://rdrr.io/r/base/tapply.html)
+  implementation produced.
 - Update the Kompetenzzentrum Wasser Berlin (KWB) author logo in
   `_pkgdown.yml` to the new brand asset
   (`logos.kompetenz-wasser.io/KWB_Logo_M_Blau_RGB.svg`).
+- Warn in `tb_auth_header()` when only one of `TB_USERNAME` /
+  `TB_PASSWORD` is set and a leftover `TB_API_KEY` causes a silent
+  fallback to the Cloud API-key path. The typical misconfiguration
+  (workflow secret missing on one of the two JWT credentials with a
+  stale `TB_API_KEY` still populated) used to surface only as a generic
+  `auth: account API key` log line; the new
+  [`warning()`](https://rdrr.io/r/base/warning.html) calls out the
+  misconfiguration so the user can fix the missing secret instead of
+  chasing a wrong-credentials failure further downstream. The pure Cloud
+  (only `TB_API_KEY`) and pure JWT (both `TB_USERNAME` and
+  `TB_PASSWORD`) paths stay quiet, and the existing
+  [`stop()`](https://rdrr.io/r/base/stop.html) for the no-credentials
+  case is unchanged.
+- Clarify the station-selection diagnostic in
+  `inst/scripts/push_to_thingsboard.R`: the row previously labelled
+  `with gwl AND gwq` is now `in both master files AND has both series`
+  because it is the only row that intersects `master_gwl` and
+  `master_gwq` (strict), while the per-series rows (`with gwl data`,
+  `with gwq data`) count against the union of the two master files
+  (relaxed). Stations that appear in only one master file but have rows
+  in both gwl and gwq data were being counted in the per-series totals
+  but not in the intersect total, so the displayed numbers did not add
+  up the way a reader expected when the two master files don’t perfectly
+  overlap. An inline comment documents the intentional asymmetry.
+- Make
+  [`tb_login()`](https://kwb-r.github.io/wasserportal/reference/tb_login.md)
+  more robust against flaky upstreams: widen the retry predicate from
+  the `httr2` default (HTTP 429 / 503 only) to
+  `{408, 429, 500, 502, 503, 504}` and bump `max_tries` from 3 to 4,
+  matching the predicate already used by
+  [`tb_push_station_telemetry()`](https://kwb-r.github.io/wasserportal/reference/tb_push_station_telemetry.md).
+  `POST /api/auth/login` is idempotent, so retrying is safe; this keeps
+  [`tb_setup_devices()`](https://kwb-r.github.io/wasserportal/reference/tb_setup_devices.md)
+  from aborting on a cold-start 500 / 502 / 504 from a self-hosted
+  ThingsBoard sitting behind nginx or a load balancer. Also document the
+  trade-off that a non-2xx response surfaces an excerpt of the server’s
+  response body (via `tb_error_body()`, up to ~800 chars) in the R error
+  and `req_retry()` retry messages – stock ThingsBoard only echoes the
+  error description, so the password does not leak, but operators of
+  self-hosted instances whose reverse proxy echoes request fields back
+  in the error body should mask the relevant secrets in their CI config.
 
 ## [wasserportal 0.6.0](https://github.com/KWB-R/wasserportal/releases/tag/v0.6.0) 2026-06-17
 
