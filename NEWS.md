@@ -71,6 +71,14 @@
   self-hosted instances whose reverse proxy echoes request fields back
   in the error body should mask the relevant secrets in their CI
   config.
+* Validate the numeric `TB_*` environment variables (`TB_MAX_DEVICES`,
+  `TB_HISTORY_DAYS`, `TB_CHUNK_SIZE`, `TB_THROTTLE_SECONDS`,
+  `TB_MAX_ACTIVE`) up front in `inst/scripts/push_to_thingsboard.R` and
+  abort with a clear message when a value is not a number, instead of
+  letting an `NA` crash a downstream `if (x > 0)` only after every device
+  attribute set has already been pushed. The message points out the usual
+  cause: `.Renviron` does not support inline `# comments`, so
+  `TB_HISTORY_DAYS = 7  # ...` otherwise coerces to `NA`.
 
 # [wasserportal 0.6.0](https://github.com/KWB-R/wasserportal/releases/tag/v0.6.0) <small>2026-06-17</small>
 
