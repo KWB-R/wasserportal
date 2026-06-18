@@ -24,8 +24,12 @@
   (has that series, possibly both) or `gwl-only` / `gwq-only` (has only
   that series). Both knobs are exposed as `thingsboard-push.yaml` repository
   secrets and `workflow_dispatch` inputs. Distinct gwq parameters per
-  station are now counted once via `tapply()` instead of a per-station
-  table rescan, so scoring the full several-hundred-station pool stays fast.
+  station are now counted once via `split()` + `vapply()` instead of a
+  per-station table rescan, so scoring the full several-hundred-station
+  pool stays fast. The helper returns a plain named integer vector
+  (matching the idiom already used in `R/get_stations.R` and
+  `R/inspect_gh_pages_zips.R`) instead of the 1-D array that an
+  intermediate `tapply()` implementation produced.
 * Update the Kompetenzzentrum Wasser Berlin (KWB) author logo in
   `_pkgdown.yml` to the new brand asset
   (`logos.kompetenz-wasser.io/KWB_Logo_M_Blau_RGB.svg`).
@@ -52,6 +56,21 @@
   displayed numbers did not add up the way a reader expected when
   the two master files don't perfectly overlap. An inline comment
   documents the intentional asymmetry.
+* Make `tb_login()` more robust against flaky upstreams: widen the
+  retry predicate from the `httr2` default (HTTP 429 / 503 only) to
+  `{408, 429, 500, 502, 503, 504}` and bump `max_tries` from 3 to 4,
+  matching the predicate already used by `tb_push_station_telemetry()`.
+  `POST /api/auth/login` is idempotent, so retrying is safe; this
+  keeps `tb_setup_devices()` from aborting on a cold-start 500 / 502 /
+  504 from a self-hosted ThingsBoard sitting behind nginx or a load
+  balancer. Also document the trade-off that a non-2xx response
+  surfaces an excerpt of the server's response body (via
+  `tb_error_body()`, up to ~800 chars) in the R error and `req_retry()`
+  retry messages -- stock ThingsBoard only echoes the error
+  description, so the password does not leak, but operators of
+  self-hosted instances whose reverse proxy echoes request fields back
+  in the error body should mask the relevant secrets in their CI
+  config.
 
 # [wasserportal 0.6.0](https://github.com/KWB-R/wasserportal/releases/tag/v0.6.0) <small>2026-06-17</small>
 
