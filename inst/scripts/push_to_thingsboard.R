@@ -267,22 +267,33 @@ if (nzchar(env_ids)) {
     ))
   )
 
+  # Note on the third row: it intentionally uses `master_intersect` (the strict
+  # in-both-master-files set), not `master_union`, so it does not equal the
+  # numbers above minus the "only" rows when the gwl and gwq master files do
+  # not perfectly overlap. The label spells this out so the asymmetry is
+  # visible to readers.
   message(sprintf(
     paste0(
       "Station selection (TB_STATION_SCOPE='%s'):\n",
-      "  with gwl data     = %d\n",
-      "  with gwq data     = %d\n",
-      "  with gwl AND gwq  = %d\n",
-      "  only gwl (no gwq) = %d\n",
-      "  only gwq (no gwl) = %d\n",
-      "  -> candidate pool = %d"
+      "  %-40s = %d\n",
+      "  %-40s = %d\n",
+      "  %-40s = %d\n",
+      "  %-40s = %d\n",
+      "  %-40s = %d\n",
+      "  %-40s = %d"
     ),
     station_scope,
+    "with gwl data",
     length(intersect(master_union, ids_gwl)),
+    "with gwq data",
     length(intersect(master_union, ids_gwq)),
+    "in both master files AND has both series",
     length(intersect(intersect(master_intersect, ids_gwl), ids_gwq)),
+    "only gwl (no gwq)",
     length(setdiff(intersect(master_union, ids_gwl), ids_gwq)),
+    "only gwq (no gwl)",
     length(setdiff(intersect(master_union, ids_gwq), ids_gwl)),
+    "-> candidate pool",
     length(candidate_ids)
   ))
 
