@@ -353,7 +353,9 @@ if (nzchar(env_ids)) {
   scoreboard <- scoreboard[order(-scoreboard$score), , drop = FALSE]
 
   # TB_MAX_DEVICES = 0 (or negative) means "no limit": push every candidate.
-  no_limit <- is.na(max_devices) || max_devices <= 0L
+  # num_env() already aborts on NA at parse time, so an is.na() guard here
+  # would be dead defensive code.
+  no_limit <- max_devices <= 0L
   picked <- if (no_limit) scoreboard else utils::head(scoreboard, max_devices)
 
   message(sprintf(
