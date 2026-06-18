@@ -38,7 +38,25 @@ The token is short-lived (ThingsBoard's default JWT expiration is 2.5 h),
 which is ample for the one-off device setup done by
 \code{\link{tb_setup_devices}}: the subsequent telemetry push uses the
 per-device access token, not this JWT, so no token refresh is implemented.
+
+Transient failures (HTTP 408 / 429 / 500 / 502 / 503 / 504 and transport
+dropouts) are retried with exponential backoff, matching the predicate
+used for the telemetry POSTs so a flaky upstream does not abort the
+device-setup run on the first 5xx.
 }
+\section{Credentials in error output}{
+
+On a non-2xx response this helper surfaces an excerpt of the server's
+response body (via \code{tb_error_body()}, up to ~800 chars) in the R error
+message, and \code{httr2::req_retry()} prints retry messages to stderr.
+Stock ThingsBoard only echoes back the error description, not the
+request payload, so the password does not leak. If a self-hosted
+instance or reverse proxy is configured to echo request fields back in
+the error body, that excerpt would surface in R errors and -- when
+captured with \code{2>&1} -- in CI logs. Mask the relevant secrets in such
+environments.
+}
+
 \examples{
 \dontrun{
 Sys.setenv(

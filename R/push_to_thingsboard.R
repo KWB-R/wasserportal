@@ -1026,6 +1026,11 @@ to_epoch_ms <- function(x)
 #' \code{\link{tb_setup_devices}}: the subsequent telemetry push uses the
 #' per-device access token, not this JWT, so no token refresh is implemented.
 #'
+#' Transient failures (HTTP 408 / 429 / 500 / 502 / 503 / 504 and transport
+#' dropouts) are retried with exponential backoff, matching the predicate
+#' used for the telemetry POSTs so a flaky upstream does not abort the
+#' device-setup run on the first 5xx.
+#'
 #' @param username ThingsBoard user (usually the account e-mail). Defaults to
 #'   env var `TB_USERNAME`.
 #' @param password ThingsBoard password. Defaults to env var `TB_PASSWORD`.
@@ -1035,6 +1040,16 @@ to_epoch_ms <- function(x)
 #'   `"https://dashboards.inowas.org"` for a self-hosted instance.
 #' @return the JWT access token as a character scalar, ready to be sent in an
 #'   `X-Authorization: Bearer <token>` request header.
+#' @section Credentials in error output:
+#'   On a non-2xx response this helper surfaces an excerpt of the server's
+#'   response body (via `tb_error_body()`, up to ~800 chars) in the R error
+#'   message, and `httr2::req_retry()` prints retry messages to stderr.
+#'   Stock ThingsBoard only echoes back the error description, not the
+#'   request payload, so the password does not leak. If a self-hosted
+#'   instance or reverse proxy is configured to echo request fields back in
+#'   the error body, that excerpt would surface in R errors and -- when
+#'   captured with `2>&1` -- in CI logs. Mask the relevant secrets in such
+#'   environments.
 #' @export
 #' @examples
 #' \dontrun{
@@ -1054,13 +1069,24 @@ tb_login <- function(
   stopifnot(nzchar(username), nzchar(password), nzchar(host))
   host <- sub("/+$", "", host)
 
+  # Match the transient-failure set used by tb_push_station_telemetry(): the
+  # httr2 default only retries 429/503, but a self-hosted ThingsBoard sitting
+  # behind nginx / a load balancer can briefly return 500/502/504 on cold
+  # starts or restarts. /api/auth/login is idempotent, so retrying is safe.
+  is_transient_500 <- function(resp) {
+    httr2::resp_status(resp) %in% c(408L, 429L, 500L, 502L, 503L, 504L)
+  }
+
   resp <- httr2::request(sprintf("%s/api/auth/login", host)) |>
     httr2::req_body_json(
       list(username = username, password = password),
       auto_unbox = TRUE
     ) |>
     httr2::req_retry(
-      max_tries = 3L, backoff = function(i) 2^i, retry_on_failure = TRUE
+      max_tries        = 4L,
+      backoff          = function(i) 2^i,
+      is_transient     = is_transient_500,
+      retry_on_failure = TRUE
     ) |>
     httr2::req_error(body = tb_error_body) |>
     httr2::req_perform() |>
