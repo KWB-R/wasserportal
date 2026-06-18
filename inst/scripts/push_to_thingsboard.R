@@ -305,12 +305,13 @@ if (nzchar(env_ids)) {
 
   l_counts <- table(gwl_data$Messstellennummer)
   q_counts <- table(gwq_data$Messstellennummer)
-  # Distinct gwq parameters per station, computed once via tapply. The old
-  # per-id vapply rescanned the whole gwq table for every candidate, which
-  # got slow once the pool grew from ~170 to several hundred stations.
-  q_param_by_id <- tapply(
-    gwq_data$Parameter, gwq_data$Messstellennummer,
-    function(p) length(unique(p))
+  # Distinct gwq parameters per station, computed once via split + vapply.
+  # The old per-id vapply rescanned the whole gwq table for every candidate,
+  # which got slow once the pool grew from ~170 to several hundred stations.
+  q_param_by_id <- vapply(
+    split(gwq_data$Parameter, gwq_data$Messstellennummer),
+    function(p) length(unique(p)),
+    integer(1L)
   )
 
   scoreboard <- data.frame(
