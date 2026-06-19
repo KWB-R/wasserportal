@@ -15,7 +15,7 @@ tb_list_device_telemetry_keys first to discover them."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">wasserportal</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.7.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.6.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +44,7 @@ tb_list_device_telemetry_keys first to discover them."></head><body>
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Delete All Time-Series Data for Selected Keys on a ThingsBoard Device</h1>
-      <small class="dont-index">Source: <a href="https://github.com/KWB-R/wasserportal/blob/dev/R/push_to_thingsboard.R" class="external-link"><code>R/push_to_thingsboard.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/KWB-R/wasserportal/blob/master/R/push_to_thingsboard.R" class="external-link"><code>R/push_to_thingsboard.R</code></a></small>
       <div class="d-none name"><code>tb_delete_device_telemetry.Rd</code></div>
     </div>
 
@@ -62,10 +62,8 @@ knows – the function then calls
 <span>  <span class="va">device_id</span>,</span>
 <span>  keys <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  api_key <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"TB_API_KEY"</span><span class="op">)</span>,</span>
-<span>  host <span class="op">=</span> <span class="fu">tb_default_host</span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  delete_latest <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  username <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"TB_USERNAME"</span><span class="op">)</span>,</span>
-<span>  password <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"TB_PASSWORD"</span><span class="op">)</span></span>
+<span>  host <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"TB_HOST"</span>, unset <span class="op">=</span> <span class="st">"https://thingsboard.cloud"</span><span class="op">)</span>,</span>
+<span>  delete_latest <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -96,15 +94,6 @@ clear every key the device currently knows.</p></dd>
 cached "latest telemetry" entry so the device-detail tab in the UI
 immediately reflects the deletion. Set to <code>FALSE</code> to keep the latest
 value visible for keys that get repopulated by the next push anyway.</p></dd>
-
-
-<dt id="arg-username">username<a class="anchor" aria-label="anchor" href="#arg-username"></a></dt>
-<dd><p>ThingsBoard user for the username/password (JWT) login
-(self-hosted / Community Edition). Defaults to env var <code>TB_USERNAME</code>.</p></dd>
-
-
-<dt id="arg-password">password<a class="anchor" aria-label="anchor" href="#arg-password"></a></dt>
-<dd><p>ThingsBoard password. Defaults to env var <code>TB_PASSWORD</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">

@@ -32,12 +32,12 @@ cat_file_enumeration <- function(base_url, files) {
 ``` r
 
 stations_list <- wasserportal::get_stations(type = "list")
-#> Importing 10 station overviews from Wasserportal Berlin ... ok. (5.41 secs)
+#> Importing 10 station overviews from Wasserportal Berlin ... ok. (8.29 secs)
 
 is_gw <- stringr::str_detect(names(stations_list), "groundwater")
 
 files <- wasserportal::list_masters_data_to_csv(stations_list[is_gw])
-#> Writing 'stations_groundwater_level.csv' ... ok. (0.22 secs) 
+#> Writing 'stations_groundwater_level.csv' ... ok. (0.12 secs) 
 #> Writing 'stations_groundwater_quality.csv' ... ok. (0.01 secs)
 ```
 
@@ -64,12 +64,12 @@ gw_data_list <- wasserportal::get_groundwater_data(
   stations_list = stations_list, 
   debug = TRUE
 )
-#> Importing 'groundwater.level' data (1/2) ... ok. (11.48 mins) 
-#> Importing 'groundwater.quality' data (2/2) ... ok. (1.65 mins)
+#> Importing 'groundwater.level' data (1/2) ... ok. (10.53 mins) 
+#> Importing 'groundwater.quality' data (2/2) ... ok. (3.88 mins)
 
 files <- wasserportal::list_timeseries_data_to_zip(gw_data_list)
-#> Writing 'groundwater_level.zip' ... ok. (12.92 secs) 
-#> Writing 'groundwater_quality.zip' ... ok. (1.07 secs)
+#> Writing 'groundwater_level.zip' ... ok. (11.70 secs) 
+#> Writing 'groundwater_quality.zip' ... ok. (1.18 secs)
 
 files
 #> [1] "groundwater_level.zip"   "groundwater_quality.zip"
@@ -120,7 +120,7 @@ library(wasserportal)
 stations_crosstable <- jsonlite::fromJSON(urls$stations_crosstable)
 
 str(stations_crosstable)
-#> 'data.frame':    1112 obs. of  12 variables:
+#> 'data.frame':    1114 obs. of  12 variables:
 #>  $ Messstellennummer: chr  "5865900" "5827103" "5870400" "5865300" ...
 #>  $ Messstellenname  : chr  "Allee der Kosmonauten" "Allendestraße" "Alsenbrücke" "Am Bahndamm" ...
 #>  $ ows              : chr  "x" "x" "x" "x" ...

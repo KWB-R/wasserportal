@@ -10,6 +10,9 @@ Messstellennummer values across all loaded files is reported at the end
 so you can quickly see how many stations have measurements in *every*
 file.
 
+Returns the loaded data frames invisibly so the caller can further
+inspect them in R, e.g. `dat$groundwater_level$Parameter |> table()`.
+
 ## Usage
 
 ``` r
@@ -48,11 +51,6 @@ inspect_gh_pages_zips(
 
 invisibly a named list of `tibble`s, one per input file. Names are
 derived from the ZIP basename without the extension.
-
-## Details
-
-Returns the loaded data frames invisibly so the caller can further
-inspect them in R, e.g. `dat$groundwater_level$Parameter |> table()`.
 
 ## Examples
 

@@ -11,9 +11,7 @@ source data.
 tb_list_device_telemetry_keys(
   device_id,
   api_key = Sys.getenv("TB_API_KEY"),
-  host = tb_default_host(),
-  username = Sys.getenv("TB_USERNAME"),
-  password = Sys.getenv("TB_PASSWORD")
+  host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud")
 )
 ```
 
@@ -33,15 +31,6 @@ tb_list_device_telemetry_keys(
 
   base URL of the ThingsBoard instance. Defaults to env var `TB_HOST` if
   set, otherwise `"https://thingsboard.cloud"`.
-
-- username:
-
-  ThingsBoard user for the username/password (JWT) login (self-hosted /
-  Community Edition). Defaults to env var `TB_USERNAME`.
-
-- password:
-
-  ThingsBoard password. Defaults to env var `TB_PASSWORD`.
 
 ## Value
 

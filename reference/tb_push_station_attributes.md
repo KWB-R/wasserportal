@@ -11,7 +11,7 @@ timestamp; ThingsBoard overwrites the previous value on every push.
 tb_push_station_attributes(
   attributes,
   device_token,
-  host = tb_default_host()
+  host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud")
 )
 ```
 

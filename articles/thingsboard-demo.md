@@ -5,9 +5,7 @@ This vignette walks through pushing Berlin **groundwater** stations from
 [ThingsBoard](https://thingsboard.io) tenant – typically the **free
 Maker tier** on `https://eu.thingsboard.cloud` (5 devices, 1 M data
 points / month). The same code works against self-hosted ThingsBoard
-Community Edition (CE) by pointing `TB_HOST` at it and authenticating
-with a username/password login instead of an account API key (CE has no
-account API keys – see step 2 below).
+Community Edition (CE) by pointing `TB_HOST` at it.
 
 Groundwater is the primary focus because that is what the daily
 GitHub-Actions push (`.github/workflows/thingsboard-push.yaml`) and the
@@ -22,19 +20,9 @@ shows how the same primitives apply to surface water gauges.
 1.  Sign up at <https://eu.thingsboard.cloud> (EU) or
     <https://thingsboard.cloud> (US).
 
-2.  **Authenticate** – pick the option that matches your instance:
-
-    - *ThingsBoard Cloud*: generate an **account API key** under
-      *Account \> Security \> API keys \> Generate*. Give it a
-      description like `wasserportal-demo` and copy the key once – it is
-      only shown on creation. Store it in `TB_API_KEY`.
-    - *Self-hosted Community Edition* (e.g.
-      `https://dashboards.inowas.org`): CE has no account API keys, so
-      use your ThingsBoard **username + password** (`TB_USERNAME` /
-      `TB_PASSWORD`); the package logs in via
-      [`tb_login()`](https://kwb-r.github.io/wasserportal/reference/tb_login.md)
-      to obtain a JWT. The account needs tenant-administrator rights to
-      create devices.
+2.  Generate an **account API key**: *Account \> Security \> API keys \>
+    Generate*. Give it a description like `wasserportal-demo` and copy
+    the key once – it is only shown on creation.
 
 3.  Install the package and `httr2`:
 
@@ -47,15 +35,8 @@ shows how the same primitives apply to surface water gauges.
 4.  Store credentials as environment variables (e.g. in `~/.Renviron`):
 
     ``` r
-    # ThingsBoard Cloud (account API key):
     TB_HOST=https://eu.thingsboard.cloud
     TB_API_KEY=<your-api-key>
-
-    # ...or self-hosted Community Edition (username/password login):
-    # TB_HOST=https://dashboards.inowas.org
-    # TB_USERNAME=<your-thingsboard-user>
-    # TB_PASSWORD=<your-thingsboard-password>
-    # TB_PLAN=ce
     ```
 
     Restart the R session so the variables are loaded.
@@ -368,11 +349,8 @@ The `.github/workflows/thingsboard-push.yaml` workflow runs the
 / `dev`, daily at 07:00 UTC via cron, and on `workflow_dispatch`.
 Required repository secrets:
 
-- `TB_HOST` – e.g. `https://eu.thingsboard.cloud`, or
-  `https://dashboards.inowas.org` for a self-hosted instance
-- **Authentication** (set one): `TB_API_KEY` (account-level API key,
-  ThingsBoard Cloud) *or* `TB_USERNAME` + `TB_PASSWORD` (login, required
-  for self-hosted Community Edition; these win when both are set)
+- `TB_HOST` – e.g. `https://eu.thingsboard.cloud`
+- `TB_API_KEY` – account-level API key
 
 Optional `workflow_dispatch` inputs override the cron defaults for a
 single run without editing the YAML:
@@ -383,21 +361,10 @@ single run without editing the YAML:
 | `history_days` | Push only the most recent N days per station (`0` = full history). | `1460` |
 | `telemetry_types` | Subset of `gwl,gwq` to push. | `gwl` |
 | `plan` | ThingsBoard plan: `free` / `free-bulk` / `prototype` / `pilot` / `startup` / `business` / `ce`. | `free` |
-| `max_devices` | Max devices/stations to set up. `0` = no limit (every candidate); empty = default 5. | `0` |
-| `station_scope` | Auto-pick pool: `both` (default) / `any` / `gwl` / `gwq` / `gwl-only` / `gwq-only`. | `any` |
 
 These mirror the underlying env vars (`TB_STATION_IDS`,
-`TB_MAX_DEVICES`, `TB_STATION_SCOPE`, `TB_HISTORY_DAYS`,
-`TB_TELEMETRY_TYPES`, `TB_PLAN`) which the script also reads from the
-environment if run standalone.
-
-To push **every** groundwater station, set `max_devices = 0` and
-`station_scope = any` (level-only and quality-only stations included).
-`gwl` / `gwq` select stations that *have* that series (a both-station
-matches too), while `gwl-only` / `gwq-only` are the exclusive sets –
-stations that have *only* level resp. *only* quality data. Mind the
-volume – several hundred devices over the full archive is millions of
-data points; start with a bounded `history_days` to validate the run.
+`TB_HISTORY_DAYS`, `TB_TELEMETRY_TYPES`, `TB_PLAN`) which the script
+also reads from the environment if run standalone.
 
 ## 10. Re-Running and Idempotency
 
@@ -458,24 +425,13 @@ clone the dashboard and bind the widgets to a second entity alias.
 ## 12. Switching to Self-Hosted CE
 
 When the 5-device free-tier limit becomes the bottleneck, point
-`TB_HOST` at your own deployment and switch the plan preset. Self-hosted
-Community Edition has **no account API keys**, so authenticate with your
-ThingsBoard username and password (the package logs in via
-[`tb_login()`](https://kwb-r.github.io/wasserportal/reference/tb_login.md)
-to obtain a JWT); the account needs tenant-administrator rights:
+`TB_HOST` at your own deployment and switch the plan preset:
 
 ``` r
 
-Sys.setenv(
-  TB_HOST     = "https://dashboards.inowas.org",
-  TB_USERNAME = "me@example.org",
-  TB_PASSWORD = "secret"
-)
+Sys.setenv(TB_HOST = "https://thingsboard.your-domain.example")
 ce_preset <- wasserportal::tb_plan_defaults("ce")
 # bulk mode, chunk_size = 1000, throttle_seconds = 0
-
-# quick credential check -- returns a JWT string on success:
-# wasserportal::tb_login()
 ```
 
 The same R code now talks to your ThingsBoard CE deployment; devices,
