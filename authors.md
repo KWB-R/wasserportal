@@ -24,22 +24,22 @@
   PROMISCES](https://promisces.eu/skin/promisces/assets/img/logo.png)](https://www.kompetenz-wasser.de/en/forschung/projekte/promisces)**.
   Funder.
 
-- **[![KWB](https://publications.kompetenz-wasser.de/img/KWB-Logo.svg)](https://www.kompetenz-wasser.de)**.
+- **[![KWB](https://logos.kompetenz-wasser.io/KWB_Logo_M_Blau_RGB.svg)](https://www.kompetenz-wasser.de)**.
   Copyright holder.
 
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/KWB-R/wasserportal/blob/master/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/KWB-R/wasserportal/blob/dev/DESCRIPTION)
 
 Sonnenberg H, Rustler M (2026). *wasserportal: R Package with Functions
-for Scraping Data of Wasserportal Berlin*. R package version 0.6.0,
+for Scraping Data of Wasserportal Berlin*. R package version 0.7.0,
 <https://github.com/KWB-R/wasserportal>.
 
     @Manual{,
       title = {wasserportal: R Package with Functions for Scraping Data of Wasserportal Berlin},
       author = {Hauke Sonnenberg and Michael Rustler},
       year = {2026},
-      note = {R package version 0.6.0},
+      note = {R package version 0.7.0},
       url = {https://github.com/KWB-R/wasserportal},
     }

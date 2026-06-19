@@ -5,17 +5,13 @@ extracts the CSV, reads it with readr::read_csv() and prints a short
 summary (columns, row count, unique Messstellennummer count, head of
 the data). The intersection of Messstellennummer values across all
 loaded files is reported at the end so you can quickly see how many
-stations have measurements in every file.
-Returns the loaded data frames invisibly so the caller can further
-inspect them in R, e.g. dat$groundwater_level$Parameter |&amp;gt; table()."><meta property="og:description" content="Convenience helper for local debugging of the daily ZIP artefacts
+stations have measurements in every file."><meta property="og:description" content="Convenience helper for local debugging of the daily ZIP artefacts
 published at https://kwb-r.github.io/wasserportal. Downloads each ZIP,
 extracts the CSV, reads it with readr::read_csv() and prints a short
 summary (columns, row count, unique Messstellennummer count, head of
 the data). The intersection of Messstellennummer values across all
 loaded files is reported at the end so you can quickly see how many
-stations have measurements in every file.
-Returns the loaded data frames invisibly so the caller can further
-inspect them in R, e.g. dat$groundwater_level$Parameter |&amp;gt; table()."></head><body>
+stations have measurements in every file."></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -23,7 +19,7 @@ inspect them in R, e.g. dat$groundwater_level$Parameter |&amp;gt; table()."></he
 
     <a class="navbar-brand me-2" href="../index.html">wasserportal</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.6.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.7.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,7 +48,7 @@ inspect them in R, e.g. dat$groundwater_level$Parameter |&amp;gt; table()."></he
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Download and Inspect Wasserportal ZIP Files Hosted on gh-pages</h1>
-      <small class="dont-index">Source: <a href="https://github.com/KWB-R/wasserportal/blob/master/R/inspect_gh_pages_zips.R" class="external-link"><code>R/inspect_gh_pages_zips.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/KWB-R/wasserportal/blob/dev/R/inspect_gh_pages_zips.R" class="external-link"><code>R/inspect_gh_pages_zips.R</code></a></small>
       <div class="d-none name"><code>inspect_gh_pages_zips.Rd</code></div>
     </div>
 
@@ -64,8 +60,6 @@ summary (columns, row count, unique <code>Messstellennummer</code> count, head o
 the data). The intersection of Messstellennummer values across all
 loaded files is reported at the end so you can quickly see how many
 stations have measurements in <em>every</em> file.</p>
-<p>Returns the loaded data frames invisibly so the caller can further
-inspect them in R, e.g. <code>dat$groundwater_level$Parameter |&gt; table()</code>.</p>
     </div>
 
     <div class="section level2">
@@ -107,6 +101,11 @@ data frame. Default 5.</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>invisibly a named list of <code>tibble</code>s, one per input file. Names
 are derived from the ZIP basename without the extension.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>Returns the loaded data frames invisibly so the caller can further
+inspect them in R, e.g. <code>dat$groundwater_level$Parameter |&gt; table()</code>.</p>
     </div>
 
     <div class="section level2">
