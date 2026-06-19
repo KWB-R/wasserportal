@@ -13,8 +13,7 @@ tb_list_device_telemetry_keys(
   api_key = Sys.getenv("TB_API_KEY"),
   host = tb_default_host(),
   username = Sys.getenv("TB_USERNAME"),
-  password = Sys.getenv("TB_PASSWORD"),
-  auth = NULL
+  password = Sys.getenv("TB_PASSWORD")
 )
 ```
 
@@ -43,15 +42,6 @@ tb_list_device_telemetry_keys(
 - password:
 
   ThingsBoard password. Defaults to env var `TB_PASSWORD`.
-
-- auth:
-
-  optional pre-resolved `X-Authorization` header value. When supplied,
-  the credential arguments are ignored and no extra
-  `POST /api/auth/login` round-trip is performed. Mainly useful when
-  this function is chained from another helper that has already obtained
-  an auth header (e.g.
-  [`tb_delete_device_telemetry`](https://kwb-r.github.io/wasserportal/reference/tb_delete_device_telemetry.md)).
 
 ## Value
 
