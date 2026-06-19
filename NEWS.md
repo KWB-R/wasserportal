@@ -94,6 +94,22 @@
   here's the header" in the same exported function. Removes the silent
   precedence where `auth = "Bearer ..."` together with `api_key` / JWT
   credentials would have ignored the latter without warning.
+* Improve the station-selection block of
+  `inst/scripts/push_to_thingsboard.R` in two ways. First, flag
+  orphan stations -- IDs that have rows in `gwl_data` / `gwq_data`
+  but are missing from both master files -- with a `message()` listing
+  the count and the first few IDs. Every scope intersects its
+  candidate set with `master_union`, so those orphans are silently
+  dropped from the candidate pool; without the message a master /
+  data drift would be invisible in the diagnostic counts. Second,
+  add a new `in either master AND has both series` row to the
+  diagnostic block (computed as `master_union ∩ ids_gwl ∩ ids_gwq`)
+  so that the row-sum identity
+  `with_gwl + with_gwq - both = only_gwl + only_gwq + both` actually
+  holds for readers scanning the message; the existing strict row
+  is renamed to `strict: in both masters AND both series` and gets
+  an inline `(strict: master_intersect)` annotation so the
+  intentional asymmetry against `master_union` stays visible.
 
 # [wasserportal 0.6.0](https://github.com/KWB-R/wasserportal/releases/tag/v0.6.0) <small>2026-06-17</small>
 

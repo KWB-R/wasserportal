@@ -266,6 +266,19 @@ if (nzchar(env_ids)) {
   ids_gwl <- unique(gwl_data$Messstellennummer)
   ids_gwq <- unique(gwq_data$Messstellennummer)
 
+  # Flag stations that have data rows but are missing from BOTH master files --
+  # such orphans are silently dropped by every scope (each candidate set is
+  # intersected with `master_union`), so without this message a master/data
+  # drift would be invisible in the diagnostic counts below.
+  orphan_ids <- setdiff(union(ids_gwl, ids_gwq), master_union)
+  if (length(orphan_ids) > 0L) {
+    message(sprintf(
+      "Note: %d station(s) have gwl/gwq data but are not in either master file (dropped from candidate pool); first few: %s",
+      length(orphan_ids),
+      paste(utils::head(orphan_ids, 5L), collapse = ", ")
+    ))
+  }
+
   # Candidate pool depends on TB_STATION_SCOPE (default "both" -- the proven
   # demo set). "gwl"/"gwq" = has that series (may also have the other);
   # "gwl-only"/"gwq-only" = has ONLY that series (excludes both-stations).
@@ -288,27 +301,32 @@ if (nzchar(env_ids)) {
     ))
   )
 
-  # Note on the third row: it intentionally uses `master_intersect` (the strict
-  # in-both-master-files set), not `master_union`, so it does not equal the
-  # numbers above minus the "only" rows when the gwl and gwq master files do
-  # not perfectly overlap. The label spells this out so the asymmetry is
-  # visible to readers.
+  # All rows except the "strict" one are computed against `master_union`, so
+  # they satisfy the row-sum identity readers expect:
+  #   with_gwl + with_gwq - both_union = only_gwl + only_gwq + both_union
+  # The "strict" row intentionally uses `master_intersect` (the in-both-master
+  # set), so it can be smaller than `both_union` when the two master files
+  # do not perfectly overlap. The label and an inline note spell this out
+  # so the asymmetry is visible to readers.
   message(sprintf(
     paste0(
       "Station selection (TB_STATION_SCOPE='%s'):\n",
-      "  %-40s = %d\n",
-      "  %-40s = %d\n",
-      "  %-40s = %d\n",
-      "  %-40s = %d\n",
-      "  %-40s = %d\n",
-      "  %-40s = %d"
+      "  %-42s = %d\n",
+      "  %-42s = %d\n",
+      "  %-42s = %d\n",
+      "  %-42s = %d  (strict: master_intersect)\n",
+      "  %-42s = %d\n",
+      "  %-42s = %d\n",
+      "  %-42s = %d"
     ),
     station_scope,
     "with gwl data",
     length(intersect(master_union, ids_gwl)),
     "with gwq data",
     length(intersect(master_union, ids_gwq)),
-    "in both master files AND has both series",
+    "in either master AND has both series",
+    length(intersect(master_union, intersect(ids_gwl, ids_gwq))),
+    "strict: in both masters AND both series",
     length(intersect(intersect(master_intersect, ids_gwl), ids_gwq)),
     "only gwl (no gwq)",
     length(setdiff(intersect(master_union, ids_gwl), ids_gwq)),
