@@ -7,7 +7,7 @@
 tb_push_latest_telemetry(
   values,
   device_token,
-  host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud")
+  host = tb_default_host()
 )
 }
 \arguments{
@@ -23,7 +23,7 @@ key/value pairs.}
 invisibly the number of keys that were sent.
 }
 \description{
-Sends a flat \code{{"key": value, ...}} JSON object to the ThingsBoard
+Sends a flat \verb{\{"key": value, ...\}} JSON object to the ThingsBoard
 telemetry endpoint, letting the server stamp it with the current time.
 This is the simplest possible telemetry POST and is useful both as a
 smoke test for the device-token auth path and as a fallback when the

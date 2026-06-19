@@ -8,8 +8,10 @@ tb_delete_device_telemetry(
   device_id,
   keys = NULL,
   api_key = Sys.getenv("TB_API_KEY"),
-  host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud"),
-  delete_latest = TRUE
+  host = tb_default_host(),
+  delete_latest = TRUE,
+  username = Sys.getenv("TB_USERNAME"),
+  password = Sys.getenv("TB_PASSWORD")
 )
 }
 \arguments{
@@ -27,13 +29,18 @@ clear every key the device currently knows.}
 cached "latest telemetry" entry so the device-detail tab in the UI
 immediately reflects the deletion. Set to \code{FALSE} to keep the latest
 value visible for keys that get repopulated by the next push anyway.}
+
+\item{username}{ThingsBoard user for the username/password (JWT) login
+(self-hosted / Community Edition). Defaults to env var \code{TB_USERNAME}.}
+
+\item{password}{ThingsBoard password. Defaults to env var \code{TB_PASSWORD}.}
 }
 \value{
 invisibly the number of keys submitted for deletion.
 }
 \description{
 Wipes historical telemetry rows from ThingsBoard for the given device and
-keys via \verb{DELETE /api/plugins/telemetry/DEVICE/\{id\}/timeseries/delete}.
+keys via \code{DELETE /api/plugins/telemetry/DEVICE/{id}/timeseries/delete}.
 Pass \code{keys = NULL} (the default) to clear every key the device currently
 knows -- the function then calls
 \code{\link{tb_list_device_telemetry_keys}} first to discover them.

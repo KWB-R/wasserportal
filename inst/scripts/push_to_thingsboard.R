@@ -22,8 +22,16 @@
 #   Rscript inst/scripts/push_to_thingsboard.R
 #
 # Required environment variables:
-#   TB_HOST       e.g. https://eu.thingsboard.cloud
-#   TB_API_KEY    Account-level API key (Bearer credential)
+#   TB_HOST       e.g. https://eu.thingsboard.cloud or
+#                 https://dashboards.inowas.org (self-hosted)
+#
+# Authentication -- provide ONE of the following (username/password wins):
+#   TB_USERNAME + TB_PASSWORD  ThingsBoard login -> JWT Bearer token. Works
+#                 on every edition and is the ONLY option for self-hosted
+#                 Community Edition (which has no account-level API keys).
+#                 For self-hosted instances also set TB_PLAN=ce.
+#   TB_API_KEY    Account-level API key, ThingsBoard Cloud only
+#                 (Account > Security > API keys > Generate).
 #
 # Optional environment variables:
 #   TB_STATION_IDS    Comma-separated Messstellennummer values. If unset,
@@ -34,7 +42,15 @@
 #   TB_DEVICE_PREFIX  Prefix for ThingsBoard device names. Default
 #                     "wasserportal-gw-".
 #   TB_MAX_DEVICES    Maximum number of devices to set up. Default 5
-#                     (ThingsBoard Cloud free tier limit).
+#                     (ThingsBoard Cloud free tier limit). Set to 0 for
+#                     no limit (push every candidate station).
+#   TB_STATION_SCOPE  Which groundwater stations the auto-pick considers
+#                     (ignored when TB_STATION_IDS is set): "both"
+#                     (default) = stations with level AND quality data;
+#                     "any" = level OR quality; "gwl" / "gwq" = has that
+#                     series (may also have the other); "gwl-only" /
+#                     "gwq-only" = has ONLY that series (excludes
+#                     both-stations).
 #   TB_HISTORY_DAYS   Limit telemetry to the most recent N days per
 #                     station. Default 0 (= push all history).
 #   TB_PLAN           One of "free" (default), "prototype", "pilot",
@@ -61,10 +77,51 @@ env_or <- function(name, default) {
   if (nzchar(v)) v else default
 }
 
-stopifnot(
-  nzchar(Sys.getenv("TB_HOST")),
-  nzchar(Sys.getenv("TB_API_KEY"))
-)
+# Parse a numeric/integer env var, failing fast with a clear message rather
+# than letting an NA crash a downstream `if (x > 0)` after a long push.
+# NB: .Renviron does NOT support inline `# comments` -- e.g.
+# `TB_HISTORY_DAYS = 7  # foo` sets the value to "7  # foo", which coerces to
+# NA here; put any such comment on its own line.
+num_env <- function(name, default, integer = FALSE) {
+  raw <- env_or(name, default)
+  val <- suppressWarnings(if (integer) as.integer(raw) else as.numeric(raw))
+  if (is.na(val)) {
+    stop(sprintf(
+      paste0(
+        "%s must be %s, got '%s'. Note: .Renviron does not support inline ",
+        "'# comments' -- put any comment on its own line."
+      ),
+      name, if (integer) "an integer" else "numeric", raw
+    ), call. = FALSE)
+  }
+  val
+}
+
+if (!nzchar(Sys.getenv("TB_HOST"))) {
+  stop(paste0(
+    "TB_HOST is required (e.g. https://eu.thingsboard.cloud or ",
+    "https://dashboards.inowas.org)."
+  ))
+}
+
+# Authenticate with either a username/password login (JWT -- works on every
+# ThingsBoard edition, required for self-hosted Community Edition) or an
+# account-level API key (ThingsBoard Cloud only). Username/password wins.
+# tb_setup_devices() resolves the same TB_USERNAME / TB_PASSWORD / TB_API_KEY
+# env vars itself; this is just a fail-fast preflight with a clear message.
+has_login   <- nzchar(Sys.getenv("TB_USERNAME")) &&
+  nzchar(Sys.getenv("TB_PASSWORD"))
+has_api_key <- nzchar(Sys.getenv("TB_API_KEY"))
+if (!has_login && !has_api_key) {
+  stop(paste0(
+    "No ThingsBoard credentials. Set TB_USERNAME + TB_PASSWORD ",
+    "(self-hosted / Community Edition) or TB_API_KEY (ThingsBoard Cloud)."
+  ))
+}
+message(sprintf(
+  "ThingsBoard auth: %s",
+  if (has_login) "username/password (JWT Bearer)" else "account API key"
+))
 
 base_url <- sub("/+$", "", env_or(
   "TB_GH_PAGES_URL", "https://kwb-r.github.io/wasserportal"
@@ -72,12 +129,20 @@ base_url <- sub("/+$", "", env_or(
 
 device_prefix <- env_or("TB_DEVICE_PREFIX", "wasserportal-gw-")
 
-max_devices <- as.integer(env_or("TB_MAX_DEVICES", "5"))
+# Maximum number of devices/stations to set up. 0 (or negative) = no limit
+# (push every candidate station -- only sensible on self-hosted / paid tiers).
+max_devices <- num_env("TB_MAX_DEVICES", "5", integer = TRUE)
+
+# Candidate pool for the auto-pick (used only when TB_STATION_IDS is unset):
+# "both" (default) = level AND quality; "any" = level OR quality;
+# "gwl" / "gwq" = has that series (may also have the other);
+# "gwl-only" / "gwq-only" = has only that series (excludes both-stations).
+station_scope <- tolower(env_or("TB_STATION_SCOPE", "both"))
 
 # Limit telemetry to the most recent N days per station. Set to 0 to push
 # all history. Useful while diagnosing whether the ThingsBoard Cloud free
 # tier silently rejects historical timestamps with HTTP 500.
-history_days <- as.integer(env_or("TB_HISTORY_DAYS", "0"))
+history_days <- num_env("TB_HISTORY_DAYS", "0", integer = TRUE)
 
 # Resolve push tunables from the ThingsBoard plan via tb_plan_defaults().
 # TB_PLAN takes precedence; individual TB_TELEMETRY_MODE / TB_CHUNK_SIZE /
@@ -88,19 +153,20 @@ plan_defaults <- wasserportal::tb_plan_defaults(
   env_or("TB_PLAN", "free")
 )
 telemetry_mode <- env_or("TB_TELEMETRY_MODE", plan_defaults$mode)
-chunk_size <- as.integer(env_or(
+chunk_size <- num_env(
   "TB_CHUNK_SIZE",
-  as.character(plan_defaults$chunk_size)
-))
-throttle_seconds <- as.numeric(env_or(
+  as.character(plan_defaults$chunk_size),
+  integer = TRUE
+)
+throttle_seconds <- num_env(
   "TB_THROTTLE_SECONDS",
   as.character(plan_defaults$throttle_seconds)
-))
+)
 plan_max_active <- if (is.null(plan_defaults$max_active)) 10L else
   plan_defaults$max_active
-max_active <- as.integer(env_or(
-  "TB_MAX_ACTIVE", as.character(plan_max_active)
-))
+max_active <- num_env(
+  "TB_MAX_ACTIVE", as.character(plan_max_active), integer = TRUE
+)
 
 message(sprintf(
   paste0(
@@ -196,66 +262,135 @@ if (nzchar(env_ids)) {
   ))
 } else {
   master_intersect <- intersect(gwl_master$Nummer, gwq_master$Nummer)
-  with_gwl <- intersect(master_intersect, unique(gwl_data$Messstellennummer))
-  with_both <- intersect(with_gwl, unique(gwq_data$Messstellennummer))
+  master_union     <- union(gwl_master$Nummer, gwq_master$Nummer)
+  ids_gwl <- unique(gwl_data$Messstellennummer)
+  ids_gwq <- unique(gwq_data$Messstellennummer)
 
+  # Flag stations that have data rows but are missing from BOTH master files --
+  # such orphans are silently dropped by every scope (each candidate set is
+  # intersected with `master_union`), so without this message a master/data
+  # drift would be invisible in the diagnostic counts below.
+  orphan_ids <- setdiff(union(ids_gwl, ids_gwq), master_union)
+  if (length(orphan_ids) > 0L) {
+    message(sprintf(
+      "Note: %d station(s) have gwl/gwq data but are not in either master file (dropped from candidate pool); first few: %s",
+      length(orphan_ids),
+      paste(utils::head(orphan_ids, 5L), collapse = ", ")
+    ))
+  }
+
+  # Candidate pool depends on TB_STATION_SCOPE (default "both" -- the proven
+  # demo set). "gwl"/"gwq" = has that series (may also have the other);
+  # "gwl-only"/"gwq-only" = has ONLY that series (excludes both-stations).
+  # The push still honours TB_TELEMETRY_TYPES per station, so a gwl-only
+  # station picked under "any"/"gwl" simply contributes no gwq rows.
+  candidate_ids <- switch(
+    station_scope,
+    both       = intersect(intersect(master_intersect, ids_gwl), ids_gwq),
+    any        = intersect(master_union, union(ids_gwl, ids_gwq)),
+    gwl        = intersect(master_union, ids_gwl),
+    gwq        = intersect(master_union, ids_gwq),
+    `gwl-only` = setdiff(intersect(master_union, ids_gwl), ids_gwq),
+    `gwq-only` = setdiff(intersect(master_union, ids_gwq), ids_gwl),
+    stop(sprintf(
+      paste0(
+        "Unknown TB_STATION_SCOPE '%s' ",
+        "(use both | any | gwl | gwq | gwl-only | gwq-only)."
+      ),
+      station_scope
+    ))
+  )
+
+  # All rows except the "strict" one are computed against `master_union`, so
+  # they satisfy the row-sum identity readers expect:
+  #   with_gwl + with_gwq - both_union = only_gwl + only_gwq + both_union
+  # The "strict" row intentionally uses `master_intersect` (the in-both-master
+  # set), so it can be smaller than `both_union` when the two master files
+  # do not perfectly overlap. The label and an inline note spell this out
+  # so the asymmetry is visible to readers.
   message(sprintf(
     paste0(
-      "Station counts:\n",
-      "  gwl_master   = %d\n",
-      "  gwq_master   = %d\n",
-      "  master_intersect (both files)     = %d\n",
-      "  + present in stations_gwl_data    = %d\n",
-      "  + present in stations_gwq_data    = %d"
+      "Station selection (TB_STATION_SCOPE='%s'):\n",
+      "  %-42s = %d\n",
+      "  %-42s = %d\n",
+      "  %-42s = %d\n",
+      "  %-42s = %d  (strict: master_intersect)\n",
+      "  %-42s = %d\n",
+      "  %-42s = %d\n",
+      "  %-42s = %d"
     ),
-    length(unique(gwl_master$Nummer)),
-    length(unique(gwq_master$Nummer)),
-    length(master_intersect),
-    length(with_gwl),
-    length(with_both)
+    station_scope,
+    "with gwl data",
+    length(intersect(master_union, ids_gwl)),
+    "with gwq data",
+    length(intersect(master_union, ids_gwq)),
+    "in either master AND has both series",
+    length(intersect(master_union, intersect(ids_gwl, ids_gwq))),
+    "strict: in both masters AND both series",
+    length(intersect(intersect(master_intersect, ids_gwl), ids_gwq)),
+    "only gwl (no gwq)",
+    length(setdiff(intersect(master_union, ids_gwl), ids_gwq)),
+    "only gwq (no gwl)",
+    length(setdiff(intersect(master_union, ids_gwq), ids_gwl)),
+    "-> candidate pool",
+    length(candidate_ids)
   ))
 
-  both_ids <- with_both
-
-  message(sprintf(
-    "%d stations have both gwl and gwq data; scoring ...",
-    length(both_ids)
-  ))
+  if (length(candidate_ids) == 0L) {
+    stop(sprintf(
+      "No candidate stations for TB_STATION_SCOPE='%s'.", station_scope
+    ))
+  }
 
   l_counts <- table(gwl_data$Messstellennummer)
   q_counts <- table(gwq_data$Messstellennummer)
-  q_param_counts <- vapply(
-    both_ids,
-    function(id) length(unique(
-      gwq_data$Parameter[gwq_data$Messstellennummer == id]
-    )),
+  # Distinct gwq parameters per station, computed once via split + vapply.
+  # The old per-id vapply rescanned the whole gwq table for every candidate,
+  # which got slow once the pool grew from ~170 to several hundred stations.
+  q_param_by_id <- vapply(
+    split(gwq_data$Parameter, gwq_data$Messstellennummer),
+    function(p) length(unique(p)),
     integer(1L)
   )
 
   scoreboard <- data.frame(
-    Nummer    = both_ids,
-    n_gwl     = as.integer(l_counts[both_ids]),
-    n_gwq     = as.integer(q_counts[both_ids]),
-    n_q_param = q_param_counts,
+    Nummer    = candidate_ids,
+    n_gwl     = as.integer(l_counts[candidate_ids]),
+    n_gwq     = as.integer(q_counts[candidate_ids]),
+    n_q_param = as.integer(q_param_by_id[candidate_ids]),
     stringsAsFactors = FALSE
   )
   scoreboard$n_gwl[is.na(scoreboard$n_gwl)] <- 0L
   scoreboard$n_gwq[is.na(scoreboard$n_gwq)] <- 0L
+  scoreboard$n_q_param[is.na(scoreboard$n_q_param)] <- 0L
   scoreboard$score <- with(
     scoreboard,
     (n_gwl + n_gwq) * pmax(n_q_param, 1L)
   )
 
   scoreboard <- scoreboard[order(-scoreboard$score), , drop = FALSE]
-  picked <- utils::head(scoreboard, max_devices)
 
-  message("Top candidates by (gwl_rows + gwq_rows) * gwq_parameters:")
-  for (i in seq_len(nrow(picked))) {
+  # TB_MAX_DEVICES = 0 (or negative) means "no limit": push every candidate.
+  # num_env() already aborts on NA at parse time, so an is.na() guard here
+  # would be dead defensive code.
+  no_limit <- max_devices <= 0L
+  picked <- if (no_limit) scoreboard else utils::head(scoreboard, max_devices)
+
+  message(sprintf(
+    "Pushing %d of %d candidate stations (TB_MAX_DEVICES=%s).",
+    nrow(picked), nrow(scoreboard),
+    if (no_limit) "0 -> all" else as.character(max_devices)
+  ))
+  message("Top stations by (gwl_rows + gwq_rows) * gwq_parameters:")
+  for (i in seq_len(min(nrow(picked), 10L))) {
     message(sprintf(
       "  %s : gwl=%d, gwq=%d, q-params=%d, score=%d",
       picked$Nummer[i], picked$n_gwl[i], picked$n_gwq[i],
       picked$n_q_param[i], picked$score[i]
     ))
+  }
+  if (nrow(picked) > 10L) {
+    message(sprintf("  ... and %d more", nrow(picked) - 10L))
   }
 
   station_ids <- picked$Nummer

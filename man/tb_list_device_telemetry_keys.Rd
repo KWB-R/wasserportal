@@ -7,7 +7,9 @@
 tb_list_device_telemetry_keys(
   device_id,
   api_key = Sys.getenv("TB_API_KEY"),
-  host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud")
+  host = tb_default_host(),
+  username = Sys.getenv("TB_USERNAME"),
+  password = Sys.getenv("TB_PASSWORD")
 )
 }
 \arguments{
@@ -18,12 +20,17 @@ resolve a name.}
 
 \item{host}{base URL of the ThingsBoard instance. Defaults to env var
 \code{TB_HOST} if set, otherwise \code{"https://thingsboard.cloud"}.}
+
+\item{username}{ThingsBoard user for the username/password (JWT) login
+(self-hosted / Community Edition). Defaults to env var \code{TB_USERNAME}.}
+
+\item{password}{ThingsBoard password. Defaults to env var \code{TB_PASSWORD}.}
 }
 \value{
 character vector of telemetry key names. May be of length 0.
 }
 \description{
-Wraps \verb{GET /api/plugins/telemetry/DEVICE/\{id\}/keys/timeseries}. Useful to
+Wraps \code{GET /api/plugins/telemetry/DEVICE/{id}/keys/timeseries}. Useful to
 discover what's actually in the device-side time-series store before a
 wipe, or to compare against the \code{Parameter} column of the gh-pages
 source data.

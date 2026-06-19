@@ -1,3 +1,16 @@
+# tb_default_host --------------------------------------------------------------
+
+# Resolve TB_HOST with empty-string-aware fallback. Unlike
+# Sys.getenv("TB_HOST", unset = "..."), this also treats TB_HOST="" (set but
+# empty in .Renviron or a blank workflow_dispatch input) as unset and returns
+# the public-cloud default, so users don't silently hit
+# https://thingsboard.cloud after blanking the var.
+tb_default_host <- function()
+{
+  host <- Sys.getenv("TB_HOST")
+  if (nzchar(host)) host else "https://thingsboard.cloud"
+}
+
 # tb_push_station_telemetry ----------------------------------------------------
 
 #' Push Time Series of one Wasserportal Station to ThingsBoard
@@ -75,7 +88,7 @@ tb_push_station_telemetry <- function(
     value_col = "Messwert",
     key_col = "Parameter",
     single_key = "value",
-    host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud"),
+    host = tb_default_host(),
     chunk_size = 100L,
     mode = c("single", "bulk"),
     throttle_seconds = NULL,
@@ -315,7 +328,7 @@ tb_error_body <- function(resp)
 tb_push_station_attributes <- function(
     attributes,
     device_token,
-    host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud")
+    host = tb_default_host()
 )
 {
   stopifnot(nzchar(device_token), nzchar(host))
@@ -480,7 +493,7 @@ tb_plan_defaults <- function(plan = "free")
 tb_push_latest_telemetry <- function(
     values,
     device_token,
-    host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud")
+    host = tb_default_host()
 )
 {
   stopifnot(nzchar(device_token), nzchar(host), length(values) >= 1L)
@@ -580,7 +593,9 @@ build_telemetry_payload <- function(
 #' Create ThingsBoard Devices and Return their Access Tokens
 #'
 #' Convenience wrapper for the initial setup against a fresh ThingsBoard
-#' tenant. Uses an account-level **API key** (Bearer token) to:
+#' tenant. Authenticates with either a username/password login (JWT -- works
+#' on every ThingsBoard edition, required for self-hosted Community Edition)
+#' or an account-level API key (ThingsBoard Cloud), then:
 #' \enumerate{
 #'   \item Create one device per name (or fetch the device if it already
 #'     exists),
@@ -589,60 +604,79 @@ build_telemetry_payload <- function(
 #' The returned named character vector can be fed directly into
 #' \code{\link{tb_push_station_telemetry}} as `device_token`.
 #'
-#' Generate the API key in the ThingsBoard UI under
-#' *Account > Security > API keys > Generate*.
+#' Set `TB_USERNAME` + `TB_PASSWORD` for the login route, or generate an API
+#' key in the ThingsBoard Cloud UI under
+#' *Account > Security > API keys > Generate* and set `TB_API_KEY`.
 #'
 #' @param station_ids character vector of Wasserportal `Messstellennummer`
 #'   values. Each becomes a ThingsBoard device named
 #'   `paste0(name_prefix, station_id)`.
-#' @param api_key account-level API key generated under
-#'   *Account > Security > API keys > Generate*. Sent in the
-#'   `X-Authorization: ApiKey <key>` request header that ThingsBoard
-#'   expects (not the standard `Authorization: Bearer ...`). Defaults to
-#'   env var `TB_API_KEY`.
+#' @param api_key account-level API key (ThingsBoard Cloud only), generated
+#'   under *Account > Security > API keys > Generate*. Sent in the
+#'   `X-Authorization: ApiKey <key>` request header. Defaults to env var
+#'   `TB_API_KEY`. Ignored when `username` and `password` are supplied.
 #' @param host base URL of the ThingsBoard instance, without trailing slash.
 #'   Defaults to env var `TB_HOST` if set, otherwise
 #'   `"https://thingsboard.cloud"`. Use `"https://eu.thingsboard.cloud"` for
-#'   the EU cloud.
+#'   the EU cloud or e.g. `"https://dashboards.inowas.org"` for a self-hosted
+#'   instance.
 #' @param name_prefix prefix added in front of every station id when forming
 #'   the ThingsBoard device name. Default `"wasserportal-"`.
 #' @param device_type ThingsBoard device profile / type. Default
 #'   `"wasserportal"`. The profile is auto-created on first use.
+#' @param username ThingsBoard user for the username/password (JWT) login.
+#'   Defaults to env var `TB_USERNAME`. When set together with `password` it
+#'   takes precedence over `api_key` -- this is the route to use for
+#'   self-hosted Community Edition.
+#' @param password ThingsBoard password. Defaults to env var `TB_PASSWORD`.
 #' @return named character vector. Names are the input `station_ids`, values
 #'   are device access tokens.
 #' @export
 #' @examples
 #' \dontrun{
+#' # Self-hosted ThingsBoard Community Edition (username/password login):
+#' Sys.setenv(
+#'   TB_HOST = "https://dashboards.inowas.org",
+#'   TB_USERNAME = "me@example.org",
+#'   TB_PASSWORD = "secret"
+#' )
+#' tokens <- tb_setup_devices(c("149", "5867000", "5803900"))
+#'
+#' # ThingsBoard Cloud (account API key):
 #' Sys.setenv(
 #'   TB_HOST = "https://eu.thingsboard.cloud",
 #'   TB_API_KEY = "<paste-your-API-key-here>"
 #' )
 #' tokens <- tb_setup_devices(c("149", "5867000", "5803900"))
-#' tokens
 #' }
 tb_setup_devices <- function(
     station_ids,
     api_key = Sys.getenv("TB_API_KEY"),
-    host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud"),
+    host = tb_default_host(),
     name_prefix = "wasserportal-",
-    device_type = "wasserportal"
+    device_type = "wasserportal",
+    username = Sys.getenv("TB_USERNAME"),
+    password = Sys.getenv("TB_PASSWORD")
 )
 {
   stopifnot(
     is.character(station_ids),
     length(station_ids) >= 1L,
-    nzchar(api_key),
     nzchar(host)
   )
 
   host <- sub("/+$", "", host)
+  auth <- tb_auth_header(
+    api_key = api_key, host = host,
+    username = username, password = password
+  )
 
   tokens <- vapply(station_ids, function(station_id) {
     device_name <- paste0(name_prefix, station_id)
     device_id   <- tb_get_or_create_device(
-      device_name, device_type, api_key, host
+      device_name, device_type, auth, host
     )
-    tb_get_device_access_token(device_id, api_key, host)
+    tb_get_device_access_token(device_id, auth, host)
   }, character(1L), USE.NAMES = TRUE)
 
   stats::setNames(tokens, station_ids)
@@ -662,6 +696,9 @@ tb_setup_devices <- function(
 #' @param api_key account-level API key. Defaults to env var `TB_API_KEY`.
 #' @param host base URL of the ThingsBoard instance. Defaults to env var
 #'   `TB_HOST` if set, otherwise `"https://thingsboard.cloud"`.
+#' @param username ThingsBoard user for the username/password (JWT) login
+#'   (self-hosted / Community Edition). Defaults to env var `TB_USERNAME`.
+#' @param password ThingsBoard password. Defaults to env var `TB_PASSWORD`.
 #' @return device UUID (character) or `NA_character_` if the lookup did not
 #'   resolve.
 #' @export
@@ -672,16 +709,22 @@ tb_setup_devices <- function(
 tb_get_device_id <- function(
     device_name,
     api_key = Sys.getenv("TB_API_KEY"),
-    host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud")
+    host = tb_default_host(),
+    username = Sys.getenv("TB_USERNAME"),
+    password = Sys.getenv("TB_PASSWORD")
 )
 {
-  stopifnot(nzchar(api_key), nzchar(host), nzchar(device_name))
+  stopifnot(nzchar(host), nzchar(device_name))
   host <- sub("/+$", "", host)
+  auth <- tb_auth_header(
+    api_key = api_key, host = host,
+    username = username, password = password
+  )
 
   resp <- tryCatch(
     httr2::request(sprintf("%s/api/tenant/devices", host)) |>
       httr2::req_url_query(deviceName = device_name) |>
-      httr2::req_headers(`X-Authorization` = paste("ApiKey", api_key)) |>
+      httr2::req_headers(`X-Authorization` = auth) |>
       httr2::req_error(is_error = function(r) httr2::resp_status(r) >= 500L) |>
       httr2::req_perform(),
     error = function(e) NULL
@@ -709,6 +752,9 @@ tb_get_device_id <- function(
 #' @param api_key account-level API key. Defaults to env var `TB_API_KEY`.
 #' @param host base URL of the ThingsBoard instance. Defaults to env var
 #'   `TB_HOST` if set, otherwise `"https://thingsboard.cloud"`.
+#' @param username ThingsBoard user for the username/password (JWT) login
+#'   (self-hosted / Community Edition). Defaults to env var `TB_USERNAME`.
+#' @param password ThingsBoard password. Defaults to env var `TB_PASSWORD`.
 #' @return character vector of telemetry key names. May be of length 0.
 #' @export
 #' @examples
@@ -719,17 +765,32 @@ tb_get_device_id <- function(
 tb_list_device_telemetry_keys <- function(
     device_id,
     api_key = Sys.getenv("TB_API_KEY"),
-    host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud")
+    host = tb_default_host(),
+    username = Sys.getenv("TB_USERNAME"),
+    password = Sys.getenv("TB_PASSWORD")
 )
 {
-  stopifnot(nzchar(api_key), nzchar(host), nzchar(device_id))
+  stopifnot(nzchar(host), nzchar(device_id))
   host <- sub("/+$", "", host)
+  auth <- tb_auth_header(
+    api_key = api_key, host = host,
+    username = username, password = password
+  )
+  tb_list_device_telemetry_keys_impl(device_id, auth, host)
+}
 
+# Internal worker shared by tb_list_device_telemetry_keys() and
+# tb_delete_device_telemetry(). Takes a pre-resolved X-Authorization header
+# so the chained-call case (delete -> list) does not require a second
+# /api/auth/login round-trip. The public wrapper resolves `auth` itself; the
+# delete helper passes its own already-resolved header.
+tb_list_device_telemetry_keys_impl <- function(device_id, auth, host)
+{
   resp <- httr2::request(sprintf(
     "%s/api/plugins/telemetry/DEVICE/%s/keys/timeseries",
     host, device_id
   )) |>
-    httr2::req_headers(`X-Authorization` = paste("ApiKey", api_key)) |>
+    httr2::req_headers(`X-Authorization` = auth) |>
     httr2::req_error(body = tb_error_body) |>
     httr2::req_perform() |>
     httr2::resp_body_json()
@@ -762,6 +823,9 @@ tb_list_device_telemetry_keys <- function(
 #'   cached "latest telemetry" entry so the device-detail tab in the UI
 #'   immediately reflects the deletion. Set to `FALSE` to keep the latest
 #'   value visible for keys that get repopulated by the next push anyway.
+#' @param username ThingsBoard user for the username/password (JWT) login
+#'   (self-hosted / Community Edition). Defaults to env var `TB_USERNAME`.
+#' @param password ThingsBoard password. Defaults to env var `TB_PASSWORD`.
 #' @return invisibly the number of keys submitted for deletion.
 #' @export
 #' @examples
@@ -776,17 +840,21 @@ tb_delete_device_telemetry <- function(
     device_id,
     keys = NULL,
     api_key = Sys.getenv("TB_API_KEY"),
-    host = Sys.getenv("TB_HOST", unset = "https://thingsboard.cloud"),
-    delete_latest = TRUE
+    host = tb_default_host(),
+    delete_latest = TRUE,
+    username = Sys.getenv("TB_USERNAME"),
+    password = Sys.getenv("TB_PASSWORD")
 )
 {
-  stopifnot(nzchar(api_key), nzchar(host), nzchar(device_id))
+  stopifnot(nzchar(host), nzchar(device_id))
   host <- sub("/+$", "", host)
+  auth <- tb_auth_header(
+    api_key = api_key, host = host,
+    username = username, password = password
+  )
 
   if (is.null(keys)) {
-    keys <- tb_list_device_telemetry_keys(
-      device_id = device_id, api_key = api_key, host = host
-    )
+    keys <- tb_list_device_telemetry_keys_impl(device_id, auth, host)
   }
 
   if (length(keys) == 0L) {
@@ -798,7 +866,7 @@ tb_delete_device_telemetry <- function(
     host, device_id
   )) |>
     httr2::req_method("DELETE") |>
-    httr2::req_headers(`X-Authorization` = paste("ApiKey", api_key)) |>
+    httr2::req_headers(`X-Authorization` = auth) |>
     httr2::req_url_query(
       keys = paste(keys, collapse = ","),
       deleteAllDataForKeys = "true",
@@ -820,17 +888,18 @@ tb_delete_device_telemetry <- function(
 #'
 #' @param device_name device name as shown in the ThingsBoard UI.
 #' @param device_type device profile name.
-#' @param api_key account-level API key.
+#' @param auth resolved \code{X-Authorization} header value (see
+#'   \code{tb_auth_header}).
 #' @param host base URL of the ThingsBoard instance.
 #' @return device id (uuid string).
 #' @keywords internal
 #' @noRd
-tb_get_or_create_device <- function(device_name, device_type, api_key, host)
+tb_get_or_create_device <- function(device_name, device_type, auth, host)
 {
   lookup <- tryCatch(
     httr2::request(sprintf("%s/api/tenant/devices", host)) |>
       httr2::req_url_query(deviceName = device_name) |>
-      httr2::req_headers(`X-Authorization` = paste("ApiKey", api_key)) |>
+      httr2::req_headers(`X-Authorization` = auth) |>
       httr2::req_error(is_error = function(resp) {
         httr2::resp_status(resp) >= 500L
       }) |>
@@ -844,7 +913,7 @@ tb_get_or_create_device <- function(device_name, device_type, api_key, host)
   }
 
   created <- httr2::request(sprintf("%s/api/device", host)) |>
-    httr2::req_headers(`X-Authorization` = paste("ApiKey", api_key)) |>
+    httr2::req_headers(`X-Authorization` = auth) |>
     httr2::req_body_json(
       list(name = device_name, type = device_type),
       auto_unbox = TRUE
@@ -861,17 +930,18 @@ tb_get_or_create_device <- function(device_name, device_type, api_key, host)
 #' Read the Access Token of a ThingsBoard Device
 #'
 #' @param device_id device uuid as returned by \code{tb_get_or_create_device}.
-#' @param api_key account-level API key.
+#' @param auth resolved \code{X-Authorization} header value (see
+#'   \code{tb_auth_header}).
 #' @param host base URL of the ThingsBoard instance.
 #' @return device access token (character).
 #' @keywords internal
 #' @noRd
-tb_get_device_access_token <- function(device_id, api_key, host)
+tb_get_device_access_token <- function(device_id, auth, host)
 {
   resp <- httr2::request(
     sprintf("%s/api/device/%s/credentials", host, device_id)
   ) |>
-    httr2::req_headers(`X-Authorization` = paste("ApiKey", api_key)) |>
+    httr2::req_headers(`X-Authorization` = auth) |>
     httr2::req_error(body = tb_error_body) |>
     httr2::req_perform() |>
     httr2::resp_body_json()
@@ -937,4 +1007,139 @@ to_epoch_ms <- function(x)
   }
 
   as.numeric(parsed) * 1000
+}
+
+# tb_login ---------------------------------------------------------------------
+
+#' Obtain a JWT Bearer Token from ThingsBoard (Username / Password Login)
+#'
+#' Calls `POST /api/auth/login` with a username/password pair and returns the
+#' JWT access token. This is the **standard ThingsBoard REST API
+#' authentication** and the only one available on self-hosted ThingsBoard
+#' Community Edition: unlike the account-level *API key* (a ThingsBoard Cloud
+#' convenience, generated under *Account > Security > API keys*), every
+#' edition -- CE, PE and Cloud -- accepts a username/password login.
+#'
+#' The token is short-lived (ThingsBoard's default JWT expiration is 2.5 h),
+#' which is ample for the one-off device setup done by
+#' \code{\link{tb_setup_devices}}: the subsequent telemetry push uses the
+#' per-device access token, not this JWT, so no token refresh is implemented.
+#'
+#' Transient failures (HTTP 408 / 429 / 500 / 502 / 503 / 504 and transport
+#' dropouts) are retried with exponential backoff, matching the predicate
+#' used for the telemetry POSTs so a flaky upstream does not abort the
+#' device-setup run on the first 5xx.
+#'
+#' @param username ThingsBoard user (usually the account e-mail). Defaults to
+#'   env var `TB_USERNAME`.
+#' @param password ThingsBoard password. Defaults to env var `TB_PASSWORD`.
+#' @param host base URL of the ThingsBoard instance, without trailing slash.
+#'   Defaults to env var `TB_HOST` if set, otherwise
+#'   `"https://thingsboard.cloud"`. Use e.g.
+#'   `"https://dashboards.inowas.org"` for a self-hosted instance.
+#' @return the JWT access token as a character scalar, ready to be sent in an
+#'   `X-Authorization: Bearer <token>` request header.
+#' @section Credentials in error output:
+#'   On a non-2xx response this helper surfaces an excerpt of the server's
+#'   response body (via `tb_error_body()`, up to ~800 chars) in the R error
+#'   message, and `httr2::req_retry()` prints retry messages to stderr.
+#'   Stock ThingsBoard only echoes back the error description, not the
+#'   request payload, so the password does not leak. If a self-hosted
+#'   instance or reverse proxy is configured to echo request fields back in
+#'   the error body, that excerpt would surface in R errors and -- when
+#'   captured with `2>&1` -- in CI logs. Mask the relevant secrets in such
+#'   environments.
+#' @export
+#' @examples
+#' \dontrun{
+#' Sys.setenv(
+#'   TB_HOST = "https://dashboards.inowas.org",
+#'   TB_USERNAME = "me@example.org",
+#'   TB_PASSWORD = "secret"
+#' )
+#' token <- tb_login()
+#' }
+tb_login <- function(
+    username = Sys.getenv("TB_USERNAME"),
+    password = Sys.getenv("TB_PASSWORD"),
+    host = tb_default_host()
+)
+{
+  stopifnot(nzchar(username), nzchar(password), nzchar(host))
+  host <- sub("/+$", "", host)
+
+  # Match the transient-failure set used by tb_push_station_telemetry(): the
+  # httr2 default only retries 429/503, but a self-hosted ThingsBoard sitting
+  # behind nginx / a load balancer can briefly return 500/502/504 on cold
+  # starts or restarts. /api/auth/login is idempotent, so retrying is safe.
+  is_transient_500 <- function(resp) {
+    httr2::resp_status(resp) %in% c(408L, 429L, 500L, 502L, 503L, 504L)
+  }
+
+  resp <- httr2::request(sprintf("%s/api/auth/login", host)) |>
+    httr2::req_body_json(
+      list(username = username, password = password),
+      auto_unbox = TRUE
+    ) |>
+    httr2::req_retry(
+      max_tries        = 4L,
+      backoff          = function(i) 2^i,
+      is_transient     = is_transient_500,
+      retry_on_failure = TRUE
+    ) |>
+    httr2::req_error(body = tb_error_body) |>
+    httr2::req_perform() |>
+    httr2::resp_body_json()
+
+  token <- resp$token
+  if (is.null(token) || !nzchar(token)) {
+    stop_formatted("ThingsBoard login to '%s' returned no token.", host)
+  }
+  token
+}
+
+# tb_auth_header ---------------------------------------------------------------
+
+#' Resolve the X-Authorization Header for the ThingsBoard Tenant REST API
+#'
+#' Picks the authentication scheme from the credentials that are available:
+#' a username/password pair yields a fresh JWT via \code{\link{tb_login}},
+#' sent as `Bearer <token>` (works on every ThingsBoard edition and is
+#' required for self-hosted Community Edition); otherwise an account-level
+#' API key is sent as `ApiKey <key>` (ThingsBoard Cloud only).
+#' Username/password win when both are configured.
+#'
+#' @param api_key account-level API key (Cloud). Defaults to `TB_API_KEY`.
+#' @param host base URL. Defaults to `TB_HOST` / `https://thingsboard.cloud`.
+#' @param username ThingsBoard user. Defaults to `TB_USERNAME`.
+#' @param password ThingsBoard password. Defaults to `TB_PASSWORD`.
+#' @return the ready-to-use `X-Authorization` header value (character).
+#' @keywords internal
+#' @noRd
+tb_auth_header <- function(
+    api_key = Sys.getenv("TB_API_KEY"),
+    host = tb_default_host(),
+    username = Sys.getenv("TB_USERNAME"),
+    password = Sys.getenv("TB_PASSWORD")
+)
+{
+  has_username <- nzchar(username)
+  has_password <- nzchar(password)
+  if (has_username && has_password) {
+    paste("Bearer", tb_login(username, password, host))
+  } else if (nzchar(api_key)) {
+    if (has_username || has_password) {
+      warning(
+        "Only one of TB_USERNAME / TB_PASSWORD is set; ",
+        "falling back to API-key auth. Set both to use JWT login."
+      )
+    }
+    paste("ApiKey", api_key)
+  } else {
+    stop(paste0(
+      "No ThingsBoard credentials found. Set TB_USERNAME + TB_PASSWORD ",
+      "(self-hosted / Community Edition, recommended) or TB_API_KEY ",
+      "(ThingsBoard Cloud)."
+    ))
+  }
 }

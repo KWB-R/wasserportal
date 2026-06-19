@@ -1,6 +1,6 @@
 Package: wasserportal
 Title: R Package with Functions for Scraping Data of Wasserportal Berlin
-Version: 0.6.0
+Version: 0.7.0
 Authors@R: c(
     person("Hauke", "Sonnenberg", , "hauke.sonnenberg@kompetenz-wasser.de", role = "aut",
            comment = c(ORCID = "0000-0001-9134-2871")),
@@ -18,6 +18,8 @@ Description: R Package with Functions for Scraping Data of Wasserportal
 License: MIT + file LICENSE
 URL: https://github.com/KWB-R/wasserportal
 BugReports: https://github.com/KWB-R/wasserportal/issues
+Depends:
+    R (>= 4.1.0)
 Imports: 
     archive,
     data.table,
@@ -63,6 +65,5 @@ Remotes:
     github::kwb-r/kwb.utils
 Config/testthat/edition: 3
 Encoding: UTF-8
-LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
