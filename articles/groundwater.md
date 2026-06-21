@@ -32,7 +32,7 @@ cat_file_enumeration <- function(base_url, files) {
 ``` r
 
 stations_list <- wasserportal::get_stations(type = "list")
-#> Importing 10 station overviews from Wasserportal Berlin ... ok. (8.13 secs)
+#> Importing 10 station overviews from Wasserportal Berlin ... ok. (10.37 secs)
 
 is_gw <- stringr::str_detect(names(stations_list), "groundwater")
 
@@ -64,12 +64,12 @@ gw_data_list <- wasserportal::get_groundwater_data(
   stations_list = stations_list, 
   debug = TRUE
 )
-#> Importing 'groundwater.level' data (1/2) ... ok. (10.89 mins) 
-#> Importing 'groundwater.quality' data (2/2) ... ok. (1.89 mins)
+#> Importing 'groundwater.level' data (1/2) ... ok. (20.73 mins) 
+#> Importing 'groundwater.quality' data (2/2) ... ok. (6.15 mins)
 
 files <- wasserportal::list_timeseries_data_to_zip(gw_data_list)
-#> Writing 'groundwater_level.zip' ... ok. (11.70 secs) 
-#> Writing 'groundwater_quality.zip' ... ok. (1.02 secs)
+#> Writing 'groundwater_level.zip' ... ok. (11.31 secs) 
+#> Writing 'groundwater_quality.zip' ... ok. (1.00 secs)
 
 files
 #> [1] "groundwater_level.zip"   "groundwater_quality.zip"
@@ -81,7 +81,7 @@ gw_data_list %>%
   dplyr::arrange(dplyr::desc(.data$n))
 #>                 Parameter   Einheit       n
 #>                    <char>    <char>   <int>
-#>   1:             GW-Stand m ü. NHN) 8595084
+#>   1:             GW-Stand m ü. NHN) 8595364
 #>   2:              Chlorid     mg/l]    9608
 #>   3:              Kalzium     mg/l]    9607
 #>   4:               Sulfat     mg/l]    9603
