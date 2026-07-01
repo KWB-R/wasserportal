@@ -19,7 +19,7 @@ on the Wasserportal:
 ``` r
 
 stations <- wasserportal::get_stations(type = c("list", "crosstable"))
-#> Importing 10 station overviews from Wasserportal Berlin ... ok. (8.85 secs)
+#> Importing 10 station overviews from Wasserportal Berlin ... ok. (5.01 secs)
 str(stations, 2)
 #> List of 2
 #>  $ overview_list:List of 10
@@ -31,9 +31,9 @@ str(stations, 2)
 #>   ..$ surface_water.oxygen_concentration: tibble [18 × 10] (S3: tbl_df/tbl/data.frame)
 #>   ..$ surface_water.oxygen_saturation   : tibble [18 × 10] (S3: tbl_df/tbl/data.frame)
 #>   ..$ surface_water.quality             : tibble [56 × 10] (S3: tbl_df/tbl/data.frame)
-#>   ..$ groundwater.level                 : tibble [891 × 11] (S3: tbl_df/tbl/data.frame)
+#>   ..$ groundwater.level                 : tibble [893 × 11] (S3: tbl_df/tbl/data.frame)
 #>   ..$ groundwater.quality               : tibble [208 × 10] (S3: tbl_df/tbl/data.frame)
-#>  $ crosstable   : tibble [1,114 × 12] (S3: tbl_df/tbl/data.frame)
+#>  $ crosstable   : tibble [1,116 × 12] (S3: tbl_df/tbl/data.frame)
 ```
 
 The data frame `stations$crosstable` informs about the parameters that
@@ -113,7 +113,7 @@ these links:
 
 urls <- stations$overview_list$groundwater.level$stammdaten_link
 stations_gwl_master <- wasserportal::get_wasserportal_masters_data(urls)
-#> Importing master data for 891 stations from Wasserportal Berlin ... ok. (8.44 mins)
+#> Importing master data for 893 stations from Wasserportal Berlin ... ok. (5.48 mins)
 ```
 
 This is how the resulting table `stations_gwl_master` looks like:
@@ -178,10 +178,10 @@ g1 <- gwl_classified_only %>%
 plotly::ggplotly(g1)
 ```
 
-66.16 percent of all considered 792 groundwater level monitoring
-stations containing `classification` data (out of 891 provided by
+67.05 percent of all considered 792 groundwater level monitoring
+stations containing `classification` data (out of 893 provided by
 SenWeb) indicate `below normal` (extrem niedrig, sehr niedrig, niedrig)
-groundwater levels. However, only 66.16 percent are indicate
+groundwater levels. However, only 67.05 percent are indicate
 `above normal` (hoch, sehr hoch, extrem hoch) groundwater levels.
 
 #### 2. Trend Classification Map
@@ -358,7 +358,7 @@ below:
 stations_gwq_master <- wasserportal::get_wasserportal_masters_data(
   master_urls = stations_gwq$stammdaten_link
 )
-#> Importing master data for 208 stations from Wasserportal Berlin ... ok. (2.29 mins)
+#> Importing master data for 208 stations from Wasserportal Berlin ... ok. (1.34 mins)
 ```
 
 The master data of groundwater quality stations is also available in
