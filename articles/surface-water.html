@@ -63,7 +63,7 @@
                         <h4 data-toc-skip class="author">Michael
 Rustler</h4>
             
-            <h4 data-toc-skip class="date">2026-07-29</h4>
+            <h4 data-toc-skip class="date">2026-07-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KWB-R/wasserportal/blob/master/vignettes/surface-water.Rmd" class="external-link"><code>vignettes/surface-water.Rmd</code></a></small>
       <div class="d-none name"><code>surface-water.Rmd</code></div>
@@ -91,15 +91,15 @@ Rustler</h4>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/KWB-R/wasserportal" class="external-link">wasserportal</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">stations</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/get_stations.html">get_stations</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Importing 10 station overviews from Wasserportal Berlin ... ok. (7.92 secs)</span></span>
+<span><span class="co">#&gt; Importing 10 station overviews from Wasserportal Berlin ... ok. (6.55 secs)</span></span>
 <span><span class="va">stations_list</span> <span class="op">&lt;-</span> <span class="fu">kwb.utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kwb.utils/man/selectElements.html" class="external-link">selectElements</a></span><span class="op">(</span><span class="va">stations</span>, <span class="st">"overview_list"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">is_sw</span> <span class="op">&lt;-</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html" class="external-link">str_detect</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">stations_list</span><span class="op">)</span>, <span class="st">"surface"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">files</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/list_masters_data_to_csv.html">list_masters_data_to_csv</a></span><span class="op">(</span><span class="va">stations_list</span><span class="op">[</span><span class="va">is_sw</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Writing 'stations_surface-water_water-level.csv' ... ok. (0.16 secs) </span></span>
+<span><span class="co">#&gt; Writing 'stations_surface-water_water-level.csv' ... ok. (0.08 secs) </span></span>
 <span><span class="co">#&gt; Writing 'stations_surface-water_flow.csv' ... ok. (0.00 secs) </span></span>
-<span><span class="co">#&gt; Writing 'stations_surface-water_temperature.csv' ... ok. (0.01 secs) </span></span>
+<span><span class="co">#&gt; Writing 'stations_surface-water_temperature.csv' ... ok. (0.00 secs) </span></span>
 <span><span class="co">#&gt; Writing 'stations_surface-water_conductivity.csv' ... ok. (0.00 secs) </span></span>
 <span><span class="co">#&gt; Writing 'stations_surface-water_ph.csv' ... ok. (0.00 secs) </span></span>
 <span><span class="co">#&gt; Writing 'stations_surface-water_oxygen-concentration.csv' ... ok. (0.00 secs) </span></span>
@@ -144,43 +144,43 @@ stations.</p>
 <span>  <span class="va">variables</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Importing 'surface_water.water_level' ... Station id: 5865900 (1/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5865900 (station_5865900) ... ok. (1.09 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5865900 (station_5865900) ... ok. (1.06 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5827103 (2/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5827103 (station_5827103) ... ok. (0.64 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5827103 (station_5827103) ... ok. (0.62 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5870400 (3/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5870400 (station_5870400) ... ok. (0.74 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5870400 (station_5870400) ... ok. (0.73 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5865300 (4/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5865300 (station_5865300) ... ok. (0.70 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5865300 (station_5865300) ... ok. (0.68 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5819900 (5/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5819900 (station_5819900) ... ok. (1.36 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5819900 (station_5819900) ... ok. (1.35 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5864801 (6/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5864801 (station_5864801) ... ok. (0.45 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5864801 (station_5864801) ... ok. (0.44 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5861101 (7/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5861101 (station_5861101) ... ok. (0.52 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5861101 (station_5861101) ... ok. (0.51 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800107 (8/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5800107 (station_5800107) ... ok. (1.37 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5800107 (station_5800107) ... ok. (1.38 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800317 (9/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5800317 (station_5800317) ... ok. (0.65 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5800317 (station_5800317) ... ok. (0.64 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5867003 (10/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5867003 (station_5867003) ... ok. (0.48 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5867003 (station_5867003) ... ok. (0.47 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5867401 (11/66)</span></span>
@@ -192,11 +192,11 @@ stations.</p>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800302 (13/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5800302 (station_5800302) ... ok. (0.48 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5800302 (station_5800302) ... ok. (0.47 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5863000 (14/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5863000 (station_5863000) ... ok. (0.49 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5863000 (station_5863000) ... ok. (0.48 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5867900 (15/66)</span></span>
@@ -208,7 +208,7 @@ stations.</p>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5827101 (17/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5827101 (station_5827101) ... ok. (0.83 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5827101 (station_5827101) ... ok. (0.81 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800320 (18/66)</span></span>
@@ -216,7 +216,7 @@ stations.</p>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800313 (19/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5800313 (station_5800313) ... ok. (0.44 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5800313 (station_5800313) ... ok. (0.42 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5860900 (20/66)</span></span>
@@ -224,27 +224,27 @@ stations.</p>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5867101 (21/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5867101 (station_5867101) ... ok. (0.53 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5867101 (station_5867101) ... ok. (0.47 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800303 (22/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5800303 (station_5800303) ... ok. (0.48 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5800303 (station_5800303) ... ok. (0.49 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5826702 (23/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5826702 (station_5826702) ... ok. (0.79 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5826702 (station_5826702) ... ok. (0.74 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800305 (24/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5800305 (station_5800305) ... ok. (1.35 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5800305 (station_5800305) ... ok. (1.36 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800304 (25/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5800304 (station_5800304) ... ok. (0.52 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5800304 (station_5800304) ... ok. (0.51 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800306 (26/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5800306 (station_5800306) ... ok. (0.55 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5800306 (station_5800306) ... ok. (0.54 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5861000 (27/66)</span></span>
@@ -252,27 +252,27 @@ stations.</p>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5867300 (28/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5867300 (station_5867300) ... ok. (0.75 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5867300 (station_5867300) ... ok. (0.73 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5864700 (29/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5864700 (station_5864700) ... ok. (0.38 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5864700 (station_5864700) ... ok. (0.36 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5865000 (30/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5865000 (station_5865000) ... ok. (0.41 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5865000 (station_5865000) ... ok. (0.39 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5865200 (31/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5865200 (station_5865200) ... ok. (0.51 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5865200 (station_5865200) ... ok. (0.46 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800308 (32/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5800308 (station_5800308) ... ok. (0.67 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5800308 (station_5800308) ... ok. (0.66 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800321 (33/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5800321 (station_5800321) ... ok. (0.32 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5800321 (station_5800321) ... ok. (0.31 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5867100 (34/66)</span></span>
@@ -280,7 +280,7 @@ stations.</p>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5869700 (35/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5869700 (station_5869700) ... ok. (0.48 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5869700 (station_5869700) ... ok. (0.47 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5867500 (36/66)</span></span>
@@ -288,19 +288,19 @@ stations.</p>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5870100 (37/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5870100 (station_5870100) ... ok. (1.22 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5870100 (station_5870100) ... ok. (1.21 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800309 (38/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5800309 (station_5800309) ... ok. (1.15 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5800309 (station_5800309) ... ok. (1.14 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5819901 (39/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5819901 (station_5819901) ... ok. (0.59 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5819901 (station_5819901) ... ok. (0.58 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800318 (40/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5800318 (station_5800318) ... ok. (0.52 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5800318 (station_5800318) ... ok. (0.50 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5826701 (41/66)</span></span>
@@ -308,35 +308,35 @@ stations.</p>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5866403 (42/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5866403 (station_5866403) ... ok. (0.32 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5866403 (station_5866403) ... ok. (0.31 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800315 (43/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5800315 (station_5800315) ... ok. (0.53 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5800315 (station_5800315) ... ok. (0.54 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800316 (44/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5800316 (station_5800316) ... ok. (0.48 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5800316 (station_5800316) ... ok. (0.46 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5867700 (45/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5867700 (station_5867700) ... ok. (0.66 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5867700 (station_5867700) ... ok. (0.64 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5803500 (46/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5803500 (station_5803500) ... ok. (1.36 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5803500 (station_5803500) ... ok. (1.35 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800312 (47/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5800312 (station_5800312) ... ok. (0.52 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5800312 (station_5800312) ... ok. (0.50 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5867000 (48/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5867000 (station_5867000) ... ok. (0.80 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5867000 (station_5867000) ... ok. (0.81 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800106 (49/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5800106 (station_5800106) ... ok. (0.51 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5800106 (station_5800106) ... ok. (0.50 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5866700 (50/66)</span></span>
@@ -344,7 +344,7 @@ stations.</p>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5866800 (51/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5866800 (station_5866800) ... ok. (1.38 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5866800 (station_5866800) ... ok. (1.37 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5862811 (52/66)</span></span>
@@ -364,7 +364,7 @@ stations.</p>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5815911 (56/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5815911 (station_5815911) ... ok. (0.68 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5815911 (station_5815911) ... ok. (0.67 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5803200 (57/66)</span></span>
@@ -372,64 +372,64 @@ stations.</p>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5867301 (58/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5867301 (station_5867301) ... ok. (0.48 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5867301 (station_5867301) ... ok. (0.47 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5867201 (59/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5867201 (station_5867201) ... ok. (0.75 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5867201 (station_5867201) ... ok. (0.74 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5867202 (60/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5867202 (station_5867202) ... ok. (0.75 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5867202 (station_5867202) ... ok. (0.73 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800310 (61/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5800310 (station_5800310) ... ok. (0.55 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5800310 (station_5800310) ... ok. (0.53 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800314 (62/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5800314 (station_5800314) ... ok. (0.87 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5800314 (station_5800314) ... ok. (0.84 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5861200 (63/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5861200 (station_5861200) ... ok. (0.89 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5861200 (station_5861200) ... ok. (0.88 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5867001 (64/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5867001 (station_5867001) ... ok. (0.43 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5867001 (station_5867001) ... ok. (0.42 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5864800 (65/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5864800 (station_5864800) ... ok. (0.67 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5864800 (station_5864800) ... ok. (0.66 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5866301 (66/66)</span></span>
-<span><span class="co">#&gt; Reading 'variable_ows' for station 5866301 (station_5866301) ... ok. (0.73 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_ows' for station 5866301 (station_5866301) ... ok. (0.71 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
-<span><span class="co">#&gt; ok. (50.75 secs) </span></span>
+<span><span class="co">#&gt; ok. (49.78 secs) </span></span>
 <span><span class="co">#&gt; Importing 'surface_water.flow' ... Station id: 5865300 (1/15)</span></span>
 <span><span class="co">#&gt; Reading 'variable_odf' for station 5865300 (station_5865300) ... ok. (0.67 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5864801 (2/15)</span></span>
-<span><span class="co">#&gt; Reading 'variable_odf' for station 5864801 (station_5864801) ... ok. (0.44 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_odf' for station 5864801 (station_5864801) ... ok. (0.43 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5867401 (3/15)</span></span>
-<span><span class="co">#&gt; Reading 'variable_odf' for station 5867401 (station_5867401) ... ok. (0.60 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_odf' for station 5867401 (station_5867401) ... ok. (0.59 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5867900 (4/15)</span></span>
-<span><span class="co">#&gt; Reading 'variable_odf' for station 5867900 (station_5867900) ... ok. (0.70 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_odf' for station 5867900 (station_5867900) ... ok. (0.69 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5867601 (5/15)</span></span>
-<span><span class="co">#&gt; Reading 'variable_odf' for station 5867601 (station_5867601) ... ok. (0.34 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_odf' for station 5867601 (station_5867601) ... ok. (0.33 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5827101 (6/15)</span></span>
-<span><span class="co">#&gt; Reading 'variable_odf' for station 5827101 (station_5827101) ... ok. (0.50 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_odf' for station 5827101 (station_5827101) ... ok. (0.44 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5865200 (7/15)</span></span>
@@ -437,11 +437,11 @@ stations.</p>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5870100 (8/15)</span></span>
-<span><span class="co">#&gt; Reading 'variable_odf' for station 5870100 (station_5870100) ... ok. (0.76 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_odf' for station 5870100 (station_5870100) ... ok. (0.71 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5826701 (9/15)</span></span>
-<span><span class="co">#&gt; Reading 'variable_odf' for station 5826701 (station_5826701) ... ok. (0.49 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_odf' for station 5826701 (station_5826701) ... ok. (0.48 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5862811 (10/15)</span></span>
@@ -449,7 +449,7 @@ stations.</p>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5827700 (11/15)</span></span>
-<span><span class="co">#&gt; Reading 'variable_odf' for station 5827700 (station_5827700) ... ok. (1.38 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_odf' for station 5827700 (station_5827700) ... ok. (1.36 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5803200 (12/15)</span></span>
@@ -457,104 +457,104 @@ stations.</p>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5861200 (13/15)</span></span>
-<span><span class="co">#&gt; Reading 'variable_odf' for station 5861200 (station_5861200) ... ok. (0.80 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_odf' for station 5861200 (station_5861200) ... ok. (0.74 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5864800 (14/15)</span></span>
-<span><span class="co">#&gt; Reading 'variable_odf' for station 5864800 (station_5864800) ... ok. (0.63 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_odf' for station 5864800 (station_5864800) ... ok. (0.62 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5866301 (15/15)</span></span>
-<span><span class="co">#&gt; Reading 'variable_odf' for station 5866301 (station_5866301) ... ok. (0.73 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_odf' for station 5866301 (station_5866301) ... ok. (0.68 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
-<span><span class="co">#&gt; ok. (10.78 secs) </span></span>
+<span><span class="co">#&gt; ok. (10.39 secs) </span></span>
 <span><span class="co">#&gt; Importing 'surface_water.temperature' ... Station id: 601 (1/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 601 (station_601) ... ok. (0.97 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 601 (station_601) ... ok. (0.96 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 151 (2/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 151 (station_151) ... ok. (0.88 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 151 (station_151) ... ok. (0.89 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 153 (3/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 153 (station_153) ... ok. (0.69 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 153 (station_153) ... ok. (0.66 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 139 (4/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 139 (station_139) ... ok. (0.33 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 139 (station_139) ... ok. (0.31 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 509 (5/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 509 (station_509) ... ok. (0.98 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 509 (station_509) ... ok. (0.96 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 504 (6/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 504 (station_504) ... ok. (0.96 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 504 (station_504) ... ok. (0.95 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 414 (7/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 414 (station_414) ... ok. (0.94 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 414 (station_414) ... ok. (0.92 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 141 (8/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 141 (station_141) ... ok. (1.16 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 141 (station_141) ... ok. (1.17 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 111 (9/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 111 (station_111) ... ok. (1.23 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 111 (station_111) ... ok. (1.22 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 211 (10/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 211 (station_211) ... ok. (1.27 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 211 (station_211) ... ok. (1.22 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 161 (11/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 161 (station_161) ... ok. (1.53 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 161 (station_161) ... ok. (1.52 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 421 (12/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 421 (station_421) ... ok. (1.72 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 421 (station_421) ... ok. (1.65 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5865900 (13/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5865900 (station_5865900) ... ok. (0.59 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5865900 (station_5865900) ... ok. (0.58 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5870400 (14/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5870400 (station_5870400) ... ok. (0.54 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5870400 (station_5870400) ... ok. (0.52 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5865300 (15/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5865300 (station_5865300) ... ok. (0.57 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5865300 (station_5865300) ... ok. (0.55 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5861101 (16/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5861101 (station_5861101) ... ok. (0.58 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5861101 (station_5861101) ... ok. (0.49 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800107 (17/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5800107 (station_5800107) ... ok. (0.59 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5800107 (station_5800107) ... ok. (0.58 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800317 (18/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5800317 (station_5800317) ... ok. (0.63 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5800317 (station_5800317) ... ok. (0.62 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5867003 (19/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5867003 (station_5867003) ... ok. (0.64 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5867003 (station_5867003) ... ok. (0.62 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5867401 (20/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5867401 (station_5867401) ... ok. (0.61 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5867401 (station_5867401) ... ok. (0.60 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800301 (21/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5800301 (station_5800301) ... ok. (0.62 secs) </span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5800301 (station_5800301) ... ok. (0.60 secs) </span></span>
 <span><span class="co">#&gt; Removing 1 elements that are empty or failed (variables: 'owt') ... ok. (0.00 secs)</span></span>
 <span><span class="co">#&gt; No remaining data frames. Returning NULL.</span></span>
 <span><span class="co">#&gt; Station id: 5800302 (22/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5800302 (station_5800302) ... ok. (0.72 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5800302 (station_5800302) ... ok. (0.64 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5867900 (23/65)</span></span>
@@ -562,39 +562,39 @@ stations.</p>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5867601 (24/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5867601 (station_5867601) ... ok. (0.37 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5867601 (station_5867601) ... ok. (0.39 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5827101 (25/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5827101 (station_5827101) ... ok. (0.64 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5827101 (station_5827101) ... ok. (0.63 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800320 (26/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5800320 (station_5800320) ... ok. (0.58 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5800320 (station_5800320) ... ok. (0.57 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5867101 (27/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5867101 (station_5867101) ... ok. (0.64 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5867101 (station_5867101) ... ok. (0.63 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800303 (28/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5800303 (station_5800303) ... ok. (0.68 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5800303 (station_5800303) ... ok. (0.62 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800305 (29/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5800305 (station_5800305) ... ok. (0.59 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5800305 (station_5800305) ... ok. (0.58 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800304 (30/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5800304 (station_5800304) ... ok. (0.67 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5800304 (station_5800304) ... ok. (0.63 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800306 (31/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5800306 (station_5800306) ... ok. (0.62 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5800306 (station_5800306) ... ok. (0.61 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5867300 (32/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5867300 (station_5867300) ... ok. (0.63 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5867300 (station_5867300) ... ok. (0.64 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5864700 (33/65)</span></span>
@@ -602,11 +602,11 @@ stations.</p>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5865000 (34/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5865000 (station_5865000) ... ok. (0.52 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5865000 (station_5865000) ... ok. (0.49 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5865200 (35/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5865200 (station_5865200) ... ok. (0.53 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5865200 (station_5865200) ... ok. (0.52 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800308 (36/65)</span></span>
@@ -618,55 +618,55 @@ stations.</p>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5867100 (38/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5867100 (station_5867100) ... ok. (0.64 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5867100 (station_5867100) ... ok. (0.59 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5869700 (39/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5869700 (station_5869700) ... ok. (0.68 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5869700 (station_5869700) ... ok. (0.62 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5867500 (40/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5867500 (station_5867500) ... ok. (0.58 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5867500 (station_5867500) ... ok. (0.59 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5870100 (41/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5870100 (station_5870100) ... ok. (0.66 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5870100 (station_5870100) ... ok. (0.61 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800309 (42/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5800309 (station_5800309) ... ok. (0.64 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5800309 (station_5800309) ... ok. (0.55 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5819901 (43/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5819901 (station_5819901) ... ok. (0.50 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5819901 (station_5819901) ... ok. (0.49 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800318 (44/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5800318 (station_5800318) ... ok. (0.73 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5800318 (station_5800318) ... ok. (0.61 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5826701 (45/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5826701 (station_5826701) ... ok. (0.59 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5826701 (station_5826701) ... ok. (0.58 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5866403 (46/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5866403 (station_5866403) ... ok. (0.37 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5866403 (station_5866403) ... ok. (0.36 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800315 (47/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5800315 (station_5800315) ... ok. (0.71 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5800315 (station_5800315) ... ok. (0.67 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800316 (48/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5800316 (station_5800316) ... ok. (0.63 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5800316 (station_5800316) ... ok. (0.64 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5867700 (49/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5867700 (station_5867700) ... ok. (0.64 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5867700 (station_5867700) ... ok. (0.61 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5803500 (50/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5803500 (station_5803500) ... ok. (0.67 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5803500 (station_5803500) ... ok. (0.66 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800312 (51/65)</span></span>
@@ -682,7 +682,7 @@ stations.</p>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5866700 (54/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5866700 (station_5866700) ... ok. (0.62 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5866700 (station_5866700) ... ok. (0.63 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5866800 (55/65)</span></span>
@@ -694,15 +694,15 @@ stations.</p>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5820000 (57/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5820000 (station_5820000) ... ok. (0.63 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5820000 (station_5820000) ... ok. (0.64 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5803200 (58/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5803200 (station_5803200) ... ok. (0.65 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5803200 (station_5803200) ... ok. (0.64 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5867301 (59/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5867301 (station_5867301) ... ok. (0.64 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5867301 (station_5867301) ... ok. (0.63 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5867201 (60/65)</span></span>
@@ -710,11 +710,11 @@ stations.</p>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5867202 (61/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5867202 (station_5867202) ... ok. (0.63 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5867202 (station_5867202) ... ok. (0.62 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5800310 (62/65)</span></span>
-<span><span class="co">#&gt; Reading 'variable_owt' for station 5800310 (station_5800310) ... ok. (0.61 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_owt' for station 5800310 (station_5800310) ... ok. (0.60 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 5861200 (63/65)</span></span>
@@ -735,13 +735,13 @@ stations.</p>
 <span><span class="co">#&gt; Empty data frame when looping through 'sw_data_list' in sw_data_list_to_df()</span></span>
 <span><span class="co">#&gt; Warning in min(which(stringr::str_detect(metadata, ":"))): no non-missing</span></span>
 <span><span class="co">#&gt; arguments to min; returning Inf</span></span>
-<span><span class="co">#&gt; ok. (47.64 secs) </span></span>
+<span><span class="co">#&gt; ok. (46.29 secs) </span></span>
 <span><span class="co">#&gt; Importing 'surface_water.conductivity' ... Station id: 601 (1/12)</span></span>
-<span><span class="co">#&gt; Reading 'variable_olf' for station 601 (station_601) ... ok. (0.96 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_olf' for station 601 (station_601) ... ok. (0.95 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 151 (2/12)</span></span>
-<span><span class="co">#&gt; Reading 'variable_olf' for station 151 (station_151) ... ok. (0.88 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_olf' for station 151 (station_151) ... ok. (0.90 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 153 (3/12)</span></span>
@@ -749,15 +749,15 @@ stations.</p>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 139 (4/12)</span></span>
-<span><span class="co">#&gt; Reading 'variable_olf' for station 139 (station_139) ... ok. (0.32 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_olf' for station 139 (station_139) ... ok. (0.33 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 509 (5/12)</span></span>
-<span><span class="co">#&gt; Reading 'variable_olf' for station 509 (station_509) ... ok. (0.95 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_olf' for station 509 (station_509) ... ok. (0.96 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 504 (6/12)</span></span>
-<span><span class="co">#&gt; Reading 'variable_olf' for station 504 (station_504) ... ok. (0.95 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_olf' for station 504 (station_504) ... ok. (0.94 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 414 (7/12)</span></span>
@@ -765,7 +765,7 @@ stations.</p>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 141 (8/12)</span></span>
-<span><span class="co">#&gt; Reading 'variable_olf' for station 141 (station_141) ... ok. (1.18 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_olf' for station 141 (station_141) ... ok. (1.17 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 111 (9/12)</span></span>
@@ -773,18 +773,18 @@ stations.</p>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 211 (10/12)</span></span>
-<span><span class="co">#&gt; Reading 'variable_olf' for station 211 (station_211) ... ok. (1.21 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_olf' for station 211 (station_211) ... ok. (1.22 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 161 (11/12)</span></span>
-<span><span class="co">#&gt; Reading 'variable_olf' for station 161 (station_161) ... ok. (1.52 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_olf' for station 161 (station_161) ... ok. (1.51 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 421 (12/12)</span></span>
 <span><span class="co">#&gt; Reading 'variable_olf' for station 421 (station_421) ... ok. (1.60 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
-<span><span class="co">#&gt; ok. (13.43 secs) </span></span>
+<span><span class="co">#&gt; ok. (13.34 secs) </span></span>
 <span><span class="co">#&gt; Importing 'surface_water.ph' ... Station id: 601 (1/12)</span></span>
 <span><span class="co">#&gt; Reading 'variable_oph' for station 601 (station_601) ... ok. (0.95 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
@@ -802,15 +802,15 @@ stations.</p>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 509 (5/12)</span></span>
-<span><span class="co">#&gt; Reading 'variable_oph' for station 509 (station_509) ... ok. (0.98 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_oph' for station 509 (station_509) ... ok. (0.95 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 504 (6/12)</span></span>
-<span><span class="co">#&gt; Reading 'variable_oph' for station 504 (station_504) ... ok. (0.95 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_oph' for station 504 (station_504) ... ok. (0.96 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 414 (7/12)</span></span>
-<span><span class="co">#&gt; Reading 'variable_oph' for station 414 (station_414) ... ok. (0.93 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_oph' for station 414 (station_414) ... ok. (0.92 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 141 (8/12)</span></span>
@@ -818,11 +818,11 @@ stations.</p>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 111 (9/12)</span></span>
-<span><span class="co">#&gt; Reading 'variable_oph' for station 111 (station_111) ... ok. (1.23 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_oph' for station 111 (station_111) ... ok. (1.22 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 211 (10/12)</span></span>
-<span><span class="co">#&gt; Reading 'variable_oph' for station 211 (station_211) ... ok. (1.22 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_oph' for station 211 (station_211) ... ok. (1.23 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 161 (11/12)</span></span>
@@ -830,12 +830,12 @@ stations.</p>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 421 (12/12)</span></span>
-<span><span class="co">#&gt; Reading 'variable_oph' for station 421 (station_421) ... ok. (1.59 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_oph' for station 421 (station_421) ... ok. (1.60 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
-<span><span class="co">#&gt; ok. (13.68 secs) </span></span>
+<span><span class="co">#&gt; ok. (13.47 secs) </span></span>
 <span><span class="co">#&gt; Importing 'surface_water.oxygen_concentration' ... Station id: 601 (1/12)</span></span>
-<span><span class="co">#&gt; Reading 'variable_oog' for station 601 (station_601) ... ok. (0.95 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_oog' for station 601 (station_601) ... ok. (0.94 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 151 (2/12)</span></span>
@@ -851,11 +851,11 @@ stations.</p>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 509 (5/12)</span></span>
-<span><span class="co">#&gt; Reading 'variable_oog' for station 509 (station_509) ... ok. (0.97 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_oog' for station 509 (station_509) ... ok. (0.96 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 504 (6/12)</span></span>
-<span><span class="co">#&gt; Reading 'variable_oog' for station 504 (station_504) ... ok. (0.96 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_oog' for station 504 (station_504) ... ok. (0.95 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 414 (7/12)</span></span>
@@ -863,7 +863,7 @@ stations.</p>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 141 (8/12)</span></span>
-<span><span class="co">#&gt; Reading 'variable_oog' for station 141 (station_141) ... ok. (1.17 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_oog' for station 141 (station_141) ... ok. (1.18 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 111 (9/12)</span></span>
@@ -871,20 +871,20 @@ stations.</p>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 211 (10/12)</span></span>
-<span><span class="co">#&gt; Reading 'variable_oog' for station 211 (station_211) ... ok. (1.21 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_oog' for station 211 (station_211) ... ok. (1.22 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 161 (11/12)</span></span>
-<span><span class="co">#&gt; Reading 'variable_oog' for station 161 (station_161) ... ok. (1.53 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_oog' for station 161 (station_161) ... ok. (1.52 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 421 (12/12)</span></span>
 <span><span class="co">#&gt; Reading 'variable_oog' for station 421 (station_421) ... ok. (1.60 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
-<span><span class="co">#&gt; ok. (13.47 secs) </span></span>
+<span><span class="co">#&gt; ok. (13.35 secs) </span></span>
 <span><span class="co">#&gt; Importing 'surface_water.oxygen_saturation' ... Station id: 601 (1/12)</span></span>
-<span><span class="co">#&gt; Reading 'variable_oos' for station 601 (station_601) ... ok. (0.89 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_oos' for station 601 (station_601) ... ok. (0.90 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 151 (2/12)</span></span>
@@ -900,27 +900,27 @@ stations.</p>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 509 (5/12)</span></span>
-<span><span class="co">#&gt; Reading 'variable_oos' for station 509 (station_509) ... ok. (0.91 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_oos' for station 509 (station_509) ... ok. (0.89 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 504 (6/12)</span></span>
-<span><span class="co">#&gt; Reading 'variable_oos' for station 504 (station_504) ... ok. (0.90 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_oos' for station 504 (station_504) ... ok. (0.91 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 414 (7/12)</span></span>
-<span><span class="co">#&gt; Reading 'variable_oos' for station 414 (station_414) ... ok. (0.88 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_oos' for station 414 (station_414) ... ok. (0.87 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 141 (8/12)</span></span>
-<span><span class="co">#&gt; Reading 'variable_oos' for station 141 (station_141) ... ok. (1.05 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_oos' for station 141 (station_141) ... ok. (1.07 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 111 (9/12)</span></span>
-<span><span class="co">#&gt; Reading 'variable_oos' for station 111 (station_111) ... ok. (1.10 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_oos' for station 111 (station_111) ... ok. (1.11 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 211 (10/12)</span></span>
-<span><span class="co">#&gt; Reading 'variable_oos' for station 211 (station_211) ... ok. (1.10 secs)</span></span>
+<span><span class="co">#&gt; Reading 'variable_oos' for station 211 (station_211) ... ok. (1.09 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
 <span><span class="co">#&gt; Station id: 161 (11/12)</span></span>
@@ -931,16 +931,16 @@ stations.</p>
 <span><span class="co">#&gt; Reading 'variable_oos' for station 421 (station_421) ... ok. (1.49 secs)</span></span>
 <span><span class="co">#&gt; Warning in warning_not_implemented("merge_raw_results_daily()"):</span></span>
 <span><span class="co">#&gt; merge_raw_results_daily() is not yet implemented. Returning raw data</span></span>
-<span><span class="co">#&gt; ok. (12.71 secs)</span></span>
+<span><span class="co">#&gt; ok. (12.60 secs)</span></span>
 <span></span>
 <span><span class="va">files</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/list_timeseries_data_to_zip.html">list_timeseries_data_to_zip</a></span><span class="op">(</span><span class="va">sw_data_daily_list</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Writing 'daily_surface-water_water-level.zip' ... ok. (1.14 secs) </span></span>
+<span><span class="co">#&gt; Writing 'daily_surface-water_water-level.zip' ... ok. (0.91 secs) </span></span>
 <span><span class="co">#&gt; Writing 'daily_surface-water_flow.zip' ... ok. (0.18 secs) </span></span>
-<span><span class="co">#&gt; Writing 'daily_surface-water_temperature.zip' ... ok. (1.03 secs) </span></span>
-<span><span class="co">#&gt; Writing 'daily_surface-water_conductivity.zip' ... ok. (0.31 secs) </span></span>
-<span><span class="co">#&gt; Writing 'daily_surface-water_ph.zip' ... ok. (0.33 secs) </span></span>
-<span><span class="co">#&gt; Writing 'daily_surface-water_oxygen-concentration.zip' ... ok. (0.38 secs) </span></span>
-<span><span class="co">#&gt; Writing 'daily_surface-water_oxygen-saturation.zip' ... ok. (0.31 secs)</span></span>
+<span><span class="co">#&gt; Writing 'daily_surface-water_temperature.zip' ... ok. (0.93 secs) </span></span>
+<span><span class="co">#&gt; Writing 'daily_surface-water_conductivity.zip' ... ok. (0.28 secs) </span></span>
+<span><span class="co">#&gt; Writing 'daily_surface-water_ph.zip' ... ok. (0.30 secs) </span></span>
+<span><span class="co">#&gt; Writing 'daily_surface-water_oxygen-concentration.zip' ... ok. (0.30 secs) </span></span>
+<span><span class="co">#&gt; Writing 'daily_surface-water_oxygen-saturation.zip' ... ok. (0.26 secs)</span></span>
 <span><span class="va">files</span></span>
 <span><span class="co">#&gt; [1] "daily_surface-water_water-level.zip"         </span></span>
 <span><span class="co">#&gt; [2] "daily_surface-water_flow.zip"                </span></span>
@@ -955,12 +955,12 @@ stations.</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">Parameter</span>, <span class="va">Einheit</span><span class="op">)</span></span>
 <span><span class="co">#&gt;             Parameter Einheit      n</span></span>
-<span><span class="co">#&gt; 1          Durchfluss    m³/s 121609</span></span>
-<span><span class="co">#&gt; 2       Leitfähigkeit   µS/cm  90503</span></span>
+<span><span class="co">#&gt; 1          Durchfluss    m³/s 121623</span></span>
+<span><span class="co">#&gt; 2       Leitfähigkeit   µS/cm  90504</span></span>
 <span><span class="co">#&gt; 3    Sauerstoffgehalt    mg/l  89392</span></span>
-<span><span class="co">#&gt; 4 Sauerstoffsättigung       %  89020</span></span>
-<span><span class="co">#&gt; 5         Wasserstand      cm 583539</span></span>
-<span><span class="co">#&gt; 6   Wasssertemperatur      °C 257069</span></span>
+<span><span class="co">#&gt; 4 Sauerstoffsättigung       %  89030</span></span>
+<span><span class="co">#&gt; 5         Wasserstand      cm 583599</span></span>
+<span><span class="co">#&gt; 6   Wasssertemperatur      °C 257116</span></span>
 <span><span class="co">#&gt; 7             pH-Wert          90097</span></span>
 <span></span>
 <span></span>
@@ -968,68 +968,68 @@ stations.</p>
 <span></span>
 <span><span class="va">swq_data</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/get_surfacewater_qualities.html">get_surfacewater_qualities</a></span><span class="op">(</span><span class="va">station_ids</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Downloading surface water quality data ... </span></span>
-<span><span class="co">#&gt; 01/56: station_id = '102' ... ok. (0.51 secs) </span></span>
-<span><span class="co">#&gt; 02/56: station_id = '105' ... ok. (1.93 secs) </span></span>
-<span><span class="co">#&gt; 03/56: station_id = '110' ... ok. (4.32 secs) </span></span>
-<span><span class="co">#&gt; 04/56: station_id = '115' ... ok. (3.30 secs) </span></span>
+<span><span class="co">#&gt; 01/56: station_id = '102' ... ok. (0.50 secs) </span></span>
+<span><span class="co">#&gt; 02/56: station_id = '105' ... ok. (1.87 secs) </span></span>
+<span><span class="co">#&gt; 03/56: station_id = '110' ... ok. (4.26 secs) </span></span>
+<span><span class="co">#&gt; 04/56: station_id = '115' ... ok. (2.96 secs) </span></span>
 <span><span class="co">#&gt; 05/56: station_id = '120' ... ok. (2.40 secs) </span></span>
-<span><span class="co">#&gt; 06/56: station_id = '125' ... ok. (2.57 secs) </span></span>
-<span><span class="co">#&gt; 07/56: station_id = '130' ... ok. (4.38 secs) </span></span>
-<span><span class="co">#&gt; 08/56: station_id = '135' ... ok. (2.57 secs) </span></span>
+<span><span class="co">#&gt; 06/56: station_id = '125' ... ok. (2.66 secs) </span></span>
+<span><span class="co">#&gt; 07/56: station_id = '130' ... ok. (4.28 secs) </span></span>
+<span><span class="co">#&gt; 08/56: station_id = '135' ... ok. (2.53 secs) </span></span>
 <span><span class="co">#&gt; 09/56: station_id = '140' ... ok. (4.64 secs) </span></span>
-<span><span class="co">#&gt; 10/56: station_id = '150' ... ok. (3.25 secs) </span></span>
+<span><span class="co">#&gt; 10/56: station_id = '150' ... ok. (3.21 secs) </span></span>
 <span><span class="co">#&gt; 11/56: station_id = '160' ... ok. (7.50 secs) </span></span>
-<span><span class="co">#&gt; 12/56: station_id = '215' ... ok. (5.56 secs) </span></span>
+<span><span class="co">#&gt; 12/56: station_id = '215' ... ok. (5.41 secs) </span></span>
 <span><span class="co">#&gt; 13/56: station_id = '220' ... ok. (2.14 secs) </span></span>
-<span><span class="co">#&gt; 14/56: station_id = '225' ... ok. (1.83 secs) </span></span>
-<span><span class="co">#&gt; 15/56: station_id = '228' ... ok. (0.34 secs) </span></span>
-<span><span class="co">#&gt; 16/56: station_id = '230' ... ok. (2.73 secs) </span></span>
-<span><span class="co">#&gt; 17/56: station_id = '305' ... ok. (3.12 secs) </span></span>
-<span><span class="co">#&gt; 18/56: station_id = '311' ... ok. (1.31 secs) </span></span>
-<span><span class="co">#&gt; 19/56: station_id = '315' ... ok. (2.03 secs) </span></span>
-<span><span class="co">#&gt; 20/56: station_id = '316' ... ok. (0.50 secs) </span></span>
-<span><span class="co">#&gt; 21/56: station_id = '320' ... ok. (5.81 secs) </span></span>
-<span><span class="co">#&gt; 22/56: station_id = '325' ... ok. (3.25 secs) </span></span>
-<span><span class="co">#&gt; 23/56: station_id = '330' ... ok. (2.33 secs) </span></span>
-<span><span class="co">#&gt; 24/56: station_id = '340' ... ok. (2.35 secs) </span></span>
-<span><span class="co">#&gt; 25/56: station_id = '345' ... ok. (5.38 secs) </span></span>
-<span><span class="co">#&gt; 26/56: station_id = '350' ... ok. (2.55 secs) </span></span>
-<span><span class="co">#&gt; 27/56: station_id = '355' ... ok. (2.40 secs) </span></span>
-<span><span class="co">#&gt; 28/56: station_id = '407' ... ok. (0.98 secs) </span></span>
-<span><span class="co">#&gt; 29/56: station_id = '410' ... ok. (3.87 secs) </span></span>
-<span><span class="co">#&gt; 30/56: station_id = '415' ... ok. (1.87 secs) </span></span>
-<span><span class="co">#&gt; 31/56: station_id = '420' ... ok. (4.41 secs) </span></span>
-<span><span class="co">#&gt; 32/56: station_id = '430' ... ok. (9.81 secs) </span></span>
-<span><span class="co">#&gt; 33/56: station_id = '505' ... ok. (2.80 secs) </span></span>
+<span><span class="co">#&gt; 14/56: station_id = '225' ... ok. (1.80 secs) </span></span>
+<span><span class="co">#&gt; 15/56: station_id = '228' ... ok. (0.33 secs) </span></span>
+<span><span class="co">#&gt; 16/56: station_id = '230' ... ok. (2.68 secs) </span></span>
+<span><span class="co">#&gt; 17/56: station_id = '305' ... ok. (3.06 secs) </span></span>
+<span><span class="co">#&gt; 18/56: station_id = '311' ... ok. (1.30 secs) </span></span>
+<span><span class="co">#&gt; 19/56: station_id = '315' ... ok. (2.01 secs) </span></span>
+<span><span class="co">#&gt; 20/56: station_id = '316' ... ok. (0.49 secs) </span></span>
+<span><span class="co">#&gt; 21/56: station_id = '320' ... ok. (5.60 secs) </span></span>
+<span><span class="co">#&gt; 22/56: station_id = '325' ... ok. (3.20 secs) </span></span>
+<span><span class="co">#&gt; 23/56: station_id = '330' ... ok. (2.43 secs) </span></span>
+<span><span class="co">#&gt; 24/56: station_id = '340' ... ok. (2.33 secs) </span></span>
+<span><span class="co">#&gt; 25/56: station_id = '345' ... ok. (5.01 secs) </span></span>
+<span><span class="co">#&gt; 26/56: station_id = '350' ... ok. (2.53 secs) </span></span>
+<span><span class="co">#&gt; 27/56: station_id = '355' ... ok. (2.33 secs) </span></span>
+<span><span class="co">#&gt; 28/56: station_id = '407' ... ok. (0.99 secs) </span></span>
+<span><span class="co">#&gt; 29/56: station_id = '410' ... ok. (4.06 secs) </span></span>
+<span><span class="co">#&gt; 30/56: station_id = '415' ... ok. (1.80 secs) </span></span>
+<span><span class="co">#&gt; 31/56: station_id = '420' ... ok. (4.34 secs) </span></span>
+<span><span class="co">#&gt; 32/56: station_id = '430' ... ok. (10.23 secs) </span></span>
+<span><span class="co">#&gt; 33/56: station_id = '505' ... ok. (2.81 secs) </span></span>
 <span><span class="co">#&gt; 34/56: station_id = '510' ... ok. (2.32 secs) </span></span>
-<span><span class="co">#&gt; 35/56: station_id = '515' ... ok. (3.52 secs) </span></span>
-<span><span class="co">#&gt; 36/56: station_id = '602' ... ok. (0.47 secs) </span></span>
-<span><span class="co">#&gt; 37/56: station_id = '605' ... ok. (2.96 secs) </span></span>
+<span><span class="co">#&gt; 35/56: station_id = '515' ... ok. (3.47 secs) </span></span>
+<span><span class="co">#&gt; 36/56: station_id = '602' ... ok. (0.46 secs) </span></span>
+<span><span class="co">#&gt; 37/56: station_id = '605' ... ok. (2.69 secs) </span></span>
 <span><span class="co">#&gt; 38/56: station_id = '606' ... ok. (0.50 secs) </span></span>
-<span><span class="co">#&gt; 39/56: station_id = '610' ... ok. (2.49 secs) </span></span>
-<span><span class="co">#&gt; 40/56: station_id = '710' ... ok. (3.48 secs) </span></span>
-<span><span class="co">#&gt; 41/56: station_id = '714' ... ok. (0.49 secs) </span></span>
-<span><span class="co">#&gt; 42/56: station_id = '715' ... ok. (1.90 secs) </span></span>
+<span><span class="co">#&gt; 39/56: station_id = '610' ... ok. (2.15 secs) </span></span>
+<span><span class="co">#&gt; 40/56: station_id = '710' ... ok. (3.46 secs) </span></span>
+<span><span class="co">#&gt; 41/56: station_id = '714' ... ok. (0.52 secs) </span></span>
+<span><span class="co">#&gt; 42/56: station_id = '715' ... ok. (1.84 secs) </span></span>
 <span><span class="co">#&gt; 43/56: station_id = '718' ... ok. (1.01 secs) </span></span>
 <span><span class="co">#&gt; 44/56: station_id = '719' ... ok. (1.34 secs) </span></span>
 <span><span class="co">#&gt; 45/56: station_id = '723' ... ok. (0.80 secs) </span></span>
-<span><span class="co">#&gt; 46/56: station_id = '725' ... ok. (1.84 secs) </span></span>
-<span><span class="co">#&gt; 47/56: station_id = '728' ... ok. (2.49 secs) </span></span>
-<span><span class="co">#&gt; 48/56: station_id = '729' ... ok. (1.03 secs) </span></span>
-<span><span class="co">#&gt; 49/56: station_id = '730' ... ok. (2.64 secs) </span></span>
-<span><span class="co">#&gt; 50/56: station_id = '740' ... ok. (1.47 secs) </span></span>
-<span><span class="co">#&gt; 51/56: station_id = '741' ... ok. (1.18 secs) </span></span>
-<span><span class="co">#&gt; 52/56: station_id = '742' ... ok. (1.74 secs) </span></span>
+<span><span class="co">#&gt; 46/56: station_id = '725' ... ok. (1.91 secs) </span></span>
+<span><span class="co">#&gt; 47/56: station_id = '728' ... ok. (2.48 secs) </span></span>
+<span><span class="co">#&gt; 48/56: station_id = '729' ... ok. (0.98 secs) </span></span>
+<span><span class="co">#&gt; 49/56: station_id = '730' ... ok. (2.70 secs) </span></span>
+<span><span class="co">#&gt; 50/56: station_id = '740' ... ok. (1.46 secs) </span></span>
+<span><span class="co">#&gt; 51/56: station_id = '741' ... ok. (1.14 secs) </span></span>
+<span><span class="co">#&gt; 52/56: station_id = '742' ... ok. (1.30 secs) </span></span>
 <span><span class="co">#&gt; 53/56: station_id = '803' ... ok. (0.83 secs) </span></span>
-<span><span class="co">#&gt; 54/56: station_id = '805' ... ok. (1.49 secs) </span></span>
-<span><span class="co">#&gt; 55/56: station_id = '807' ... ok. (1.06 secs) </span></span>
-<span><span class="co">#&gt; 56/56: station_id = '815' ... ok. (1.81 secs) </span></span>
-<span><span class="co">#&gt; ok. (2.39 mins)</span></span>
+<span><span class="co">#&gt; 54/56: station_id = '805' ... ok. (1.61 secs) </span></span>
+<span><span class="co">#&gt; 55/56: station_id = '807' ... ok. (1.00 secs) </span></span>
+<span><span class="co">#&gt; 56/56: station_id = '815' ... ok. (1.80 secs) </span></span>
+<span><span class="co">#&gt; ok. (2.36 mins)</span></span>
 <span></span>
 <span><span class="va">files1</span> <span class="op">&lt;-</span> <span class="fu">wasserportal</span><span class="fu">::</span><span class="fu"><a href="../reference/list_timeseries_data_to_zip.html">list_timeseries_data_to_zip</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"surface-water_quality"</span> <span class="op">=</span> <span class="va">swq_data</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; Writing 'daily_surface-water-quality.zip' ... ok. (0.77 secs)</span></span>
+<span><span class="co">#&gt; Writing 'daily_surface-water-quality.zip' ... ok. (0.91 secs)</span></span>
 <span></span>
 <span><span class="va">files2</span> <span class="op">&lt;-</span> <span class="st">"surface-water_quality.zip"</span></span>
 <span></span>
@@ -1056,7 +1056,7 @@ stations.</p>
 <span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">Betreiber</span> <span class="op">==</span> <span class="st">"Land Berlin"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">stammdaten_link</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; Importing master data for 66 stations from Wasserportal Berlin ... ok. (32.49 secs)</span></span>
+<span><span class="co">#&gt; Importing master data for 66 stations from Wasserportal Berlin ... ok. (33.88 secs)</span></span>
 <span></span>
 <span><span class="va">column_level_zero</span> <span class="op">&lt;-</span> <span class="st">"Pegelnullpunkt_m_NHN"</span></span>
 <span>  </span>
@@ -1076,7 +1076,7 @@ stations.</p>
 <span>  <span class="fu">kwb.utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kwb.utils/man/removeColumns.html" class="external-link">removeColumns</a></span><span class="op">(</span><span class="va">column_level_zero</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">swl_data</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 'data.frame':    582457 obs. of  6 variables:</span></span>
+<span><span class="co">#&gt; 'data.frame':    582517 obs. of  6 variables:</span></span>
 <span><span class="co">#&gt;  $ Messstellennummer             : chr  "5865900" "5865900" "5865900" "5865900" ...</span></span>
 <span><span class="co">#&gt;  $ Datum                         : Date, format: "1999-11-01" "1999-11-02" ...</span></span>
 <span><span class="co">#&gt;  $ Tagesmittelwert               : int  16 23 19 17 17 15 14 14 19 19 ...</span></span>
