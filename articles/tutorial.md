@@ -19,7 +19,7 @@ on the Wasserportal:
 ``` r
 
 stations <- wasserportal::get_stations(type = c("list", "crosstable"))
-#> Importing 10 station overviews from Wasserportal Berlin ... ok. (8.12 secs)
+#> Importing 10 station overviews from Wasserportal Berlin ... ok. (6.78 secs)
 str(stations, 2)
 #> List of 2
 #>  $ overview_list:List of 10
@@ -113,7 +113,7 @@ these links:
 
 urls <- stations$overview_list$groundwater.level$stammdaten_link
 stations_gwl_master <- wasserportal::get_wasserportal_masters_data(urls)
-#> Importing master data for 893 stations from Wasserportal Berlin ... ok. (8.25 mins)
+#> Importing master data for 893 stations from Wasserportal Berlin ... ok. (6.29 mins)
 ```
 
 This is how the resulting table `stations_gwl_master` looks like:
@@ -139,6 +139,7 @@ text_high_levels <- c("hoch", "sehr hoch", "extrem hoch")
 levels_ordered <- c(text_low_levels, "normal", text_high_levels, "keine")
 
 gwl$Klassifikation <- forcats::fct_relevel(gwl$Klassifikation, levels_ordered)
+#> Warning: 1 unknown level in `f`: extrem hoch
 
 gwl_classified_only <- gwl %>% 
   dplyr::filter(Klassifikation != "keine")
@@ -178,10 +179,10 @@ g1 <- gwl_classified_only %>%
 plotly::ggplotly(g1)
 ```
 
-82.2 percent of all considered 820 groundwater level monitoring stations
-containing `classification` data (out of 893 provided by SenWeb)
-indicate `below normal` (extrem niedrig, sehr niedrig, niedrig)
-groundwater levels. However, only 82.2 percent are indicate
+82.41 percent of all considered 813 groundwater level monitoring
+stations containing `classification` data (out of 893 provided by
+SenWeb) indicate `below normal` (extrem niedrig, sehr niedrig, niedrig)
+groundwater levels. However, only 82.41 percent are indicate
 `above normal` (hoch, sehr hoch, extrem hoch) groundwater levels.
 
 #### 2. Trend Classification Map
@@ -358,7 +359,7 @@ below:
 stations_gwq_master <- wasserportal::get_wasserportal_masters_data(
   master_urls = stations_gwq$stammdaten_link
 )
-#> Importing master data for 208 stations from Wasserportal Berlin ... ok. (2.06 mins)
+#> Importing master data for 208 stations from Wasserportal Berlin ... ok. (1.68 mins)
 ```
 
 The master data of groundwater quality stations is also available in
