@@ -46,7 +46,7 @@ parameters is available per station ("x" if available, NA if not)
 
 ``` r
 stations <- wasserportal::get_stations(n_cores = 2L)
-#> Importing 10 station overviews from Wasserportal Berlin ... ok. (8.84 secs) 
+#> Importing 10 station overviews from Wasserportal Berlin ... ok. (8.33 secs) 
 str(stations)
 #> List of 3
 #>  $ overview_list:List of 10
@@ -190,7 +190,7 @@ str(stations)
 #>   ..$ water_body               : chr [1:1449] "surface_water" "surface_water" "surface_water" "surface_water" ...
 #>   ..$ variable                 : chr [1:1449] "water_level" "water_level" "water_level" "water_level" ...
 #>   ..$ station_type             : chr [1:1449] "ows" "ows" "ows" "ows" ...
-#>   ..- attr(*, ".internal.selfref")=<pointer: 0x103e886c0> 
+#>   ..- attr(*, ".internal.selfref")=<pointer: 0x103f74450> 
 #>  $ crosstable   : tibble [1,116 × 12] (S3: tbl_df/tbl/data.frame)
 #>   ..$ Messstellennummer: chr [1:1116] "5865900" "5827103" "5870400" "5865300" ...
 #>   ..$ Messstellenname  : chr [1:1116] "Allee der Kosmonauten" "Allendestraße" "Alsenbrücke" "Am Bahndamm" ...
