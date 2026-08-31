@@ -32,12 +32,12 @@ cat_file_enumeration <- function(base_url, files) {
 ``` r
 
 stations_list <- wasserportal::get_stations(type = "list")
-#> Importing 10 station overviews from Wasserportal Berlin ... ok. (7.15 secs)
+#> Importing 10 station overviews from Wasserportal Berlin ... ok. (7.42 secs)
 
 is_gw <- stringr::str_detect(names(stations_list), "groundwater")
 
 files <- wasserportal::list_masters_data_to_csv(stations_list[is_gw])
-#> Writing 'stations_groundwater_level.csv' ... ok. (0.07 secs) 
+#> Writing 'stations_groundwater_level.csv' ... ok. (0.14 secs) 
 #> Writing 'stations_groundwater_quality.csv' ... ok. (0.00 secs)
 ```
 
@@ -64,11 +64,11 @@ gw_data_list <- wasserportal::get_groundwater_data(
   stations_list = stations_list, 
   debug = TRUE
 )
-#> Importing 'groundwater.level' data (1/2) ... ok. (25.80 mins) 
-#> Importing 'groundwater.quality' data (2/2) ... ok. (8.88 mins)
+#> Importing 'groundwater.level' data (1/2) ... ok. (16.23 mins) 
+#> Importing 'groundwater.quality' data (2/2) ... ok. (3.86 mins)
 
 files <- wasserportal::list_timeseries_data_to_zip(gw_data_list)
-#> Writing 'groundwater_level.zip' ... ok. (11.04 secs) 
+#> Writing 'groundwater_level.zip' ... ok. (13.05 secs) 
 #> Writing 'groundwater_quality.zip' ... ok. (0.94 secs)
 
 files
