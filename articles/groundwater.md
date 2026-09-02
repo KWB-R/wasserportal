@@ -32,13 +32,13 @@ cat_file_enumeration <- function(base_url, files) {
 ``` r
 
 stations_list <- wasserportal::get_stations(type = "list")
-#> Importing 10 station overviews from Wasserportal Berlin ... ok. (6.26 secs)
+#> Importing 10 station overviews from Wasserportal Berlin ... ok. (7.85 secs)
 
 is_gw <- stringr::str_detect(names(stations_list), "groundwater")
 
 files <- wasserportal::list_masters_data_to_csv(stations_list[is_gw])
-#> Writing 'stations_groundwater_level.csv' ... ok. (0.17 secs) 
-#> Writing 'stations_groundwater_quality.csv' ... ok. (0.01 secs)
+#> Writing 'stations_groundwater_level.csv' ... ok. (0.11 secs) 
+#> Writing 'stations_groundwater_quality.csv' ... ok. (0.00 secs)
 ```
 
 The following groundwater master data `.csv` files are available for
@@ -64,12 +64,12 @@ gw_data_list <- wasserportal::get_groundwater_data(
   stations_list = stations_list, 
   debug = TRUE
 )
-#> Importing 'groundwater.level' data (1/2) ... ok. (17.74 mins) 
-#> Importing 'groundwater.quality' data (2/2) ... ok. (3.79 mins)
+#> Importing 'groundwater.level' data (1/2) ... ok. (15.14 mins) 
+#> Importing 'groundwater.quality' data (2/2) ... ok. (4.29 mins)
 
 files <- wasserportal::list_timeseries_data_to_zip(gw_data_list)
-#> Writing 'groundwater_level.zip' ... ok. (11.48 secs) 
-#> Writing 'groundwater_quality.zip' ... ok. (1.05 secs)
+#> Writing 'groundwater_level.zip' ... ok. (10.84 secs) 
+#> Writing 'groundwater_quality.zip' ... ok. (1.02 secs)
 
 files
 #> [1] "groundwater_level.zip"   "groundwater_quality.zip"
