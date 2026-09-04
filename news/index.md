@@ -395,7 +395,7 @@
   left those bytes mis-marked as UTF-8 and broke
   `subst_special_chars()`’s `ä→ae` / `ü→ue` substitutions on Windows R
 - Bypass
-  [`rvest::html_table()`](https://rdrr.io/pkg/rvest/man/html_table.html)
+  [`rvest::html_table()`](https://rvest.tidyverse.org/reference/html_table.html)
   and `xml2::xml_text(trim = TRUE)` in
   [`get_wasserportal_master_data()`](https://kwb-r.github.io/wasserportal/reference/get_wasserportal_master_data.md)
   and
