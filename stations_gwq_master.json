@@ -343,7 +343,7 @@
     "Betreiber": "Senat",
     "Auspraegung": "GW-Stand + GW-Güte",
     "Grundwasserleiter": "Hauptgrundwasserleiter (GWL 1.3 + 2)",
-    "Gelaendeoberkante_GOK_m_ue_NHN": "34.30",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "34.31",
     "Rohroberkante_m_ue_NHN": "34.74",
     "Filteroberkante_m_u_GOK": "18.50",
     "Filterunterkante_m_u_GOK": "33.50",
@@ -1305,12 +1305,12 @@
     "Betreiber": "Senat",
     "Auspraegung": "GW-Stand + GW-Güte",
     "Grundwasserleiter": "lokal ausgebildeter Grundwasserkörper",
-    "Gelaendeoberkante_GOK_m_ue_NHN": "53.79",
-    "Rohroberkante_m_ue_NHN": "54.47",
+    "Gelaendeoberkante_GOK_m_ue_NHN": "53.85",
+    "Rohroberkante_m_ue_NHN": "54.48",
     "Filteroberkante_m_u_GOK": "7.50",
     "Filterunterkante_m_u_GOK": "9.50",
     "Rechtswert_UTM_33_N": "391703",
-    "Hochwert_UTM_33_N": "5832000"
+    "Hochwert_UTM_33_N": "5832001"
   },
   {
     "Nummer": "6522",
